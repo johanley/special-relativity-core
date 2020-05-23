@@ -7,8 +7,21 @@ package sr.core;
 public final class Util {
 
   /** The square of the given number, x^2. */
-  public static Double squared(double x) {
+  public static Double sq(double x) {
     return Math.pow(x, 2);
+  }
+  
+  /** The square root of the given number, x^0.5. */
+  public static Double sqroot(double x) {
+    return Math.pow(x, 0.5);
+  }
+  
+  public static double degsToRads(double degs) {
+    return degs * CONVERT_RADS;
+  }
+  
+  public static double radsToRads(double rads) {
+    return rads * 1.0/CONVERT_RADS;
   }
   
   public static boolean isTiny(double val) {
@@ -25,4 +38,9 @@ public final class Util {
       throw new RuntimeException(msg);
     }
   }
+
+  // PRIVATE 
+  
+  private static final double CONVERT_RADS = Math.PI/180.0;
+  
 }

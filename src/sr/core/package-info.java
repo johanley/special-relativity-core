@@ -11,5 +11,7 @@
  
  <P>The metric used in the <em>Classical Theory of Fields</em> is used here: (+,-,-,-,).
  With that metric, all time-like intervals are real numbers, not imaginary.
+ 
+ <P>All angles are in radians.
 */
 package sr.core;

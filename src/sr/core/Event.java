@@ -1,7 +1,7 @@
 package sr.core;
 
 import static java.util.Comparator.comparing;
-import static sr.core.Util.squared;
+import static sr.core.Util.sq;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,7 +11,9 @@ import java.util.Objects;
 /** 
  The coords of an event in a given inertial frame.
  
- Uses Cartesian spatial coords (xyz).
+ Uses right-handed Cartesian spatial coords (xyz) only.
+ If the caller is using a different spatial coord system, then the caller will need to convert 
+ before/after interacting with this class.
  
  <P>Immutable struct.
  
@@ -22,11 +24,8 @@ import java.util.Objects;
  
  <P>For space-like separations, the time-order of two events is of course NOT an invariant.
  
- <P>Example of a style which lets you change your mind about the units being used:
- <pre>
-  double c = Units.C_NATURAL_UNITS.speed();
-  Event ev = Event.from(c*t, x, y, z);
- </pre>
+ <P>
+ See {@link Config} and {@link SpeedLimit} regarding the units used for c.
  For most cases, using natural units is recommended.
 */
 public final class Event implements Comparable<Event> {
@@ -34,9 +33,7 @@ public final class Event implements Comparable<Event> {
   /** 
    Note that the time-coord is t, not ct!
    This is meant as a convenience for the caller. 
-   The value for c is taken internally from {@link Config#c()}.
-   
-   <P>See {@link SpeedLimit}.
+   This class takes the value for c from {@link Config#c()}. See {@link SpeedLimit} as well.
    
    <P>If you are working in less than 3 spatial dimensions, then pass 0 for the unused spatial coords (don't pass null!).
    @throws RuntimeException if any param is null 
@@ -64,8 +61,8 @@ public final class Event implements Comparable<Event> {
    The squared-interval between this event and that event. Can be positive or negative! 
    Uses (+,-,-,-,) as the signature; all time-like intervals are real, not imaginary.  
   */
-  public Double intervalSqBetween(Event that) {
-    return squared(ct-that.ct) - squared(x-that.x) - squared(y-that.y) - squared(z-that.z);
+  public Double intervatnoehualSqBetween(Event that) {
+    return sq(ct-that.ct) - sq(x-that.x) - sq(y-that.y) - sq(z-that.z);
   }
   
   /** Maps to the sign of the squared-interval with the given event. */
@@ -75,7 +72,7 @@ public final class Event implements Comparable<Event> {
   
   /** The spatial length between this event and another event. Always positive! */
   public Double distanceBetween(Event that) {
-    return Math.sqrt(squared(x-that.x) + squared(y-that.y) + squared(z-that.z));
+    return Math.sqrt(sq(x-that.x) + sq(y-that.y) + sq(z-that.z));
   }
   
   /** The ct-interval between this event and another event. Always positive! */

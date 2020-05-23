@@ -67,16 +67,26 @@ public final class Transformer {
     return result;
   }
 
-  //Euler
-  //yaw-pitch-roll
-  /** Rotation of the spatial axes.*/
-  public static UnaryOperator<Event> rotate(double α, double β, double γ) {
-    return null;
+  /** Rotation around the given spatial axis. See {@link Rotation}. */
+  public static UnaryOperator<Event> rotate(Axis axis, double θ) {
+    UnaryOperator<Event> result = (e) -> {
+      Rotation rotation = Rotation.along(axis, θ);
+      Event res = rotation.applyTo(e);
+      sameIntervalFromOrigin(e, res);
+      return res;
+    };
+    return result;
   }
-
-  //what about supplying a direction?
-  public static UnaryOperator<Event> boost(double β) {
-    return null;
+  
+  /** Lorentz transformation along the given axis. See {@link Boost}. */
+  public static UnaryOperator<Event> boostAlong(Axis axis, double β) {
+    UnaryOperator<Event> result = (e) -> {
+      Boost boost = Boost.along(axis, β);
+      Event res = boost.applyTo(e);
+      sameIntervalFromOrigin(e, res);
+      return res;
+    };
+    return result;
   }
   
   // PRIVATE
@@ -84,6 +94,6 @@ public final class Transformer {
   
   /** By default, assertions are turned off at runtime. */
   private static void sameIntervalFromOrigin(Event a, Event b) {
-    assert isTiny(a.intervalSqBetween(ORIGIN) - b.intervalSqBetween(ORIGIN)) : "Interval has changed too much";
+    assert isTiny(Physics.sqInterval(a, ORIGIN) - Physics.sqInterval(b, ORIGIN)) : "Interval has changed too much";
   }
 }

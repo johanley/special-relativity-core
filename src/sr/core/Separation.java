@@ -21,7 +21,7 @@ public enum Separation {
   /** Return the separation between the 2 events. */
   public static Separation between(Event a, Event b) {
     Separation result = null;
-    double intSq = a.intervalSqBetween(b);
+    double intSq = Physics.sqInterval(a, b);
     if (Math.abs(intSq) < Config.ε()) {
       result = NULL; //this must come first, because of the epsilon!
     }
