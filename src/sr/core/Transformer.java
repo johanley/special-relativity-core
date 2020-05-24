@@ -78,10 +78,10 @@ public final class Transformer {
     return result;
   }
   
-  /** Lorentz transformation along the given axis. See {@link Boost}. */
+  /** Lorentz transformation along the given axis. See {@link LorentzTransformation}. */
   public static UnaryOperator<Event> boostAlong(Axis axis, double β) {
     UnaryOperator<Event> result = (e) -> {
-      Boost boost = Boost.along(axis, β);
+      LorentzTransformation boost = LorentzTransformation.along(axis, β);
       Event res = boost.applyTo(e);
       sameIntervalFromOrigin(e, res);
       return res;

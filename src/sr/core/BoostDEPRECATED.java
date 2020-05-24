@@ -1,23 +1,30 @@
 package sr.core;
 
-import static sr.core.Axis.*;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
-/** Lorentz transformation. */
-public final class Boost {
+/** 
+ Lorentz transformation.
+ 
+ It's important to note that the Lorentz transformation applies not just to events, but 
+ to all 4-vectors. This is related to the fact that the transformation uses dimensionless 
+ coefficients (β and Γ). That means that input-units are the same as output-units. 
+*/
+public final class BoostDEPRECATED {
 
   /**
-   The boost is applied to the inertial frame, not to events in the frame.
+   The boost is applied to the inertial frame, not to things in the inertial frame.
    @param β is positive for boosts parallel to the given axis, and negative for 
    boosts antiparallel to the given axis. 
   */
-  public static Boost along(Axis axis, double β) {
-    return new Boost(axis, β);
+  public static BoostDEPRECATED along(Axis axis, double β) {
+    return new BoostDEPRECATED(axis, β);
   }
   
   /** Apply the boost to the given event. */
   public Event applyTo(Event e) {
     Event res = null;
-    //there's a small bit of code repetition here, but it's not too bad
     if (X == axis) {
       EntangledPair pair = entangle(e.ct(), e.x());
       res = Event.from(pair.time, pair.space, e.y(), e.z());
@@ -38,7 +45,7 @@ public final class Boost {
   private Axis axis;
   private double β;
   
-  private Boost(Axis axis, double β) {
+  private BoostDEPRECATED(Axis axis, double β) {
     this.axis = axis;
     this.β = β;
   }
@@ -56,5 +63,9 @@ public final class Boost {
   private static final class EntangledPair {
     double time;
     double space;
+  }
+  
+  private double part(int idx, Event ev) {
+    return ev.vectorParts()[idx].execute();
   }
 }

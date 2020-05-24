@@ -28,7 +28,14 @@ import java.util.Objects;
  See {@link Config} and {@link SpeedLimit} regarding the units used for c.
  For most cases, using natural units is recommended.
 */
-public final class Event implements Comparable<Event> {
+public final class Event implements Comparable<Event>, Vector<Event> {
+  
+  //https://stackoverflow.com/questions/160970/how-do-i-invoke-a-java-method-when-given-the-method-name-as-a-string
+  //see the comment that uses functional programming
+  public VectorPart[] vectorParts() {
+    VectorPart[] result = {this::ct, this::x, this::y, this::z};
+    return result;
+  }
 
   /** 
    Note that the time-coord is t, not ct!
@@ -40,6 +47,10 @@ public final class Event implements Comparable<Event> {
   */
   public static Event from(Double t, Double x, Double y, Double z) {
     return new Event(t, x, y, z);
+  }
+  
+  public Event build(Double one, Double two, Double three, Double four) {
+    return from(one, two, three, four);
   }
    
   /** See {@link #Event(Double, Double, Double, Double)}. */
@@ -61,7 +72,7 @@ public final class Event implements Comparable<Event> {
    The squared-interval between this event and that event. Can be positive or negative! 
    Uses (+,-,-,-,) as the signature; all time-like intervals are real, not imaginary.  
   */
-  public Double intervatnoehualSqBetween(Event that) {
+  public Double intervalSquaredBetween(Event that) {
     return sq(ct-that.ct) - sq(x-that.x) - sq(y-that.y) - sq(z-that.z);
   }
   
