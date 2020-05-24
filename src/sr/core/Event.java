@@ -17,7 +17,7 @@ import java.util.Objects;
  
  <P>Immutable struct.
  
- <P>The natural order is by ct.
+ <P>The natural order of these objects is by the time-component, ct.
  For time-like separations, the time-order of two events is invariant.
  For time-like histories, the time coord suffices to order events in the same way across all frames, 
  regardless of inertial frame; of course, the time intervals will NOT be the same, but the time order WILL be the same.
@@ -28,38 +28,29 @@ import java.util.Objects;
  See {@link Config} and {@link SpeedLimit} regarding the units used for c.
  For most cases, using natural units is recommended.
 */
-public final class Event implements Comparable<Event>, Vector<Event> {
+public final class Event implements FourVector<Event>, Comparable<Event> {
   
-  //https://stackoverflow.com/questions/160970/how-do-i-invoke-a-java-method-when-given-the-method-name-as-a-string
-  //see the comment that uses functional programming
-  public VectorPart[] vectorParts() {
-    VectorPart[] result = {this::ct, this::x, this::y, this::z};
+  /** The object methods that define the 4 parts of the 4-vector, in the conventional order. */  
+  public VectorPart[] parts() {
+    VectorPart[] result = {this::ct, this::x, this::y, this::z}; 
     return result;
   }
-
+  
+  /** Build this object out of 4 doubles. This instance method forwards to the static factory method. */
+  public VectorBuilder<Event> buildit(){
+    return Event::from; 
+  }
+  
   /** 
    Note that the time-coord is t, not ct!
    This is meant as a convenience for the caller. 
    This class takes the value for c from {@link Config#c()}. See {@link SpeedLimit} as well.
    
-   <P>If you are working in less than 3 spatial dimensions, then pass 0 for the unused spatial coords (don't pass null!).
+   <P>If you are working in less than 3 spatial dimensions, then pass 0 for the unused spatial coords (don't pass null).
    @throws RuntimeException if any param is null 
   */
   public static Event from(Double t, Double x, Double y, Double z) {
     return new Event(t, x, y, z);
-  }
-  
-  public Event build(Double one, Double two, Double three, Double four) {
-    return from(one, two, three, four);
-  }
-   
-  /** See {@link #Event(Double, Double, Double, Double)}. */
-  public Event(Double t, Double x, Double y, Double z) {
-    this.ct = Config.c()*t;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    validate();
   }
   
   /** 
@@ -135,6 +126,14 @@ public final class Event implements Comparable<Event>, Vector<Event> {
   private Double x;
   private Double y;
   private Double z;
+
+  private Event(Double t, Double x, Double y, Double z) {
+    this.ct = Config.c()*t;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    validate();
+  }
   
   private Object[] getSigFields() {
     //optimize: start with items that are most likely to differ

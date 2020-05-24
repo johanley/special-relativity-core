@@ -14,27 +14,34 @@ import static sr.core.Axis.*;
 */
 public class LorentzTransformation {
 
+  /** Temporary test code. */
+  public static void main(String[] args) {
+    Event a = Event.from(1.0, 0.0, 0.0, 0.0);
+    LorentzTransformation lt = LorentzTransformation.along(Axis.X, 0.87);
+    Event b = lt.applyTo(a);
+    System.out.println(b);
+    System.out.println(b.intervalSquaredBetween(Event.ORIGIN));
+  }
+
   public static LorentzTransformation along(Axis spatialAxis, double β) {
     return new LorentzTransformation(spatialAxis, β);
   }
 
-  /** Apply the transformation. Input one 4-vector, and output another. */
-  public <T extends Vector<T>> T applyTo(T vector) {
-    T result = null;
+  /** Apply the transformation. Input one 4-vector, and output another (a new object). */
+  public <T extends FourVector<T>> T applyTo(T vector) {
     int space = spatialAxis.idx();
     EntangledPair pair = entangle(part(CT.idx(), vector), part(space, vector));
-    List<Double> args = new ArrayList<>();
-    args.add(pair.time);
+    List<Double> parts = new ArrayList<>();
+    parts.add(pair.time);
     for (Axis a : Axis.values()) {
       if (spatialAxis.idx() == a.idx()) {
-        args.add(pair.space);
+        parts.add(pair.space);
       }
       else if (a.idx() > CT.idx()){
-        args.add(part(a.idx(), vector));
+        parts.add(part(a.idx(), vector));
       }
     }
-    result = vector.build(args.get(CT.idx()), args.get(X.idx()), args.get(Y.idx()), args.get(Z.idx()));
-    return result;
+    return vector.buildit().from(parts.get(CT.idx()), parts.get(X.idx()), parts.get(Y.idx()), parts.get(Z.idx()) );
   }
   
   //PRIVATE
@@ -47,7 +54,10 @@ public class LorentzTransformation {
     this.β = β;
   }
   
-  /** The time-component gets entangled with a single given spatial component. */
+  /** 
+   The time-component gets entangled with a single given spatial component.
+   This is the core of the Lorentz Transformation. 
+  */
   private EntangledPair entangle(double ct, double space) {
     double Γ = Physics.Γ(β);
     EntangledPair result = new EntangledPair();
@@ -62,7 +72,7 @@ public class LorentzTransformation {
     double space;
   }
   
-  private <T> double part(int idx, Vector<T> v) {
-    return v.vectorParts()[idx].execute();
+  private <T> double part(int idx, FourVector<T> v) {
+    return v.parts()[idx].val();
   }
 }

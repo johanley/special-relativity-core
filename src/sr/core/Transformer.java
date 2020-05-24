@@ -39,7 +39,7 @@ public final class Transformer {
   */
   public static UnaryOperator<Event> parity(Parity ctP, Parity xP, Parity yP, Parity zP){
     UnaryOperator<Event> result = (e) -> {
-      Event res =  new Event(
+      Event res =  Event.from(
         e.ct() * ctP.sign(), 
         e.x() * xP.sign(), 
         e.y() * yP.sign(), 
@@ -57,7 +57,7 @@ public final class Transformer {
   */
   public static UnaryOperator<Event> displace(double ctD, double xD, double yD, double zD){
     UnaryOperator<Event> result = (e) -> {
-      return new Event(
+      return Event.from(
         e.ct() + ctD, 
         e.x() + xD, 
         e.y() + yD, 

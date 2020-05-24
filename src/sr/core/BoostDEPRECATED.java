@@ -64,8 +64,4 @@ public final class BoostDEPRECATED {
     double time;
     double space;
   }
-  
-  private double part(int idx, Event ev) {
-    return ev.vectorParts()[idx].execute();
-  }
 }
