@@ -1,10 +1,21 @@
 package sr.core;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 /** 
  Utility constants and methods. 
  It's recommended that the caller use a static import to access the members of this class. 
 */
 public final class Util {
+  
+  /** 6.0 */
+  public static final Double LIMITING_MAG_HUMAN_EYE = 6.0;
+  
+  /** UTF-8. */
+  public final static Charset ENCODING = StandardCharsets.UTF_8;
 
   /** The square of the given number, x^2. */
   public static Double sq(double x) {
@@ -20,10 +31,18 @@ public final class Util {
     return degs * CONVERT_RADS;
   }
   
-  public static double radsToRads(double rads) {
+  public static double radsToDegs(double rads) {
     return rads * 1.0/CONVERT_RADS;
   }
   
+  public static double round(double value, int places) {
+    if (places < 0) throw new IllegalArgumentException();
+    BigDecimal bd = BigDecimal.valueOf(value);
+    bd = bd.setScale(places, RoundingMode.HALF_EVEN);
+    return bd.doubleValue();
+  }
+  
+  /** Compare to {@link Config#ε()}. */
   public static boolean isTiny(double val) {
     return Math.abs(val) < Config.ε();
   }

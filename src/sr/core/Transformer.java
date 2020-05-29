@@ -11,7 +11,7 @@ import static sr.core.Event.ORIGIN;
  There are two ways of looking at a coord change.
  <ul>
   <li>one event viewed in two inertial frames (more common)
-  <li>two events viewed in the one inertial frame
+  <li>two events viewed in one inertial frame
  </ul>
 */
 public final class Transformer {
@@ -20,7 +20,7 @@ public final class Transformer {
    @param operations 0 or more transform operations on an event.
    The order is significant. A pipeline of operations needed to do the desired job. 
   */
-  public Transformer(UnaryOperator<Event>... operations) {
+  public Transformer(UnaryOperator<Event>[] operations) {
     this.operations = operations;
   }
   
@@ -35,7 +35,7 @@ public final class Transformer {
 
   /**
    Change the sign of 1 or more coords. Includes changing the sign of the ct coord, if desired.
-   If a coord is unaffected, then just pass {@Parity#EVEN} for that coord. 
+   If a coord is unaffected, then just pass {@link Parity#EVEN} for that coord. 
   */
   public static UnaryOperator<Event> parity(Parity ctP, Parity xP, Parity yP, Parity zP){
     UnaryOperator<Event> result = (e) -> {
@@ -82,7 +82,7 @@ public final class Transformer {
   public static UnaryOperator<Event> boostAlong(Axis axis, double β) {
     UnaryOperator<Event> result = (e) -> {
       LorentzTransformation boost = LorentzTransformation.along(axis, β);
-      Event res = boost.applyTo(e);
+      Event res = boost.applyTo(e, Event::from);
       sameIntervalFromOrigin(e, res);
       return res;
     };

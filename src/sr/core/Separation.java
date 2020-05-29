@@ -13,7 +13,7 @@ public enum Separation {
   SPACELIKE,
   
   /** 
-   Interval-squared is less than 0.
+   Interval-squared is 0.
    Same as light-like. 
   */
   NULL;

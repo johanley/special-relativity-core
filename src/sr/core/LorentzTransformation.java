@@ -14,21 +14,32 @@ import static sr.core.Axis.*;
 */
 public class LorentzTransformation {
 
-  /** Temporary test code. */
+  /*
   public static void main(String[] args) {
     Event a = Event.from(1.0, 0.0, 0.0, 0.0);
     LorentzTransformation lt = LorentzTransformation.along(Axis.X, 0.87);
-    Event b = lt.applyTo(a);
+    Event b = lt.applyTo(a, Event::from);
     System.out.println(b);
     System.out.println(b.intervalSquaredBetween(Event.ORIGIN));
   }
+  */
 
+  /** 
+   Factory method.
+   Transforms from K to K'. K' is moving with respect to K along the given axis with speed β.
+   If the speed is positive (negative), then the relative motion is along the positive (negative) direction of the axis.    
+  */
   public static LorentzTransformation along(Axis spatialAxis, double β) {
     return new LorentzTransformation(spatialAxis, β);
   }
 
-  /** Apply the transformation. Input one 4-vector, and output another (a new object). */
-  public <T extends FourVector<T>> T applyTo(T vector) {
+  /** 
+   Apply the transformation. Input one 4-vector, and output another (a new object).
+   
+   @param builder the policy for building the new 4-vector returned by this method. 
+   Usually a method-reference to a static factory method.
+  */
+  public <T extends FourVector<T>> T applyTo(T vector, VectorBuilder<T> builder) {
     int space = spatialAxis.idx();
     EntangledPair pair = entangle(part(CT.idx(), vector), part(space, vector));
     List<Double> parts = new ArrayList<>();
@@ -41,7 +52,7 @@ public class LorentzTransformation {
         parts.add(part(a.idx(), vector));
       }
     }
-    return vector.buildit().from(parts.get(CT.idx()), parts.get(X.idx()), parts.get(Y.idx()), parts.get(Z.idx()) );
+    return builder.from(parts.get(CT.idx()), parts.get(X.idx()), parts.get(Y.idx()), parts.get(Z.idx()));
   }
   
   //PRIVATE

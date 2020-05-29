@@ -30,17 +30,6 @@ import java.util.Objects;
 */
 public final class Event implements FourVector<Event>, Comparable<Event> {
   
-  /** The object methods that define the 4 parts of the 4-vector, in the conventional order. */  
-  public VectorPart[] parts() {
-    VectorPart[] result = {this::ct, this::x, this::y, this::z}; 
-    return result;
-  }
-  
-  /** Build this object out of 4 doubles. This instance method forwards to the static factory method. */
-  public VectorBuilder<Event> buildit(){
-    return Event::from; 
-  }
-  
   /** 
    Note that the time-coord is t, not ct!
    This is meant as a convenience for the caller. 
@@ -51,6 +40,12 @@ public final class Event implements FourVector<Event>, Comparable<Event> {
   */
   public static Event from(Double t, Double x, Double y, Double z) {
     return new Event(t, x, y, z);
+  }
+  
+  /** The object methods that define the 4 parts of the 4-vector, in the conventional order. */  
+  public VectorPart[] parts() {
+    VectorPart[] result = {this::ct, this::x, this::y, this::z}; 
+    return result;
   }
   
   /** 

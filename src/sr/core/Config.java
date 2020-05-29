@@ -14,7 +14,7 @@ import static sr.core.Util.*;
 public final class Config {
 
   /** 
-   To override the default epsilon, set a JRE System property having this name, on the command that starts the JRE.
+   To override the default epsilon (0.000000001), set a JRE System property having this name, on the command that starts the JRE.
    
    <P>Example: 
    <pre>java -Dsr-core-eps=0.0000000001</pre>
@@ -22,7 +22,7 @@ public final class Config {
    Alternative: at runtime, you can call {@link #setε(double)}, perhaps upon startup.
    Value - {@value}.
   */
-  public static String EPS = "sr-core-eps";
+  public static final String EPS = "sr-core-eps";
   /** A tiny value, used to detect values that are 'close enough' to 0 to be treated as such. */
   public static Double ε() {
     return epsilon.get();
@@ -43,8 +43,8 @@ public final class Config {
    Alternative: at runtime, you can call {@link #setC(double)}, perhaps upon startup.
    Value - {@value}.
   */
-  public static String SPEED_LIMIT = "sr-core-speed-limit";
-  /** The speed limit's numeric value.  */
+  public static final String SPEED_LIMIT = "sr-core-speed-limit";
+  /** The speed limit's numeric value, defaults to {@link SpeedLimit#C_NATURAL_UNITS} (1).  */
   public static Double c() {
     return speedLimit.get();
   }
@@ -55,8 +55,10 @@ public final class Config {
   }
   
   // PRIVATE 
-  
-  private static Double ε = 0.000000001;
+
+  /** Default epsilon. */
+  private static final Double ε = 0.000000001;
+
   private static final ThreadLocal<Double> epsilon = new ThreadLocal<>() {
     protected Double initialValue() {
       Double result = ε;

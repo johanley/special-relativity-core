@@ -1,0 +1,11 @@
+# Relativistic fly-by of a star
+# B spectral type
+# 0.87c speed 2.03 gamma
+# 0.1 ly minimum distance
+# 
+# detection-time(years), theta (degs), D, V
+# ---------------------------------------
+14.792  0.10  3.79 -2.33 #  first computed
+17.121 34.32  1.75 -13.59 #  max brightness
+172.190 179.70  0.26  2.81 #  last visible
+172.190 179.70  0.26  2.81 #  last computed

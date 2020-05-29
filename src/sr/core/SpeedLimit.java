@@ -1,7 +1,8 @@
 package sr.core;
 
 /** 
- Convenience for specifying units.
+ Convenience enum for the speed limit.
+ 
  This enum doesn't prevent you from using any units you wish.
  See {@link Config} for important info. 
 */
@@ -17,10 +18,9 @@ public enum SpeedLimit {
    <ul>
     <li>imagining that the speed limit is changed to 1 meter per second
     <li>using seconds for time, and light-seconds for distance (or years/light-years)
-    <li>really changing the units, such that c=1 in those units
    </ul>
    
-   As long as photons propagate at 45 degrees to the ct axis, everything should be fine.
+   <P>As long as photons propagate at 45 degrees to the ct axis, everything should be fine.
   */
   C_NATURAL_UNITS(1.0),
   
