@@ -1,8 +1,8 @@
 package sr.explore.flyby;
 
 /**
- A toy model of a main sequence star.
- Not to be taken too seriously! 
+ A toy model of a main sequence star, by spectral class.
+ Not to be taken seriously! 
 */
 public enum MainSequenceStar {
   

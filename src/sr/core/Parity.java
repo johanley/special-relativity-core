@@ -9,6 +9,7 @@ public enum Parity {
   
   ODD(-1);
   
+  /** Plus for even, minus for odd. */
   public int sign() {
     return sign;
   }
@@ -18,6 +19,7 @@ public enum Parity {
   private Parity(int sign) {
     this.sign = sign;
   }
+  
   private int sign;
 
 }

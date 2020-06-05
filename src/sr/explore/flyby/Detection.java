@@ -2,8 +2,8 @@ package sr.explore.flyby;
 
 import static sr.core.Util.radsToDegs;
 
-import sr.core.Event;
 import sr.core.Physics;
+import sr.core.transform.FourVector;
 
 /** 
  The detection of a photon at the detector.
@@ -12,16 +12,16 @@ import sr.core.Physics;
 final class Detection {
   
   /** The <b>core calculation</b> is done by this constructor. */
-  Detection(Event emission, Double β, MainSequenceStar star){
-    double distanceToDetector = emission.distanceBetween(Event.ORIGIN); 
-    double lightTravelTime = distanceToDetector / 1; //c=1 here; no other value will do
-    double cosTheta = emission.x() / distanceToDetector;
+  Detection(FourVector emissionEvent, Double β, MainSequenceStar star){
+    double distanceToDetector = emissionEvent.spatialMagnitude(); 
+    double lightTravelTime = distanceToDetector / 1.0; //c=1 here; no other value will do
+    double cosTheta = emissionEvent.x() / distanceToDetector;
     double theta = Math.PI - Math.acos(cosTheta) /*0..pi*/; //the photon-direction wrt "the axis"; 'geometrical' position
     this.θ = Physics.aberrationForDetectorDirection(theta, β);  //the observed apparent position, with aberration applied
     this.D = Physics.D(β, θ);
     this.T = Physics.T(D, star.surfaceTemp());
     this.V = Physics.apparentVisualMagnitude(star.absoluteMag(), distanceToDetector /*light-years!*/) + Physics.Δmag(D, star.surfaceTemp());
-    this.detectionTime = emission.t() + lightTravelTime;
+    this.detectionTime = emissionEvent.t() + lightTravelTime;
   }
   
   /** 

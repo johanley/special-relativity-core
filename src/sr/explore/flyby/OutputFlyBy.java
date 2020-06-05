@@ -8,7 +8,7 @@ public interface OutputFlyBy {
   /** Process each data point. */
   void accept(Detection d);
 
-  /** Do something with the data at the end. */
+  /** Do something with the data at the end, after all detections have been processed. */
   void render();
   
 }

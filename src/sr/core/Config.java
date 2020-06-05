@@ -33,27 +33,6 @@ public final class Config {
     epsilon.set(eps);
   }
   
-  /** 
-   To override the default speed limit (the value used for <em>c</em>), set a JRE System property having this name, on the 
-   command that starts the JRE. The default value uses {@link SpeedLimit#C_NATURAL_UNITS}.
-  
-   <P>Example: 
-   <pre>java -Dsr-core-speed-limit=186000</pre>
-  
-   Alternative: at runtime, you can call {@link #setC(double)}, perhaps upon startup.
-   Value - {@value}.
-  */
-  public static final String SPEED_LIMIT = "sr-core-speed-limit";
-  /** The speed limit's numeric value, defaults to {@link SpeedLimit#C_NATURAL_UNITS} (1).  */
-  public static Double c() {
-    return speedLimit.get();
-  }
-  /** Reset the speed limit with a new value (positive). */
-  public static void setC(double c) {
-    checkSpeedLimit(c);
-    speedLimit.set(c);
-  }
-  
   // PRIVATE 
 
   /** Default epsilon. */
@@ -73,20 +52,5 @@ public final class Config {
   private static void checkEps(double eps) {
     mustHave(eps > 0.0, "Epsilon isn't positive");
     mustHave(eps < 0.001, "Epsilon isn't small enough");
-  }
-  
-  private static final ThreadLocal<Double> speedLimit = new ThreadLocal<>() {
-    protected Double initialValue() {
-      Double result = SpeedLimit.C_NATURAL_UNITS.speed();
-      String sysProperty = System.getProperty(SPEED_LIMIT);
-      if (Util.hasContent(sysProperty)) {
-        result = Double.valueOf(sysProperty);
-        checkSpeedLimit(result);
-      }
-      return result;
-    }; 
-  };
-  private static void checkSpeedLimit(double c) {
-    mustHave(c > 0.0, "Speed limit c isn't positive");
   }
 }

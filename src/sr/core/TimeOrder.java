@@ -1,9 +1,11 @@
 package sr.core;
 
+import sr.core.transform.FourVector;
+
 /** 
  The time-order of any pair of events.
- If the {@link Separation} is time-like, then the time-order is invariant. 
- If the {@link Separation} is space-like, then the time-order is NOT invariant. 
+ If the {@link Direction} is time-like or light-like, then the time-order is invariant. 
+ If the {@link Direction} is space-like, then the time-order is NOT invariant. 
 */
 public enum TimeOrder {
   
@@ -14,7 +16,7 @@ public enum TimeOrder {
   SIMULTANEOUS;
 
   /** Time-order of a with respect to b. */
-  public static TimeOrder of(Event a, Event b) {
+  public static TimeOrder of(FourVector a, FourVector b) {
     TimeOrder result = null;
     double ct = a.ct() - b.ct();
     if (Math.abs(ct) < Config.ε()) {

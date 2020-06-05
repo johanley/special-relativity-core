@@ -17,11 +17,12 @@ import static sr.core.Util.*;
   0.001 light years: Max theta-dot: 4.8662 deg/day
  </pre> 
  <b>The typical Hollywood simulation showing stars whizzing by is unrealistic.</b>
- For comparison, the Moon moves about 13 deg/day with respect to background stars.
+ For comparison, the Moon moves about 13 deg/day with respect to the background stars.
  
  <P>Example scenario: flying through the thin disk of the Milky Way (95% of the stars are in the thin disk, not the thick disk), 
  in the solar neighbourhood. 
- A rough calculation of the probability of a close-approach to ANY star during the ENTIRE transit through the thin disk:
+ A <em>rough</em> calculation of the probability of a close-approach to ANY star during the ENTIRE transit through the thin disk
+ of the Milky Way:
  <pre>
   0.1   light-years: about 0.15     (occasional)
   0.01  light-years: about 0.0015   (rare)

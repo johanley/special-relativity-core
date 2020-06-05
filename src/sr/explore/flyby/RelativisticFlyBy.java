@@ -1,9 +1,9 @@
 package sr.explore.flyby;
 
-import static sr.core.Util.mustHave;
+import static sr.core.Util.*;
 
-import sr.core.Event;
 import sr.core.Physics;
+import sr.core.transform.FourVector;
 
 /**
  <b>Relativistic fly-by of a star by a detector; runs the simulation.</b>
@@ -29,7 +29,7 @@ import sr.core.Physics;
   <li>The star is modeled as a point light source with a black-body spectrum.
   <li>The star is a main sequence star. In its rest frame it has a given absolute temperature (which maps to a spectral class).
   <li>The star moves uniformly (in the positive x-direction) at a given speed β.
-  <li>It passes by a single detector (placed at the origin of the coord system).
+  <li>It passes by a single detector, placed at the origin of the coord system.
   <li>At closest approach, the star is at a given minimum-distance (along the positive y-axis) away from the detector.
  </ul>
  
@@ -65,28 +65,24 @@ import sr.core.Physics;
    <li>only the brightest (and rarest) stars remain visible far from the axis of motion.
   </ul>
 */
-public class RelativisticFlyBy {
+public final class RelativisticFlyBy {
   
-  /** 
-   Calculate a fly-by, and process the results.
-   @param args contains a single argument, the directory in which to store output files.
-  */
+  /**  Calculate a fly-by, and process the results. */
   public static void main(String... args) {
     log("Running...");
     
-    String outputDir = args[0];
     double x0 = -30.0; //light-years in a REST FRAME! this item is different from the others!
     double timeStep = 0.01; //years
-    log("Output directory: " + outputDir + " x0:" + x0 + " timeStep:" + timeStep);
     
     Double[] minimumDistances = {1.0, 0.1, 0.1};
     Double[] speeds = {0.87, 0.99};
-    for(MainSequenceStar star : MainSequenceStar.values()) {
+    MainSequenceStar[] stars = {MainSequenceStar.O};
+    for(MainSequenceStar star : stars/*MainSequenceStar.values()*/) {
       for (Double speed : speeds) {
         for (Double minimumDistance: minimumDistances) {
           RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, minimumDistance, x0, timeStep);
           
-          OutputFlyBy highlights = new OutputHighlights(flyby, outputDir);
+          OutputFlyBy highlights = new OutputHighlights(flyby);
           OutputFlyBy maxThetaDot = new OutputMaxThetaDot(flyby);
           
           flyby.compute(highlights, maxThetaDot);
@@ -99,16 +95,16 @@ public class RelativisticFlyBy {
     log(OutputMaxThetaDot.globalMax());
     log("Done.");
   }
-
+  
   /**
    Constructor.
    See the class comment for a description of the geometry/inertial frame used here. 
    
-   <P>Units: years for time, and light-years for distance. 
+   <P>Unique Units: years for time, and light-years for distance. 
    (Implementation note: it's only the calc for finding V the visual mag that needs light-years.)
     
    @param β speed of the star along the positive x-axis (0..1)
-   @param star the main sequence star's spectral class, and related data
+   @param star the main sequence star's spectral class (and related data)
    @param minimumDistance the distance along the y-axis at closest approach to the detector (the impact parameter; positive; light-years)
    
    @param x0 the initial x-coord (at t=0) of the star (negative, light-years), AS MEASURED IN A FRAME IN WHICH THE STAR IS AT REST. 
@@ -131,9 +127,9 @@ public class RelativisticFlyBy {
   }
   
   /**
-   Cycle through the event-history of the star, and compute how it looks to the detector at the origin.
+   Cycle through the events in the history of the star, and compute how it looks to the detector at the origin.
    
-   Mental picture: the star emits photons periodically (timeStep in coord-time).
+   Algorithm: the star emits photons periodically (timeStep in coord-time).
    The photon is then detected some time later by the detector at the origin, where a correction 
    to its direction is applied to get the detector-direction (aberration) with respect to the boost-direction.
    
@@ -146,7 +142,7 @@ public class RelativisticFlyBy {
      Over time, this intersection point moves over a 'hump' on the past light cone of the detector.
     */
     double initialTime = initialTime();
-    Event emission = star(initialTime);
+    FourVector emission = star(initialTime);
     int count = 0;
     while (count < 10000) {
       Detection detection = new Detection(emission, β, star);
@@ -164,7 +160,7 @@ public class RelativisticFlyBy {
   
   Double β() {return β;}
   MainSequenceStar star() { return star;}
-  Double minimumDistance() {return minimumDistance; }
+  Double minimumDistance() { return minimumDistance; }
   
   // PRIVATE
   
@@ -174,10 +170,6 @@ public class RelativisticFlyBy {
   private Double minimumDistance;
   private Double x0;
   private Double timeStep;
-  
-  private static void log(Object msg) {
-    System.out.println(msg.toString());
-  }
   
   private void validate() {
     mustHave(β > 0, "β should be positive");
@@ -196,16 +188,14 @@ public class RelativisticFlyBy {
   }
 
   /** 
-   The position of the star as a function of coord-time t.
-   In effect, this method defines the history (worldline) of the star.
-   Uniform motion in a line, along the x-axis.
+   An event in the history of the star, as a function of coord-time t.
+   Uniform motion in a line, parallel to the x-axis.
    IMPORTANT: the time t here is the time of EMISSION of a photon towards the detector.
    Light-travel time: the photon is ABSORBED at some LATER time, which is computed elsewhere. 
   */
-  private Event star(Double t) {
-   double x = x0 + β * t;
-   Event result = Event.from(t, x, minimumDistance, 0.0);
+  private FourVector star(Double emissionTime) {
+   double x = x0/*Lorentz-contracted!*/ + β * emissionTime;
+   FourVector result = FourVector.from(emissionTime, x, minimumDistance, 0.0);
    return result;
   }
-  
 }

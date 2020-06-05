@@ -1,11 +1,5 @@
 package sr.explore.flyby;
 
-import static sr.core.Util.*;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,31 +7,24 @@ import sr.core.Physics;
 import sr.core.Util;
 
 /** 
- Records significant detections. See {@link Detection}.
+ Records significant {@link Detection}s.
  
  Record these items:
  <ul>
   <li>the first detection 
-  <li>the one with maximum brightness V 
+  <li>the detection with maximum visual magnitude V 
   <li>the last visible detection (visible to the human eye, that is)
   <li>the last detection
  </ul>
  
- <P>Optionally saves results to a file. 
+ <P>Saves results to a file. 
 */
 final class OutputHighlights implements OutputFlyBy {
 
-  /** If you use this ctor, then no output to a file will occur. */
   OutputHighlights(RelativisticFlyBy flyby){
     this.flyBy = flyby;
   }
 
-  /** @param dir where to write the output file. The name of the file is controlled by this class. */
-  OutputHighlights(RelativisticFlyBy flyby, String dir){
-    this.flyBy = flyby;
-    this.dir = dir;
-  }
-  
   @Override public void accept(Detection d) {
     if (first == null) {
       first = d; //only happens the first time in
@@ -54,11 +41,11 @@ final class OutputHighlights implements OutputFlyBy {
     
     last = d; //will point to the last one, in the end
     
-    if (lastVisible == null && d.V < LIMITING_MAG_HUMAN_EYE) {
+    if (lastVisible == null && d.V < Physics.LIMITING_MAG_HUMAN_EYE) {
       lastVisible = d; //first one to be visible
     }
-    else if (lastVisible != null && d.V <= LIMITING_MAG_HUMAN_EYE) {
-      //assumes that it passes out of visibility once only!
+    else if (lastVisible != null && d.V <= Physics.LIMITING_MAG_HUMAN_EYE) {
+      //assumes that it passes out of visibility only once!
       lastVisible = d;
     }
   }
@@ -69,21 +56,13 @@ final class OutputHighlights implements OutputFlyBy {
   Detection last() { return last; }
   
   /**
-    Output the final results. 
-    Write to the console. Write to a file, if a dir was provided. 
+   Output the final results. 
+   Write to the console. 
+   Write to a file, by default located next to this class. See {@link Util#writeToFile(Class, String, List)}. 
   */
   @Override public void render() {
     System.out.println(this.toString());
-    
-    if (dir != null) {
-      Path path = Paths.get(dir, fileName());
-      try {
-        Files.write(path, lines(), ENCODING);
-      } 
-      catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
+    Util.writeToFile(this.getClass(), fileName(), lines());
   }
   
   @Override public String toString() {
@@ -98,7 +77,6 @@ final class OutputHighlights implements OutputFlyBy {
   private Detection maxBrightness;
   private Detection lastVisible;
   private RelativisticFlyBy flyBy;
-  private String dir;
 
   private String fileName() {
     String s = "-";
