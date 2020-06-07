@@ -9,10 +9,13 @@ import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
 import sr.core.history.UniformLinearAcceleration;
 import sr.core.history.UniformVelocity;
+import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
+import sr.core.transform.CoordTransformPipeline;
 import sr.core.transform.Displace;
-import sr.core.transform.NoOpTransform;
 import sr.core.transform.FourVector;
+import sr.core.transform.NoOpTransform;
+import sr.core.transform.Reflect;
 
 /**
  One-way trip from the origin-event to a place B (on one of the spatial axes).
@@ -49,22 +52,24 @@ public final class OneWayTripWithAccelerationAndBraking extends HistoryFromLegs 
   
   @Override protected List<Leg> initLegs() {
     History hist1 = new UniformLinearAcceleration(axis, α, τmin(), τmin() + τα);
-    Leg leg1 = new Leg(hist1, new NoOpTransform()); 
-    FourVector end1 = leg1.history().event(leg1.history().τmax());
-    double end1Speed = 0.0; //WRONG!!!
-    //match position and time 
-    CoordTransform transform1 = Displace.to(end1);
+    Leg leg1 = new Leg(hist1, new NoOpTransform());
     
-    History hist2 = new UniformVelocity(axis, end1Speed, τmin() + τα, τmin() + τα + τβ);
-    Leg leg2 = new Leg(hist2, transform1); 
-    //match position and time AND speed, such that the object is at momentarily at rest at the origin 
-    //CoordTransform transformer1speed = new Boost(Axis.X, end1Speed);
-    //CoordTransform[] pipeline = {transformer1event, transformer1speed}; 
-    //CoordTransform pipeline1 = new CoordTransformPipeline(pipeline);
-
-
+    CoordTransform backToLeg1 = Displace.originTo(leg1.history().end()); //move origin
     
-    return Arrays.asList(leg1);
+    double terminalβ1 = hist1.β(hist1.τmax());
+    History hist2 = new UniformVelocity(axis, terminalβ1, hist1.τmax(), hist1.τmax() + τβ);
+    Leg leg2 = new Leg(hist2, backToLeg1);
+    
+    double terminalβ2 = hist2.β(hist2.τmax());
+    CoordTransform displace = Displace.originTo(leg2.history().end()); //move origin
+    CoordTransform boost = Boost.alongThe(axis, terminalβ2); //match speed, to have v=0 at t=0
+    CoordTransform reflect = Reflect.the(axis); //to have braking along the axis, not acceleration
+    CoordTransform backToLeg2 = new CoordTransformPipeline(displace, boost, reflect);
+
+    History hist3 = new UniformLinearAcceleration(axis, α, hist2.τmax(), hist2.τmax() + τα);
+    Leg leg3 = new Leg(hist3, backToLeg2);
+
+    return Arrays.asList(leg1, leg2, leg3);
   }
   
   public double α() { return α; }

@@ -21,8 +21,9 @@ import sr.core.Util;
 */
 final class OutputHighlights implements OutputFlyBy {
 
-  OutputHighlights(RelativisticFlyBy flyby){
+  OutputHighlights(RelativisticFlyBy flyby, boolean writeToFile){
     this.flyBy = flyby;
+    this.writeToFile = writeToFile;
   }
 
   @Override public void accept(Detection d) {
@@ -62,7 +63,9 @@ final class OutputHighlights implements OutputFlyBy {
   */
   @Override public void render() {
     System.out.println(this.toString());
-    Util.writeToFile(this.getClass(), fileName(), lines());
+    if (writeToFile) {
+      Util.writeToFile(this.getClass(), fileName(), lines());
+    }
   }
   
   @Override public String toString() {
@@ -77,6 +80,7 @@ final class OutputHighlights implements OutputFlyBy {
   private Detection maxBrightness;
   private Detection lastVisible;
   private RelativisticFlyBy flyBy;
+  private boolean writeToFile;
 
   private String fileName() {
     String s = "-";

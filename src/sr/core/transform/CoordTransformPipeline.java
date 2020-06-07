@@ -35,9 +35,15 @@ public final class CoordTransformPipeline implements CoordTransform {
    @param operations 0 or more transform operations, as applied in the 'forward' direction.
    The order is significant. A pipeline of operations needed to do the desired job. 
   */
+  /*
   public CoordTransformPipeline(CoordTransform[] operations) {
     this.operations = operations;
   }
+  */
+  public CoordTransformPipeline(CoordTransform... operations) {
+    this.operations = operations;
+  }
+  
   
   /** Apply the operations (in order) to the given Vector4. */
   @Override public FourVector toNewFrame(FourVector vec) {

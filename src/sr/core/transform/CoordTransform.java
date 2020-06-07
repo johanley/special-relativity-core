@@ -42,6 +42,17 @@ public interface CoordTransform {
    @return the components of a second event in a given frame K. 
   */
   FourVector toNewVector4(FourVector vec);
+
+  /**
+   Whether or not this transformation will change {@link FourVector#ZERO} into some other 4-vector.
+   Most operations leave the origin unchanged. 
+   The <em>only</em> oddball is the {@link Displace} operation; it doesn't apply to a 4-velocity, 
+   or any other differential 4-vector.
+   <P>This asymmetry is captured in this method, which returns false by default. 
+  */
+  default boolean changesOrigin() {
+    return false;
+  }
   
   /**
    Asserts that the magnitude-squared has not changed (very much).

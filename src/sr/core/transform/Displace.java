@@ -7,6 +7,15 @@ package sr.core.transform;
 public final class Displace implements CoordTransform {
   
   /** 
+   Returns true. 
+   Displacement operations are the only operation to change {@link FourVector#ZERO}.
+   (In mathematical terms, displacements represent the difference between linear and affine transformations.)
+  */
+  @Override public boolean changesOrigin() {
+    return true;
+  }
+
+  /** 
    Constructor. 
    Pass the displacement to be ADDED to each coord.
    Simply pass 0 if the coord is left unaffected.
@@ -19,7 +28,7 @@ public final class Displace implements CoordTransform {
   }
   
   /*** Displace the origin to the given Vector4. */
-  public static CoordTransform to(FourVector vec) {
+  public static CoordTransform originTo(FourVector vec) {
     return new Displace(-vec.ct(), -vec.x(), -vec.y(), -vec.z());
   }
   

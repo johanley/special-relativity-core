@@ -74,15 +74,21 @@ public final class RelativisticFlyBy {
     double x0 = -30.0; //light-years in a REST FRAME! this item is different from the others!
     double timeStep = 0.01; //years
     
+    /*
+    RelativisticFlyBy flyby = new RelativisticFlyBy(MainSequenceStar.O, 0.87, 0.1, x0, timeStep);
+    OutputFlyBy highlights = new OutputHighlights(flyby, false);
+    flyby.compute(highlights);
+    highlights.render();
+    */
+    
     Double[] minimumDistances = {1.0, 0.1, 0.1};
     Double[] speeds = {0.87, 0.99};
-    MainSequenceStar[] stars = {MainSequenceStar.O};
-    for(MainSequenceStar star : stars/*MainSequenceStar.values()*/) {
+    for(MainSequenceStar star : MainSequenceStar.values()) {
       for (Double speed : speeds) {
         for (Double minimumDistance: minimumDistances) {
           RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, minimumDistance, x0, timeStep);
           
-          OutputFlyBy highlights = new OutputHighlights(flyby);
+          OutputFlyBy highlights = new OutputHighlights(flyby, true);
           OutputFlyBy maxThetaDot = new OutputMaxThetaDot(flyby);
           
           flyby.compute(highlights, maxThetaDot);

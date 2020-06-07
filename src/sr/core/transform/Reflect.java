@@ -1,5 +1,7 @@
 package sr.core.transform;
 
+import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.Parity;
 
 /** Change the direction of axes (including the ct axis). */
@@ -15,6 +17,13 @@ public final class Reflect implements CoordTransform {
     this.xP = xP;
     this.yP = yP;
     this.zP = zP;
+  }
+
+  /** Change the sign only of the component along the given axis. */
+  public static Reflect the(Axis axis) {
+    Parity[] p = {Parity.EVEN, Parity.EVEN, Parity.EVEN, Parity.EVEN};
+    p[axis.idx()] = Parity.ODD;
+    return new Reflect(p[CT.idx()], p[X.idx()], p[Y.idx()], p[Z.idx()]);
   }
   
   @Override public FourVector toNewFrame(FourVector vec) {

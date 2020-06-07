@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.Direction;
 import sr.core.Util;
 
@@ -49,6 +51,18 @@ public class FourVector implements Comparable<FourVector> {
     return new FourVector(ct, x, y, z);
   }
   
+  /** Replace one component of this 4-vector, but build a new object in doing so. */
+  public FourVector put(Axis axis, Double val) {
+    Double[] parts = parts();
+    parts[axis.idx()] = val; //apply override to one value
+    return new FourVector(parts[CT.idx()], parts[X.idx()], parts[Y.idx()], parts[Z.idx()]);
+  }
+  
+  /** Return one component of this 4-vector, corresponding to the given axis. */
+  public Double part(Axis axis) {
+    return parts()[axis.idx()];
+  }
+
   /** 
    The scalar product of this 4-vector with another 4-vector (an invariant quantity).
    The two 4-vectors can represent different physical quantities (speed and acceleration, for example).
@@ -83,11 +97,11 @@ public class FourVector implements Comparable<FourVector> {
   
   /** 
    The squared-magnitude of this 4-vector (an invariant quantity).
-   This is sometimes called the 'length' of the 4-vector.
-   Since the unit/dimension of the components of a 4-vector aren't fixed, using the term 'length' is misleading. 
+   This is sometimes called the 'squared-length' of the 4-vector.
+   But, since the unit/dimension of the components of a 4-vector aren't fixed, using the term 'length' is misleading. 
    
-   Can be positive or negative!
-   With the metric signature +--- used by this library (and the Classical Theory of Fields), for 
+   <P>Can be positive or negative!
+   With the metric signature +--- used by this library (and The Classical Theory of Fields), for 
    time-like 4-vectors the squared-magnitude will be positive. 
    For space-like 4-vectors (less common), it will be negative. 
   */
@@ -95,16 +109,31 @@ public class FourVector implements Comparable<FourVector> {
     return scalarProd(this);
   }
 
-  /** The region of space-time towards which this 4-vector is directed. */
-  public final Direction direction() {
-    return Direction.of(this);
+  /** 
+   The magnitude of this 4-vector (an invariant quantity).
+   This is sometimes called the 'length' of the 4-vector.
+   But, since the unit/dimension of the components of a 4-vector aren't fixed, using the term 'length' is misleading. 
+  
+   <P>Does not apply to spacelike vectors!
+   Returns a non-negative value only.
+  */
+  public final double magnitude() {
+    if (Direction.isSpacelike(this)) {
+      throw new RuntimeException("Cannot find magnitude, since 4-vector is spacelike. Its mag-squared is negative, so its mag is an imaginary number.");
+    }
+    return Math.sqrt(scalarProd(this));
   }
-
+  
   /** Magnitude (not squared) of this 4-vector's spatial part (its 3-vector). Always positive. */
   public final double spatialMagnitude() {
     return Math.sqrt(x*x + y*y + z*z); 
   }
   
+  /** The region of space-time towards which this 4-vector is directed. */
+  public final Direction direction() {
+    return Direction.of(this);
+  }
+
   /** The time component. */
   public final Double ct() { return ct; }
   /** Synonym for ct, since this library uses c=1 only.*/
@@ -115,6 +144,7 @@ public class FourVector implements Comparable<FourVector> {
   public final Double y() { return y; }
   /** The spatial component along the Z-axis. */
   public final Double z() { return z; }
+  
   
   /** WARNING: this implementation makes no allowance for rounding errors (which are often significant).  */
   @Override final public boolean equals(Object aThat) {
@@ -221,5 +251,10 @@ public class FourVector implements Comparable<FourVector> {
   
   private double round(Double val) {
     return Util.round(val, 4);
+  }
+  
+  private Double[] parts(){
+    Double[] parts = {ct, x, y, z};
+    return parts;
   }
 }

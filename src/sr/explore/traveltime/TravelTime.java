@@ -3,7 +3,7 @@ package sr.explore.traveltime;
 import java.util.ArrayList;
 import java.util.List;
 
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 
 /** 
@@ -27,7 +27,7 @@ public final class TravelTime {
     lines.add("# Uniform velocity. Distance " + lightyears + " l.y.");
     lines.add("# Acts like a wormhole");
     lines.add("# speed, travel-time (years), coord-time (years)");
-    for(Speed speed : Speed.nonExtremeValues()) {
+    for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();
@@ -50,7 +50,7 @@ public final class TravelTime {
     lines.add("# Two-way trip, same speed on both legs. Distance " + lightyears + " l.y.");
     lines.add("# Acts like a time machine into the future");
     lines.add("# speed, travel-time (years), coord-time (years)");
-    for(Speed speed : Speed.nonExtremeValues()) {
+    for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();

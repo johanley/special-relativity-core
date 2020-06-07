@@ -1,6 +1,11 @@
 package sr.core.history;
 
+import static sr.core.Util.mustBeSpatial;
+import static sr.core.Util.sq;
+import static sr.core.Util.sqroot;
+
 import sr.core.Axis;
+import sr.core.Physics;
 import sr.core.transform.FourVector;
 
 /**
@@ -11,7 +16,7 @@ import sr.core.transform.FourVector;
  
  <P>At τ=τMin, the history crosses the origin-event, and the velocity is the zero-vector. 
 */
-public final class UniformLinearAcceleration implements History {
+public final class UniformLinearAcceleration extends HistoryAbc {
   
   /** 
    Constructor.
@@ -22,9 +27,7 @@ public final class UniformLinearAcceleration implements History {
    felt if moving in a rocket having this proper-acceleration. 
   */
   public UniformLinearAcceleration(Axis spatialAxis, double α, double τMin, double τMax) {
-    if (!spatialAxis.isSpatial()) {
-      throw new RuntimeException("You must use a spatial axis.");
-    }
+    mustBeSpatial(spatialAxis);
     this.spatialAxis = spatialAxis;
     this.α = α;
     this.τMin = τMin;
@@ -42,8 +45,7 @@ public final class UniformLinearAcceleration implements History {
   
    @param τ proper-time for the object.
   */
-  @Override public FourVector event(double τ) {
-    withinLimits(τ);
+  @Override protected FourVector eventFor(double τ) {
     FourVector result = FourVector.ZERO; //default
     double c = 1.0; //to make it easy to compare with formulas in books
     //SHOULD THIS BE A COORD TRANSFORM, LIKE THE OTHERS?
@@ -64,6 +66,18 @@ public final class UniformLinearAcceleration implements History {
     return result;
   }
   
+  @Override protected FourVector fourVelocityFor(double τ) {
+    return Physics.fourVelocity(β(τ), spatialAxis);
+  }
+  
+  @Override public double β(double τ) {
+    double t = event(τ).ct();
+    double c = 1.0; //to make it easier to compare with formulas from books
+    double αt = α * t;
+    double result = αt / sqroot(1 + sq(αt/c));
+    return result;
+  }
+  
   @Override public String toString() {
     String sep = ",";
     return "[" +spatialAxis+sep+ +α+sep + τMin+sep + τMax+  "]";
@@ -75,6 +89,4 @@ public final class UniformLinearAcceleration implements History {
   private double α;
   private double τMin;
   private double τMax;
-  
-
 }

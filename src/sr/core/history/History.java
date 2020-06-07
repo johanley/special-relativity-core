@@ -16,27 +16,28 @@ public interface History {
   */
   FourVector event(double τ);
   
-  default FourVector fourVelocity(double τ) {
-    //TO DO !!!
-    return null;
-  }
+  /** The first event on the history, corresponding to {@link #τmin()}. */
+  FourVector start();
+  
+  /** The last event on the history, corresponding to {@link #τmax()}. */
+  FourVector end();
+  
+  /** 
+   The 4-velocity is computed, by default, simply by manually calculating the 
+   derivative using the given {@link #event(double)} method.
+   This default implementation assumes that the τ parameter is indeed the proper time.
+   
+   <P>Many Implementations will override this default with more direct means of computing the 
+   4-velocity. 
+  */
+  FourVector fourVelocity(double τ);
+  
+  /** Magnitude of the 3-velocity. */
+  double β(double τ);
 
-  /** The start-value for the τ parameter.  */
+  /** The start-value for the τ parameter. */
   double τmin();
   
-  /** The end-value for the τ parameter.  */
+  /** The end-value for the τ parameter. */
   double τmax();
-  
-  /** Throws a runtime exception if the τ parameter isn't within its min-max limits. */ 
-  default void withinLimits(double τ) {
-    if (τ < τmin() || τ > τmax()) {
-      throw new IllegalArgumentException("Proper time " + τ + " is not in range " + τmin() + ".." + τmax());
-    }
-  }
-
-  /** The difference between the τ parameter and its minimum. */
-  default double Δτ(double τ) {
-    return τ - τmin();
-  }
-
 }

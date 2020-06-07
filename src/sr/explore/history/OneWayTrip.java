@@ -37,7 +37,8 @@ public final class OneWayTrip extends HistoryFromLegs {
     return Arrays.asList(leg);
   }
   
-  public double β() { return β; }
+  /** Constant value, independent of τ. */
+  @Override public double β(double τ) { return β; }
   public double distance() { return distance; }
   
   //PRIVATE 

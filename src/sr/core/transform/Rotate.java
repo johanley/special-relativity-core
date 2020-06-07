@@ -5,6 +5,7 @@ import static java.lang.Math.sin;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
+import static sr.core.Util.*;
 
 import sr.core.Axis;
 
@@ -36,9 +37,7 @@ public final class Rotate implements CoordTransform {
    @param θ angle in radians to rotate about the spatial axis, with the right-hand rule
   */
   public Rotate(Axis spatialAxis, double θ) {
-    if (! spatialAxis.isSpatial()) {
-      throw new RuntimeException("Not allowed to rotate about the ct axis. Use a spatial axis please.");
-    }
+    mustBeSpatial(spatialAxis);
     this.spatialAxis = spatialAxis;
     this.θ = θ;
   }

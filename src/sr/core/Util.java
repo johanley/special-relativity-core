@@ -69,6 +69,11 @@ public final class Util {
       throw new RuntimeException(msg);
     }
   }
+  
+  /** Check data: the given axis must be spatial, not temporal. */
+  public static void mustBeSpatial(Axis axis) {
+    mustHave(axis.isSpatial(), "Cannot use the time axis for this operation.");
+  }
 
   /**
    Write a file line by line.

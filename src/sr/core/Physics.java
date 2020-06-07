@@ -1,8 +1,7 @@
 package sr.core;
 
 import static java.lang.Math.cos;
-import static sr.core.Util.sq;
-import static sr.core.Util.sqroot;
+import static sr.core.Util.*;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -65,17 +64,6 @@ public final class Physics {
   }
   
   /** 
-   The squared-interval between two events. The metric. 
-   The unit of the returned value is distance-squared.
-   Uses (+,-,-,-,) as the signature (the same as The Classical Theory of Fields, by Landau and Lifschitz).
-   Can be positive or negative! 
-   All time-like intervals are real, not imaginary.  
-  */
-  public static double sqInterval2(FourVector a, FourVector b) {
-    return sq(a.ct()-b.ct()) - sq(a.x()-b.x()) - sq(a.y()-b.y()) - sq(a.z()-b.z());
-  }
-  
-  /** 
    The warp factor (Lorentz factor). Dimensionless.
    WARNING: don't use when β is extremely close to 1!
 
@@ -84,6 +72,15 @@ public final class Physics {
   */
   public static final Double Γ(Double β) {
     return 1.0/sqroot(1 - sq(β));
+  }
+
+  /** 
+   The speed from the Lorentz factor. Dimensionless.
+  */
+  public static final Double β(Double Γ) {
+    //not a great result when Γ is low, because it changes so slowly!
+    double betaSq = 1 - 1.0/sq(Γ);
+    return sqroot(betaSq);
   }
   
   /** 
@@ -194,6 +191,16 @@ public final class Physics {
     return m;
   }
 
+  /** Build a 4-velocity vector, where the 3-velocity has a component only on the given axis. */
+  public static FourVector fourVelocity(double β, Axis spatialAxis) {
+    mustBeSpatial(spatialAxis);
+    FourVector result = FourVector.ZERO;
+    double Γ = Γ(β);
+    result = result.put(Axis.CT, Γ);
+    result = result.put(spatialAxis, Γ * β);
+    return result;
+  }
+  
   /** The nominal limiting visual magnitude of a star (6.0), as seen by an average human eye. */
   public static final Double LIMITING_MAG_HUMAN_EYE = 6.0;
 }

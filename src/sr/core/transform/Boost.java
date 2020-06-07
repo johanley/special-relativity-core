@@ -1,15 +1,8 @@
 package sr.core.transform;
 
-import static sr.core.Axis.CT;
-import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
-import static sr.core.Axis.Z;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import sr.core.Axis;
 import sr.core.Physics;
+import static sr.core.Util.mustBeSpatial;
 
 /**
  Lorentz Transformation of a {@Vector4}.
@@ -38,11 +31,14 @@ public final class Boost implements CoordTransform {
     @param β the velocity parallel to the given spatial axis; can be either sign.
   */
   public Boost(Axis spatialAxis, double β) {
-    if (! spatialAxis.isSpatial()) {
-      throw new RuntimeException("Not allowed to boost along the ct axis. Use a spatial axis please.");
-    }
+    mustBeSpatial(spatialAxis);
     this.spatialAxis = spatialAxis;
     this.β = β;
+  }
+
+  /** Factory method. */
+  public static Boost alongThe(Axis spatialAxis, double β) {
+    return new Boost(spatialAxis, β);
   }
 
   /**
@@ -74,29 +70,18 @@ public final class Boost implements CoordTransform {
   private Axis spatialAxis;
   private double β;
 
-  private FourVector boostIt(FourVector vec, WhichDirection dir) {
-    FourVector result = boost(vec, spatialAxis, β * dir.sign());
-    CoordTransform.sameIntervalFromOrigin(vec, result);
+  private FourVector boostIt(FourVector v, WhichDirection dir) {
+    FourVector result = boost(v, spatialAxis, β * dir.sign());
+    CoordTransform.sameIntervalFromOrigin(v, result);
     return result;
   }
   
-  private FourVector boost(FourVector vec, Axis spatialAxis, double β) {
-    if (!spatialAxis.isSpatial()) {
-      throw new IllegalArgumentException("Axis cannot be the time axis.");
-    }
-    int space = spatialAxis.idx();
-    EntangledPair pair = entangle(vec.ct(), part(vec, space), β);
-    List<Double> parts = new ArrayList<>();
-    parts.add(pair.time);
-    for (Axis a : Axis.values()) {
-      if (spatialAxis.idx() == a.idx()) {
-        parts.add(pair.space);
-      }
-      else if (a.idx() > CT.idx()){
-        parts.add(part(vec, a.idx()));
-      }
-    }
-    return FourVector.from(parts.get(CT.idx()), parts.get(X.idx()), parts.get(Y.idx()), parts.get(Z.idx()));
+  private FourVector boost(FourVector v, Axis spatialAxis, double β) {
+    EntangledPair pair = entangle(v.ct(), v.part(spatialAxis), β);
+    FourVector result = v;
+    result = result.put(Axis.CT, pair.time);
+    result = result.put(spatialAxis, pair.space);
+    return result;
   }
  
   private static class EntangledPair {
@@ -110,10 +95,5 @@ public final class Boost implements CoordTransform {
     result.time =     Γ*ct - Γ*β*space;
     result.space = -Γ*β*ct +   Γ*space;
     return result;
-  }
-  
-  private double part(FourVector v, int axisIdx) {
-    Double[] parts = {v.ct(), v.x(), v.y(), v.z()};
-    return parts[axisIdx];
   }
 }

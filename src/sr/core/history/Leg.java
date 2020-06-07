@@ -3,6 +3,7 @@ package sr.core.history;
 import java.util.List;
 
 import sr.core.transform.CoordTransform;
+import sr.core.transform.NoOpTransform;
 
 /**
  A part of a larger {@link History}, like the legs (stages) of a plane trip.
@@ -18,7 +19,9 @@ public final class Leg {
    
    @param history a simple history, that uses its own natural coordinate system
    @param transform how to transform the 'native' coords of the given {@link History}
-   into the coords needed by the caller.
+   into other coords, as defined by the needs of the caller.
+   This almost always transforms the coords into those used by the previous leg.
+   For the first leg, you'll almost always use {@link NoOpTransform}. 
   */
   public Leg(History history, CoordTransform transform){
     this.history = history;

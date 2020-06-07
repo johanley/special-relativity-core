@@ -8,7 +8,7 @@ import sr.core.transform.FourVector;
  Make a {@link History} from simpler pieces called {@link Leg}s.
  Abstract Base Class (ABC).  
 */
-public abstract class HistoryFromLegs implements History {
+public abstract class HistoryFromLegs extends HistoryAbc {
 
   /** The legs of the history. Subclasses define what the legs are.  */
   abstract protected List<Leg> initLegs();
@@ -21,9 +21,7 @@ public abstract class HistoryFromLegs implements History {
    This allows the core logic of each leg to be defined simply, while still allowing 
    for the many variations that are needed for different cases.
   */
-  @Override public final FourVector event(double τ) {
-    withinLimits(τ);
-    
+  @Override protected final FourVector eventFor(double τ) {
     //which leg are we currently looking for? get its 'basic' event
     int legIdx = Leg.legIdxForTau(τ, legs());
     FourVector event = legs().get(legIdx).history().event(τ);

@@ -1,15 +1,17 @@
 package sr.core.history;
 
+import static sr.core.Util.mustBeSpatial;
+
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.transform.CoordTransform;
-import sr.core.transform.Rotate;
 import sr.core.transform.FourVector;
+import sr.core.transform.Rotate;
 
 /** 
  Uniform circular motion at constant speed.
 */
-public final class UniformCircularMotion implements History {
+public final class UniformCircularMotion extends HistoryAbc {
 
   /**
     Constructor.
@@ -23,9 +25,7 @@ public final class UniformCircularMotion implements History {
     @param τMax ending τ
   */
   public UniformCircularMotion(Axis spatialAxis, double r, double β,  double τMin, double τMax) {
-    if (!spatialAxis.isSpatial()) {
-      throw new RuntimeException("You must use a spatial axis.");
-    }
+    mustBeSpatial(spatialAxis);
     this.spatialAxis = spatialAxis;
     this.r = r;
     this.β = β;
@@ -35,7 +35,6 @@ public final class UniformCircularMotion implements History {
   
   @Override public double τmin() { return τMin; }
   @Override public double τmax() { return τMax; }
-  public double β() { return β; }
   public double r() { return r; }
   public Axis axis() { return spatialAxis; }
 
@@ -46,7 +45,7 @@ public final class UniformCircularMotion implements History {
  
    @param τ proper-time for the object. 
   */
-  @Override public FourVector event(double τ) {
+  @Override protected FourVector eventFor(double τ) {
     withinLimits(τ);
     FourVector result = null;
     double t = Physics.Γ(β) * Δτ(τ); //time dilation
@@ -66,6 +65,10 @@ public final class UniformCircularMotion implements History {
     }
     result = rotate.toNewVector4(start);
     return result;
+  }
+  
+  @Override public double β(double τ) {
+    return β;
   }
 
   @Override public String toString() {

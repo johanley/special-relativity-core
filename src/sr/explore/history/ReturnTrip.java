@@ -40,7 +40,7 @@ public final class ReturnTrip extends HistoryFromLegs {
     Leg leg1 = new Leg(hist1, new NoOpTransform()); 
     FourVector end1 = leg1.history().event(leg1.history().τmax());
     //match position and time, but no need to match speed (discontinuous anyway)
-    CoordTransform transformer1 = Displace.to(end1);
+    CoordTransform transformer1 = Displace.originTo(end1);
 
     History hist2 = new UniformVelocity(Axis.X, -β, τHalfWay, 2*τHalfWay);
     Leg leg2 = new Leg(hist2, transformer1);
@@ -49,7 +49,8 @@ public final class ReturnTrip extends HistoryFromLegs {
     return Arrays.asList(leg1, leg2);
   }
   
-  public double β() { return β; }
+  /** Constant value, independent of τ. */
+  @Override public double β(double τ) { return β; }
   public double distance() { return distance; }
   
   //PRIVATE 
