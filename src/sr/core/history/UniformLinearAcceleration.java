@@ -6,6 +6,7 @@ import static sr.core.Util.sqroot;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 
 /**
@@ -46,7 +47,7 @@ public final class UniformLinearAcceleration extends HistoryAbc {
    @param τ proper-time for the object.
   */
   @Override protected FourVector eventFor(double τ) {
-    FourVector result = FourVector.ZERO; //default
+    FourVector result = FourVector.ZERO_AFFINE; //default
     double c = 1.0; //to make it easy to compare with formulas in books
     //SHOULD THIS BE A COORD TRANSFORM, LIKE THE OTHERS?
     //not sure; for the moment, let's not try that
@@ -55,21 +56,23 @@ public final class UniformLinearAcceleration extends HistoryAbc {
     double ct = a * Math.sinh(b);
     double distanceAlongAxis = a * Math.cosh(b) - a; 
     if (Axis.X == spatialAxis) {
-      result = FourVector.from(ct, distanceAlongAxis, 0.0, 0.0);
+      result = FourVector.from(ct, distanceAlongAxis, 0.0, 0.0, ApplyDisplaceOp.YES);
     }
     else if (Axis.Y == spatialAxis) {
-      result = FourVector.from(ct, 0.0, distanceAlongAxis, 0.0);
+      result = FourVector.from(ct, 0.0, distanceAlongAxis, 0.0, ApplyDisplaceOp.YES);
     }
     else if (Axis.Z == spatialAxis) {
-      result = FourVector.from(ct, 0.0, 0.0, distanceAlongAxis);
+      result = FourVector.from(ct, 0.0, 0.0, distanceAlongAxis, ApplyDisplaceOp.YES);
     }
     return result;
   }
   
+  /** Varies with τ, and is always parallel to the given spatial axis. */
   @Override protected FourVector fourVelocityFor(double τ) {
     return Physics.fourVelocity(β(τ), spatialAxis);
   }
   
+  /** Varies with τ.*/
   @Override public double β(double τ) {
     double t = event(τ).ct();
     double c = 1.0; //to make it easier to compare with formulas from books

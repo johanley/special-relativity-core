@@ -3,18 +3,13 @@ package sr.core.transform;
 /**
  Add a fixed amount to 1 or more components.
  If the displacement is for one component only, then just pass 0 for the remaining ones.
+ 
+ <p>IMPORTANT: most 4-vectors should NOT react to this transform, because they are 
+ differential, and aren't affected by changes to the origin.
+ See {@link ApplyDisplaceOp}.
 */
 public final class Displace implements CoordTransform {
   
-  /** 
-   Returns true. 
-   Displacement operations are the only operation to change {@link FourVector#ZERO}.
-   (In mathematical terms, displacements represent the difference between linear and affine transformations.)
-  */
-  @Override public boolean changesOrigin() {
-    return true;
-  }
-
   /** 
    Constructor. 
    Pass the displacement to be ADDED to each coord.
@@ -27,7 +22,7 @@ public final class Displace implements CoordTransform {
     this.zD = zD;
   }
   
-  /*** Displace the origin to the given Vector4. */
+  /*** Displace the origin to the given FourVector. */
   public static CoordTransform originTo(FourVector vec) {
     return new Displace(-vec.ct(), -vec.x(), -vec.y(), -vec.z());
   }
@@ -36,7 +31,7 @@ public final class Displace implements CoordTransform {
     return doIt(vec, WhichDirection.NOMINAL);
   }
   
-  @Override public FourVector toNewVector4(FourVector vecPrime) {
+  @Override public FourVector toNewFourVector(FourVector vecPrime) {
     return doIt(vecPrime, WhichDirection.INVERSE);
   }
   
@@ -53,12 +48,17 @@ public final class Displace implements CoordTransform {
   private double zD;
   
   private FourVector doIt(FourVector vec, WhichDirection dir) {
-    int sign = dir.sign();
-    return FourVector.from(
-      vec.ct() + ctD * sign, 
-      vec.x() + xD * sign, 
-      vec.y() + yD * sign, 
-      vec.z() + zD * sign
-    );
-  }
+    FourVector result = vec;
+    if (vec.applyDisplaceOp() == ApplyDisplaceOp.YES) {
+      int sign = dir.sign();
+      result = FourVector.from(
+        vec.ct() + ctD * sign, 
+        vec.x() + xD * sign, 
+        vec.y() + yD * sign, 
+        vec.z() + zD * sign,
+        ApplyDisplaceOp.YES
+      );
+    }
+    return result;
+ }
 }

@@ -4,6 +4,7 @@ import static sr.core.Util.mustBeSpatial;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
@@ -38,19 +39,18 @@ public final class UniformVelocity extends HistoryAbc {
    For τ=τMin the the origin-event is returned.
   */
   @Override protected FourVector eventFor(double τ) {
-    withinLimits(τ);
-    FourVector start = FourVector.from(Δτ(τ), 0.0, 0.0, 0.0);
+    FourVector start = FourVector.from(Δτ(τ), 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
     CoordTransform boost = new Boost(spatialAxis, β);
-    FourVector result = boost.toNewVector4(start);
+    FourVector result = boost.toNewFourVector(start);
     return result;
   }
 
   /** Constant 4-vector, doesn't change with τ. */
   @Override protected FourVector fourVelocityFor(double τ) {
-    withinLimits(τ);
-    return Physics.fourVelocity(τ, spatialAxis);
+    return Physics.fourVelocity(β, spatialAxis);
   }
-  
+
+  /** The speed passed to the constructor (independent of τ, in this case). */
   @Override public double β(double τ) {
     return β;
   }

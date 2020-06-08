@@ -29,9 +29,13 @@ public abstract class HistoryAbc implements History {
   /** 
    Overridable default implementation that calculates the derivative 'manually', by 
    calling {@link #event(double)}, and calculating the rate of change.
+   <b>This default implementation assumes that the τ parameter is indeed the proper time.</b>
+   
+   <P>Many Implementations will override this default with more direct means of computing the 
+   4-velocity. 
   */
   protected FourVector fourVelocityFor(double τ) {
-    //TO DO
+    //TO DO? OR REMOVE THIS??
     return null;
   }
   

@@ -4,12 +4,14 @@ import static sr.core.Util.mustBeSpatial;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
 import sr.core.transform.Rotate;
 
 /** 
  Uniform circular motion at constant speed.
+ The origin-event is NOT included in this history.
 */
 public final class UniformCircularMotion extends HistoryAbc {
 
@@ -38,35 +40,32 @@ public final class UniformCircularMotion extends HistoryAbc {
   public double r() { return r; }
   public Axis axis() { return spatialAxis; }
 
-
   /** 
    The Vector4 at proper-time τ of the object.
-   For τ=τMin the the zero-vector is returned.
+   For τ=τMin the the zero-vector is NOT returned: the event is located at a distance r from the origin, along 
+   one of the spatial axes.
  
    @param τ proper-time for the object. 
   */
   @Override protected FourVector eventFor(double τ) {
-    withinLimits(τ);
     FourVector result = null;
-    double t = Physics.Γ(β) * Δτ(τ); //time dilation
+    double ct = Physics.Γ(β) * Δτ(τ); //time dilation
     double ω = β/r;
-    double θ = ω * t; //θ=0 at τ=0
-    //here we can simply use a coord transform to map from one Vector4 to another, all in the same frame;
-    CoordTransform rotate = new Rotate(spatialAxis, θ);
-    FourVector start = null;
-    if (Axis.Z == spatialAxis) {
-      start = FourVector.from(0.0, r, 0.0, 0.0);
-    }
-    else if (Axis.Y == spatialAxis) {
-      start = FourVector.from(0.0, 0.0, 0.0, r);
-    }
-    else if (Axis.X == spatialAxis) {
-      start = FourVector.from(0.0, 0.0, r, 0.0);
-    }
-    result = rotate.toNewVector4(start);
+    double θ = ω * ct; //θ=0 at τ=0; c=1 here
+    //here we can simply use a coord transform to map from one FourVector to another, all in the same frame
+    CoordTransform rotate = Rotate.about(spatialAxis, θ);
+    FourVector start = FourVector.from(ct, 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
+    start = start.put(spatialAxis, r);
+    result = rotate.toNewFourVector(start);
     return result;
   }
+
+  /*
+   * The 4-velocity is not constant.
+   * Its magnitude is constant, but its direction changes. 
+   */
   
+  /** The speed passed to the constructor (independent of τ, in this case). */
   @Override public double β(double τ) {
     return β;
   }

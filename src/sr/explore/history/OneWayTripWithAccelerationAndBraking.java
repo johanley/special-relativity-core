@@ -1,9 +1,12 @@
 package sr.explore.history;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import sr.core.Axis;
+import sr.core.Physics;
+import sr.core.Util;
 import sr.core.history.History;
 import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
@@ -18,7 +21,7 @@ import sr.core.transform.NoOpTransform;
 import sr.core.transform.Reflect;
 
 /**
- One-way trip from the origin-event to a place B (on one of the spatial axes).
+ One-way trip from the origin-event to a place on one of the spatial axes.
  All motion takes place on the one spatial axis.
  At τ=0 the object is at rest at the origin.
  
@@ -29,45 +32,59 @@ import sr.core.transform.Reflect;
   is determined by the end-state of leg #1
   <li>uniform linear acceleration (slowing down to speed 0) in the minus-axis direction
  </ol>
- The 2 legs that accelerate have the same proper acceleration α (but in opposite directions); 
- they also last the same length of proper-time. 
+ The 2 legs that accelerate have the same proper acceleration α (but in opposite directions), 
+ and they also last the same length of proper-time. 
 */
 public final class OneWayTripWithAccelerationAndBraking extends HistoryFromLegs {
   
+  /** Run for various values, and output a file. */
+  public static void main(String... args) {
+    double gee = Physics.gAcceleration(1.0); //light years per year^2; be careful with the unit
+    double[] ταs = {1.0,2.0,3.0,4.0,5.0};
+    double τβ = 1.0;
+    List<String> lines = new ArrayList<>();
+    for (Double τα : ταs) {
+      History trip = new OneWayTripWithAccelerationAndBraking(gee, τα, τβ, Axis.X);
+      lines.add(trip.toString() + Util.NL);
+    }
+    Util.writeToFile(OneWayTrip.class, "one-way-trip-with-acceleration"+Util.round(gee, 3)+"-" + τβ +".txt", lines);
+  }
+  
   /**
    Constructor.
-   @param α the constant proper acceleration for the first and last legs  
+   @param α the constant proper acceleration for the first and last legs. Be careful with the units.
+   Must match the units you're using for having c=1. For example, light-years per year per year.  
    @param τα the proper-time duration of the first and last legs
    @param τβ the proper-time duration of the middle leg
+   @param spatialAxis the axis along which all motion takes place
   */
-  public OneWayTripWithAccelerationAndBraking(double α, double τα, double τβ, Axis axis) {
+  public OneWayTripWithAccelerationAndBraking(double α, double τα, double τβ, Axis spatialAxis) {
     this.α = α;
     this.τα = τα;
     this.τβ = τβ;
-    this.axis = axis;
+    this.spatialAxis = spatialAxis;
   }
 
   /** Proper time at the start-event is 0. */
   @Override public double τmin() { return 0.0; }
   
   @Override protected List<Leg> initLegs() {
-    History hist1 = new UniformLinearAcceleration(axis, α, τmin(), τmin() + τα);
+    History hist1 = new UniformLinearAcceleration(spatialAxis, α, τmin(), τmin() + τα);
     Leg leg1 = new Leg(hist1, new NoOpTransform());
     
-    CoordTransform backToLeg1 = Displace.originTo(leg1.history().end()); //move origin
+    CoordTransform backToPrevFrame = Displace.originTo(leg1.history().end()); 
     
-    double terminalβ1 = hist1.β(hist1.τmax());
-    History hist2 = new UniformVelocity(axis, terminalβ1, hist1.τmax(), hist1.τmax() + τβ);
-    Leg leg2 = new Leg(hist2, backToLeg1);
+    History hist2 = new UniformVelocity(spatialAxis, hist1.β(hist1.τmax()), hist1.τmax(), hist1.τmax() + τβ);
+    Leg leg2 = new Leg(hist2, backToPrevFrame);
     
-    double terminalβ2 = hist2.β(hist2.τmax());
-    CoordTransform displace = Displace.originTo(leg2.history().end()); //move origin
-    CoordTransform boost = Boost.alongThe(axis, terminalβ2); //match speed, to have v=0 at t=0
-    CoordTransform reflect = Reflect.the(axis); //to have braking along the axis, not acceleration
-    CoordTransform backToLeg2 = new CoordTransformPipeline(displace, boost, reflect);
+    backToPrevFrame = CoordTransformPipeline.join(
+      Displace.originTo(leg2.history().end()),   //move origin
+      Boost.alongThe(spatialAxis, hist2.β(hist2.τmax())), //match terminal speed, to have v=0 at t=0
+      Reflect.the(spatialAxis)   //braking is opposite the speeding-up
+    );
 
-    History hist3 = new UniformLinearAcceleration(axis, α, hist2.τmax(), hist2.τmax() + τα);
-    Leg leg3 = new Leg(hist3, backToLeg2);
+    History hist3 = new UniformLinearAcceleration(spatialAxis, α, hist2.τmax(), hist2.τmax() + τα);
+    Leg leg3 = new Leg(hist3, backToPrevFrame);
 
     return Arrays.asList(leg1, leg2, leg3);
   }
@@ -75,11 +92,28 @@ public final class OneWayTripWithAccelerationAndBraking extends HistoryFromLegs 
   public double α() { return α; }
   public double τα() { return τα; }
   public double τβ() { return τβ; }
+  public Axis spatialAxis() { return spatialAxis; }
+  
+  @Override public String toString() {
+    String s = "  ";
+    FourVector end1 = event(τmin() + τα);
+    Double β1 = β(τmin() + τα);
+    FourVector end2 = event(τmin() + τα + τβ);
+    FourVector end3 = end();
+    Double β3 = β(τmin() + τα + τβ + τα);
+    
+    String result = "α:"+α+s+ " τα:"+τα+s+ " τβ:"+τβ + Util.NL;
+    result = result + "Total τ:"+(τmax() - τmin()) + Util.NL;
+    result = result + "Leg1: end-β:"+β1+s+ "end-x:"+end1.x()+s+ "end-ct:"+end1.ct()+ Util.NL;
+    result = result + "Leg2:     β:"+β1+s+ "end-x:"+end2.x()+s+ "end-ct:"+end2.ct()+ Util.NL; 
+    result = result + "Leg3: end-β:"+β3+s+ "end-x:"+end3.x()+s+ "end-ct:"+end3.ct()+ Util.NL; 
+    return result;
+  }
   
   //PRIVATE 
   private double α;
   private double τα;
   private double τβ;
-  private Axis axis;
+  private Axis spatialAxis;
 
 }

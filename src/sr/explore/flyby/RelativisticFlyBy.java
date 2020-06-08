@@ -3,6 +3,7 @@ package sr.explore.flyby;
 import static sr.core.Util.*;
 
 import sr.core.Physics;
+import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 
 /**
@@ -201,7 +202,7 @@ public final class RelativisticFlyBy {
   */
   private FourVector star(Double emissionTime) {
    double x = x0/*Lorentz-contracted!*/ + β * emissionTime;
-   FourVector result = FourVector.from(emissionTime, x, minimumDistance, 0.0);
+   FourVector result = FourVector.from(emissionTime, x, minimumDistance, 0.0, ApplyDisplaceOp.YES);
    return result;
   }
 }

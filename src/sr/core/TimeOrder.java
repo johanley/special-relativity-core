@@ -1,11 +1,12 @@
 package sr.core;
 
 import sr.core.transform.FourVector;
+import sr.core.transform.FourVectorType;
 
 /** 
  The time-order of any pair of events.
- If the {@link Direction} is time-like or light-like, then the time-order is invariant. 
- If the {@link Direction} is space-like, then the time-order is NOT invariant. 
+ If the {@link FourVectorType} is time-like or light-like, then the time-order is invariant. 
+ If the {@link FourVectorType} is space-like, then the time-order is NOT invariant. 
 */
 public enum TimeOrder {
   

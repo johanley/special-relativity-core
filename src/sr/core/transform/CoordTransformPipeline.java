@@ -22,9 +22,9 @@ public final class CoordTransformPipeline implements CoordTransform {
     CoordTransform[] ops = {rotate, displace, reflect, boost};
     CoordTransformPipeline t = new CoordTransformPipeline(ops);
     
-    FourVector in = FourVector.from(1.0, 1.0, 0.0, 0.0);
+    FourVector in = FourVector.from(1.0, 1.0, 0.0, 0.0, ApplyDisplaceOp.YES);
     FourVector out = t.toNewFrame(in);
-    FourVector backIn = t.toNewVector4(out);
+    FourVector backIn = t.toNewFourVector(out);
     if (! in.equalsWithEpsilon(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
     }
@@ -35,17 +35,16 @@ public final class CoordTransformPipeline implements CoordTransform {
    @param operations 0 or more transform operations, as applied in the 'forward' direction.
    The order is significant. A pipeline of operations needed to do the desired job. 
   */
-  /*
-  public CoordTransformPipeline(CoordTransform[] operations) {
-    this.operations = operations;
-  }
-  */
   public CoordTransformPipeline(CoordTransform... operations) {
     this.operations = operations;
   }
   
+  /** Static factory method. */
+  public static CoordTransformPipeline join(CoordTransform... operations) {
+    return new CoordTransformPipeline(operations);
+  }
   
-  /** Apply the operations (in order) to the given Vector4. */
+  /** Apply the operations (in order) to the given FourVector. */
   @Override public FourVector toNewFrame(FourVector vec) {
     FourVector result = vec;
     for (CoordTransform op : operations) {
@@ -55,15 +54,15 @@ public final class CoordTransformPipeline implements CoordTransform {
   }
   
   /** 
-   Apply the operations to the given Vector4, but in <em>reverse</em> order <em>and</em> 
+   Apply the operations to the given FourVector, but in <em>reverse</em> order <em>and</em> 
    with the <em>inverse</em> transform. 
   */
-  @Override public FourVector toNewVector4(FourVector vecPrime) {
+  @Override public FourVector toNewFourVector(FourVector vecPrime) {
     FourVector result = vecPrime;
     List<CoordTransform> reversedOps = Arrays.asList(operations);
     Collections.reverse(reversedOps);
     for (CoordTransform op : reversedOps) {
-      result = op.toNewVector4(result);
+      result = op.toNewFourVector(result);
     }
     return result;
   }

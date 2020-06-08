@@ -18,6 +18,9 @@ public final class Util {
   
   /** UTF-8 encoding for reading and writing text files. */
   public final static Charset ENCODING = StandardCharsets.UTF_8;
+  
+  /** Newline character. */
+  public static final String NL = System.getProperty("line.separator");
 
   /** Write to the console. */
   public static void log(Object msg) {

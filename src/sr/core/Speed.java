@@ -9,9 +9,8 @@ import java.util.List;
  Commonly used speeds β expressed as a fraction of the speed limit, 
  and the corresponding Lorentz factor Γ.
 */
-public enum SpeedValues {
+public enum Speed {
 
-  PERCENT_00("0.00"),
   PERCENT_10("0.10"),
   PERCENT_20("0.20"),
   PERCENT_30("0.30"),
@@ -53,16 +52,16 @@ public enum SpeedValues {
    All items except for the one for the extreme cosmic ray.
    Most cases will desire this method. 
   */
-  public static List<SpeedValues> nonExtremeValues(){
-    List<SpeedValues> result = Arrays.asList(values());
-    List<SpeedValues> listRemovable = new ArrayList<>(result);
-    listRemovable.remove(SpeedValues.PROTON_EXTREME_COSMIC_RAY);
+  public static List<Speed> nonExtremeValues(){
+    List<Speed> result = Arrays.asList(values());
+    List<Speed> listRemovable = new ArrayList<>(result);
+    listRemovable.remove(Speed.PROTON_EXTREME_COSMIC_RAY);
     return listRemovable;
   }
 
   //PRIVATE 
   
-  private SpeedValues(String val) {
+  private Speed(String val) {
     this.β = new BigDecimal(val, Physics.LARGE_NUM_DECIMALS);
     this.Γ = Physics.Γ(β);
   }

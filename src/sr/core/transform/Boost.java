@@ -43,7 +43,7 @@ public final class Boost implements CoordTransform {
 
   /**
    Transform the 4-vector to the boosted inertial frame.  
-   The inverse of {@link #toNewVector4(FourVector)}. 
+   The inverse of {@link #toNewFourVector(FourVector)}. 
   */
   @Override public FourVector toNewFrame(FourVector vec) {
     return boostIt(vec, WhichDirection.NOMINAL);
@@ -53,7 +53,7 @@ public final class Boost implements CoordTransform {
    Transform the 4-vector to a new 4-vector in the same inertial frame.  
    The inverse of {@link #toNewFrame(FourVector)}. 
   */
-  @Override public FourVector toNewVector4(FourVector vecPrime) {
+  @Override public FourVector toNewFourVector(FourVector vecPrime) {
     return boostIt(vecPrime, WhichDirection.INVERSE);
   }
   

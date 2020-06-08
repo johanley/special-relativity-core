@@ -23,6 +23,9 @@ public final class Physics {
   
   public static final double PROTON_MASS_KG = 1.672622e-27;
   
+  /** The nominal limiting visual magnitude of a star (6.0), as seen by an average human eye. */
+  public static final Double LIMITING_MAG_HUMAN_EYE = 6.0;
+  
   /** Used for extreme values of β that are extremely close to 1, and need to be represented by BigDecimal, not Double. */
   public static int NUM_DECIMALS = 40;
   
@@ -194,13 +197,31 @@ public final class Physics {
   /** Build a 4-velocity vector, where the 3-velocity has a component only on the given axis. */
   public static FourVector fourVelocity(double β, Axis spatialAxis) {
     mustBeSpatial(spatialAxis);
-    FourVector result = FourVector.ZERO;
+    FourVector result = FourVector.ZERO_LINEAR;
     double Γ = Γ(β);
     result = result.put(Axis.CT, Γ);
     result = result.put(spatialAxis, Γ * β);
     return result;
   }
   
-  /** The nominal limiting visual magnitude of a star (6.0), as seen by an average human eye. */
-  public static final Double LIMITING_MAG_HUMAN_EYE = 6.0;
+  /** 
+   Converts to units of light-yr per year^2.
+   @param mks_units the acceleration in meters per sec^2. 
+  */
+  public static final Double acceleration(double mks_units) {
+    return mks_units * (SECONDS_PER_YEAR * SECONDS_PER_YEAR) / METERS_PER_LIGHT_YEAR;
+  }
+  
+  /** 
+   Converts to units of light-yr per year^2.
+   @param gees multiple of Earth's standard gravitational acceleration. 
+  */
+  public static final Double gAcceleration(double gees) {
+    return acceleration(gees * ONE_GEE_MKS);
+  }
+
+  // PRIVATE 
+  private static final double SECONDS_PER_YEAR = 86400.0*365.242189;
+  private static final double METERS_PER_LIGHT_YEAR = 9.460730e15;
+  private static final double ONE_GEE_MKS = 9.80665; //m per s^2
 }

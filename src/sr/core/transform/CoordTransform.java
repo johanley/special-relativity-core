@@ -12,14 +12,14 @@ import static sr.core.Util.isTiny;
  
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
-  <li>given the components of a {@link Vector4} in one inertial frame K, find its components in a second frame K'
-   ({@link #toNewFrame(FourVector))}, with inverse {@link #toNewVector4(FourVector))}) 
-  <li>given the components of a {@link Vector4} in one inertial frame K, find the components of a second 4-vector in the same frame K.
-     ({@link #toNewVector4(Vector4)}, with inverse {@link #toNewFrame(Vector4)}) 
+  <li>given the components of a {@link FourVector} in one inertial frame K, find its components in a second frame K'
+   ({@link #toNewFrame(FourVector))}, with inverse {@link #toNewFourVector(FourVector))}) 
+  <li>given the components of a {@link FourVector} in one inertial frame K, find the components of a second 4-vector in the same frame K.
+     ({@link #toNewFourVector(FourVector)}, with inverse {@link #toNewFrame(FourVector)}) 
  </ul>
  
  <P>
- Successive application of the two methods {@link #toNewFrame(Vector4)} and {@link #toNewVector4(Vector4)} 
+ Successive application of the two methods {@link #toNewFrame(FourVector)} and {@link #toNewFourVector(FourVector)} 
  (in any order) must return the original event (aside from some rounding that usually occurs because of 
  floating-point operations).
 */
@@ -27,7 +27,7 @@ public interface CoordTransform {
   
   /** 
    For a given 4-vector, transform its components from frame K to K'. 
-   The inverse operation is {@link #toNewVector4(Vector4)}.
+   The inverse operation is {@link #toNewFourVector(FourVector)}.
    
    @param vec the compontents in the K frame.
    @return the components in the K' frame. 
@@ -36,24 +36,13 @@ public interface CoordTransform {
   
   /** 
    For a given frame K, transform the given 4-vector into another 4-vector. 
-   The inverse operation is {@link #toNewFrame(Vector4)}.
+   The inverse operation is {@link #toNewFrame(FourVector)}.
    
    @param vec the components in a given frame K.
    @return the components of a second event in a given frame K. 
   */
-  FourVector toNewVector4(FourVector vec);
+  FourVector toNewFourVector(FourVector vec);
 
-  /**
-   Whether or not this transformation will change {@link FourVector#ZERO} into some other 4-vector.
-   Most operations leave the origin unchanged. 
-   The <em>only</em> oddball is the {@link Displace} operation; it doesn't apply to a 4-velocity, 
-   or any other differential 4-vector.
-   <P>This asymmetry is captured in this method, which returns false by default. 
-  */
-  default boolean changesOrigin() {
-    return false;
-  }
-  
   /**
    Asserts that the magnitude-squared has not changed (very much).
    

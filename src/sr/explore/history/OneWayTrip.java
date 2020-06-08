@@ -1,10 +1,13 @@
 package sr.explore.history;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.Speed;
+import sr.core.Util;
 import sr.core.history.History;
 import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
@@ -16,6 +19,19 @@ import sr.core.transform.NoOpTransform;
  There's only 1 {@link Leg} for this trip.
 */
 public final class OneWayTrip extends HistoryFromLegs {
+
+  /** Run for various values, and output a file. */
+  public static void main(String... args) {
+    double distance = 1.0;
+    List<String> lines = new ArrayList<>();
+    lines.add("β distance τmax");
+    lines.add("--------------------");
+    for(Speed speed : Speed.nonExtremeValues()) {
+      History trip = new OneWayTrip(speed.β(), distance);
+      lines.add(trip.toString());
+    }
+    Util.writeToFile(OneWayTrip.class, "one-way-trip-"+distance + ".txt", lines);
+  }
   
   /**
    Constructor.
@@ -37,9 +53,12 @@ public final class OneWayTrip extends HistoryFromLegs {
     return Arrays.asList(leg);
   }
   
-  /** Constant value, independent of τ. */
-  @Override public double β(double τ) { return β; }
   public double distance() { return distance; }
+  
+  @Override public String toString() {
+    String s = "  ";
+    return β+s+ distance+s + τmax();
+  }
   
   //PRIVATE 
   

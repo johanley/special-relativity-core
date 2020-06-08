@@ -18,9 +18,9 @@ public final class Leg {
    Constructor.
    
    @param history a simple history, that uses its own natural coordinate system
-   @param transform how to transform the 'native' coords of the given {@link History}
+   @param transform how to transform the 'native' coords of 4-vectors 
    into other coords, as defined by the needs of the caller.
-   This almost always transforms the coords into those used by the previous leg.
+   This almost always transforms the 4-vector components into the frame used by the previous leg.
    For the first leg, you'll almost always use {@link NoOpTransform}. 
   */
   public Leg(History history, CoordTransform transform){
@@ -37,6 +37,19 @@ public final class Leg {
         break;
       }
       ++result;
+    }
+    return result;
+  }
+  
+  /** Return the {@link Leg} that applies to the given τ. Returns null if no match found. */
+  static Leg legForTau(double τ, List<Leg> legs) {
+    Leg result = null;
+    for(Leg leg : legs) {
+      if (leg.history.τmin() <= τ && τ <= leg.history.τmax()) {
+        //found a match
+        result = leg;
+        break;
+      }
     }
     return result;
   }

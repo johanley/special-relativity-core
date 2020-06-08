@@ -7,12 +7,12 @@ package sr.core.transform;
 */
 public final class NoOpTransform implements CoordTransform {
   
-  /** Return the given Vector4 without change. */
-  @Override public FourVector toNewVector4(FourVector vec) {
+  /** Return the given FourVector without change. */
+  @Override public FourVector toNewFourVector(FourVector vec) {
     return vec;
   }
 
-  /** Return the given Vector4 without change. */
+  /** Return the given FourVector without change. */
   @Override public FourVector toNewFrame(FourVector vec) {
     return vec;
   }

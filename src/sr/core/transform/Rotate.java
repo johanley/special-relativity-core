@@ -34,19 +34,24 @@ public final class Rotate implements CoordTransform {
   /** 
    Constructor.
    @param spatialAxis axis about which to rotate using the right-hand rule
-   @param θ angle in radians to rotate about the spatial axis, with the right-hand rule
+   @param θ angle in radians to rotate about the spatial axis, with the right-hand rule (see class comment)
   */
   public Rotate(Axis spatialAxis, double θ) {
     mustBeSpatial(spatialAxis);
     this.spatialAxis = spatialAxis;
     this.θ = θ;
   }
+
+  /** Construct with a factory method. */
+  public static Rotate about(Axis spatialAxis, double θ) {
+    return new Rotate(spatialAxis, θ);
+  }
   
   @Override public FourVector toNewFrame(FourVector v) {
     return doIt(v, WhichDirection.NOMINAL);
   }
   
-  @Override public FourVector toNewVector4(FourVector vPrime) {
+  @Override public FourVector toNewFourVector(FourVector vPrime) {
     return doIt(vPrime, WhichDirection.INVERSE);
   }
   
@@ -69,15 +74,15 @@ public final class Rotate implements CoordTransform {
     //there's a small bit of code repetition here, but it's not too bad
     if (Z == spatialAxis) {
       EntangledPair pair = entangle(v.x(), v.y(), sign); 
-      result = FourVector.from(v.ct(), pair.a, pair.b, v.z());
+      result = FourVector.from(v.ct(), pair.a, pair.b, v.z(), v.applyDisplaceOp());
     }
     else if (Y == spatialAxis) {
       EntangledPair pair = entangle(v.z(), v.x(), sign); 
-      result = FourVector.from(v.ct(), pair.a, v.y(), pair.b);
+      result = FourVector.from(v.ct(), pair.a, v.y(), pair.b, v.applyDisplaceOp());
     }
     else if (X == spatialAxis) {
       EntangledPair pair = entangle(v.y(), v.z(), sign); 
-      result = FourVector.from(v.ct(), v.x(), pair.a, pair.b);
+      result = FourVector.from(v.ct(), v.x(), pair.a, pair.b, v.applyDisplaceOp());
     }
     CoordTransform.sameIntervalFromOrigin(v, result);
     return result;

@@ -15,6 +15,12 @@ public interface History {
    or any other convenient param.
   */
   FourVector event(double τ);
+
+  /** The start-value for the τ parameter. */
+  double τmin();
+  
+  /** The end-value for the τ parameter. */
+  double τmax();
   
   /** The first event on the history, corresponding to {@link #τmin()}. */
   FourVector start();
@@ -22,22 +28,10 @@ public interface History {
   /** The last event on the history, corresponding to {@link #τmax()}. */
   FourVector end();
   
-  /** 
-   The 4-velocity is computed, by default, simply by manually calculating the 
-   derivative using the given {@link #event(double)} method.
-   This default implementation assumes that the τ parameter is indeed the proper time.
-   
-   <P>Many Implementations will override this default with more direct means of computing the 
-   4-velocity. 
-  */
+  /** The 4-velocity for the given value of the parameter. */
   FourVector fourVelocity(double τ);
   
-  /** Magnitude of the 3-velocity. */
+  /** Magnitude of the 3-velocity. Always positive. */
   double β(double τ);
 
-  /** The start-value for the τ parameter. */
-  double τmin();
-  
-  /** The end-value for the τ parameter. */
-  double τmax();
 }

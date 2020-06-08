@@ -1,10 +1,13 @@
 package sr.explore.history;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.Speed;
+import sr.core.Util;
 import sr.core.history.History;
 import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
@@ -12,14 +15,27 @@ import sr.core.history.UniformVelocity;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.Displace;
 import sr.core.transform.NoOpTransform;
-import sr.core.transform.FourVector;
 
 /**
- Simple return trip from the origin event A to B then back to A's position, all along the X axis, all at the same uniform speed.
+ Simple return trip from the origin event A to B then back to A's position, all along the X axis, 
+ all at the same uniform speed.
  There's a discontinuity at the turn-around point B.
  There are 2 {@link Leg}s to the trip.
 */
 public final class ReturnTrip extends HistoryFromLegs {
+  
+  /** Run for various values, and output a file. */
+  public static void main(String... args) {
+    double distance = 1.0;
+    List<String> lines = new ArrayList<>();
+    lines.add("β distance   τmax            tmax");
+    lines.add("---------------------------------");
+    for(Speed speed : Speed.nonExtremeValues()) {
+      History trip = new ReturnTrip(speed.β(), distance);
+      lines.add(trip.toString());
+    }
+    Util.writeToFile(OneWayTrip.class, "return-trip-"+distance + ".txt", lines);
+  }
   
   /**
    Constructor.
@@ -38,20 +54,21 @@ public final class ReturnTrip extends HistoryFromLegs {
   @Override protected List<Leg> initLegs() {
     History hist1 = new UniformVelocity(Axis.X, β, 0.0, τHalfWay);
     Leg leg1 = new Leg(hist1, new NoOpTransform()); 
-    FourVector end1 = leg1.history().event(leg1.history().τmax());
     //match position and time, but no need to match speed (discontinuous anyway)
-    CoordTransform transformer1 = Displace.originTo(end1);
+    CoordTransform backToLeg1 = Displace.originTo(leg1.history().end());
 
     History hist2 = new UniformVelocity(Axis.X, -β, τHalfWay, 2*τHalfWay);
-    Leg leg2 = new Leg(hist2, transformer1);
-    //the last leg: no need to build a transformer for it
+    Leg leg2 = new Leg(hist2, backToLeg1);
     
     return Arrays.asList(leg1, leg2);
   }
   
-  /** Constant value, independent of τ. */
-  @Override public double β(double τ) { return β; }
   public double distance() { return distance; }
+  
+  @Override public String toString() {
+    String s = "  ";
+    return β+s+ distance+s + τmax()+s+ end().ct();
+  }
   
   //PRIVATE 
   

@@ -30,7 +30,7 @@ public final class Reflect implements CoordTransform {
     return doIt(vec);
   }
   
-  @Override public FourVector toNewVector4(FourVector vecPrime) {
+  @Override public FourVector toNewFourVector(FourVector vecPrime) {
     return doIt(vecPrime);
   }
   
@@ -50,7 +50,8 @@ public final class Reflect implements CoordTransform {
         vec.ct() * ctP.sign(), 
         vec.x() * xP.sign(), 
         vec.y() * yP.sign(), 
-        vec.z() * zP.sign()
+        vec.z() * zP.sign(),
+        vec.applyDisplaceOp()
       );
     CoordTransform.sameIntervalFromOrigin(vec,  result);
     return result;
