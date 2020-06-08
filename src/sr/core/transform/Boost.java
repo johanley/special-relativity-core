@@ -59,7 +59,7 @@ public final class Boost implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "[" + spatialAxis+sep+ β + "]";
+    return "boost[" + spatialAxis+sep+ β + "]";
   }
   
   public double β() {return β;}

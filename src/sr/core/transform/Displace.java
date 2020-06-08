@@ -37,7 +37,7 @@ public final class Displace implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "[" + ctD+sep+ xD+sep+ yD+sep+ zD + "]";
+    return "displace[" + ctD+sep+ xD+sep+ yD+sep+ zD + "]";
   }
 
   // PRIVATE 
@@ -49,7 +49,7 @@ public final class Displace implements CoordTransform {
   
   private FourVector doIt(FourVector vec, WhichDirection dir) {
     FourVector result = vec;
-    if (vec.applyDisplaceOp() == ApplyDisplaceOp.YES) {
+    if (ApplyDisplaceOp.YES == vec.applyDisplaceOp()) {
       int sign = dir.sign();
       result = FourVector.from(
         vec.ct() + ctD * sign, 
@@ -58,6 +58,9 @@ public final class Displace implements CoordTransform {
         vec.z() + zD * sign,
         ApplyDisplaceOp.YES
       );
+    }
+    else {
+      //System.out.println("Not applying.");
     }
     return result;
  }

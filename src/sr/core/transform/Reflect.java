@@ -36,7 +36,7 @@ public final class Reflect implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "[" + ctP+sep+ xP+sep+ yP+sep+ zP + "]";
+    return "reflect[" + ctP+sep+ xP+sep+ yP+sep+ zP + "]";
   }
   
   // PRIVATE

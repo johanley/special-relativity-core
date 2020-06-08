@@ -14,7 +14,7 @@ import static sr.core.Util.*;
 public final class Config {
 
   /** 
-   To override the default epsilon (0.000000001), set a JRE System property having this name, on the command that starts the JRE.
+   To override the default epsilon (0.0000000000001), set a JRE System property having this name, on the command that starts the JRE.
    
    <P>Example: 
    <pre>java -Dsr-core-eps=0.0000000001</pre>
@@ -23,10 +23,15 @@ public final class Config {
    Value - {@value}.
   */
   public static final String EPS = "sr-core-eps";
-  /** A tiny value, used to detect values that are 'close enough' to 0 to be treated as such. */
+  
+  /** 
+   A tiny value, used to detect values that are 'close enough' to 0 to be treated as such.
+    
+  */
   public static Double ε() {
     return epsilon.get();
   }
+  
   /** Reset ε with a new value (small and positive). */
   public static void setε(double eps) {
     checkEps(eps);
@@ -36,7 +41,7 @@ public final class Config {
   // PRIVATE 
 
   /** Default epsilon. */
-  private static final Double ε = 0.000000001;
+  private static final Double ε = 0.0000000000001;
 
   private static final ThreadLocal<Double> epsilon = new ThreadLocal<>() {
     protected Double initialValue() {

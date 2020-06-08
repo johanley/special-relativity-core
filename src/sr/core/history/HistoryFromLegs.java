@@ -69,10 +69,6 @@ public abstract class HistoryFromLegs extends HistoryAbc {
     return legs;
   }
 
-  private Leg legFor(double τ) {
-    return legs().get(legIdx(τ));
-  }
-  
   private int legIdx(double τ) {
     return Leg.legIdxForTau(τ, legs());
   }

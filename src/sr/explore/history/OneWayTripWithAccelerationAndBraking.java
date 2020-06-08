@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import sr.core.Axis;
+import sr.core.Config;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.history.History;
@@ -45,6 +46,7 @@ public final class OneWayTripWithAccelerationAndBraking extends HistoryFromLegs 
     List<String> lines = new ArrayList<>();
     for (Double τα : ταs) {
       History trip = new OneWayTripWithAccelerationAndBraking(gee, τα, τβ, Axis.X);
+      //System.out.println(trip.toString());
       lines.add(trip.toString() + Util.NL);
     }
     Util.writeToFile(OneWayTrip.class, "one-way-trip-with-acceleration"+Util.round(gee, 3)+"-" + τβ +".txt", lines);

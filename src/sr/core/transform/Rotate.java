@@ -60,7 +60,7 @@ public final class Rotate implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "[" + spatialAxis+sep+ θ + "]";
+    return "rotate[" + spatialAxis+sep+ θ + "]";
   }
   
   // PRIVATE

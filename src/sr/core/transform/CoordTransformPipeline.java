@@ -3,6 +3,7 @@ package sr.core.transform;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import sr.core.Axis;
 import sr.core.Parity;
@@ -59,10 +60,10 @@ public final class CoordTransformPipeline implements CoordTransform {
   */
   @Override public FourVector toNewFourVector(FourVector vecPrime) {
     FourVector result = vecPrime;
-    List<CoordTransform> reversedOps = Arrays.asList(operations);
-    Collections.reverse(reversedOps);
-    for (CoordTransform op : reversedOps) {
-      result = op.toNewFourVector(result);
+    List<CoordTransform> ops = Arrays.asList(operations);
+    ListIterator<CoordTransform> li = ops.listIterator(ops.size()); //start at the end
+    while (li.hasPrevious()) { //go backwards
+      result = li.previous().toNewFourVector(result);
     }
     return result;
   }

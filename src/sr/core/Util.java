@@ -32,9 +32,9 @@ public final class Util {
     return Math.pow(x, 2);
   }
   
-  /** The square root of the given number, x^0.5. */
+  /** The square root of the given number. */
   public static Double sqroot(double x) {
-    return Math.pow(x, 0.5);
+    return isTiny(x) ? 0.0 /*avoid NaN*/: Math.sqrt(x); 
   }
   
   public static double degsToRads(double degs) {
