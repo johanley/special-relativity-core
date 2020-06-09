@@ -182,7 +182,7 @@ public class FourVector implements Comparable<FourVector> {
   /** Debugging only. */
   public final String toStringRounded() {
     String sep = ", ";
-    return "[" + round(ct)+sep+ round(x)+sep+ round(y)+sep+ round(z) + applyDisplaceOp + "]";
+    return "[" + round(ct)+sep+ round(x)+sep+ round(y)+sep+ round(z)+sep+ applyDisplaceOp + "]";
   }
 
   /** Sorts by the time-component first, then by x-y-z. */

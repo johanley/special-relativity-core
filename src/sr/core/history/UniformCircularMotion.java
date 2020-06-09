@@ -54,7 +54,8 @@ public final class UniformCircularMotion extends HistoryAbc {
     //here we can simply use a coord transform to map from one FourVector to another, all in the same frame
     CoordTransform rotate = Rotate.about(spatialAxis, θ(ct));
     FourVector start = FourVector.from(ct, 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
-    start = start.put(spatialAxis, r);
+    Axis startAxis = Axis.rightHandRuleFor(spatialAxis).get(0);
+    start = start.put(startAxis, r);
     FourVector result = rotate.toNewFourVector(start);
     return result;
   }

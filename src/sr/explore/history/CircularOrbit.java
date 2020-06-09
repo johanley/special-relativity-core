@@ -33,6 +33,17 @@ public final class CircularOrbit {
       tau = tau + tauIncrement;
     }
     Util.writeToFile(CircularOrbit.class, "circular-orbit-"+radius + ".txt", lines);
+    
+    
+    lines.add("----- x with time ------------------------");
+    tau = 0.0;
+    while (tau < 10.0) {
+      FourVector x = trip.event(tau);
+      lines.add("τ:" + Util.round(tau, 5)  +" x:"+ x.toStringRounded());
+      tau = tau + tauIncrement;
+    }
+    Util.writeToFile(CircularOrbit.class, "circular-orbit-"+radius + ".txt", lines);
+    
   }
 
 }
