@@ -34,7 +34,6 @@ public final class CircularOrbit {
     }
     Util.writeToFile(CircularOrbit.class, "circular-orbit-"+radius + ".txt", lines);
     
-    
     lines.add("----- x with time ------------------------");
     tau = 0.0;
     while (tau < 10.0) {

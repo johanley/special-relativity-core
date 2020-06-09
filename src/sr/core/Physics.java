@@ -219,7 +219,23 @@ public final class Physics {
   public static final Double gAcceleration(double gees) {
     return acceleration(gees * ONE_GEE_MKS);
   }
-
+  
+  /**
+   Transform of velocity, in the case where all motions are parallel to an axis (colinear).
+   
+   <P>An object moves along an axis in the K frame, with velocity v.
+   K' is a second frame, boosted along the same axis (with respect to the K frame). 
+    
+    @param v the velocity of the object along the axis in the K frame
+    @param boost velocity of K' with respect to K, along the axis
+    @return the velocity along the axis in the boosted frame K'
+  */
+  public static final Double transformVelocityColinear(double v, double boost) {
+    double c = 1.0; //to compare with books
+    double result = (v + boost) / (1 + v*boost/(c*c));
+    return result;
+  }
+  
   // PRIVATE 
   private static final double SECONDS_PER_YEAR = 86400.0*365.242189;
   private static final double METERS_PER_LIGHT_YEAR = 9.460730e15;
