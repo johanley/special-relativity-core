@@ -28,7 +28,12 @@ public interface History {
   /** The last event on the history, corresponding to {@link #τmax()}. */
   FourVector end();
   
-  /** The 4-velocity for the given value of the parameter. */
+  /** 
+   The 4-velocity for the given value of the parameter.
+   
+   <P>Implementations can check their work by validating that the magnitudeSquared of 
+   the returned vector is 1.0 (plus rounding errors). 
+  */
   FourVector fourVelocity(double τ);
   
   /** Magnitude of the 3-velocity. Always positive. */

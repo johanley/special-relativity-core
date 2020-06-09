@@ -47,23 +47,16 @@ public final class UniformLinearAcceleration extends HistoryAbc {
    @param τ proper-time for the object.
   */
   @Override protected FourVector eventFor(double τ) {
-    FourVector result = FourVector.ZERO_AFFINE; //default
     double c = 1.0; //to make it easy to compare with formulas in books
     //SHOULD THIS BE A COORD TRANSFORM, LIKE THE OTHERS?
     //not sure; for the moment, let's not try that
     double a = (c * c)/α;
     double b = (α * Δτ(τ))/c;
     double ct = a * Math.sinh(b);
-    double distanceAlongAxis = a * Math.cosh(b) - a; 
-    if (Axis.X == spatialAxis) {
-      result = FourVector.from(ct, distanceAlongAxis, 0.0, 0.0, ApplyDisplaceOp.YES);
-    }
-    else if (Axis.Y == spatialAxis) {
-      result = FourVector.from(ct, 0.0, distanceAlongAxis, 0.0, ApplyDisplaceOp.YES);
-    }
-    else if (Axis.Z == spatialAxis) {
-      result = FourVector.from(ct, 0.0, 0.0, distanceAlongAxis, ApplyDisplaceOp.YES);
-    }
+    double distanceAlongAxis = a * Math.cosh(b) - a;
+    
+    FourVector result = FourVector.from(ct, 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
+    result = result.put(spatialAxis, distanceAlongAxis);
     return result;
   }
   

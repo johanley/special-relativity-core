@@ -5,7 +5,9 @@ import static java.lang.Math.sin;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
-import static sr.core.Util.*;
+import static sr.core.Util.mustBeSpatial;
+
+import java.util.List;
 
 import sr.core.Axis;
 
@@ -21,19 +23,14 @@ import sr.core.Axis;
  In this case, each successive rotation will be about the NEW axis, using the right-hand rule 
  to define the meaning of the operation for positive θ.
  
- <P>Right-hand rules give the sense of rotation for positive angle θ  (for negative θ, the sense of 
- rotation is simply reversed):
- <ul>
-  <li>about the z-axis: x turns towards y.
-  <li>about the y-axis: z turns towards x.
-  <li>about the x-axis: y turns towards z.
- </ul>
+ <P>Right-hand rules defined by {@link Axis#rightHandRuleFor(Axis)} give the sense of rotation for positive angle θ  (for negative θ, the sense of 
+ rotation is simply reversed).
 */
 public final class Rotate implements CoordTransform {
   
   /** 
    Constructor.
-   @param spatialAxis axis about which to rotate using the right-hand rule
+   @param spatialAxis axis about which to rotate using a right-hand rule (see class comment)
    @param θ angle in radians to rotate about the spatial axis, with the right-hand rule (see class comment)
   */
   public Rotate(Axis spatialAxis, double θ) {
@@ -69,21 +66,37 @@ public final class Rotate implements CoordTransform {
   private double θ;
 
   private FourVector doIt(FourVector v, WhichDirection dir) {
-    FourVector result = null;
     int sign = dir.sign();
     //there's a small bit of code repetition here, but it's not too bad
+    /*
+    FourVector result = null;
     if (Z == spatialAxis) {
       EntangledPair pair = entangle(v.x(), v.y(), sign); 
       result = FourVector.from(v.ct(), pair.a, pair.b, v.z(), v.applyDisplaceOp());
     }
     else if (Y == spatialAxis) {
       EntangledPair pair = entangle(v.z(), v.x(), sign); 
-      result = FourVector.from(v.ct(), pair.a, v.y(), pair.b, v.applyDisplaceOp());
+      result = FourVector.from(v.ct(), pair.b, v.y(), pair.a, v.applyDisplaceOp());
     }
     else if (X == spatialAxis) {
       EntangledPair pair = entangle(v.y(), v.z(), sign); 
       result = FourVector.from(v.ct(), v.x(), pair.a, pair.b, v.applyDisplaceOp());
     }
+    */
+    EntangledPair entangled = null;
+    if (Z == spatialAxis) {
+      entangled = entangle(v.x(), v.y(), sign); //order is important! 
+    }
+    else if (Y == spatialAxis) {
+      entangled = entangle(v.z(), v.x(), sign); 
+    }
+    else if (X == spatialAxis) {
+      entangled = entangle(v.y(), v.z(), sign); 
+    }
+    List<Axis> axes = Axis.rightHandRuleFor(spatialAxis);
+    FourVector result = FourVector.from(v.ct(), v.x(), v.y(), v.z(), v.applyDisplaceOp()); //starting point
+    result = result.put(axes.get(0), entangled.a);
+    result = result.put(axes.get(1), entangled.b);
     CoordTransform.sameIntervalFromOrigin(v, result);
     return result;
   }
