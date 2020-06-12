@@ -65,7 +65,7 @@ public final class ThomasRotationDirectlyFromLT {
       Boost.alongThe(Axis.Y, -β2), //minus signs, because we're going backwards here
       Boost.alongThe(Axis.X, -β1)        
     );
-    Util.log("Reverse-boosts from K'' to K "+ cornerBoost);
+    Util.log("Reverse-boosts from K'' to K: "+ cornerBoost);
     
     //time-slice 
     //find 2 events, one taken from each history, that have the same coord-time
