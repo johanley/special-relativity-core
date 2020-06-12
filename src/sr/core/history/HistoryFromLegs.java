@@ -18,6 +18,8 @@ import sr.core.transform.FourVector;
  
  <P>EXCEPTION: displacement operations apply to events, but not to differential 4-vectors.
  So, such operations are ignored for the 4-velocity, for example.
+ 
+ <P>WARNING: it's by far the easiest if the meaning of τ is the same for all legs.
 */
 public abstract class HistoryFromLegs extends HistoryAbc {
 

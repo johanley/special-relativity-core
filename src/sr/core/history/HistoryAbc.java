@@ -3,7 +3,14 @@ package sr.core.history;
 import sr.core.Physics;
 import sr.core.transform.FourVector;
 
-/** Abstract Base Class for a {@link History} implementation. */
+/** 
+ Abstract Base Class for a {@link History} implementation.
+ 
+ The meaning of the history-parameter τ is not defined here.
+ That is left up to concrete subclasses.
+ It may be the proper-time of the object, coordinate-time, or any other 
+ appropriate identifier for events in the object's history.  
+*/
 public abstract class HistoryAbc implements History {
 
   /** Applies a check on the limits of τ, then calls {@link #eventFor(double)}. */
@@ -47,7 +54,7 @@ public abstract class HistoryAbc implements History {
   */ 
   protected final void withinLimits(double τ) {
     if (τ < τmin() || τ > τmax()) {
-      throw new IllegalArgumentException("Proper time " + τ + " is not in range " + τmin() + ".." + τmax());
+      throw new IllegalArgumentException("τ-parameter " + τ + " is not in range " + τmin() + ".." + τmax());
     }
   }
 

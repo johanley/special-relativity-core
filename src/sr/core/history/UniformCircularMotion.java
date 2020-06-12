@@ -14,6 +14,8 @@ import sr.core.transform.Rotate;
 /** 
  Uniform circular motion at constant speed.
  The origin-event is NOT included in this history.
+ 
+ <P>In this class, τ represents the proper time of the object.
 */
 public final class UniformCircularMotion extends HistoryAbc {
 
@@ -22,7 +24,7 @@ public final class UniformCircularMotion extends HistoryAbc {
     
     @param spatialAxis the 'pole' about which the motion takes place. 
     The motion is in a plane perpendicular to this axis. 
-    The positive sense of rotation is the same as that defined by the {@link Rotate} class, with a right-hand rule.
+    The positive sense of rotation is that defined by {@link Axis#rightHandRuleFor(Axis)}.
     @param r the radius of the circle
     @param β the constant speed of the object, tangent to the circle; a negative value will reverse the sense of rotation.
     @param τMin starting τ 
@@ -60,7 +62,10 @@ public final class UniformCircularMotion extends HistoryAbc {
     return result;
   }
 
-  /** The magnitude of the 4-velocity is constant, but its direction changes. */
+  /** 
+   The magnitude of the 4-velocity is constant, but its direction changes.
+   @param τ proper-time for the object. 
+  */
   @Override protected FourVector fourVelocityFor(double τ) {
     Physics.fourVelocity(β, spatialAxis);
     FourVector result = FourVector.ZERO_LINEAR;

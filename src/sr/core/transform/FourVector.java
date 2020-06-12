@@ -126,6 +126,14 @@ public class FourVector implements Comparable<FourVector> {
     return Math.sqrt(x*x + y*y + z*z); 
   }
   
+  /** 
+   Dot-product of this 4-vector's spatial part (its 3-vector) with the spatial parts of 'that'. 
+   Always positive. 
+  */
+  public final double spatialScalarProduct(FourVector that) {
+    return x*that.x + y*that.y + z*that.z; 
+  }
+  
   /** The region of space-time towards which this 4-vector is directed. */
   public final FourVectorType vectorType() {
     return FourVectorType.of(this);

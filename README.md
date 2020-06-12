@@ -19,14 +19,14 @@ If you can accelerate at 1 gee for a few months to a year, your gamma gets quite
 
 Time dilation and length contraction are two sides of the same coin.
 The traveler measures length contraction along the axis of motion (and no time dilation), 
-while the stay-at-home measures time dilation on the spacecraft (but no length contraction).
+while the stay-at-home measures time dilation on the spacecraft (but no length contraction in 
+its direction of motion).
 
 
 The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.
 It's too close to 1 (about 22 decimals). Only the BigDecimal class can represent such numbers.
 However, working with BigDecimal is more painful than working with Double, so this is 
 left out as a special case.
-
 
 
 The prototype for a 4-vector isn't an event x, it's rather <a href='http://www.scholarpedia.org/article/Special_relativity:_mechanics'>the differential Δx</a>.
@@ -52,6 +52,47 @@ Equations are poor at expressing the geometry being used.
 The idea of an operation/transform and its inverse is almost always present in some way.
 Different choices of geometry usually mean one direction of the transform is preferred over another.
 The inverse is still there, it's just in the background.
+
+
+To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
+To see the length of a stick (in a given frame), you need a time-slice (in that frame).
+To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
+
+
+Two boosts commute only when they are along the same axis.
+'Commute' is logically equivalent to 'collinear', and its a more compact way of expressing it.
+A non-commuting pair of boosts is equivalent to a boost plus a rotation (in that order?).
+The rotation is absent if the two boosts are along the same axis.
+The rotation angle is large when the speeds are high.
+
+The Thomas-Wigner rotation is strange sometimes. Look at this case:
+```
+βx 0.9
+βy 0.9
+β-equiv 0.98178
+β-direction-degs 23.5519
+θw-degs -42.8962
+```
+Look at the directions.
+In frame K, the geometry of the rocket (time-slice!) is strange: 
+it points in a direction that is about 43 degrees away from (to the right, when viewed from above) its direction of motion.  
+What about the view from a camera located at the origin of K? 
+That must be different, because the light-cone-slice is different from a time-slice.
+So you would have both the Thomas-Wigner rotation, plus other effects.
+(Note as well that the Thomas-Wigner rotation is completely distinct from the so-called Terrell effect.) 
+
+Here's a second example of weird behaviour:
+```
+βx 0.99
+βy 0.99
+β-equiv 0.99980197
+β-direction-degs 8.02958
+θw-degs -73.9408
+```
+Note:
+* in frame K, the direction of motion is only 8 degrees off of the x-axis
+* in frame K, the measured pointing-direction (time-slice) is almost side-on to the direction of motion 
+ 
   
  
 

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import sr.core.Axis;
-import sr.core.Config;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.history.History;

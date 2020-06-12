@@ -15,7 +15,9 @@ import sr.core.transform.FourVector;
  Constant proper-acceleration.
  If riding in a rocket having this motion, an occupant feels a constant g-force.
  
- <P>At τ=τMin, the history crosses the origin-event, and the velocity is the zero-vector. 
+ <P>At τ=τMin, the history crosses the origin-event, and the velocity is the zero-vector.
+ 
+ <P>In this class, τ represents the proper time of the object.
 */
 public final class UniformLinearAcceleration extends HistoryAbc {
   
@@ -60,12 +62,18 @@ public final class UniformLinearAcceleration extends HistoryAbc {
     return result;
   }
   
-  /** Varies with τ, and is always parallel to the given spatial axis. */
+  /** 
+   Varies with τ, and is always parallel to the given spatial axis.
+   @param τ proper-time for the object. 
+  */
   @Override protected FourVector fourVelocityFor(double τ) {
     return Physics.fourVelocity(β(τ), spatialAxis);
   }
   
-  /** Varies with τ.*/
+  /** 
+   Varies with τ.
+   @param τ proper-time for the object. 
+  */
   @Override public double β(double τ) {
     double t = event(τ).ct();
     double c = 1.0; //to make it easier to compare with formulas from books

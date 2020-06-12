@@ -1,7 +1,6 @@
 package sr.core.transform;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -66,6 +65,14 @@ public final class CoordTransformPipeline implements CoordTransform {
       result = li.previous().toNewFourVector(result);
     }
     return result;
+  }
+  
+  @Override public String toString() {
+    StringBuilder builder = new StringBuilder();
+    for(CoordTransform t : operations) {
+      builder.append(t.toString() + " ");
+    }
+    return builder.toString().trim();
   }
   
   // PRIVATE 

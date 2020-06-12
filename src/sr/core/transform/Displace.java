@@ -7,6 +7,12 @@ package sr.core.transform;
  <p>IMPORTANT: most 4-vectors should NOT react to this transform, because they are 
  differential, and aren't affected by changes to the origin.
  See {@link ApplyDisplaceOp}.
+ 
+ <P>Also note that this transform is the only one that:
+ <ul>
+  <li>can't be represented as a matrix
+  <li>uses numbers that have dimensions
+ </ul>
 */
 public final class Displace implements CoordTransform {
   
