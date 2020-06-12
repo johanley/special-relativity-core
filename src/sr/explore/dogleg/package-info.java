@@ -6,6 +6,19 @@
  
  <P>A dogleg boost equates to a boost plus a rotation (Thomas-Wigner rotation).
  
+ <P>Use three frames K, K', then K'':
+ <ul>
+  <li>in K, first boost along X to K'.
+  <li>in K', second boost along Y to K''.
+ </ul>
+ 
+ <P>In K' (in the middle): the axes of K and K'' are all parallel to the axes of K'.
+ 
+ <P>But K and K'' DON'T see their respective X and Y axes as being parallel. 
+ For that pair, only the Z axes are parallel, in the above case. 
+ That is Thomas-Wigner rotation.
+ 
+ 
 References:
 <ul>
  <li><a href='http://www.nucleares.unam.mx/~alberto/apuntes/ferraro.pdf'>Rafael Ferraro and Marc Thibeault</a>
