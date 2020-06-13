@@ -71,7 +71,7 @@ The (Thomas-Wigner) rotation angle is large when the speeds are high.
 What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
 After the boost, both the stick's length and orientation are different.
-The formula for the change in direction of a stick is:
+The formula relating the direction of the stick in the two frames is:
 ```
 cot θ = (1/Γ) cot θ' 
 ```
