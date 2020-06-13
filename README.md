@@ -54,45 +54,32 @@ Different choices of geometry usually mean one direction of the transform is pre
 The inverse is still there, it's just in the background.
 
 
+The term *length contraction* is a misleading one.
+The effect changes more than length: it changes geometry, angles, length, shape.
+A better name might be *boost compression*, or *geometry distortion*.
+
 To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
 To see the length of a stick (in a given frame), you need a time-slice (in that frame).
 To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
 
 
-Two boosts commute only when they are along the same axis.
-'Commute' is logically equivalent to 'collinear', and its a more compact way of expressing it.
-A non-commuting pair of boosts is equivalent to a boost plus a rotation (in that order?).
+Two boosts commute only when they are in the same line.
+A dogleg pair of boosts is equivalent to a boost plus a rotation (in that order?).
 The rotation is absent if the two boosts are along the same axis.
-The rotation angle is large when the speeds are high.
+The (Thomas-Wigner) rotation angle is large when the speeds are high.
 
-The Thomas-Wigner rotation is strange sometimes. Look at this case:
+The Thomas-Wigner rotation versus the regular geometry distortion of a boost.
+A stick is angled at θ with respect to the direction of a boost.
+In K', after the boost, both the stick's length and orientation are different.
+The formula for the change in direction of a stick is:
 ```
-βx 0.9
-βy 0.9
-β-equiv 0.98178
-β-direction-degs 23.5519
-θw-degs -42.8962
+cot θ = (1/Γ) cot θ' 
 ```
-Look at the directions.
-In frame K, the geometry of the rocket (time-slice!) is strange: 
-it points in a direction that is about 43 degrees away from (to the right, when viewed from above) its direction of motion.  
-What about the view from a camera located at the origin of K? 
-That must be different, because the light-cone-slice is different from a time-slice.
-So you would have both the Thomas-Wigner rotation, plus other effects.
-(Note as well that the Thomas-Wigner rotation is completely distinct from the so-called Terrell effect.) 
-
-Here's a second example of weird behaviour:
+The change in this angle θ is precisely the same as the Thomas-Wigner rotation angle:
 ```
-βx 0.99
-βy 0.99
-β-equiv 0.99980197
-β-direction-degs 8.02958
-θw-degs -73.9408
+tan θ = -(Γ1Γ2β1β2)/(Γ1+Γ2)
 ```
-Note:
-* in frame K, the direction of motion is only 8 degrees off of the x-axis
-* in frame K, the measured pointing-direction (time-slice) is almost side-on to the direction of motion 
- 
+This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
  
 

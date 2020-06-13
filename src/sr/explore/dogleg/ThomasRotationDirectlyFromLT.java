@@ -1,11 +1,12 @@
 package sr.explore.dogleg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.history.History;
 import sr.core.history.StationaryParticle;
-import sr.core.history.UniformVelocity;
-import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.CoordTransformPipeline;
@@ -38,17 +39,21 @@ public final class ThomasRotationDirectlyFromLT {
   
   public static void main(String... args) {
     ThomasRotationDirectlyFromLT test = new ThomasRotationDirectlyFromLT();
-    test.stickHistory();
+    List<String> lines = new ArrayList<>();
+    test.stickHistory(lines);
+    Util.writeToFile(ThomasRotationDirectlyFromLT.class, "thomas-from-lt.txt", lines);
+    for(String line : lines) {
+      System.out.println(line);
+    }
   }
 
-  
   /**
    Start with a stationary stick in K''. 
    Get the histories of the ends of the stick (parameterized by proper-time).
    Boost 'backwards' to K', then K.
    In K, get a time-slice through the two histories, and infer the direction of the stick as seen in K.
   */
-  private void stickHistory() {
+  private void stickHistory(List<String> lines) {
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
@@ -56,7 +61,7 @@ public final class ThomasRotationDirectlyFromLT {
     History historyB = new StationaryParticle(2.0, 0.0, 0.0,  0.0, 1.0);
     double τ0 = 0.0; //any proper time will do: it's stationary in K''
     double restLength = historyB.event(τ0).minus(historyA.event(τ0)).spatialMagnitude();
-    Util.log("Rest length of the stick in K'': " + restLength); //1.0
+    lines.add("Rest length of the stick in K'': " + restLength); //1.0
     
     //corner-boost from K'' to K
     double β1 = 0.8;
@@ -65,7 +70,7 @@ public final class ThomasRotationDirectlyFromLT {
       Boost.alongThe(Axis.Y, -β2), //minus signs, because we're going backwards here
       Boost.alongThe(Axis.X, -β1)        
     );
-    Util.log("Reverse-boosts from K'' to K: "+ cornerBoost);
+    lines.add("Reverse-boosts from K'' to K: "+ cornerBoost);
     
     //time-slice 
     //find 2 events, one taken from each history, that have the same coord-time
@@ -74,22 +79,22 @@ public final class ThomasRotationDirectlyFromLT {
     double τB = 0.26;
     FourVector aK = cornerBoost.toNewFrame(historyA.event(τA));
     FourVector bK = cornerBoost.toNewFrame(historyB.event(τB));
-    Util.log("event for end-a in K: " + aK + " one end of the stick, seen in K");
-    Util.log("event for end-b in K: " + bK + " other end of the stick, seen in K");
+    lines.add("event for end-a in K: " + aK + " one end of the stick, seen in K");
+    lines.add("event for end-b in K: " + bK + " other end of the stick, seen in K");
     
     //find the angle
     //get the displacement between the two ends of the stick, and figure out the 
     //angle the stick is making with the x axis (basic trig)
     FourVector stick = bK.minus(aK);
-    Util.log("stick in K (b-a): "+stick + " has ct=0 (time-slice)") ;
+    lines.add("stick in K (b-a): "+stick + " has ct=0 (time-slice)") ;
     double angle = Math.atan2(stick.y(), stick.x());
-    Util.log("Angle of stick w.r.t the X-axis in K: " + Util.radsToDegs(angle) + " degrees. Right direction, wrong amount."); //-38.6
-    Util.log("Length of the stick in K: " + stick.spatialMagnitude() + " shows some contraction");  //0.768
+    lines.add("Angle of stick w.r.t the X-axis in K: " + Util.radsToDegs(angle) + " degrees. Right direction, wrong amount."); //-38.6
+    lines.add("Length of the stick in K: " + stick.spatialMagnitude() + " shows some contraction");  //0.768
     
     ShowEquivalence cb = new ShowEquivalence(Axis.Z, β1, β2);
-    Util.log(" ");
-    Util.log("Calculated θw directly:" + Util.radsToDegs(cb.equivalent().θw) + " degrees"); //-18.92
-    Util.log("Calculated βdirection:" + Util.radsToDegs(cb.equivalent().βdirection) + " degrees"); //24.228
+    lines.add(" ");
+    lines.add("Calculated θw directly:" + Util.radsToDegs(cb.equivalent().θw) + " degrees"); //-18.92
+    lines.add("Calculated βdirection:" + Util.radsToDegs(cb.equivalent().βdirection) + " degrees"); //24.228
+    lines.add("Calculated βequiv:" + cb.equivalent().β); //0.877268 
   }
-
 }

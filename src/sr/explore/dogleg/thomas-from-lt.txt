@@ -1,0 +1,11 @@
+Rest length of the stick in K'': 1.0
+Reverse-boosts from K'' to K: boost[Y,-0.6] boost[X,-0.8]
+event for end-a in K: [3.208333333333334, 3.1666666666666674, 0.675, 0.0, YES] one end of the stick, seen in K
+event for end-b in K: [3.208333333333334, 3.7666666666666675, 0.195, 0.0, YES] other end of the stick, seen in K
+stick in K (b-a): [0.0, 0.6000000000000001, -0.48000000000000004, 0.0, YES] has ct=0 (time-slice)
+Angle of stick w.r.t the X-axis in K: -38.65980825409009 degrees. Right direction, wrong amount.
+Length of the stick in K: 0.7683749084919419 shows some contraction
+ 
+Calculated θw directly:-18.924644416051237 degrees
+Calculated βdirection:24.227745317954163 degrees
+Calculated βequiv:0.8772684879784525
