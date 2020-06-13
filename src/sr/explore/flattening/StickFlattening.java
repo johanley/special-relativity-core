@@ -1,4 +1,4 @@
-package sr.explore.contraction;
+package sr.explore.flattening;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
 
 /** 
- See the Lorentz Contraction directly from the LT of events.
+ See the effect of the flattening effect on a stick.
  As always, a time-slice is needed to see the geometrical properties of an object (length, orientation).
  
  <P>Place a stack at an angle with respect to the X-axis (not 0 or 90 degrees). 
@@ -21,24 +21,23 @@ import sr.core.transform.FourVector;
  In the boosted frame, the angle of the stick with respect to the X-axis will change.
  The stick will "rotate away" from the direction of the boost. 
 */
-public class StickContraction {
+public class StickFlattening {
   
   public static void main(String[] args) {
-    StickContraction stick = new StickContraction();
+    StickFlattening stick = new StickFlattening();
     List<String> lines = new ArrayList<>();
-    //stick.stickAlongAxis(lines);
-    //stick.stickAngledToXAxis(lines);
+    stick.stickAlongAxis(lines);
+    stick.stickAngledToXAxis(lines);
     stick.stickAngledToXAxisWithEquivalentBoostParams(lines);
     
-    Util.writeToFile(StickContraction.class, "stick-contraction.txt", lines);
+    Util.writeToFile(StickFlattening.class, "stick-flattening.txt", lines);
     for(String line : lines) {
       System.out.println(line);
     }
-        
   }
   
   /**
-   A stick along the X-axis.
+   Measure the length contraction for a stick along the X-axis (the line of a boost).
    
    In K:
    <ul>
@@ -59,13 +58,14 @@ public class StickContraction {
     //the stick is along the x-axis, from x=1 to x=2
     History histA = new StationaryParticle(1.0, 0.0, 0.0,   0.0, 1.0);
     History histB = new StationaryParticle(2.0, 0.0, 0.0,   0.0, 1.0);
-    FourVector bMinusA = histB.event(0.0).minus(histA.event(0.0));
+    double τ = 0.0; //any proper time will do, since it's stationary in K
+    FourVector bMinusA = histB.event(τ).minus(histA.event(τ));
     lines.add("K stick length:" + bMinusA.spatialMagnitude());
     
     //K': boost along the X axis
     double β = 0.6;
     CoordTransform boostX = Boost.alongThe(Axis.X, β);
-    //find events that have the same ct value in K', by trial and error
+    //find events that have the same ct value in K', by TRIAL AND ERROR
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18));
     FourVector bBoosted = boostX.toNewFrame(histB.event(0.78));
     lines.add("K' time-slice");
@@ -77,7 +77,7 @@ public class StickContraction {
   }
 
   /**
-   A stick at an angle to the X-axis.
+   Measure the flattening of a stick that's at an angle to the X-axis (the line of a boost).
    
    In K:
    <ul>
@@ -111,28 +111,28 @@ public class StickContraction {
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());
-    double angle = Math.atan2(diff.y(), diff.x());
-    lines.add("K stick angle wrt X-axis: " + Util.radsToDegs(angle) + " deg");
+    double angle1 = Math.atan2(diff.y(), diff.x());
+    lines.add("K stick angle wrt X-axis: " + Util.radsToDegs(angle1) + " deg");
     
     //K': boost along the X axis
     lines.add("K' time-slice");
     double β = 0.6;
     CoordTransform boostX = Boost.alongThe(Axis.X, β);
-    //find events that have the same ct value in K', by trial and error
+    //find events that have the same ct value in K', by TRIAL AND ERROR
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18));
     FourVector bBoosted = boostX.toNewFrame(histB.event(0.78));
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
     diff = bBoosted.minus(aBoosted);
     lines.add("K' b-a: " + diff);
-    lines.add("K' b-a len from LT: " + diff.spatialMagnitude());
-    angle = Math.atan2(diff.y(), diff.x());
-    lines.add("K' stick angle wrt X-axis: " + Util.radsToDegs(angle) + " deg");
-    
+    lines.add("K' b-a len: " + diff.spatialMagnitude());
+    double angle2 = Math.atan2(diff.y(), diff.x());
+    lines.add("K' stick angle wrt X-axis: " + Util.radsToDegs(angle2) + " deg");
+    lines.add("K' stick angle from formula: " + Util.radsToDegs(Physics.stickAngleAfterBoost(angle1, β)) + " deg");
     lines.add("1/gamma from formula: " + 1.0/Physics.Γ(β));
   }
   
-  
+  /** Compare numbers with exploration of the Thomas-Wigner rotation. */
   void stickAngledToXAxisWithEquivalentBoostParams(List<String> lines) {
     lines.add(" ");
     lines.add("Stick angled to the X-axis, with 2 params (speed and angle) taken from the corner-boost calc.");

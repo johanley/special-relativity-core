@@ -1,8 +1,13 @@
 Event:[10.0, 1.0, 1.0, 1.0, YES]
 Dogleg transform: boost[X,0.97] boost[Y,0.95]
 Dogleg:           [115.91503043007748, -35.78701803585312, -109.80702900865369, 1.0, YES]
-Equivalent transform: rotate[Z,0.23374053585196874] boost[X,0.9971147125581891] rotate[Z,-1.028420353109959] rotate[Z,-0.23374053585196874]
-Boost + rotation: [115.91503043007783, -35.78701803585324, -109.80702900865401, 1.0, YES]
+
+Boost+rotation transform: rotate[Z,0.23374053585196874] boost[X,0.9971147125581891] rotate[Z,-1.028420353109959] rotate[Z,-0.23374053585196874]
+Boost + rotation ev: [115.91503043007783, -35.78701803585324, -109.80702900865401, 1.0, YES]
+
+Order matters. Rotation+boost isn't the same.
+Rotation+boost transform: rotate[Z,0.23374053585196874] rotate[Z,-1.028420353109959] boost[X,0.9971147125581891] rotate[Z,-0.23374053585196874]
+Rotation + boost ev: [131.90826026877232, -128.2795249003928, -29.088702591619267, 1.0, YES]
 
 βx   βy   β-equiv            β-direction-degs  θw-degs
 ---------------------------------------------------------

@@ -235,6 +235,44 @@ public final class Physics {
     double result = (v + boost) / (1 + v*boost/(c*c));
     return result;
   }
+
+  /**
+   New angle for a boosted stick.
+   
+   A stick is boosted. 
+   In K, the stick is at rest, at an angle θ (not 0 or 90 degrees) with respect to the boost.
+   In K', the stick gets flattened in the direction of the boost, in the usual way (length contraction).
+   In K', the angle θ changes from the given value to the returned value.
+   
+   <P>Problem Book in Relativity and Gravitation, Lightman and others, problem 1.7.
+   @return in K'', the angle of the stick with respect to the direction of the boost, range -pi/2..+pi/2  
+   @param θ in K, the angle of the stick with respect to the direction of the boost
+   @param β boost speed
+  */
+  public static final double stickAngleAfterBoost(double θ, double β) {
+    double tanθ = Math.tan(θ);
+    double result = Math.atan(tanθ * Γ(β)); //-pi/2..+pi/2
+    return result;
+  }
+  
+  public static void main(String... args) {
+    /*
+     Rotation of the stick from time-slice of histories in K: -38.6598 degrees
+     Thomas-Wigner angle calculated directly from a formula: -18.92464 degrees
+    */
+    double βdirection = Util.degsToRads(24.227745317954163);
+    double θw = Util.degsToRads(18.924644416051237);
+    double β = 0.8772684879784525;
+    
+    double a1 = stickAngleAfterBoost(βdirection, β);
+    Util.log("βdirection start: " + Util.radsToDegs(βdirection));
+    Util.log("βdirection flattened: " + Util.radsToDegs(a1));
+    Util.log("βdirection chg  : " + Util.radsToDegs(a1 - βdirection));
+    Util.log("θw calc:          " + Util.radsToDegs(θw));
+    a1 = stickAngleAfterBoost(βdirection+θw, β);
+    Util.log("βdirection+θw flattened: " + Util.radsToDegs(a1));
+    
+  }
   
   // PRIVATE 
   private static final double SECONDS_PER_YEAR = 86400.0*365.242189;

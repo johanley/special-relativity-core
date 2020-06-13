@@ -56,7 +56,7 @@ The inverse is still there, it's just in the background.
 
 The term *length contraction* is a misleading one.
 The effect changes more than length: it changes geometry, angles, length, shape.
-A better name might be *boost compression*, or *geometry distortion*.
+A better name might be *flattening*, or *geometry distortion*.
 
 To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
 To see the length of a stick (in a given frame), you need a time-slice (in that frame).

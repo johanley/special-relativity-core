@@ -42,12 +42,19 @@ public final class ShowEquivalence {
     
     CoordTransform boostPlusRotation = twoBoosts.asBoostPlusRotation();
     FourVector two = boostPlusRotation.toNewFrame(someEvent);
+    CoordTransform rotationPlusBoost = twoBoosts.asRotationPlusBoost();
+    FourVector three = rotationPlusBoost.toNewFrame(someEvent);
     
     lines.add("Event:" + someEvent);
     lines.add("Dogleg transform: " + doglegBoost);
     lines.add("Dogleg:           " + one);
-    lines.add("Equivalent transform: " + boostPlusRotation);
-    lines.add("Boost + rotation: " + two);
+    lines.add("");
+    lines.add("Boost+rotation transform: " + boostPlusRotation);
+    lines.add("Boost + rotation ev: " + two);
+    lines.add("");
+    lines.add("Order matters. Rotation+boost isn't the same.");
+    lines.add("Rotation+boost transform: " + rotationPlusBoost);
+    lines.add("Rotation + boost ev: " + three);
     
     lines.add("");
     lines.add("βx   βy   β-equiv            β-direction-degs  θw-degs");
@@ -60,6 +67,9 @@ public final class ShowEquivalence {
     }
 
     Util.writeToFile(ShowEquivalence.class, "show-equivalence.txt", lines);
+    for(String line : lines) {
+      System.out.println(line);
+    }
   }
   
   /**
@@ -99,12 +109,23 @@ public final class ShowEquivalence {
   CoordTransform asBoostPlusRotation() {
     CoordTransform result = CoordTransformPipeline.join(
       Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), //the boost comes first in this implementation!
+      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
       Rotate.about(pole, θw()),
       Rotate.about(pole, -βdirection()) //reverse the earlier bookeeping rotation!
     );
     return result;
   }
+  
+  CoordTransform asRotationPlusBoost() {
+    CoordTransform result = CoordTransformPipeline.join(
+      Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      Rotate.about(pole, θw()),
+      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
+      Rotate.about(pole, -βdirection()) //reverse the earlier bookeeping rotation!
+    );
+    return result;
+  }
+
   
   //PRIVATE 
   
