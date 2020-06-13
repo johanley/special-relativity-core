@@ -68,16 +68,16 @@ A dogleg pair of boosts is equivalent to a boost plus a rotation (in that order?
 The rotation is absent if the two boosts are along the same axis.
 The (Thomas-Wigner) rotation angle is large when the speeds are high.
 
-The Thomas-Wigner rotation versus the regular geometry distortion of a boost.
+What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost.
 A stick is angled at θ with respect to the direction of a boost.
 In K', after the boost, both the stick's length and orientation are different.
 The formula for the change in direction of a stick is:
 ```
 cot θ = (1/Γ) cot θ' 
 ```
-The change in this angle θ is precisely the same as the Thomas-Wigner rotation angle:
+The *change* in this angle θ is precisely the same as the Thomas-Wigner rotation angle:
 ```
-tan θ = -(Γ1Γ2β1β2)/(Γ1+Γ2)
+tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
