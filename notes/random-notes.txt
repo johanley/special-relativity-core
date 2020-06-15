@@ -1,0 +1,203 @@
+----------------------
+Points to be made
+----------------------
+
+1.
+In a camera, relativistic spheres remain spherical in OUTLINE only.
+
+2. 
+Acceleration affects aberration?
+Or maybe I'm misreading the paper?
+
+2.5 
+Hyper accelerated reflecting telescopes can't see anything?
+Null geodesics are all bent away from straight lines.
+Change the speed between the time the photon enters the tube and when the photon reaches the bottom of the tube.
+The change in the aberration angle is the same as the angular size of the mirror, as seen from the top end of the tube.
+
+3. 
+There is disagreement with Terrell's assertions.
+Scott and van Driel:
+
+  'The relation of the distortion to Terrel's (sic) "apparent rotation" can be appreciated but 
+  certainly an interpretation merely in terms of rotation is not possible. The Lorentz contraction 
+  can indeed be photographed but shows properly only in a direction perpendicular to the motion.'
+  
+  (van Driel and Scott have diagrams that are not for Terrell's case of small solid angle).
+  
+  So do Mathews and Lakshmanan.
+  "... the apparent shape is related to the shape at rest through a combination of nonuniform shear and 
+  extension/contraction parallel to the direction of motion, which does not reduce to a rotation even 
+  in the case of distant objects subtending a small angle at the observer... Clearly this picture of apparent rotation 
+  cannot be right. "
+  
+  So do Scott and Viner 1965.
+  So does Eric Sheldon 1989.
+  
+  Wikipedia makes no mention of these points.
+
+4. 
+Scissors effect and time-of-light-variation-implies-size.
+  See Rees 1966.
+  There's the assertion in astrophysics that one can deduce the 
+  size-order of an object from the time-scale of its light-variations, c*dt. 
+  That's a statement that is quite true in the world of Newton. 
+  But in SR, it can be off by the factor D (which always transforms periodic phenomena/time intervals as seen by a camera, according to speed/geometry).
+  Scissors effect, when the object is relativistic and approaching the camera; this 
+  speeds up the detection of time-variations (D), and overwhelms time dilation (Gamma).
+  For example, beta = 0.87 has Gamma=2.03, and D=3.79 for the head-on case.
+  For example, beta = 0.95 has Gamma=3.20, and D=6.24 for the head-on case.
+
+5. 
+Kraus et al 1999, 2000 
+  Human eyes and spheres: doppler-and-beaming dominate the appearance.  
+  The circular shape would not actually be visible to the human eye.
+
+6. 
+Photorealism: not just shape; spectrum and the response function of the human eye are important for both brightness and color.
+  - angle/solid angle/outline (aberration)
+  - brightness (beaming)
+  - frequency (Doppler)
+  - spectrum of the light coming in
+  - response of the human eye to the light coming in (3 cones for color-bands; 1 rod for brightness)
+  - representing the response of the human eye as RGB 
+  It's tempting to ignore colors, since stars are dim; but bright stars have colors, and beaming 
+  increases the brightness, so.... probably not the best idea, especially if the goal is photorealism!
+
+
+7. The name of SR is poorly chosen!
+https://aapt.scitation.org/doi/abs/10.1119/1.14437
+https://aapt.scitation.org/doi/abs/10.1119/1.14631
+https://aapt.scitation.org/doi/abs/10.1119/1.14354
+It should have been called invariance theory.
+
+
+6.
+Dewan-Beran-Bell paradox with the string between accelerating objects.
+John S. Bell, 1976
+Interesting! The string breaks: in the comoving frame, the measured distance must be gamma times the 
+distance measured in the lab frame (just regular Lorentz contraction).
+It took me about 20 minutes to understand this.
+Apparently Bell polled the staff at CERN, and most of them got this wrong!
+https://aapt.scitation.org/doi/10.1119/1.17728 
+Controversy over whether or not the Fitzgerald contraction is a "real contraction" of the object!
+
+7. 
+Relativistic mass falls from favor.
+Adler 1987
+
+
+
+8.
+Things I don't know about.
+Light-cone coords (null coords).
+Math: Quaternions for 4-vectors.
+Math: Spinors in SR.
+Math: Hyperbolic functions.
+
+Tools and simulations
+----------------------
+The naive Hollywood version of a starfield at high speed
+https://github.com/adolfintel/warpspeed
+
+Relativistic ray tracer
+https://github.com/eschnett/RayTraceGR.jl  (Perimeter Institute)
+
+Open Relativity
+https://aapt.scitation.org/doi/pdf/10.1119/1.4938057  Open Relativity; Unity game engine
+  C.2 they map rgb into xyz. What's going on there??
+  http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
+  https://en.wikipedia.org/wiki/CIE_1931_color_space
+    3 types of cone cells, varying response functions
+    1 type of rod cell, in low-light conditions 
+    Simplest way: no colors at all, since the light is so dim!
+  https://github.com/MITGameLab/OpenRelativity/
+
+Real Time Relativity  
+https://physics.anu.edu.au/research/get_pdf.php?PubID=U4103646XPUB56  Searle et al, Real Time Relativity
+  http://people.physics.anu.edu.au/~cms130/RTR/
+  They seem to disagree with McKinley, D^4 versus D^3, but I'm not sure.  
+
+  
+
+--------------------------------------------------------------------------------------
+
+Does it already exist?
+
+Tools?
+
+Effort?
+
+Survey -> Catalog
+surveys are the massive primary data (pixel signals), catalogs are derived from the survey (physical params)
+
+position, astrometric precision, time
+surface brightness, angular res
+photometry = low res spectroscopy
+  wavelength
+  F flux, maybe integrated over a bandpass; not the same as magnitude
+  R resolution delta-lambda / lambda
+  polarization, Stokes params
+  F/DF inverse flux precision
+  
+Good coverage: vis, near IR, radio
+Limited coverage: far IR, X-ray  
+
+
+
+https://arxiv.org/ftp/arxiv/papers/1203/1203.5111.pdf
+worldwidetelescope.org
+dim dwarfs stronger in ir
+ir has fewer dust problems
+10-20 micron emission is mostly (?) dust
+dust: https://www.astro.umd.edu/~richard/ASTRO421/Lecture_9.pdf
+ - absorbs uv/vis/nir, emits thermal ir
+ - emitted spectrum depends on the size distro of the particles! power law distro of sizes; eff-temp in emission 10-100K
+ - size 1 molecule up to 0.5 microns
+ - the spectrum seems to be more complex than for stars
+ - the problem is that the size and composition of the matter is all over the place
+ - seems to have a kink around 4 microns? a second bulge starts, 5-1000 microns?
+ - 30-50% of starlight is absorbed by dust and re-radiated as far-IR!
+ - it looks like I should perhaps stay only in the near-IR, to avoid the thermal re-emission; maybe I can get away with 
+   still using black body spectra, by staying in the near-IR.
+   
+Milky Way contours
+  http://papics.eu/?tag=basemap   
+  https://iopscience.iop.org/article/10.1088/0004-637X/744/2/129/pdf
+     ZDA04 model
+ 
+
+Requirement: full sky.
+3 kinds of objects
+ point: star
+ extended: galaxy
+ continuous: Milky Way 'background'
+ 
+Vis: 0.4-0.8 microns
+  DSS scans of plates from the POSS and ESO/SERC survys
+  No: SDSS isn't full sky
+Near IR: 
+ 2MASS, 3 bands 1-2 microns, 1997-2002
+ http://www.ipac.caltech.edu/2mass
+Mid-Far IR: 
+ WISE 4 bands, 3-22 microns http://wise.ssl.berkeley.edu
+ IRAS, 4 bands 12-100 microns
+UV:
+ ?? 
+
+ 
+Java matrix/graphics library
+https://github.com/ujmp/universal-java-matrix-package - nice?
+https://github.com/JOML-CI/JOML - maybe not?
+use a wrapper for tools written in other langs?
+do I need high-perf?
+
+Brian Kent at NRAO
+https://www.cv.nrao.edu/~bkent/blender/
+https://www.youtube.com/watch?v=Et6rV6yEgxM
+https://github.com/google/spatial-media
+http://www.bioblender.org/  (Pisa, Italy) not open source!
+
+
+Image from GAIA, star *counts*, relative density
+https://phys.org/news/2015-07-gaia-stellar-density-milky.html

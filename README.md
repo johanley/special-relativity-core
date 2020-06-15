@@ -7,7 +7,7 @@ Core data and operations commonly needed in special relativity.
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
 
 **Time dilation and length contraction are two sides of the same coin.**
-The traveler measures flattening along the line of motion (and no time dilation). 
+The traveler measures flattening along the line of motion (and no time dilation on the spacecraft). 
 The stay-at-home measures time dilation on the spacecraft (but no flattening along the line of its motion).
 
 

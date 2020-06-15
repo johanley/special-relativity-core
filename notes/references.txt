@@ -1,0 +1,681 @@
+Some sources of references
+--------------------------
+
+American Journal of Physics
+https://aapt.scitation.org/journal/ajp
+
+https://arxiv.org/
+
+https://journals.aps.org/
+
+INSPEC (poor results)
+https://inspec-direct-app.theiet.org/quick-search
+
+
+
+
+References (most recent first)
+------------------------------
+
+[y] - I have a copy, or have evaluated the reference
+[g] - this would be very interesting to see
+
+2019
+Interstellar travels aboard radiation-powered rockets
+Andre Füzfa (University of Namur, Belgium)
+PHYSICAL REVIEW D 99, 104081 (2019)
+https://arxiv.org/ftp/arxiv/papers/1902/1902.03869.pdf (full text)
+"It is shown how relativistic aberration and the Doppler effect for the 
+accelerated traveler differ from their description in special relativity 
+for motion at constant velocity."
+
+2016
+Visualizing relativity: The OpenRelativity project
+Zachary W. Sherin, Ryan Cheua), and Philip Tan (MIT)
+American Journal of Physics 84, 369 (2016)
+https://aapt.scitation.org/doi/full/10.1119/1.4938057  full paper
+https://github.com/MITGameLab/OpenRelativity/
+"We present OpenRelativity, an open-source toolkit to simulate effects of special 
+elativity within the popular Unity game engine. Intended for game developers, educators, 
+and anyone interested in physics, OpenRelativity can help people create, test, and 
+share experiments to explore the effects of special relativity. We describe the 
+underlying physics and some of the implementation details of this toolset with 
+the hope that engaging games and interactive relativistic 'laboratory' experiments 
+might be implemented."
+
+2015
+Visualizing Interstellar's Wormhole
+American Journal of Physics 83, 486 (2015); https://doi.org/10.1119/1.4916949
+Oliver James, Eugénie von Tunzelmann, and Paul Franklin (Double Negative Ltd)
+Kip S. Thorne (California Institute of Technology)
+https://aapt.scitation.org/doi/full/10.1119/1.4916949 (full article)
+
+
+Comment on 'Elementary analysis of the special relativistic combination of velocities, Wigner rotation and Thomas precession'
+Krzysztof Rȩbilas [Uniwersytet Rolniczy, Krakow]
+2013
+"Significant difficulties in understanding the meaning of calculations presented by O'Donnell and Visser 
+(2011 Eur. J. Phys. 32 1033), as well as an incorrect interpretation of the formula for the Thomas precession, are pointed out.
+A straightforward method to attribute the formal calculations performed by the authors to the relativistic effect of Wigner 
+or Thomas rotation is proposed."
+https://iopscience.iop.org/article/10.1088/0143-0807/34/3/L55
+
+2013
+Special Relativity
+Valerio Faraoni (Bishop’s University of Sherbrooke, Canada)
+2013. p171-190 (Relativistic Optics)
+https://link.springer.com/chapter/10.1007%2F978-3-319-01107-3_7
+
+2010
+Distortion of the stellar sky by a Schwarzschild black hole
+Thomas Müllera) and Daniel Weiskopf (Visualisierungsinstitut der Universität Stuttgart)
+American Journal of Physics 78, 204 (2010); https://doi.org/10.1119/1.3258282
+"The optical appearance of the stellar sky for an observer in the vicinity of a black 
+hole is dominated by bending of light, the frequency shift, and the magnification 
+caused by gravitational lensing and aberration. Due to the finite aperture of an 
+observer’s eye or a telescope, Fraunhofer diffraction has to be taken into account. 
+We have used high performance graphics hardware and developed a program that enables 
+the user to interactively explore the stellar sky in the vicinity of a Schwarzschild 
+black hole. To do so, we determine what an observer, who can either move 
+quasistatically around the black hole or follow a timelike radial geodesic, would actually see."
+
+2008
+First-person visualizations of the special and general theory of relativity. 
+U Kraus
+European Journal of Physics 29:1, 1-13. (2008)
+"Visualizations that adopt a first-person point of view allow observation and, 
+in the case of interactive simulations, experimentation with relativistic scenes. 
+This paper gives examples of three types of first-person visualizations: watching 
+objects that move at nearly the speed of light, being a high-speed observer 
+looking at a static environment and having a look-around near a compact object. 
+I illustrate and explain the main aspects of the visual observations, outline 
+their use in teaching relativity and report on teaching experiences. For teaching 
+purposes, our visualization work is available on the web site this http URL [http://www.spacetimetravel.org/] and 
+its German counterpart this http URL . This paper assumes some basic knowledge 
+about relativity on the part of the reader. It addresses instructors of physics 
+at the undergraduate and advanced secondary school level as well as their students."
+
+2008
+Relativistic aberration for accelerating observers
+Robert Beiga and J. Mark Heinzleb (University of Vienna)
+Am. J. Phys. 76 (7), July 2008 p663
+http://cosmo.fis.fc.ul.pt/users/crawford/papers/Aberration.pdf full text
+https://arxiv.org/pdf/0708.3209.pdf full text
+"We investigate the effects of the aberration of light for a uniformly accelerating observer. The
+observer is initially at rest with respect to a luminous spherical object and then starts to move away
+with constant acceleration. Our main results are the following: 
+(i) The observer sees an initial increase of the apparent size of the object, 
+(ii) the apparent size of the object approaches a nonzero
+value as the proper time of the observer goes to infinity, and 
+(iii) there exists a critical value of the
+acceleration such that the apparent size of the object is monotonically increasing when the
+acceleration is supercritical. 
+Although the first effect is purely nonrelativistic, the others are the
+result of the relativistic aberration of light and are intimately connected with the Lorentzian
+geometry of Minkowksi spacetime. The examples we present illustrate that the three effects are
+more or less negligible in everyday life, but significant in the context of space flight."
+
+2007
+Real Time Relativity: Exploratory learning of special relativity. 
+C. M. Savage, A. Searle, L. McCalman. 
+American Journal of Physics 75:9, 791-798 (2007)
+https://physics.anu.edu.au/research/get_pdf.php?PubID=U4103646XPUB56  
+http://people.physics.anu.edu.au/~cms130/RTR/
+"Real Time Relativity is a computer program that lets users move at relativistic speeds through a
+simulated world populated with planets, clocks, and buildings. The counterintuitive and spectacular
+optical effects of relativity are prominent, while systematic exploration of the simulation allows the
+user to discover relativistic effects such as length contraction and the relativity of simultaneity. We
+report on the physics and technology underpinning the simulation, and our experience using it for
+teaching special relativity to first year students."
+
+2004
+Relativistic Velocity Space, Wigner Rotation, and Thomas Precession
+J. A. Rhodes and M. D. Semon (Bates College, Lewiston, Maine)
+American Journal of Physics, 72(7), 2004 pp. 943–960. doi:10.1119/1.1652040.
+"We develop a relativistic velocity space called rapidity space from the single assumption of Lorentz invariance, 
+and use it to visualize and calculate effects resulting from the successive application of non-collinear Lorentz boosts. 
+In particular, we show how rapidity space provides a geometric approach to Wigner rotation and Thomas precession in the 
+same way that space–time provides a geometrical approach to kinematic effects in special relativity."
+
+2000
+Relativistically expanding spherical emitters
+American Journal of Physics 68, 1123 (2000); https://doi.org/10.1119/1.1286312
+Erik Eriksen (University of Oslo)
+"We demonstrate several relativistic effects associated with expanding spherical 
+sources of light. We show that if the surface lights up for say a month, it may be
+seen for a few seconds only if it expands sufficiently fast. Also it is 
+demonstrated how the observed properties of the light source are modified by 
+aberration and the Doppler effect. The apparent luminosity as a function of time 
+is calculated and shown graphically. Modifications due to the motion of the light
+source away from the observer are calculated."
+
+2000
+[g] Brightness and color of rapidly moving objects: The visual appearance of a large sphere revisited
+U. Kraus
+American Journal of Physics 68, 56 (2000); https://doi.org/10.1119/1.19373
+"An object at relativistic speed is seen as both rotated and distorted when it 
+is large or close by so that it subtends a large solid angle. This is a consequence
+of the aberration effect and is obtained by purely geometric considerations. 
+In this paper it is pointed out and illustrated that a photorealistic image 
+of such an object would actually be dominated by the Doppler and searchlight 
+effects, which would be so prominent as to render the geometric apparent 
+shape effectively invisible."
+
+1999
+Searchlight and Doppler effects in the visualization of special relativity. 
+Daniel Weiskopf, Ute Kraus, Hanns Ruder. 
+ACM Transactions on Graphics (TOG) 18:3, 278-292 (1999)
+https://www.researchgate.net/publication/2459577_Searchlight_and_Doppler_Effects_in_the_Visualization_of_Special_Relativity_A_Corrected_Derivation_of_the_Transformation_of_Radiance full text
+"We demonstrate that a photo-realistic image of a rapidly moving object is 
+dominated by the searchlight and Doppler effects. Using a photon-counting 
+technique, we derive expressions for the relativistic transformation of radiance. 
+We show how to incorporate the Doppler and searchlight effects in the two common 
+techniques of special relativistic visualization, namely ray tracing and polygon 
+rendering. Most authors consider geometrical appearance only and neglect 
+relativistic effects on the lighting model. Chang et al. [1996] present an 
+incorrect derivation of the searchlight effect, which we compare to our results. 
+Some examples are given to show the results of image synthesis with relativistic 
+effects taken into account"
+
+1999
+Generic composition of boosts: an elementary derivation of the Wigner rotation
+Rafael Ferraro and Marc Thibeault (Buenos Aires, Argentina)
+1999 Eur. J. Phys. 20 143
+http://www.nucleares.unam.mx/~alberto/apuntes/ferraro.pdf
+http://iopscience.iop.org/0143-0807/20/3/003)
+"Because of its apparent complexity, the discussion of Wigner rotation is usually
+reduced to the study of Thomas precession, which is too specific a case to allow a deep understanding
+of boost composition. However, by using simple arguments and linear algebra, the result for the
+Wigner rotation is obtained straightforwardly, leading to a formula written in a manageable form.
+The result is exemplified in the context of the aberration of light."
+
+1996
+Image Shading Taking into Account Relativistic Effects
+M.-C. Chang, F. Lai, and W.-C. Chen
+ACM Trans. Graphics 15 (4), 265–300 (1996)
+[Weiskopf et al correct this paper in 1999]
+"This article is concerned with creating more realistic images of 3D scenes which are moving
+relative to the viewer at such high speeds that the propagation delay of light signals and other
+relativistic effects can not be neglected. Creating images of 3D scenes in relativistic motio
+nmight have important applications to science-fiction films, computer games, and virtual
+environments. We shall discuss the following problems: (1) how to determine the visual
+appearance of a rapidly moving object, (2) how to determine the apparent radiance of a scene
+point on a moving object, (3) how to determine the incident irradiance at a scene point coming
+from a moving light source, (4) how to determine the color of a rapidly moving object, and 
+(5)how to generate shadows when there are relative motions between the viewer, the scenes, and
+the light sources. Detailed examples are also given to show the result of shading with the
+relativistic effects taken into account."
+
+
+1995
+[g] The interstellar traveler
+C. Lagoute, E. Davoust (Observatoire Midi Pyrénées)
+American Journal of Physics 63, 221 (1995)
+"We investigate the physics of an interstellar journey on board a spaceship with a constant 
+acceleration, in the framework of special relativity. It is in principle possible to cross 
+the Galaxy within a human lifetime. The aspect of the sky seen from the spaceship is 
+severely distorted by relativistic aberration; most of the visible sky shrinks to a small 
+region of strongly enhanced luminance in the direction of motion, leaving the rest of the 
+celestial sphere almost entirely dark. The invisible universe becomes perceptible by the 
+traveler, as the infrared and radio radiations are Doppler-shifted to visible frequencies 
+in the direction of motion. Navigational problems posed by these relativistic effects are examined."
+
+1994
+[y] A superluminal source in the Galaxy
+I. F. Mirabel (Service d'Astrophysique, Centre d'Etudes de Saclay, France), L. F. Rodriguez (NRAO)
+Letters to Nature val 371, 1 September 1994
+"APPARENT velocities greater than the speed of light (superluminal motion) have been inferred for radio-emitting 
+components in a number of distant quasars and active galactic nuclei1. These components move away from the central 
+sources (generally thought to be super-massive black holes) at rates that seem to imply velocities greater than c. The 
+accepted explanation is that clouds of plasma are ejected in opposite directions from the central source at speeds close 
+to (but less than) that of light, and that relativistic effects lead to the apparent superluminal motion2. But the extreme 
+distance of the objects observed so far introduces many uncertainties into this interpretation3. Here we present observations 
+of the first apparent superluminal motion ever detected in a source within our own Galaxy. The optical, infrared and X-ray 
+properties4,5 of the counterpart suggest that the source is either a neutron star or a black hole that is ejecting matter 
+in a process similar to, but on a smaller scale than that seen in quasars. Because of its relative proximity, this superluminal 
+microquasar may offer the best opportunity to gain a general understanding of relativistic ejections seen elsewhere in the Universe."
+
+1994
+Lapses in relativistic pedagogy
+N. David Mermin
+American Journal of Physics 62, 11 (1994); https://doi.org/10.1119/1.17728
+https://aapt.scitation.org/doi/10.1119/1.17728 full text of letter
+"I suspect this flaw in their early education explains why a majority of the CERN theorists he polled 
+gave the wrong answer to John Bell's simple question whether the Fitzgerald contraction could snap
+a suitably constraind moving thread."
+
+1991
+[y] Classroom exercises with the Terrell effect
+John Robert Burke, Frank J. Strode (San Francisco State University)
+Am. J. Phys. vol 59 No. 10 October 1991
+"Because of the finite speed of light, the photographic appearance of a relativistic body would not simply show
+a Lorentz contraction. In its simplest version, this effect provides exercises, accessible to undergraduates, 
+that illustrate concepts of simultaneity and use of the Lorentz transformation. Transformation of light intensity 
+also provides useful exercises and interesting results."
+
+1990
+Aberration and Doppler shift: The cosmic background radiation and its rest frame
+T. Greberand H. Blatter
+Am. J. Phys. 58 (10), 942–945 (1990)
+"An individual observer located at one position in space collecting information from the 
+retarded light cone is confronted with aberration and Doppler shift, but also with a shift 
+in intensity and pressure of the observed radiation. The latter are derived using the photon 
+hypothesis and are applied to the cosmic microwave background. The interaction of matter with 
+the cosmic background radiation tends to bring the matter to rest in a preferred frame in 
+which the radiation is isotropic."
+
+1989
+Relativity and aberration
+Thomas E. Phipps Jr.
+American Journal of Physics 57, 549 (1989); https://doi.org/10.1119/1.15969
+"Certain physics textbooks convey a false impression that the stellar aberration angle depends on the 
+relative velocity of the light source and observer. Counterfactual consequences are deduced from such an 
+assumption and a more acceptable alternative, consistent with the relativity principle and with some 
+other textbooks, is discussed."
+
+1989
+[y] Space-time software: Computer graphics utilities in special relativity
+Edwin F. Taylor, M.I.T.
+Am. J. Phys. vol 57 No. 6 June 1989
+"No one can experience directly the world of the very fast, described by special relativity. Interactive graphics 
+displays have been developed for personal computers that help students visualize this world. They are in the form of 
+interactive graphics utilities that students use to carry out homework exercises and take-home projects. Sequential 
+versions of these programs have been used for 3 years in classes in various institutions. This article describes the 
+programs and reports on the educational outcomes of these computer uses.:
+
+
+1989
+The Terrell Effect: Eppure si muove!
+Eric Sheldon (University of Lowell)
+American Journal of Physics 57, 6 p487 (1989)
+https://aapt.scitation.org/doi/abs/10.1119/1.16144  full text, letter
+
+1989
+[g] The Terrell effect
+American Journal of Physics 57, p9-10 (1989); https://doi.org/10.1119/1.16131
+James Terrell
+"The author clarifies his work on the appearance of objects in special relativity."
+[If I recall correctly, this is where he complains about people not reading his paper, 
+and not knowing that his assertions are only for small solid angle.]
+
+1988
+The twists and turns of the Terrell effect
+Eric Sheldon (University of Lowell)
+American Journal of Physics 56, 199 (1988); https://doi.org/10.1119/1.15687 full text
+(letter to the editor)
+[He corrects 'rotation' to 'shear', 'a skew twist'. He points to Weisskopf's error about pure rotation, 
+and subsequent corrections by Scott-van Driel and Mathews-Lakshmanan]
+ 
+1988
+The apparent shape of a rapidly moving sphere
+K. G. Suffern
+Am. J. Phys. 56, 729–733 (1988)
+"Several articles have considered the apparent shape of a relativistic sphere. One interesting finding showed that, under 
+certain conditions, the surface of the sphere may appear concave. This article concentrates on the case where the observer 
+is at the origin and the sphere moves in the positive x direction with its center on the x axis. The sphere actually hits 
+the observer, and one of the findings presented here is that for any speed v, 0<v≤c, part of the surface appears concave for 
+some part of the motion along the x axis."
+
+
+1987
+Does mass really depend on velocity, dad?
+Carl G. Adler
+American Journal of Physics 55, 739 (1987); https://doi.org/10.1119/1.15314
+"Relativistic mass is discussed in both a pedagogical and historical context. It is pointed out that its introduction into 
+the theory of special relativity was much in the way of a historical accident. Gaining widespread use initially in instruction, 
+the use of relativistic mass is showing signs of progressive disfavor. An analysis and criticism of the various ways 
+relativistic mass is used in relativity is detailed and special attention is given to the frequent misuse of relativistic 
+mass as an inertia.
+
+1986
+Relativity or invariance?
+Eric Sheldon (University of Lowell, Lowell, MA)
+American Journal of Physics 54, 775 (1986); https://doi.org/10.1119/1.14437
+https://aapt.scitation.org/doi/abs/10.1119/1.14437  full text of letter
+Comments on experts saying that the name should be 'invariance theory'.
+
+1986
+Relativity or invariance?
+Mituo Uehara (Instituto Tecnologico de Aeronautica, Brazil)
+American Journal of Physics 54, 298 (1986); https://doi.org/10.1119/1.14631
+https://aapt.scitation.org/doi/abs/10.1119/1.14631 full text of letter
+
+1985
+Relativity and relativism
+John L. Hammond (Portland State University, Oregon)
+American Journal of Physics 53, 873 (1985); https://doi.org/10.1119/1.14354
+https://aapt.scitation.org/doi/abs/10.1119/1.14354
+"It is widely assumed that relativity in physics lends credibility to forms of relativism outside of science. 
+Though fallacious, this assumption has consequences which merit the concerned attention of persons in the 
+science community, especially teachers of physics. The falseness of the assumption can be made apparent by 
+several fairly simple considerations, appropriate for brief classroom presentation."
+
+
+1982
+Dirac’s light‐cone coordinate system
+American Journal of Physics 50, 721 (1982); https://doi.org/10.1119/1.12737
+Y. S. Kim (University of Maryland)
+Marilyn E. Noz (New York U)
+"It is shown that Dirac’s light-cone coordinate system provides an effective method for treating the 
+geometry of Lorentz transformation in a rectangular coordinate system. Transformation properties of the 
+coordinate variables and those of the derivatives are discussed in detail. The Lorentz boost along a given 
+direction is shown to be a coordinate transformation in which 'cross products' are preserved. It is pointed out 
+that the Lorentz boost is a symplectic transformation."
+
+1980
+[y] Relativistic transformation of solid angle
+John M. McKinley, Oakland University
+Am. J. Phys. vol 48 No. 8 Aug 1980 p612
+We rederive the relativistic transformations of light intensity from compact sources to show where and how the transformation 
+of solid angle contributes. We discuss astrophysical and other applications of the transformations."
+
+1979
+Anticausal behavior in the imaging of a moving object; the implications for high-speed photography
+Kenneth L. Sala (NRC, Ottawa)
+Phys. Rev. A 19 2377-2391 (1979)
+"An analysis of the temporal behavior of the image of a moving object in a simple imaging system is presented which explicitly 
+takes into account the finite transit time of the light propagating from the object to the image plane. This analysis, which 
+places no restrictions on the magnification of the imaging system or on the spatial shape or extent of the object, uncovers a 
+number of novel and highly unorthodox phenomena hitherto unforeseen. Of particular significance, in the case where the object
+velocity vo and the magnification M satisfy (M+1)voc>1, is the finding that a single object gives rise to two simultaneous 
+images which move antiparallel to one another away from a common point in the image plane. One of these images displays a
+normal, forward time dependence, while the other image exhibits a time-reversal character resulting in the anticausality 
+in the observed temporal behavior of the object and of time-dependent or causal events associated with it. The theory is 
+developed to include the imaging of arbitrary, three-dimensional objects. The important case where the object is stationary 
+but has a time-dependent intensity distribution is also examined and it is shown, in this case as well, that anticausal 
+behavior can be observed in the image plane under quite general conditions. The ramifications of this work for high-speed 
+photography in general are discussed, and numerous illustrations are given of the image behavior in time for moving 
+objects of simple geometrical shapes."
+
+
+
+
+1979
+[y] Relativistic Transformations of Light Power
+John M. McKinley, Oakland University
+Am. J. Phys. vol 47 No. 7 July 1979 p602
+"Using a photon-counting technique, we find the angular distribution of emitted and detected power and the total radiated 
+power of an arbitrary moving source. We compare these expressions to the incorrect or incomplete expressions previously 
+reported. We use the technique to verify the predicted effect of the earth’s motion through the cosmic blackbody radiation."
+[Points to errors in Weisskopf, and an early edition of Jackson's textbook, and that they have propagated.]
+
+1979
+[y] In search of the "starbow": The appearance of the starfield from a relativistic spaceship
+John M. McKinley, Paul Doherty (Oakland University)
+Am. J. Phys. vol 47 No. 4 April 1979 p309
+"One prediction for the appearance of the starfield from a moving reference frame has been circulated widely despite 
+physically objectionable features. We reexamine the physical basis for this effect. To the well-known aberation [sic] and 
+Doppler effects we add the transformation of intensity of light upon a change of reference frame. We integrate the 
+transformed spectrum of a star, represented as a blackbody, over the response function of the human eye. We present a 
+one-parameter function to represent the dependence of the apparent visual magnitude of different stars upon Doppler factor. 
+We conclude with a sequence of computer-generated figures to show the appearance of Earth’s starfield at various velocities.
+A 'starbow' does not appear."
+
+
+1976
+[g] How to teach special relativity
+John S. Bell
+Progress in Scientific culture 1(2) (1976), pp. 1–13. 
+Reprinted in J. S. Bell: Speakable and unspeakable in quantum mechanics (Cambridge University Press, 1987), chapter 9, pp. 67–80.
+"I have for long thought that if I had the opportunity to teach this subject, I would emphasize the continuity 
+with earlier ideas. Usually it is the discontinuity which is stressed, the radical break with more primitive notions 
+of space and time. Often the result is to destroy completely the confidence of the student in perfectly sound and 
+useful concepts already acquired."
+
+
+1975
+[y] The Classical Theory of Fields, 4th edition 1975
+L. D. Landau, E. M. Lifschitz
+
+1972
+[y] Gravitation and Cosmology
+QC 6 .W47 1972
+Steven Weinberg
+
+1972
+[y] On the Apparent Visual Forms of Relativistically Moving Objects
+P. M. Mathews, M. Lakshmanan (University of Madras)
+Il Nuovo Cimento vol 12 B, N. 1 11-November-1972
+https://link.springer.com/article/10.1007/BF02895571
+"The question of the apparent visual shape of an object moving at relativistic speeds, as perceived by a single observer, 
+is analysed afresh. It is shown by qualitative arguments that the apparent shape is related to the shape at rest through a 
+combination of nonuniform shear and extension/contraction parallel to the direction of motion, which does not reduce to a 
+rotation even in the case of distant objects subtending a small angle at the observer. The two-dimensional projection 
+(as in a photograph) of this distorted shape may coincide with that of the object (suitably rotated) at rest; but we 
+emphasize that it would be grossly misleading to conclude from this, as is generally done in the literature, that distant 
+relativistically moving objects appear as if simply rotated. The 'train paradox' is discussed in illustration of this point. 
+Analytical formulae relating the apparent visual shape to the shape at rest are given. Also the striking fact that the 
+apparent speed of the object as seen by visual observation may well exceed the speed of light is brought out. Finally it is 
+pointed out that the phenomenon is closely analogous to the relativistic Doppler effect."
+[They correct Terrell, saying it's not a pure rotation, but nonuniform shear + extension/contraction, even in the 
+case of small solid angle.]
+
+
+1970
+A Useful Form of the Minkowski Diagram
+Leonard Parker and Glenn M. Schmieg
+American Journal of Physics 38, 1298 (1970); https://doi.org/10.1119/1.1976076
+"We give a diagrammatic representation of the diagonal form of the special Lorentz transformation. The null 
+coordinates x±ct are plotted along a single set of orthogonal axes. Special Lorentz transformations are then represented 
+only by a change of scale along those orthogonal axes. This diagram, which we call a null coordinate diagram, and the
+Minkowski diagram are closely connected. To demonstrate the use of the null coordinate diagram, we apply it to the 
+linear Doppler effect, time dilation, and Lorentz contraction."
+[Also called light-cone coords?? https://en.wikipedia.org/wiki/Light-cone_coordinates]
+
+1970
+[y] Geometrical Appearances at Relativistic Speeds
+G. D. Scott, H. J. van Driel, University of Toronto
+Am. J. Phys. vol 38 No. 8 August 1970
+"Geometrical appearances at relativistic speeds (β=0.5,0.9,and 0.995) are illustrated for the following examples: 
+(i) the celestial sphere with a number of constellations, (ii) the surface features of a sphere passing close to an observer, 
+and (iii) a train of rectangular boxes. The figures make clear the nature of the distortions which occur in appearances, 
+indicate the limited significance of the so-called 'apparent rotation', and show the conditions under which the Lorentz
+ contraction can be seen or photographed. Though a sphere remains essentially circular in outline, the apparent cross 
+ section may be grossly distorted and under some conditions the outside surface of the sphere appears concave."
+
+1968
+The apparent shape of rapidly moving objects in special relativity
+N. C. McGill
+Contemp. Phys. 9, 33 p33-48
+"A review is presented of previous papers on the apparent shape of bodies travelling with speeds comparable to that of light. 
+It is shown that the visibility or otherwise of the Lorentz contraction depends on the method of observation adopted and on 
+the shape of the body in question. Visual, photographic and radar-type methods are discussed, including the hitherto neglected 
+application of stereoscopic perception. The theory is developed for a new possible technique of observation, that in which an 
+object illuminates itself momentarily in its rest frame, the image being recorded as a time exposure by the observer."
+
+1967
+Visual Aspects of Trans-Stellar Space Flight
+S. Moskowitz
+Sky Telesc. 33, 290–294 (1967)
+
+1966
+[y] Appearance of relativistically expanding radio sources
+M. J. Rees, University of Cambridge
+Nature vol 211 July 30 1966
+"In this article it is suggested that the central parts of some radio sources may expand with relativistic velacities.
+Relativistic effects could then have a decisive influence on the observable properties of thes sources. In particular, 
+the flux from a radio source expanding with relativistic velocity can change sufficiently rapidly to account for the
+variations observed in some sources, even if they are at cosmological distances. A related relativistic effect would 
+imply that the ages of some types of radio sources may be significantly less than the usual estimates."
+
+1966
+Graphical Aids in the Teaching of Special Relativity
+American Journal of Physics 34, 1128 (1966); https://doi.org/10.1119/1.1972527
+Robert H. Kohler (Rutgers—The State University, Newark, New Jersey)
+"The kinematics of special relativity is depicted through space-time diagrams, whereby the Lorentz transformation as well 
+as the Galilean can be presented in graphical form rather than analytic. The space-time diagrams are then used to formulate 
+and explain several of the paradoxes of special relativity. The method is a variation of the Minkowski diagram. The reference 
+axes are kept fixed, and the space-time point undergoes an apparent displacement in the plot as the observation frame is 
+changed. The graphical analysis is semiquantitative for some problems and is quantitative for others."
+
+1965
+The geometrical appearance of large objects moving at relativistic speeds
+G.D. Scott, M. R. Viner  (University of Toronto)
+Am. J. Phys. 33, 534-536 (1965)
+"The calculated geometrical appearance of objects moving at relativistic speeds and subtending large angles at 
+the observer is illustrated by diagrams of a plane grid and perspective views of a group of boxes. In addition to 
+the distortion of scales in the direction of motion, planes perpendicular to the motion appear as hyperboloids. 
+Contrary to an impression which might be taken from some papers on the subject, the Lorentz contraction is visible 
+under suitable conditions, in particular for observations approximately at right angles to the motion."
+also:
+"... the explanation of the appearance in terms of a rotation is quite inadequate."
+
+
+1964
+Quaternions in Relativity
+PETER RASTALL (UBC)
+Rev. Mod. Phys. 36, 820 (1964) - Published 1 July 1964
+
+1963
+Measurement of the Relativistic Time Dilation Using μ-Mesons
+David H. Frisch and James H. Smith (Massachusetts Institute of Technology)
+American Journal of Physics 31, 342 (1963); https://doi.org/10.1119/1.1969508
+"An experiment has been performed to demonstrate the relativistic time dilation as a large effect, using only comparatively 
+simple equipment. μ-mesons incident on top of Mt. Washington, New Hampshire, were selected to have speeds in the range between 
+0.9950c and 0.9954c. The number of these which survived to reach sea level was measured in Cambridge, Massachusetts. The 
+number expected without time dilation was calculated from the distribution of decay times of these μ-mesons (i.e., the mean 
+life as measured in both this experiment and others) and from the known distance of descent. The observed time dilation factor 
+is 8.8±0.8 to be compared with the effective time dilation factor calculated for mesons of these speeds in our detection 
+geometry 1/(1 − v2/c2)12 = 8.4 ± 2"
+
+1961
+Length Contraction Paradox
+W. Rindler (Cornell)
+American Journal of Physics 29, 365 (1961); https://doi.org/10.1119/1.1937789
+"A certain man walks very fast—so fast that the relativistic length contraction makes him very thin. In the street he has 
+to pass over a grid. A man standing at the grid fully expects the fast thin man to fall into the grid. Yet to the fast man 
+the grid is much narrower even than to the stationary man, and he certainly does not expect to fall in. Which is correct?
+The answer hinges on the relativity of rigidity."
+
+1961
+Apparent Shape of Large Objects at Relativistic Speeds
+M. L. Boas (DePaul University)
+Am. J. Phys. 29, 283–286 (1961)
+http://utf.mff.cuni.cz/vyuka/NOFY023/materialy/BoasML-AmjPhys29(1961)283.pdf full text
+"It has been recently recognized that there is a difference between the measured Lorentz contracted shape of an object 
+moving at relativistic speed and the shape as seen by a single observer. The case of an object which subtends a small 
+solid angle at the observer has been discussed by several authors. This paper discusses objects so large or so near that 
+the subtended solid angle cannot be considered small, and gives simple proofs that spheres always present a circular 
+outline and that straight lines may appear curved. These results are applied to revise Gamow's well-known picture of the 
+bicyclist seen by Mr. Tompkins."
+
+1960
+The visual appearance of rapidly moving objects
+V. F. Weisskopf (M.I.T.)
+Phys. Today 13 (9), 24–27 (1960)
+https://physicstoday.scitation.org/doi/10.1063/1.3057105
+"I would like to draw the attention of physicists to a recent paper by James Terrell in which he does away with an old 
+prejudice held by practically all of us. We all believed that, according to special relativity, an object in motion appears 
+to be contracted in the direction of motion by a factor [1−(υ/c)]1/2 [sic!]. A passenger in a fast space ship, looking out of the
+window, so it seemed to us, would see spherical objects contracted to ellipsoids. This is definitely not so according to 
+Terrell's considerations, which for the special case of a sphere were also carried out by R. Penrose. The reason is quite 
+simple. When we see or photograph an object, we record light quanta emitted by the object when they arrive simultaneously 
+at the retina or at the photographic film. This implies that these light quanta have not been emitted simultaneously by all 
+points of the object. The points further away from the observer have emitted their part of the picture earlier than the 
+closer points. Hence, if the object is in motion, the eye or the photograph gets a “distorted” picture of the object, since 
+the object has been at different locations when different parts of it have emitted the light seen in the picture."
+
+1960
+Observation of Length by a Single Observer
+R. Weinstein (Northeastern University, Boston)
+Am. J. Phys. 28, 607–610 (1960)
+"One problem arising in teaching special relativity is the confusion in many texts of the thought experiments, used in 
+developing the theory, with other simple laboratory operations. As an example we consider here the observation of length. 
+The existence of the Lorentz-Fitzgerald contraction has led educators to conclude that one sees a contraction of a rapidly 
+moving body. However, the act of seeing involves a single observer, while the observation of the Lorentz-Fitzgerald contraction 
+requires at least two observers. It is shown here that the length seen by a single observer is not the usual contraction, 
+and indeed, under certain circumstances, one sees a body considerably lengthened rather than contracted."
+
+
+1960
+Hyperbolic Motion in Curved Space Time
+W. Rindler (Cornell University)
+Physical Review, vol. 119, Issue 6, pp. 2082-2089
+10.1103/PhysRev.119.2082 
+"The differential equations of motion for a test particle moving with uniform acceleration in a curved space time are proposed. 
+They are obtained by generalizing the differential-geometric characteristics of a rectangular hyperbola in Minkowski space time. 
+The problem is proposed, though not solved, of deriving these equations of motion from the field equations of general relativity. 
+However, it is suggested that they also hold independently of general relativity in cosmological space times based on the 
+Robertson-Walker metric. The equations are solved in detail for the particular case of de Sitter space time, which is relevant 
+to the steady-state theory. It is found, inter alia, that in this space time a particle moving radially with uniform acceleration 
+ultimately moves with constant relative velocity through the substratum; that there is a critical first fundamental particle
+(galaxy) on its line of motion which it will never overtake; that, in turn, a light signal emitted at or after a certain 
+critical time will not catch up with the accelerating particle; and that, if a particle with a given available acceleration α 
+passes beyond a certain proper distance (the α horizon) it can no longer return to its place of origin. Possible applications 
+to intergalactic rocketry are examined."
+
+
+1959
+[y] Invisibility of the Lorentz Contraction
+James Terrell (University of California, Los Alamos)
+Physical Review vol 116, No. 4, November 15 1959
+"It is shown that, if the apparent directions of objects are plotted as points on a sphere surrounding the observer, the 
+Lorentz transformation corresponds to a conformal transformation on the surface of this sphere. Thus, for sufficiently small 
+subtended solid angle, an object will appear—optically—the same shape to all observers. A sphere will photograph with precisely 
+the same circular outline whether stationary or in motion with respect to the camera. An object of less symmetry than a sphere, 
+such as a meter stick, will appear, when in rapid motion with respect to an observer, to have undergone rotation, not contraction. 
+The extent of this rotation is given by the aberration angle (θ−θ′), in which θ is the angle at which the object is seen by 
+the observer and θ′ is the angle at which the object would be seen by another observer at the same point stationary with 
+respect to the object. Observers photographing the meter stick simultaneously from the same position will obtain precisely 
+the same picture, except for a change in scale given by the Doppler shift ratio, irrespective of their velocity relative to 
+the meter stick. Even if methods of measuring distance, such as stereoscopic photography, are used, the Lorentz contraction 
+will not be visible, although correction for the finite velocity of light will reveal it to be present."
+
+
+1959
+The Apparent Shape of a Relativistically Moving Sphere
+R. Penrose
+Proc. Cambridge Philos. Soc. 55, 137–139 (1959)
+No abstract. 
+"... the appearance of a sphere, no matter how it is moving, is always 
+such as to present a circular outline to any observer."
+
+1959
+Note on stress effects due to relativistic contraction
+Dewan, Edmond M.; Beran, Michael J. (March 20, 1959). 
+American Journal of Physics. 27 (7): 517–518. Bibcode:1959AmJPh..27..517D. doi:10.1119/1.1996214.
+[Bell's 'paradox', with the rope between spaceships.]
+
+1956
+Quaternions as 4-Vectors
+Marshall J. Walker
+American Journal of Physics 24, 515 (1956); https://doi.org/10.1119/1.1934292
+"The development of the algebra of quaternions is reviewed and discussed from a modern viewpoint stressing their aspect 
+as 4-vectors and their educational value to the student of physics. Their relationship to 3-vectors, tensors, and complex 
+matrices is noted. Geometrical visualization of their properties is developed. Their application to problems of polarized 
+radiation and special relativity is described."
+
+1955
+New Geometric Representation of the Lorentz Transformation
+Henri Amar (Lafayette College, Pennsylvania)
+American Journal of Physics 23, 487 (1955); https://doi.org/10.1119/1.1934074
+"Most geometric representations of the Lorentz transformation use either imaginary angles or imaginary space-time coordinates. 
+A new and simple representation is proposed using only real coordinates and real angles, and allowing a graphical illustration 
+of the major features of the Lorentz transformation."
+
+
+1944
+Special Theory of Relativity in Hyperbolic Functions
+Vladimir Karapetoff
+Rev. Mod. Phys. 16, 33 (1944) - Published 1 January 1944
+https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.16.33
+"The purpose of the essay is to show the advantages of hyperbolic functions in restricted relativity...."
+
+
+1939
+ON UNITARY REPRESENTATIONS OF THE INHOMOGENEOUS LORENTZ GROUP
+E. WIGNER
+Annal of Mathematics, Vol 40, No. 1, January 1939
+http://www2.physics.umd.edu/~yskim////wigner/wigner39.pdf
+(Mathematically technical)
+
+
+1926
+The kinematics of an electron with an axis
+L. T. Thomas 
+Phil. Mag. 3, 1 (1927)
+http://moby.mib.infn.it/~oleari/public/elementi_fis_teorica/materiale_didattico/Thomas_precession.pdf  (full text)
+Not clear to me. He emphasizes precession over rotation, I think.
+His LT is in an odd notation.
+
+
