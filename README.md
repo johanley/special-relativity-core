@@ -3,7 +3,7 @@ Core data and operations commonly needed in special relativity.
 
 ## What I've learned so far in this project
 
-Strange but true: a boost changes the *measured* rates all clocks in the universe except for those moving the same way as you. 
+**Strange but true**: a boost changes the *measured* rates all clocks in the universe except for those moving the same way as you. 
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
 
 **Time dilation and length contraction are two sides of the same coin.**
@@ -51,7 +51,6 @@ it doesn't apply to differential 4-vectors, which aren't sensitive to the locati
 I had forgotten this.
 It's interesting how coding this led me to the same conclusion: applying a displacement 
 to a 4-velocity made no sense, and this became obvious in the computed result.
-
 The displacement operation needs special handling, because it doesn't apply to differential 4-vectors (only to events).
 
 
@@ -64,14 +63,14 @@ The building-blocks retain their simple geometry, while the coord transforms do 
 all kinds of choices for changing the frame of reference.
 
 
-Equations are poor at expressing the geometry being used.
+**Equations are poor at expressing the geometry being used.**
 The idea of an operation/transform and its inverse is almost always present in some way.
 Different choices of geometry usually mean one direction of the transform is preferred over another.
 The inverse is still there, it's just in the background.
 
 
 
-Two boosts commute only when they are in the same line.
+**Two boosts commute only when they are in the same line.**
 A dogleg pair of boosts is equivalent to a boost plus a rotation (in that order?).
 The rotation is absent if the two boosts are along the same axis.
 The (Thomas-Wigner) rotation angle is large when the speeds are high.
