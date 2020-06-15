@@ -3,6 +3,26 @@ Core data and operations commonly needed in special relativity.
 
 ## What I've learned so far in this project
 
+Strange but true: a boost changes the *measured* rates all clocks in the universe except for those moving the same way as you. 
+A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
+
+Time dilation and length contraction are two sides of the same coin.
+The traveler measures flattening along the line of motion (and no time dilation). 
+The stay-at-home measures time dilation on the spacecraft (but no flattening along the line of its motion).
+
+
+The term *length contraction* is a misleading one.
+The effect changes more than length: it changes geometry, angles, length, shape.
+A better word is *flattening*.
+Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
+It's only that special case in which the effects are limited to a change of length.
+In every other case, the stick will change both length and direction.
+
+To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
+To see the length of a stick (in a given frame), you need a time-slice (in that frame).
+To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
+
+
 Hollywood simulations of stars streaking rapidly by a relativistic spacecraft are definitely not realistic. 
 Most of the sky would appear black to the human eye.
 Stars would almost always appear only in the forward direction. 
@@ -17,11 +37,6 @@ As long as the 45-degree path for light rays is intact, you're fine.
 
 If you can accelerate at 1 gee for a few months to a year, your gamma gets quite high rather rapidly.
 
-Time dilation and length contraction are two sides of the same coin.
-The traveler measures length contraction along the axis of motion (and no time dilation), 
-while the stay-at-home measures time dilation on the spacecraft (but no length contraction in 
-its direction of motion).
-
 
 The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.
 It's too close to 1 (about 22 decimals). Only the BigDecimal class can represent such numbers.
@@ -29,7 +44,8 @@ However, working with BigDecimal is more painful than working with Double, so th
 left out as a special case.
 
 
-The prototype for a 4-vector isn't an event x, it's rather <a href='http://www.scholarpedia.org/article/Special_relativity:_mechanics'>the differential Δx</a>.
+The prototype for a 4-vector isn't an event x, it's rather
+<a href='http://www.scholarpedia.org/article/Special_relativity:_mechanics'>the differential Δx</a>.
 This is because of the displacement operation: it applies to events, but to nothing else:
 it doesn't apply to differential 4-vectors, which aren't sensitive to the location of the origin.
 I had forgotten this.
@@ -53,17 +69,6 @@ The idea of an operation/transform and its inverse is almost always present in s
 Different choices of geometry usually mean one direction of the transform is preferred over another.
 The inverse is still there, it's just in the background.
 
-
-The term *length contraction* is a misleading one.
-The effect changes more than length: it changes geometry, angles, length, shape.
-A better word is *flattening*.
-Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
-It's only that special case in which the effects are limited to a change of length.
-In every other case, the stick will change both length and direction.
-
-To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
-To see the length of a stick (in a given frame), you need a time-slice (in that frame).
-To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
 
 
 Two boosts commute only when they are in the same line.
