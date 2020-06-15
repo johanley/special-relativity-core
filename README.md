@@ -91,4 +91,25 @@ This confuses me. It seems like the breakdown of two boosts = boost + rotation n
   
  
 
+**Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
+He simply asserts that the geometry is that of a rotation. He seems to be incorrect.
+Here are some <a href='https://github.com/johanley/special-relativity-core/blob/master/notes/references.txt'>references</a> that contradict Terrell's assertions.
+
+Scott and van Driel (1970):
+  'The relation of the distortion to Terrel's (sic) "apparent rotation" can be appreciated but 
+  certainly an interpretation merely in terms of rotation is not possible. The Lorentz contraction 
+  can indeed be photographed but shows properly only in a direction perpendicular to the motion.'
+  (van Driel and Scott have diagrams that are not for Terrell's case of small solid angle).
+  
+Mathews and Lakshmanan (1972): 
+  "... the apparent shape is related to the shape at rest through a combination of nonuniform shear and 
+  extension/contraction parallel to the direction of motion, which does not reduce to a rotation even 
+  in the case of distant objects subtending a small angle at the observer... Clearly this picture of apparent rotation 
+  cannot be right. "
+  
+See also Scott and Viner (1965), Eric Sheldon (1989).
+  
+The <a href='https://en.wikipedia.org/wiki/Terrell_rotation'>wikipedia article</a> makes no mention of these points.
+
+
 
