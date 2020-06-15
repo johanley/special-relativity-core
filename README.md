@@ -56,7 +56,10 @@ The inverse is still there, it's just in the background.
 
 The term *length contraction* is a misleading one.
 The effect changes more than length: it changes geometry, angles, length, shape.
-A better name might be *flattening*, or *geometry distortion*.
+A better word is *flattening*.
+Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
+It's only that special case in which the effects are limited to a change of length.
+In every other case, the stick will change both length and direction.
 
 To see the 3D geometry in a given frame, you always need a time-slice in the given frame.
 To see the length of a stick (in a given frame), you need a time-slice (in that frame).
@@ -67,6 +70,7 @@ Two boosts commute only when they are in the same line.
 A dogleg pair of boosts is equivalent to a boost plus a rotation (in that order?).
 The rotation is absent if the two boosts are along the same axis.
 The (Thomas-Wigner) rotation angle is large when the speeds are high.
+It's never larger than 90 degrees (same as the stick-flattening angle).
 
 What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
@@ -82,9 +86,5 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
  
-
- 
-
-
 
 

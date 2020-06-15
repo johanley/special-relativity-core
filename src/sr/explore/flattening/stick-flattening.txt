@@ -1,24 +1,3 @@
-Stick along the X-axis.
-K stick length:1.0
-K' time-slice
-K' a: [-0.525, 1.115, 0.0, 0.0, YES]
-K' b: [-0.5249999999999999, 1.915, 0.0, 0.0, YES]
-K' b-a: [1.1102230246251565E-16, 0.8, 0.0, 0.0, YES]
-K' b-a len from LT: 0.8
-1/gamma from formula: 0.8
- 
-Stick angled to the X-axis.
-K b-a:[0.0, 1.0, 1.0, 0.0, YES]
-K stick length:1.4142135623730951
-K stick angle wrt X-axis: 45.0 deg
-K' time-slice
-K' a: [0.22499999999999998, -0.135, 0.0, 0.0, YES]
-K' b: [0.2250000000000001, 0.665, 1.0, 0.0, YES]
-K' b-a: [1.1102230246251565E-16, 0.8, 1.0, 0.0, YES]
-K' b-a len: 1.2806248474865698
-K' stick angle wrt X-axis: 51.340191745909905 deg
-K' stick angle from formula: 51.340191745909905 deg
-1/gamma from formula: 0.8
  
 Stick angled to the X-axis, with 2 params (speed and angle) taken from the corner-boost calc.
 K b-a:[0.0, 0.9119215051751064, 0.4103646773287978, 0.0, YES]
@@ -27,11 +6,12 @@ K stick angle wrt X-axis: 24.227745317954167 deg
 
 Boost: boost[X,0.8772684879784525]
 K' time-slice
+Zero: 0.950000000373473 (1 iterations)
 K' a: [0.31250000000000006, -0.27414640249326644, 0.0, 0.0, YES]
-K' b: [0.3124999999999998, 0.1635759199907847, 0.4103646773287978, 0.0, YES]
-K' b-a: [-2.7755575615628914E-16, 0.43772232248405113, 0.4103646773287978, 0.0, YES]
-K' b-a len from LT: 0.6
-K' stick angle wrt X-axis: 43.152389734005396 deg
-Change in stick angle wrt X-axis: 18.924644416051226 deg SAME AS θw, the Thomas-Wigner rotation angle!
+K' b: [0.3125000007780685, 0.16357591930820936, 0.4103646773287978, 0.0, YES]
+K' b-a: [7.780684430080953E-10, 0.4377223218014758, 0.4103646773287978, 0.0, YES]
+K' b-a len from LT: 0.5999999995020359
+K' stick angle wrt X-axis: 43.15238977858546 deg
+Change in stick angle wrt X-axis: 18.924644460631296 deg SAME AS θw, the Thomas-Wigner rotation angle!
 1/Γ from formula: 0.47999999999999987
 Γ from formula: 2.083333333333334

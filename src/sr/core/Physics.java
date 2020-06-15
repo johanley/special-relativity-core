@@ -221,7 +221,7 @@ public final class Physics {
   }
   
   /**
-   Transform of velocity, in the case where all motions are parallel to an axis (colinear).
+   Transform of velocity, in the case where all motions on the same line.
    
    <P>An object moves along an axis in the K frame, with velocity v.
    K' is a second frame, boosted along the same axis (with respect to the K frame). 
@@ -253,25 +253,6 @@ public final class Physics {
     double tanθ = Math.tan(θ);
     double result = Math.atan(tanθ * Γ(β)); //-pi/2..+pi/2
     return result;
-  }
-  
-  public static void main(String... args) {
-    /*
-     Rotation of the stick from time-slice of histories in K: -38.6598 degrees
-     Thomas-Wigner angle calculated directly from a formula: -18.92464 degrees
-    */
-    double βdirection = Util.degsToRads(24.227745317954163);
-    double θw = Util.degsToRads(18.924644416051237);
-    double β = 0.8772684879784525;
-    
-    double a1 = stickAngleAfterBoost(βdirection, β);
-    Util.log("βdirection start: " + Util.radsToDegs(βdirection));
-    Util.log("βdirection flattened: " + Util.radsToDegs(a1));
-    Util.log("βdirection chg  : " + Util.radsToDegs(a1 - βdirection));
-    Util.log("θw calc:          " + Util.radsToDegs(θw));
-    a1 = stickAngleAfterBoost(βdirection+θw, β);
-    Util.log("βdirection+θw flattened: " + Util.radsToDegs(a1));
-    
   }
   
   // PRIVATE 

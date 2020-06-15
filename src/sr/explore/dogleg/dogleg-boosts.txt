@@ -16,7 +16,7 @@ Event: [2.32, -15.79, 0.0, 0.0, YES]
 Boost 1: Y 0.8 [3.866666666666667, -15.79, 3.093333333333334, 0.0, YES]
 Boost 2: X -0.6 [16.675833333333333, -22.637499999999996, 3.093333333333334, 0.0, YES]
  
-# Boosts with the same speed, but perpendicular (still don't commute!)
+# Boosts with the same speed, but perpendicular, still don't commute!
 Event: [2.32, -15.79, 0.0, 0.0, YES]
 Boost 1: X -0.6 [14.7425, -21.477499999999996, 0.0, 0.0, YES]
 Boost 2: Y -0.6 [18.428125, -21.477499999999996, -11.056875, 0.0, YES]

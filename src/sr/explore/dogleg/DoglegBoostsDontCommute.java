@@ -24,10 +24,10 @@ import sr.core.transform.FourVector;
  <P>Not same line (dogleg): they don't commute.
  The dogleg boost is equivalent to a boost plus a rotation (Thomas-Wigner rotation).
 */
-public final class MultipleBoostsUsuallyDontCommute {
+public final class DoglegBoostsDontCommute {
   
   public static void main(String... args) {
-    MultipleBoostsUsuallyDontCommute test = new MultipleBoostsUsuallyDontCommute();
+    DoglegBoostsDontCommute test = new DoglegBoostsDontCommute();
     test.twoConsecutiveBoosts();
   }
   
@@ -53,7 +53,7 @@ public final class MultipleBoostsUsuallyDontCommute {
     title("Boosts with the same speed, but perpendicular, still don't commute!", lines);
     seeIfOrderMatters(X, β1, Y, β1, lines);
     
-    Util.writeToFile(MultipleBoostsUsuallyDontCommute.class, "multiple-boosts.txt", lines);
+    Util.writeToFile(DoglegBoostsDontCommute.class, "dogleg-boosts.txt", lines);
   }
   
   private FourVector boostThe(FourVector event, Axis axis, double β) {

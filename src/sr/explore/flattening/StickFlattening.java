@@ -2,8 +2,10 @@ package sr.explore.flattening;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import sr.core.Axis;
+import sr.core.EventFinder;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.history.History;
@@ -26,8 +28,8 @@ public class StickFlattening {
   public static void main(String[] args) {
     StickFlattening stick = new StickFlattening();
     List<String> lines = new ArrayList<>();
-    stick.stickAlongAxis(lines);
-    stick.stickAngledToXAxis(lines);
+    //stick.stickAlongAxis(lines);
+    //stick.stickAngledToXAxis(lines);
     stick.stickAngledToXAxisWithEquivalentBoostParams(lines);
     
     Util.writeToFile(StickFlattening.class, "stick-flattening.txt", lines);
@@ -65,9 +67,15 @@ public class StickFlattening {
     //K': boost along the X axis
     double β = 0.6;
     CoordTransform boostX = Boost.alongThe(Axis.X, β);
-    //find events that have the same ct value in K', by TRIAL AND ERROR
+    //find events that have the same ct value in K' (root finding)
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18));
-    FourVector bBoosted = boostX.toNewFrame(histB.event(0.78));
+    
+    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
+    double tau = finder.searchWithNewtonsMethod(0.0000001);
+    lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
+    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    
     lines.add("K' time-slice");
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
@@ -75,6 +83,7 @@ public class StickFlattening {
     lines.add("K' b-a len from LT: " + bBoosted.minus(aBoosted).spatialMagnitude());
     lines.add("1/gamma from formula: " + 1.0/Physics.Γ(β));
   }
+  
 
   /**
    Measure the flattening of a stick that's at an angle to the X-axis (the line of a boost).
@@ -118,9 +127,16 @@ public class StickFlattening {
     lines.add("K' time-slice");
     double β = 0.6;
     CoordTransform boostX = Boost.alongThe(Axis.X, β);
-    //find events that have the same ct value in K', by TRIAL AND ERROR
+    
+    //find events that have the same ct value in K'
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18));
-    FourVector bBoosted = boostX.toNewFrame(histB.event(0.78));
+    
+    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
+    double tau = finder.searchWithNewtonsMethod(0.0000001);
+    lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
+    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
     diff = bBoosted.minus(aBoosted);
@@ -153,9 +169,16 @@ public class StickFlattening {
     lines.add("" );
     lines.add("Boost: " + boostX);
     lines.add("K' time-slice");
-    //find events that have the same ct value in K', by trial and error
+    //find events that have the same ct value in K'
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.15));
-    FourVector bBoosted = boostX.toNewFrame(histB.event(0.95));
+    
+    //FourVector bBoosted = boostX.toNewFrame(histB.event(0.95));
+    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
+    double tau = finder.searchWithNewtonsMethod(0.0000001);
+    lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
+    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
     diff = bBoosted.minus(aBoosted);

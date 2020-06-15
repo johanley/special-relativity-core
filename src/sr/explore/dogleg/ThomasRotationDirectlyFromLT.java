@@ -2,8 +2,10 @@ package sr.explore.dogleg;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import sr.core.Axis;
+import sr.core.EventFinder;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.history.History;
@@ -89,11 +91,16 @@ public final class ThomasRotationDirectlyFromLT {
     
     //time-slice 
     //find 2 events, one taken from each history, that have the same coord-time
-    //found by TRIAL AND ERROR! these depend on the speeds chosen.
+    //these depend on the speeds chosen.
     double τA = 0.9; 
-    double τB = 0.26;
     FourVector evA = cornerBoost.toNewFrame(historyA.event(τA));
-    FourVector evB = cornerBoost.toNewFrame(historyB.event(τB));
+    
+    Function<FourVector, Double> zero = event -> (cornerBoost.toNewFrame(event).ct() - evA.ct());
+    EventFinder finder = new EventFinder(historyB, zero, 0.000001) ;
+    double tau = finder.searchWithNewtonsMethod(0.0000001);
+    lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
+    FourVector evB = cornerBoost.toNewFrame(historyB.event(tau));
+    
     lines.add("event for end-a: " + evA + " one end of the stick");
     lines.add("event for end-b: " + evB + " other end of the stick");
     

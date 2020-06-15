@@ -3,11 +3,12 @@ Corner-boost from K'' to K: boost[Y,-0.6] boost[X,-0.8]
 
 All of the items below are in K
 Raw histories
+Zero: 0.26000000010221347 (1 iterations)
 event for end-a: [3.208333333333334, 3.1666666666666674, 0.675, 0.0, YES] one end of the stick
-event for end-b: [3.208333333333334, 3.7666666666666675, 0.195, 0.0, YES] other end of the stick
-stick in K (b-a): [0.0, 0.6000000000000001, -0.48000000000000004, 0.0, YES] has ct=0 (time-slice)
-Angle of stick w.r.t the X-axis: -38.65980825409009 deg
-Length of the stick: 0.7683749084919419 shows some contraction
+event for end-b: [3.208333333546279, 3.7666666668370232, 0.1950000000766601, 0.0, YES] other end of the stick
+stick in K (b-a): [2.1294521701520353E-10, 0.6000000001703558, -0.47999999992333997, 0.0, YES] has ct=0 (time-slice)
+Angle of stick w.r.t the X-axis: -38.65980824169087 deg
+Length of the stick: 0.7683749085770782 shows some contraction
  
 Calculated angles, to disentangle the 2 effects.
 Calculated βequiv: 0.8772684879784525
@@ -16,4 +17,4 @@ Calculated θw: -18.924644416051237 deg wrt X-axis --- EFFECT #1
 Calculated βdirection + θw: -43.1523897340054 deg wrt βdirection
 Calculated flattened(βdirection + θw): -62.88755357204426 deg wrt βdirection --- EFFECT #2
  
-Angle of stick w.r.t the βdirection (not X-axis) from raw histories: -62.88755357204426 deg SAME AS ABOVE
+Angle of stick w.r.t the βdirection (not X-axis) from raw histories: -62.887553559645035 deg SAME AS ABOVE

@@ -125,7 +125,6 @@ public final class ShowEquivalence {
     );
     return result;
   }
-
   
   //PRIVATE 
   

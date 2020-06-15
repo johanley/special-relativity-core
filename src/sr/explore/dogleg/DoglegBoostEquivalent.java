@@ -41,10 +41,11 @@ final class DoglegBoostEquivalent {
   double βdirection;
   
   /** 
-   Thomas-Wigner rotation angle with respect to the βdirection.
+   Thomas-Wigner rotation angle with respect to the X-axis.
+   It's never more than 90 degrees.
    
    <P>This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
-   Range -pi..+pi.
+   Range -pi/2..0 rads.
   */
   double θw;
 
