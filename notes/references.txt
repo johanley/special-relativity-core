@@ -435,8 +435,10 @@ Steven Weinberg
 1972
 [y] On the Apparent Visual Forms of Relativistically Moving Objects
 P. M. Mathews, M. Lakshmanan (University of Madras)
-Il Nuovo Cimento vol 12 B, N. 1 11-November-1972
+Nuovo Cimento B, Vol. 12B, Ser. 11, p. 168 - 181, 11-November-1972
 https://link.springer.com/article/10.1007/BF02895571
+http://dx.doi.org/10.1007/BF02895571
+Bibcode: 1972NCimB..12..168M
 "The question of the apparent visual shape of an object moving at relativistic speeds, as perceived by a single observer, 
 is analysed afresh. It is shown by qualitative arguments that the apparent shape is related to the shape at rest through a 
 combination of nonuniform shear and extension/contraction parallel to the direction of motion, which does not reduce to a 
@@ -466,6 +468,7 @@ linear Doppler effect, time dilation, and Lorentz contraction."
 [y] Geometrical Appearances at Relativistic Speeds
 G. D. Scott, H. J. van Driel, University of Toronto
 Am. J. Phys. vol 38 No. 8 August 1970
+https://doi.org/10.1119/1.1976550
 "Geometrical appearances at relativistic speeds (β=0.5,0.9,and 0.995) are illustrated for the following examples: 
 (i) the celestial sphere with a number of constellations, (ii) the surface features of a sphere passing close to an observer, 
 and (iii) a train of rectangular boxes. The figures make clear the nature of the distortions which occur in appearances, 
@@ -512,6 +515,8 @@ changed. The graphical analysis is semiquantitative for some problems and is qua
 The geometrical appearance of large objects moving at relativistic speeds
 G.D. Scott, M. R. Viner  (University of Toronto)
 Am. J. Phys. 33, 534-536 (1965)
+https://doi.org/10.1119/1.1971890
+Bibcode: 1965AmJPh..33..534S 
 "The calculated geometrical appearance of objects moving at relativistic speeds and subtending large angles at 
 the observer is illustrated by diagrams of a plane grid and perspective views of a group of boxes. In addition to 
 the distortion of scales in the direction of motion, planes perpendicular to the motion appear as hyperboloids. 

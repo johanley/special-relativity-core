@@ -77,7 +77,7 @@ Dewan-Beran-Bell paradox with the string between accelerating objects.
 John S. Bell, 1976
 Interesting! The string breaks: in the comoving frame, the measured distance must be gamma times the 
 distance measured in the lab frame (just regular Lorentz contraction).
-It took me about 20 minutes to understand this.
+It took me about 20 minutes to understand this, but it should have taken 10 seconds.
 Apparently Bell polled the staff at CERN, and most of them got this wrong!
 https://aapt.scitation.org/doi/10.1119/1.17728 
 Controversy over whether or not the Fitzgerald contraction is a "real contraction" of the object!
@@ -121,6 +121,9 @@ https://physics.anu.edu.au/research/get_pdf.php?PubID=U4103646XPUB56  Searle et 
   
 
 --------------------------------------------------------------------------------------
+
+Build a photorealistic version of this: 
+http://specialrelativity.net/animations/starfield/starfield.html?beta=0.8&color=on&circles=on&avgstellardensity=0.11&starpopulation=yalebsc&limitingMag=5&projection=stereographic&anim=on&runningTime=8
 
 Does it already exist?
 
