@@ -19,7 +19,7 @@ public final class EventFinder {
    Constructor.
    @param history the history for which this class is finding a special τ (and thus the corresponding event)
    @param criterion the function that returns 0.0 for the caller's target event
-   @param epsilon the difference-level down to which this class pursues the target zero
+   @param epsilon the difference-level down to which this class pursues the target-zero
   */
   public EventFinder(History history, Function<FourVector, Double> criterion, Double epsilon) {
     this.history = history;
@@ -87,6 +87,7 @@ public final class EventFinder {
       this.derivfτ = derivative();
     }
     NewtonGuess next() {
+      //if the guess is outside τmin..τmax, it will blow up! 
       double nextτ =  τ - (fτ/derivfτ);
       return new NewtonGuess(nextτ, h);
     }

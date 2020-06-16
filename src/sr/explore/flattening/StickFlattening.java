@@ -15,7 +15,7 @@ import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
 
 /** 
- See the effect of the flattening effect on a stick.
+ Measure the effect of flattening on a stick, using a time-slice.
  As always, a time-slice is needed to see the geometrical properties of an object (length, orientation).
  
  <P>Place a stack at an angle with respect to the X-axis (not 0 or 90 degrees). 
@@ -28,8 +28,8 @@ public class StickFlattening {
   public static void main(String[] args) {
     StickFlattening stick = new StickFlattening();
     List<String> lines = new ArrayList<>();
-    //stick.stickAlongAxis(lines);
-    //stick.stickAngledToXAxis(lines);
+    stick.stickAlongAxis(lines);
+    stick.stickAngledToXAxis(lines);
     stick.stickAngledToXAxisWithEquivalentBoostParams(lines);
     
     Util.writeToFile(StickFlattening.class, "stick-flattening.txt", lines);
