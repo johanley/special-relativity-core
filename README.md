@@ -112,4 +112,10 @@ See also Scott and Viner (1965), Eric Sheldon (1989).
 The <a href='https://en.wikipedia.org/wiki/Terrell_rotation'>wikipedia article</a> makes no mention of these points.
 
 
+Light-slice: a receding stick is always shorter than the Lorentz-Fitzgerald contraction.
+At ultra-relativistic speeds, in the limit the length is half of the L-F length.
+An approaching stick is always longer than the rest length.
+This means that there are dramatic differences in geometry between a time-slice and a light-slice. 
+This is especially in the forward direction: a time-slice has flattening by the factor 1/Γ, but 
+the light-slice shows expansion!
 

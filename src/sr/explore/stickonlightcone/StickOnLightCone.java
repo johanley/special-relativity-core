@@ -37,6 +37,9 @@ import sr.core.transform.FourVector;
  Geometrically, in ultra-relativistic cases, the detector needs to be very distant from the stick.
  In this implementation, I simply hard-code the geometry, and restrict the maximum speed of approach.
  This suffices to see the effect, without worrying about extreme speeds.
+ 
+ <P>Distant fly-by at 90 degrees to the line-of-sight: by construction, the light-slice is the same 
+ as the time-slice. This is not coded here.
 */
 public final class StickOnLightCone {
   
