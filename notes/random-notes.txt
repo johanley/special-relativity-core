@@ -91,9 +91,24 @@ Adler 1987
 8.
 Things I don't know about.
 Light-cone coords (null coords).
+Milne-Bondi's 'k-calculus': k is just D in the radial case. 
+Uses of rapidity 
 Math: Quaternions for 4-vectors.
 Math: Spinors in SR.
-Math: Hyperbolic functions.
+Math: Hyperbolic functions in SR
+
+
+Things to explore more
+----------------------
+Astrophysical jets
+Electromagnetic fields
+Polarization
+Expanding spheres
+Infer color from spectra (response functions of the human eye)
+Photorealistic night sky at relativisitic speeds
+Interstellar navigation at relativistic speeds
+Sandbox for Minkowski space
+
 
 Tools and simulations
 ----------------------

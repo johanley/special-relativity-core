@@ -30,6 +30,22 @@ accelerated traveler differ from their description in special relativity
 for motion at constant velocity."
 
 2016
+Relativity on rotated graph paper
+Roberto B. Salgadoa (University of Wisconsin)
+American Journal of Physics 84, 344 (2016); https://doi.org/10.1119/1.4943251 Bibcode: 2016AmJPh..84..344S 
+"We demonstrate a method for constructing spacetime diagrams for special relativity on graph paper that has been 
+rotated by 45°. The diagonal grid lines represent light-flash worldlines in Minkowski spacetime, and the boxes in the 
+grid (called “clock diamonds”) represent units of measurement corresponding to the ticks of an inertial observer's light 
+clock. We show that many quantitative results can be read off a spacetime diagram simply by counting boxes, with very 
+little algebra. In particular, we show that the squared interval between two events is equal to the signed area of the 
+parallelogram on the grid (called the “causal diamond”) with opposite vertices corresponding to those events. We use 
+the Doppler effect—without explicit use of the Doppler formula—to motivate the method."
+See as well: https://www.physicsforums.com/insights/spacetime-diagrams-light-clocks/
+See as well: https://physics.stackexchange.com/questions/449583/invariance-of-the-relativistic-interval
+See: Bondi k-calculus and by the "product of times" formula seen in A.A. Robb's "Optical geometry of motion"
+Visualization:  https://www.geogebra.org/m/Jq4jDMRW
+
+2016
 Visualizing relativity: The OpenRelativity project
 Zachary W. Sherin, Ryan Cheua), and Philip Tan (MIT)
 American Journal of Physics 84, 369 (2016)
@@ -127,6 +143,12 @@ optical effects of relativity are prominent, while systematic exploration of the
 user to discover relativistic effects such as length contraction and the relativity of simultaneity. We
 report on the physics and technology underpinning the simulation, and our experience using it for
 teaching special relativity to first year students."
+
+2005
+The Quantum Theory of Fields: Foundations
+Steven Weinberg
+Cambridge University Press, 2005 
+See his remarks on groups in SR.
 
 2004
 Relativistic Velocity Space, Wigner Rotation, and Thomas Precession
@@ -242,7 +264,7 @@ American Journal of Physics 62, 11 (1994); https://doi.org/10.1119/1.17728
 https://aapt.scitation.org/doi/10.1119/1.17728 full text of letter
 "I suspect this flaw in their early education explains why a majority of the CERN theorists he polled 
 gave the wrong answer to John Bell's simple question whether the Fitzgerald contraction could snap
-a suitably constraind moving thread."
+a suitably constrained moving thread."
 
 1991
 [y] Classroom exercises with the Terrell effect
@@ -281,7 +303,7 @@ Am. J. Phys. vol 57 No. 6 June 1989
 displays have been developed for personal computers that help students visualize this world. They are in the form of 
 interactive graphics utilities that students use to carry out homework exercises and take-home projects. Sequential 
 versions of these programs have been used for 3 years in classes in various institutions. This article describes the 
-programs and reports on the educational outcomes of these computer uses.:
+programs and reports on the educational outcomes of these computer uses."
 
 
 1989
@@ -388,8 +410,6 @@ photography in general are discussed, and numerous illustrations are given of th
 objects of simple geometrical shapes."
 
 
-
-
 1979
 [y] Relativistic Transformations of Light Power
 John M. McKinley, Oakland University
@@ -427,6 +447,23 @@ useful concepts already acquired."
 [y] The Classical Theory of Fields, 4th edition 1975
 L. D. Landau, E. M. Lifschitz
 
+
+1972
+Lorentz Transformation Properties of the Stokes Parameters
+W. J. COCKE & D. A. HOLM 
+Nature Physical Science volume 240, pages161–162(1972) Published: 18 December 1972
+https://doi.org/10.1038/physci240161b0
+"FERGUSON (ref. 1 and unpublished work) and Cocke, Ferguson, and Muncaster (in preparation) have 
+interpreted the optical polarization of the Crab Nebula pulsar by means of a rotating relativistic 
+vector model. It was assumed in this work that the percentage linear polarization of a collimated 
+beam of light is the same when measured by different observers in relative motion with respect to 
+each other. This assumption led us to investigate the general Lorentz transformation characteristics 
+of partially elliptically polarized radiation, and in this paper we study the transformation 
+properties of the Stokes parameters. This problem has astrophysical interest, not only for the 
+Crab Nebula pulsar, but also for other cosmic sources emitting elliptically polarized radiation, 
+such as the synchrotron sources studied by Pacholczyk and Swihart2."
+
+
 1972
 [y] Gravitation and Cosmology
 QC 6 .W47 1972
@@ -452,10 +489,9 @@ pointed out that the phenomenon is closely analogous to the relativistic Doppler
 [They correct Terrell, saying it's not a pure rotation, but nonuniform shear + extension/contraction, even in the 
 case of small solid angle.]
 
-
 1970
 A Useful Form of the Minkowski Diagram
-Leonard Parker and Glenn M. Schmieg
+Leonard Parker and Glenn M. Schmieg (University of Wisconsin-Milwaukee)
 American Journal of Physics 38, 1298 (1970); https://doi.org/10.1119/1.1976076
 "We give a diagrammatic representation of the diagonal form of the special Lorentz transformation. The null 
 coordinates x±ct are plotted along a single set of orthogonal axes. Special Lorentz transformations are then represented 
@@ -463,6 +499,21 @@ only by a change of scale along those orthogonal axes. This diagram, which we ca
 Minkowski diagram are closely connected. To demonstrate the use of the null coordinate diagram, we apply it to the 
 linear Doppler effect, time dilation, and Lorentz contraction."
 [Also called light-cone coords?? https://en.wikipedia.org/wiki/Light-cone_coordinates]
+Full text as slides: https://vdocuments.site/a-useful-form-of-the-minkowski-diagram.html
+ct + x, ct - x; diagonal; puts the evectors of the LT into the matrix
+
+1970
+Special Relativity and Diagonal Transformations
+Leonard Parker and Glenn M. Schmieg (University of Wisconsin-Milwaukee)
+American Journal of Physics 38, 218 (1970); https://doi.org/10.1119/1.1976289
+"We discuss the form of the special Lorentz transformation, and the corresponding transformation of the electromagnetic 
+field, in which the transformation matrix is diagonal. We derive the diagonal form of the special Lorentz transformation 
+directly, in a simple way, and show that it is sometimes more convenient to apply than the algebraically equivalent 
+conventional form of the transformation. The convenience is especially evident in deriving the linear Doppler effect, 
+and the relativistic addition of more than two parallel velocities. By writing Maxwell's equations in terms of linear 
+combinations of coordinates which have simple transformation properties, we arrive at the transformation equations of 
+the Maxwell fields in a diagonal form, as well as at the plane wave solutions, in a natural manner. The derivations 
+and applications described above should be of use in a course on relativity because of their simplicity and directness."
 
 1970
 [y] Geometrical Appearances at Relativistic Speeds
@@ -495,7 +546,7 @@ Sky Telesc. 33, 290–294 (1967)
 [y] Appearance of relativistically expanding radio sources
 M. J. Rees, University of Cambridge
 Nature vol 211 July 30 1966
-"In this article it is suggested that the central parts of some radio sources may expand with relativistic velacities.
+"In this article it is suggested that the central parts of some radio sources may expand with relativistic velocities.
 Relativistic effects could then have a decisive influence on the observable properties of thes sources. In particular, 
 the flux from a radio source expanding with relativistic velocity can change sufficiently rapidly to account for the
 variations observed in some sources, even if they are at cosmological distances. A related relativistic effect would 
@@ -535,6 +586,7 @@ Rev. Mod. Phys. 36, 820 (1964) - Published 1 July 1964
 Measurement of the Relativistic Time Dilation Using μ-Mesons
 David H. Frisch and James H. Smith (Massachusetts Institute of Technology)
 American Journal of Physics 31, 342 (1963); https://doi.org/10.1119/1.1969508
+Video: https://www.youtube.com/watch?v=rbzt8gDSYIM
 "An experiment has been performed to demonstrate the relativistic time dilation as a large effect, using only comparatively 
 simple equipment. μ-mesons incident on top of Mt. Washington, New Hampshire, were selected to have speeds in the range between 
 0.9950c and 0.9954c. The number of these which survived to reach sea level was measured in Cambridge, Massachusetts. The 
@@ -661,7 +713,7 @@ of the major features of the Lorentz transformation."
 
 1944
 Special Theory of Relativity in Hyperbolic Functions
-Vladimir Karapetoff
+Vladimir Karapetoff (Cornell)
 Rev. Mod. Phys. 16, 33 (1944) - Published 1 January 1944
 https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.16.33
 "The purpose of the essay is to show the advantages of hyperbolic functions in restricted relativity...."
