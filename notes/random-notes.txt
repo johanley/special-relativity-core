@@ -98,13 +98,37 @@ Math: Spinors in SR.
 Math: Hyperbolic functions in SR
 
 
-Things to explore more
-----------------------
+Things to possibly explore more
+-------------------------------
 Astrophysical jets
-Electromagnetic fields
-Polarization
+Electromagnetic fields - transform
+Polarization - transform
 Expanding spheres
 Infer color from spectra (response functions of the human eye)
+  color blindness
+  changes in the eye with age
+  https://www.iso.org/standard/74164.html
+     daytime only
+    The standard scotopic luminosity function or V′(λ) was adopted by the CIE in 1951, based on measurements by Wald (1945) and by Crawford (1949).
+       http://www.cvrl.org/database/text/lum/scvl.htm
+          under 30 years of age only!     
+  https://en.wikipedia.org/wiki/Luminosity_function
+    The CIE distributes standard tables with luminosity function values at 5 nm intervals from 380 nm to 780 nm
+    https://web.archive.org/web/20170131100357/http://files.cie.co.at/204.xls
+    http://www.cie.co.at/index.php/LEFTMENUE/index.php?i_ca_id=298 - 404
+  https://light-measurement.com/spectral-sensitivity-of-eye/
+    CIE spectral luminous efficiency function V(λ) - day
+    CIE spectral luminous efficiency function V'(λ) - night
+  https://www.olympus-lifescience.com/fr/microscope-resource/primer/lightandcolor/humanvisionintro/
+     "There are shifts in color sensitivity with variations in light levels, so that blue colors look relatively brighter 
+     in dim light and red colors look brighter in bright light."
+     
+     "The human eye is much more sensitive to yellow-green or similar hues, particularly at night..."
+     
+     "Metamers are pairs of different light spectra perceived as the same color by the human brain. Interestingly, 
+     colors that are interpreted as the same or similar by a human are sometimes readily distinguishable by other animals,
+     most notably birds."
+       
 Photorealistic night sky at relativisitic speeds
 Interstellar navigation at relativistic speeds
 Sandbox for Minkowski space
