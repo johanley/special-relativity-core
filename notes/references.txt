@@ -372,6 +372,13 @@ Though fallacious, this assumption has consequences which merit the concerned at
 science community, especially teachers of physics. The falseness of the assumption can be made apparent by 
 several fairly simple considerations, appropriate for brief classroom presentation."
 
+1982
+Polarization properties of a source in relativistic motion
+Bjornsson, C.-I. (ESO)
+Astrophysical Journal, Part 1, vol. 260, Sept. 15, 1982, p. 855-867.
+1982ApJ...260..855B
+http://adsabs.harvard.edu/full/1982ApJ...260..855B full text
+See section II for LT of polarization params.
 
 1982
 Dirac’s light‐cone coordinate system
