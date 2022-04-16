@@ -5,7 +5,7 @@ Core data and operations commonly needed in special relativity.
 
 **Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
-*But*, the light-slice view is significantly different from the time-slice view. 
+*However*, **the light-slice view is significantly different from the time-slice view.** 
 In the forward direction (for the light-slice view), the flattening is replaced by an actual expansion, while in the reverse direction 
 the flattening increases (and doubles in the ultra-relativistic limit). 
 Similarly, the Doppler factor significantly changes how frequencies (clocks) are measured by a single detector.
