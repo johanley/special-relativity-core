@@ -3,26 +3,26 @@ Core data and operations commonly needed in special relativity.
 
 ## What I've learned so far in this project
 
-**Strange but true**: a boost changes the *measured* rates all clocks in the universe except for those moving the same way as you. 
+**Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
 *But*, the light-slice view is significantly different from the time-slice view. 
-In the forward direction, the flattening is replaced by an actual expansion, while in the reverse direction 
-the flattening increases (doubling in the ultra-relativistic limit). 
+In the forward direction (for the light-slice view), the flattening is replaced by an actual expansion, while in the reverse direction 
+the flattening increases (and doubles in the ultra-relativistic limit). 
 Similarly, the Doppler factor significantly changes how frequencies (clocks) are measured by a single detector.
 
 **Time dilation and length contraction are two sides of the same coin.**
-The traveler measures flattening along the line of motion (and no time dilation on the spacecraft). 
-The stay-at-home measures time dilation on the spacecraft (but no flattening along the line of its motion).
+The traveler measures flattening-of-the-world along the line of motion (and no time dilation on the spacecraft). 
+The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
 
 
 **The term *length contraction* is a misleading one.**
 The effect changes more than length: it changes geometry, angles, length, shape.
 A better word is *flattening*.
 Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
-It's only that special case in which the effects are limited to a change of length.
+Only that special case has geometrical changes characterized solely as a change of length.
 In every other case, the stick will change both length and direction.
 
-**To see the 3D geometry in a given frame, you always need a time-slice in the given frame.**
+**To see the 3D geometry in a given frame, you always need a time-slice in the given frame (not a light-slice).**
 To see the length of a stick (in a given frame), you need a time-slice (in that frame).
 To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
 
@@ -50,10 +50,10 @@ left out as a special case.
 
 **The prototype for a 4-vector isn't an event x, it's rather
 <a href='http://www.scholarpedia.org/article/Special_relativity:_mechanics'>the differential Δx</a>.**
-This is because of the displacement operation: it applies to events, but to nothing else:
+This is because of the displacement-of-the-origin operation: it applies to events, but to nothing else:
 it doesn't apply to differential 4-vectors, which aren't sensitive to the location of the origin.
 I had forgotten this.
-It's interesting how coding this led me to the same conclusion: applying a displacement 
+It's interesting how coding this led me to the same conclusion: applying a displacement-of-the-origin 
 to a 4-velocity made no sense, and this became obvious in the computed result.
 The displacement operation needs special handling, because it doesn't apply to differential 4-vectors (only to events).
 
@@ -120,6 +120,6 @@ Light-slice: a receding stick is always shorter than the Lorentz-Fitzgerald cont
 At ultra-relativistic speeds, in the limit the length is half of the L-F length.
 An approaching stick is always longer than the rest length.
 This means that there are dramatic differences in geometry between a time-slice and a light-slice. 
-This is especially in the forward direction: a time-slice has flattening by the factor 1/Γ, but 
+This is especially true in the forward direction: a time-slice has flattening by the factor 1/Γ, but 
 the light-slice shows expansion!
 
