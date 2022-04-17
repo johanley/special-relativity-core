@@ -3,16 +3,9 @@ Core data and operations commonly needed in special relativity.
 
 ## What I've learned so far in this project
 
-**Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
-A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
-*However*, **the light-slice view is significantly different from the time-slice view.** 
-In the forward direction (for the light-slice view), the flattening is replaced by an actual expansion, while in the reverse direction 
-the flattening increases (and doubles in the ultra-relativistic limit). 
-Similarly, the Doppler factor significantly changes how frequencies (clocks) are measured by a single detector.
-
-**Time dilation and length contraction are two sides of the same coin.**
-The traveler measures flattening-of-the-world along the line of motion (and no time dilation on the spacecraft). 
-The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
+**To see the 3D geometry in a given frame, you always need a time-slice in the given frame (not a light-slice).**
+To see the length of a stick (in a given frame), you need a time-slice (in that frame).
+To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
 
 
 **The term *length contraction* is a misleading one.**
@@ -22,9 +15,20 @@ Length contraction emphasizes a special case: when a stick is parallel to the li
 Only that special case has geometrical changes characterized solely as a change of length.
 In every other case, the stick will change both length and direction.
 
-**To see the 3D geometry in a given frame, you always need a time-slice in the given frame (not a light-slice).**
-To see the length of a stick (in a given frame), you need a time-slice (in that frame).
-To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
+
+
+**Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
+A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
+*However*, **the light-slice view is significantly different from the time-slice view.** 
+In the forward direction (for the light-slice view), the flattening is replaced by an actual expansion, while in the reverse direction 
+the flattening increases (and doubles in the ultra-relativistic limit). 
+Similarly, the Doppler factor significantly changes how frequencies (clocks) are measured by a single detector.
+
+
+**Time dilation and length contraction are two sides of the same coin.**
+The traveler measures flattening-of-the-world along the line of motion (and no time dilation on the spacecraft). 
+The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
+
 
 
 **Hollywood simulations of stars streaking rapidly by a relativistic spacecraft are definitely not realistic.** 
