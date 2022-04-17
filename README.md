@@ -4,8 +4,8 @@ Core data and operations commonly needed in special relativity.
 ## What I've learned so far in this project
 
 **To see the 3D geometry in a given frame, you always need a time-slice in the given frame (not a light-slice).**
-To see the length of a stick (in a given frame), you need a time-slice (in that frame).
-To see the direction in which the stick is pointing (in a given frame), you need a time-slice (in that frame).
+To measure the length of a stick (in a given frame), you need a time-slice (in that frame).
+To measure the direction in which a stick is pointing (in a given frame), you need a time-slice (in that frame).
 
 
 **The term *length contraction* is a misleading one.**
