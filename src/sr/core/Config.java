@@ -26,7 +26,6 @@ public final class Config {
   
   /** 
    A tiny value, used to detect values that are 'close enough' to 0 to be treated as such.
-    
   */
   public static Double ε() {
     return epsilon.get();

@@ -20,7 +20,7 @@
  If the caller needs to use different spatial coords, then the caller needs to 
  change to Cartesian coords before/after interacting with this library.
  
- <P>The metric used in the <em>Classical Theory of Fields</em> is used here: (+,-,-,-,).
+ <P>The metric used in the <em>Classical Theory of Fields</em> by Landau and Lifshitz (1975) is used here: (+,-,-,-,).
  With that metric, all time-like intervals are real numbers, not imaginary.
  
  <P>This library is not optimized for execution speed.

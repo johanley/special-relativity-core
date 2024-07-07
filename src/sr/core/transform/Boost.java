@@ -5,7 +5,7 @@ import sr.core.Physics;
 import static sr.core.Util.mustBeSpatial;
 
 /**
- Lorentz Transformation of a {@Vector4}.
+ Lorentz Transformation of a {@FourVector}, along one of the spatial axes.
  Note that a LorentzTransformation applies not just to an event, but to any 4-vector. 
 
 <P>The geometry:

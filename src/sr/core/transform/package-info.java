@@ -11,7 +11,7 @@
   Reflections about an <em>even</em> number of spatial axes reduce to a rotation, so you usually  
   exclude such operations, as being already enumerated as a spatial rotation operation. 
   <li>{@link Rotate}: spatial <em>rotation</em> (3 spatial axes only in this case)
-  <li>{@link Boost}: the Lorentz Transformation.
+  <li>{@link Boost}: the Lorentz Transformation, modeled here as "mixing" the time axis with one of the spatial axes.
  </ul>
 
  <P>The {@link Displace} operation is an oddball: it's the only operation that changes the zero-vector 
@@ -21,6 +21,5 @@
  
  <P>{@CoordTransform} operations can be chained together in a {@link CoordTransformPipeline}. 
  A pipeline can also be reversed, to compute the inverse transformation from K' to K.
- 
 */
 package sr.core.transform;

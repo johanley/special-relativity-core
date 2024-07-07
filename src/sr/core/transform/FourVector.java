@@ -14,16 +14,16 @@ import sr.core.Util;
 
 /**
  By definition, a 4-vector is an ordered tuple of physical quantities 
- whose parts (1 time-part and 3 space-parts) transform the same ways as the displacement vector Δx.  
+ whose parts (1 time-part and 3 space-parts) transform in the same way as the parts of the displacement vector Δx.  
  
  <P>Classical Theory of Fields treats events as the prototype 4-vector:
  <em>"In general a set of four quantities A0, A1, A2, A3, which transform like the components of the radius
  four-vector x_i under transformations of the four-dimensional coordinate system 
  is called a four-dimensional vector (four-vector) A_i."</em>. 
  
- <P>However, the above seems inexact (the affine versus linear issue): it's likely best to regard the displacement Δx as the prototype 4-vector, 
+ <P>However, the above seems inexact (the affine versus linear issue): it's likely best to regard the displacement Δx<sup>i</sup> as the prototype 4-vector, 
  not the event coordinates x (see <a href='http://www.scholarpedia.org/article/Special_relativity:_mechanics'>Rindler</a>). 
- (The 4-momentum isn't affected by changes to the origin, but x is.)
+ (The 4-momentum isn't affected by changes to the origin, but x<sup>i</sup> is.)
  
  <P>In this implementation, the components are named ct, x, y, and z.
  For an event, these label distances and times; for any other 4-vector, they simply label the components.
@@ -40,6 +40,8 @@ public class FourVector implements Comparable<FourVector> {
    Factory method.
    Since this library uses units in which c=1 always, note that the 0th coord can be taken 
    either as t, or ct.
+  
+  <P>If this four-vector is not an event, then the parameter names <code>(ct,x,y,z)</code> represent labels, not values.
   
    <P>If you are working in less than 3 spatial dimensions, then pass 0 for the unused spatial coords (don't pass null).
    @throws RuntimeException if any param is null 

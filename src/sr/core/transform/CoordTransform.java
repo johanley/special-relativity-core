@@ -29,7 +29,7 @@ public interface CoordTransform {
    For a given 4-vector, transform its components from frame K to K'. 
    The inverse operation is {@link #toNewFourVector(FourVector)}.
    
-   @param vec the compontents in the K frame.
+   @param vec the components in the K frame.
    @return the components in the K' frame. 
   */
   FourVector toNewFrame(FourVector vec);
@@ -48,7 +48,7 @@ public interface CoordTransform {
    
    Convenience method for implementations to validate their result. 
    This will not apply to all coord transforms.  
-   By default, assertions are turned off at runtime. 
+   Uses an assertion, which are turned off at runtime by default. 
   */
   static void sameIntervalFromOrigin(FourVector a, FourVector b) {
     assert isTiny(a.magnitudeSq() - b.magnitudeSq()) : "Magnitude-squared has changed too much";

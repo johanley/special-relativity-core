@@ -8,11 +8,7 @@ package sr.core.transform;
  differential, and aren't affected by changes to the origin.
  See {@link ApplyDisplaceOp}.
  
- <P>Also note that this transform is the only one that:
- <ul>
-  <li>can't be represented as a matrix
-  <li>uses numbers that have dimensions
- </ul>
+ <P>Also note that this transform is the only one that uses numbers that have dimensions.
 */
 public final class Displace implements CoordTransform {
   
