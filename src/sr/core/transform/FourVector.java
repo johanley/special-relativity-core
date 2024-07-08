@@ -183,16 +183,14 @@ public class FourVector implements Comparable<FourVector> {
     return Objects.hash(getSigFields());
   }
   
-  /** Debugging only. */
   @Override public String toString() {
     String sep = ", ";
-    return "[" + ct+sep+ x+sep+ y+sep+ z+sep + applyDisplaceOp+ "]";
+    return "[" + round(ct)+sep+ round(x)+sep+ round(y)+sep+ round(z)+sep+ applyDisplaceOp + "]";
   }
   
-  /** Debugging only. */
-  public final String toStringRounded() {
+  public final String toStringNoRounding() {
     String sep = ", ";
-    return "[" + round(ct)+sep+ round(x)+sep+ round(y)+sep+ round(z)+sep+ applyDisplaceOp + "]";
+    return "[" + ct+sep+ x+sep+ y+sep+ z+sep + applyDisplaceOp+ "]";
   }
 
   /** Sorts by the time-component first, then by x-y-z. */
