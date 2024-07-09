@@ -18,9 +18,9 @@ import sr.core.transform.FourVector;
  Measure the flattening effect on a stick, using a time-slice.
  As always, a time-slice is needed to see the geometrical properties of an object (length, orientation).
  
- <P>Firstly, the stick is pointed in the direction of the boost (along the X-axis).
+ <P>First, the stick is pointed in the direction of the boost (along the X-axis).
  
- <P>Secondly, place a stick at an angle with respect to the X-axis (not 0 or 90 degrees). 
+ <P>Second, place a stick at an angle with respect to the X-axis (not 0 or 90 degrees). 
  Do a boost along the X-axis.
  In the boosted frame, the angle of the stick with respect to the X-axis will change.
  The stick will "rotate away" from the direction of the boost. 
@@ -63,6 +63,8 @@ public class StickFlattening {
     <li>measure the stick in K'
     <li>its length is now 1/1.25 = 0.8
    </ul>
+   
+   @param β the boost speed along the X-direction 
   */
   void stickAlongAxis(List<String> lines, Double β) {
     lines.add(Util.NL + "1. Boost speed " + β + ". Stick along the X-axis in the unboosted grid.");
@@ -169,7 +171,24 @@ public class StickFlattening {
     lines.add("K' stick angle directly from a formula: " + Util.round(Util.radsToDegs(Physics.stickAngleAfterBoost(angle1, β)),4) + "°");
   }
   
-  /** Compare numbers with exploration of the Sliberstein (Thomas-Wigner) rotation. */
+  /** 
+   Compare numbers with the exploration of the Sliberstein (Thomas-Wigner) rotation.
+   
+   In K:
+   <ul>
+    <li>the stick is stationary
+    <li>it's on the XY-plane.
+    <li>it's angled at 24.228° with respect to the X-axis. 
+    <li>it goes from the origin to (X,Y,Z) = (0.9119, 0.4104, 0.0) and its length is 1.
+   </ul>
+   
+   In K', boosted with the given speed β with respect to K along the X axis:
+   <ul>
+    <li>the stick is squished in the X-direction only
+    <li>its angle with respect to the X axis increases to 43.152°, an increase of 18.925°.
+    <li>18.925° is the Sliberstein (Thomas-Wigner) rotation angle taken from the original corner-boost example. 
+   </ul>
+  */
   void stickAngledToXAxisWithEquivalentBoostParams(List<String> lines) {
     lines.add(Util.NL + "3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.");
     lines.add("Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.");
