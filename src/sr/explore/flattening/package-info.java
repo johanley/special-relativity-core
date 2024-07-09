@@ -1,8 +1,8 @@
 /**
- The spatial flattening that occurs with every boost.
+ The flattening effect (Lorentz-Fitzgerald contraction).
  
  The term <em>length contraction</em> is misleading.
- The flattening changes geometry: length, shape and angles.
+ The flattening changes geometry: length <em>and</em> angles.
  To limit the term to length seems misleading. 
  It places too much emphasis on a special case: when a stick is parallel to the line of a boost.
  When a stick is at an angle to the line of the boost, then the stick both 

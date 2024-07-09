@@ -94,9 +94,20 @@ public final class Util {
     }
   }
 
+  /** For logging, a separation line for titles and so on. */
+  public static String separator(int length) {
+    StringBuilder result = new StringBuilder();
+    for(int idx = 0; idx < length; ++idx) {
+      result.append(SEP);
+    }
+    return result.toString();
+  }
+
   // PRIVATE 
   
   private static final double CONVERT_RADS = Math.PI/180.0;
+  private static final String SEP = "-";
+
   
   /** The default is the directory of the given class. Override the base dir with a System property 'sr-output-dir'. */
   private static String outputDirectory(Class<?> aClass) {
