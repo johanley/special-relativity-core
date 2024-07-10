@@ -1,4 +1,4 @@
-Lorentz factor Γ as a function of speed β=v/c:
+The Lorentz factor Γ as a function of speed β=v/c:
 
 β                               Γ                   
 --------------------------------------------------

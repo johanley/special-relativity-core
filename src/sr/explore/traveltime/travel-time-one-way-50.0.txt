@@ -1,4 +1,4 @@
-One-way trip at uniform velocity, traveling a distance of 50.0 light-years.
+TEST One-way trip at uniform velocity, traveling a distance of 50.0 light-years.
 Travel-time is proper time.
 Acts like a wormhole, from the point of view of the traveler.
 
