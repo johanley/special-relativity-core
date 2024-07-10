@@ -1,6 +1,5 @@
 package sr.explore.flattening;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -13,6 +12,7 @@ import sr.core.history.StationaryParticle;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
+import sr.explore.TextOutput;
 
 /** 
  Measure the flattening effect on a stick, using a time-slice.
@@ -26,26 +26,25 @@ import sr.core.transform.FourVector;
  The stick will "rotate away" from the direction of the boost. 
  At ultra-relativistic speeds, the rotated stick will approach the direction of 90 degrees away from the X-axis.
 */
-public class StickFlattening {
+public class StickFlattening extends TextOutput {
   
   public static void main(String[] args) {
-    StickFlattening stick = new StickFlattening();
-    List<String> lines = new ArrayList<>();
-
-    stick.stickAlongAxis(lines, 0.6);
-    stick.stickAlongAxis(lines, 0.9999);
+    StickFlattening stickFlattening = new StickFlattening();
+    stickFlattening.explore();
+  }
+  
+  public void explore() {
+    stickAlongAxis(lines, 0.6);
+    stickAlongAxis(lines, 0.9999);
     lines.add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");
     
-    stick.stickAngledToXAxis(lines, 0.6);
-    stick.stickAngledToXAxis(lines, 0.9999);
+    stickAngledToXAxis(lines, 0.6);
+    stickAngledToXAxis(lines, 0.9999);
     lines.add(Util.NL + "Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
     
-    stick.stickAngledToXAxisWithEquivalentBoostParams(lines);
+    stickAngledToXAxisWithEquivalentBoostParams(lines);
     
-    Util.writeToFile(StickFlattening.class, "stick-flattening.txt", lines);
-    for(String line : lines) {
-      System.out.println(line);
-    }
+    outputLines("stick-flattening.txt");
   }
   
   /**

@@ -12,9 +12,13 @@ public final class TravelTime extends TextOutput {
   
   public static void main(String... args) {
     TravelTime tt = new TravelTime();
+    tt.explore();
+  }
+  
+  public void explore() {
     double lightyears = 50.0;
-    tt.oneWayTripUniformVelocity(lightyears);
-    tt.twoWayTripUniformSpeed(lightyears);
+    oneWayTripUniformVelocity(lightyears);
+    twoWayTripUniformSpeed(lightyears);
   }
   
   /** 

@@ -14,10 +14,10 @@ public class SpeedsAndGammas extends TextOutput {
   
   public static void main(String... args) {
     SpeedsAndGammas speeds = new SpeedsAndGammas();
-    speeds.execute();
+    speeds.explore();
   }
   
-  void execute() {
+  void explore() {
     lines.add("The Lorentz factor Γ as a function of speed β=v/c:" + Util.NL);
     lines.add(table.row("β", "Γ"));
     lines.add(Util.separator(50));
