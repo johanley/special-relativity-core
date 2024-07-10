@@ -18,7 +18,7 @@ public class TextOutput {
   /** 
    Display the text output both to the console and to a text file. 
    The output file is in the same directory as the calling class.
-   When finished, the lines are abandoned, and an new list of empty lines is created.
+   When finished, the lines are abandoned, and an new list of lines is created (with a single empty line).
   */
   protected void outputLines(String fileName) {
     for(String line : lines) {
@@ -28,6 +28,7 @@ public class TextOutput {
     //(it only works when this class is subclassed!)
     Util.writeToFile(this.getClass(), fileName, lines);
     lines = new ArrayList<>();
+    lines.add(Util.NL);
   }
 
 }

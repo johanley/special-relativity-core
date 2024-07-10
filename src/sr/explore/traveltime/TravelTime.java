@@ -24,9 +24,9 @@ public final class TravelTime extends TextOutput {
   */
   void oneWayTripUniformVelocity(double lightyears) {
     lines.add("One-way trip at uniform velocity, traveling a distance of " + lightyears + " light-years.");
-    lines.add("Travel-time is proper time.");
+    lines.add("Proper-time is the traveler's wrist-watch time.");
     lines.add("Acts like a wormhole, from the point of view of the traveler." + Util.NL);
-    lines.add(table.row("β speed", "travel-time (y)", "coord-time (y)"));
+    lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
     lines.add(Util.separator(65));
     for(Speed speed : Speed.nonExtremeValues()) {
       if (speed.β() > 0) {
@@ -45,10 +45,10 @@ public final class TravelTime extends TextOutput {
    A two-way trip acts like a time machine into the future: the traveler gets into the deep future faster than usual.
   */
   void twoWayTripUniformSpeed(double lightyears) {
-    lines.add("Round trip, same speed on both outbound and inbound, traveling out " + lightyears + " light years and back.");
-    lines.add("Travel-time is proper time.");
+    lines.add("Round trip, same speed both outbound and inbound, traveling out " + lightyears + " light years and back.");
+    lines.add("Proper-time is the traveler's wrist-watch time.");
     lines.add("For the traveler, this acts like a time machine into the future." + Util.NL);
-    lines.add(table.row("β speed", "travel-time (y)", "coord-time (y)"));
+    lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
     lines.add(Util.separator(65));
     for(Speed speed : Speed.nonExtremeValues()) {
       if (speed.β() > 0) {

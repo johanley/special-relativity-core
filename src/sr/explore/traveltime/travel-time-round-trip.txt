@@ -1,8 +1,10 @@
-Round trip, same speed on both outbound and inbound, traveling out 50.0 light years and back.
-Travel-time is proper time.
+
+
+Round trip, same speed both outbound and inbound, traveling out 50.0 light years and back.
+Proper-time is the traveler's wrist-watch time.
 For the traveler, this acts like a time machine into the future.
 
-β speed             travel-time (y)     coord-time (y)      
+β speed             proper-time (y)     home-time (y)       
 -----------------------------------------------------------------
 0.1                 994.9874            1000.0              
 0.2                 489.8979            500.0               
