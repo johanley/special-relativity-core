@@ -6,6 +6,7 @@ import java.util.List;
 
 import sr.core.Speed;
 import sr.core.Util;
+import sr.explore.Table;
 
 /** 
  Simply list speeds and their corresponding Lorentz factors.
@@ -14,22 +15,17 @@ import sr.core.Util;
 public class SpeedsAndGammas {
   
   public static void main(String... args) {
+    Table table = new Table("%-32s", "%-20s");
     List<String> lines = new ArrayList<>();
     lines.add("Lorentz factor Γ as a function of speed β=v/c:" + Util.NL);
-    lines.add(column(1,"β") + column(2,"Γ"));
+    lines.add(table.row("β", "Γ"));
     lines.add(Util.separator(50));
     for(Speed speed : Speed.values()) {
-      lines.add(column(1, speed.βBigDecimal()) + column(2, speed.Γ()));
+      lines.add(table.row(speed.βBigDecimal(), speed.Γ()));
     }
     for(String line : lines) {
       System.out.println(line);
     }
     Util.writeToFile(SpeedsAndGammas.class, "speeds-and-gammas.txt", lines);
-  }
-  
-  private static final String[] COLS = {"%-32s", "%-20s"};
-  
-  private static String column(int idx, Object thing) {
-    return String.format(COLS[idx-1], thing);
   }
 }
