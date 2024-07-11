@@ -1,4 +1,3 @@
-
 package sr.explore.speeds;
 
 import sr.core.Speed;
@@ -18,13 +17,14 @@ public class SpeedsAndGammas extends TextOutput {
   }
   
   void explore() {
-    lines.add("The Lorentz factor Γ as a function of speed β=v/c:" + Util.NL);
+    lines.add("The Lorentz factor Γ as a function of speed β=v/c.");
+    lines.add("I find it useful to remember approximate values for β=0.99 and β=0.999." + Util.NL);
     lines.add(table.row("β", "Γ"));
-    lines.add(Util.separator(50));
+    lines.add(dashes(50));
     for(Speed speed : Speed.values()) {
       lines.add(table.row(speed.βBigDecimal(), speed.Γ()));
     }
-    outputLines("speeds-and-gammas.txt");
+    outputTo("speeds-and-gammas.txt");
   }
   
   private Table table = new Table("%-32s", "%-20s");

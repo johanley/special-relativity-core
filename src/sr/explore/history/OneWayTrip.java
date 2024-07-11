@@ -1,6 +1,5 @@
 package sr.explore.history;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,9 +12,11 @@ import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
 import sr.core.history.UniformVelocity;
 import sr.core.transform.NoOpTransform;
+import sr.explore.output.text.Table;
+import sr.explore.output.text.TextOutput;
 
 /**
- Very simple one-way trip from the origin-event to a place B (on the X axis) at uniform speed.
+ Very simple one-way trip from the origin-event to a place B (on the X axis) at a given uniform speed.
  There's only 1 {@link Leg} for this trip.
 */
 public final class OneWayTrip extends HistoryFromLegs {
@@ -23,14 +24,17 @@ public final class OneWayTrip extends HistoryFromLegs {
   /** Run for various values, and output a file. */
   public static void main(String... args) {
     double distance = 1.0;
-    List<String> lines = new ArrayList<>();
-    lines.add("β distance τmax");
-    lines.add("--------------------");
+    
+    TextOutput lines = new TextOutput();
+    Table table = new Table("%-32s", "%-20s");
+    lines.add(table.row("β", "distance", "τmax"));
+    lines.add(Util.separator(50));
+    History trip = null;
     for(Speed speed : Speed.nonExtremeValues()) {
-      History trip = new OneWayTrip(speed.β(), distance);
+      trip = new OneWayTrip(speed.β(), distance);
       lines.add(trip.toString());
     }
-    Util.writeToFile(OneWayTrip.class, "one-way-trip-"+distance + ".txt", lines);
+    lines.outputTo("one-way-trip-"+distance + ".txt", trip);
   }
   
   /**

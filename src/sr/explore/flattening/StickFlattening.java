@@ -44,7 +44,7 @@ public class StickFlattening extends TextOutput {
     
     stickAngledToXAxisWithEquivalentBoostParams(lines);
     
-    outputLines("stick-flattening.txt");
+    outputTo("stick-flattening.txt");
   }
   
   /**

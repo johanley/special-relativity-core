@@ -1,4 +1,5 @@
-The Lorentz factor Γ as a function of speed β=v/c:
+The Lorentz factor Γ as a function of speed β=v/c.
+I find it useful to remember approximate values for β=0.99 and β=0.999.
 
 β                               Γ                   
 --------------------------------------------------
