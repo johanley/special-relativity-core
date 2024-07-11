@@ -1,2 +1,2 @@
 /** Utilities for generating textual output.  */
-package sr.explore.output.text;
+package sr.output.text;

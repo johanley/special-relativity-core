@@ -12,8 +12,8 @@ import sr.core.history.StationaryParticle;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
-import sr.explore.output.text.Table;
-import sr.explore.output.text.TextOutput;
+import sr.output.text.Table;
+import sr.output.text.TextOutput;
 
 /**
  Intersection of the light-cone of a detector with the history of a moving stick.

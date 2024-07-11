@@ -12,8 +12,8 @@ import sr.core.history.HistoryFromLegs;
 import sr.core.history.Leg;
 import sr.core.history.UniformVelocity;
 import sr.core.transform.NoOpTransform;
-import sr.explore.output.text.Table;
-import sr.explore.output.text.TextOutput;
+import sr.output.text.Table;
+import sr.output.text.TextOutput;
 
 /**
  Very simple one-way trip from the origin-event to a place B (on the X axis) at a given uniform speed.

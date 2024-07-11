@@ -2,8 +2,8 @@ package sr.explore.speeds;
 
 import sr.core.Speed;
 import sr.core.Util;
-import sr.explore.output.text.Table;
-import sr.explore.output.text.TextOutput;
+import sr.output.text.Table;
+import sr.output.text.TextOutput;
 
 /** 
  Simply list speeds and their corresponding Lorentz factors.

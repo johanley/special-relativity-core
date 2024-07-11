@@ -12,7 +12,7 @@ import sr.core.history.StationaryParticle;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
-import sr.explore.output.text.TextOutput;
+import sr.output.text.TextOutput;
 
 /** 
  Measure the flattening effect on a stick, using a time-slice.
