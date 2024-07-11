@@ -2,8 +2,8 @@ package sr.explore.traveltime;
 
 import sr.core.Speed;
 import sr.core.Util;
-import sr.explore.Table;
-import sr.explore.TextOutput;
+import sr.explore.output.text.Table;
+import sr.explore.output.text.TextOutput;
 
 /** 
  Travel-time (proper time) for various trips, according to the traveler. 

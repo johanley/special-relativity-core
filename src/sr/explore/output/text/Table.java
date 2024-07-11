@@ -1,4 +1,4 @@
-package sr.explore;
+package sr.explore.output.text;
 
 import java.util.Formatter;
 
