@@ -109,7 +109,7 @@ public final class RelativisticFlyBy {
         for (Double minimumDistance: minimumDistances) {
           RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, minimumDistance, x0prime, timeStep);
           
-          OutputSummary highlights = new OutputHighlights(flyby);
+          OutputSummary highlights = new OutputHighlights(flyby, true);
           OutputSummary maxThetaDot = new OutputMaxThetaDot(flyby);
           
           flyby.compute(highlights, maxThetaDot);

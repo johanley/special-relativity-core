@@ -19,8 +19,13 @@ import sr.output.text.TextOutput;
 */
 final class OutputHighlights extends TextOutput implements OutputSummary {
 
-  OutputHighlights(RelativisticFlyBy flyby){
+  /**
+   Constructor.
+   @param consoleOnly true will suppress output to files.
+  */
+  OutputHighlights(RelativisticFlyBy flyby, Boolean consoleOnly){
     this.flyBy = flyby;
+    this.consoleOnly = consoleOnly;
   }
 
   @Override public void accept(DetectionEvent d) {
@@ -82,6 +87,8 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   private DetectionEvent last;
   private DetectionEvent maxBrightness;
   private DetectionEvent lastVisible;
+  
+  private Boolean consoleOnly;
   
   private RelativisticFlyBy flyBy;
   // description, detectionTime, radsToDegs(θ), D, V, distanceToEmissionEvent);
