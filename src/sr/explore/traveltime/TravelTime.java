@@ -39,7 +39,7 @@ public final class TravelTime extends TextOutput {
         lines.add(table.row(speed.β(), round(travelTime), round(coordTime)));
       }
     }
-    outputTo("travel-time-one-way-trip.txt");
+    outputToConsoleAnd("travel-time-one-way-trip.txt");
   }
 
   /** 
@@ -61,7 +61,7 @@ public final class TravelTime extends TextOutput {
         lines.add(table.row(speed.β(), round(2.0*travelTime), round(2.0*coordTime)));
       }
     }
-    outputTo("travel-time-round-trip.txt");
+    outputToConsoleAnd("travel-time-round-trip.txt");
   }
   
   private Table table = new Table("%-20s", "%-20s", "%-20s");

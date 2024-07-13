@@ -41,7 +41,7 @@ public final class LightSliceOfAStick extends TextOutput {
   void explore() {
     recession();
     approach();
-    outputTo(OUTPUT_FILE_NAME);
+    outputToConsoleAnd(OUTPUT_FILE_NAME);
   }
   
   /**

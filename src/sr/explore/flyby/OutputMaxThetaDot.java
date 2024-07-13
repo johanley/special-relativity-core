@@ -35,14 +35,14 @@ import static sr.core.Util.*;
  <P>In an extreme environment such as the center of a galaxy, the stellar density is much higher, and 
  close approaches would be much more common.
 */
-final class OutputMaxThetaDot implements OutputFlyBy {
+final class OutputMaxThetaDot implements OutputSummary {
   
   OutputMaxThetaDot(RelativisticFlyBy flyBy){
     this.flyBy = flyBy;
   }
   
   /** Here the per-fly-by maximum is computed. */
-  @Override public void accept(Detection d) {
+  @Override public void accept(DetectionEvent d) {
     if (count == 0) {
       //first detection for this flyby/object
       previousDetection = d;
@@ -82,7 +82,7 @@ final class OutputMaxThetaDot implements OutputFlyBy {
   
   /** Radians per year. */
   static Double globalMaxThetaDot() { return globalMaxThetaDot; }
-  static Detection globalDetectionWithMaxThetaDot() { return globalMaxDetection; }
+  static DetectionEvent globalDetectionWithMaxThetaDot() { return globalMaxDetection; }
   static RelativisticFlyBy globalFlyByWithMaxThetaDot() { return globalMaxFlyBy; }
   
   static String globalMax() {
@@ -96,11 +96,11 @@ final class OutputMaxThetaDot implements OutputFlyBy {
   
   private int count = 0;
   private RelativisticFlyBy flyBy;
-  private Detection previousDetection;
-  private Detection maxDetection;
+  private DetectionEvent previousDetection;
+  private DetectionEvent maxDetection;
   private Double maxThetaDot = 0.0;
   
-  private static Detection globalMaxDetection;
+  private static DetectionEvent globalMaxDetection;
   private static Double globalMaxThetaDot = 0.0;
   private static RelativisticFlyBy globalMaxFlyBy;
 }

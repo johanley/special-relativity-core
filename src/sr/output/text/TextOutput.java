@@ -6,7 +6,7 @@ import java.util.List;
 import sr.core.Util;
 
 /**
- Output lines of text.
+ Output lines of text to the console and a file.
  If the output is tabular, then {@link Table} should be used to generate the lines for table rows.
  
  <P>This class can be either subclassed, or used as a field (only slightly more work).
@@ -40,7 +40,7 @@ public class TextOutput {
    The output file is in the same directory as the calling class.
    When finished, the lines are abandoned, and an new list of lines is created (with a single empty line).
   */
-  protected void outputTo(String fileName) {
+  protected void outputToConsoleAnd(String fileName) {
     //the 'this' reference is not this class, but the class of the subclass
     output(fileName, this);
   }
@@ -49,8 +49,6 @@ public class TextOutput {
     for(String line : lines) {
       System.out.println(line);
     }
-    //the 'this' reference is not this class, but the class of the caller
-    //(it only works when this class is subclassed!)
     Util.writeToFile(caller.getClass(), fileName, lines);
     lines = new ArrayList<>();
     lines.add(Util.NL);

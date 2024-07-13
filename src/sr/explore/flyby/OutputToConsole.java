@@ -1,16 +1,22 @@
 package sr.explore.flyby;
 
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.List;
 
-/** Simply echo each {@link Detection} to the console. */
-final class OutputToConsole implements Consumer<Detection>, OutputFlyBy {
+/** 
+ Echo every {@link DetectionEvent} to the console.
+*/
+final class OutputToConsole implements OutputSummary {
   
-  @Override public void accept(Detection d) {
-    System.out.println(d);
+  @Override public void accept(DetectionEvent d) {
+    detections.add(d);
   }
 
-  /** No-op. */
-  public void render() {}; 
-
-
+  @Override public void render() {
+    for (DetectionEvent d : detections) {
+      System.out.println(d);
+    }
+  };
+  
+  private List<DetectionEvent> detections = new ArrayList<>();
 }

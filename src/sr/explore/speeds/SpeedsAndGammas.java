@@ -24,7 +24,7 @@ public class SpeedsAndGammas extends TextOutput {
     for(Speed speed : Speed.values()) {
       lines.add(table.row(speed.βBigDecimal(), speed.Γ()));
     }
-    outputTo("speeds-and-gammas.txt");
+    outputToConsoleAnd("speeds-and-gammas.txt");
   }
   
   private Table table = new Table("%-32s", "%-20s");
