@@ -73,7 +73,12 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
     addTableRow("Max brightness", maxBrightness);
     addTableRow("Last visible", lastVisible);
     addTableRow("Last event", last);
-    outputToConsoleAnd(fileName());
+    if (consoleOnly) {
+      outputToConsole();
+    }
+    else {
+      outputToConsoleAnd(fileName());
+    }
   }
   
   @Override public String toString() {

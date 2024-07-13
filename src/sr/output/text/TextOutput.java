@@ -45,10 +45,14 @@ public class TextOutput {
     output(fileName, this);
   }
   
-  private void output(String fileName, Object caller) {
+  protected void outputToConsole() {
     for(String line : lines) {
       System.out.println(line);
     }
+  }
+  
+  private void output(String fileName, Object caller) {
+    outputToConsole();
     Util.writeToFile(caller.getClass(), fileName, lines);
     lines = new ArrayList<>();
     lines.add(Util.NL);
