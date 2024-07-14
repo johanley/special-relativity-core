@@ -1,4 +1,4 @@
-package sr.explore.dogleg;
+package sr.explore.cornerboost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import sr.core.transform.Rotate;
 /**
  Find the boost-plus-rotation that equates to 2 perpendicular boosts.
  
- <P>Two successive boosts at right angles to each other, along 2 of the spatial axes.
+ <P>Here, two successive boosts are at right angles to each other, along 2 of the spatial axes.
  The more general case is to have the second boost at any angle with respect to the first.
  The X-Y plane can always be chosen to be the plane of the 2 boosts, with X as the direction of the first boost.
  
@@ -29,15 +29,15 @@ import sr.core.transform.Rotate;
    equations 6, 10 for two directions, whose difference is the θw rotation angle  
   </ul> 
 */
-public final class ShowEquivalence {
+public final class EquivalentBoostPlusRotation {
   
   public static void main(String... args) {
     FourVector someEvent = FourVector.from(10.0, 1.0, 1.0, 1.0, ApplyDisplaceOp.YES); 
-    ShowEquivalence twoBoosts = new ShowEquivalence(Axis.Z, 0.97, 0.95); 
+    EquivalentBoostPlusRotation twoBoosts = new EquivalentBoostPlusRotation(Axis.Z, 0.97, 0.95); 
     
     List<String> lines = new ArrayList<>();
     
-    CoordTransform doglegBoost = twoBoosts.asDoglegBoost();
+    CoordTransform doglegBoost = twoBoosts.asCornerBoost();
     FourVector one = doglegBoost.toNewFrame(someEvent);
     
     CoordTransform boostPlusRotation = twoBoosts.asBoostPlusRotation();
@@ -61,12 +61,12 @@ public final class ShowEquivalence {
     lines.add("---------------------------------------------------------");
     for(Speed βx : Speed.nonExtremeValues()) {
       for (Speed βy : Speed.nonExtremeValues()) {
-        ShowEquivalence cb = new ShowEquivalence(Axis.Z, βx.β(), βy.β());
+        EquivalentBoostPlusRotation cb = new EquivalentBoostPlusRotation(Axis.Z, βx.β(), βy.β());
         lines.add(cb.β1 + " " + cb.β2 + " " + cb.βspeed() + " " + Util.radsToDegs(cb.βdirection()) + " " + Util.radsToDegs(cb.θw()));
       }
     }
 
-    Util.writeToFile(ShowEquivalence.class, "show-equivalence.txt", lines);
+    Util.writeToFile(EquivalentBoostPlusRotation.class, "equivalent-boost-plus-rotation.txt", lines);
     for(String line : lines) {
       System.out.println(line);
     }
@@ -75,14 +75,14 @@ public final class ShowEquivalence {
   /**
     Constructor.
     
-    The axis-order is taken from {@link Axis#rightHandRuleFor(Axis)} for the given pole.
+    The specific axes taken for each successive boost is taken from {@link Axis#rightHandRuleFor(Axis)}, for the given pole.
     
-    @param pole the axis that is unaffected by these operations
+    @param pole the axis that is unaffected by the two boost operations
     @param β1 the speed for the first boost from K to K', along the first axis
     @param β2 the speed of the second boost from K' to K'', along the second axis, at a right 
     angle to the first
   */
-  ShowEquivalence(Axis pole, double β1, double β2) {
+  EquivalentBoostPlusRotation(Axis pole, double β1, double β2) {
     Util.mustBeSpatial(pole);
     this.β1 = β1;
     this.β2 = β2;
@@ -92,13 +92,13 @@ public final class ShowEquivalence {
   }
   
   /** The equivalent boost-plus-rotation. */
-  DoglegBoostEquivalent equivalent() {
-    DoglegBoostEquivalent result = new DoglegBoostEquivalent(βspeed(), βdirection(), θw());
+  CornerBoostEquivalent equivalent() {
+    CornerBoostEquivalent result = new CornerBoostEquivalent(βspeed(), βdirection(), θw());
     return result;
   }
   
-  /** Two boosts, the second perpendicular to the first. */
-  CoordTransform asDoglegBoost() {
+  /** Two boosts, the second perpendicular to the first (see class description). */
+  CoordTransform asCornerBoost() {
     CoordTransform result = CoordTransformPipeline.join(
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), β1),
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(1), β2)
@@ -106,6 +106,7 @@ public final class ShowEquivalence {
     return result;
   }
   
+  /** A single boost followed by a single rotation. */
   CoordTransform asBoostPlusRotation() {
     CoordTransform result = CoordTransformPipeline.join(
       Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
@@ -116,6 +117,7 @@ public final class ShowEquivalence {
     return result;
   }
   
+  /** A single rotation followed by a single boost. */
   CoordTransform asRotationPlusBoost() {
     CoordTransform result = CoordTransformPipeline.join(
       Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
@@ -137,9 +139,9 @@ public final class ShowEquivalence {
   private double Γ2;
   
   /** 
-   Thomas-Wigner rotation angle with respect to the βdirection.
+   Silberstein rotation angle with respect to the βdirection.
    Has the same sign as -β1*β2. 
-   Range -pi..pi 
+   Range -pi..pi. 
   */
   private double θw() {
     double y = Γ1 * Γ2 * β1 * β2;

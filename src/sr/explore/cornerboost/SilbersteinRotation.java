@@ -1,4 +1,4 @@
-package sr.explore.dogleg;
+package sr.explore.cornerboost;
 
 import java.util.function.Function;
 
@@ -113,7 +113,7 @@ public final class SilbersteinRotation extends TextOutput {
     lines.add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle)) + "°"); 
     lines.add("Length of the stick: " + round(stick.spatialMagnitude()) + ". It shows some contraction.");  
     
-    ShowEquivalence calc = new ShowEquivalence(Axis.Z, β1, β2);
+    EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Axis.Z, β1, β2);
     lines.add(" ");
     lines.add("Disentangle two effects: Silberstein rotation versus flattening."+Util.NL);
     lines.add("FIRST DO A ROTATION (because of the Silberstein rotation)."); 

@@ -1,10 +1,10 @@
 /**
- A <em>dogleg boost</em> is a pair of boosts that aren't in the same line (not collinear).
+ A <em>corner boost</em> is a pair of boosts that aren't in the same line (not collinear).
  
- <P>A pair of boosts commute if and only if they are in the same line.
- Dogleg boosts don't commute: switching the order of the boosts changes the outcome.
+ <P>A pair of boosts commute only if they are in the same line.
+ Corner boosts don't commute: switching the order of the boosts changes the outcome.
  
- <P>A dogleg boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
+ <P>A corner boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
  
  <P>In this case three frames are needed - K, K', then K'':
  <ul>
@@ -19,7 +19,8 @@
  That is Silberstein (Thomas-Wigner) rotation.
  
  <P>An interesting way of describing part of the Silberstein rotation is that <em>a revolution necessarily implies a rotation</em>. 
- Caveat: a complete revolution isn't necessary for the effect to occur. A more exact phrase would be <em>a change in direction of motion implies a rotation</em>.
+ Caveat: a complete revolution isn't necessary for the effect to occur. 
+ A more exact phrase would be <em>a change in direction of motion implies a rotation</em>.
  
  <P>Space-time has an inherently <em>twisted</em> aspect to it.
  
@@ -31,7 +32,7 @@ References:
  <li><a href='https://arxiv.org/pdf/1102.2001.pdf'>O'Donnell and Visser</a>
 </ul> 
 
-<P>Thomas precession (radians per second, for an object with a changing velocity) is related but different.
+<P>Thomas precession (radians per second, for an object with a changing velocity) is related to Silberstein rotation.
  <a href='https://jila.colorado.edu/arey/sites/default/files/files/seven(1).pdf'>Smoot</a>: 
 <em> "The effect is connected with the fact that two successive Lorentz
 transformations in different directions are equivalent to a Lorentz transformation plus
@@ -45,7 +46,6 @@ References for Thomas precession:
  <li><em>Gravitation</em> by Misner, Thorne, Wheeler. Equations 6.29, 41.46
 </ul> 
 
- 
 <P>
  The Thomas precession vector is proportional to the 
  cross product of the 3-acceleration and the 3-velocity (in that order!).
@@ -54,4 +54,4 @@ References for Thomas precession:
  The change in angle after one orbit is 2*pi(1-gamma), and its 'retrograde', opposite to the sense of the circular motion.
  It approaches a one full rotation in the relativistic limit.
 */
-package sr.explore.dogleg;
+package sr.explore.cornerboost;
