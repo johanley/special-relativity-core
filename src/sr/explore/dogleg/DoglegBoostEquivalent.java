@@ -1,7 +1,7 @@
 package sr.explore.dogleg;
 
 /**
- Two successive boosts, the second at a some angle to the first, are 
+ Two successive boosts, the second at some angle to the first, are 
  equivalent to a single boost in an intermediate direction, followed by a rotation.
  
  The first boost defines the X-axis.
@@ -10,7 +10,7 @@ package sr.explore.dogleg;
  
  Example geometry: Z is the pole, doesn't change. 
  First a boost in X from K to K', then a boost in Y from K' to K''.
- This example has a 90 degree angle between the boost directions (in K').
+ This example has a 90° angle between the boost directions (in K').
 
  <P>With matrix algebra,
  <pre>
@@ -20,8 +20,9 @@ package sr.explore.dogleg;
  </pre>
  
  <P>There is an inverse reading of the same matrix math.
- Any boost in the x-y plane can be decomposed into 2 mutually perpendicular 
- boosts (along X and Y), followed by a rotation. This fact helps to derive the arbitrary-angle case.
+ Any boost in the X-Y plane can be decomposed into 2 mutually perpendicular 
+ boosts (along X and Y), followed by a rotation. 
+ This fact helps to derive the arbitrary-angle case.
 */
 final class DoglegBoostEquivalent {
   
@@ -41,8 +42,8 @@ final class DoglegBoostEquivalent {
   double βdirection;
   
   /** 
-   Thomas-Wigner rotation angle with respect to the X-axis.
-   It's never more than 90 degrees.
+   Sliberstein (Thomas-Wigner) rotation angle with respect to the X-axis.
+   It's never more than 90°.
    
    <P>This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
    Range -pi/2..0 rads.

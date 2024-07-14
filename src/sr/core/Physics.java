@@ -245,7 +245,7 @@ public final class Physics {
    In K', the angle θ changes from the given value to the returned value.
    
    <P>Problem Book in Relativity and Gravitation, Lightman and others, problem 1.7.
-   @return in K'', the angle of the stick with respect to the direction of the boost, range -pi/2..+pi/2  
+   @return in K', the angle of the stick with respect to the direction of the boost, range -pi/2..+pi/2  
    @param θ in K, the angle of the stick with respect to the direction of the boost
    @param β boost speed
   */

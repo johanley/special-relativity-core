@@ -1,0 +1,28 @@
+Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.
+Rest length of the stick in K'': 1.0
+Corner-boost backwards from K'' to K: boost[Y,-0.6] boost[X,-0.8]
+
+All of the items below are in K.
+
+Time-slice across the stick's history in K.
+Examine two events, one for each end of the stick.
+Event for A: [3.2083, 3.1667, 0.675, 0.0, YES] one end of the stick.
+Event for B: [3.2083, 3.7667, 0.195, 0.0, YES] other end of the stick.
+Difference (B - A): [0.0, 0.6, -0.48, 0.0, YES] has ct=0 (time-slice).
+Angle of the stick with respect to the X-axis: -38.66°
+Length of the stick: 0.768. It shows some contraction.
+ 
+Disentangle two effects: Silberstein rotation versus flattening.
+
+FIRST DO A ROTATION (because of the Silberstein rotation).
+Examine the equivalent-boost with respect to K (the boost+rotation pair that's equivalent to the corner-boost pair):
+  equivβ: 0.877
+  equivDirection: 24.228° with respect to the X-axis.
+  equivθw: -18.925° rotation around the Z-axis (which thus affects the XY plane).
+  (equivθw - equivDirection): -43.152° with respect to the equivDirection.
+
+SECOND DO A FLATTENING (because of the equivalent-boost).
+Use a formula for flattening(equivθw - equivDirection, equivβ): -62.888° with respect to the equivDirection.
+ 
+The same result comes from examining the raw history of the stick.
+Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: -62.888° - SAME AS ABOVE
