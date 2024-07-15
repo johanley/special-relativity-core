@@ -6,23 +6,21 @@
  
  <P>A corner boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
  
- <P>In this case three frames are needed - K, K', then K'':
+ <P>A corner boost always needs three frames - K, K', and K'':
  <ul>
   <li>in K, first boost along X to K'.
   <li>in K', second boost along Y to K''.
  </ul>
  
- <P>In K' (in the middle): the axes of K and K'' are all parallel to the axes of K'.
+ <P>In the intermediate K' frame, the axes of K and K'' are all parallel to the axes of K'.
  
  <P>But K and K'' DON'T see their respective X and Y axes as being parallel. 
  For that pair, only the Z axes are parallel, in the above case. 
  That is Silberstein (Thomas-Wigner) rotation.
  
- <P>An interesting way of describing part of the Silberstein rotation is that <em>a revolution necessarily implies a rotation</em>. 
- Caveat: a complete revolution isn't necessary for the effect to occur. 
- A more exact phrase would be <em>a change in direction of motion implies a rotation</em>.
+ <P>An approximate way of describing the Silberstein rotation is that <em>a revolution imparts a rotation</em>. 
  
- <P>Space-time has an inherently <em>twisted</em> aspect to it.
+ <P>Space-time has an inherently <em>rotating</em> aspect to it.
  
  
 References:

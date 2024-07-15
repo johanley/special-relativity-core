@@ -2,6 +2,8 @@ package sr.core.transform;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.Util;
+
 import static sr.core.Util.mustBeSpatial;
 
 /**
@@ -59,7 +61,7 @@ public final class Boost implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "boost[" + spatialAxis+sep+ β + "]";
+    return "boost[" + spatialAxis+sep+ Util.round(β,5) + "]";
   }
   
   public double β() {return β;}

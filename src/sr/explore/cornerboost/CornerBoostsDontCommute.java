@@ -37,8 +37,8 @@ public final class CornerBoostsDontCommute extends TextOutput {
     double β2 = 0.8;
     Axis axis = X;
 
-    lines.add("1. Boosts commute if (and only if) they're in the same line.");
-    lines.add(dashes(65));
+    lines.add("1. Boosts commute if (and only if) they're in the same line (collinear).");
+    lines.add(dashes(70));
     lines.add("Let's boost an event twice along the X-axis.");
     seeIfOrderMatters(axis, β1, axis, β2);
 
@@ -48,12 +48,15 @@ public final class CornerBoostsDontCommute extends TextOutput {
     lines.add(Util.NL + "The two boosts give the same final event coordinates, regardless of the order of execution.");
     lines.add("A single equivalent boost: " + axis + " " + Util.round(βequiv, 5) + " " + afterEquiv);
     
-    lines.add(Util.NL + "2. Boosts don't commute if they aren't in the same line.");
+    lines.add(Util.NL + "2. Boosts don't commute if they aren't in the same line (non-collinear).");
+    lines.add(dashes(70));
     lines.add("Let's boost an event first along the X-axis, then along the Y-axis.");
     seeIfOrderMatters(X, β1, Y, β2);
-    lines.add(Util.NL + "The two boosts give different final event coordinates, according to the order of execution.");
+    lines.add(Util.NL + "The two non-collinear boosts give different final event coordinates, according to their order of execution.");
     
-    lines.add(Util.NL + "3. Lastly, boosts with the same speed, but perpendicular directions, also don't commute.");
+    lines.add(Util.NL + "3. As a second example, boosts with the same speed, but in perpendicular directions, also don't commute.");
+    lines.add(dashes(100));
+    lines.add("Let's boost an event first along the X-axis, then along the Y-axis, and using the same boost speed.");
     seeIfOrderMatters(X, β1, Y, β1);
     
     outputToConsoleAnd("corner-boosts-dont-commute.txt");

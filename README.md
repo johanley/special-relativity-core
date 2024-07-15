@@ -83,7 +83,7 @@ The inverse is still there, it's just in the background.
 
 
 **Two boosts commute only when they are in the same line.**
-A dogleg pair of boosts is equivalent to a boost plus a rotation (in that order?).
+A corner-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
 The (Thomas-Wigner) rotation angle is large when the speeds are high.
 It's never larger than 90 degrees (same as the stick-flattening angle).
@@ -101,7 +101,11 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
- 
+**Silberstein described the rotational aspect of non-collinear boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
+Thomas and Wigner came much later. 
+  
+**The geometry of an object (for example, the direction in which a stick is pointing) is affected by both regular flattening and the Silberstein rotation.**
+You need to be careful not to confuse the two effects. 
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
 He simply asserts that the geometry is that of a rotation. He seems to be incorrect.

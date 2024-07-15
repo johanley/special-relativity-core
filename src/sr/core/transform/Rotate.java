@@ -10,6 +10,7 @@ import static sr.core.Util.mustBeSpatial;
 import java.util.List;
 
 import sr.core.Axis;
+import sr.core.Util;
 
 /** 
  Rotate about one of the spatial axes.
@@ -57,7 +58,7 @@ public final class Rotate implements CoordTransform {
   
   @Override public String toString() {
     String sep = ",";
-    return "rotate[" + spatialAxis+sep+ θ + "]";
+    return "rotate[" + spatialAxis+sep+ Util.round(θ,5) + "]";
   }
   
   // PRIVATE

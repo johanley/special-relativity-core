@@ -1,8 +1,5 @@
 package sr.explore.cornerboost;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Speed;
@@ -13,6 +10,8 @@ import sr.core.transform.CoordTransform;
 import sr.core.transform.CoordTransformPipeline;
 import sr.core.transform.FourVector;
 import sr.core.transform.Rotate;
+import sr.output.text.Table;
+import sr.output.text.TextOutput;
 
 /**
  Find the boost-plus-rotation that equates to 2 perpendicular boosts.
@@ -29,47 +28,48 @@ import sr.core.transform.Rotate;
    equations 6, 10 for two directions, whose difference is the θw rotation angle  
   </ul> 
 */
-public final class EquivalentBoostPlusRotation {
+public final class EquivalentBoostPlusRotation extends TextOutput {
   
   public static void main(String... args) {
-    FourVector someEvent = FourVector.from(10.0, 1.0, 1.0, 1.0, ApplyDisplaceOp.YES); 
     EquivalentBoostPlusRotation twoBoosts = new EquivalentBoostPlusRotation(Axis.Z, 0.97, 0.95); 
+    twoBoosts.explore();
+  }
+  
+  public void explore() {
+    FourVector someEvent = FourVector.from(10.0, 1.0, 1.0, 1.0, ApplyDisplaceOp.YES); 
     
-    List<String> lines = new ArrayList<>();
+    CoordTransform cornerBoost = asCornerBoost();
+    FourVector evOne = cornerBoost.toNewFrame(someEvent);
     
-    CoordTransform doglegBoost = twoBoosts.asCornerBoost();
-    FourVector one = doglegBoost.toNewFrame(someEvent);
+    CoordTransform boostPlusRotation = asBoostPlusRotation();
+    FourVector evTwo = boostPlusRotation.toNewFrame(someEvent);
+    CoordTransform rotationPlusBoost = asRotationPlusBoost();
+    FourVector evThree = rotationPlusBoost.toNewFrame(someEvent);
     
-    CoordTransform boostPlusRotation = twoBoosts.asBoostPlusRotation();
-    FourVector two = boostPlusRotation.toNewFrame(someEvent);
-    CoordTransform rotationPlusBoost = twoBoosts.asRotationPlusBoost();
-    FourVector three = rotationPlusBoost.toNewFrame(someEvent);
-    
+    lines.add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     lines.add("Event:" + someEvent);
-    lines.add("Dogleg transform: " + doglegBoost);
-    lines.add("Dogleg:           " + one);
-    lines.add("");
-    lines.add("Boost+rotation transform: " + boostPlusRotation);
-    lines.add("Boost + rotation ev: " + two);
-    lines.add("");
-    lines.add("Order matters. Rotation+boost isn't the same.");
+    lines.add("Corner-boost transform: " + cornerBoost);
+    lines.add(" Event after corner-boost: " + evOne);
+    lines.add(Util.NL +"Boost+rotation transform: " + boostPlusRotation);
+    lines.add(" Event after boost+rotation: " + evTwo);
+    lines.add("Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of this code always using an axis.");
+    lines.add(Util.NL + "Order matters. Rotation+boost isn't the same.");
+    lines.add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
     lines.add("Rotation+boost transform: " + rotationPlusBoost);
-    lines.add("Rotation + boost ev: " + three);
+    lines.add(" Event from rotation+boost: " + evThree);
     
-    lines.add("");
-    lines.add("βx   βy   β-equiv            β-direction-degs  θw-degs");
-    lines.add("---------------------------------------------------------");
+    lines.add(Util.NL + tableHeader.row("βx", "βy", "equivβ", "equivDirection", "θw"));
+    lines.add(dashes(100));
     for(Speed βx : Speed.nonExtremeValues()) {
       for (Speed βy : Speed.nonExtremeValues()) {
         EquivalentBoostPlusRotation cb = new EquivalentBoostPlusRotation(Axis.Z, βx.β(), βy.β());
-        lines.add(cb.β1 + " " + cb.β2 + " " + cb.βspeed() + " " + Util.radsToDegs(cb.βdirection()) + " " + Util.radsToDegs(cb.θw()));
+        lines.add(
+          table.row(cb.β1, cb.β2, cb.βspeed(), degs(cb.βdirection()), degs(cb.θw()))
+        );
       }
     }
-
-    Util.writeToFile(EquivalentBoostPlusRotation.class, "equivalent-boost-plus-rotation.txt", lines);
-    for(String line : lines) {
-      System.out.println(line);
-    }
+    
+    outputToConsoleAnd("equivalent-boost-plus-rotation.txt");
   }
   
   /**
@@ -137,6 +137,11 @@ public final class EquivalentBoostPlusRotation {
   
   private double β2;
   private double Γ2;
+
+  //βx   βy   β-equiv β-direction-degs  θw-degs");
+  private Table tableHeader = new Table("%-21s", "%-21s", "%-21s", "%-12s", "%6s");
+  private Table table = new Table("%-21s", "%-21s", "%-21s", "%10.3f°", "%10.3f°");
+  
   
   /** 
    Silberstein rotation angle with respect to the βdirection.
@@ -176,5 +181,9 @@ public final class EquivalentBoostPlusRotation {
   private double smootθw() {
     double theta = βdirection();
     return theta - thetaPrimePrime();
+  }
+  
+  private double degs(double value) {
+    return Util.round(Util.radsToDegs(value), 4);
   }
 }
