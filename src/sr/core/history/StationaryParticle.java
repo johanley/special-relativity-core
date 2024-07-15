@@ -5,11 +5,23 @@ import sr.core.transform.FourVector;
 
 /**
  Stationary object that doesn't change position in a given frame.
- The object's initial position is arbitrary.
- At proper time τmin the object has coordinate-time ct=0; 
+ This is the simplest possible case.
+ 
+ <P>The (XYZ) position doesn't change with changing values of the parameter τ.
+ In this case, the τ parameter for the history is identified with both the <em>ct</em>-coordinate and with the proper-time.
+ The proper time is taken as <em>0</em> for <em>ct=0</em>.
 */
 public final class StationaryParticle extends HistoryAbc {
   
+  /**
+    Constructor.
+     
+    @param x0 the X-position
+    @param y0 the Y-position
+    @param z0 the Z-position
+    @param τmin minimum value for the history's parameter
+    @param τmax maximum value for the history's parameter
+  */
   public StationaryParticle(double x0, double y0, double z0, double τmin, double τmax) {
     this.x0 = x0;
     this.y0 = y0;
@@ -19,8 +31,6 @@ public final class StationaryParticle extends HistoryAbc {
   }
   
   @Override protected FourVector eventFor(double τ) {
-    // the proper time is the same as the coordinate-time, in this case, since the 
-    // object isn't moving in the current frame
     return FourVector.from(Δτ(τ), x0, y0, z0, ApplyDisplaceOp.YES);
   }
   
@@ -34,7 +44,7 @@ public final class StationaryParticle extends HistoryAbc {
   
   @Override public String toString() {
     String sep = ",";
-    return "["+ x0+sep + y0+sep + z0+sep+ τmin+sep + τmax+ "]";
+    return "stationary history [(x,y,z)=("+x0+sep+y0+sep+z0+sep+"), τmin=" + τmin+sep + "τmax=" +τmax+ "]";
   }
   
   private double x0; 

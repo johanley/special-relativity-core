@@ -29,8 +29,9 @@ public abstract class HistoryAbc implements History {
   
   /** 
    This default implementation uses the four-velocity.
-   Many implementations will prefer to override this with a more direct computation of the speed. 
-   <P>This default implementation has mediocre accuracy for low speeds. 
+   Implementations may prefer to override this with a more direct computation of the speed. 
+   <P>This default implementation has mediocre accuracy for low speeds.
+   It's is also undefined for the case of 0 speed!
   */
   @Override public double β(double τ) {
     //the check on the limits of τ is done on the next line
