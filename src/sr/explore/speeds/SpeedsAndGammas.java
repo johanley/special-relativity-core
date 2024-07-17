@@ -9,7 +9,7 @@ import sr.output.text.TextOutput;
  Simply list speeds and their corresponding Lorentz factors.
  Includes the speed of extreme cosmic rays. 
 */
-public class SpeedsAndGammas extends TextOutput {
+public final class SpeedsAndGammas extends TextOutput {
   
   public static void main(String... args) {
     SpeedsAndGammas speeds = new SpeedsAndGammas();

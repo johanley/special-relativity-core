@@ -1,6 +1,10 @@
 package sr.core.transform;
 
 import static java.util.Comparator.comparing;
+import static sr.core.Axis.CT;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,13 +12,16 @@ import java.util.List;
 import java.util.Objects;
 
 import sr.core.Axis;
-import static sr.core.Axis.*;
-
+import sr.core.Parity;
+import sr.core.Position;
+import sr.core.Rotation;
 import sr.core.Util;
 
 /**
- By definition, a 4-vector is an ordered tuple of physical quantities 
- whose parts (1 time-part and 3 space-parts) transform in the same way as the parts of the displacement vector Δx.  
+ Here, a 4-vector is an ordered tuple of physical quantities 
+ whose parts (1 time-part and 3 space-parts) transform in the same way as the parts of the displacement vector Δx.
+ 
+ (Mathematicians define 4-vectors more robustly, using sets and maps of a certain type.)
  
  <P>Classical Theory of Fields treats events as the prototype 4-vector:
  <em>"In general a set of four quantities A0, A1, A2, A3, which transform like the components of the radius
@@ -128,9 +135,20 @@ public class FourVector implements Comparable<FourVector> {
     return Math.sqrt(x*x + y*y + z*z); 
   }
   
+  /** Return a new 4-vector whose spatial components have been rotated about a spatial axis. */
+  public final FourVector spatialRotation(Rotation rotation) {
+    CoordTransform rotate = Rotate.about(rotation.axis, rotation.θ);
+    return rotate.toNewFourVector(this);
+  }
+  
+  /** Return a new 4-vector whose spatial components have all been multiplied by -1.*/
+  public final FourVector spatialReflection() {
+    CoordTransform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
+    return reflection.toNewFourVector(this);
+  }
+  
   /** 
    Dot-product of this 4-vector's spatial part (its 3-vector) with the spatial parts of 'that'. 
-   Always positive. 
   */
   public final double spatialScalarProduct(FourVector that) {
     return x*that.x + y*that.y + z*that.z; 

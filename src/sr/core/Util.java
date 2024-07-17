@@ -77,6 +77,11 @@ public final class Util {
   public static void mustBeSpatial(Axis axis) {
     mustHave(axis.isSpatial(), "Cannot use the time axis for this operation.");
   }
+  
+  /** Check data: the speed must be in the range (-1,1). */
+  public static void mustHaveSpeedRange(double β) {
+    mustHave(β > -1 && β < 1, "Speed β=" + β + " is not in the range (-1,1).");
+  }
 
   /**
    Write a file line by line.
