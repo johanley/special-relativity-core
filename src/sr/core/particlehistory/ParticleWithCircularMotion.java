@@ -14,9 +14,6 @@ import sr.core.transform.FourVector;
  A change in sign of the speed changes the direction of circular motion.
  
  <P>At ct=0, the particle is on one of the spatial axes.
-
- <P>In this case, the parameter for the history is identified with the proper time cτ.
- The zero of proper time is taken as ct=0.
 */
 public class ParticleWithCircularMotion implements ParticleHistory {
 
@@ -40,18 +37,25 @@ public class ParticleWithCircularMotion implements ParticleHistory {
     this.β = β;
     // At ct=0, the momentum is directed toward a spatial axis. 
     Axis startDirection = Axis.rightHandRuleFor(rotationalAxis).get(1);
-    this.initialVelocity = Velocity.from(startDirection, β);
+    Velocity initialVelocity = Velocity.from(startDirection, β);
     this.initialMomentum = initialVelocity.fourMomentumFor(mass);
   }
-  
-  @Override public FourVector event(double cτ) {
-    double ct = ct(cτ); //change from proper time to coordinate time
+
+  /** For a particle having unit mass. */
+  public ParticleWithCircularMotion(Axis rotationalAxis, double radius, double β) {
+    this(1.0, rotationalAxis, radius, β);
+  }
+
+  /** @param ct is the coordinate-time. */
+  @Override public FourVector event(double ct) {
     return rotateThe(initialEvent, ct);
   }
   
-  /** The magnitude of the 4-momentum is fixed, but its direction changes. */
-  @Override public FourVector fourMomentum(double cτ) {
-    double ct = ct(cτ); //change from proper time to coordinate time
+  /** 
+   The magnitude of the 4-momentum is fixed, but its direction changes. 
+   @param ct is the coordinate-time. 
+  */
+  @Override public FourVector fourMomentum(double ct) {
     return rotateThe(initialMomentum, ct);
   }
   
@@ -69,13 +73,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
   private double β;
 
   private FourVector initialEvent;
-  private Velocity initialVelocity;
   private FourVector initialMomentum;
-  
-  /** Time dilation. Convert from proper time to coordinate time. */
-  private double ct(double cτ) {
-    return initialVelocity.Γ() * cτ;
-  }
   
   /** At ct=0, the position is on a spatial axis. */
   private FourVector initialEvent() {
@@ -93,7 +91,6 @@ public class ParticleWithCircularMotion implements ParticleHistory {
   /** Angle in radians, measured from the starting-point spatial axis.*/
   private double θ(double ct) {
     double ω = β/radius; //per length
-    double result = ω * ct; //θ=0 at τ=0; c=1 here; rads
-    return result;
+    return ω * ct; //θ=0 at ct=0; c=1 here; rads
   }
 }

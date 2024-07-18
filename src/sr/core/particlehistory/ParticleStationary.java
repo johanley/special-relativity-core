@@ -9,10 +9,6 @@ import sr.core.transform.FourVector;
 /** 
  History for a particle with mass that doesn't move from a given position. 
  This is the simplest possible history.
- 
- <P>In this case, the parameter for the history is identified both with with the ct-coordinate and with 
- the proper time cτ.
- The zero of proper time is taken as ct=0.
 */
 public final class ParticleStationary implements ParticleHistory {
 
@@ -27,14 +23,23 @@ public final class ParticleStationary implements ParticleHistory {
     initialEvent = position.eventForTime(0.0);
     fourMomentum = Velocity.zero().fourMomentumFor(mass);
   }
+
+  /** For an object having unit mass. */
+  public ParticleStationary(Position position) {
+    this(1.0, position);
+  }
   
-  @Override public FourVector event(double cτ) {
-    FourVector displaceInTimeOnly = FourVector.from(cτ, 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
+  /** @param ct is the coordinate-time. In this case, it is also a proper-time. */
+  @Override public FourVector event(double ct) {
+    FourVector displaceInTimeOnly = FourVector.from(ct, 0.0, 0.0, 0.0, ApplyDisplaceOp.YES);
     return initialEvent.plus(displaceInTimeOnly);
   }
 
-  /** Constant 4-momentum, with the spatial components = 0, and the time component = mass * c. */
-  @Override public FourVector fourMomentum(double cτ) {
+  /** 
+   Constant 4-momentum, with the spatial components = 0, and the time component = mass * c.
+   @param ct is the coordinate-time; it's not used by this method, since the 4-momentum is constant. 
+  */
+  @Override public FourVector fourMomentum(double ct) {
     return fourMomentum;
   }
   
