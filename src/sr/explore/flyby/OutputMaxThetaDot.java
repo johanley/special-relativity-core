@@ -37,9 +37,7 @@ import static sr.core.Util.*;
 */
 final class OutputMaxThetaDot implements OutputSummary {
   
-  OutputMaxThetaDot(RelativisticFlyBy flyBy){
-    this.flyBy = flyBy;
-  }
+  OutputMaxThetaDot(){ }
   
   /** Here the per-fly-by maximum is computed. */
   @Override public void accept(DetectionEvent d) {
@@ -75,7 +73,6 @@ final class OutputMaxThetaDot implements OutputSummary {
       if (maxThetaDot > globalMaxThetaDot) {
         globalMaxThetaDot = maxThetaDot;
         globalMaxDetection = maxDetection;
-        globalMaxFlyBy = flyBy;
       }
     }
   }
@@ -83,7 +80,6 @@ final class OutputMaxThetaDot implements OutputSummary {
   /** Radians per year. */
   static Double globalMaxThetaDot() { return globalMaxThetaDot; }
   static DetectionEvent globalDetectionWithMaxThetaDot() { return globalMaxDetection; }
-  static RelativisticFlyBy globalFlyByWithMaxThetaDot() { return globalMaxFlyBy; }
   
   static String globalMax() {
     double degsPerDay = radsToDegs(globalMaxThetaDot)/365.25;
@@ -95,7 +91,6 @@ final class OutputMaxThetaDot implements OutputSummary {
   //the global maximum is separate from the per-flyby maximum
   
   private int count = 0;
-  private RelativisticFlyBy flyBy;
   private DetectionEvent previousDetection;
   private DetectionEvent maxDetection;
   private Double maxThetaDot = 0.0;

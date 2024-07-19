@@ -88,20 +88,19 @@ public final class RelativisticFlyBy {
     double x0prime = -30.0; //light-years in the rest frame of the STAR, not the detector; this item is different from the others!
     double timeStep = 0.01; //years
     
-    /*
     //compute a single scenario
     RelativisticFlyBy flyby = new RelativisticFlyBy(MainSequenceStar.A, 0.90, 10.0, x0prime, timeStep);
     OutputSummary toConsole = new OutputToConsole();
-    OutputSummary highlights = new OutputHighlights(flyby);
-    OutputSummary[] outputs = {toConsole, highlights};
+    OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance, true);
+    OutputSummary[] outputs = {highlights};
     flyby.compute(outputs);
     
     for (OutputSummary output : outputs) {
       output.render();
     }
-    */
 
     //compute a range of different scenarios
+    /*
     Double[] minimumDistances = {1.0, 0.1};
     Double[] speeds = {0.87, 0.99};
     for(MainSequenceStar star : MainSequenceStar.values()) {
@@ -109,8 +108,8 @@ public final class RelativisticFlyBy {
         for (Double minimumDistance: minimumDistances) {
           RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, minimumDistance, x0prime, timeStep);
           
-          OutputSummary highlights = new OutputHighlights(flyby, true);
-          OutputSummary maxThetaDot = new OutputMaxThetaDot(flyby);
+          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), true);
+          OutputSummary maxThetaDot = new OutputMaxThetaDot();
           
           flyby.compute(highlights, maxThetaDot);
           
@@ -120,6 +119,7 @@ public final class RelativisticFlyBy {
       }
     }
     log(OutputMaxThetaDot.globalMax());
+    */
   }
   
   /**

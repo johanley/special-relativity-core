@@ -15,7 +15,8 @@ final class DetectionEvent {
   
   /** The <b>core calculation</b> is done by this constructor. */
   DetectionEvent(FourVector emissionEvent, Double β, MainSequenceStar star){
-    distanceToEmissionEvent = emissionEvent.spatialMagnitude();
+    this.emissionTime = emissionEvent.ct();
+    this.distanceToEmissionEvent = emissionEvent.spatialMagnitude();
     
     //c=1 here; no other value will do
     double lightTravelTime = distanceToEmissionEvent / 1.0;
@@ -29,7 +30,9 @@ final class DetectionEvent {
     
     this.D = Physics.D(β, θ);
     this.T = Physics.T(D, star.surfaceTemp());
-    this.V = Physics.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/) + Physics.Δmag(D, star.surfaceTemp());
+    double magDistanceEffect = Physics.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/);
+    double ΔmagDopplerEffect = Physics.Δmag(D, star.surfaceTemp());
+    this.V = magDistanceEffect + ΔmagDopplerEffect;
   }
   
   /** 
@@ -44,13 +47,16 @@ final class DetectionEvent {
   /** The effective temperature of the star's black-body spectrum in Kelvins. Doppler-shifted. */
   double T;
   
-  /** The apparent visual magnitude of the star. */
+  /** The apparent visual magnitude of the star seen by the detector. */
   double V;
   
   /** The coordinate-time when the photon is detected. Time-of-emission + travel-time for the photon. */
   double detectionTime; 
   
-  /** How far away the star was when it emitted the photon. */
+  /** The coordinate-time when the photon was emitted. */
+  double emissionTime;
+  
+  /** How far away the star was from the detector when it emitted the photon. */
   double distanceToEmissionEvent;
   
   @Override public String toString() {

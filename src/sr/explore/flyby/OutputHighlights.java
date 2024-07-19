@@ -23,8 +23,10 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
    Constructor.
    @param consoleOnly true will suppress output to files.
   */
-  OutputHighlights(RelativisticFlyBy flyby, Boolean consoleOnly){
-    this.flyBy = flyby;
+  OutputHighlights(String name, double speed, double y, Boolean consoleOnly){
+    this.name = name;
+    this.speed = speed;
+    this.y = y;
     this.consoleOnly = consoleOnly;
   }
 
@@ -62,9 +64,9 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   /** Output the final results.  */
   @Override public void render() {
     lines.add("Relativistic fly-by of a star.");
-    lines.add("Spectral Type: " + flyBy.star().name());
-    lines.add("Speed β:" + flyBy.β()); 
-    lines.add("Minimum distance: " + flyBy.minimumDistance() + " light-years");
+    lines.add("Spectral Type: " + name);
+    lines.add("Speed β:" + speed); 
+    lines.add("Minimum distance: " + y + " light-years");
     lines.add("");
     lines.add(tableHeader.row("Description", "Detection", "θ", "Doppler", "Visual", "Distance to emission event"));
     lines.add(tableHeader.row("", "Time (year)", "°", "", "Mag", "Light-years"));
@@ -95,7 +97,11 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   
   private Boolean consoleOnly;
   
-  private RelativisticFlyBy flyBy;
+  //private RelativisticFlyBy flyBy;
+  private String name;
+  private double speed;
+  private double y; 
+  
   // description, detectionTime, radsToDegs(θ), D, V, distanceToEmissionEvent);
   private Table table = new Table("%-16s", "%8.3fy", "%8.2f°", "%8.2f", "%8.2fV", "%8.3fly");
   private Table tableHeader = new Table("%-16s", "%-16s", "%-4s", "%-10s", "%-8s", "%-16s");
@@ -103,7 +109,7 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
 
   private String fileName() {
     String s = "-";
-    return "flyby" +s+ flyBy.star().name() +s+ flyBy.β() +s+ flyBy.minimumDistance() + ".txt"; 
+    return "flyby" +s+ name +s+ speed +s+ y + ".txt"; 
   }
   
   private void addTableRow(String description, DetectionEvent ev) {
