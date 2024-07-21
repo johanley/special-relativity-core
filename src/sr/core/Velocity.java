@@ -11,7 +11,7 @@ import sr.core.Physics;
 import sr.core.Rotation;
 import sr.core.Util;
 import sr.core.ThreeVector;
-import sr.core.VectorImpl;
+import sr.core.ThreeVectorImpl;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 
@@ -125,15 +125,15 @@ public final class Velocity implements ThreeVector {
   
   //PRIVATE 
   
-  private VectorImpl vec;
+  private ThreeVectorImpl vec;
   
   private Velocity(double xComp, double yComp, double zComp) {
-    vec = VectorImpl.of(xComp, yComp, zComp);
+    vec = ThreeVectorImpl.of(xComp, yComp, zComp);
     check();
   }
   
   private Velocity(Axis axis, double value) {
-    vec = VectorImpl.of(axis, value);
+    vec = ThreeVectorImpl.of(axis, value);
     check();
   }
   

@@ -104,15 +104,15 @@ public final class Acceleration implements ThreeVector {
   
   //PRIVATE 
   
-  private VectorImpl vec;
+  private ThreeVectorImpl vec;
   
   private Acceleration(double xComp, double yComp, double zComp) {
-    vec = VectorImpl.of(xComp, yComp, zComp);
+    vec = ThreeVectorImpl.of(xComp, yComp, zComp);
     check();
   }
   
   private Acceleration(Axis axis, double value) {
-    vec = VectorImpl.of(axis, value);
+    vec = ThreeVectorImpl.of(axis, value);
     check();
   }
   

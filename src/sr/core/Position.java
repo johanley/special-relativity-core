@@ -90,13 +90,13 @@ public final class Position implements ThreeVector {
   
   //PRIVATE 
   
-  private VectorImpl vec;
+  private ThreeVectorImpl vec;
   
   private Position(double xComp, double yComp, double zComp) {
-    vec = VectorImpl.of(xComp, yComp, zComp);
+    vec = ThreeVectorImpl.of(xComp, yComp, zComp);
   }
   
   private Position(Axis axis, double value) {
-    vec = VectorImpl.of(axis, value);
+    vec = ThreeVectorImpl.of(axis, value);
   }
 }

@@ -28,26 +28,26 @@ import static sr.core.Util.*;
  the subclass, then it would no longer be a pure Vector. 
  The 'call-forward' technique, on the other hand, is always safe.
 */
-public final class VectorImpl implements ThreeVector {
+public final class ThreeVectorImpl implements ThreeVector {
 
   /** Factory method. */
-  public static VectorImpl of(double xComp, double yComp, double zComp) {
-    return new VectorImpl(xComp, yComp, zComp);
+  public static ThreeVectorImpl of(double xComp, double yComp, double zComp) {
+    return new ThreeVectorImpl(xComp, yComp, zComp);
   }
   
   /** Factory method. The vector has 1 non-zero component, along the given coordinate axis. */
-  public static VectorImpl of(Axis axis, double value) {
-    return new VectorImpl(axis, value);
+  public static ThreeVectorImpl of(Axis axis, double value) {
+    return new ThreeVectorImpl(axis, value);
   }
   
   /** A vector having all components 0.0. */
-  public static VectorImpl zero() {
-    return VectorImpl.of(0.0, 0.0, 0.0);
+  public static ThreeVectorImpl zero() {
+    return ThreeVectorImpl.of(0.0, 0.0, 0.0);
   }
   
   /** Some cases only make sense when the magnitude is non-zero. */
-  public static VectorImpl nonZero(double accX, double accY, double accZ) {
-    VectorImpl result = VectorImpl.of(accX, accY, accZ);
+  public static ThreeVectorImpl nonZero(double accX, double accY, double accZ) {
+    ThreeVectorImpl result = ThreeVectorImpl.of(accX, accY, accZ);
     Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
     return result;
   }
@@ -86,7 +86,7 @@ public final class VectorImpl implements ThreeVector {
     double x = on(Y) * that.on(Z) - on(Z)*that.on(Y);
     double y = on(X) * that.on(Z) - on(Z)*that.on(X);
     double z = on(X) * that.on(Y) - on(Y)*that.on(X);
-    return VectorImpl.of(x, y, z);
+    return ThreeVectorImpl.of(x, y, z);
   }
   
   @Override public double angle(ThreeVector that) {
@@ -105,7 +105,7 @@ public final class VectorImpl implements ThreeVector {
 
   /** This 3-vector plus 'that' 3-vector (for each component). Returns a new Vector.*/
   @Override public ThreeVector plus(ThreeVector that) {
-    return VectorImpl.of(
+    return ThreeVectorImpl.of(
       on(X) + that.on(X), 
       on(Y) + that.on(Y),
       on(Z) + that.on(Z)
@@ -113,7 +113,7 @@ public final class VectorImpl implements ThreeVector {
   }
   
   @Override public ThreeVector minus(ThreeVector that) {
-    return VectorImpl.of(
+    return ThreeVectorImpl.of(
       on(X) - that.on(X), 
       on(Y) - that.on(Y),
       on(Z) - that.on(Z)
@@ -121,7 +121,7 @@ public final class VectorImpl implements ThreeVector {
   }
 
   @Override public ThreeVector multiply(double scalar) {
-    return VectorImpl.of(
+    return ThreeVectorImpl.of(
       on(X) * scalar, 
       on(Y) * scalar, 
       on(Z) * scalar 
@@ -130,7 +130,7 @@ public final class VectorImpl implements ThreeVector {
   
   @Override public ThreeVector divide(double scalar) {
     Util.mustHave(scalar != 0, "Cannot divide by zero.");
-    return VectorImpl.of(
+    return ThreeVectorImpl.of(
       on(X) / scalar, 
       on(Y) / scalar, 
       on(Z) / scalar 
@@ -142,34 +142,34 @@ public final class VectorImpl implements ThreeVector {
     CoordTransform rotate = Rotate.about(rotation.axis, rotation.θ);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
     FourVector b = rotate.toNewFourVector(a);
-    return VectorImpl.of(b.x(),b.y(),b.z());
+    return ThreeVectorImpl.of(b.x(),b.y(),b.z());
   }
   
   @Override public ThreeVector reflection() {
     CoordTransform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
     FourVector b = reflection.toNewFourVector(a);
-    return VectorImpl.of(b.x(), b.y(), b.z());
+    return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
   
   @Override public ThreeVector reflection(Axis axis) {
     CoordTransform reflection = Reflect.the(axis);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
     FourVector b = reflection.toNewFourVector(a);
-    return VectorImpl.of(b.x(), b.y(), b.z());
+    return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
   
   //PRIVATE 
   
   private Map</*spatial*/Axis, Double> components = new LinkedHashMap<>();
   
-  private VectorImpl(double xComp, double yComp, double zComp) {
+  private ThreeVectorImpl(double xComp, double yComp, double zComp) {
     this.components.put(X, xComp);
     this.components.put(Y, yComp);
     this.components.put(Z, zComp);
   }
   
-  private VectorImpl(Axis axis, double value) {
+  private ThreeVectorImpl(Axis axis, double value) {
     this(0.0, 0.0, 0.0);
     this.components.put(axis, value);
   }
