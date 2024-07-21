@@ -6,9 +6,9 @@ import static sr.core.Util.sq;
 import static sr.core.Util.sqroot;
 
 import sr.core.Axis;
-import sr.core.Position;
-import sr.core.Velocity;
 import sr.core.transform.FourVector;
+import sr.core.vector.Position;
+import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving with uniform 

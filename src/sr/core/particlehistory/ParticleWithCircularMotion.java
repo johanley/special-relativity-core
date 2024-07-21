@@ -3,8 +3,8 @@ package sr.core.particlehistory;
 import sr.core.Axis;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.Velocity;
 import sr.core.transform.FourVector;
+import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving uniformly in a circle.

@@ -1,4 +1,4 @@
-package sr.core;
+package sr.core.vector;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
@@ -6,6 +6,8 @@ import static sr.core.Axis.Z;
 
 import java.util.Optional;
 
+import sr.core.Axis;
+import sr.core.Rotation;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 
@@ -31,7 +33,7 @@ public final class Position implements ThreeVector {
   public FourVector eventForTime(double ct) {
     return FourVector.from(ct, on(X), on(Y), on(Z), ApplyDisplaceOp.YES);
   }
-
+  
   @Override public double on(Axis axis) {
     return vec.on(axis);
   }

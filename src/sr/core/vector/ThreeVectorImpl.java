@@ -1,20 +1,23 @@
-package sr.core;
+package sr.core.vector;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
+import static sr.core.Util.sqroot;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import sr.core.Axis;
+import sr.core.Parity;
+import sr.core.Rotation;
+import sr.core.Util;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
 import sr.core.transform.Reflect;
 import sr.core.transform.Rotate;
-
-import static sr.core.Util.*;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
@@ -46,8 +49,8 @@ public final class ThreeVectorImpl implements ThreeVector {
   }
   
   /** Some cases only make sense when the magnitude is non-zero. */
-  public static ThreeVectorImpl nonZero(double accX, double accY, double accZ) {
-    ThreeVectorImpl result = ThreeVectorImpl.of(accX, accY, accZ);
+  public static ThreeVectorImpl nonZero(double x, double y, double z) {
+    ThreeVectorImpl result = ThreeVectorImpl.of(x, y, z);
     Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
     return result;
   }
@@ -88,12 +91,6 @@ public final class ThreeVectorImpl implements ThreeVector {
     double z = on(X) * that.on(Y) - on(Y)*that.on(X);
     return ThreeVectorImpl.of(x, y, z);
   }
-  
-  @Override public double angle(ThreeVector that) {
-    double numerator = dot(that);
-    double denominator = magnitude() * that.magnitude();
-    return Math.acos(numerator / denominator);
-  }
 
   @Override public double square() {
     return dot(this);
@@ -101,6 +98,12 @@ public final class ThreeVectorImpl implements ThreeVector {
 
   @Override public double magnitude() {
     return sqroot(square());  
+  }
+
+  @Override public double angle(ThreeVector that) {
+    double numerator = dot(that);
+    double denominator = magnitude() * that.magnitude();
+    return Math.acos(numerator / denominator);
   }
 
   /** This 3-vector plus 'that' 3-vector (for each component). Returns a new Vector.*/

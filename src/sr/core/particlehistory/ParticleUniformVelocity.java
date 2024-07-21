@@ -1,10 +1,11 @@
 package sr.core.particlehistory;
 
-import sr.core.Position;
 import sr.core.Util;
-import sr.core.Velocity;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
+import sr.core.vector.Position;
+import sr.core.vector.Velocity;
+
 import static sr.core.Axis.*;
 
 /**

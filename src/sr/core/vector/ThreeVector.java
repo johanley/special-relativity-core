@@ -1,6 +1,9 @@
-package sr.core;
+package sr.core.vector;
 
 import java.util.Optional;
+
+import sr.core.Axis;
+import sr.core.Rotation;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
@@ -24,17 +27,17 @@ public interface ThreeVector {
   /** The scalar product of this vector with another vector. */
   public double dot(ThreeVector that);
 
-  /** The vector product of this vector with another vector. */
-  public ThreeVector cross(ThreeVector that);
-  
-  /** The angle between this vector and that vector. Range 0..π. */
-  public double angle(ThreeVector that);
-  
-  /** The squared-magnitude  of the vector. (Note that 4-vectors have no cross-product!) */
+  /** The scalar product of this vector with itself. */
   public double square();
 
   /** The magnitude (norm) of the vector. */
   public double magnitude();
+  
+  /** The angle between this vector and that vector. Range 0..π. */
+  public double angle(ThreeVector that);
+  
+  /** The vector product of this vector with another vector. */
+  public ThreeVector cross(ThreeVector that);
   
   /**
    Returns a non-empty value only in the case where there's exactly 1 non-zero component. 

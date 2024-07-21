@@ -1,4 +1,4 @@
-package sr.core;
+package sr.core.vector;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
@@ -10,8 +10,6 @@ import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.ThreeVector;
-import sr.core.ThreeVectorImpl;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 

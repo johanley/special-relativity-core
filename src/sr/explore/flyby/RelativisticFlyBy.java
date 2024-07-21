@@ -4,11 +4,12 @@ import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
 import static sr.core.Axis.*;
-import sr.core.Position;
-import sr.core.Velocity;
+
 import sr.core.particlehistory.ParticleHistory;
 import sr.core.particlehistory.ParticleUniformVelocity;
 import sr.core.transform.FourVector;
+import sr.core.vector.Position;
+import sr.core.vector.Velocity;
 
 /**
  <b>Relativistic fly-by of a star by a detector.</b>

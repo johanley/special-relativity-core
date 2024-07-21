@@ -5,7 +5,6 @@ import java.util.function.Function;
 import static sr.core.Axis.*;
 import sr.core.FindEvent;
 import sr.core.Physics;
-import sr.core.Position;
 import sr.core.Speed;
 import sr.core.Util;
 import sr.core.particlehistory.ParticleHistory;
@@ -13,6 +12,7 @@ import sr.core.particlehistory.ParticleStationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
+import sr.core.vector.Position;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

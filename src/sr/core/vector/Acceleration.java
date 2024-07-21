@@ -1,9 +1,13 @@
-package sr.core;
+package sr.core.vector;
 
 import java.util.Optional;
 
+import sr.core.Axis;
+import sr.core.Rotation;
+import sr.core.Util;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
+
 import static sr.core.Axis.*;
 
 /** 

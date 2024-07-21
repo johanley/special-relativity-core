@@ -15,7 +15,7 @@
  In the case of linear acceleration, the velocity is also 0 at t=0.  
  
  <P>
- Combined with different {@link CoordTransform}s, you can 
+ Combined with different {@link Transform}s, you can 
  add simple pieces of a history together to make different kinds of motions. 
 */
 package sr.core.history;
