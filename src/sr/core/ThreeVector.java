@@ -4,7 +4,6 @@ import java.util.Optional;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
- In this project, 'vector' always implies a 3-vector.
  
   <P>Using an interface was found to be necessary. 
   Different vectors have different requirements.
