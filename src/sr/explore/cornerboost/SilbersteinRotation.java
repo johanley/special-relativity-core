@@ -3,7 +3,6 @@ package sr.explore.cornerboost;
 import java.util.function.Function;
 
 import static sr.core.Axis.*;
-import sr.core.EventFinder;
 import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Util;
