@@ -31,7 +31,7 @@ public final class Velocity implements ThreeVector {
     return new Velocity(βx, βy, βz);
   }
   
-  /** Factory method for the case in which the velocity is parallel to a coordinate axis. */
+  /** Factory method for the case in which the velocity is parallel to a spatial coordinate axis. */
   public static Velocity of(Axis axis, double βi) {
     return new Velocity(axis, βi);
   }

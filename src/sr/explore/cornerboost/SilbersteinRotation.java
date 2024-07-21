@@ -2,7 +2,7 @@ package sr.explore.cornerboost;
 
 import java.util.function.Function;
 
-import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.EventFinder;
 import sr.core.FindEvent;
 import sr.core.Physics;
@@ -79,8 +79,8 @@ public final class SilbersteinRotation extends TextOutput {
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
-    ParticleHistory historyA_Kpp = new ParticleStationary(Position.from(1.0, 0.0, 0.0));
-    ParticleHistory historyB_Kpp = new ParticleStationary(Position.from(2.0, 0.0, 0.0));
+    ParticleHistory historyA_Kpp = new ParticleStationary(Position.of(X, 1.0));
+    ParticleHistory historyB_Kpp = new ParticleStationary(Position.of(X, 2.0));
     lines.add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
     double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
     double restLength_Kpp = historyB_Kpp.event(ct_Kpp).minus(historyA_Kpp.event(ct_Kpp)).spatialMagnitude();
@@ -90,8 +90,8 @@ public final class SilbersteinRotation extends TextOutput {
     double β1 = 0.8;
     double β2 = 0.6;
     CoordTransform cornerBoost = CoordTransformPipeline.join(
-      Boost.alongThe(Axis.Y, -β2), //minus signs, because we're going backwards here
-      Boost.alongThe(Axis.X, -β1)        
+      Boost.alongThe(Y, -β2), //minus signs, because we're going backwards here
+      Boost.alongThe(X, -β1)        
     );
     lines.add("Corner-boost backwards from K'' to K: "+ cornerBoost);
     lines.add("");
@@ -122,7 +122,7 @@ public final class SilbersteinRotation extends TextOutput {
     lines.add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle_K)) + "°"); 
     lines.add("Length of the stick: " + round(stick_K.spatialMagnitude()) + ". It shows some contraction.");  
     
-    EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Axis.Z, β1, β2);
+    EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Z, β1, β2);
     lines.add(" ");
     lines.add("Disentangle two effects: Silberstein rotation versus flattening."+Util.NL);
     lines.add("FIRST DO A ROTATION (because of the Silberstein rotation)."); 

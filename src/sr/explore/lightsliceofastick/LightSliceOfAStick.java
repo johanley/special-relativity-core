@@ -2,7 +2,7 @@ package sr.explore.lightsliceofastick;
 
 import java.util.function.Function;
 
-import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Position;
@@ -96,7 +96,7 @@ public final class LightSliceOfAStick extends TextOutput {
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
   private static final ParticleHistory HIST_STICK_END_A = new ParticleStationary(Position.origin()); 
-  private static final ParticleHistory HIST_STICK_END_B = new ParticleStationary(Position.from(NEARBY, 0.0, 0.0)); 
+  private static final ParticleHistory HIST_STICK_END_B = new ParticleStationary(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -104,7 +104,7 @@ public final class LightSliceOfAStick extends TextOutput {
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final FourVector DETECTION_EVENT = new ParticleStationary(Position.from(DISTANT, 0.0, 0.0)).event(DISTANT);
+  private static final FourVector DETECTION_EVENT = new ParticleStationary(Position.of(X, DISTANT)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.
@@ -120,7 +120,7 @@ public final class LightSliceOfAStick extends TextOutput {
   private double apparentStickLength(double β, FourVector theDetectionEvent) {
     //K to K': boost along the X-axis at the given speed
     //in K', the stick is receding at speed β in the negative-X direction
-    CoordTransform boostX = Boost.alongThe(Axis.X, β);
+    CoordTransform boostX = Boost.alongThe(X, β);
     FourVector eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boostX);
     FourVector eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boostX);
     //now infer the apparent length of the stick from this pair of events on the past light-cone of the detector

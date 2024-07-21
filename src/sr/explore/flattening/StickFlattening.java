@@ -3,7 +3,7 @@ package sr.explore.flattening;
 import java.util.List;
 import java.util.function.Function;
 
-import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Position;
@@ -73,8 +73,8 @@ public class StickFlattening extends TextOutput {
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
-    ParticleHistory histA = new ParticleStationary(Position.from(1.0, 0.0, 0.0));
-    ParticleHistory histB = new ParticleStationary(Position.from(2.0, 0.0, 0.0));
+    ParticleHistory histA = new ParticleStationary(Position.of(X, 1.0));
+    ParticleHistory histB = new ParticleStationary(Position.of(X, 2.0));
     //time-slice in K; any time will do, since it's stationary in K
     double ct = 0.0; 
     lines.add("K a: " + histA.event(ct));
@@ -84,7 +84,7 @@ public class StickFlattening extends TextOutput {
     lines.add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
-    CoordTransform boostX = Boost.alongThe(Axis.X, β);
+    CoordTransform boostX = Boost.alongThe(X, β);
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
@@ -138,8 +138,8 @@ public class StickFlattening extends TextOutput {
     lines.add(SEP);
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
-    ParticleHistory histA = new ParticleStationary(Position.from(0.0, 0.0, 0.0)); //origin
-    ParticleHistory histB = new ParticleStationary(Position.from(1.0, 1.0, 0.0)); //other end of the stick
+    ParticleHistory histA = new ParticleStationary(Position.origin()); 
+    ParticleHistory histB = new ParticleStationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K a:" + histA.event(0.0));
     lines.add("K b:" + histB.event(0.0));
@@ -149,7 +149,7 @@ public class StickFlattening extends TextOutput {
     lines.add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
     
     //K': boost along the X axis
-    CoordTransform boostX = Boost.alongThe(Axis.X, β);
+    CoordTransform boostX = Boost.alongThe(X, β);
     lines.add("Boost:" + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
@@ -196,8 +196,8 @@ public class StickFlattening extends TextOutput {
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
-    ParticleHistory histA = new ParticleStationary(Position.from(0.0, 0.0, 0.0)); //origin
-    ParticleHistory histB = new ParticleStationary(Position.from(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
+    ParticleHistory histA = new ParticleStationary(Position.origin()); 
+    ParticleHistory histB = new ParticleStationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());
@@ -206,7 +206,7 @@ public class StickFlattening extends TextOutput {
     
     //K': boost along the X axis
     double β = 0.8772684879784525;
-    CoordTransform boostX = Boost.alongThe(Axis.X, β);
+    CoordTransform boostX = Boost.alongThe(X, β);
     lines.add(Util.NL + "Boost: " + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'

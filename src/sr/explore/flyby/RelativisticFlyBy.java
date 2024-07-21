@@ -3,7 +3,7 @@ package sr.explore.flyby;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.Axis;
+import static sr.core.Axis.*;
 import sr.core.Position;
 import sr.core.Velocity;
 import sr.core.particlehistory.ParticleHistory;
@@ -156,7 +156,7 @@ public final class RelativisticFlyBy {
     this.x0 = x0;
     this.y = y;
     this.timeStep = spatialStep / β;
-    this.history = new ParticleUniformVelocity(Position.from(0.0, y, 0.0), Velocity.of(Axis.X, β)); 
+    this.history = new ParticleUniformVelocity(Position.of(Y, y), Velocity.of(X, β)); 
   }
   
   /**
