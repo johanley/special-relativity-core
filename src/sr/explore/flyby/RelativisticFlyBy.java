@@ -3,8 +3,11 @@ package sr.explore.flyby;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.Physics;
-import sr.core.transform.ApplyDisplaceOp;
+import sr.core.Axis;
+import sr.core.Position;
+import sr.core.Velocity;
+import sr.core.particlehistory.ParticleHistory;
+import sr.core.particlehistory.ParticleUniformVelocity;
 import sr.core.transform.FourVector;
 
 /**
@@ -33,36 +36,36 @@ import sr.core.transform.FourVector;
   <li>The star is a main sequence star. In its rest frame it has a given absolute temperature, which maps to a spectral class.
   <li>The star moves uniformly (in the positive X-direction) at a given speed β.
   <li>It passes by a single detector, placed at the origin of the coordinate system.
-  <li>At closest approach, the star is at a given minimum-distance (along the positive Y-axis) away from the detector.
+  <li>At closest approach, the star is at a given minimum-distance (along the positive Y-axis) away from the detector. 
+  (This distance is called the impact parameter.)
+  <li>The star is at a given initial distance from the Y-axis.
  </ul>
  
-  <P>All times are in the rest frame of the detector.
+  <P>All times are coordinate-times <em>ct</em> in the rest frame of the detector.
+  <ul>
+   <li>The time <em>ct=0</em> corresponds to the intersection of the star's path with the YZ-plane.
+   <li>Negative <em>ct</em> corresponds to approach, and positive <em>ct</em> corresponds to recession.
+  </ul> 
   
-  <P>There is one physical quantity that is NOT in the rest frame of the detector.
-  Imagine a frame in which the star is at rest, and the detector is approaching.
-  Now imagine many detectors approaching the star at different speeds, but have them all match up at a certain moment, at a certain initial distance.
-  It's this initial distance that is passed as the <code>x0prime</code> parameter to the constructor .
-
  <P>Input:
  <ul>
-  <li>the speed of the star β (along the positive X-axis).
   <li>the basic spectral class of the main sequence star.
-  <li>the distance to the star at closest approach (the impact parameter, in light-years).
-  <li>the initial separation between the star and the detector in light-years, as measured in the rest frame of the star (not the rest frame of the detector).
-  <em>See below for important info about this item!</em> 
-  <li>a time-step to apply (in years). 
+  <li>the speed of the star β (parallel to the positive X-axis).
+  <li>the initial X-coordinate of the star.
+  <li>the Y-coordinate of the star (the impact parameter), which remains fixed.
+  <li>a (spatial) step-size to apply (in light-years). The corresponding time-step to apply is computed using this number. 
  </ul>
  
  <P>For each time step, the star is moved forward, emits a photon, and the photon is detected (at a later time)
  by the detector at the origin. The conditions at the detector are reported back to the caller, such that the results can be analyzed in different ways.
  
- <P>Output (all as functions of detection-time t in years):
+ <P>Output (all as functions of detection-time <em>ct</em> in years):
  <ul>
-  <li>the detection-time.
-  <li>the angle θ between the axis of motion of the star and the photon-direction at the detector.
+  <li>the detection-time <em>ct</em>.
+  <li>the angle θ between the axis-of-motion of the star and the photon-direction at the detector.
   This angle starts out near zero, and increases towards 180 degrees. 
   Note that the photon-direction is opposite to the detector-direction.
-  The angle θ also equals the angle between the detector-direction and the ray <em>opposite</em> to the star's axis of motion. 
+  The angle θ also equals the angle between the detector-direction and the ray <em>opposite</em> to the star's axis-of-motion. 
   <li>the Doppler factor D (which comes from from β and θ).
   <li>the apparent temperature T of the star, which maps (roughly) to the color perceived by the human eye.
   <li>the apparent visual magnitude of the star V.
@@ -85,30 +88,37 @@ public final class RelativisticFlyBy {
   
   /**  Calculate a fly-by, and process the results. */
   public static void main(String... args) {
-    double x0prime = -30.0; //light-years in the rest frame of the STAR, not the detector; this item is different from the others!
-    double timeStep = 0.01; //years
     
+    /*
     //compute a single scenario
-    RelativisticFlyBy flyby = new RelativisticFlyBy(MainSequenceStar.A, 0.90, 10.0, x0prime, timeStep);
+    double speed = 0.9;
+    double x0 = -25.0;
+    double y = 10.0;
+    RelativisticFlyBy2 flyby = new RelativisticFlyBy2(MainSequenceStar.A, speed, x0, y, 0.01);
     OutputSummary toConsole = new OutputToConsole();
-    OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance, true);
+    OutputSummary highlights = new OutputHighlights(flyby.star.name(), flyby.β(), flyby.y, false);
     OutputSummary[] outputs = {highlights};
     flyby.compute(outputs);
     
     for (OutputSummary output : outputs) {
       output.render();
     }
+    */
 
     //compute a range of different scenarios
-    /*
-    Double[] minimumDistances = {1.0, 0.1};
+    Double x0 = -25.0;
+    double spatialStep = 0.01; //light-years
+    Double[] yValues = {1.0, 0.1};
     Double[] speeds = {0.87, 0.99};
+    
     for(MainSequenceStar star : MainSequenceStar.values()) {
       for (Double speed : speeds) {
-        for (Double minimumDistance: minimumDistances) {
-          RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, minimumDistance, x0prime, timeStep);
-          
-          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), true);
+        for (Double y: yValues) {
+          RelativisticFlyBy flyby = new RelativisticFlyBy(star, speed, x0, y, spatialStep);
+
+          boolean CONSOLE_ONLY = true;
+          boolean FILE_AND_CONSOLE = false;
+          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), FILE_AND_CONSOLE);
           OutputSummary maxThetaDot = new OutputMaxThetaDot();
           
           flyby.compute(highlights, maxThetaDot);
@@ -119,7 +129,6 @@ public final class RelativisticFlyBy {
       }
     }
     log(OutputMaxThetaDot.globalMax());
-    */
   }
   
   /**
@@ -129,33 +138,31 @@ public final class RelativisticFlyBy {
    <P>Unique units: years for time, and light-years for distance. 
    (Implementation note: light-years are needed only for the calculation of the star's visual magnitude <em>V</em>.)
     
-   @param β speed of the star along the positive X-axis (0..1)
    @param star the main sequence star's spectral class (and related data)
-   @param minimumDistance the distance along the Y-axis at closest approach to the detector (the impact parameter; positive; light-years)
-   
-   @param x0prime the initial X-coordinate (at t=0) of the star (negative, light-years), AS MEASURED IN A FRAME IN WHICH THE STAR IS AT REST (hence the 'prime'). 
-   IMPORTANT TRICK: this parameter is flattened (Lorentz-Fitzgerald contraction) using the given β.
-   This trick ensures that the initial distance between the star and the detector, AS SEEN IN THE REST FRAME OF THE STAR, is the same no matter
-   what the speed of the detector. This makes it easier to compare different scenarios.
-   (In the rest frame of the star, imagine N detectors initially at the same location, but having different speeds.) 
-   
-   @param timeStep time between successive photon-emission events (years). 
-   The fly-by is traced out by incrementing the time by this amount, and calculating the 
-   position at which a "new photon" is emitted towards the detector, where it is detected at some later time. 
+   @param β speed of the star along the positive X-axis (0..1)
+   @param x0 initial distance from the star to the YZ-plane (negative)
+   @param y the distance along the Y-axis at closest approach to the detector (the impact parameter; positive; light-years)
+   @param spatialStep the spatial interval between computations; a corresponding time-step is computed.
   */
-  public RelativisticFlyBy(MainSequenceStar star, Double β, Double minimumDistance, Double x0prime, Double timeStep) {
-    this.β = β;
+  public RelativisticFlyBy(MainSequenceStar star, Double β, Double x0, Double y, Double spatialStep) {
+    mustHave(star != null, "Star must be present.");
+    mustHave(β > 0, "β should be positive.");
+    mustHave(β < 1, "β must be less than 1.0.");
+    mustHave(x0 < 0, "Initial X coordinate should be negative.");
+    mustHave(y > 0, "Impact parameter should be positive.");
+    mustHave(spatialStep > 0, "Spatial-step must be positive.");
     this.star = star;
-    this.minimumDistance = minimumDistance;
-    this.x0 = x0prime/Physics.Γ(β); //flattening!
-    this.timeStep = timeStep;
-    validate();
+    this.β = β;
+    this.x0 = x0;
+    this.y = y;
+    this.timeStep = spatialStep / β;
+    this.history = new ParticleUniformVelocity(Position.from(0.0, y, 0.0), Velocity.of(Axis.X, β)); 
   }
   
   /**
-   Cycle through the events in the history of the star, and compute how it looks to the detector at the origin.
+   Cycle through events in the history of the star, and compute how it looks to the detector at the origin.
    
-   Algorithm: the star emits photons periodically (<em>timeStep</em> in coordinate-time).
+   Algorithm: the star emits photons periodically (in coordinate-time).
    The photon is then detected some time later by the detector at the origin, where a correction 
    to its direction is applied to get the detector-direction (aberration) with respect to the boost-direction.
    
@@ -169,9 +176,8 @@ public final class RelativisticFlyBy {
      of the hump corresponds to the minimum distance.
     */
     double time = initialTime();
-    FourVector emissionEvent = star(time); //the first photon emitted
+    FourVector emissionEvent = emissionEventFor(time); //the first photon emitted
     int count = 0;
-    
     while (count < NUM_EMISSION_EVENTS) {
       DetectionEvent detectionEvent = new DetectionEvent(emissionEvent, β, star);
       for(OutputSummary outputter: outputters) {
@@ -179,53 +185,39 @@ public final class RelativisticFlyBy {
       }
       ++count;
       time = time + timeStep;
-      emissionEvent = star(time);
+      emissionEvent = emissionEventFor(time);
     }
   }
 
   @Override public String toString() {
-    return star.name() + "-type " + β + "c minimum-distance " + minimumDistance;
+    return star.name() + "-type " + β + "c minimum-distance " + y;
   }
   
   Double β() {return β;}
   MainSequenceStar star() { return star;}
-  Double minimumDistance() { return minimumDistance; }
+  Double minimumDistance() { return y; }
   
   // PRIVATE
-  
+  private MainSequenceStar star;
   /** [0..1) */
   private Double β;
-  private MainSequenceStar star;
-  private Double minimumDistance;
+  private Double y;
   private Double x0;
   private Double timeStep;
+  private ParticleHistory history; 
   private static final int NUM_EMISSION_EVENTS = 10000;
   
-  private void validate() {
-    mustHave(β > 0, "β should be positive");
-    mustHave(star != null, "Star must be present");
-    mustHave(minimumDistance > 0, "Minimum distance should be positive");
-    mustHave(x0 < 0, "Initial X-coord should be negative");
-    mustHave(timeStep > 0, "Time-step must be positive");
-  }
-
-  /** 
-   t=0 is taken simply as the time when the star is at x0.
-   This time of course differs from the time that event is detected by the detector at the origin.
-  */
+  /**  ct=0 corresponds to the time when the star is at minimum distance. */
   private double initialTime() {
-    return 0; 
+    return x0 / β; 
   }
 
   /** 
-   An event in the history of the star, as a function of coordinate-time t.
-   Uniform motion in a line, parallel to the X-axis.
+   An event in the history of the star, as a function of coordinate-time ct.
    IMPORTANT: the time t here is the time of EMISSION of a photon towards the detector.
    Light-travel time: the photon is ABSORBED at some LATER time, which is computed elsewhere. 
   */
-  private FourVector star(Double emissionTime) {
-   double x = x0/*Lorentz-contracted!*/ + β * emissionTime;
-   FourVector result = FourVector.from(emissionTime, x, minimumDistance, 0.0, ApplyDisplaceOp.YES);
-   return result;
+  private FourVector emissionEventFor(Double emissionTime) {
+   return history.event(emissionTime);
   }
 }

@@ -8,7 +8,7 @@ Boost+rotation transform: rotate[Z,0.23374] boost[X,0.99711] rotate[Z,-1.02842] 
  Event after boost+rotation: [115.915, -35.787, -109.807, 1.0, YES]
 Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of this code always using an axis.
 
-Order matters. Rotation+boost isn't the same.
+Order matters. Rotation+boost isn't the same. The operations don't commute.
 But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).
 Rotation+boost transform: rotate[Z,0.23374] rotate[Z,-1.02842] boost[X,0.99711] rotate[Z,-0.23374]
  Event from rotation+boost: [131.9083, -128.2795, -29.0887, 1.0, YES]

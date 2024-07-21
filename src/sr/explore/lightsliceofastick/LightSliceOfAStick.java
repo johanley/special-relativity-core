@@ -3,12 +3,13 @@ package sr.explore.lightsliceofastick;
 import java.util.function.Function;
 
 import sr.core.Axis;
-import sr.core.EventFinder;
+import sr.core.FindEvent;
 import sr.core.Physics;
+import sr.core.Position;
 import sr.core.Speed;
 import sr.core.Util;
-import sr.core.history.History;
-import sr.core.history.StationaryParticle;
+import sr.core.particlehistory.ParticleHistory;
+import sr.core.particlehistory.ParticleStationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
@@ -78,7 +79,7 @@ public final class LightSliceOfAStick extends TextOutput {
       //history in the most extreme cases
       if (speed.β() < 0.9999) {
         double length = apparentStickLength(-speed.β(), DETECTION_EVENT);
-        lines.add(table.row(speed.β(), round(length), 1.0));
+        lines.add(table.row(speed.β(), round(length), NEARBY));
       }
     }
   }
@@ -89,14 +90,13 @@ public final class LightSliceOfAStick extends TextOutput {
 
   private static final double NEARBY = 1.0;
   private static final double DISTANT = 100.0;
-  private static final double MAX_TAU = 1000.0;
   
   /**
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final History HIST_STICK_END_A = new StationaryParticle(0.0, 0.0, 0.0,   0.0, MAX_TAU); 
-  private static final History HIST_STICK_END_B = new StationaryParticle(NEARBY, 0.0, 0.0,   0.0, MAX_TAU); 
+  private static final ParticleHistory HIST_STICK_END_A = new ParticleStationary(Position.origin()); 
+  private static final ParticleHistory HIST_STICK_END_B = new ParticleStationary(Position.from(NEARBY, 0.0, 0.0)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -104,13 +104,11 @@ public final class LightSliceOfAStick extends TextOutput {
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final FourVector DETECTION_EVENT =  new StationaryParticle(DISTANT, 0.0, 0.0,   0, DISTANT).event(DISTANT);
-
+  private static final FourVector DETECTION_EVENT = new ParticleStationary(Position.from(DISTANT, 0.0, 0.0)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.
-   Use the intersection of the stick's history with the past light-cone of an event 
-   from the detector's history.
+   Use the intersection of the stick's history with the past light-cone of an event from the detector's history.
    
    <P>The stick is at rest in K, from the origin to (X,Y,Z) = (1,0,0). 
    K' is boosted along the X-axis of K by β. 
@@ -130,13 +128,12 @@ public final class LightSliceOfAStick extends TextOutput {
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private FourVector eventOnPastLightConeOf(FourVector detection, History history, CoordTransform transform) {
-    double CLOSE_ENOUGH =  0.00001;
+  private FourVector eventOnPastLightConeOf(FourVector detection, ParticleHistory history, CoordTransform transform) {
     Function<FourVector, Double> onTheLightCone = event -> (
-        detection.minus(transform.toNewFrame(event)).magnitudeSq()
-     );
-    EventFinder root = new EventFinder(history, onTheLightCone, CLOSE_ENOUGH);
-    double τA = root.searchWithNewtonsMethod(CLOSE_ENOUGH);
+      detection.minus(transform.toNewFrame(event)).magnitudeSq()
+    );
+    FindEvent root = new FindEvent(history, onTheLightCone);
+    double τA = root.search();
     FourVector result = transform.toNewFrame(history.event(τA));
     return result;
   }

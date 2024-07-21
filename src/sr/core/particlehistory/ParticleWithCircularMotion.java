@@ -37,7 +37,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
     this.β = β;
     // At ct=0, the momentum is directed toward a spatial axis. 
     Axis startDirection = Axis.rightHandRuleFor(rotationalAxis).get(1);
-    Velocity initialVelocity = Velocity.from(startDirection, β);
+    Velocity initialVelocity = Velocity.of(startDirection, β);
     this.initialMomentum = initialVelocity.fourMomentumFor(mass);
   }
 

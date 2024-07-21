@@ -4,10 +4,12 @@ import java.util.function.Function;
 
 import sr.core.Axis;
 import sr.core.EventFinder;
+import sr.core.FindEvent;
 import sr.core.Physics;
+import sr.core.Position;
 import sr.core.Util;
-import sr.core.history.History;
-import sr.core.history.StationaryParticle;
+import sr.core.particlehistory.ParticleHistory;
+import sr.core.particlehistory.ParticleStationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.CoordTransformPipeline;
@@ -40,7 +42,7 @@ import sr.output.text.TextOutput;
  <P>The above algorithm does indeed show the geometry of the stick in K.
  But you need to be careful, because when non-collinear boosts are used, the geometry/orientation of the stick is affected by 2 items: 
  <ul>
-  <li>the flattening effect of all boosts
+  <li>the flattening effect seen with boosts in general
   <li>the Silberstein rotation, seen with non-collinear boosts
  </ul>
 */
@@ -66,17 +68,25 @@ public final class SilbersteinRotation extends TextOutput {
    both flattening and Silberstein (Thomas-Wigner) rotation.
   */
   private void stickHistory() {
+    
+    /*
+     In variable names, use these aliases for the frames:
+     K'' : Kpp (as in the number of primes)
+     K'  : Kp
+     K   : K
+    */
+    
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
-    History historyA = new StationaryParticle(1.0, 0.0, 0.0,  0.0, 1.0);
-    History historyB = new StationaryParticle(2.0, 0.0, 0.0,  0.0, 1.0);
+    ParticleHistory historyA_Kpp = new ParticleStationary(Position.from(1.0, 0.0, 0.0));
+    ParticleHistory historyB_Kpp = new ParticleStationary(Position.from(2.0, 0.0, 0.0));
     lines.add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
-    double τ0 = 0.0; //any proper time will do here: it's stationary in K''
-    double restLength = historyB.event(τ0).minus(historyA.event(τ0)).spatialMagnitude();
-    lines.add("Rest length of the stick in K'': " + restLength); 
+    double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
+    double restLength_Kpp = historyB_Kpp.event(ct_Kpp).minus(historyA_Kpp.event(ct_Kpp)).spatialMagnitude();
+    lines.add("Rest length of the stick in K'': " + restLength_Kpp); 
     
-    //corner-boost "backwards" from K'' to K
+    //corner-boost "backwards" from K'' all the way back to K
     double β1 = 0.8;
     double β2 = 0.6;
     CoordTransform cornerBoost = CoordTransformPipeline.join(
@@ -90,28 +100,27 @@ public final class SilbersteinRotation extends TextOutput {
     //time-slice 
     //find 2 events, one taken from each history, that have the same coord-time
     //these depend on the speeds chosen.
-    double τA = 0.9; 
-    FourVector evA = cornerBoost.toNewFrame(historyA.event(τA));
+    double ctA_Kpp = 0.9; //any old ct'' value 
+    FourVector eventA_K = cornerBoost.toNewFrame(historyA_Kpp.event(ctA_Kpp)); 
     
-    Function<FourVector, Double> zero = event -> (cornerBoost.toNewFrame(event).ct() - evA.ct());
-    EventFinder finder = new EventFinder(historyB, zero, 0.000001) ;
-    double tau = finder.searchWithNewtonsMethod(0.0000001);
-    //lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
-    FourVector evB = cornerBoost.toNewFrame(historyB.event(tau));
+    Function<FourVector, Double> criterion = event -> (cornerBoost.toNewFrame(event).ct() - eventA_K.ct());
+    FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
+    double ctB_Kpp = findEvent.search(); 
+    FourVector eventB_K = cornerBoost.toNewFrame(historyB_Kpp.event(ctB_Kpp)); 
     
     lines.add("Time-slice across the stick's history in K.");
     lines.add("Examine two events, one for each end of the stick.");
-    lines.add("Event for A: " + evA + " one end of the stick.");
-    lines.add("Event for B: " + evB + " other end of the stick.");
+    lines.add("Event for A: " + eventA_K + " one end of the stick.");
+    lines.add("Event for B: " + eventB_K + " other end of the stick.");
     
     //find the angle
     //get the displacement between the two ends of the stick, and figure out the 
     //angle the stick is making with the x axis (basic trig)
-    FourVector stick = evB.minus(evA);
-    lines.add("Difference (B - A): "+stick + " has ct=0 (time-slice).") ;
-    double angle = Math.atan2(stick.y(), stick.x());
-    lines.add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle)) + "°"); 
-    lines.add("Length of the stick: " + round(stick.spatialMagnitude()) + ". It shows some contraction.");  
+    FourVector stick_K = eventB_K.minus(eventA_K);
+    lines.add("Difference (B - A): "+stick_K + " has ct=0 (time-slice).") ;
+    double angle_K = Math.atan2(stick_K.y(), stick_K.x());
+    lines.add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle_K)) + "°"); 
+    lines.add("Length of the stick: " + round(stick_K.spatialMagnitude()) + ". It shows some contraction.");  
     
     EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Axis.Z, β1, β2);
     lines.add(" ");
@@ -126,7 +135,7 @@ public final class SilbersteinRotation extends TextOutput {
     lines.add("Use a formula for flattening(equivθw - equivDirection, equivβ): " + degrees(Physics.stickAngleAfterBoost(calc.equivalent().θw - calc.equivalent().βdirection, calc.equivalent().β)) + " with respect to the equivDirection."); 
     lines.add(" ");
     lines.add("The same result comes from examining the raw history of the stick.");
-    lines.add("Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: " + degrees(angle - calc.equivalent().βdirection) + " - SAME AS ABOVE"); 
+    lines.add("Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: " + degrees(angle_K - calc.equivalent().βdirection) + " - SAME AS ABOVE"); 
   }
  
   private String degrees(double rads) {

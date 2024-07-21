@@ -1,121 +1,149 @@
 package sr.core;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
+import java.util.Optional;
+
+import sr.core.Axis;
+import sr.core.Physics;
+import sr.core.Rotation;
+import sr.core.Util;
+import sr.core.Vector;
+import sr.core.VectorImpl;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
 
 /** 
- The velocity of an object. (This is not a 4-vector.)
- 
- IMPORTANT TO NOTE: the most extreme relativistic speeds seen in nature (in high-energy cosmic rays, for example) 
- can't be represented with the {@link java.lang.Double} data type in the Java programming language, 
- because it has an insufficient number of decimal places. 
- Thus, this class cannot be used to represent such speeds.
- (An alternative implementation would might use {@link java.math.BigDecimal} instead of Double to represent speeds.)
+The 3-velocity of an object. (This is not a 4-vector.)
+
+IMPORTANT TO NOTE: the most extreme relativistic speeds seen in nature (in high-energy cosmic rays, for example) 
+can't be represented with the {@link java.lang.Double} data type in the Java programming language, 
+because it has an insufficient number of decimal places. 
+Thus, this class cannot be used to represent such speeds.
+(An alternative implementation would might use {@link java.math.BigDecimal} instead of Double to represent speeds.)
 */
-public final class Velocity {
-
-  /** Some cases only make sense when the speed is non-zero. */
-  public static Velocity speedNotZero(double βx, double βy, double βz) {
-    Velocity result = new Velocity(βx, βy, βz);
-    Util.mustHave(result.β > 0, "Overall speed must be greater than 0.");
-    return result;
-  }
-
-  /** Factory method. */
-  public static Velocity from(double βx, double βy, double βz) {
+public final class Velocity implements Vector {
+  
+  /** Factory method, taking the 3 components of the velocity along the XYZ axes, in that order.  */
+  public static Velocity of(double βx, double βy, double βz) {
     return new Velocity(βx, βy, βz);
   }
   
-  /**
-   Factory method for the case in which the full velocity is parallel to an axis.
-    @param axis the spatial axis parallel to the velocity
-    @param β the full speed of the object (either sign).
-  */
-  public static Velocity from(Axis axis, double β) {
-    Velocity result = zero();
-    return result.put(axis, β);
+  /** Factory method for the case in which the velocity is parallel to a coordinate axis. */
+  public static Velocity of(Axis axis, double βi) {
+    return new Velocity(axis, βi);
   }
   
   public static Velocity zero() {
-    return new Velocity(0.0, 0.0, 0.0);
+    return Velocity.of(0.0, 0.0, 0.0);
   }
   
-  /** The 4-velocity corresponding to this object. */
+  /** Some cases only make sense when the speed is non-zero. */
+  public static Velocity nonZero(double βx, double βy, double βz) {
+    Velocity result = Velocity.of(βx, βy, βz);
+    Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
+    return result;
+  }
+  
+  /** 
+   The 4-velocity corresponding to this object.
+   Always time-like. Never zero (because the time component is always greater than or equal to 1.) 
+  */
   public FourVector fourVelocity() {
-    return FourVector.from(Γ, Γ*βx(), Γ*βy(), Γ*βz(), ApplyDisplaceOp.NO);
+    double Γ = Γ();
+    return FourVector.from(Γ, Γ*on(X), Γ*on(Y), Γ*on(Z), ApplyDisplaceOp.NO);
   }
 
-  /**
-   A four-momentum having this velocity.  
-   @param mass must be greater than 0.
-  */
+  /**  A four-momentum having this velocity.  @param mass must be greater than 0. */
   public FourVector fourMomentumFor(double mass) {
     Util.mustHave(mass > 0, "Mass " + mass + " must be greater than 0.");
     return fourVelocity().multiply(mass); //c=1 in this project
   }
   
-  /** Replace one component of this vector, and build a new object in doing so. */
-  public Velocity put(Axis axis, Double value) {
-    Util.mustBeSpatial(axis);
-    //copy this object's speeds to start with
-    Map<Axis, Double> sp = new LinkedHashMap<>();
-    for(Axis a: Axis.values()) {
-      sp.put(a, speeds.get(a));
-    }
-    sp.put(axis, value); //then override one value
-    return new Velocity(sp.get(Axis.X), sp.get(Axis.Y), sp.get(Axis.Z));
-  }
-
-  /** The component of the 3-velocity along the X-axis. In range [0,1). */
-  public double βx() {
-    return speeds.get(Axis.X);
-  }
-  
-  /** The component of the 3-velocity along the Y-axis. In range [0,1). */
-  public double βy() {
-    return speeds.get(Axis.Y);
-  }
-
-  /** The component of the 3-velocity along the Z-axis. In range [0,1). */
-  public double βz() {
-    return speeds.get(Axis.Z);
-  }
-
-  /** The overall speed. Always positive, in the range [0,1). */
-  public double β() {
-    return β;
-  };
-  
   /** The Lorentz factor, always greater than or equal to 1. */
   public double Γ() {
-    return Γ;
+    return Physics.Γ(magnitude());
   }
-  
-  // PRIVATE
-  private Map</*spatial*/Axis, Double> speeds = new LinkedHashMap<>();
-  private double β;
-  private double Γ; 
-  //should I add the rapidity α?
 
-  private Velocity(double βx, double βy, double βz) {
-    checkSpeeds(βx, βy, βz);
-    this.speeds.put(Axis.X, βx);
-    this.speeds.put(Axis.Y, βy);
-    this.speeds.put(Axis.Z, βz);
-    
-    this.β = Util.sqroot(
-      Util.sq(βx) + Util.sq(βy) + Util.sq(βz)
-    );
-    checkSpeeds(β);
-    
-    this.Γ = Physics.Γ(β);
+  @Override public double on(Axis axis) {
+    return vec.on(axis);
+  }
+
+  @Override public Optional<Axis> axis(){
+    return vec.axis();
   }
   
-  private void checkSpeeds(Double... βs) {
+  @Override public double dot(Vector that) {
+    return vec.dot(that);
+  }
+  
+  @Override public Vector cross(Vector that) {
+    return vec.cross(that);
+  }
+  
+  @Override public double angle(Vector that) {
+    return vec.angle(that);
+  }
+
+  @Override public double square() {
+    return vec.square();
+  }
+
+  @Override public double magnitude() {
+    return vec.magnitude();  
+  }
+
+  @Override public Vector plus(Vector that) {
+    return vec.plus(that);
+  }
+  
+  @Override public Vector minus(Vector that) {
+    return vec.minus(that);
+  }
+
+  @Override public Vector multiply(double scalar) {
+    return vec.multiply(scalar);
+  }
+  
+  @Override public Vector divide(double scalar) {
+    return vec.divide(scalar);
+  }
+  
+  @Override public  Vector rotation(Rotation rotation) {
+    return vec.rotation(rotation);
+  }
+  
+  @Override public Vector reflection() {
+    return vec.reflection();
+  }
+  
+  @Override public Vector reflection(Axis axis) {
+    return vec.reflection(axis);
+  }
+  
+  //PRIVATE 
+  
+  private VectorImpl vec;
+  
+  private Velocity(double xComp, double yComp, double zComp) {
+    vec = VectorImpl.of(xComp, yComp, zComp);
+    check();
+  }
+  
+  private Velocity(Axis axis, double value) {
+    vec = VectorImpl.of(axis, value);
+    check();
+  }
+  
+  /** Validations on incoming constructor data. */
+  private void check() {
+    checkRange(vec.on(X), vec.on(Y), vec.on(Z));
+    checkRange(magnitude());
+  }
+  
+  private void checkRange(Double... βs) {
     for (Double βi : βs) {
       Util.mustHaveSpeedRange(βi);
     }

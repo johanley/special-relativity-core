@@ -3,6 +3,7 @@ package sr.explore.flyby;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Physics;
+import sr.core.Util;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -63,7 +64,7 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   
   /** Output the final results.  */
   @Override public void render() {
-    lines.add("Relativistic fly-by of a star.");
+    lines.add(Util.NL + "Relativistic fly-by of a star.");
     lines.add("Spectral Type: " + name);
     lines.add("Speed β:" + speed); 
     lines.add("Minimum distance: " + y + " light-years");

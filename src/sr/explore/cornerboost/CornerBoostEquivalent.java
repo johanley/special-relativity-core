@@ -2,7 +2,7 @@ package sr.explore.cornerboost;
 
 /**
  Two successive boosts, the second at some angle to the first, are 
- equivalent to a single boost in an intermediate direction, followed by a rotation.
+ equivalent to a single boost in a single direction, followed by a rotation.
  
  The first boost defines the X-axis.
  The second boost defines the X-Y plane. 
@@ -41,7 +41,7 @@ final class CornerBoostEquivalent {
   /** 
    Silberstein (Thomas-Wigner) rotation angle (radians) with respect to the direction of the first boost.
    
-   <P>This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
+   This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
   */
   double θw;
 

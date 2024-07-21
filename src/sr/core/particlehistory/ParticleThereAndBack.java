@@ -4,6 +4,7 @@ import sr.core.Util;
 import sr.core.Velocity;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
+import static sr.core.Axis.*;
 
 /**
  History for a particle with mass moving uniformly from infinity to the frame's origin, then in the opposite direction back out to infinity.
@@ -24,7 +25,7 @@ public final class ParticleThereAndBack implements ParticleHistory {
   */
   public ParticleThereAndBack(double mass, Velocity velocity) {
     Util.mustHave(mass > 0, "Mass must be positive.");
-    Util.mustHave(velocity.β() > 0, "Speed cannot be zero.");
+    Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
     fourMomentum = velocity.fourMomentumFor(mass); //c=1 in this project
   }
   
@@ -35,7 +36,7 @@ public final class ParticleThereAndBack implements ParticleHistory {
   
   /** @param ct is the coordinate-time. */
   @Override public FourVector event(double ct) {
-    FourVector displacement = FourVector.from(ct, ct*velocity.βx(), ct*velocity.βy(), ct*velocity.βz(), ApplyDisplaceOp.NO);
+    FourVector displacement = FourVector.from(ct, ct*velocity.on(X), ct*velocity.on(Y), ct*velocity.on(Z), ApplyDisplaceOp.NO);
     return ct >= 0 ? turnaroundEvent.plus(displacement) : turnaroundEvent.plus(displacement.spatialReflection());
   }
   

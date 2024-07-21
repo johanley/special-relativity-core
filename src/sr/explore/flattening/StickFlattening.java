@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.function.Function;
 
 import sr.core.Axis;
-import sr.core.EventFinder;
+import sr.core.FindEvent;
 import sr.core.Physics;
+import sr.core.Position;
 import sr.core.Util;
-import sr.core.history.History;
-import sr.core.history.StationaryParticle;
+import sr.core.particlehistory.ParticleHistory;
+import sr.core.particlehistory.ParticleStationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
@@ -23,7 +24,8 @@ import sr.output.text.TextOutput;
  <P>Second, place a stick at an angle with respect to the X-axis (not 0 or 90 degrees). 
  Do a boost along the X-axis.
  In the boosted frame, the angle of the stick with respect to the X-axis will change.
- The stick will "rotate away" from the direction of the boost. 
+ The stick will "flatten" along the direction of the boost.
+ This changes the direction in which the stick is pointing. 
  At ultra-relativistic speeds, the rotated stick will approach the direction of 90 degrees away from the X-axis.
 */
 public class StickFlattening extends TextOutput {
@@ -71,26 +73,27 @@ public class StickFlattening extends TextOutput {
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
-    History histA = new StationaryParticle(1.0, 0.0, 0.0,   0.0, 100.0);
-    History histB = new StationaryParticle(2.0, 0.0, 0.0,   0.0, 100.0);
-    double τ = 0.0; //any proper time will do, since it's stationary in K
-    lines.add("K a: " + histA.event(τ));
-    lines.add("K b: " + histB.event(τ));
-    FourVector bMinusA = histB.event(τ).minus(histA.event(τ));
+    ParticleHistory histA = new ParticleStationary(Position.from(1.0, 0.0, 0.0));
+    ParticleHistory histB = new ParticleStationary(Position.from(2.0, 0.0, 0.0));
+    //time-slice in K; any time will do, since it's stationary in K
+    double ct = 0.0; 
+    lines.add("K a: " + histA.event(ct));
+    lines.add("K b: " + histB.event(ct));
+    FourVector bMinusA = histB.event(ct).minus(histA.event(ct));
     lines.add("K b-a: " + bMinusA);
     lines.add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
     CoordTransform boostX = Boost.alongThe(Axis.X, β);
     
-    //time-slice: find two events that have the same ct' value in K'
-    //events are identified using τ along the history
+    //time-slice in K': find two events that have the same ct' value in K'
+    //events are identified using ct along the history
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18)); //start with some event on A's history
+    //root: the difference in K' of the ct' coord vanishes
     Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
-    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
-    double tau = finder.searchWithNewtonsMethod(0.0000001);
-    //lines.add("Zero: τ=" + tau + " (" + finder.numIterations() + " iterations)");
-    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    FindEvent findEvent = new FindEvent(histB, criterion);
+    double ctB = findEvent.search();
+    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
     
     lines.add("Boost: "+ boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
@@ -101,7 +104,6 @@ public class StickFlattening extends TextOutput {
     lines.add("1/Γ from formula: " + 1.0/Physics.Γ(β));
   }
   
-
   /**
    Measure the flattening of a stick that's at an angle to the X-axis (the line of a boost).
    
@@ -117,8 +119,8 @@ public class StickFlattening extends TextOutput {
    <ul>
     <li>measure the stick in K'
     <li>its sides are now of length 1.0 (y) and 0.8(x), and its length is 1.2806248
-    <li>the stick is 'squished' in the X-direction only; its angle w.r.t. the X axis increases from 45° to a higher value
-    <li>for ultrarelativistic speeds, the angle asymptotically approaches 90°
+    <li>the stick is 'squished' in the X-direction only; its angle with respect to the X-axis increases from 45° to a higher value
+    <li>for ultra-relativistic speeds, the angle asymptotically approaches 90°
    </ul>
    
    Ref : Problem Book in Relativity and Gravitation (Lightman and others)
@@ -136,8 +138,8 @@ public class StickFlattening extends TextOutput {
     lines.add(SEP);
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
-    History histA = new StationaryParticle(0.0, 0.0, 0.0,   0.0, 100.0); //origin
-    History histB = new StationaryParticle(1.0, 1.0, 0.0,   0.0, 100.0); //other end of the stick
+    ParticleHistory histA = new ParticleStationary(Position.from(0.0, 0.0, 0.0)); //origin
+    ParticleHistory histB = new ParticleStationary(Position.from(1.0, 1.0, 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K a:" + histA.event(0.0));
     lines.add("K b:" + histB.event(0.0));
@@ -155,10 +157,9 @@ public class StickFlattening extends TextOutput {
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.18)); //start with some event on A's history
     
     Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
-    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
-    double tau = finder.searchWithNewtonsMethod(0.0000001);
-    //lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
-    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    FindEvent findEvent = new FindEvent(histB, criterion);
+    double ctB = findEvent.search();
+    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
@@ -195,8 +196,8 @@ public class StickFlattening extends TextOutput {
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
-    History histA = new StationaryParticle(0.0, 0.0, 0.0,   0.0, 100.0); //origin
-    History histB = new StationaryParticle(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0,   0.0, 100.0); //other end of the stick
+    ParticleHistory histA = new ParticleStationary(Position.from(0.0, 0.0, 0.0)); //origin
+    ParticleHistory histB = new ParticleStationary(Position.from(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());
@@ -211,12 +212,10 @@ public class StickFlattening extends TextOutput {
     //find events that have the same ct value in K'
     FourVector aBoosted = boostX.toNewFrame(histA.event(0.15));
     
-    //FourVector bBoosted = boostX.toNewFrame(histB.event(0.95));
     Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
-    EventFinder finder = new EventFinder(histB, criterion, 0.000001) ;
-    double tau = finder.searchWithNewtonsMethod(0.0000001);
-    //lines.add("Zero: " + tau + " (" + finder.numIterations() + " iterations)");
-    FourVector bBoosted = boostX.toNewFrame(histB.event(tau));
+    FindEvent findEvent = new FindEvent(histB, criterion);
+    double ctB = findEvent.search();
+    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);

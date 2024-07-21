@@ -5,11 +5,12 @@ import sr.core.Util;
 import sr.core.Velocity;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
+import static sr.core.Axis.*;
 
 /**
  History for a particle with mass moving uniformly at a given speed, and in a given direction.
 */
-public final class ParticleMovingUniformly implements ParticleHistory {
+public final class ParticleUniformVelocity implements ParticleHistory {
 
   /**
    Constructor.
@@ -19,21 +20,21 @@ public final class ParticleMovingUniformly implements ParticleHistory {
    @param initialPosition for the object at cτ=0
    @param velocity non-zero velocity
   */
-  public ParticleMovingUniformly(double mass, Position initialPosition, Velocity velocity) {
-    Util.mustHave(velocity.β() > 0, "Speed must be greater than zero.");
+  public ParticleUniformVelocity(double mass, Position initialPosition, Velocity velocity) {
+    Util.mustHave(velocity.magnitude() > 0, "Speed must be greater than zero.");
     this.velocity = velocity;
     this.initialEvent = initialPosition.eventForTime(0.0);
     this.fourMomentum = velocity.fourMomentumFor(mass);
   }
   
   /** For a particle having unit mass, and parameterized with the coordinate-time. */
-  public ParticleMovingUniformly(Position initialPosition, Velocity velocity) {
+  public ParticleUniformVelocity(Position initialPosition, Velocity velocity) {
     this(1.0, initialPosition, velocity);
   }
 
   /** @param ct is the coordinate-time. */
   @Override public FourVector event(double ct) {
-    FourVector displacement = FourVector.from(ct, ct*velocity.βx(), ct*velocity.βy(), ct*velocity.βz(), ApplyDisplaceOp.NO);
+    FourVector displacement = FourVector.from(ct, ct*velocity.on(X), ct*velocity.on(Y), ct*velocity.on(Z), ApplyDisplaceOp.NO);
     return initialEvent.plus(displacement);
   }
   
