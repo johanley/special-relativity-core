@@ -37,7 +37,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
     this.β = β;
     // At ct=0, the momentum is directed toward a spatial axis. 
     Axis startDirection = Axis.rightHandRuleFor(rotationalAxis).get(1);
-    Velocity initialVelocity = Velocity.of(startDirection, β);
+    this.initialVelocity = Velocity.of(startDirection, β);
     this.initialMomentum = initialVelocity.fourMomentumFor(mass);
   }
 
@@ -59,6 +59,14 @@ public class ParticleWithCircularMotion implements ParticleHistory {
     return rotateThe(initialMomentum, ct);
   }
   
+  /** 
+   The zero of proper-time is taken as the event with ct = 0.
+   @param ct is the coordinate-time.
+  */
+  @Override public double τ(double ct) {
+   return ct / initialVelocity.Γ();
+  }
+  
   /** Defines the plane of the circle, and also the sense of circular motion. */
   private Axis rotationalAxis;
   
@@ -73,6 +81,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
   private double β;
 
   private FourVector initialEvent;
+  private Velocity initialVelocity;
   private FourVector initialMomentum;
   
   /** At ct=0, the position is on a spatial axis. */

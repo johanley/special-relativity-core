@@ -19,6 +19,11 @@ public final class Position {
     return new Position(x, y, z);
   }
 
+  /** Factory method. The vector has 1 non-zero component, along the given coordinate axis. */
+  public static Position of(Axis axis, double value) {
+    return new Position(axis, value);
+  }
+  
   public static Position origin() {
     return new Position(0.0, 0.0, 0.0);
   }
@@ -59,5 +64,10 @@ public final class Position {
     this.coords.put(Axis.X, x);
     this.coords.put(Axis.Y, y);
     this.coords.put(Axis.Z, z);
+  }
+  
+  private Position(Axis axis, double value) {
+    this(0.0, 0.0, 0.0);
+    this.coords.put(axis, value);
   }
 }

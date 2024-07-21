@@ -44,6 +44,14 @@ public final class ParticleThereAndBack implements ParticleHistory {
   @Override public FourVector fourMomentum(double ct) {
     return ct <= 0 ? fourMomentum : fourMomentum.spatialReflection();
   }
+  
+  /** 
+   The zero of proper-time is taken as the event with ct = 0.
+   @param ct is the coordinate-time.
+  */
+  @Override public double τ(double ct) {
+    return ct / velocity.Γ(); 
+  }
 
   private FourVector turnaroundEvent = FourVector.ZERO_AFFINE; //the origin event
   private Velocity velocity;

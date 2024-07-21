@@ -42,6 +42,14 @@ public final class ParticleStationary implements ParticleHistory {
   @Override public FourVector fourMomentum(double ct) {
     return fourMomentum;
   }
+ 
+  /**
+   In this case, the proper-time and the coordinate-time are the same value.
+   @param ct is the coordinate-time.
+  */ 
+  @Override public double τ(double ct) {
+    return ct;
+  }
   
   private FourVector initialEvent;
   private FourVector fourMomentum;

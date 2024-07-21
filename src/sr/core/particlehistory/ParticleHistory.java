@@ -38,5 +38,13 @@ public interface ParticleHistory {
    @param λ uniquely identifies each event in the history.
   */
   FourVector fourMomentum(double λ);
+
+  /**
+   Return a proper-time value;
+   There's no single proper-time, since the zero can be chosen in different ways.
+     
+   @param λ uniquely identifies each event in the history.
+  */
+  double τ(double λ);
   
 }

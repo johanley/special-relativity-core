@@ -1,6 +1,8 @@
 # special-relativity-core
 Explore the consequences of the Lorentz Transformations.
 
+In this project c=1, and the metric signature is (ct,x,y,z) = (+,-,-,-).
+
 The book <a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
 I'm hoping that this is the case with this little project as well.
@@ -110,6 +112,14 @@ Thomas and Wigner came much later.
   
 **The geometry of an object (for example, the direction in which a stick is pointing) is affected by both regular flattening and the Silberstein rotation.**
 You need to be careful not to confuse the two effects. 
+
+**Four-vectors and three-vectors are not completely analogous**.
+The cross product applies only to three-vectors.
+
+The angle between vectors has a fundamentally different meaning in Minkowski space.
+It's defined only between pairs of 4-vectors that are either both time-like or both space-like. 
+Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
+(Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
 He simply asserts that the geometry is that of a rotation. He seems to be incorrect.

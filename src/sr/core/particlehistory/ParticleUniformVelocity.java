@@ -46,6 +46,14 @@ public final class ParticleUniformVelocity implements ParticleHistory {
     return fourMomentum;
   }
   
+  /** 
+   The zero of proper-time is taken as the event with ct = 0.
+   @param ct is the coordinate-time.
+  */
+  @Override public double τ(double ct) {
+    return ct / velocity.Γ();
+  }
+  
   private FourVector initialEvent;
   private FourVector fourMomentum;
   private Velocity velocity;
