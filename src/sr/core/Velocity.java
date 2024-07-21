@@ -10,7 +10,7 @@ import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.Vector;
+import sr.core.ThreeVector;
 import sr.core.VectorImpl;
 import sr.core.transform.ApplyDisplaceOp;
 import sr.core.transform.FourVector;
@@ -24,7 +24,7 @@ because it has an insufficient number of decimal places.
 Thus, this class cannot be used to represent such speeds.
 (An alternative implementation would might use {@link java.math.BigDecimal} instead of Double to represent speeds.)
 */
-public final class Velocity implements Vector {
+public final class Velocity implements ThreeVector {
   
   /** Factory method, taking the 3 components of the velocity along the XYZ axes, in that order.  */
   public static Velocity of(double βx, double βy, double βz) {
@@ -75,15 +75,15 @@ public final class Velocity implements Vector {
     return vec.axis();
   }
   
-  @Override public double dot(Vector that) {
+  @Override public double dot(ThreeVector that) {
     return vec.dot(that);
   }
   
-  @Override public Vector cross(Vector that) {
+  @Override public ThreeVector cross(ThreeVector that) {
     return vec.cross(that);
   }
   
-  @Override public double angle(Vector that) {
+  @Override public double angle(ThreeVector that) {
     return vec.angle(that);
   }
 
@@ -95,31 +95,31 @@ public final class Velocity implements Vector {
     return vec.magnitude();  
   }
 
-  @Override public Vector plus(Vector that) {
+  @Override public ThreeVector plus(ThreeVector that) {
     return vec.plus(that);
   }
   
-  @Override public Vector minus(Vector that) {
+  @Override public ThreeVector minus(ThreeVector that) {
     return vec.minus(that);
   }
 
-  @Override public Vector multiply(double scalar) {
+  @Override public ThreeVector multiply(double scalar) {
     return vec.multiply(scalar);
   }
   
-  @Override public Vector divide(double scalar) {
+  @Override public ThreeVector divide(double scalar) {
     return vec.divide(scalar);
   }
   
-  @Override public  Vector rotation(Rotation rotation) {
+  @Override public  ThreeVector rotation(Rotation rotation) {
     return vec.rotation(rotation);
   }
   
-  @Override public Vector reflection() {
+  @Override public ThreeVector reflection() {
     return vec.reflection();
   }
   
-  @Override public Vector reflection(Axis axis) {
+  @Override public ThreeVector reflection(Axis axis) {
     return vec.reflection(axis);
   }
   

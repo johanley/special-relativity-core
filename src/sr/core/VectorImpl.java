@@ -19,7 +19,7 @@ import static sr.core.Util.*;
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
  
- (Note: the javadoc for the {@link Vector} interface methods is inherited in the interface.)
+ (Note: the javadoc for the {@link ThreeVector} interface methods is inherited in the interface.)
  
  <P>This class is <em>final</em>, and cannot be subclassed.
  It's meant to be used as a field, to which a class can 'call-forward' most of its methods to this class.
@@ -28,7 +28,7 @@ import static sr.core.Util.*;
  the subclass, then it would no longer be a pure Vector. 
  The 'call-forward' technique, on the other hand, is always safe.
 */
-public final class VectorImpl implements Vector {
+public final class VectorImpl implements ThreeVector {
 
   /** Factory method. */
   public static VectorImpl of(double xComp, double yComp, double zComp) {
@@ -74,7 +74,7 @@ public final class VectorImpl implements Vector {
     return result;
   }
   
-  @Override public double dot(Vector that) {
+  @Override public double dot(ThreeVector that) {
     double result = 0.0;
     for (Axis axis : components.keySet()) {
       result = result + on(axis) * that.on(axis); 
@@ -82,14 +82,14 @@ public final class VectorImpl implements Vector {
     return result;
   }
   
-  @Override public Vector cross(Vector that) {
+  @Override public ThreeVector cross(ThreeVector that) {
     double x = on(Y) * that.on(Z) - on(Z)*that.on(Y);
     double y = on(X) * that.on(Z) - on(Z)*that.on(X);
     double z = on(X) * that.on(Y) - on(Y)*that.on(X);
     return VectorImpl.of(x, y, z);
   }
   
-  @Override public double angle(Vector that) {
+  @Override public double angle(ThreeVector that) {
     double numerator = dot(that);
     double denominator = magnitude() * that.magnitude();
     return Math.acos(numerator / denominator);
@@ -104,7 +104,7 @@ public final class VectorImpl implements Vector {
   }
 
   /** This 3-vector plus 'that' 3-vector (for each component). Returns a new Vector.*/
-  @Override public Vector plus(Vector that) {
+  @Override public ThreeVector plus(ThreeVector that) {
     return VectorImpl.of(
       on(X) + that.on(X), 
       on(Y) + that.on(Y),
@@ -112,7 +112,7 @@ public final class VectorImpl implements Vector {
     );
   }
   
-  @Override public Vector minus(Vector that) {
+  @Override public ThreeVector minus(ThreeVector that) {
     return VectorImpl.of(
       on(X) - that.on(X), 
       on(Y) - that.on(Y),
@@ -120,7 +120,7 @@ public final class VectorImpl implements Vector {
     );
   }
 
-  @Override public Vector multiply(double scalar) {
+  @Override public ThreeVector multiply(double scalar) {
     return VectorImpl.of(
       on(X) * scalar, 
       on(Y) * scalar, 
@@ -128,7 +128,7 @@ public final class VectorImpl implements Vector {
     );
   }
   
-  @Override public Vector divide(double scalar) {
+  @Override public ThreeVector divide(double scalar) {
     Util.mustHave(scalar != 0, "Cannot divide by zero.");
     return VectorImpl.of(
       on(X) / scalar, 
@@ -137,7 +137,7 @@ public final class VectorImpl implements Vector {
     );
   }
   
-  @Override public  Vector rotation(Rotation rotation) {
+  @Override public  ThreeVector rotation(Rotation rotation) {
     //this implementation uses items build for 4-vectors; the extra dimension is simply ignored in the result
     CoordTransform rotate = Rotate.about(rotation.axis, rotation.θ);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
@@ -145,14 +145,14 @@ public final class VectorImpl implements Vector {
     return VectorImpl.of(b.x(),b.y(),b.z());
   }
   
-  @Override public Vector reflection() {
+  @Override public ThreeVector reflection() {
     CoordTransform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
     FourVector b = reflection.toNewFourVector(a);
     return VectorImpl.of(b.x(), b.y(), b.z());
   }
   
-  @Override public Vector reflection(Axis axis) {
+  @Override public ThreeVector reflection(Axis axis) {
     CoordTransform reflection = Reflect.the(axis);
     FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
     FourVector b = reflection.toNewFourVector(a);

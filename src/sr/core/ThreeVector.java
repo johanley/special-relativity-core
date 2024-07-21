@@ -17,19 +17,19 @@ import java.util.Optional;
    two four-vectors are both time-like or both space-like.
   </ul>
 */
-public interface Vector {
+public interface ThreeVector {
 
   /** The component of the vector along the given spatial-axis. */
   public double on(Axis axis);
 
   /** The scalar product of this vector with another vector. */
-  public double dot(Vector that);
+  public double dot(ThreeVector that);
 
   /** The vector product of this vector with another vector. */
-  public Vector cross(Vector that);
+  public ThreeVector cross(ThreeVector that);
   
   /** The angle between this vector and that vector. Range 0..π. */
-  public double angle(Vector that);
+  public double angle(ThreeVector that);
   
   /** The squared-magnitude  of the vector. (Note that 4-vectors have no cross-product!) */
   public double square();
@@ -45,24 +45,24 @@ public interface Vector {
   public Optional<Axis> axis();
 
   /** This vector plus 'that' 3-vector (for each component). Returns a new object.*/
-  public Vector plus(Vector that);
+  public ThreeVector plus(ThreeVector that);
   
   /** This vector minus 'that' vector (for each component).  Returns a new object.*/
-  public Vector minus(Vector that);
+  public ThreeVector minus(ThreeVector that);
 
   /** Multiply each component by the given scalar. Returns a new object. */
-  public Vector multiply(double scalar);
+  public ThreeVector multiply(double scalar);
   
   /** Divide each component by the given (non-zero) scalar. Returns a new object. */
-  public Vector divide(double scalar);
+  public ThreeVector divide(double scalar);
   
   /** Return a new vector whose components have been rotated about an axis of the coordinate system. */
-  public Vector rotation(Rotation rotation);
+  public ThreeVector rotation(Rotation rotation);
   
   /** Return a new vector whose components have all been multiplied by -1. */
-  public Vector reflection();
+  public ThreeVector reflection();
   
   /** Return a new vector for which a single component (for the given Axis) is multiplied by -1. */
-  public Vector reflection(Axis axis);
+  public ThreeVector reflection(Axis axis);
   
 }

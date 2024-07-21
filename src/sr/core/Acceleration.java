@@ -9,7 +9,7 @@ import static sr.core.Axis.*;
 /** 
  The 3-acceleration of an object having mass (not a 4-vector).
 */
-public final class Acceleration implements Vector {
+public final class Acceleration implements ThreeVector {
 
   /** Factory method, taking the 3 components of the acceleration along the XYZ axes, in that order.  */
   public static Acceleration of(double ax, double ay, double az) {
@@ -42,7 +42,7 @@ public final class Acceleration implements Vector {
     double g2 = Math.pow(vel.Γ(), 2);
     double dot = this.dot(vel);
     double ct = g4 * dot;
-    Vector space = vel.multiply(g4).multiply(dot).plus(this.multiply(g2));
+    ThreeVector space = vel.multiply(g4).multiply(dot).plus(this.multiply(g2));
     return FourVector.from(ct, space.on(X), space.on(Y), space.on(Z), ApplyDisplaceOp.NO);
   }
 
@@ -54,15 +54,15 @@ public final class Acceleration implements Vector {
     return vec.axis();
   }
   
-  @Override public double dot(Vector that) {
+  @Override public double dot(ThreeVector that) {
     return vec.dot(that);
   }
   
-  @Override public Vector cross(Vector that) {
+  @Override public ThreeVector cross(ThreeVector that) {
     return vec.cross(that);
   }
   
-  @Override public double angle(Vector that) {
+  @Override public double angle(ThreeVector that) {
     return vec.angle(that);
   }
 
@@ -74,31 +74,31 @@ public final class Acceleration implements Vector {
     return vec.magnitude();  
   }
 
-  @Override public Vector plus(Vector that) {
+  @Override public ThreeVector plus(ThreeVector that) {
     return vec.plus(that);
   }
   
-  @Override public Vector minus(Vector that) {
+  @Override public ThreeVector minus(ThreeVector that) {
     return vec.minus(that);
   }
 
-  @Override public Vector multiply(double scalar) {
+  @Override public ThreeVector multiply(double scalar) {
     return vec.multiply(scalar);
   }
   
-  @Override public Vector divide(double scalar) {
+  @Override public ThreeVector divide(double scalar) {
     return vec.divide(scalar);
   }
   
-  @Override public  Vector rotation(Rotation rotation) {
+  @Override public  ThreeVector rotation(Rotation rotation) {
     return vec.rotation(rotation);
   }
   
-  @Override public Vector reflection() {
+  @Override public ThreeVector reflection() {
     return vec.reflection();
   }
   
-  @Override public Vector reflection(Axis axis) {
+  @Override public ThreeVector reflection(Axis axis) {
     return vec.reflection(axis);
   }
   
