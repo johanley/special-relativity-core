@@ -12,11 +12,13 @@ import sr.core.Rotation;
   Different vectors have different requirements.
   For example, the velocity components need to be in the range (-1,1).
   
-  <P>Four-vectors have some essential differences with three-vectors:
+  <P>Note the following differences with 4-vectors:
   <ul>
-   <li>four-vectors have no cross product
-   <li>the angle between four-vectors needs reinterpretation: the angle is not a Euclidean angle, but a hyperbolic angle (arc lengths via Minkowski metric), and you it's defined only if the
-   two four-vectors are both time-like or both space-like.
+   <li>there's no cross product for 4-vectors.
+   <li>the 'square' of a 4-vector can be of either sign.
+   <li>the idea of time-like, space-like, and light-like vectors. 
+   <li>the angle between four-vectors needs reinterpretation: the angle is not a Euclidean angle, but a hyperbolic angle 
+   (arc lengths via Minkowski metric), and you it's defined only if the two four-vectors are both time-like or both space-like.
   </ul>
 */
 public interface ThreeVector {

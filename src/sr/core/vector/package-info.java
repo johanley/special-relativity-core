@@ -1,2 +1,2 @@
-/** 3-vectors: three spatial coordinates. */
+/** 3-vectors only. */
 package sr.core.vector;

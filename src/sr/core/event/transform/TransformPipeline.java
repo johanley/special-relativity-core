@@ -1,4 +1,4 @@
-package sr.core.transform;
+package sr.core.event.transform;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,11 +7,12 @@ import java.util.ListIterator;
 import sr.core.Axis;
 import sr.core.Parity;
 import sr.core.Util;
+import sr.core.event.Event;
 
 /**
- General coordinate transformations built up out of simpler parts, as {@link CoordTransform} objects.
+ General coordinate transformations built up out of simpler parts, as {@link Transform} objects.
 */
-public final class CoordTransformPipeline implements CoordTransform {
+public final class TransformPipeline implements Transform {
 
   /** Simple test harness. */
   public static void main(String[] args) {
@@ -19,13 +20,13 @@ public final class CoordTransformPipeline implements CoordTransform {
     Displace displace = new Displace(0.0,1.0,0.0,0.0);
     Rotate rotate = new Rotate(Axis.Z, Util.degsToRads(10));
     Boost boost = new Boost(Axis.X, 0.5);
-    CoordTransform[] ops = {rotate, displace, reflect, boost};
-    CoordTransformPipeline t = new CoordTransformPipeline(ops);
+    Transform[] ops = {rotate, displace, reflect, boost};
+    TransformPipeline t = new TransformPipeline(ops);
     
-    FourVector in = FourVector.from(1.0, 1.0, 0.0, 0.0, ApplyDisplaceOp.YES);
-    FourVector out = t.toNewFrame(in);
-    FourVector backIn = t.toNewFourVector(out);
-    if (! in.equalsWithEpsilon(backIn)) {
+    Event in = Event.of(1.0, 1.0, 0.0, 0.0);
+    Event out = t.apply(in);
+    Event backIn = t.reverse(out);
+    if (! in.equalsWithTinyDiff(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
     }
   }
@@ -35,20 +36,20 @@ public final class CoordTransformPipeline implements CoordTransform {
    @param operations 0 or more transform operations, as applied in the 'forward' direction.
    The order is significant. A pipeline of operations needed to do the desired job. 
   */
-  public CoordTransformPipeline(CoordTransform... operations) {
+  public TransformPipeline(Transform... operations) {
     this.operations = operations;
   }
   
   /** Static factory method. */
-  public static CoordTransformPipeline join(CoordTransform... operations) {
-    return new CoordTransformPipeline(operations);
+  public static TransformPipeline join(Transform... operations) {
+    return new TransformPipeline(operations);
   }
   
   /** Apply the operations (in order) to the given FourVector. */
-  @Override public FourVector toNewFrame(FourVector vec) {
-    FourVector result = vec;
-    for (CoordTransform op : operations) {
-      result = op.toNewFrame(result);
+  @Override public Event apply(Event vec) {
+    Event result = vec;
+    for (Transform op : operations) {
+      result = op.apply(result);
     }
     return result;
   }
@@ -57,19 +58,19 @@ public final class CoordTransformPipeline implements CoordTransform {
    Apply the operations to the given FourVector, but in <em>reverse</em> order <em>and</em> 
    with the <em>inverse</em> transform. 
   */
-  @Override public FourVector toNewFourVector(FourVector vecPrime) {
-    FourVector result = vecPrime;
-    List<CoordTransform> ops = Arrays.asList(operations);
-    ListIterator<CoordTransform> li = ops.listIterator(ops.size()); //start at the end
+  @Override public Event reverse(Event vecPrime) {
+    Event result = vecPrime;
+    List<Transform> ops = Arrays.asList(operations);
+    ListIterator<Transform> li = ops.listIterator(ops.size()); //start at the end
     while (li.hasPrevious()) { //go backwards
-      result = li.previous().toNewFourVector(result);
+      result = li.previous().reverse(result);
     }
     return result;
   }
   
   @Override public String toString() {
     StringBuilder builder = new StringBuilder();
-    for(CoordTransform t : operations) {
+    for(Transform t : operations) {
       builder.append(t.toString() + " ");
     }
     return builder.toString().trim();
@@ -77,6 +78,6 @@ public final class CoordTransformPipeline implements CoordTransform {
   
   // PRIVATE 
   
-  private CoordTransform[] operations;
+  private Transform[] operations;
 
 }

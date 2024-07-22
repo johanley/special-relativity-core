@@ -13,25 +13,25 @@ import sr.core.Axis;
 import sr.core.Parity;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.transform.ApplyDisplaceOp;
-import sr.core.transform.CoordTransform;
-import sr.core.transform.FourVector;
-import sr.core.transform.Reflect;
-import sr.core.transform.Rotate;
+import sr.core.event.Event;
+import sr.core.event.transform.Reflect;
+import sr.core.event.transform.Rotate;
+import sr.core.event.transform.Transform;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
  
  (Note: the javadoc for the {@link ThreeVector} interface methods is inherited in the interface.)
  
- <P>This class is <em>final</em>, and cannot be subclassed.
- It's meant to be used as a field, to which a class can 'call-forward' most of its methods to this class.
+ <P>There are valid reasons for creating other classes that either implement the interface or subclass this class:
+ <ul>
+  <li>providing a more meaningful name, which clarifies the caller
+  <li>providing a means to validate data coming into the constructor
+ </ul>
  
- <P>If it was directly subclassed, then that would be dangerous: if new methods needed to be added to 
- the subclass, then it would no longer be a pure Vector. 
- The 'call-forward' technique, on the other hand, is always safe.
+ <P>Other classes that implement this interface can 'call-forward' all (non-constructor) methods to this implementation.
 */
-public final class ThreeVectorImpl implements ThreeVector {
+public class ThreeVectorImpl implements ThreeVector {
 
   /** Factory method. */
   public static ThreeVectorImpl of(double xComp, double yComp, double zComp) {
@@ -142,39 +142,38 @@ public final class ThreeVectorImpl implements ThreeVector {
   
   @Override public  ThreeVector rotation(Rotation rotation) {
     //this implementation uses items build for 4-vectors; the extra dimension is simply ignored in the result
-    CoordTransform rotate = Rotate.about(rotation.axis, rotation.θ);
-    FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
-    FourVector b = rotate.toNewFourVector(a);
+    Transform rotate = Rotate.about(rotation.axis, rotation.θ);
+    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event b = rotate.reverse(a);
     return ThreeVectorImpl.of(b.x(),b.y(),b.z());
   }
   
   @Override public ThreeVector reflection() {
-    CoordTransform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
-    FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
-    FourVector b = reflection.toNewFourVector(a);
+    Transform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
+    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
   
   @Override public ThreeVector reflection(Axis axis) {
-    CoordTransform reflection = Reflect.the(axis);
-    FourVector a = FourVector.from(0.0, on(X), on(Y), on(Z), ApplyDisplaceOp.NO);
-    FourVector b = reflection.toNewFourVector(a);
+    Transform reflection = Reflect.the(axis);
+    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
-  
-  //PRIVATE 
-  
-  private Map</*spatial*/Axis, Double> components = new LinkedHashMap<>();
-  
-  private ThreeVectorImpl(double xComp, double yComp, double zComp) {
+
+  /** Constructors are protected, in order to be visible to subclasses. */
+  protected ThreeVectorImpl(double xComp, double yComp, double zComp) {
     this.components.put(X, xComp);
     this.components.put(Y, yComp);
     this.components.put(Z, zComp);
   }
   
-  private ThreeVectorImpl(Axis axis, double value) {
+  protected ThreeVectorImpl(Axis axis, double value) {
     this(0.0, 0.0, 0.0);
     this.components.put(axis, value);
   }
 
+  private Map</*spatial*/Axis, Double> components = new LinkedHashMap<>();
+  
 }

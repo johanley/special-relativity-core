@@ -1,9 +1,9 @@
-package sr.core;
+package sr.core.event;
 
 import java.util.function.Function;
 
+import sr.core.Util;
 import sr.core.history.History;
-import sr.core.transform.FourVector;
 
 /** 
  Find the λ value (usually a ct-coordinate) along a {@link History} for which the corresponding event satisfies a given criterion.
@@ -20,7 +20,7 @@ public final class FindEvent {
    @param criterion the function that returns 0.0 for the caller's target event.
    @param epsilon the difference-level down to which this class pursues the target-zero; a small positive number.
   */
-  public FindEvent(History history, Function<FourVector, Double> criterion, Double epsilon) {
+  public FindEvent(History history, Function<Event, Double> criterion, Double epsilon) {
    Util.mustHave(epsilon > 0, "The epsilon interval must be positive.");
    this.history = history;
    this.criterion = criterion;
@@ -28,7 +28,7 @@ public final class FindEvent {
   }
   
   /** Call {@link #FindEvent(History, Function, Double)} with epsilon equal to {@link #EPSILON}. */
-  public FindEvent(History history, Function<FourVector, Double> criterion) {
+  public FindEvent(History history, Function<Event, Double> criterion) {
     this(history, criterion, EPSILON);
    }
 
@@ -69,7 +69,7 @@ public final class FindEvent {
   }
   
   private History history;
-  private Function<FourVector, Double> criterion;
+  private Function<Event, Double> criterion;
   private Double epsilon;
   private int numIterations;
   

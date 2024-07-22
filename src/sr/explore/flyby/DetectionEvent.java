@@ -3,7 +3,7 @@ package sr.explore.flyby;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Physics;
-import sr.core.transform.FourVector;
+import sr.core.event.Event;
 
 /** 
  The detection of a photon at the detector.
@@ -14,13 +14,13 @@ import sr.core.transform.FourVector;
 final class DetectionEvent {
   
   /** The <b>core calculation</b> is done by this constructor. */
-  DetectionEvent(FourVector emissionEvent, Double β, MainSequenceStar star){
+  DetectionEvent(Event emissionEvent, Double β, MainSequenceStar star){
     this.emissionTime = emissionEvent.ct();
     this.distanceToEmissionEvent = emissionEvent.spatialMagnitude();
     
     //c=1 here; no other value will do
     double lightTravelTime = distanceToEmissionEvent / 1.0;
-    this.detectionTime = emissionEvent.t() + lightTravelTime;
+    this.detectionTime = emissionEvent.ct() + lightTravelTime;
     
     double cosTheta = emissionEvent.x() / distanceToEmissionEvent;
     //the photon-direction with respect to the axis-of-motion; the 'geometrical' direction

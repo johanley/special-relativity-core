@@ -1,11 +1,13 @@
 package sr.core.history;
 
-import sr.core.Util;
-import sr.core.transform.ApplyDisplaceOp;
-import sr.core.transform.FourVector;
-import sr.core.vector.Velocity;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
-import static sr.core.Axis.*;
+import sr.core.Physics;
+import sr.core.Util;
+import sr.core.event.Event;
+import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving uniformly from infinity to the frame's origin, then in the opposite direction back out to infinity.
@@ -21,29 +23,17 @@ public final class ThereAndBack implements History {
    Constructor.
    
    The overall speed must be in the range (0,1).
-   @param mass must be positive
    @param velocity before the turnaround event; the speed cannot be zero
   */
-  public ThereAndBack(double mass, Velocity velocity) {
-    Util.mustHave(mass > 0, "Mass must be positive.");
-    Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
-    fourMomentum = velocity.fourMomentumFor(mass); //c=1 in this project
-  }
-  
-  /** For a particle having unit mass. */
   public ThereAndBack(Velocity velocity) {
-    this(1.0, velocity);
+    Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
+    this.velocity = velocity;
   }
   
   /** @param ct is the coordinate-time. */
-  @Override public FourVector event(double ct) {
-    FourVector displacement = FourVector.from(ct, ct*velocity.on(X), ct*velocity.on(Y), ct*velocity.on(Z), ApplyDisplaceOp.NO);
+  @Override public Event event(double ct) {
+    Event displacement = Event.of(ct, ct*velocity.on(X), ct*velocity.on(Y), ct*velocity.on(Z));
     return ct >= 0 ? turnaroundEvent.plus(displacement) : turnaroundEvent.plus(displacement.spatialReflection());
-  }
-  
-  /** @param ct is the coordinate-time. */
-  @Override public FourVector fourMomentum(double ct) {
-    return ct <= 0 ? fourMomentum : fourMomentum.spatialReflection();
   }
   
   /** 
@@ -51,10 +41,9 @@ public final class ThereAndBack implements History {
    @param ct is the coordinate-time.
   */
   @Override public double τ(double ct) {
-    return ct / velocity.Γ(); 
+    return ct / Physics.Γ(velocity.magnitude()); 
   }
 
-  private FourVector turnaroundEvent = FourVector.ZERO_AFFINE; //the origin event
+  private Event turnaroundEvent = Event.origin(); 
   private Velocity velocity;
-  private FourVector fourMomentum;
 }

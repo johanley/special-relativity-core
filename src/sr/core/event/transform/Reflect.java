@@ -1,11 +1,16 @@
-package sr.core.transform;
+package sr.core.event.transform;
+
+import static sr.core.Axis.CT;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
 import sr.core.Axis;
-import static sr.core.Axis.*;
 import sr.core.Parity;
+import sr.core.event.Event;
 
 /** Change the direction of axes (including the ct axis). */
-public final class Reflect implements CoordTransform {
+public final class Reflect implements Transform {
 
   /**
    Change the sign of 1 or more components. 
@@ -26,17 +31,22 @@ public final class Reflect implements CoordTransform {
     return new Reflect(p[CT.idx()], p[X.idx()], p[Y.idx()], p[Z.idx()]);
   }
   
-  @Override public FourVector toNewFrame(FourVector vec) {
+  @Override public Event apply(Event vec) {
     return doIt(vec);
   }
   
-  @Override public FourVector toNewFourVector(FourVector vecPrime) {
+  @Override public Event reverse(Event vecPrime) {
     return doIt(vecPrime);
   }
   
   @Override public String toString() {
     String sep = ",";
-    return "reflect[" + ctP+sep+ xP+sep+ yP+sep+ zP + "]";
+    return "reflect[" + 
+      ctP + sep + 
+      xP + sep + 
+      yP + sep + 
+      zP + 
+    "]";
   }
   
   // PRIVATE
@@ -45,15 +55,14 @@ public final class Reflect implements CoordTransform {
   private Parity yP;
   private Parity zP;
   
-  private FourVector doIt(FourVector vec) {
-    FourVector result = FourVector.from(
-        vec.ct() * ctP.sign(), 
-        vec.x() * xP.sign(), 
-        vec.y() * yP.sign(), 
-        vec.z() * zP.sign(),
-        vec.applyDisplaceOp()
-      );
-    CoordTransform.sameIntervalFromOrigin(vec,  result);
+  private Event doIt(Event vec) {
+    Event result = Event.of(
+      vec.ct() * ctP.sign(), 
+      vec.x() * xP.sign(), 
+      vec.y() * yP.sign(), 
+      vec.z() * zP.sign()
+    );
+    Transform.sameIntervalFromOrigin(vec,  result);
     return result;
   }
 }

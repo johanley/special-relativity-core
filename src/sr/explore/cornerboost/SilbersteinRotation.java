@@ -3,15 +3,16 @@ package sr.explore.cornerboost;
 import java.util.function.Function;
 
 import static sr.core.Axis.*;
-import sr.core.FindEvent;
+
 import sr.core.Physics;
 import sr.core.Util;
+import sr.core.event.Event;
+import sr.core.event.FindEvent;
+import sr.core.event.transform.Boost;
+import sr.core.event.transform.Transform;
+import sr.core.event.transform.TransformPipeline;
 import sr.core.history.History;
 import sr.core.history.Stationary;
-import sr.core.transform.Boost;
-import sr.core.transform.CoordTransform;
-import sr.core.transform.CoordTransformPipeline;
-import sr.core.transform.FourVector;
 import sr.core.vector.Position;
 import sr.output.text.TextOutput;
 
@@ -88,7 +89,7 @@ public final class SilbersteinRotation extends TextOutput {
     //corner-boost "backwards" from K'' all the way back to K
     double β1 = 0.8;
     double β2 = 0.6;
-    CoordTransform cornerBoost = CoordTransformPipeline.join(
+    Transform cornerBoost = TransformPipeline.join(
       Boost.alongThe(Y, -β2), //minus signs, because we're going backwards here
       Boost.alongThe(X, -β1)        
     );
@@ -100,12 +101,12 @@ public final class SilbersteinRotation extends TextOutput {
     //find 2 events, one taken from each history, that have the same coord-time
     //these depend on the speeds chosen.
     double ctA_Kpp = 0.9; //any old ct'' value 
-    FourVector eventA_K = cornerBoost.toNewFrame(historyA_Kpp.event(ctA_Kpp)); 
+    Event eventA_K = cornerBoost.apply(historyA_Kpp.event(ctA_Kpp)); 
     
-    Function<FourVector, Double> criterion = event -> (cornerBoost.toNewFrame(event).ct() - eventA_K.ct());
+    Function<Event, Double> criterion = event -> (cornerBoost.apply(event).ct() - eventA_K.ct());
     FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
     double ctB_Kpp = findEvent.search(); 
-    FourVector eventB_K = cornerBoost.toNewFrame(historyB_Kpp.event(ctB_Kpp)); 
+    Event eventB_K = cornerBoost.apply(historyB_Kpp.event(ctB_Kpp)); 
     
     lines.add("Time-slice across the stick's history in K.");
     lines.add("Examine two events, one for each end of the stick.");
@@ -115,7 +116,7 @@ public final class SilbersteinRotation extends TextOutput {
     //find the angle
     //get the displacement between the two ends of the stick, and figure out the 
     //angle the stick is making with the x axis (basic trig)
-    FourVector stick_K = eventB_K.minus(eventA_K);
+    Event stick_K = eventB_K.minus(eventA_K);
     lines.add("Difference (B - A): "+stick_K + " has ct=0 (time-slice).") ;
     double angle_K = Math.atan2(stick_K.y(), stick_K.x());
     lines.add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle_K)) + "°"); 

@@ -1,14 +1,14 @@
-package sr.core.transform;
+package sr.core.event.transform;
 
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
+import sr.core.event.Event;
 
 import static sr.core.Util.mustBeSpatial;
 
 /**
- Lorentz Transformation of a {@FourVector}, along one of the spatial axes.
- Note that a LorentzTransformation applies not just to an event, but to any 4-vector. 
+ Lorentz Transformation of an {@link Event}, along one of the spatial axes.
 
 <P>The geometry:
  <ul>
@@ -19,7 +19,7 @@ import static sr.core.Util.mustBeSpatial;
  @param spatialAxis the axis along which the K' frame is moving with respect to the K frame.
  @param β the velocity parallel to the given spatial axis; can be either sign.
 */
-public final class Boost implements CoordTransform {
+public final class Boost implements Transform {
 
   /**
    Constructor.
@@ -44,19 +44,19 @@ public final class Boost implements CoordTransform {
   }
 
   /**
-   Transform the 4-vector to the boosted inertial frame.  
-   The inverse of {@link #toNewFourVector(FourVector)}. 
+   Transform the event to the boosted inertial frame.  
+   The inverse of {@link #reverse(Event)}. 
   */
-  @Override public FourVector toNewFrame(FourVector vec) {
-    return boostIt(vec, WhichDirection.NOMINAL);
+  @Override public Event apply(Event vec) {
+    return boostIt(vec, +1);
   }
   
   /** 
-   Transform the 4-vector to a new 4-vector in the same inertial frame.  
-   The inverse of {@link #toNewFrame(FourVector)}. 
+   Transform the event to a new event in the same inertial frame.  
+   The inverse of {@link #apply(Event)}. 
   */
-  @Override public FourVector toNewFourVector(FourVector vecPrime) {
-    return boostIt(vecPrime, WhichDirection.INVERSE);
+  @Override public Event reverse(Event vecPrime) {
+    return boostIt(vecPrime, -1);
   }
   
   @Override public String toString() {
@@ -72,15 +72,15 @@ public final class Boost implements CoordTransform {
   private Axis spatialAxis;
   private double β;
 
-  private FourVector boostIt(FourVector v, WhichDirection dir) {
-    FourVector result = boost(v, spatialAxis, β * dir.sign());
-    CoordTransform.sameIntervalFromOrigin(v, result);
+  private Event boostIt(Event v, int sign) {
+    Event result = boost(v, spatialAxis, β * sign);
+    Transform.sameIntervalFromOrigin(v, result);
     return result;
   }
   
-  private FourVector boost(FourVector v, Axis spatialAxis, double β) {
-    EntangledPair pair = entangle(v.ct(), v.part(spatialAxis), β);
-    FourVector result = v;
+  private Event boost(Event v, Axis spatialAxis, double β) {
+    EntangledPair pair = entangle(v.ct(), v.on(spatialAxis), β);
+    Event result = v;
     result = result.put(Axis.CT, pair.time);
     result = result.put(spatialAxis, pair.space);
     return result;

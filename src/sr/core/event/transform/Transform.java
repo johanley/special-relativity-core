@@ -1,6 +1,8 @@
-package sr.core.transform;
+package sr.core.event.transform;
 
 import static sr.core.Util.isTiny;
+
+import sr.core.event.Event;
 
 /**
  Map one event to another event, and its inverse operation.
@@ -12,36 +14,36 @@ import static sr.core.Util.isTiny;
  
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
-  <li>given the components of a {@link FourVector} in one inertial frame K, find its components in a second frame K'
-   ({@link #toNewFrame(FourVector))}, with inverse {@link #toNewFourVector(FourVector))}) 
-  <li>given the components of a {@link FourVector} in one inertial frame K, find the components of a second 4-vector in the same frame K.
-     ({@link #toNewFourVector(FourVector)}, with inverse {@link #toNewFrame(FourVector)}) 
+  <li>given the components of a {@link Event} in one inertial frame K, find its components in a second frame K'
+   ({@link #apply(Event))}, with inverse {@link #reverse(Event))}) 
+  <li>given the components of a {@link Event} in one inertial frame K, find the components of a second event in the same frame K.
+     ({@link #reverse(Event)}, with inverse {@link #apply(Event)}) 
  </ul>
  
  <P>
- Successive application of the two methods {@link #toNewFrame(FourVector)} and {@link #toNewFourVector(FourVector)} 
+ Successive application of the two methods {@link #apply(Event)} and {@link #reverse(Event)} 
  (in any order) must return the original event (aside from some rounding that usually occurs because of 
  floating-point operations).
 */
-public interface CoordTransform {
+public interface Transform {
   
   /** 
    For a given 4-vector, transform its components from frame K to K'. 
-   The inverse operation is {@link #toNewFourVector(FourVector)}.
+   The inverse operation is {@link #reverse(Event)}.
    
-   @param vec the components in the K frame.
+   @param event the components in the K frame.
    @return the components in the K' frame. 
   */
-  FourVector toNewFrame(FourVector vec);
+  Event apply(Event event);
   
   /** 
    For a given frame K, transform the given 4-vector into another 4-vector. 
-   The inverse operation is {@link #toNewFrame(FourVector)}.
+   The inverse operation is {@link #apply(Event)}.
    
-   @param vec the components in a given frame K.
+   @param event the components in a given frame K.
    @return the components of a second event in a given frame K. 
   */
-  FourVector toNewFourVector(FourVector vec);
+  Event reverse(Event event);
 
   /**
    Asserts that the magnitude-squared has not changed (very much).
@@ -50,7 +52,7 @@ public interface CoordTransform {
    This will not apply to all coord transforms.  
    Uses an assertion, which are turned off at runtime by default. 
   */
-  static void sameIntervalFromOrigin(FourVector a, FourVector b) {
-    assert isTiny(a.magnitudeSq() - b.magnitudeSq()) : "Magnitude-squared has changed too much";
+  static void sameIntervalFromOrigin(Event a, Event b) {
+    assert isTiny(a.square() - b.square()) : "Magnitude-squared has changed too much.";
   }
 }

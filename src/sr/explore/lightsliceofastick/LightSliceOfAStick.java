@@ -3,15 +3,16 @@ package sr.explore.lightsliceofastick;
 import java.util.function.Function;
 
 import static sr.core.Axis.*;
-import sr.core.FindEvent;
+
 import sr.core.Physics;
 import sr.core.Speed;
 import sr.core.Util;
+import sr.core.event.Event;
+import sr.core.event.FindEvent;
+import sr.core.event.transform.Boost;
+import sr.core.event.transform.Transform;
 import sr.core.history.History;
 import sr.core.history.Stationary;
-import sr.core.transform.Boost;
-import sr.core.transform.CoordTransform;
-import sr.core.transform.FourVector;
 import sr.core.vector.Position;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -104,7 +105,7 @@ public final class LightSliceOfAStick extends TextOutput {
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final FourVector DETECTION_EVENT = new Stationary(Position.of(X, DISTANT)).event(DISTANT);
+  private static final Event DETECTION_EVENT = new Stationary(Position.of(X, DISTANT)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.
@@ -117,24 +118,24 @@ public final class LightSliceOfAStick extends TextOutput {
    @param β the speed of the boost from K to K'. Positive for the stick receding from the detector, negative for approaching it.
    @return the apparent length of the stick, as seen by the light-slice.
   */
-  private double apparentStickLength(double β, FourVector theDetectionEvent) {
+  private double apparentStickLength(double β, Event theDetectionEvent) {
     //K to K': boost along the X-axis at the given speed
     //in K', the stick is receding at speed β in the negative-X direction
-    CoordTransform boostX = Boost.alongThe(X, β);
-    FourVector eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boostX);
-    FourVector eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boostX);
+    Transform boostX = Boost.alongThe(X, β);
+    Event eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boostX);
+    Event eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boostX);
     //now infer the apparent length of the stick from this pair of events on the past light-cone of the detector
     return eventB.minus(eventA).spatialMagnitude();
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private FourVector eventOnPastLightConeOf(FourVector detection, History history, CoordTransform transform) {
-    Function<FourVector, Double> onTheLightCone = event -> (
-      detection.minus(transform.toNewFrame(event)).magnitudeSq()
+  private Event eventOnPastLightConeOf(Event detection, History history, Transform transform) {
+    Function<Event, Double> onTheLightCone = event -> (
+      detection.minus(transform.apply(event)).square()
     );
     FindEvent root = new FindEvent(history, onTheLightCone);
     double τA = root.search();
-    FourVector result = transform.toNewFrame(history.event(τA));
+    Event result = transform.apply(history.event(τA));
     return result;
   }
   

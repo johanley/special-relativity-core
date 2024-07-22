@@ -6,9 +6,8 @@ import static sr.core.Axis.Y;
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.transform.ApplyDisplaceOp;
-import sr.core.transform.Boost;
-import sr.core.transform.FourVector;
+import sr.core.event.Event;
+import sr.core.event.transform.Boost;
 import sr.core.vector.Velocity;
 import sr.output.text.TextOutput;
 
@@ -44,8 +43,8 @@ public final class CornerBoostsDontCommute extends TextOutput {
     lines.add(Util.NL + "The two boosts give the same final event coordinates, regardless of the order of execution.");
 
     double βequiv = Physics.transformVelocityColinear(β1, β2);
-    FourVector event = anyOldEvent();
-    FourVector afterEquiv = boostThe(event, X, βequiv);
+    Event event = anyOldEvent();
+    Event afterEquiv = boostThe(event, X, βequiv);
     lines.add("A single equivalent boost: " + X + " " + Util.round(βequiv, 5) + " " + afterEquiv);
     
     lines.add(Util.NL + "2. Boosts don't commute if they aren't in the same line (non-collinear).");
@@ -62,32 +61,32 @@ public final class CornerBoostsDontCommute extends TextOutput {
     outputToConsoleAnd("corner-boosts-dont-commute.txt");
   }
   
-  private FourVector boostThe(FourVector event, Axis axis, double β) {
-    return Boost.alongThe(axis, β).toNewFourVector(event);
+  private Event boostThe(Event event, Axis axis, double β) {
+    return Boost.alongThe(axis, β).reverse(event);
   }
   
   private void seeIfOrderMatters(Velocity v1, Velocity v2) {
-    FourVector event = anyOldEvent();
+    Event event = anyOldEvent();
     inThisOrder(event, v1, v2);
     lines.add("Now reverse the order of the boosts, for the same event.");
     inThisOrder(event, v2, v1);
   }
   
-  private void inThisOrder(FourVector event, Velocity v1, Velocity v2) {
+  private void inThisOrder(Event event, Velocity v1, Velocity v2) {
     lines.add("Event: " + event);
     
     Axis axis1 = v1.axis().get();
-    FourVector firstBoost = boostThe(event, axis1, v1.on(axis1));
+    Event firstBoost = boostThe(event, axis1, v1.on(axis1));
     
     Axis axis2 = v2.axis().get();
-    FourVector secondBoost = boostThe(firstBoost, axis2, v2.on(axis2));
+    Event secondBoost = boostThe(firstBoost, axis2, v2.on(axis2));
     
     lines.add(" Boost 1: " + axis1 + " "+ v1.on(axis1) + " gives " + firstBoost);
     lines.add(" Boost 2: " + axis2 + " "+ v2.on(axis2) + " gives " + secondBoost);
   }
   
-  private FourVector anyOldEvent() {
-    FourVector event = FourVector.from(2.32, -15.79, 0.0, 0.0, ApplyDisplaceOp.YES);
+  private Event anyOldEvent() {
+    Event event = Event.of(2.32, -15.79, 0.0, 0.0);
     return event;
   }
 }

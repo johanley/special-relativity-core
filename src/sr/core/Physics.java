@@ -1,13 +1,12 @@
 package sr.core;
 
 import static java.lang.Math.cos;
-import static sr.core.Util.*;
+import static sr.core.Util.sq;
+import static sr.core.Util.sqroot;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
-import sr.core.transform.FourVector;
 
 /** 
  Commonly needed core items.
@@ -194,16 +193,6 @@ public final class Physics {
     return m;
   }
 
-  /** Build a 4-velocity vector, where the 3-velocity has a component only on the given axis. */
-  public static FourVector fourVelocity(double β, Axis spatialAxis) {
-    mustBeSpatial(spatialAxis);
-    FourVector result = FourVector.ZERO_LINEAR;
-    double Γ = Γ(β);
-    result = result.put(Axis.CT, Γ);
-    result = result.put(spatialAxis, Γ * β);
-    return result;
-  }
-  
   /** 
    Converts to units of light-yr per year^2.
    @param mks_units the acceleration in meters per sec^2. 

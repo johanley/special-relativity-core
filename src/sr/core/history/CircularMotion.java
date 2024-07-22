@@ -1,9 +1,10 @@
 package sr.core.history;
 
 import sr.core.Axis;
+import sr.core.Physics;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.transform.FourVector;
+import sr.core.event.Event;
 import sr.core.vector.Velocity;
 
 /**
@@ -19,13 +20,11 @@ public class CircularMotion implements History {
 
   /**
    Constructor.
-   @param mass must be positive
    @param rotationalAxis must be spatial
    @param radius must be positive
    @param β must be a non-zero value in the range (-1,1). Negative values reverse the sense of the rotation.
   */
-  public CircularMotion(double mass, Axis rotationalAxis, double radius, double β) {
-    Util.mustHave(mass > 0, "Mass must be positive.");
+  public CircularMotion(Axis rotationalAxis, double radius, double β) {
     Util.mustBeSpatial(rotationalAxis);
     Util.mustHave(radius > 0, "Radius must be positive.");
     Util.mustHaveSpeedRange(β);
@@ -38,25 +37,11 @@ public class CircularMotion implements History {
     // At ct=0, the momentum is directed toward a spatial axis. 
     Axis startDirection = Axis.rightHandRuleFor(rotationalAxis).get(1);
     this.initialVelocity = Velocity.of(startDirection, β);
-    this.initialMomentum = initialVelocity.fourMomentumFor(mass);
-  }
-
-  /** For a particle having unit mass. */
-  public CircularMotion(Axis rotationalAxis, double radius, double β) {
-    this(1.0, rotationalAxis, radius, β);
   }
 
   /** @param ct is the coordinate-time. */
-  @Override public FourVector event(double ct) {
+  @Override public Event event(double ct) {
     return rotateThe(initialEvent, ct);
-  }
-  
-  /** 
-   The magnitude of the 4-momentum is fixed, but its direction changes. 
-   @param ct is the coordinate-time. 
-  */
-  @Override public FourVector fourMomentum(double ct) {
-    return rotateThe(initialMomentum, ct);
   }
   
   /** 
@@ -64,7 +49,7 @@ public class CircularMotion implements History {
    @param ct is the coordinate-time.
   */
   @Override public double τ(double ct) {
-   return ct / initialVelocity.Γ();
+   return ct / Physics.Γ(initialVelocity.magnitude());
   }
   
   /** Defines the plane of the circle, and also the sense of circular motion. */
@@ -80,20 +65,19 @@ public class CircularMotion implements History {
   */
   private double β;
 
-  private FourVector initialEvent;
+  private Event initialEvent;
   private Velocity initialVelocity;
-  private FourVector initialMomentum;
   
   /** At ct=0, the position is on a spatial axis. */
-  private FourVector initialEvent() {
-    FourVector result = FourVector.ZERO_AFFINE;
+  private Event initialEvent() {
+    Event result = Event.origin();
     Axis startPosition = Axis.rightHandRuleFor(rotationalAxis).get(0);
     result = result.put(startPosition, radius);
     return result;
   }
 
   /** Spatial rotation of the given 4-vector, to return a new 4-vector. */
-  private FourVector rotateThe(FourVector fourVector, double ct) {
+  private Event rotateThe(Event fourVector, double ct) {
     return fourVector.spatialRotation(Rotation.from(rotationalAxis, θ(ct)));
   }
   

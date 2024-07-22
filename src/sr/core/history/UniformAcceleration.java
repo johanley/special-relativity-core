@@ -6,9 +6,8 @@ import static sr.core.Util.sq;
 import static sr.core.Util.sqroot;
 
 import sr.core.Axis;
-import sr.core.transform.FourVector;
+import sr.core.event.Event;
 import sr.core.vector.Position;
-import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving with uniform 
@@ -32,43 +31,26 @@ public final class UniformAcceleration implements History {
   /**
    Constructor.
    
-   @param mass must be positive
    @param axis a spatial axis
    @param acceleration must be non-zero
   */
-  public UniformAcceleration(double mass, Axis axis, double acceleration, Position initialPosition) {
+  public UniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
     mustBeSpatial(axis);
     mustHave(Math.abs(acceleration) > 0, "Must have a non-zero acceleration.");
-    mustHave(mass > 0, "Must must be greater than zero.");
-    this.mass = mass;
     this.axis = axis;
     this.accel = acceleration;
-    this.initialEvent = initialPosition.eventForTime(0.0);
-  }
-  
-  /** For a particle having unit mass. */
-  public UniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
-    this(1.0, axis, acceleration, initialPosition);
+    this.initialEvent = Event.of(0.0, initialPosition);
   }
   
   /** @param ct is the coordinate-time. */
-  @Override public FourVector event(double ct) {
+  @Override public Event event(double ct) {
     double c = 1.0; //to allow comparison with references
     double a = sqroot(1.0 + sq(accel*ct/c));
     double distance = (sq(c)/accel)*(a - 1);
     Position displacement = Position.of(axis, distance);
-    return initialEvent.plus(displacement.eventForTime(ct));
+    return initialEvent.plus(Event.of(ct, displacement));
   }
   
-  /** @param ct is the coordinate-time. */
-  @Override public FourVector fourMomentum(double ct) {
-    double c = 1.0; 
-    double αt = accel * ct;
-    double speed = αt / sqroot(1 + sq(αt/c));
-    Velocity velocity = Velocity.of(axis, speed);
-    return velocity.fourMomentumFor(mass);
-  }
-
   /** 
    The zero of proper-time is taken as the event with ct=0.
    @param ct is the coordinate-time.
@@ -82,6 +64,5 @@ public final class UniformAcceleration implements History {
 
   private Axis axis;
   private double accel;
-  private double mass;
-  private FourVector initialEvent;
+  private Event initialEvent;
 }

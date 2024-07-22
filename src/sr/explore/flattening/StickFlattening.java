@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.function.Function;
 
 import static sr.core.Axis.*;
-import sr.core.FindEvent;
+
 import sr.core.Physics;
 import sr.core.Util;
+import sr.core.event.Event;
+import sr.core.event.FindEvent;
+import sr.core.event.transform.Boost;
+import sr.core.event.transform.Transform;
 import sr.core.history.History;
 import sr.core.history.Stationary;
-import sr.core.transform.Boost;
-import sr.core.transform.CoordTransform;
-import sr.core.transform.FourVector;
 import sr.core.vector.Position;
 import sr.output.text.TextOutput;
 
@@ -79,21 +80,21 @@ public class StickFlattening extends TextOutput {
     double ct = 0.0; 
     lines.add("K a: " + histA.event(ct));
     lines.add("K b: " + histB.event(ct));
-    FourVector bMinusA = histB.event(ct).minus(histA.event(ct));
+    Event bMinusA = histB.event(ct).minus(histA.event(ct));
     lines.add("K b-a: " + bMinusA);
     lines.add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
-    CoordTransform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.alongThe(X, β);
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
-    FourVector aBoosted = boostX.toNewFrame(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.apply(histA.event(0.18)); //start with some event on A's history
     //root: the difference in K' of the ct' coord vanishes
-    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search();
-    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
+    Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("Boost: "+ boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
@@ -140,7 +141,7 @@ public class StickFlattening extends TextOutput {
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
     History histA = new Stationary(Position.origin()); 
     History histB = new Stationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
-    FourVector diff = histB.event(0.0).minus(histA.event(0.0));
+    Event diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K a:" + histA.event(0.0));
     lines.add("K b:" + histB.event(0.0));
     lines.add("K b-a:" + diff);
@@ -149,17 +150,17 @@ public class StickFlattening extends TextOutput {
     lines.add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
     
     //K': boost along the X axis
-    CoordTransform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.alongThe(X, β);
     lines.add("Boost:" + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
     //find events that have the same ct' value in K'
-    FourVector aBoosted = boostX.toNewFrame(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.apply(histA.event(0.18)); //start with some event on A's history
     
-    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search();
-    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
+    Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
@@ -198,7 +199,7 @@ public class StickFlattening extends TextOutput {
     double L0 = 1.0;
     History histA = new Stationary(Position.origin()); 
     History histB = new Stationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
-    FourVector diff = histB.event(0.0).minus(histA.event(0.0));
+    Event diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());
     double angleOrig = Math.atan2(diff.y(), diff.x());
@@ -206,16 +207,16 @@ public class StickFlattening extends TextOutput {
     
     //K': boost along the X axis
     double β = 0.8772684879784525;
-    CoordTransform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.alongThe(X, β);
     lines.add(Util.NL + "Boost: " + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'
-    FourVector aBoosted = boostX.toNewFrame(histA.event(0.15));
+    Event aBoosted = boostX.apply(histA.event(0.15));
     
-    Function<FourVector, Double> criterion = event -> (boostX.toNewFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search();
-    FourVector bBoosted = boostX.toNewFrame(histB.event(ctB));
+    Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);

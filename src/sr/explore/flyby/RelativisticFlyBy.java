@@ -3,14 +3,13 @@ package sr.explore.flyby;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
+import sr.core.event.Event;
 import sr.core.history.History;
 import sr.core.history.UniformVelocity;
-
-import static sr.core.Axis.*;
-
-import sr.core.transform.FourVector;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
+
+import static sr.core.Axis.*;
 
 /**
  <b>Relativistic fly-by of a star by a detector.</b>
@@ -120,7 +119,7 @@ public final class RelativisticFlyBy {
 
           boolean CONSOLE_ONLY = true;
           boolean FILE_AND_CONSOLE = false;
-          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), FILE_AND_CONSOLE);
+          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), CONSOLE_ONLY);
           OutputSummary maxThetaDot = new OutputMaxThetaDot();
           
           flyby.compute(highlights, maxThetaDot);
@@ -178,7 +177,7 @@ public final class RelativisticFlyBy {
      of the hump corresponds to the minimum distance.
     */
     double time = initialTime();
-    FourVector emissionEvent = emissionEventFor(time); //the first photon emitted
+    Event emissionEvent = emissionEventFor(time); //the first photon emitted
     int count = 0;
     while (count < NUM_EMISSION_EVENTS) {
       DetectionEvent detectionEvent = new DetectionEvent(emissionEvent, β, star);
@@ -219,7 +218,7 @@ public final class RelativisticFlyBy {
    IMPORTANT: the time t here is the time of EMISSION of a photon towards the detector.
    Light-travel time: the photon is ABSORBED at some LATER time, which is computed elsewhere. 
   */
-  private FourVector emissionEventFor(Double emissionTime) {
+  private Event emissionEventFor(Double emissionTime) {
    return history.event(emissionTime);
   }
 }

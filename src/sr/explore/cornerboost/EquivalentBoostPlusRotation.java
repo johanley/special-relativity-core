@@ -4,12 +4,11 @@ import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Speed;
 import sr.core.Util;
-import sr.core.transform.ApplyDisplaceOp;
-import sr.core.transform.Boost;
-import sr.core.transform.CoordTransform;
-import sr.core.transform.CoordTransformPipeline;
-import sr.core.transform.FourVector;
-import sr.core.transform.Rotate;
+import sr.core.event.Event;
+import sr.core.event.transform.Boost;
+import sr.core.event.transform.Rotate;
+import sr.core.event.transform.Transform;
+import sr.core.event.transform.TransformPipeline;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -68,8 +67,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
   
   /** Two boosts, the second perpendicular to the first (see class description). */
-  CoordTransform asCornerBoost() {
-    CoordTransform result = CoordTransformPipeline.join(
+  Transform asCornerBoost() {
+    Transform result = TransformPipeline.join(
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), β1),
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(1), β2)
     );
@@ -77,8 +76,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
   
   /** A single boost followed by a single rotation. */
-  CoordTransform asBoostPlusRotation() {
-    CoordTransform result = CoordTransformPipeline.join(
+  Transform asBoostPlusRotation() {
+    Transform result = TransformPipeline.join(
       Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
       Rotate.about(pole, θw()),
@@ -88,8 +87,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
   
   /** A single rotation followed by a single boost. */
-  CoordTransform asRotationPlusBoost() {
-    CoordTransform result = CoordTransformPipeline.join(
+  Transform asRotationPlusBoost() {
+    Transform result = TransformPipeline.join(
       Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
       Rotate.about(pole, θw()),
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
@@ -113,15 +112,15 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   private Table table = new Table("%-21s", "%-21s", "%-21s", "%10.3f°", "%10.3f°");
 
   private void example() {
-    FourVector event_K = FourVector.from(10.0, 1.0, 1.0, 1.0, ApplyDisplaceOp.YES); 
+    Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
     
-    CoordTransform cornerBoost = asCornerBoost();
-    FourVector event_Kpp_corner_boost = cornerBoost.toNewFrame(event_K);
+    Transform cornerBoost = asCornerBoost();
+    Event event_Kpp_corner_boost = cornerBoost.apply(event_K);
     
-    CoordTransform boostPlusRotation = asBoostPlusRotation();
-    FourVector event_Kpp_boost_plus_rot = boostPlusRotation.toNewFrame(event_K);
-    CoordTransform rotationPlusBoost = asRotationPlusBoost();
-    FourVector event_Kpp_rot_plus_boost = rotationPlusBoost.toNewFrame(event_K);
+    Transform boostPlusRotation = asBoostPlusRotation();
+    Event event_Kpp_boost_plus_rot = boostPlusRotation.apply(event_K);
+    Transform rotationPlusBoost = asRotationPlusBoost();
+    Event event_Kpp_rot_plus_boost = rotationPlusBoost.apply(event_K);
     
     lines.add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     lines.add("Event:" + event_K);

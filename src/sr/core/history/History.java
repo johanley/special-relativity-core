@@ -1,9 +1,9 @@
 package sr.core.history;
 
-import sr.core.transform.FourVector;
+import sr.core.event.Event;
 
 /** 
- The parameterized history (worldline) of an object represented as a particle.
+ The parameterized history (world-line) of an object represented as a particle.
  
  <P>The caller needs to define exactly what the parameter λ of the history represents.
  λ can represent different things:
@@ -27,24 +27,14 @@ public interface History {
    Return the event for the given parameter.
    @param λ uniquely identifies each event in the history.
   */
-  FourVector event(double λ);
-
-  /** 
-   Return the 4-momentum for the given parameter.
-   
-   <P>The 4-momentum is modeled here instead of the 4-velocity because the latter applies 
-   only to objects having mass, while 4-momentum applies both to massive and massless objects.
-   
-   @param λ uniquely identifies each event in the history.
-  */
-  FourVector fourMomentum(double λ);
+  public Event event(double λ);
 
   /**
-   Return a proper-time value;
+   Return a proper-time value.
    There's no single proper-time, since the zero can be chosen in different ways.
      
    @param λ uniquely identifies each event in the history.
   */
-  double τ(double λ);
+  public double τ(double λ);
   
 }
