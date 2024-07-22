@@ -3,10 +3,11 @@ package sr.explore.flyby;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
+import sr.core.history.History;
+import sr.core.history.UniformVelocity;
+
 import static sr.core.Axis.*;
 
-import sr.core.particlehistory.ParticleHistory;
-import sr.core.particlehistory.ParticleUniformVelocity;
 import sr.core.transform.FourVector;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
@@ -157,7 +158,7 @@ public final class RelativisticFlyBy {
     this.x0 = x0;
     this.y = y;
     this.timeStep = spatialStep / β;
-    this.history = new ParticleUniformVelocity(Position.of(Y, y), Velocity.of(X, β)); 
+    this.history = new UniformVelocity(Position.of(Y, y), Velocity.of(X, β)); 
   }
   
   /**
@@ -205,7 +206,7 @@ public final class RelativisticFlyBy {
   private Double y;
   private Double x0;
   private Double timeStep;
-  private ParticleHistory history; 
+  private History history; 
   private static final int NUM_EMISSION_EVENTS = 10000;
   
   /**  ct=0 corresponds to the time when the star is at minimum distance. */

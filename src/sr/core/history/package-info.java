@@ -1,4 +1,4 @@
 /** 
  Histories (worldlines) of particles.
 */
-package sr.core.particlehistory;
+package sr.core.history;

@@ -1,4 +1,4 @@
-package sr.core.particlehistory;
+package sr.core.history;
 
 import static sr.core.Util.mustBeSpatial;
 import static sr.core.Util.mustHave;
@@ -20,7 +20,7 @@ import sr.core.vector.Velocity;
  <P>The velocity is always parallel to one of the spatial axes of the coordinate system.
  <P>Formula reference: <a href='https://en.wikipedia.org/wiki/Acceleration_(special_relativity)'>Wikipedia</a>.
 */
-public final class ParticleUniformAcceleration implements ParticleHistory {
+public final class UniformAcceleration implements History {
   
   /*
    * THIS NEEDS REVIEW, and confirmation of the formulas.
@@ -36,7 +36,7 @@ public final class ParticleUniformAcceleration implements ParticleHistory {
    @param axis a spatial axis
    @param acceleration must be non-zero
   */
-  public ParticleUniformAcceleration(double mass, Axis axis, double acceleration, Position initialPosition) {
+  public UniformAcceleration(double mass, Axis axis, double acceleration, Position initialPosition) {
     mustBeSpatial(axis);
     mustHave(Math.abs(acceleration) > 0, "Must have a non-zero acceleration.");
     mustHave(mass > 0, "Must must be greater than zero.");
@@ -47,7 +47,7 @@ public final class ParticleUniformAcceleration implements ParticleHistory {
   }
   
   /** For a particle having unit mass. */
-  public ParticleUniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
+  public UniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
     this(1.0, axis, acceleration, initialPosition);
   }
   

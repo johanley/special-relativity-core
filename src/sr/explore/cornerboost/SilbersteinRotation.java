@@ -6,8 +6,8 @@ import static sr.core.Axis.*;
 import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.particlehistory.ParticleHistory;
-import sr.core.particlehistory.ParticleStationary;
+import sr.core.history.History;
+import sr.core.history.Stationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.CoordTransformPipeline;
@@ -78,8 +78,8 @@ public final class SilbersteinRotation extends TextOutput {
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
-    ParticleHistory historyA_Kpp = new ParticleStationary(Position.of(X, 1.0));
-    ParticleHistory historyB_Kpp = new ParticleStationary(Position.of(X, 2.0));
+    History historyA_Kpp = new Stationary(Position.of(X, 1.0));
+    History historyB_Kpp = new Stationary(Position.of(X, 2.0));
     lines.add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
     double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
     double restLength_Kpp = historyB_Kpp.event(ct_Kpp).minus(historyA_Kpp.event(ct_Kpp)).spatialMagnitude();

@@ -15,7 +15,6 @@ import sr.core.Axis;
 import sr.core.Parity;
 import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.vector.Position;
 
 /**
  Here, a 4-vector is an ordered tuple of physical quantities 

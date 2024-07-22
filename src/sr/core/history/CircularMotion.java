@@ -1,4 +1,4 @@
-package sr.core.particlehistory;
+package sr.core.history;
 
 import sr.core.Axis;
 import sr.core.Rotation;
@@ -15,7 +15,7 @@ import sr.core.vector.Velocity;
  
  <P>At ct=0, the particle is on one of the spatial axes.
 */
-public class ParticleWithCircularMotion implements ParticleHistory {
+public class CircularMotion implements History {
 
   /**
    Constructor.
@@ -24,7 +24,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
    @param radius must be positive
    @param β must be a non-zero value in the range (-1,1). Negative values reverse the sense of the rotation.
   */
-  public ParticleWithCircularMotion(double mass, Axis rotationalAxis, double radius, double β) {
+  public CircularMotion(double mass, Axis rotationalAxis, double radius, double β) {
     Util.mustHave(mass > 0, "Mass must be positive.");
     Util.mustBeSpatial(rotationalAxis);
     Util.mustHave(radius > 0, "Radius must be positive.");
@@ -42,7 +42,7 @@ public class ParticleWithCircularMotion implements ParticleHistory {
   }
 
   /** For a particle having unit mass. */
-  public ParticleWithCircularMotion(Axis rotationalAxis, double radius, double β) {
+  public CircularMotion(Axis rotationalAxis, double radius, double β) {
     this(1.0, rotationalAxis, radius, β);
   }
 

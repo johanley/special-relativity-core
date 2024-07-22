@@ -1,4 +1,4 @@
-package sr.core.particlehistory;
+package sr.core.history;
 
 import sr.core.Util;
 import sr.core.transform.ApplyDisplaceOp;
@@ -15,7 +15,7 @@ import static sr.core.Axis.*;
  <P>The parameter for the history is the coordinate-time <em>ct</em>.
  Negative <em>ct</em> means before the turnaround, and positive <em>ct</em> is after the turnaround.
 */
-public final class ParticleThereAndBack implements ParticleHistory {
+public final class ThereAndBack implements History {
 
   /**
    Constructor.
@@ -24,14 +24,14 @@ public final class ParticleThereAndBack implements ParticleHistory {
    @param mass must be positive
    @param velocity before the turnaround event; the speed cannot be zero
   */
-  public ParticleThereAndBack(double mass, Velocity velocity) {
+  public ThereAndBack(double mass, Velocity velocity) {
     Util.mustHave(mass > 0, "Mass must be positive.");
     Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
     fourMomentum = velocity.fourMomentumFor(mass); //c=1 in this project
   }
   
   /** For a particle having unit mass. */
-  public ParticleThereAndBack(Velocity velocity) {
+  public ThereAndBack(Velocity velocity) {
     this(1.0, velocity);
   }
   

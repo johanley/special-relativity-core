@@ -1,4 +1,4 @@
-package sr.core.particlehistory;
+package sr.core.history;
 
 import sr.core.transform.FourVector;
 
@@ -21,7 +21,7 @@ import sr.core.transform.FourVector;
  <P>The history-tube of an extended object might be represented with N of these particle-histories.
  For example, a stick might be represented by two particle histories, one for each end of the stick. 
 */
-public interface ParticleHistory {
+public interface History {
 
   /**
    Return the event for the given parameter.

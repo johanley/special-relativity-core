@@ -2,11 +2,11 @@ package sr.core;
 
 import java.util.function.Function;
 
-import sr.core.particlehistory.ParticleHistory;
+import sr.core.history.History;
 import sr.core.transform.FourVector;
 
 /** 
- Find the λ value (usually a ct-coordinate) along a {@link ParticleHistory} for which the corresponding event satisfies a given criterion.
+ Find the λ value (usually a ct-coordinate) along a {@link History} for which the corresponding event satisfies a given criterion.
 
  This implementation is basic; it's not super-robust! 
  The data is expected to be simple, monotonic, and with a single root.
@@ -20,15 +20,15 @@ public final class FindEvent {
    @param criterion the function that returns 0.0 for the caller's target event.
    @param epsilon the difference-level down to which this class pursues the target-zero; a small positive number.
   */
-  public FindEvent(ParticleHistory history, Function<FourVector, Double> criterion, Double epsilon) {
+  public FindEvent(History history, Function<FourVector, Double> criterion, Double epsilon) {
    Util.mustHave(epsilon > 0, "The epsilon interval must be positive.");
    this.history = history;
    this.criterion = criterion;
    this.epsilon = epsilon;
   }
   
-  /** Call {@link #FindEvent(ParticleHistory, Function, Double)} with epsilon equal to {@link #EPSILON}. */
-  public FindEvent(ParticleHistory history, Function<FourVector, Double> criterion) {
+  /** Call {@link #FindEvent(History, Function, Double)} with epsilon equal to {@link #EPSILON}. */
+  public FindEvent(History history, Function<FourVector, Double> criterion) {
     this(history, criterion, EPSILON);
    }
 
@@ -68,7 +68,7 @@ public final class FindEvent {
     return guess.cλ;
   }
   
-  private ParticleHistory history;
+  private History history;
   private Function<FourVector, Double> criterion;
   private Double epsilon;
   private int numIterations;

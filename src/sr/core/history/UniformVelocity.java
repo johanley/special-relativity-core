@@ -1,4 +1,4 @@
-package sr.core.particlehistory;
+package sr.core.history;
 
 import sr.core.Util;
 import sr.core.transform.ApplyDisplaceOp;
@@ -11,7 +11,7 @@ import static sr.core.Axis.*;
 /**
  History for a particle with mass moving uniformly at a given speed, and in a given direction.
 */
-public final class ParticleUniformVelocity implements ParticleHistory {
+public final class UniformVelocity implements History {
 
   /**
    Constructor.
@@ -21,7 +21,7 @@ public final class ParticleUniformVelocity implements ParticleHistory {
    @param initialPosition for the object at cτ=0
    @param velocity non-zero velocity
   */
-  public ParticleUniformVelocity(double mass, Position initialPosition, Velocity velocity) {
+  public UniformVelocity(double mass, Position initialPosition, Velocity velocity) {
     Util.mustHave(velocity.magnitude() > 0, "Speed must be greater than zero.");
     this.velocity = velocity;
     this.initialEvent = initialPosition.eventForTime(0.0);
@@ -29,7 +29,7 @@ public final class ParticleUniformVelocity implements ParticleHistory {
   }
   
   /** For a particle having unit mass, and parameterized with the coordinate-time. */
-  public ParticleUniformVelocity(Position initialPosition, Velocity velocity) {
+  public UniformVelocity(Position initialPosition, Velocity velocity) {
     this(1.0, initialPosition, velocity);
   }
 

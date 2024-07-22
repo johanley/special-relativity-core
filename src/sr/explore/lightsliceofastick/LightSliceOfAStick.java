@@ -7,8 +7,8 @@ import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Speed;
 import sr.core.Util;
-import sr.core.particlehistory.ParticleHistory;
-import sr.core.particlehistory.ParticleStationary;
+import sr.core.history.History;
+import sr.core.history.Stationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
@@ -95,8 +95,8 @@ public final class LightSliceOfAStick extends TextOutput {
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final ParticleHistory HIST_STICK_END_A = new ParticleStationary(Position.origin()); 
-  private static final ParticleHistory HIST_STICK_END_B = new ParticleStationary(Position.of(X, NEARBY)); 
+  private static final History HIST_STICK_END_A = new Stationary(Position.origin()); 
+  private static final History HIST_STICK_END_B = new Stationary(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -104,7 +104,7 @@ public final class LightSliceOfAStick extends TextOutput {
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final FourVector DETECTION_EVENT = new ParticleStationary(Position.of(X, DISTANT)).event(DISTANT);
+  private static final FourVector DETECTION_EVENT = new Stationary(Position.of(X, DISTANT)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.
@@ -128,7 +128,7 @@ public final class LightSliceOfAStick extends TextOutput {
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private FourVector eventOnPastLightConeOf(FourVector detection, ParticleHistory history, CoordTransform transform) {
+  private FourVector eventOnPastLightConeOf(FourVector detection, History history, CoordTransform transform) {
     Function<FourVector, Double> onTheLightCone = event -> (
       detection.minus(transform.toNewFrame(event)).magnitudeSq()
     );

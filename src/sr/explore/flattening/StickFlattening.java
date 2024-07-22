@@ -7,8 +7,8 @@ import static sr.core.Axis.*;
 import sr.core.FindEvent;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.particlehistory.ParticleHistory;
-import sr.core.particlehistory.ParticleStationary;
+import sr.core.history.History;
+import sr.core.history.Stationary;
 import sr.core.transform.Boost;
 import sr.core.transform.CoordTransform;
 import sr.core.transform.FourVector;
@@ -73,8 +73,8 @@ public class StickFlattening extends TextOutput {
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
-    ParticleHistory histA = new ParticleStationary(Position.of(X, 1.0));
-    ParticleHistory histB = new ParticleStationary(Position.of(X, 2.0));
+    History histA = new Stationary(Position.of(X, 1.0));
+    History histB = new Stationary(Position.of(X, 2.0));
     //time-slice in K; any time will do, since it's stationary in K
     double ct = 0.0; 
     lines.add("K a: " + histA.event(ct));
@@ -138,8 +138,8 @@ public class StickFlattening extends TextOutput {
     lines.add(SEP);
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
-    ParticleHistory histA = new ParticleStationary(Position.origin()); 
-    ParticleHistory histB = new ParticleStationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
+    History histA = new Stationary(Position.origin()); 
+    History histB = new Stationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K a:" + histA.event(0.0));
     lines.add("K b:" + histB.event(0.0));
@@ -196,8 +196,8 @@ public class StickFlattening extends TextOutput {
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
-    ParticleHistory histA = new ParticleStationary(Position.origin()); 
-    ParticleHistory histB = new ParticleStationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
+    History histA = new Stationary(Position.origin()); 
+    History histB = new Stationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
     FourVector diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());
