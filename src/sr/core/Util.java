@@ -52,14 +52,14 @@ public final class Util {
     return bd.doubleValue();
   }
   
-  /** Compare to {@link Config#ε()}. */
+  /** Compare to {@link Epsilon#ε()}. */
   public static boolean isTiny(double val) {
-    return Math.abs(val) < Config.ε();
+    return Math.abs(val) < Epsilon.ε();
   }
   
-  /** Return true only if the absolute value of the difference is less than {@link Config#ε()}. */
+  /** Return true only if the absolute value of the difference is less than {@link Epsilon#ε()}. */
   public static boolean equalsWithEpsilon(double a, double b) {
-    return Math.abs(a - b) < Config.ε();
+    return Math.abs(a - b) < Epsilon.ε();
   }
   
   public static boolean hasContent(String text) {
