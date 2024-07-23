@@ -173,10 +173,11 @@ public class ThreeVectorImpl implements ThreeVector {
     Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
-  
+
+  /** This implementation applies rounding. */
   @Override public String toString() {
     String sep = ",";
-    return "[" + x() + sep + y() + sep + z() + "]" ;
+    return "[" + roundIt(x()) + sep + roundIt(y()) + sep + roundIt(z()) + "]" ;
   }
 
   /** Constructors are protected, in order to be visible to subclasses. */
@@ -192,5 +193,10 @@ public class ThreeVectorImpl implements ThreeVector {
   }
 
   private Map</*spatial*/Axis, Double> components = new LinkedHashMap<>();
+  
+  private double roundIt(double value) {
+    return Util.round(value, 5);
+  }
+  
   
 }

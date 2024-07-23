@@ -182,6 +182,6 @@ public final class Event {
   }
   
   private double roundIt(Double val) {
-    return round(val, 4);
+    return round(val, 5);
   }
 }
