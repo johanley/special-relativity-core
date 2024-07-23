@@ -1,6 +1,6 @@
 package sr.explore.traveltime;
 
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -32,7 +32,7 @@ public final class TravelTime extends TextOutput {
     lines.add("Acts like a wormhole, from the point of view of the traveler." + Util.NL);
     lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
     lines.add(Util.separator(65));
-    for(Speed speed : Speed.nonExtremeValues()) {
+    for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();
@@ -54,7 +54,7 @@ public final class TravelTime extends TextOutput {
     lines.add("For the traveler, this acts like a time machine into the future." + Util.NL);
     lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
     lines.add(Util.separator(65));
-    for(Speed speed : Speed.nonExtremeValues()) {
+    for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();

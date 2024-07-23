@@ -2,7 +2,7 @@ package sr.explore.cornerboost;
 
 import sr.core.Axis;
 import sr.core.Physics;
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.event.transform.Boost;
@@ -138,8 +138,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   private void spectrumOfSpeeds() {
     lines.add(Util.NL + tableHeader.row("βx", "βy", "equivβ", "equivDirection", "θw"));
     lines.add(dashes(100));
-    for(Speed βx : Speed.nonExtremeValues()) {
-      for (Speed βy : Speed.nonExtremeValues()) {
+    for(SpeedValues βx : SpeedValues.nonExtremeValues()) {
+      for (SpeedValues βy : SpeedValues.nonExtremeValues()) {
         EquivalentBoostPlusRotation cb = new EquivalentBoostPlusRotation(Axis.Z, βx.β(), βy.β());
         lines.add(
           table.row(cb.β1, cb.β2, cb.βspeed(), degs(cb.βdirection()), degs(cb.θw()))

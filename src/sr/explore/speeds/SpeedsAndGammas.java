@@ -1,6 +1,6 @@
 package sr.explore.speeds;
 
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -21,7 +21,7 @@ public final class SpeedsAndGammas extends TextOutput {
     lines.add("I find it useful to remember approximate values for β=0.99 and β=0.999." + Util.NL);
     lines.add(table.row("β", "Γ"));
     lines.add(dashes(50));
-    for(Speed speed : Speed.values()) {
+    for(SpeedValues speed : SpeedValues.values()) {
       lines.add(table.row(speed.βBigDecimal(), speed.Γ()));
     }
     outputToConsoleAnd("speeds-and-gammas.txt");

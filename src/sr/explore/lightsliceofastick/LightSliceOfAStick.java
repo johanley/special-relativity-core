@@ -5,7 +5,7 @@ import static sr.core.Axis.X;
 import java.util.function.Function;
 
 import sr.core.Physics;
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.event.FindEvent;
@@ -58,7 +58,7 @@ public final class LightSliceOfAStick extends TextOutput {
     lines.add(table.row("stick recession speed", "light-slice", "time-slice"));
     lines.add(table.row("β", "length", "length"));
     lines.add(Util.separator(DASHES));
-    for (Speed speed : Speed.nonExtremeValues()) {
+    for (SpeedValues speed : SpeedValues.nonExtremeValues()) {
       double length = apparentStickLength(speed.β(), DETECTION_EVENT);
       lines.add(table.row(speed.β(), round(length), round(1.0/Physics.Γ(speed.β()))));
     }
@@ -75,7 +75,7 @@ public final class LightSliceOfAStick extends TextOutput {
     lines.add(table.row("stick approach speed", "light-slice", "rest"));
     lines.add(table.row("β", "length", "length"));
     lines.add(Util.separator(DASHES));
-    for (Speed speed : Speed.nonExtremeValues()) {
+    for (SpeedValues speed : SpeedValues.nonExtremeValues()) {
       //because of the histories I've defined here, the past light cone of the detector doesn't intersect the stick's 
       //history in the most extreme cases
       if (speed.β() < 0.9999) {

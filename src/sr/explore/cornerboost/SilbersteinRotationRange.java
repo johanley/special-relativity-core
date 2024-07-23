@@ -1,7 +1,7 @@
 package sr.explore.cornerboost;
 
 import sr.core.Axis;
-import sr.core.Speed;
+import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -28,8 +28,8 @@ public final class SilbersteinRotationRange extends TextOutput {
   }
   
   void showRangeθw() {
-    for (Speed β1 : Speed.nonExtremeValues()) {
-      for (Speed β2 : Speed.nonExtremeValues()) {
+    for (SpeedValues β1 : SpeedValues.nonExtremeValues()) {
+      for (SpeedValues β2 : SpeedValues.nonExtremeValues()) {
         EquivalentBoostPlusRotation range = new EquivalentBoostPlusRotation(Axis.X, β1.β(), β2.β());
         Double θw = range.equivalent().θw;
         lines.add(table.row(β1.β(), β2.β(), round(Util.radsToDegs(θw))));
