@@ -1,0 +1,16 @@
+One twin stays at home, the other twin takes a trip and returns home.
+The voyage outbound is at a given uniform velocity.
+The voyage inbound is at the opposite (uniform) velocity.
+
+β: 0.5
+Γ from formula: 1.154701
+Stay-at-home elapsed proper-time: 100.0
+There-and-back elapsed proper-time: 86.60254
+Ratio of the proper-times: 1.154701
+
+β: 0.98
+Γ from formula: 5.025189
+Stay-at-home elapsed proper-time: 100.0
+There-and-back elapsed proper-time: 19.899749
+Ratio of the proper-times: 5.025189
+
