@@ -1,9 +1,5 @@
 package sr.core.vector;
 
-import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
-import static sr.core.Axis.Z;
-
 import sr.core.Axis;
 import sr.core.Util;
 
@@ -38,7 +34,7 @@ public final class Velocity extends ThreeVectorImpl {
   /** Some cases only make sense when the speed is non-zero. */
   public static Velocity nonZero(double βx, double βy, double βz) {
     Velocity result = Velocity.of(βx, βy, βz);
-    Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
+    Util.mustHave(result.magnitude() > 0, "Velocity should have a non-zero magnitude.");
     return result;
   }
   
@@ -56,7 +52,7 @@ public final class Velocity extends ThreeVectorImpl {
   
   /** Validations on incoming constructor data. */
   private void check() {
-    checkRange(on(X), on(Y), on(Z));
+    checkRange(x(), y(), z());
     checkRange(magnitude());
   }
   

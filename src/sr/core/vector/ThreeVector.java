@@ -25,6 +25,15 @@ public interface ThreeVector {
 
   /** The component of the vector along the given spatial-axis. */
   public double on(Axis axis);
+  
+  /** The component of the vector along the X-axis. */
+  public double x();
+  
+  /** The component of the vector along the Y-axis. */
+  public double y();
+  
+  /** The component of the vector along the Z-axis. */
+  public double z();
 
   /** The scalar product of this vector with another vector. */
   public double dot(ThreeVector that);

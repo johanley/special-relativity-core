@@ -34,8 +34,8 @@ import sr.core.event.transform.Transform;
 public class ThreeVectorImpl implements ThreeVector {
 
   /** Factory method. */
-  public static ThreeVectorImpl of(double xComp, double yComp, double zComp) {
-    return new ThreeVectorImpl(xComp, yComp, zComp);
+  public static ThreeVectorImpl of(double x, double y, double z) {
+    return new ThreeVectorImpl(x, y, z);
   }
   
   /** Factory method. The vector has 1 non-zero component, along the given coordinate axis. */
@@ -57,6 +57,18 @@ public class ThreeVectorImpl implements ThreeVector {
 
   @Override public double on(Axis axis) {
     return components.get(axis);
+  }
+  
+  @Override public double x() {
+    return on(X);
+  }
+  
+  @Override public double y() {
+    return on(Y);
+  }
+  
+  @Override public double z() {
+    return on(Z);
   }
 
   @Override public Optional<Axis> axis(){
@@ -86,9 +98,9 @@ public class ThreeVectorImpl implements ThreeVector {
   }
   
   @Override public ThreeVector cross(ThreeVector that) {
-    double x = on(Y) * that.on(Z) - on(Z)*that.on(Y);
-    double y = on(X) * that.on(Z) - on(Z)*that.on(X);
-    double z = on(X) * that.on(Y) - on(Y)*that.on(X);
+    double x = y() * that.z() - z() * that.y();
+    double y = x() * that.z() - z() * that.x();
+    double z = x() * that.y() - y() * that.x();
     return ThreeVectorImpl.of(x, y, z);
   }
 
@@ -109,62 +121,62 @@ public class ThreeVectorImpl implements ThreeVector {
   /** This 3-vector plus 'that' 3-vector (for each component). Returns a new Vector.*/
   @Override public ThreeVector plus(ThreeVector that) {
     return ThreeVectorImpl.of(
-      on(X) + that.on(X), 
-      on(Y) + that.on(Y),
-      on(Z) + that.on(Z)
+      x() + that.x(), 
+      y() + that.y(),
+      z() + that.z()
     );
   }
   
   @Override public ThreeVector minus(ThreeVector that) {
     return ThreeVectorImpl.of(
-      on(X) - that.on(X), 
-      on(Y) - that.on(Y),
-      on(Z) - that.on(Z)
+      x() - that.x(), 
+      y() - that.y(),
+      z() - that.z()
     );
   }
 
   @Override public ThreeVector multiply(double scalar) {
     return ThreeVectorImpl.of(
-      on(X) * scalar, 
-      on(Y) * scalar, 
-      on(Z) * scalar 
+      x() * scalar, 
+      y() * scalar, 
+      z() * scalar 
     );
   }
   
   @Override public ThreeVector divide(double scalar) {
     Util.mustHave(scalar != 0, "Cannot divide by zero.");
     return ThreeVectorImpl.of(
-      on(X) / scalar, 
-      on(Y) / scalar, 
-      on(Z) / scalar 
+      x() / scalar, 
+      y() / scalar, 
+      z() / scalar 
     );
   }
   
   @Override public  ThreeVector rotation(Rotation rotation) {
     //this implementation uses items build for 4-vectors; the extra dimension is simply ignored in the result
     Transform rotate = Rotate.about(rotation.axis, rotation.θ);
-    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event a = Event.of(0.0, x(), y(), z());
     Event b = rotate.reverse(a);
     return ThreeVectorImpl.of(b.x(),b.y(),b.z());
   }
   
   @Override public ThreeVector reflection() {
     Transform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
-    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event a = Event.of(0.0, x(), y(), z());
     Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
   
   @Override public ThreeVector reflection(Axis axis) {
     Transform reflection = Reflect.the(axis);
-    Event a = Event.of(0.0, on(X), on(Y), on(Z));
+    Event a = Event.of(0.0, x(), y(), z());
     Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
   
   @Override public String toString() {
     String sep = ",";
-    return "[" + on(X) + sep + on(Y) + sep + on(Z) + "]" ;
+    return "[" + x() + sep + y() + sep + z() + "]" ;
   }
 
   /** Constructors are protected, in order to be visible to subclasses. */

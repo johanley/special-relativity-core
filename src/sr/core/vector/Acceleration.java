@@ -25,12 +25,12 @@ public final class Acceleration extends ThreeVectorImpl {
   /** Some cases only make sense when the acceleration is non-zero. */
   public static Acceleration nonZero(double ax, double ay, double az) {
     Acceleration result = Acceleration.of(ax, ay, az);
-    Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
+    Util.mustHave(result.magnitude() > 0, "Acceleration should have a non-zero magnitude.");
     return result;
   }
   
-  private Acceleration(double xComp, double yComp, double zComp) {
-    super(xComp, yComp, zComp);
+  private Acceleration(double x, double y, double z) {
+    super(x, y, z);
   }
   
   private Acceleration(Axis axis, double value) {

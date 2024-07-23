@@ -22,8 +22,8 @@ public final class Position extends ThreeVectorImpl {
     return new Position(0.0, 0.0, 0.0);
   }
 
-  private Position(double xComp, double yComp, double zComp) {
-    super(xComp, yComp, zComp);
+  private Position(double x, double y, double z) {
+    super(x, y, z);
   }
   
   private Position(Axis axis, double value) {
