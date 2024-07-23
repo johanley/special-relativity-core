@@ -11,6 +11,7 @@ import sr.output.text.TextOutput;
 
 /**
  A boost doesn't always <em>decrease</em> the rate of a clock with respect to a frame.
+ (It's easy to forget this.) 
  
  <P>This is simply because a boost can either <em>increase or decrease</em> the relative speed of the clock.
  
