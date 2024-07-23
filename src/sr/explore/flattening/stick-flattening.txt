@@ -2,32 +2,32 @@
 1. Boost speed 0.6. Stick along the X-axis in the unboosted grid.
 ----------------------------------------------------------------------------------------------------
 Time-slice in K (same ct coords), to see the geometry of the stationary stick:
-K a: [0.0, 1.0, 0.0, 0.0, YES]
-K b: [0.0, 2.0, 0.0, 0.0, YES]
-K b-a: [0.0, 1.0, 0.0, 0.0, YES]
+K a: [0.0, 1.0, 0.0, 0.0]
+K b: [0.0, 2.0, 0.0, 0.0]
+K b-a: [0.0, 1.0, 0.0, 0.0]
 K stick length:1.0
 
 Boost: boost[X,0.6]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
-K' a: [-0.525, 1.115, 0.0, 0.0, YES]
-K' b: [-0.525, 1.915, 0.0, 0.0, YES]
-K' b-a: [0.0, 0.8, 0.0, 0.0, YES]
+K' a: [-0.525, 1.115, 0.0, 0.0]
+K' b: [-0.525, 1.915, 0.0, 0.0]
+K' b-a: [0.0, 0.8, 0.0, 0.0]
 K' stick length: 0.8
 1/Γ from formula: 0.8
 
 1. Boost speed 0.9999. Stick along the X-axis in the unboosted grid.
 ----------------------------------------------------------------------------------------------------
 Time-slice in K (same ct coords), to see the geometry of the stationary stick:
-K a: [0.0, 1.0, 0.0, 0.0, YES]
-K b: [0.0, 2.0, 0.0, 0.0, YES]
-K b-a: [0.0, 1.0, 0.0, 0.0, YES]
+K a: [0.0, 1.0, 0.0, 0.0]
+K b: [0.0, 2.0, 0.0, 0.0]
+K b-a: [0.0, 1.0, 0.0, 0.0]
 K stick length:1.0
 
 Boost: boost[X,0.9999]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
-K' a: [-57.9771, 57.9855, 0.0, 0.0, YES]
-K' b: [-57.9771, 57.9996, 0.0, 0.0, YES]
-K' b-a: [0.0, 0.0141, 0.0, 0.0, YES]
+K' a: [-57.9771, 57.9855, 0.0, 0.0]
+K' b: [-57.9771, 57.9996, 0.0, 0.0]
+K' b-a: [0.0, 0.0141, 0.0, 0.0]
 K' stick length: 0.0141
 1/Γ from formula: 0.014141782065918275
 
@@ -36,17 +36,17 @@ Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptoti
 2. Boost speed 0.6. Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). 
 ----------------------------------------------------------------------------------------------------
 Time-slice in K (same ct coords), to see the geometry of the stationary stick:
-K a:[0.0, 0.0, 0.0, 0.0, YES]
-K b:[0.0, 1.0, 1.0, 0.0, YES]
-K b-a:[0.0, 1.0, 1.0, 0.0, YES]
+K a:[0.0, 0.0, 0.0, 0.0]
+K b:[0.0, 1.0, 1.0, 0.0]
+K b-a:[0.0, 1.0, 1.0, 0.0]
 K stick length:1.4142135623730951
 K stick angle with respect to the X-axis: 45.0°
 
 Boost:boost[X,0.6]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
-K' a: [0.225, -0.135, 0.0, 0.0, YES]
-K' b: [0.225, 0.665, 1.0, 0.0, YES]
-K' b-a: [0.0, 0.8, 1.0, 0.0, YES]
+K' a: [0.225, -0.135, 0.0, 0.0]
+K' b: [0.225, 0.665, 1.0, 0.0]
+K' b-a: [0.0, 0.8, 1.0, 0.0]
 K' stick length: 1.280624847485718
 K' stick angle with respect to the X-axis: 51.3402°
 K' stick angle directly from a formula: 51.3402°
@@ -54,17 +54,17 @@ K' stick angle directly from a formula: 51.3402°
 2. Boost speed 0.9999. Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). 
 ----------------------------------------------------------------------------------------------------
 Time-slice in K (same ct coords), to see the geometry of the stationary stick:
-K a:[0.0, 0.0, 0.0, 0.0, YES]
-K b:[0.0, 1.0, 1.0, 0.0, YES]
-K b-a:[0.0, 1.0, 1.0, 0.0, YES]
+K a:[0.0, 0.0, 0.0, 0.0]
+K b:[0.0, 1.0, 1.0, 0.0]
+K b-a:[0.0, 1.0, 1.0, 0.0]
 K stick length:1.4142135623730951
 K stick angle with respect to the X-axis: 45.0°
 
 Boost:boost[X,0.9999]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
-K' a: [12.7282, -12.727, 0.0, 0.0, YES]
-K' b: [12.7282, -12.7128, 1.0, 0.0, YES]
-K' b-a: [0.0, 0.0141, 1.0, 0.0, YES]
+K' a: [12.7282, -12.727, 0.0, 0.0]
+K' b: [12.7282, -12.7128, 1.0, 0.0]
+K' b-a: [0.0, 0.0141, 1.0, 0.0]
 K' stick length: 1.0000999900087841
 K' stick angle with respect to the X-axis: 89.1898°
 K' stick angle directly from a formula: 89.1898°
@@ -74,15 +74,15 @@ Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis
 3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.
 Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.
 ----------------------------------------------------------------------------------------------------
-K b-a:[0.0, 0.9119, 0.4104, 0.0, YES]
+K b-a:[0.0, 0.9119, 0.4104, 0.0]
 K stick length:1.0
 K stick angle wrt X-axis: 24.227745317954167°
 
 Boost: boost[X,0.87727]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
-K' a: [0.3125, -0.2741, 0.0, 0.0, YES]
-K' b: [0.3125, 0.1636, 0.4104, 0.0, YES]
-K' b-a: [0.0, 0.4377, 0.4104, 0.0, YES]
+K' a: [0.3125, -0.2741, 0.0, 0.0]
+K' b: [0.3125, 0.1636, 0.4104, 0.0]
+K' b-a: [0.0, 0.4377, 0.4104, 0.0]
 K' b-a stick length: 0.6000000000015474
 K' stick angle with respect to the X-axis: 43.152389733866855°
 Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!

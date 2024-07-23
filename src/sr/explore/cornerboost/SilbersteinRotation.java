@@ -105,7 +105,7 @@ public final class SilbersteinRotation extends TextOutput {
     
     Function<Event, Double> criterion = event -> (cornerBoost.apply(event).ct() - eventA_K.ct());
     FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
-    double ctB_Kpp = findEvent.search(); 
+    double ctB_Kpp = findEvent.search(0.0); 
     Event eventB_K = cornerBoost.apply(historyB_Kpp.event(ctB_Kpp)); 
     
     lines.add("Time-slice across the stick's history in K.");

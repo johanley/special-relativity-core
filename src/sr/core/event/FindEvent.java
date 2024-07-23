@@ -8,7 +8,13 @@ import sr.core.history.History;
 /** 
  Find the λ value (usually a ct-coordinate) along a {@link History} for which the corresponding event satisfies a given criterion.
 
- This implementation is basic; it's not super-robust! 
+ This implementation is basic; it's not super-robust!
+ It's highly recommended that you:
+ <ul>
+  <li>make an effort to provide a good first-guess to the search method. This can be done by drawing a simple rough diagram of the scenario.
+  <li>inspect the number of iterations needed to find the returned result.
+ </ul> 
+  
  The data is expected to be simple, monotonic, and with a single root.
  This implementation uses the Newton-Raphson method.
 */
@@ -38,11 +44,6 @@ public final class FindEvent {
   /** A small value used to as the 'difference-level' below which we consider the event as having been found (the root is 'zero enough'): : {@value} */
   public static final double EPSILON = 0.00001;
   
-  /**  Execute the {@link #search(double, double)} using 0.0 as the starting guess, and {@link #SMALL_H} as the h-value.  */
-  public double search() {
-    return search(0.0, SMALL_H);
-  }
-  
   /**  Execute the {@link #search(double, double)} using {@link #SMALL_H} as the h-value.  */
   public double search(double cτ) {
     return search(cτ, SMALL_H);
@@ -65,11 +66,18 @@ public final class FindEvent {
         break; //avoid getting into an infinite loop, in case of unexpected conditions
       }
     }
-    if (numIterations <= 1) {
-      throw new RuntimeException("Probable search error. The number of iterations is under 2.");
+    if (numIterations < 1) {
+      //throw new RuntimeException("Probable search error. The number of iterations is under 1.");
     }
     return guess.cλ;
   }
+  
+  /** The number of loops used by a search method to find its answer. */
+  public int numIterationsUsedBySearch() {
+    return numIterations;
+  }
+
+  // PRIVATE
   
   private History history;
   private Function<Event, Double> criterion;

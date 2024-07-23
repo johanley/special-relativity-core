@@ -134,7 +134,7 @@ public final class LightSliceOfAStick extends TextOutput {
       detection.minus(transform.apply(event)).square()
     );
     FindEvent root = new FindEvent(history, onTheLightCone);
-    double τA = root.search();
+    double τA = root.search(0.0);
     Event result = transform.apply(history.event(τA));
     return result;
   }

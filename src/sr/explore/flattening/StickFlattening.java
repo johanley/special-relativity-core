@@ -93,7 +93,7 @@ public class StickFlattening extends TextOutput {
     //root: the difference in K' of the ct' coord vanishes
     Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
-    double ctB = findEvent.search();
+    double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("Boost: "+ boostX);
@@ -159,7 +159,7 @@ public class StickFlattening extends TextOutput {
     
     Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
-    double ctB = findEvent.search();
+    double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
@@ -215,7 +215,7 @@ public class StickFlattening extends TextOutput {
     
     Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
-    double ctB = findEvent.search();
+    double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.apply(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
