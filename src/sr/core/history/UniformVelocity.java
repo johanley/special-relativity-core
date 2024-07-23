@@ -16,16 +16,14 @@ import sr.core.vector.Velocity;
 public final class UniformVelocity implements History {
 
   /**
-   Constructor.
+   Factory method.
     
    The overall speed must be a non-zero value in the range (0,1).
    @param initialPosition for the object at cτ=0
    @param velocity non-zero velocity
   */
-  public UniformVelocity(Position initialPosition, Velocity velocity) {
-    Util.mustHave(velocity.magnitude() > 0, "Speed must be greater than zero.");
-    this.velocity = velocity;
-    this.initialEvent = Event.of(0.0, initialPosition);
+  public static UniformVelocity of(Position initialPosition, Velocity velocity) {
+    return new UniformVelocity(initialPosition, velocity);
   }
   
   /** @param ct is the coordinate-time. */
@@ -42,6 +40,17 @@ public final class UniformVelocity implements History {
     return ct / Physics.Γ(velocity.magnitude());
   }
   
+  @Override public String toString() {
+    return "UniformVelocity initial-event:" + initialEvent + " velocity:" + velocity;
+  }
+  
   private Event initialEvent;
   private Velocity velocity;
+  
+  private UniformVelocity(Position initialPosition, Velocity velocity) {
+    Util.mustHave(velocity.magnitude() > 0, "Speed must be greater than zero.");
+    this.velocity = velocity;
+    this.initialEvent = Event.of(0.0, initialPosition);
+  }
+  
 }

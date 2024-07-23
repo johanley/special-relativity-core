@@ -20,14 +20,13 @@ import sr.core.vector.Velocity;
 public final class ThereAndBack implements History {
 
   /**
-   Constructor.
+   Factory method.
    
    The overall speed must be in the range (0,1).
    @param velocity before the turnaround event; the speed cannot be zero
   */
-  public ThereAndBack(Velocity velocity) {
-    Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
-    this.velocity = velocity;
+  public static ThereAndBack of(Velocity velocity) {
+    return new ThereAndBack(velocity);
   }
   
   /** @param ct is the coordinate-time. */
@@ -43,7 +42,16 @@ public final class ThereAndBack implements History {
   @Override public double τ(double ct) {
     return ct / Physics.Γ(velocity.magnitude()); 
   }
+  
+  @Override public String toString() {
+    return "ThereAndBack: turnaround-event:" + turnaroundEvent + " velocity:" + velocity;
+  }
 
   private Event turnaroundEvent = Event.origin(); 
   private Velocity velocity;
+  
+  private ThereAndBack(Velocity velocity) {
+    Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
+    this.velocity = velocity;
+  }
 }

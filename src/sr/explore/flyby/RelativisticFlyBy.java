@@ -157,7 +157,7 @@ public final class RelativisticFlyBy {
     this.x0 = x0;
     this.y = y;
     this.timeStep = spatialStep / β;
-    this.history = new UniformVelocity(Position.of(Y, y), Velocity.of(X, β)); 
+    this.history = UniformVelocity.of(Position.of(Y, y), Velocity.of(X, β)); 
   }
   
   /**

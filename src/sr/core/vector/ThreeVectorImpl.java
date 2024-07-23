@@ -161,6 +161,11 @@ public class ThreeVectorImpl implements ThreeVector {
     Event b = reflection.reverse(a);
     return ThreeVectorImpl.of(b.x(), b.y(), b.z());
   }
+  
+  @Override public String toString() {
+    String sep = ",";
+    return "[" + on(X) + sep + on(Y) + sep + on(Z) + "]" ;
+  }
 
   /** Constructors are protected, in order to be visible to subclasses. */
   protected ThreeVectorImpl(double xComp, double yComp, double zComp) {

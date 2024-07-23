@@ -1,6 +1,8 @@
 # special-relativity-core
 Explore the consequences of the Lorentz Transformations.
 
+Kinematics only, no dynamics.
+
 In this project c=1, and the metric signature is (ct,x,y,z) = (+,-,-,-).
 
 The book <a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a> by Sussman, Wisdom, and Mayer

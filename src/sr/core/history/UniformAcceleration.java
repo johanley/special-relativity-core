@@ -29,17 +29,13 @@ public final class UniformAcceleration implements History {
    */
 
   /**
-   Constructor.
+   Factory method.
    
    @param axis a spatial axis
    @param acceleration must be non-zero
   */
-  public UniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
-    mustBeSpatial(axis);
-    mustHave(Math.abs(acceleration) > 0, "Must have a non-zero acceleration.");
-    this.axis = axis;
-    this.accel = acceleration;
-    this.initialEvent = Event.of(0.0, initialPosition);
+  public static UniformAcceleration of(Axis axis, double acceleration, Position initialPosition) {
+    return new UniformAcceleration(axis, acceleration, initialPosition);
   }
   
   /** @param ct is the coordinate-time. */
@@ -61,8 +57,22 @@ public final class UniformAcceleration implements History {
     double b = a + (accel*ct)/c;
     return (c/accel)*Math.log(b);
   }
+  
+  @Override public String toString() {
+    return "UniformAccelaration: axis:" + axis + " proper-accelaration:" + accel + " initial-event:" + initialEvent;
+  }
 
   private Axis axis;
   private double accel;
   private Event initialEvent;
+  
+  private UniformAcceleration(Axis axis, double acceleration, Position initialPosition) {
+    mustBeSpatial(axis);
+    mustHave(Math.abs(acceleration) > 0, "Must have a non-zero acceleration.");
+    this.axis = axis;
+    this.accel = acceleration;
+    this.initialEvent = Event.of(0.0, initialPosition);
+  }
+  
 }
+

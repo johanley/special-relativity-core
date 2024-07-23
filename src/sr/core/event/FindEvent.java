@@ -65,6 +65,9 @@ public final class FindEvent {
         break; //avoid getting into an infinite loop, in case of unexpected conditions
       }
     }
+    if (numIterations <= 1) {
+      throw new RuntimeException("Probable search error. The number of iterations is under 2.");
+    }
     return guess.cλ;
   }
   

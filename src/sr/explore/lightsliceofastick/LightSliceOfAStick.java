@@ -1,8 +1,8 @@
 package sr.explore.lightsliceofastick;
 
-import java.util.function.Function;
+import static sr.core.Axis.X;
 
-import static sr.core.Axis.*;
+import java.util.function.Function;
 
 import sr.core.Physics;
 import sr.core.Speed;
@@ -96,8 +96,8 @@ public final class LightSliceOfAStick extends TextOutput {
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final History HIST_STICK_END_A = new Stationary(Position.origin()); 
-  private static final History HIST_STICK_END_B = new Stationary(Position.of(X, NEARBY)); 
+  private static final History HIST_STICK_END_A = Stationary.of(Position.origin()); 
+  private static final History HIST_STICK_END_B = Stationary.of(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -105,7 +105,7 @@ public final class LightSliceOfAStick extends TextOutput {
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final Event DETECTION_EVENT = new Stationary(Position.of(X, DISTANT)).event(DISTANT);
+  private static final Event DETECTION_EVENT = Stationary.of(Position.of(X, DISTANT)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.

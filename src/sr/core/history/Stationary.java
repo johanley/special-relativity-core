@@ -10,12 +10,12 @@ import sr.core.vector.Position;
 public final class Stationary implements History {
 
   /**
-   Constructor. 
+   Factory method.
     
    @param position initial position for <em>ct=0</em>.
   */
-  public Stationary(Position position) {
-    initialEvent = Event.of(0.0, position);
+  public static Stationary of(Position position) {
+    return new Stationary(position);
   }
 
   /** @param ct is the coordinate-time. In this case, it is also a proper-time. */
@@ -32,5 +32,14 @@ public final class Stationary implements History {
     return ct;
   }
   
+  @Override public String toString() {
+    return "Stationary. Initial event: " + initialEvent;
+  }
+  
   private Event initialEvent;
+  
+  private Stationary(Position position) {
+    initialEvent = Event.of(0.0, position);
+  }
+
 }

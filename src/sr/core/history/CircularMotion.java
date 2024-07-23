@@ -52,6 +52,10 @@ public class CircularMotion implements History {
    return ct / Physics.Γ(initialVelocity.magnitude());
   }
   
+  @Override public String toString() {
+    return "CircularMotion axis:" + rotationalAxis + " radius:" + radius + " speed:" + β; 
+  }
+  
   /** Defines the plane of the circle, and also the sense of circular motion. */
   private Axis rotationalAxis;
   
