@@ -28,16 +28,18 @@ import sr.core.event.Event;
 public interface Transform {
   
   /** 
-   For a given 4-vector, transform its components from frame K to K'. 
+   For a given event represented relative to K, represent the same event relative to K'. 
+    
    The inverse operation is {@link #reverse(Event)}.
    
-   @param event the components in the K frame.
-   @return the components in the K' frame. 
+   @param event the components of an event in the K frame.
+   @return the components of the same event in the K' frame. 
   */
   Event apply(Event event);
   
   /** 
-   For a given frame K, transform the given 4-vector into another 4-vector. 
+   For a given event represented relative to K, return a second event represented relative to K. 
+    
    The inverse operation is {@link #apply(Event)}.
    
    @param event the components in a given frame K.

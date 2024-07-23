@@ -11,11 +11,25 @@ import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving uniformly from infinity to the frame's origin, then in the opposite direction back out to infinity.
- The two legs take place at the same speed.
+ 
+ <P>The two legs take place at the same speed.
  The origin event is the turnaround event.
 
- <P>The parameter for the history is the coordinate-time <em>ct</em>.
+ <P>For positive velocity along the X-axis, the geometry is: 
+ <PRE>
+       ct
+   *   |
+    *  |
+     * |
+   ----*------ X
+     * |
+    *  |
+   *   |
+ </PRE>
+ 
+  <P>The parameter for the history is the coordinate-time <em>ct</em>.
  Negative <em>ct</em> means before the turnaround, and positive <em>ct</em> is after the turnaround.
+
 */
 public final class ThereAndBack implements History {
 
@@ -31,7 +45,7 @@ public final class ThereAndBack implements History {
   
   /** @param ct is the coordinate-time. */
   @Override public Event event(double ct) {
-    Event displacement = Event.of(ct, ct*velocity.on(X), ct*velocity.on(Y), ct*velocity.on(Z));
+    Event displacement = Event.of(ct, ct*velocity.x(), ct*velocity.y(), ct*velocity.z());
     return ct >= 0 ? turnaroundEvent.plus(displacement) : turnaroundEvent.plus(displacement.spatialReflection());
   }
   
