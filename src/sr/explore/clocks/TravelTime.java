@@ -1,4 +1,4 @@
-package sr.explore.traveltime;
+package sr.explore.clocks;
 
 import sr.core.SpeedValues;
 import sr.core.Util;
@@ -27,10 +27,11 @@ public final class TravelTime extends TextOutput {
    according to their own clock. 
   */
   void oneWayTripUniformVelocity(double lightyears) {
-    lines.add("One-way trip at uniform velocity, traveling a distance of " + lightyears + " light-years.");
-    lines.add("Proper-time is the traveler's wrist-watch time.");
-    lines.add("Acts like a wormhole, from the point of view of the traveler." + Util.NL);
-    lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
+    lines.add("One-way trip through space at a uniform velocity.");
+    lines.add("Rocket-time is the traveler's wrist-watch time (proper time).");
+    lines.add(Util.NL + "From the point of view of the traveler, high-speed travel acts like a worm-hole.");
+    lines.add(Util.NL + "Distance traveled: " + lightyears + " light-years." + Util.NL);
+    lines.add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
     lines.add(Util.separator(65));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
@@ -49,10 +50,11 @@ public final class TravelTime extends TextOutput {
    A two-way trip acts like a time machine into the future: the traveler gets into the deep future faster than usual.
   */
   void twoWayTripUniformSpeed(double lightyears) {
-    lines.add("Round trip, same speed both outbound and inbound, traveling out " + lightyears + " light years and back.");
-    lines.add("Proper-time is the traveler's wrist-watch time.");
-    lines.add("For the traveler, this acts like a time machine into the future." + Util.NL);
-    lines.add(table.row("β speed", "proper-time (y)", "home-time (y)"));
+    lines.add("Round trip, same speed both outbound and inbound.");
+    lines.add("Rocket-time is the traveler's wrist-watch time (proper time).");
+    lines.add(Util.NL + "From the point of view of the traveler, high-speed return trips act as a time-machine into the future.");
+    lines.add(Util.NL + "Distance traveled: " + lightyears + " light-years, out and back." + Util.NL);
+    lines.add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
     lines.add(Util.separator(65));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
@@ -67,7 +69,7 @@ public final class TravelTime extends TextOutput {
   private Table table = new Table("%-20s", "%-20s", "%-20s");
 
   private double round(Double value) {
-    return Util.round(value, 4);
+    return Util.round(value, 6);
   }
 
 }
