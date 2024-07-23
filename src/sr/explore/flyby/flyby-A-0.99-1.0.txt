@@ -2,12 +2,13 @@
 Relativistic fly-by of a star.
 Spectral Type: A
 Speed β:0.99
-Minimum distance: 1.0 light-years
+Minimum distance y: 1.0 light-years
+Starting distance x0: -25.0 light-years
 
-Description     Detection       θ   Doppler   Visual  Distance to emission event
-                Time (year)     °             Mag     Light-years     
------------------------------------------------------------------
-First event       -0.233y    0.16°   14.10    1.44V  25.020ly
-Max brightness     1.347y   10.88°    5.07   -6.20V   1.044ly
-Last visible       9.354y   66.83°    0.23    5.99V   4.707ly
-Last event       150.744y  169.25°    0.07   39.42V  74.997ly
+Description     Emission  Detection      θ   Doppler   Visual  Distance to emission event
+                Time (yr) Time (yr)      °             Mag     Light-years     
+-----------------------------------------------------------------------------------------
+First event      -25.253y  -0.233y    0.16°   14.10    1.44V  25.020ly
+Max brightness     0.303y   1.347y   10.88°    5.07   -6.20V   1.044ly
+Last visible       4.646y   9.354y   66.83°    0.23    5.99V   4.707ly
+Last event        75.747y 150.744y  169.25°    0.07   39.42V  74.997ly

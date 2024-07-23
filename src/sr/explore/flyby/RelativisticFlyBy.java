@@ -119,7 +119,7 @@ public final class RelativisticFlyBy {
 
           boolean CONSOLE_ONLY = true;
           boolean FILE_AND_CONSOLE = false;
-          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.minimumDistance(), CONSOLE_ONLY);
+          OutputSummary highlights = new OutputHighlights(flyby.star().name(), flyby.β(), flyby.startingDistance(), flyby.minimumDistance(), FILE_AND_CONSOLE);
           OutputSummary maxThetaDot = new OutputMaxThetaDot();
           
           flyby.compute(highlights, maxThetaDot);
@@ -197,6 +197,7 @@ public final class RelativisticFlyBy {
   Double β() {return β;}
   MainSequenceStar star() { return star;}
   Double minimumDistance() { return y; }
+  Double startingDistance() { return x0; }
   
   // PRIVATE
   private MainSequenceStar star;
