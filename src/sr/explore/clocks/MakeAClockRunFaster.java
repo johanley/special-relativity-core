@@ -17,6 +17,9 @@ import sr.output.text.TextOutput;
  
  <P>In terms of space-time geometry, a boost can cause an object's history to either bend <em>more</em> or <em>less</em> towards the ct-axis, 
  depending on the relative geometry between the initial motion and the direction of the boost.
+ 
+ <P>For the exact same reason, a similar remark can be made for flattening (Lorentz-Fitgerald contraction): a boost can both 
+ flatten or unflatten the geometry of an object relative to a frame.
 */
 public final class MakeAClockRunFaster extends TextOutput {
   
