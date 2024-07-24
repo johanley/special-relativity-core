@@ -57,7 +57,7 @@ public final class Twins extends TextOutput {
   }
   
   private double properTimeInterval(History history, double ctStart, double ctEnd) {
-    return history.τ(ctEnd) - history.τ(ctStart); 
+    return history.convert(ctEnd) - history.convert(ctStart); 
   }
   
   private double round(double value) {

@@ -20,14 +20,14 @@ import static sr.core.Axis.*;
  
  <P>This class investigates the case of a relativistic fly-by of a single star.
  In the inertial frame used here, the star moves relativistically with respect to a detector at rest at the origin.
- Here's the assumed geometry:
+ Here's the assumed spatial geometry, with <em>D</em> as the detector at the origin of the spatial coordinates:
  <pre>
                ^ Y-axis
                | 
                |
  star --o- → ----- → -o----- → --o-- → "the axis of motion" 
                | 
-            --detector-----> X-axis
+            ---D--------------&gt; X-axis
                |
  </pre>
 

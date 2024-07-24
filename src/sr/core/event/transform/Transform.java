@@ -15,7 +15,7 @@ import sr.core.event.Event;
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
   <li>given the components of a {@link Event} in one inertial frame K, find its components in a second frame K'
-   ({@link #apply(Event))}, with inverse {@link #reverse(Event))}) 
+   ({@link #apply(Event)}, with inverse {@link #reverse(Event)}) 
   <li>given the components of a {@link Event} in one inertial frame K, find the components of a second event in the same frame K.
      ({@link #reverse(Event)}, with inverse {@link #apply(Event)}) 
  </ul>

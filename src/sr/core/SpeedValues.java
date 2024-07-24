@@ -37,7 +37,7 @@ public enum SpeedValues {
   
   /** 
    Energy of 10^20 eV, seen in some cosmic rays. 
-   WARNING: this speed is very close to 1, and {@Double} cannot be used to represent it.  
+   WARNING: this speed is very close to 1, and {@link Double} cannot be used to represent it.  
    Use {@link BigDecimal} instead!
   */
   PROTON_EXTREME_COSMIC_RAY("0.99999999999999999999995598229");

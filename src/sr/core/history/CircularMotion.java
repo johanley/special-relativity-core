@@ -45,10 +45,11 @@ public class CircularMotion implements History {
   }
   
   /** 
+   Convert coordinate-time to proper time.
    The zero of proper-time is taken as the event with ct = 0.
    @param ct is the coordinate-time.
   */
-  @Override public double τ(double ct) {
+  @Override public double convert(double ct) {
    return ct / Physics.Γ(initialVelocity.magnitude());
   }
   

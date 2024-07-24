@@ -12,7 +12,7 @@
  The sole exception is extreme values of β when it's near 1.
  For extreme speeds, the difference between β and 1 is very small, 
  so small that it can't be represented with a Double in Java.
- Instead, it needs to be represented with a {@ link BigDecimal}.
+ Instead, it needs to be represented with a {@link java.math.BigDecimal}.
  You need to be aware of that.
  Such cases are not simply theoretical: the speeds of the fastest cosmic rays are the best example.   
  

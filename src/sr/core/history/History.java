@@ -9,7 +9,7 @@ import sr.core.event.Event;
  λ can represent different things:
  <ul> 
   <li>the coordinate-time ct in a given frame 
-  <li>the proper-time cτ of an object having mass)  
+  <li>the proper-time cτ of an object having mass
   <li>any other parameter having suitable uniqueness/continuity attributes
  </ul>
  
@@ -30,11 +30,13 @@ public interface History {
   public Event event(double λ);
 
   /**
-   Return a proper-time value.
-   There's no single proper-time, since the zero can be chosen in different ways.
+   Convert the parameter λ into some other identifier for the event.
+   Typically, this will convert a coordinate-time to a proper-time, or vice versa.
+   Implementations will need to decide which conversion to implement.
+   Note that there's no single proper-time, since the zero can be chosen in different ways.
      
    @param λ uniquely identifies each event in the history.
   */
-  public double τ(double λ);
+  public double convert(double λ);
   
 }

@@ -7,7 +7,7 @@ public final class Table {
 
   /**
    Constructor.
-   @param columFormats as defined by the {@link Formatter} class. 
+   @param columnFormats as defined by the {@link Formatter} class. 
   */
   public Table(String... columnFormats) {
     this.columnFormats = columnFormats;

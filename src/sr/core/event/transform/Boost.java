@@ -15,9 +15,6 @@ import static sr.core.Util.mustBeSpatial;
   <li>transforms from K to K'. K' is moving with respect to K along the given axis with speed β.
   <li>if the speed is positive (negative), then the relative motion is along the positive (negative) direction of the axis.
  </ul>
-   
- @param spatialAxis the axis along which the K' frame is moving with respect to the K frame.
- @param β the velocity parallel to the given spatial axis; can be either sign.
 */
 public final class Boost implements Transform {
 

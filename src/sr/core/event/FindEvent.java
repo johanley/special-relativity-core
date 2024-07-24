@@ -45,7 +45,7 @@ public final class FindEvent {
    A small value used to as the default 'difference-level' below which we consider the event as having 
    been found (the root is 'zero enough'). Value: {@value}.
    This can be overridden by calling a constructor.
-   This value is not the same as that used by the {@link Epsilon} class. 
+   This value is not the same as that used by the {@link sr.core.Epsilon} class. 
   */
   public static final double EPSILON = 0.00001;
   

@@ -6,6 +6,19 @@ import sr.core.vector.Position;
 /** 
  History for a particle with mass that doesn't move from a given position. 
  This is the simplest possible history.
+ In space-time it's simply a vertical line in a given frame of reference.
+  <pre>
+            CT
+            ^
+            |    *
+            |    *
+            |    *
+ ----------------*------------&gt; X
+            |    *
+            |    * 
+            |    *
+ </pre>
+
 */
 public final class Stationary implements History {
 
@@ -28,7 +41,7 @@ public final class Stationary implements History {
    In this case, the proper-time and the coordinate-time are the same value.
    @param ct is the coordinate-time.
   */ 
-  @Override public double τ(double ct) {
+  @Override public double convert(double ct) {
     return ct;
   }
   

@@ -19,7 +19,7 @@
  difference-of-events (4-velocity, and so on). 
  <P>(In mathematical terms, a displacement is an affine transformation, but not a linear one.)
  
- <P>{@Transform} operations can be chained together in a {@link TransformPipeline}. 
+ <P>{@link Transform} operations can be chained together in a {@link TransformPipeline}. 
  A pipeline can also be reversed, to compute the inverse transformation from K' to K.
 */
 package sr.core.event.transform;

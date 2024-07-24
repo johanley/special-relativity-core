@@ -107,7 +107,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   private double β2;
   private double Γ2;
 
-  //βx   βy   β-equiv β-direction-degs  θw-degs");
+  //βx   βy   β-equiv β-direction-degs  θw-degs;
   private Table tableHeader = new Table("%-21s", "%-21s", "%-21s", "%-12s", "%6s");
   private Table table = new Table("%-21s", "%-21s", "%-21s", "%10.3f°", "%10.3f°");
 

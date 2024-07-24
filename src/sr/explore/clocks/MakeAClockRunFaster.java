@@ -41,7 +41,7 @@ public final class MakeAClockRunFaster extends TextOutput {
   
   private void showClockRate(double β){
     History clock = UniformVelocity.of(Position.of(X, -100.0), Velocity.of(X, β));
-    double clockRate = clock.τ(1.0);
+    double clockRate = clock.convert(1.0);
     lines.add("Clock approaching with β: " + round(β) + Util.NL + "Clock rate relative to the frame: " + round(clockRate));
   }
   

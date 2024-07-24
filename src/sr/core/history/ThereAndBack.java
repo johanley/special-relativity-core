@@ -15,17 +15,19 @@ import sr.core.vector.Velocity;
  <P>The two legs take place at the same speed.
  The origin event is the turnaround event.
 
- <P>For positive velocity along the X-axis, the geometry is: 
- <PRE>
-       ct
-   *   |
-    *  |
-     * |
-   ----*------ X
-     * |
-    *  |
-   *   |
- </PRE>
+ <P>If the initial velocity is directed along the negative X-axis, the history has this general appearance: 
+<pre>
+            CT
+            ^   *
+            |  *
+            | *  
+            |*    
+ -----------*-----------&gt; X
+            |*    
+            | *   
+            |  * 
+ </pre>
+
  
   <P>The parameter for the history is the coordinate-time <em>ct</em>.
  Negative <em>ct</em> means before the turnaround, and positive <em>ct</em> is after the turnaround.
@@ -50,10 +52,11 @@ public final class ThereAndBack implements History {
   }
   
   /** 
+   Convert coordinate-time to proper time.
    The zero of proper-time is taken as the event with ct = 0.
    @param ct is the coordinate-time.
   */
-  @Override public double τ(double ct) {
+  @Override public double convert(double ct) {
     return ct / Physics.Γ(velocity.magnitude()); 
   }
   

@@ -12,6 +12,19 @@ import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving uniformly at a given speed, and in a given direction.
+ 
+  <pre>
+            CT
+            ^
+            |       *
+            |      *
+            |     *
+ ----------------*------------&gt; X
+            |   *
+            |  * 
+            | *
+ </pre>
+ 
 */
 public final class UniformVelocity implements History {
 
@@ -33,10 +46,11 @@ public final class UniformVelocity implements History {
   }
   
   /** 
+   Convert coordinate-time to proper-time.
    The zero of proper-time is taken as the event with ct = 0.
    @param ct is the coordinate-time.
   */
-  @Override public double τ(double ct) {
+  @Override public double convert(double ct) {
     return ct / Physics.Γ(velocity.magnitude());
   }
   
