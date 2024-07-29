@@ -17,6 +17,10 @@ import sr.core.vector.Velocity;
  <P>At ct=0, the particle is on one of the spatial axes.
 */
 public class CircularMotion implements History {
+  
+  @Override public LambdaParam parameterizedBy() {
+    return PARAM;
+  }
 
   /**
    Constructor.
@@ -72,6 +76,7 @@ public class CircularMotion implements History {
 
   private Event initialEvent;
   private Velocity initialVelocity;
+  private static final LambdaParam PARAM = LambdaParam.COORDINATE_TIME;
   
   /** At ct=0, the position is on a spatial axis. */
   private Event initialEvent() {

@@ -6,9 +6,9 @@ All of the items below are in K.
 
 Time-slice across the stick's history in K.
 Examine two events, one for each end of the stick.
-Event for A: [3.2083, 3.1667, 0.675, 0.0, YES] one end of the stick.
-Event for B: [3.2083, 3.7667, 0.195, 0.0, YES] other end of the stick.
-Difference (B - A): [0.0, 0.6, -0.48, 0.0, YES] has ct=0 (time-slice).
+Event for A: [3.20833, 3.16667, 0.675, 0.0] one end of the stick.
+Event for B: [3.20833, 3.76667, 0.195, 0.0] other end of the stick.
+Difference (B - A): [0.0, 0.6, -0.48, 0.0] has ct=0 (time-slice).
 Angle of the stick with respect to the X-axis: -38.66°
 Length of the stick: 0.768. It shows some contraction.
  

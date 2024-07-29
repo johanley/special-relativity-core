@@ -3,10 +3,10 @@ package sr.core.event;
 import java.util.function.Function;
 
 import sr.core.Util;
-import sr.core.history.History;
+import sr.core.history.History2;
 
 /** 
- Find the λ value (usually a ct-coordinate) along a {@link History} for which the corresponding event satisfies a given criterion.
+ Find the λ value (usually a ct-coordinate) along a {@link History2} for which the corresponding event satisfies a given criterion.
 
  This implementation is basic; it's not super-robust!
  It's highly recommended that you:
@@ -26,15 +26,15 @@ public final class FindEvent {
    @param criterion the function that returns 0.0 for the caller's target event.
    @param epsilon the difference-level down to which this class pursues the target-zero; a small positive number.
   */
-  public FindEvent(History history, Function<Event, Double> criterion, Double epsilon) {
+  public FindEvent(History2 history, Function<Event, Double> criterion, Double epsilon) {
    Util.mustHave(epsilon > 0, "The epsilon interval must be positive.");
    this.history = history;
    this.criterion = criterion;
    this.epsilon = epsilon;
   }
   
-  /** Call {@link #FindEvent(History, Function, Double)} with epsilon equal to {@link #EPSILON}. */
-  public FindEvent(History history, Function<Event, Double> criterion) {
+  /** Call {@link #FindEvent(History2, Function, Double)} with epsilon equal to {@link #EPSILON}. */
+  public FindEvent(History2 history, Function<Event, Double> criterion) {
     this(history, criterion, EPSILON);
    }
 
@@ -84,7 +84,7 @@ public final class FindEvent {
 
   // PRIVATE
   
-  private History history;
+  private History2 history;
   private Function<Event, Double> criterion;
   private Double epsilon;
   private int numIterations;

@@ -19,10 +19,11 @@ public enum Axis {
   /**  
    The order of the returned list defines a right-hand sense of rotation about the given (spatial) axis, 
    taken as a pole of the rotation.
+   Where the integers represent indices in the returned list, you have:
    <ul>
-    <li>about the z-axis: x turns towards y.
-    <li>about the y-axis: z turns towards x.
-    <li>about the x-axis: y turns towards z.
+    <li>about the z-axis: x(0) turns towards y(1).
+    <li>about the y-axis: z(0) turns towards x(1).
+    <li>about the x-axis: y(0) turns towards z(1).
    </ul>
   */
   public static List<Axis> rightHandRuleFor(Axis pole){

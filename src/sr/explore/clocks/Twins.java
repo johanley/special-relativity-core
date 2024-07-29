@@ -4,17 +4,34 @@ import static sr.core.Axis.X;
 
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.history.History;
-import sr.core.history.Stationary;
+import sr.core.history.History2;
+import sr.core.history.DeltaBase;
 import sr.core.history.ThereAndBack;
+import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
 import sr.output.text.TextOutput;
 
 /**
  Compare the proper-time elapsed in the case of the famous twins.
+ One twin stays at home, the other leaves home and then later returns.
+ Outbound, the traveling twin moves with uniform velocity; on the return trip, the twin moves  and with an opposite uniform velocity.
  
- <P>For the geometry involved for the traveler, see the {@link ThereAndBack} class. 
+ <P>A sketch of the histories:
+<pre>
+            CT
+            ^
+        *   |  
+        **  | 
+        * * |   
+        *  *|    
+ -------*---*-----------&gt; X
+        *  *|  
+        * * |    
+        **  |  
+        *   |    
+ </pre>
+  
 */
 public final class Twins extends TextOutput {
   
@@ -40,11 +57,11 @@ public final class Twins extends TextOutput {
     
     Velocity velocity = Velocity.of(X, β);
     
-    //in from -X infinity to the origin, then back out to -X infinity:
-    History thereAndBack = ThereAndBack.of(velocity);
+    //travel in from -X infinity to the origin, then back out to -X infinity:
+    History2 thereAndBack = ThereAndBack.of(DeltaBase.origin(), velocity);
     
     //don't move from the given position 
-    History stayPut = Stationary.of(Position.of(X, LEFT_OF_ORIGIN));
+    History2 stayPut = UniformVelocity.stationary((Position.of(X, LEFT_OF_ORIGIN)));
     
     // ct = -/+ HALF_TIME identify the two events where the histories meet
     double τStay = properTimeInterval(stayPut, -HALF_TIME, HALF_TIME); 
@@ -56,8 +73,8 @@ public final class Twins extends TextOutput {
     lines.add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);
   }
   
-  private double properTimeInterval(History history, double ctStart, double ctEnd) {
-    return history.convert(ctEnd) - history.convert(ctStart); 
+  private double properTimeInterval(History2 history, double ctStart, double ctEnd) {
+    return history.τ(ctEnd) - history.τ(ctStart); 
   }
   
   private double round(double value) {

@@ -39,4 +39,13 @@ public interface History {
   */
   public double convert(double λ);
   
+  /**
+   How this history is parameterized.
+   The parameter uniquely identifies events along the history.
+   
+    (This method was added because stitching together histories requires 
+    the stitched histories to share the same parameterization.)
+  */
+  public LambdaParam parameterizedBy();
+  
 }

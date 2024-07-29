@@ -4,7 +4,8 @@ This happens simply because a boost can decrease the relative speed of the clock
 Clock approaching with β: 0.9
 Clock rate relative to the frame: 0.43589
 
-If a boost of 0.4 is AWAY FROM the approaching clock, then the relative speed decreases:
+If a boost of 0.4 is AWAY FROM the approaching clock,
+then the relative speed decreases, and the rate of the clock increases.
 
 Clock approaching with β: 0.5
 Clock rate relative to the frame: 0.866025

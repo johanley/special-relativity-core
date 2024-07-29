@@ -3,8 +3,7 @@ package sr.explore.accel.linear;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.event.Event;
-import sr.core.history.History;
-import sr.core.history.ParameterizedBy;
+import sr.core.history.MoveableHistory;
 import sr.core.history.UniformAcceleration;
 import sr.core.vector.Position;
 import sr.output.text.Table;
@@ -43,9 +42,9 @@ public final class OneGee extends TextOutput {
   }
  
   private void explore(int yearsProperTime, int mult) {
-    History history = UniformAcceleration.of(Axis.X, ONE_GEE, Position.origin(), ParameterizedBy.PROPER_TIME);
-    Event endsAt = history.event(yearsProperTime);
-    double coordinateTime = history.convert(yearsProperTime);
+    MoveableHistory history = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
+    Event endsAt = history.eventFromProperTime(yearsProperTime);
+    double coordinateTime = endsAt.ct();
     lines.add(table.row(mult * yearsProperTime, mult*endsAt.x(), mult*coordinateTime));
   }
   

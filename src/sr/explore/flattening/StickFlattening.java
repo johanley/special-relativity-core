@@ -1,9 +1,9 @@
 package sr.explore.flattening;
 
+import static sr.core.Axis.X;
+
 import java.util.List;
 import java.util.function.Function;
-
-import static sr.core.Axis.*;
 
 import sr.core.Physics;
 import sr.core.Util;
@@ -11,8 +11,8 @@ import sr.core.event.Event;
 import sr.core.event.FindEvent;
 import sr.core.event.transform.Boost;
 import sr.core.event.transform.Transform;
-import sr.core.history.History;
-import sr.core.history.Stationary;
+import sr.core.history.History2;
+import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
 import sr.output.text.TextOutput;
 
@@ -74,8 +74,8 @@ public class StickFlattening extends TextOutput {
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
-    History histA = Stationary.of(Position.of(X, 1.0));
-    History histB = Stationary.of(Position.of(X, 2.0));
+    History2 histA = UniformVelocity.stationary(Position.of(X, 1.0));
+    History2 histB = UniformVelocity.stationary(Position.of(X, 2.0));
     //time-slice in K; any time will do, since it's stationary in K
     double ct = 0.0; 
     lines.add("K a: " + histA.event(ct));
@@ -139,8 +139,8 @@ public class StickFlattening extends TextOutput {
     lines.add(SEP);
     lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
-    History histA = Stationary.of(Position.origin()); 
-    History histB = Stationary.of(Position.of(1.0, 1.0, 0.0)); //other end of the stick
+    History2 histA = UniformVelocity.stationary(Position.origin()); 
+    History2 histB = UniformVelocity.stationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
     Event diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K a:" + histA.event(0.0));
     lines.add("K b:" + histB.event(0.0));
@@ -197,8 +197,8 @@ public class StickFlattening extends TextOutput {
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
-    History histA = Stationary.of(Position.origin()); 
-    History histB = Stationary.of(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
+    History2 histA = UniformVelocity.stationary(Position.origin()); 
+    History2 histB = UniformVelocity.stationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
     Event diff = histB.event(0.0).minus(histA.event(0.0));
     lines.add("K b-a:" + diff);
     lines.add("K stick length:" + diff.spatialMagnitude());

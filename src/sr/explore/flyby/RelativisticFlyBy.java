@@ -1,15 +1,15 @@
 package sr.explore.flyby;
 
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
 import sr.core.event.Event;
-import sr.core.history.History;
+import sr.core.history.History2;
 import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
-
-import static sr.core.Axis.*;
 
 /**
  <b>Relativistic fly-by of a star by a detector.</b>
@@ -201,12 +201,11 @@ public final class RelativisticFlyBy {
   
   // PRIVATE
   private MainSequenceStar star;
-  /** [0..1) */
   private Double β;
   private Double y;
   private Double x0;
   private Double timeStep;
-  private History history; 
+  private History2 history; 
   private static final int NUM_EMISSION_EVENTS = 10000;
   
   /**  ct=0 corresponds to the time when the star is at minimum distance. */
