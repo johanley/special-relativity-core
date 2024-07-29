@@ -30,7 +30,7 @@ public final class DeltaBase {
   }
 
   /** Factory method to derive a delta-base from an event on a history. */
-  public static DeltaBase of(History2 history, double ct) {
+  public static DeltaBase of(History history, double ct) {
     return new DeltaBase(history.event(ct), history.τ(ct));  
   }
 

@@ -11,7 +11,7 @@ import sr.core.event.Event;
 import sr.core.event.FindEvent;
 import sr.core.event.transform.Boost;
 import sr.core.event.transform.Transform;
-import sr.core.history.History2;
+import sr.core.history.History;
 import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
 import sr.output.text.Table;
@@ -96,8 +96,8 @@ public final class LightSliceOfAStick extends TextOutput {
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final History2 HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
-  private static final History2 HIST_STICK_END_B = UniformVelocity.stationary(Position.of(X, NEARBY)); 
+  private static final History HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
+  private static final History HIST_STICK_END_B = UniformVelocity.stationary(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -129,7 +129,7 @@ public final class LightSliceOfAStick extends TextOutput {
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private Event eventOnPastLightConeOf(Event detection, History2 history, Transform transform) {
+  private Event eventOnPastLightConeOf(Event detection, History history, Transform transform) {
     Function<Event, Double> onTheLightCone = event -> (
       detection.minus(transform.apply(event)).square()
     );

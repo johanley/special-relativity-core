@@ -11,7 +11,7 @@ import sr.core.event.FindEvent;
 import sr.core.event.transform.Boost;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
-import sr.core.history.History2;
+import sr.core.history.History;
 import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
 import sr.output.text.TextOutput;
@@ -79,8 +79,8 @@ public final class SilbersteinRotation extends TextOutput {
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
-    History2 historyA_Kpp = UniformVelocity.stationary(Position.of(X, 1.0));
-    History2 historyB_Kpp = UniformVelocity.stationary(Position.of(X, 2.0));
+    History historyA_Kpp = UniformVelocity.stationary(Position.of(X, 1.0));
+    History historyB_Kpp = UniformVelocity.stationary(Position.of(X, 2.0));
     lines.add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
     double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
     double restLength_Kpp = historyB_Kpp.event(ct_Kpp).minus(historyA_Kpp.event(ct_Kpp)).spatialMagnitude();

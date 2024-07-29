@@ -23,7 +23,7 @@ import sr.core.vector.Velocity;
             |   * 
  </pre>
 */
-public final class ThereAndBack implements History2 {
+public final class ThereAndBack implements History {
   
   /**
    Factory method.
@@ -51,14 +51,14 @@ public final class ThereAndBack implements History2 {
     return "ThereAndBack stitched history: " + stitchedHistory;
   }
 
-  private History2 stitchedHistory;
+  private History stitchedHistory;
   
   private ThereAndBack(DeltaBase deltaBase, Velocity velocity) {
     Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
     this.stitchedHistory = stitchedHistory(deltaBase, velocity);
   }
   
-  private History2 stitchedHistory(DeltaBase deltaBase, Velocity velocity) {
+  private History stitchedHistory(DeltaBase deltaBase, Velocity velocity) {
     MoveableHistory leg1 = UniformVelocity.of(deltaBase, velocity);
     MoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(-velocity.x(), -velocity.y(), -velocity.z()));
     StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(leg1);

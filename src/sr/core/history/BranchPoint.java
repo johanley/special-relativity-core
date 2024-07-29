@@ -3,7 +3,7 @@ package sr.core.history;
 /** 
  Points in time where histories are stitched together.
  The stitching is based on time, both coordinate-time and proper-time.
- For a given time, a specific {@link History2} is selected.
+ For a given time, a specific {@link History} is selected.
 */
 final class BranchPoint {
   

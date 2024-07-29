@@ -4,7 +4,7 @@ import sr.core.Axis;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.history.DeltaBase;
-import sr.core.history.History2;
+import sr.core.history.History;
 import sr.core.history.MoveableHistory;
 import sr.core.history.StitchedHistoryBuilder;
 import sr.core.history.UniformAcceleration;
@@ -39,7 +39,7 @@ public final class OneGeeThereAndStay extends TextOutput {
   }
  
   private void explore(double τ_years) {
-    History2 history = accelerateThenBrake(τ_years);
+    History history = accelerateThenBrake(τ_years);
     double end_ct = history.ct(τ_years);
     Event end_event = history.event(end_ct);
     lines.add(table.row(τ_years, end_event.x(), end_event.ct()));
@@ -50,7 +50,7 @@ public final class OneGeeThereAndStay extends TextOutput {
   private Table tableHeader = new Table("%-15s", "%-22s", "%-20s");
   private static final int NUM_YEARS = 20;
 
-  private History2 accelerateThenBrake(double τ_years) {
+  private History accelerateThenBrake(double τ_years) {
     double τ_halfWay = τ_years * 0.5;
     
     MoveableHistory acceleration = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);

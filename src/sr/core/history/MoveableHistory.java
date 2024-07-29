@@ -3,11 +3,11 @@ package sr.core.history;
 import sr.core.event.Event;
 
 /**
- Allow a {@link History2} to have a configurable {@link DeltaBase} in space-time.
+ Allow a {@link History} to have a configurable {@link DeltaBase} in space-time.
  Methods are implemented as differences with respect to the {@link DeltaBase}. 
  This is used by {@link StitchedHistoryBuilder} in stitching together multiple histories into a single history.
 */
-public abstract class MoveableHistory implements History2 {
+public abstract class MoveableHistory implements History {
 
   /** @param deltaBase about which the history is constructed using differences. */
   protected MoveableHistory(DeltaBase deltaBase) {
@@ -25,7 +25,7 @@ public abstract class MoveableHistory implements History2 {
   */
   protected abstract Event Δevent(double Δct);
   
-  /** Return the {@link Event} given a proper-time as the parameter into the {@link History2}. */
+  /** Return the {@link Event} given a proper-time as the parameter into the {@link History}. */
   public final Event eventFromProperTime(double τ) {
     return event(ct(τ));
   }
