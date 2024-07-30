@@ -58,7 +58,13 @@ public abstract class MoveableHistory implements History {
   
   public DeltaBase deltaBase() { return deltaBase; }
   
-  /** Return the velocity of the object at the given coordinate-time. */
+  /** 
+   Return an approximation to the velocity of the object at the given coordinate-time.
+   This method can fail for ultra-relativistic speeds, because the 
+   approximate calculation returns a speed of 1.0.
+   If that's the case, you'll need to find other means to calculate the velocity,  
+   perhaps by overriding this method.
+  */
   public Velocity velocity(double ct) {
     Event a = event(ct);
     Event b = event(ct + 0.0001);

@@ -1,6 +1,7 @@
 package sr.explore.accel.linear;
 
 import sr.core.Axis;
+import sr.core.Physics;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.history.MoveableHistory;
@@ -44,11 +45,7 @@ public final class OneGeeForever extends TextOutput {
     lines.add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + ".");
     lines.add("The Milky Way galaxy is about 100,000 light years across.");
     lines.add("You would cross the Milky Way in about 12 years of proper-time."+ Util.NL);
-    table(1);
-    
-    lines.add(Util.NL + "If you multiply the above results by 4, then that data represents a there-and-back trip,");
-    lines.add("with a turnarounds at the 1/4-way and 3/4-way points of the trip."+Util.NL);
-    table(4);
+    table();
     
     outputToConsoleAnd("one-gee-forever.txt");
   }
@@ -56,23 +53,24 @@ public final class OneGeeForever extends TextOutput {
   /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit. {@value}. */
   public static final double ONE_GEE = 1.03; //light-years, year as the unit!
 
-  private void table(int mult) {
-    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));
-    lines.add(tableHeader.row("(years)", "(light-years)", "(years)"));
+  private void table() {
+    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Terminal speed", "Terminal Γ"));
+    lines.add(tableHeader.row("(years)", "(light-years)", "(years)", "(β)", ""));
     for(int yearsProperTime = 1; yearsProperTime <= NUM_YEARS; ++yearsProperTime) {
-      explore(yearsProperTime, mult);
+      explore(yearsProperTime);
     }
   }
  
-  private void explore(int yearsProperTime, int mult) {
+  private void explore(int yearsProperTime) {
     MoveableHistory history = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
     Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
-    lines.add(table.row(mult * yearsProperTime, mult*endsAt.x(), mult*coordinateTime));
+    double terminalSpeed = history.velocity(coordinateTime).magnitude();
+    lines.add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Physics.Γ(terminalSpeed)));
   }
   
   // Proper-time cτ, Distance light-years, Coordinate-time ct
-  private Table table = new Table("%-4s", "%20.2f", "%20.2f");
-  private Table tableHeader = new Table("%-15s", "%-22s", "%-20s");
+  private Table table = new Table("%-4s", "%20.2f", "%20.2f", "%28.15f", "%28.15f");
+  private Table tableHeader = new Table("%-15s", "%-22s", "%-18s", "%-28s", "%-20s");
   private static final int NUM_YEARS = 12;
 }

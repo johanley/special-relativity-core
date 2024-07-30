@@ -8,6 +8,7 @@ import static sr.core.Util.sqroot;
 import sr.core.Axis;
 import sr.core.event.Event;
 import sr.core.vector.Position;
+import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving with uniform 
@@ -74,6 +75,12 @@ public final class UniformAcceleration extends MoveableHistory {
     return (c/gee) * Math.log(b);
   }
 
+  @Override public Velocity velocity(double Δct) {
+    double gp = gp(Δct);
+    double β = (gee * Δct) * Math.pow(1 + sq(gp), -0.5);
+    return Velocity.of(axis, β);
+  }
+  
   @Override public String toString() {
     return "UniformAcceleration: " + deltaBase() + " axis:" + axis  + " gee:" + gee;
   }
