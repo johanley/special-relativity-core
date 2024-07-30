@@ -1,0 +1,19 @@
+In a frame K, two rockets accelerate in tandem, completely in sync.
+By definition, in K the two rockets remain separated by a fixed distance.
+In K, the length of a connector between the rockets decreases with increasing speed.
+
+Coordinate-time   Rocket separation   Connector length
+------------------------------------------------------
+        0.00              1.00          1.00000000
+        1.19              1.00          0.63329762
+        3.75              1.00          0.25083328
+       10.65              1.00          0.09081588
+       29.88              1.00          0.03248046
+       83.70              1.00          0.01159842
+      234.46              1.00          0.00414084
+      656.74              1.00          0.00147831
+     1839.58              1.00          0.00052777
+     5152.79              1.00          0.00018842
+    14433.31              1.00          0.00006727
+    40428.65              1.00          0.00002401
+   113243.32              1.00          0.00000857

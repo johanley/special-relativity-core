@@ -3,8 +3,9 @@ If light-years and years are used as units, then 1g has the numeric value of 1.0
 The Milky Way galaxy is about 100,000 light years across.
 You would cross the Milky Way in about 12 years of proper-time.
 
-Proper-time    Coordinate-distance   Coordinate-time   Terminal speed              Terminal Γ          
+Proper-time    Coordinate-distance   Coordinate-time   Speed                       Γ                   
 (years)        (light-years)         (years)           (β)                                             
+----------------------------------------------------------------------------------------------------
 1                   0.56                1.19           0.773908339855842           1.579036397634113
 2                   2.90                3.75           0.968030303315595           3.986711890106640
 3                   9.72               10.65           0.995867699919909          11.011289965084114

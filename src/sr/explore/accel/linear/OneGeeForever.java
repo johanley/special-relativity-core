@@ -54,8 +54,9 @@ public final class OneGeeForever extends TextOutput {
   public static final double ONE_GEE = 1.03; //light-years, year as the unit!
 
   private void table() {
-    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Terminal speed", "Terminal Γ"));
+    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Speed", "Γ"));
     lines.add(tableHeader.row("(years)", "(light-years)", "(years)", "(β)", ""));
+    lines.add(dashes(100));
     for(int yearsProperTime = 1; yearsProperTime <= NUM_YEARS; ++yearsProperTime) {
       explore(yearsProperTime);
     }

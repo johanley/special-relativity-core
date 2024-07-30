@@ -8,6 +8,7 @@ If light-years and years are used as units, then 1g has the numeric value of 1.0
 
 Proper-time    Coordinate-distance   Coordinate-time     
 (years)        (light-years)         (years)             
+----------------------------------------------------
 1.0                 0.00                1.01
 2.0                 0.00                2.09
 3.0                 0.00                3.31

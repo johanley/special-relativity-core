@@ -58,6 +58,7 @@ public final class OneGeeThereAndStay extends TextOutput {
   private void table() {
     lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));
     lines.add(tableHeader.row("(years)", "(light-years)", "(years)"));
+    lines.add(dashes(52));
     for(int yearsProperTime = 1; yearsProperTime <= NUM_YEARS; ++yearsProperTime) {
       explore(yearsProperTime);
     }
