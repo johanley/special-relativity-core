@@ -3,7 +3,9 @@ package sr.core.history;
 import sr.core.event.Event;
 
 /** 
-The parameterized history (world-line) of an object represented as a particle.
+The parameterized history (world-line) of an object (with mass) represented as a particle.
+
+<P>This interface doesn't apply to massless particles such as photons, because they have no proper-time.
 
 <P>In general, the parameter to a history could be:
 <ul> 

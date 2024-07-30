@@ -1,0 +1,26 @@
+Travel in a relativistic rocket accelerating at 1g.
+Accelerate for the first half of the trip, then reverse and brake for the second half.
+If light-years and years are used as units, then 1g has the numeric value of 1.03.
+
+Proper-time    Coordinate-distance   Coordinate-time     
+(years)        (light-years)         (years)             
+1.0                 0.26                1.04
+2.0                 1.12                2.37
+3.0                 2.82                4.34
+4.0                 5.80                7.49
+5.0                10.88               12.67
+6.0                19.44               21.29
+7.0                33.80               35.68
+8.0                57.84               59.75
+9.0                98.09              100.02
+10.0              165.47              167.40
+11.0              278.24              280.18
+12.0              466.98              468.92
+13.0              782.87              784.81
+14.0             1311.55             1313.49
+15.0             2196.36             2198.30
+16.0             3677.22             3679.17
+17.0             6155.65             6157.59
+18.0            10303.64            10305.58
+19.0            17245.88            17247.82
+20.0            28864.68            28866.62

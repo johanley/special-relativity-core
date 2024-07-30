@@ -1,0 +1,37 @@
+Travel in a relativistic rocket accelerating at 1g.
+If light-years and years are used as units, then 1g has the numeric value of 1.03.
+The Milky Way galaxy is about 100,000 light years across.
+You would cross the Milky Way in about 12 years of proper-time.
+
+Proper-time    Coordinate-distance   Coordinate-time     
+(years)        (light-years)         (years)             
+1                   0.56                1.19
+2                   2.90                3.75
+3                   9.72               10.65
+4                  28.92               29.88
+5                  82.74               83.70
+6                 233.49              234.46
+7                 655.77              656.74
+8                1838.61             1839.58
+9                5151.82             5152.79
+10              14432.34            14433.31
+11              40427.68            40428.65
+12             113242.34           113243.32
+
+If you multiply the above results by 4, then that data represents a there-and-back trip,
+with a turnarounds at the 1/4-way and 3/4-way points of the trip.
+
+Proper-time    Coordinate-distance   Coordinate-time     
+(years)        (light-years)         (years)             
+4                   2.25                4.75
+8                  11.60               14.99
+12                 38.88               42.59
+16                115.68              119.50
+20                330.95              334.81
+24                933.97              937.84
+28               2623.09             2626.97
+32               7354.45             7358.33
+36              20607.29            20611.17
+40              57729.36            57733.24
+44             161710.72           161714.61
+48             452969.38           452973.26

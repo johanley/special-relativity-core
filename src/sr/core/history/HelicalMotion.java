@@ -6,6 +6,8 @@ import sr.core.vector.Velocity;
 
 /**
  History for a particle with mass moving uniformly in a helix.
+ 
+ THIS CLASS IS PRELIMINARY; IT'S NOT DONE YET.
 */
 public class HelicalMotion extends MoveableHistory {
   

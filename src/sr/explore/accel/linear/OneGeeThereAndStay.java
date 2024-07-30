@@ -12,6 +12,31 @@ import sr.core.vector.Position;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
+/**
+Accelerate at 1g for the first half of a trip, then turn around and brake at 1g for the second half.
+
+
+<P>The history has this general appearance:
+
+<pre>
+           CT
+           ^
+           |                     *
+           |                    *
+           |                   *
+           |                 *
+           |              *
+           |           *
+           |        *
+           |      *
+           |    *
+           |  *
+           | *
+           |*
+-----------*-----------------&gt; X
+           |
+</pre>
+*/
 public final class OneGeeThereAndStay extends TextOutput {
   
   public static void main(String[] args) {
@@ -24,11 +49,11 @@ public final class OneGeeThereAndStay extends TextOutput {
     lines.add("Accelerate for the first half of the trip, then reverse and brake for the second half.");
     lines.add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + "." + Util.NL);
     table();
-    outputToConsole();
+    outputToConsoleAnd("one-gee-there-and-stay.txt");
   }
 
   /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit. {@value}. */
-  public static double ONE_GEE = 1.03; //light-years, year as the unit!
+  public static final double ONE_GEE = 1.03; //light-years, year as the unit!
 
   private void table() {
     lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));

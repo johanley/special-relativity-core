@@ -9,10 +9,33 @@ import sr.core.vector.Position;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
-public final class OneGee extends TextOutput {
+/**
+ Accelerate at 1g forever.
+ 
+ Under 1g of constant acceleration, one could cross the Milky Way in about 12 years of proper-time.
+ 
+ <P>The history has this general appearance:
+ 
+<pre>
+            CT
+            ^
+            |           *
+            |        *
+            |      *
+            |    *
+            |  *
+            | *
+            |*
+ -----------*-----------------&gt; X
+            |
+            | 
+            |     
+ </pre>
+ */
+public final class OneGeeForever extends TextOutput {
   
   public static void main(String[] args) {
-    OneGee oneGee = new OneGee();
+    OneGeeForever oneGee = new OneGeeForever();
     oneGee.explore();
   }
   
@@ -27,11 +50,11 @@ public final class OneGee extends TextOutput {
     lines.add("with a turnarounds at the 1/4-way and 3/4-way points of the trip."+Util.NL);
     table(4);
     
-    outputToConsole();
+    outputToConsoleAnd("one-gee-forever.txt");
   }
 
   /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit. {@value}. */
-  public static double ONE_GEE = 1.03; //light-years, year as the unit!
+  public static final double ONE_GEE = 1.03; //light-years, year as the unit!
 
   private void table(int mult) {
     lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));

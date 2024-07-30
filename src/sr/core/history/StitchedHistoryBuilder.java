@@ -27,7 +27,7 @@ public class StitchedHistoryBuilder {
 
   /**
    Add another section to the history.  
-   Each leg must be added in order of increasing coordinate-time for its {@link BranchPoint}.
+   Each leg must be added in order of increasing coordinate-time.
    @param ct the coordinate time used to create a {@link BranchPoint}; the τ value for the branch-point 
    is taken from the previously added leg. 
   */
@@ -36,10 +36,7 @@ public class StitchedHistoryBuilder {
     addTheNext(leg, branchPoint);
   }
 
-  /** 
-   Return a full history whose pieces are the legs passed in previously.
-   The position of the origin is not used here. 
-  */
+  /**  Return a full history whose pieces are the legs passed in previously. */
   public History build() {
     return new History() {
       @Override public Event event(double ct) {

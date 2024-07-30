@@ -1,4 +1,2 @@
-/**
- Linear acceleration of a particle having mass.
-*/
+/** Linear acceleration of a mass particle. */
 package sr.explore.accel.linear;

@@ -1,6 +1,7 @@
 package sr.core.history;
 
 import sr.core.event.Event;
+import sr.core.vector.Velocity;
 
 /**
  Allow a {@link History} to have a configurable {@link DeltaBase} in space-time.
@@ -21,7 +22,7 @@ public abstract class MoveableHistory implements History {
   }
   /**
    Return the displacement relative to the delta-base. 
-   @param Δct is the difference between ct and {@link DeltaBase#event()#ct(double)}.
+   @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
   */
   protected abstract Event Δevent(double Δct);
   
@@ -50,12 +51,21 @@ public abstract class MoveableHistory implements History {
   /**
    Return the change in a proper-time relative to the delta-base, given the change in 
    coordinate-time relative to the delta-base.
-   @param Δct is the difference between ct and {@link DeltaBase#event()#ct()}.
+   @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
   */
   protected abstract double Δτ(double Δct);
   
   
   public DeltaBase deltaBase() { return deltaBase; }
+  
+  /** Return the velocity of the object at the given coordinate-time. */
+  public Velocity velocity(double ct) {
+    Event a = event(ct);
+    Event b = event(ct + 0.0001);
+    Event Δ = b.minus(a);
+    double Δt = Δ.ct();
+    return Velocity.of(Δ.x()/Δt, Δ.y()/Δt, Δ.z()/Δt);
+  }
   
   //PRIVATE
   
