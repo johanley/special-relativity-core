@@ -1,0 +1,34 @@
+A return trip in a relativistic rocket accelerating at 1g.
+Three parts (in terms of fractions of total proper-time):
+  - 0.00 - 0.25: +1g acceleration
+  - 0.25 - 0.75: -1g braking
+  - 0.75 - 1.00: +1g acceleration
+At the end of the trip, the rocket has returned to its starting point.
+If light-years and years are used as units, then 1g has the numeric value of 1.03.
+
+Proper-time    Coordinate-distance   Coordinate-time     
+(years)        (light-years)         (years)             
+1.0                 0.00                1.01
+2.0                 0.00                2.09
+3.0                 0.00                3.31
+4.0                 0.00                4.75
+5.0                 0.00                6.50
+6.0                 0.00                8.69
+7.0                 0.00               11.46
+8.0                 0.00               14.99
+9.0                 0.00               19.52
+10.0                0.00               25.35
+11.0                0.00               32.87
+12.0                0.00               42.59
+13.0                0.00               55.14
+14.0                0.00               71.37
+15.0                0.00               92.36
+16.0                0.00              119.50
+17.0                0.00              154.61
+18.0                0.00              200.04
+19.0                0.00              258.79
+20.0                0.00              334.81
+21.0                0.00              433.14
+22.0                0.00              560.36
+23.0                0.00              724.93
+24.0                0.00              937.84

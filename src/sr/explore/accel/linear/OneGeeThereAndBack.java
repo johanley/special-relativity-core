@@ -64,7 +64,7 @@ public final class OneGeeThereAndBack extends TextOutput {
     lines.add("At the end of the trip, the rocket has returned to its starting point.");
     lines.add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + "." + Util.NL);
     table();
-    outputToConsole();
+    outputToConsoleAnd("one-gee-there-and-back.txt");
   }
 
   /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit {@value}. */
