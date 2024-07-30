@@ -1,4 +1,4 @@
-package sr.explore.cornerboost;
+package sr.explore.accel.direction;
 
 /**
  Two successive boosts, the second at some angle to the first, are 

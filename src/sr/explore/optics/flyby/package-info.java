@@ -5,4 +5,4 @@
  
  <P>Run the {@link RelativisticFlyBy} class to run the simulation.
 */
-package sr.explore.flyby;
+package sr.explore.optics.flyby;

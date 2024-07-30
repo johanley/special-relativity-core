@@ -3,4 +3,4 @@
  back onto its past light-cone.  
 */
 
-package sr.explore.lightsliceofastick;
+package sr.explore.optics.lightsliceofastick;

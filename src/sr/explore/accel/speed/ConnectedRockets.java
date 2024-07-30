@@ -1,4 +1,4 @@
-package sr.explore.accel.linear;
+package sr.explore.accel.speed;
 
 import static sr.core.Axis.*;
 import sr.core.Physics;

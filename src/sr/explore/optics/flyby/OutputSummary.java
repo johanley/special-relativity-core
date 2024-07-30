@@ -1,4 +1,4 @@
-package sr.explore.flyby;
+package sr.explore.optics.flyby;
 
 /** Compute stats or summary data for an entire data-set. */
 public interface OutputSummary {

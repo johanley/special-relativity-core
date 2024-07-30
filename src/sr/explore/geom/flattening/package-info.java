@@ -8,4 +8,4 @@
  When a stick is at an angle to the line of the boost, then the stick both 
  contracts and changes direction, as measured in the boosted frame.
 */
-package sr.explore.flattening;
+package sr.explore.geom.flattening;

@@ -1,4 +1,4 @@
-package sr.explore.flyby;
+package sr.explore.optics.flyby;
 
 import java.util.ArrayList;
 import java.util.List;

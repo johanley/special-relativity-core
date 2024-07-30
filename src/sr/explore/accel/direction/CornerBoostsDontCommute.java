@@ -1,4 +1,4 @@
-package sr.explore.cornerboost;
+package sr.explore.accel.direction;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;

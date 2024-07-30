@@ -1,4 +1,4 @@
-package sr.explore.flattening;
+package sr.explore.geom.flattening;
 
 import static sr.core.Axis.X;
 

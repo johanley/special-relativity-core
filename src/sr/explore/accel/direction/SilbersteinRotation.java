@@ -1,4 +1,4 @@
-package sr.explore.cornerboost;
+package sr.explore.accel.direction;
 
 import java.util.function.Function;
 

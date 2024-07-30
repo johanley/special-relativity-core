@@ -1,4 +1,4 @@
-package sr.explore.flyby;
+package sr.explore.optics.flyby;
 
 /**
  A toy model of a main sequence star, by spectral class.

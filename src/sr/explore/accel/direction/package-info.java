@@ -52,4 +52,4 @@ References for Thomas precession:
  The change in angle after one orbit is 2*pi(1-gamma), and its 'retrograde', opposite to the sense of the circular motion.
  It approaches a one full rotation in the relativistic limit.
 */
-package sr.explore.cornerboost;
+package sr.explore.accel.direction;

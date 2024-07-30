@@ -1,4 +1,4 @@
-package sr.explore.lightsliceofastick;
+package sr.explore.optics.lightsliceofastick;
 
 import static sr.core.Axis.X;
 

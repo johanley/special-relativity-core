@@ -1,4 +1,4 @@
-package sr.explore.flyby;
+package sr.explore.optics.flyby;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
