@@ -129,10 +129,10 @@ In SR, there are 5 items characterizing a mass particle:
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
   
-In SR it's useful to picture a mass particle as carrying a what you might call a <em>Silberstein clock</em>, 
+In SR it's useful to picture a mass particle as carrying what you might call <b>a Silberstein clock</b>, 
 a gyroscope that can do double duty: 
- - a gyroscope properties that can track Silberstein rotation
- - a spinning clock that measure a proper-time. 
+ - its gyroscopic properties track Silberstein rotation
+ - its spinning defines a clock that measure a proper-time. 
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.
