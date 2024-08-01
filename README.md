@@ -118,7 +118,6 @@ You need to be careful not to confuse the two effects.
 **Characterizing a mass particle in SR requires two additional items.**
 In kinematics, everything comes from the position <b>r</b>(t).
 In Newtonian kinematics, there are 3 items characterizing a mass particle:
-
   - <b>r</b>(t) position
   - <b>v</b>(t) velocity
   - <b>a</b>(t) acceleration
@@ -130,8 +129,10 @@ In SR, there are 5 items characterizing a mass particle:
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
   
-One might say that in SR a particle is pictured as carrying a <em>Silberstein clock</em>, a gyroscope whose spin also acts as a clock, which can
-measure a proper-time. 
+In SR it's useful to picture a mass particle as carrying a what you might call a <em>Silberstein clock</em>, 
+a gyroscope that can do double duty: 
+ - a gyroscope properties that can track Silberstein rotation
+ - a spinning clock that measure a proper-time. 
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.
