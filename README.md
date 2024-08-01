@@ -113,7 +113,25 @@ This confuses me. It seems like the breakdown of two boosts = boost + rotation n
 Thomas and Wigner came much later. 
   
 **The geometry of an object (for example, the direction in which a stick is pointing) is affected by both regular flattening and the Silberstein rotation.**
-You need to be careful not to confuse the two effects. 
+You need to be careful not to confuse the two effects.
+
+**Characterizing a mass particle in SR requires two additional items.**
+In kinematics, everything comes from the position <b>r</b>(t).
+In Newtonian kinematics, there are 3 items characterizing a mass particle:
+
+  - <b>r</b>(t) position
+  - <b>v</b>(t) velocity
+  - <b>a</b>(t) acceleration
+  
+In SR, there are 5 items characterizing a mass particle:   
+  - <b>r</b>(t) position
+  - <b>v</b>(t) velocity
+  - <b>a</b>(t) acceleration
+  - a proper-time (because of time dilation)
+  - an orientation (because of the Silberstein rotation)
+  
+One might say that in SR a particle is pictured as carrying a <em>Silberstein clock</em>, a gyroscope whose spin also acts as a clock, which can
+measure a proper-time. 
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.

@@ -1,37 +1,37 @@
 1. Boosts commute if (and only if) they're in the same line (collinear).
 ----------------------------------------------------------------------
 Let's boost an event twice along the X-axis.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0, YES]
- Boost 2: X 0.8 gives [-4.0658, -16.1392, 0.0, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0]
+ Boost 2: X 0.8 gives [-4.06583, -16.13917, 0.0, 0.0]
 Now reverse the order of the boosts, for the same event.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: X 0.8 gives [-17.1867, -23.2233, 0.0, 0.0, YES]
- Boost 2: X -0.6 gives [-4.0658, -16.1392, 0.0, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: X 0.8 gives [-17.18667, -23.22333, 0.0, 0.0]
+ Boost 2: X -0.6 gives [-4.06583, -16.13917, 0.0, 0.0]
 
 The two boosts give the same final event coordinates, regardless of the order of execution.
-A single equivalent boost: X 0.38462 [-4.0658, -16.1392, 0.0, 0.0, YES]
+A single equivalent boost: X 0.38462 [-4.06583, -16.13917, 0.0, 0.0]
 
 2. Boosts don't commute if they aren't in the same line (non-collinear).
 ----------------------------------------------------------------------
 Let's boost an event first along the X-axis, then along the Y-axis.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0, YES]
- Boost 2: Y 0.8 gives [24.5708, -21.4775, 19.6567, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0]
+ Boost 2: Y 0.8 gives [24.57083, -21.4775, 19.65667, 0.0]
 Now reverse the order of the boosts, for the same event.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: Y 0.8 gives [3.8667, -15.79, 3.0933, 0.0, YES]
- Boost 2: X -0.6 gives [16.6758, -22.6375, 3.0933, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: Y 0.8 gives [3.86667, -15.79, 3.09333, 0.0]
+ Boost 2: X -0.6 gives [16.67583, -22.6375, 3.09333, 0.0]
 
 The two non-collinear boosts give different final event coordinates, according to their order of execution.
 
 3. As a second example, boosts with the same speed, but in perpendicular directions, also don't commute.
 ----------------------------------------------------------------------------------------------------
 Let's boost an event first along the X-axis, then along the Y-axis, and using the same boost speed.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0, YES]
- Boost 2: Y -0.6 gives [18.4281, -21.4775, -11.0569, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0]
+ Boost 2: Y -0.6 gives [18.42812, -21.4775, -11.05688, 0.0]
 Now reverse the order of the boosts, for the same event.
-Event: [2.32, -15.79, 0.0, 0.0, YES]
- Boost 1: Y -0.6 gives [2.9, -15.79, -1.74, 0.0, YES]
- Boost 2: X -0.6 gives [15.4675, -21.9125, -1.74, 0.0, YES]
+Event: [2.32, -15.79, 0.0, 0.0]
+ Boost 1: Y -0.6 gives [2.9, -15.79, -1.74, 0.0]
+ Boost 2: X -0.6 gives [15.4675, -21.9125, -1.74, 0.0]

@@ -7,38 +7,31 @@ import sr.core.Util;
 import sr.core.event.Event;
 
 /**
- History for a particle with mass moving uniformly in a circle.
+ History for a mass particle moving uniformly in a circle.
  
  <P>The axis of the circular motion is one of the spatial coordinate axes.
  A change in sign of the speed changes the direction of circular motion.
  
- <p>You need to exercise care with the parameters, to ensure that the starting conditions actually give you what's desired.
- 
- <P>THIS CLASS IN UNFINISHED AND UNTESTED. 
- THE POLE OF ROTATION IS NOT GENERAL, but aligned with a coordinate axis.
+ <P>This class isn't very general. 
+ It could be improved by allowing any direction for the spin axis, and by allowing helical motion.
 */
 public class CircularMotion extends MoveableHistory {
-  
+
   /**
    Constructor.
-   Example: for a Z-rotational axis and 0 initial phase, the ray from circle-center to object is parallel to the +Y-axis.
+   
+   <P>The exact meaning of the items is best illustrated with an example:
+   
+   <P>For a Z-rotational axis and 0 initial phase, the ray from circle-center to the object is parallel to the +X-axis, and 
+   the positive sense of rotation is towards the +Y-axis (as defined by the right-hand rule). 
+   
    @param rotationalAxis must be spatial
    @param radius must be positive
    @param β must be a non-zero value in the range (-1,1). Negative values reverse the sense of the rotation.
-   @param initialPhase must be in range (-2pi,+2pi)
+   @param theta0 initial phase in radians. Must be in range (-2pi,+2pi).
   */
-  private CircularMotion(DeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double initialPhase) {
-    super(deltaBase);
-    Util.mustBeSpatial(rotationalAxis);
-    Util.mustHave(radius > 0, "Radius must be positive.");
-    Util.mustHaveSpeedRange(β);
-    Util.mustHave(Math.abs(β) > 0, "Speed cannot be 0");
-    Util.mustHave(Math.abs(initialPhase) <= (2*Math.PI), "Phase must be in range 0..2pi: " + initialPhase);
-    
-    this.rotationalAxis = rotationalAxis;
-    this.radius = radius;
-    this.β = β;
-    this.initialPhase = initialPhase;
+  public static CircularMotion of(DeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
+    return new CircularMotion(deltaBase, radius, β, rotationalAxis, theta0);
   }
 
   @Override protected Event Δevent(double Δct) {
@@ -54,7 +47,7 @@ public class CircularMotion extends MoveableHistory {
   }
   
   @Override public String toString() {
-    return "CircularMotion axis:" + rotationalAxis + " radius:" + radius + " speed:" + β; 
+    return "CircularMotion axis:" + rotationalAxis + " radius:" + radius + " speed:" + β + " initial-phase:" + theta0; 
   }
 
   /** Radius of the circle. */
@@ -67,19 +60,34 @@ public class CircularMotion extends MoveableHistory {
   */
   private double β;
 
-  /** Defines the plane of the circle, and also the positive sense of circular motion. */
+  /** Defines the plane of the circle, and also the positive sense of circular motion, using the right-hand rule. */
   private Axis rotationalAxis;
   
-  /** The initial phase of the circular motion (0,2pi). If zero, then the object is on the 'first' axis of the pole. */
-  private double initialPhase;
+  /** The initial phase of the circular motion (0,2pi). If zero, then the object is on the 'first' axis of the pole, given the right-hand rule. */
+  private double theta0;
+  
+  private CircularMotion(DeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
+    super(deltaBase);
+    Util.mustBeSpatial(rotationalAxis);
+    Util.mustHave(radius > 0, "Radius must be positive.");
+    Util.mustHaveSpeedRange(β);
+    Util.mustHave(Math.abs(β) > 0, "Speed cannot be 0");
+    Util.mustHave(Math.abs(theta0) <= (2*Math.PI), "Initial-phase must be in range 0..2pi: " + theta0);
+    
+    this.rotationalAxis = rotationalAxis;
+    this.radius = radius;
+    this.β = β;
+    this.theta0 = theta0;
+  }
 
   /** Return the displacement from the delta-base (which uses the center of the circle). */
-  private Event displacement(double ct) {
+  private Event displacement(double Δct) {
     Event result = Event.origin();
-    //for a rotational axis of Z, this gives the start position on the Y-axis
-    Axis startPosition = Axis.rightHandRuleFor(rotationalAxis).get(1);
+    result = result.put(Axis.CT, Δct);
+    //for a rotational axis of Z, this gives the start position on the X-axis
+    Axis startPosition = Axis.rightHandRuleFor(rotationalAxis).get(0);
     result = result.put(startPosition, radius);
-    result = result.spatialRotation(Rotation.from(rotationalAxis, initialPhase + Δθ(ct)));
+    result = result.spatialRotation(Rotation.from(rotationalAxis, theta0 + Δθ(Δct)));
     return result;
   }
   
