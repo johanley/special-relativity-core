@@ -89,12 +89,12 @@ public class StickFlattening extends TextOutput {
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
-    Event aBoosted = boostX.apply(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.changeFrame(histA.event(0.18)); //start with some event on A's history
     //root: the difference in K' of the ct' coord vanishes
-    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.apply(histB.event(ctB));
+    Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
     lines.add("Boost: "+ boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
@@ -155,12 +155,12 @@ public class StickFlattening extends TextOutput {
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
     //find events that have the same ct' value in K'
-    Event aBoosted = boostX.apply(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.changeFrame(histA.event(0.18)); //start with some event on A's history
     
-    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.apply(histB.event(ctB));
+    Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);
@@ -211,12 +211,12 @@ public class StickFlattening extends TextOutput {
     lines.add(Util.NL + "Boost: " + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'
-    Event aBoosted = boostX.apply(histA.event(0.15));
+    Event aBoosted = boostX.changeFrame(histA.event(0.15));
     
-    Function<Event, Double> criterion = event -> (boostX.apply(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.apply(histB.event(ctB));
+    Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
     lines.add("K' a: " + aBoosted);
     lines.add("K' b: " + bBoosted);

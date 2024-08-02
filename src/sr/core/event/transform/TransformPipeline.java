@@ -16,16 +16,16 @@ public final class TransformPipeline implements Transform {
 
   /** Simple test harness. */
   public static void main(String[] args) {
-    Reflect reflect = new Reflect(Parity.EVEN, Parity.ODD, Parity.EVEN, Parity.EVEN);
-    Displace displace = new Displace(0.0,1.0,0.0,0.0);
-    Rotate rotate = new Rotate(Axis.Z, Util.degsToRads(10));
+    Reflection reflect = Reflection.of(Parity.EVEN, Parity.ODD, Parity.EVEN, Parity.EVEN);
+    Displacement displace = Displacement.of(0.0,1.0,0.0,0.0);
+    Rotation rotate = Rotation.of(Axis.Z, Util.degsToRads(10));
     Boost boost = new Boost(Axis.X, 0.5);
     Transform[] ops = {rotate, displace, reflect, boost};
     TransformPipeline t = new TransformPipeline(ops);
     
     Event in = Event.of(1.0, 1.0, 0.0, 0.0);
-    Event out = t.apply(in);
-    Event backIn = t.reverse(out);
+    Event out = t.changeFrame(in);
+    Event backIn = t.changeEvent(out);
     if (! in.equalsWithTinyDiff(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
     }
@@ -46,10 +46,10 @@ public final class TransformPipeline implements Transform {
   }
   
   /** Apply the operations (in order) to the given FourVector. */
-  @Override public Event apply(Event vec) {
+  @Override public Event changeFrame(Event vec) {
     Event result = vec;
     for (Transform op : operations) {
-      result = op.apply(result);
+      result = op.changeFrame(result);
     }
     return result;
   }
@@ -58,12 +58,12 @@ public final class TransformPipeline implements Transform {
    Apply the operations to the given FourVector, but in <em>reverse</em> order <em>and</em> 
    with the <em>inverse</em> transform. 
   */
-  @Override public Event reverse(Event vecPrime) {
+  @Override public Event changeEvent(Event vecPrime) {
     Event result = vecPrime;
     List<Transform> ops = Arrays.asList(operations);
     ListIterator<Transform> li = ops.listIterator(ops.size()); //start at the end
     while (li.hasPrevious()) { //go backwards
-      result = li.previous().reverse(result);
+      result = li.previous().changeEvent(result);
     }
     return result;
   }

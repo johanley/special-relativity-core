@@ -129,10 +129,10 @@ In SR, there are 5 main items characterizing a mass particle:
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
   
-In SR it's useful to picture a mass particle as carrying what you might call <b>a Silberstein clock</b>, 
-a gyroscope that can do double duty: 
- - its gyroscopic properties track Silberstein rotation
- - its spinning defines a clock that measures a proper-time. 
+**Transformations can be <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>active or passive</a>. 
+You need to always be aware of which case applies. **
+It's very easy to forget this point, and to make mistakes in the sense of a transformation. 
+It helps if the code makes this distinction hard to ignore.  
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.

@@ -3,6 +3,7 @@ package sr.explore.accel.speed;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.event.Event;
+import sr.core.event.transform.Reflection;
 import sr.core.history.DeltaBase;
 import sr.core.history.History;
 import sr.core.history.MoveableHistory;
@@ -99,7 +100,8 @@ public final class OneGeeThereAndBack extends TextOutput {
     Event quarterWay = leg.eventFromProperTime(τ_years * 0.25);
     //and these two events by symmetry:
     Event halfWay = quarterWay.plus(quarterWay); 
-    Event allTheWay = halfWay.plus(halfWay.spatialReflection()); 
+    Reflection reflect = Reflection.of(X);
+    Event allTheWay = halfWay.plus(reflect.changeEvent(halfWay)); 
     
     //the delta-bases aren't the same as the branch points:
     

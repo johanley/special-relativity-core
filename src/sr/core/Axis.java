@@ -1,5 +1,6 @@
 package sr.core;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,15 @@ public enum Axis {
   /** Most operations involve the spatial axes. * */
   public boolean isSpatial() {
     return this != CT;
+  }
+  
+  /** Without the ct-axis. */
+  public static List<Axis> spatialAxes(){
+    List<Axis> result = new ArrayList<>();
+    result.add(X);
+    result.add(Y);
+    result.add(Z);
+    return result;
   }
 
   /**  

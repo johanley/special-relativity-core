@@ -3,7 +3,6 @@ package sr.core.vector;
 import java.util.Optional;
 
 import sr.core.Axis;
-import sr.core.Rotation;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
@@ -35,6 +34,9 @@ public interface ThreeVector {
   /** The component of the vector along the Z-axis. */
   public double z();
 
+  /** The vector product of this vector with another vector. */
+  public ThreeVector cross(ThreeVector that);
+
   /** The scalar product of this vector with another vector. */
   public double dot(ThreeVector that);
 
@@ -47,9 +49,6 @@ public interface ThreeVector {
   /** The angle between this vector and that vector. Range 0..π. */
   public double angle(ThreeVector that);
   
-  /** The vector product of this vector with another vector. */
-  public ThreeVector cross(ThreeVector that);
-  
   /**
    Returns a non-empty value only in the case where there's exactly 1 non-zero component. 
    This method usually returns the an axis of symmetry in a given context.
@@ -57,6 +56,12 @@ public interface ThreeVector {
   */
   public Optional<Axis> axis();
 
+  /** Return a copy of this object, as a new object. */
+  public ThreeVector copy();
+
+  /** Replace one component of this three-vector with the given value. Returns a new object. */
+  public ThreeVector put(Axis axis, double value);
+  
   /** This vector plus 'that' 3-vector (for each component). Returns a new object.*/
   public ThreeVector plus(ThreeVector that);
   
@@ -64,18 +69,9 @@ public interface ThreeVector {
   public ThreeVector minus(ThreeVector that);
 
   /** Multiply each component by the given scalar. Returns a new object. */
-  public ThreeVector multiply(double scalar);
+  public ThreeVector times(double scalar);
   
   /** Divide each component by the given (non-zero) scalar. Returns a new object. */
   public ThreeVector divide(double scalar);
-  
-  /** Return a new vector whose components have been rotated about an axis of the coordinate system. */
-  public ThreeVector rotation(Rotation rotation);
-  
-  /** Return a new vector whose components have all been multiplied by -1. */
-  public ThreeVector reflection();
-  
-  /** Return a new vector for which a single component (for the given Axis) is multiplied by -1. */
-  public ThreeVector reflection(Axis axis);
   
 }

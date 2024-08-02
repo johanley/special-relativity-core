@@ -62,7 +62,7 @@ public final class CornerBoostsDontCommute extends TextOutput {
   }
   
   private Event boostThe(Event event, Axis axis, double β) {
-    return Boost.alongThe(axis, β).reverse(event);
+    return Boost.alongThe(axis, β).changeEvent(event);
   }
   
   private void seeIfOrderMatters(Velocity v1, Velocity v2) {

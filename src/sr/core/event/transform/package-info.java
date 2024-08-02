@@ -6,15 +6,15 @@
  
  <P>In Minkowski spacetime, there are 4 fundamental operations:
  <ul>
-  <li>{@link Displace}: <em>displacement</em> (or translation) of the origin (see below!).
-  <li>{@link Reflect}:<em>reflection</em> (or parity) in which one or more of the 4 space-time axes are reversed. 
+  <li>{@link Displacement}: <em>displacement</em> (or translation) of the origin (see below!).
+  <li>{@link Reflection}:<em>reflection</em> (or parity) in which one or more of the 4 space-time axes are reversed. 
   Reflections about an <em>even</em> number of spatial axes reduce to a rotation, so you usually  
   exclude such operations, as being already enumerated as a spatial rotation operation. 
   <li>{@link Rotate}: spatial <em>rotation</em> (3 spatial axes only in this case)
   <li>{@link Boost}: the Lorentz Transformation, modeled here as "mixing" the time axis with one of the spatial axes.
  </ul>
 
- <P>The {@link Displace} operation is an oddball: it's the only operation that changes the zero-vector 
+ <P>The {@link Displacement} operation is an oddball: it's the only operation that changes the zero-vector 
  (the origin). Displacements affect <em>events</em>, but they don't affect 4-vectors built out of a 
  difference-of-events (4-velocity, and so on). 
  <P>(In mathematical terms, a displacement is an affine transformation, but not a linear one.)

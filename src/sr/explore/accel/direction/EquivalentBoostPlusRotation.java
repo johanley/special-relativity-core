@@ -6,7 +6,7 @@ import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.event.transform.Boost;
-import sr.core.event.transform.Rotate;
+import sr.core.event.transform.Rotation;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
 import sr.output.text.Table;
@@ -78,10 +78,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   /** A single boost followed by a single rotation. */
   Transform asBoostPlusRotation() {
     Transform result = TransformPipeline.join(
-      Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      Rotation.of(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
-      Rotate.about(pole, θw()),
-      Rotate.about(pole, -βdirection()) //reverse the earlier bookeeping rotation!
+      Rotation.of(pole, θw()),
+      
+      Rotation.of(pole, -βdirection()) //reverse the earlier bookeeping rotation!
     );
     return result;
   }
@@ -89,10 +91,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   /** A single rotation followed by a single boost. */
   Transform asRotationPlusBoost() {
     Transform result = TransformPipeline.join(
-      Rotate.about(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
-      Rotate.about(pole, θw()),
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
-      Rotate.about(pole, -βdirection()) //reverse the earlier bookeeping rotation!
+      Rotation.of(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      
+      Rotation.of(pole, θw()),
+      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()),
+      
+      Rotation.of(pole, -βdirection()) //reverse the earlier bookeeping rotation!
     );
     return result;
   }
@@ -115,12 +119,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
     
     Transform cornerBoost = asCornerBoost();
-    Event event_Kpp_corner_boost = cornerBoost.apply(event_K);
+    Event event_Kpp_corner_boost = cornerBoost.changeFrame(event_K);
     
     Transform boostPlusRotation = asBoostPlusRotation();
-    Event event_Kpp_boost_plus_rot = boostPlusRotation.apply(event_K);
+    Event event_Kpp_boost_plus_rot = boostPlusRotation.changeFrame(event_K);
     Transform rotationPlusBoost = asRotationPlusBoost();
-    Event event_Kpp_rot_plus_boost = rotationPlusBoost.apply(event_K);
+    Event event_Kpp_rot_plus_boost = rotationPlusBoost.changeFrame(event_K);
     
     lines.add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     lines.add("Event:" + event_K);

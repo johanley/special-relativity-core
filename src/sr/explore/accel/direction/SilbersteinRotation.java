@@ -101,12 +101,12 @@ public final class SilbersteinRotation extends TextOutput {
     //find 2 events, one taken from each history, that have the same coord-time
     //these depend on the speeds chosen.
     double ctA_Kpp = 0.9; //any old ct'' value 
-    Event eventA_K = cornerBoost.apply(historyA_Kpp.event(ctA_Kpp)); 
+    Event eventA_K = cornerBoost.changeFrame(historyA_Kpp.event(ctA_Kpp)); 
     
-    Function<Event, Double> criterion = event -> (cornerBoost.apply(event).ct() - eventA_K.ct());
+    Function<Event, Double> criterion = event -> (cornerBoost.changeFrame(event).ct() - eventA_K.ct());
     FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
     double ctB_Kpp = findEvent.search(0.0); 
-    Event eventB_K = cornerBoost.apply(historyB_Kpp.event(ctB_Kpp)); 
+    Event eventB_K = cornerBoost.changeFrame(historyB_Kpp.event(ctB_Kpp)); 
     
     lines.add("Time-slice across the stick's history in K.");
     lines.add("Examine two events, one for each end of the stick.");

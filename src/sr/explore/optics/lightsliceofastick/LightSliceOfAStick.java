@@ -131,11 +131,11 @@ public final class LightSliceOfAStick extends TextOutput {
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
   private Event eventOnPastLightConeOf(Event detection, History history, Transform transform) {
     Function<Event, Double> onTheLightCone = event -> (
-      detection.minus(transform.apply(event)).square()
+      detection.minus(transform.changeFrame(event)).square()
     );
     FindEvent root = new FindEvent(history, onTheLightCone);
     double τA = root.search(0.0);
-    Event result = transform.apply(history.event(τA));
+    Event result = transform.changeFrame(history.event(τA));
     return result;
   }
   

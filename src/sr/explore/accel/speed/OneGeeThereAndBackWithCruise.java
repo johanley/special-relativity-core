@@ -3,6 +3,7 @@ package sr.explore.accel.speed;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.event.Event;
+import sr.core.event.transform.Reflection;
 import sr.core.history.DeltaBase;
 import sr.core.history.History;
 import sr.core.history.MoveableHistory;
@@ -148,7 +149,8 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
 
     //accel 6 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising);
-    delta_base = DeltaBase.of(all_way_out.plus(all_way_out.spatialReflection()), τ_years_accel + τ_years_cruising); 
+    Reflection flipX = Reflection.of(X);
+    delta_base = DeltaBase.of(all_way_out.plus(flipX.changeEvent(all_way_out)), τ_years_accel + τ_years_cruising); 
     leg = UniformAcceleration.of(delta_base, X, ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
     

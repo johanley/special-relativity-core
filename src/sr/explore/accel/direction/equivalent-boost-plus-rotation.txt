@@ -1,17 +1,17 @@
 Find the boost-plus-rotation that equates to 2 perpendicular boosts.
 
-Event:[10.0, 1.0, 1.0, 1.0, YES]
+Event:[10.0, 1.0, 1.0, 1.0]
 Corner-boost transform: boost[X,0.97] boost[Y,0.95]
- Event after corner-boost: [115.915, -35.787, -109.807, 1.0, YES]
+ Event after corner-boost: [115.91503, -35.78702, -109.80703, 1.0]
 
-Boost+rotation transform: rotate[Z,0.23374] boost[X,0.99711] rotate[Z,-1.02842] rotate[Z,-0.23374]
- Event after boost+rotation: [115.915, -35.787, -109.807, 1.0, YES]
+Boost+rotation transform: rotation[0.0,0.0,0.23374] boost[X,0.99711] rotation[0.0,0.0,-1.02842] rotation[0.0,0.0,-0.23374]
+ Event after boost+rotation: [115.91503, -35.78702, -109.80703, 1.0]
 Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of this code always using an axis.
 
 Order matters. Rotation+boost isn't the same. The operations don't commute.
 But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).
-Rotation+boost transform: rotate[Z,0.23374] rotate[Z,-1.02842] boost[X,0.99711] rotate[Z,-0.23374]
- Event from rotation+boost: [131.9083, -128.2795, -29.0887, 1.0, YES]
+Rotation+boost transform: rotation[0.0,0.0,0.23374] rotation[0.0,0.0,-1.02842] boost[X,0.99711] rotation[0.0,0.0,-0.23374]
+ Event from rotation+boost: [131.90826, -128.27952, -29.0887, 1.0]
 
 βx                   βy                   equivβ               equivDirection    θw
 ----------------------------------------------------------------------------------------------------

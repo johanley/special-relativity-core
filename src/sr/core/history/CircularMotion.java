@@ -2,9 +2,9 @@ package sr.core.history;
 
 import sr.core.Axis;
 import sr.core.Physics;
-import sr.core.Rotation;
 import sr.core.Util;
 import sr.core.event.Event;
+import sr.core.event.transform.Rotation;
 
 /**
  History for a mass particle moving uniformly in a circle.
@@ -82,13 +82,16 @@ public class CircularMotion extends MoveableHistory {
 
   /** Return the displacement from the delta-base (which uses the center of the circle). */
   private Event displacement(double Δct) {
-    Event result = Event.origin();
-    result = result.put(Axis.CT, Δct);
+    Event displacement = Event.origin();
+    displacement = displacement.put(Axis.CT, Δct);
+    
     //for a rotational axis of Z, this gives the start position on the X-axis
-    Axis startPosition = Axis.rightHandRuleFor(rotationalAxis).get(0);
-    result = result.put(startPosition, radius);
-    result = result.spatialRotation(Rotation.from(rotationalAxis, theta0 + Δθ(Δct)));
-    return result;
+    Axis start = Axis.rightHandRuleFor(rotationalAxis).get(0);
+    displacement = displacement.put(start, radius);
+    
+    Rotation rotate = Rotation.of(rotationalAxis, theta0 + Δθ(Δct));
+    displacement = rotate.changeEvent(displacement);
+    return displacement;
   }
   
   /** Angle in radians. */

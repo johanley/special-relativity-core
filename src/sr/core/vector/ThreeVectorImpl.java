@@ -10,13 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import sr.core.Axis;
-import sr.core.Parity;
-import sr.core.Rotation;
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.event.transform.Reflect;
-import sr.core.event.transform.Rotate;
-import sr.core.event.transform.Transform;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
@@ -27,9 +21,11 @@ import sr.core.event.transform.Transform;
  <ul>
   <li>providing a more meaningful name, which clarifies the caller
   <li>providing a means to validate data coming into the constructor
+  <li>pseudo-vectors have distinct behaviour under reflection
  </ul>
  
- <P>Other classes that implement this interface can 'call-forward' all (non-constructor) methods to this implementation.
+ <P>If desired, classes that implement this interface can 'call-forward' all (non-constructor) methods to this implementation.
+ This provides a way of avoid the <em>extends</em> keyword.
 */
 public class ThreeVectorImpl implements ThreeVector {
 
@@ -89,6 +85,27 @@ public class ThreeVectorImpl implements ThreeVector {
     return result;
   }
   
+  @Override public ThreeVector copy() {
+    Map<Axis, Double> copy = new LinkedHashMap<>();
+    copy.putAll(components);
+    return ThreeVectorImpl.of(
+      copy.get(X), 
+      copy.get(Y), 
+      copy.get(Z) 
+    );
+  }
+  
+  @Override public ThreeVector put(Axis axis, double value) {
+    Map<Axis, Double> updated = new LinkedHashMap<>();
+    updated.putAll(components);
+    updated.put(axis, value);
+    return ThreeVectorImpl.of(
+      updated.get(X), 
+      updated.get(Y), 
+      updated.get(Z) 
+    );
+  }
+  
   @Override public double dot(ThreeVector that) {
     double result = 0.0;
     for (Axis axis : components.keySet()) {
@@ -98,8 +115,9 @@ public class ThreeVectorImpl implements ThreeVector {
   }
   
   @Override public ThreeVector cross(ThreeVector that) {
+    //https://en.wikipedia.org/wiki/Cross_product
     double x = y() * that.z() - z() * that.y();
-    double y = x() * that.z() - z() * that.x();
+    double y = z() * that.x() - x() * that.z();
     double z = x() * that.y() - y() * that.x();
     return ThreeVectorImpl.of(x, y, z);
   }
@@ -118,7 +136,6 @@ public class ThreeVectorImpl implements ThreeVector {
     return Math.acos(numerator / denominator);
   }
 
-  /** This 3-vector plus 'that' 3-vector (for each component). Returns a new Vector.*/
   @Override public ThreeVector plus(ThreeVector that) {
     return ThreeVectorImpl.of(
       x() + that.x(), 
@@ -135,7 +152,7 @@ public class ThreeVectorImpl implements ThreeVector {
     );
   }
 
-  @Override public ThreeVector multiply(double scalar) {
+  @Override public ThreeVector times(double scalar) {
     return ThreeVectorImpl.of(
       x() * scalar, 
       y() * scalar, 
@@ -152,32 +169,14 @@ public class ThreeVectorImpl implements ThreeVector {
     );
   }
   
-  @Override public  ThreeVector rotation(Rotation rotation) {
-    //this implementation uses items build for 4-vectors; the extra dimension is simply ignored in the result
-    Transform rotate = Rotate.about(rotation.axis, rotation.θ);
-    Event a = Event.of(0.0, x(), y(), z());
-    Event b = rotate.reverse(a);
-    return ThreeVectorImpl.of(b.x(),b.y(),b.z());
-  }
-  
-  @Override public ThreeVector reflection() {
-    Transform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
-    Event a = Event.of(0.0, x(), y(), z());
-    Event b = reflection.reverse(a);
-    return ThreeVectorImpl.of(b.x(), b.y(), b.z());
-  }
-  
-  @Override public ThreeVector reflection(Axis axis) {
-    Transform reflection = Reflect.the(axis);
-    Event a = Event.of(0.0, x(), y(), z());
-    Event b = reflection.reverse(a);
-    return ThreeVectorImpl.of(b.x(), b.y(), b.z());
-  }
-
   /** This implementation applies rounding. */
   @Override public String toString() {
     String sep = ",";
-    return "[" + roundIt(x()) + sep + roundIt(y()) + sep + roundIt(z()) + "]" ;
+    return "[" + 
+      roundIt(x()) + sep + 
+      roundIt(y()) + sep + 
+      roundIt(z()) + 
+    "]" ;
   }
 
   /** Constructors are protected, in order to be visible to subclasses. */

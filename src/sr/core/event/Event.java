@@ -4,19 +4,15 @@ import static sr.core.Axis.CT;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
+import static sr.core.Util.equalsWithEpsilon;
+import static sr.core.Util.round;
+import static sr.core.Util.sq;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import sr.core.Axis;
-import sr.core.Parity;
-import sr.core.Rotation;
-import sr.core.event.transform.Reflect;
-import sr.core.event.transform.Rotate;
-import sr.core.event.transform.Transform;
 import sr.core.vector.Position;
-
-import static sr.core.Util.*;
 
 /** 
  An event in Minkowski space-time.
@@ -101,18 +97,6 @@ public final class Event {
     ); 
   }
   
-  /** Return a new event whose spatial components have been rotated about a spatial axis. */
-  public Event spatialRotation(Rotation rotation) {
-    Transform rotate = Rotate.about(rotation.axis, rotation.θ);
-    return rotate.reverse(this);
-  }
-  
-  /** Return a new event whose spatial components have all been multiplied by -1.*/
-  public Event spatialReflection() {
-    Transform reflection = new Reflect(Parity.EVEN, Parity.ODD, Parity.ODD, Parity.ODD);
-    return reflection.reverse(this);
-  }
-  
   /** The time component. */
   public double ct() { return on(CT); }
   
@@ -134,6 +118,20 @@ public final class Event {
       }
     }
     return true;
+  }
+  
+  /** Return a new object with the same data as this object. */
+  public Event copy() {
+    Event result = origin();
+    for(Axis axis : Axis.values()) {
+      result.put(axis, this.on(axis));
+    }
+    return result;
+  }
+
+  /** Return the position of the event. */
+  public Position position(){
+    return Position.of(x(), y(), z());
   }
 
   /** This implementation applies rounding. */
