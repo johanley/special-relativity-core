@@ -1,12 +1,15 @@
 /**
- A <em>corner boost</em> is a pair of boosts that aren't in the same line (not collinear).
+ A change in velocity which has a change of direction.
+ 
+ <P> Here, we define an <em>angle-boost</em> as a <b>pair</b> of boosts that aren't in the same line (not collinear).
  
  <P>A pair of boosts commute only if they are in the same line.
- Corner boosts don't commute: switching the order of the boosts changes the outcome.
+ Angle-boosts don't commute: switching the order of the boosts changes the outcome.
  
- <P>A corner boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
+ <P>An angle-boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
  
- <P>A corner boost always needs three frames - K, K', and K'':
+ <P>An angle-boost always needs three frames - K, K', and K''.
+ Example:
  <ul>
   <li>in K, first boost along X to K'.
   <li>in K', second boost along Y to K''.
@@ -14,16 +17,16 @@
  
  <P>In the intermediate K' frame, the axes of K and K'' are all parallel to the axes of K'.
  
- <P>But K and K'' DON'T see their respective X and Y axes as being parallel. 
+ <P>But K and K'' <b>don't</b> see their respective X and Y axes as being parallel. 
  For that pair, only the Z axes are parallel, in the above case. 
  That is Silberstein (Thomas-Wigner) rotation.
- 
+
+ <P>Here, we define a <em>corner-boost</>: if, in the intermediate frame K', the directions of the two velocities are perpendicular.
+ This is a simpler case, which illustrates well the basic effects.
+  
  <P>An approximate way of describing the Silberstein rotation is that <em>a revolution imparts a rotation</em>. 
  
- <P>Space-time has an inherently <em>rotating</em> aspect to it.
- 
- 
-References:
+<P>References:
 <ul>
  <li><a href='http://www.nucleares.unam.mx/~alberto/apuntes/ferraro.pdf'>Rafael Ferraro and Marc Thibeault</a>
  <li><a href='https://en.wikipedia.org/wiki/Wigner_rotation'>wikipedia</a>

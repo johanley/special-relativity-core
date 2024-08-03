@@ -9,7 +9,7 @@ import sr.core.event.transform.Boost;
 import sr.core.event.transform.Rotation;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
-import sr.explore.accel.direction.CornerBoostEquivalent;
+import sr.explore.accel.direction.AngleBoostEquivalent;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -62,8 +62,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
 
   /** The equivalent boost-plus-rotation. */
-  public CornerBoostEquivalent equivalent() {
-    CornerBoostEquivalent result = new CornerBoostEquivalent(βspeed(), βdirection(), θw());
+  public AngleBoostEquivalent equivalent() {
+    AngleBoostEquivalent result = new AngleBoostEquivalent(βspeed(), βdirection(), θw());
     return result;
   }
   

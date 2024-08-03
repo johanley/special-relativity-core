@@ -22,9 +22,9 @@ package sr.explore.accel.direction;
  boosts (along X and Y), followed by a rotation. 
  This fact helps to derive the arbitrary-angle case.
 */
-public final class CornerBoostEquivalent {
+public final class AngleBoostEquivalent {
   
-  public CornerBoostEquivalent(double β, double βdirection, double θw){
+  public AngleBoostEquivalent(double β, double βdirection, double θw){
     this.β = β;
     this.βdirection = βdirection;
     this.θw = θw;
