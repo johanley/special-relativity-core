@@ -1,4 +1,4 @@
-package sr.explore.accel.direction;
+package sr.explore.accel.direction.corner;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;

@@ -1,4 +1,4 @@
-package sr.explore.accel.direction;
+package sr.explore.accel.direction.corner;
 
 import sr.core.Axis;
 import sr.core.Physics;
@@ -9,6 +9,7 @@ import sr.core.event.transform.Boost;
 import sr.core.event.transform.Rotation;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
+import sr.explore.accel.direction.CornerBoostEquivalent;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -44,7 +45,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
    @param β2 the speed of the second boost from K' to K'', along the second axis, at a right 
    angle to the first
   */
-  EquivalentBoostPlusRotation(Axis pole, double β1, double β2) {
+  public EquivalentBoostPlusRotation(Axis pole, double β1, double β2) {
     Util.mustBeSpatial(pole);
     checkSpeeds(β1, β2);
     this.β1 = β1;
@@ -61,13 +62,13 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
 
   /** The equivalent boost-plus-rotation. */
-  CornerBoostEquivalent equivalent() {
+  public CornerBoostEquivalent equivalent() {
     CornerBoostEquivalent result = new CornerBoostEquivalent(βspeed(), βdirection(), θw());
     return result;
   }
   
   /** Two boosts, the second perpendicular to the first (see class description). */
-  Transform asCornerBoost() {
+  public Transform asCornerBoost() {
     Transform result = TransformPipeline.join(
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), β1),
       Boost.alongThe(Axis.rightHandRuleFor(pole).get(1), β2)

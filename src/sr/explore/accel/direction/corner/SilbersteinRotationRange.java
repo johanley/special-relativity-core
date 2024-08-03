@@ -1,4 +1,4 @@
-package sr.explore.accel.direction;
+package sr.explore.accel.direction.corner;
 
 import sr.core.Axis;
 import sr.core.SpeedValues;

@@ -22,27 +22,27 @@ package sr.explore.accel.direction;
  boosts (along X and Y), followed by a rotation. 
  This fact helps to derive the arbitrary-angle case.
 */
-final class CornerBoostEquivalent {
+public final class CornerBoostEquivalent {
   
-  CornerBoostEquivalent(double β, double βdirection, double θw){
+  public CornerBoostEquivalent(double β, double βdirection, double θw){
     this.β = β;
     this.βdirection = βdirection;
     this.θw = θw;
   }
   
   /** In K, the speed of the equivalent single boost, range 0..1. */
-  double β;
+  public double β;
   
   /**
    In K, the direction of the equivalent single boost, with respect to the direction of the first boost. Radians.
   */
-  double βdirection;
+  public double βdirection;
   
   /** 
    Silberstein (Thomas-Wigner) rotation angle (radians) with respect to the direction of the first boost.
    
    This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
   */
-  double θw;
+  public double θw;
 
 }
