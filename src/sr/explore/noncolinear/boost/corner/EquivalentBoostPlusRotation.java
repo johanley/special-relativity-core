@@ -1,4 +1,4 @@
-package sr.explore.accel.direction.corner;
+package sr.explore.noncolinear.boost.corner;
 
 import sr.core.Axis;
 import sr.core.Physics;
@@ -9,7 +9,6 @@ import sr.core.event.transform.Boost;
 import sr.core.event.transform.Rotation;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
-import sr.explore.accel.direction.AngleBoostEquivalent;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

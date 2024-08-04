@@ -1,4 +1,4 @@
-package sr.explore.accel.direction.corner;
+package sr.explore.noncolinear.boost.silbersteinrotation;
 
 import java.util.function.Function;
 
@@ -14,6 +14,7 @@ import sr.core.event.transform.TransformPipeline;
 import sr.core.history.History;
 import sr.core.history.UniformVelocity;
 import sr.core.vector.Position;
+import sr.explore.noncolinear.boost.corner.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  
