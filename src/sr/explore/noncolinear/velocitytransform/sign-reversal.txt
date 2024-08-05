@@ -1,0 +1,13 @@
+Velocity reverses sign only in the colinear case, and only with one variant of the formula.
+
+Boost from K to K': [0.5,0.0,0.0] Velocity:[0.7,0.0,0.0] are in the same line.
+
+Compute primed v' given (boost + v). Treat the given Velocity as v.
+Order (boost,v) resultant-v':[0.30769,0.0,0.0] mag:0.30769
+Order (v,boost) resultant-v':[-0.30769,0.0,0.0] mag:0.30769
+Angle between the two results:180.0°
+
+Compute unprimed v given (boost + v'). Treat the given Velocity as v'.
+Order (boost,v') resultant-v:[0.88889,0.0,0.0] mag:0.88889
+Order (v',boost) resultant-v:[0.88889,0.0,0.0] mag:0.88889
+Angle between the two results:0.0°

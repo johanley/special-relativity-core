@@ -4,11 +4,18 @@ import sr.core.vector.ThreeVector;
 import sr.core.vector.Velocity;
 
 /** 
- Relativistic addition of velocities.
+ Relativistic transformation of velocities.
  
-<P>Reference: <a href='https://en.wikipedia.org/wiki/Velocity-addition_formula'>Wikipedia</a>. 
+<P>Reference: <a href='https://en.wikipedia.org/wiki/Velocity-addition_formula'>Wikipedia</a>.
+
+<P>Apart from the style of the above reference, one can picture the items involved in the following way.
+(This follows the style of Fock's book <em>The Theory of Space, Time and Gravitation</em>.)
+In a frame K, there are two objects.
+Each has a velocity with respect to K.
+One can select one of the objects as representing a second frame K'.
+Then you find the velocity of the other object relative to K'.
 */ 
-public final class VelocityAddition {
+public final class VelocityTransformation {
 
   /**
    You need to be careful with the exact meaning of the parameters.
@@ -19,7 +26,7 @@ public final class VelocityAddition {
    @return velocity of object in K' (u')
   */
   public static Velocity primedVelocity(Velocity boost_v, Velocity object_v) {
-    return transform(boost_v, object_v, +1);
+    return transform(boost_v, object_v, -1);
   }
   
   /**
@@ -31,12 +38,14 @@ public final class VelocityAddition {
    @return velocity of object in K (u)
   */
   public static Velocity unprimedVelocity(Velocity boost_v, Velocity object_v_prime) {
-    return transform(boost_v, object_v_prime, -1);
+    return transform(boost_v, object_v_prime, +1);
   }
   
   /**
+   Do the transform.
    @param v boost velocity
-   @param u object velocity, +1 for primed u_p, -1 for unprimed u
+   @param u object velocity
+   @param sign +1 for returning unprimed-u, -1 for returning primed-u.
   */
   private static Velocity transform(Velocity v, Velocity u, int sign) {
     double a = 1.0 / (1 + sign*u.dot(v));

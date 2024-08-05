@@ -1,10 +1,10 @@
-package sr.explore.noncolinear.velocityaddition;
+package sr.explore.noncolinear.velocitytransform;
 
 import static sr.core.Axis.X;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.VelocityAddition;
+import sr.core.VelocityTransformation;
 import sr.core.vector.ThreeVector;
 import sr.core.vector.Velocity;
 import sr.core.vector.transform.SpatialRotation;
@@ -22,7 +22,7 @@ public final class MaxAngleBetweenResultVectors extends TextOutput {
   }
 
   void explore() {
-    lines.add("Velocity addition formula." + Util.NL);
+    lines.add("Velocity transformation formula for v, the unprimed velocity." + Util.NL);
     lines.add("Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).");  
     lines.add("Rotate v_b using Z as the pole (using an integral number of degrees)." + Util.NL);
 
@@ -54,8 +54,8 @@ public final class MaxAngleBetweenResultVectors extends TextOutput {
       SpatialRotation rot = SpatialRotation.of(Axis.Z, Util.degsToRads(degrees));
       ThreeVector b_rotated = rot.changeVector(b);
       Velocity b_rotated_v = Velocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
-      Velocity sum1 = VelocityAddition.primedVelocity(a, b_rotated_v);
-      Velocity sum2 = VelocityAddition.primedVelocity(b_rotated_v, a);
+      Velocity sum1 = VelocityTransformation.unprimedVelocity(a, b_rotated_v);
+      Velocity sum2 = VelocityTransformation.unprimedVelocity(b_rotated_v, a);
       double angleBetween = sum2.angle(sum1);
       if (angleBetween > maxAngleBetween) {
         maxAngleBetween = angleBetween;

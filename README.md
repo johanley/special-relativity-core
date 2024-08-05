@@ -142,6 +142,9 @@ It's defined only between pairs of 4-vectors that are either both time-like or b
 Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
+
+**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is useful and compact.**
+
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
 He simply asserts that the geometry is that of a rotation. He seems to be incorrect.
 Here are some <a href='https://github.com/johanley/special-relativity-core/blob/master/notes/references.txt'>references</a> that contradict Terrell's assertions.

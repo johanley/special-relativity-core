@@ -1,4 +1,4 @@
-Velocity addition formula.
+Velocity transformation formula for v, the unprimed velocity.
 
 Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).
 Rotate v_b using Z as the pole (using an integral number of degrees).

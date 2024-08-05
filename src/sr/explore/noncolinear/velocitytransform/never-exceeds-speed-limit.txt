@@ -1,0 +1,6 @@
+Velocity transformation formula.
+
+Velocity addition never exceeds the speed limit.
+
+Boost: [0.99,0.0,0.0] Velocity v':[0.99,0.0,0.0]
+Resultant v: [0.99995,0.0,0.0]

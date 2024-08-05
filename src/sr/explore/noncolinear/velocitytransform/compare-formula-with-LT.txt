@@ -1,0 +1,14 @@
+Compare results from the velocity addition formula with results directly from the Lorentz transformation.
+
+With no loss of generality, in K we have:
+ - a velocity v in K in any old direction
+ - a frame K' boosted with respect to K along the +X-axis.
+So the task is to find v_K', the velocity with respect to the boosted frame K'.
+
+Using the velocity addition formula we get:
+Boost: [0.8,0.0,0.0] Velocity:[0.1,0.2,0.3]
+v_K' from formula:[0.83333,0.11111,0.16667] mag:0.85707
+
+Using the Lorentz transformation directly we get:
+v_K by approximating the derivative, using a history in K: [0.1,0.2,0.3] mag: 0.37417
+v_K' by approximating the derivative, using a history in K and its boost-transform: [0.83333,0.11111,0.16667] mag: 0.85707
