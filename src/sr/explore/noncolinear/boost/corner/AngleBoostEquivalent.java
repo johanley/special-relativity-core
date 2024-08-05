@@ -24,9 +24,9 @@ package sr.explore.noncolinear.boost.corner;
 */
 public final class AngleBoostEquivalent {
   
-  public AngleBoostEquivalent(double β, double βdirection, double θw){
+  public AngleBoostEquivalent(double β, double direction, double θw){
     this.β = β;
-    this.βdirection = βdirection;
+    this.direction = direction;
     this.θw = θw;
   }
   
@@ -36,7 +36,7 @@ public final class AngleBoostEquivalent {
   /**
    In K, the direction of the equivalent single boost, with respect to the direction of the first boost. Radians.
   */
-  public double βdirection;
+  public double direction;
   
   /** 
    Silberstein (Thomas-Wigner) rotation angle (radians) with respect to the direction of the first boost.

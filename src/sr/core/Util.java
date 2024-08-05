@@ -37,6 +37,10 @@ public final class Util {
     return isTiny(x) ? 0.0 /*avoid NaN*/: Math.sqrt(x); 
   }
   
+  public static int sign(double value){
+    return value >=0 ? 1 : -1;
+  }
+  
   public static double degsToRads(double degs) {
     return degs * CONVERT_RADS;
   }

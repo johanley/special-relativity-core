@@ -46,8 +46,16 @@ public interface ThreeVector {
   /** The magnitude (norm) of the vector. */
   public double magnitude();
   
-  /** The angle between this vector and that vector. Range 0..π. */
+  /** The angle between this vector and that vector. Range 0..+π. */
   public double angle(ThreeVector that);
+  
+  /** 
+   The angle between this vector and that vector, WITH BOTH VECTORS IN THE X-Y PLANE. 
+   Range -π..+π.
+   The angle turns 'this' vector into 'that' vector, using the right-hand rule.
+   The sign is the same as the sign of the Z-component of <code>this.cross(that)</code>. 
+  */
+  public double turnsTo(ThreeVector that);
   
   /**
    Returns a non-empty value only in the case where there's exactly 1 non-zero component. 

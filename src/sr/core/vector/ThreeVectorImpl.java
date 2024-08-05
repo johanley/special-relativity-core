@@ -135,6 +135,14 @@ public class ThreeVectorImpl implements ThreeVector {
     double denominator = magnitude() * that.magnitude();
     return Math.acos(numerator / denominator);
   }
+  
+  @Override public double turnsTo(ThreeVector that) {
+    Util.mustHave(this.z() == 0, "This vector is not in the XY plane: " + this);
+    Util.mustHave(that.z() == 0, "That vector is not in the XY plane: " + that);
+    double result = angle(that);
+    int sign = Util.sign(this.cross(that).z());
+    return result * sign;
+  }
 
   @Override public ThreeVector plus(ThreeVector that) {
     return ThreeVectorImpl.of(

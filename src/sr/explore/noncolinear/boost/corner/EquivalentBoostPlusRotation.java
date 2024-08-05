@@ -1,14 +1,15 @@
 package sr.explore.noncolinear.boost.corner;
 
 import sr.core.Axis;
-import sr.core.Physics;
 import sr.core.SpeedValues;
 import sr.core.Util;
+import sr.core.VelocityTransformation;
 import sr.core.event.Event;
 import sr.core.event.transform.Boost;
 import sr.core.event.transform.Rotation;
 import sr.core.event.transform.Transform;
 import sr.core.event.transform.TransformPipeline;
+import sr.core.vector.Velocity;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -18,14 +19,6 @@ import sr.output.text.TextOutput;
  <P>Here, two successive boosts are at right angles to each other, along 2 of the spatial axes.
  The more general case is to have the second boost at any angle with respect to the first.
  The X-Y plane can always be chosen to be the plane of the 2 boosts, with X as the direction of the first boost.
- 
- <P>Formulas: 
-  <ul>
-   <li><a href='http://www.nucleares.unam.mx/~alberto/apuntes/ferraro.pdf'>R. Ferraro and M. Thibeault</a> 
-   equation 8, and remarks on page 146 between equations 11 and 12 
-   <li><a href='https://jila.colorado.edu/arey/sites/default/files/files/seven(1).pdf'>Smoot</a> 
-   equations 6, 10 for two directions, whose difference is the θw rotation angle  
-  </ul> 
 */
 public final class EquivalentBoostPlusRotation extends TextOutput {
   
@@ -49,8 +42,6 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     checkSpeeds(β1, β2);
     this.β1 = β1;
     this.β2 = β2;
-    this.Γ1 = Physics.Γ(β1);
-    this.Γ2 = Physics.Γ(β2);
     this.pole = pole;
   }
   
@@ -62,7 +53,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
 
   /** The equivalent boost-plus-rotation. */
   public AngleBoostEquivalent equivalent() {
-    AngleBoostEquivalent result = new AngleBoostEquivalent(βspeed(), βdirection(), θw());
+    AngleBoostEquivalent result = new AngleBoostEquivalent(singleBoostSpeed(), direction(), θw());
     return result;
   }
   
@@ -78,12 +69,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   /** A single boost followed by a single rotation. */
   Transform asBoostPlusRotation() {
     Transform result = TransformPipeline.join(
-      Rotation.of(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      Rotation.of(pole, direction()), //bookkeeping rotation!: because my boost impl needs an axis to work with
       
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()), 
+      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), singleBoostSpeed()), 
       Rotation.of(pole, θw()),
       
-      Rotation.of(pole, -βdirection()) //reverse the earlier bookeeping rotation!
+      Rotation.of(pole, -direction()) //reverse the earlier bookeeping rotation!
     );
     return result;
   }
@@ -91,12 +82,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   /** A single rotation followed by a single boost. */
   Transform asRotationPlusBoost() {
     Transform result = TransformPipeline.join(
-      Rotation.of(pole, βdirection()), //bookkeeping rotation!: because my boost impl needs an axis to work with
+      Rotation.of(pole, direction()), //bookkeeping rotation!: because my boost impl needs an axis to work with
       
       Rotation.of(pole, θw()),
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), βspeed()),
+      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), singleBoostSpeed()),
       
-      Rotation.of(pole, -βdirection()) //reverse the earlier bookeeping rotation!
+      Rotation.of(pole, -direction()) //reverse the earlier bookeeping rotation!
     );
     return result;
   }
@@ -104,16 +95,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   //PRIVATE 
   
   private Axis pole;
-  
   private double β1;
-  private double Γ1;
-  
   private double β2;
-  private double Γ2;
 
-  //βx   βy   β-equiv β-direction-degs  θw-degs;
-  private Table tableHeader = new Table("%-21s", "%-21s", "%-21s", "%-12s", "%6s");
-  private Table table = new Table("%-21s", "%-21s", "%-21s", "%10.3f°", "%10.3f°");
+  //βx   βy   β-equiv direction-degs  θw-degs, (v = vx + vy), (v = vy + vx)
+  private Table tableHeader = new Table("%-21s", "%-21s", "%-21s", "%-14s", "%-8s", "%-22s", "%-18s");
+  private Table table = new Table("%-21s", "%-21s", "%10.16f", "%10.3f°", "%10.3f°   ", "%-22s", "%-22s");
 
   private void example() {
     Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
@@ -132,7 +119,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     lines.add(" Event after corner-boost: " + event_Kpp_corner_boost);
     lines.add(Util.NL +"Boost+rotation transform: " + boostPlusRotation);
     lines.add(" Event after boost+rotation: " + event_Kpp_boost_plus_rot);
-    lines.add("Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of this code always using an axis.");
+    lines.add("Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of the boosts here always using an axis.");
     lines.add(Util.NL + "Order matters. Rotation+boost isn't the same. The operations don't commute.");
     lines.add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
     lines.add("Rotation+boost transform: " + rotationPlusBoost);
@@ -140,56 +127,63 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
   }
   
   private void spectrumOfSpeeds() {
-    lines.add(Util.NL + tableHeader.row("βx", "βy", "equivβ", "equivDirection", "θw"));
-    lines.add(dashes(100));
+    lines.add(Util.NL + tableHeader.row("β", "β", "Equivalent", "Equivalent", "θw", "(v = vx + vy)", "(v = vy + vx)"));
+    lines.add(tableHeader.row("X-axis", "Y-axis", "β", "direction", "", "", ""));
+    lines.add(dashes(125));
     for(SpeedValues βx : SpeedValues.nonExtremeValues()) {
       for (SpeedValues βy : SpeedValues.nonExtremeValues()) {
         EquivalentBoostPlusRotation cb = new EquivalentBoostPlusRotation(Axis.Z, βx.β(), βy.β());
         lines.add(
-          table.row(cb.β1, cb.β2, cb.βspeed(), degs(cb.βdirection()), degs(cb.θw()))
+          table.row(cb.β1, cb.β2, cb.singleBoostSpeed(), degs(cb.direction()), degs(cb.θw()), cb.singleBoostVelocity(), cb.singleBoostVelocityReversed())
         );
       }
     }
   }
   
   /** 
-   Silberstein rotation angle with respect to the βdirection.
-   Has the same sign as -β1*β2. 
-   Range -pi..pi. 
+   Silberstein rotation angle.
+   Range -pi..pi.
   */
   private double θw() {
-    double y = Γ1 * Γ2 * β1 * β2;
-    double x = Γ1 + Γ2;
-    return Math.atan2(-y, x); //-pi..+pi
+    Velocity a = singleBoostVelocity();
+    Velocity b = singleBoostVelocityReversed();
+    //should this be a.turnsTo(b) ? No, I believe this is correct. 
+    //For circular motion, this angle is 'retrograde' with respect to the sense of the given circular motion.
+    return b.turnsTo(a);
   }
 
-  /** The speed of the single boost. */
-  private double βspeed() {
-    double Γ = Γ1 * Γ2;
-    return Physics.β(Γ);
+  private double singleBoostSpeed() {
+    return singleBoostVelocity().magnitude();
+  }
+
+  private Velocity singleBoostVelocity() {
+    return VelocityTransformation.unprimedVelocity(
+      velocityOne(), 
+      velocityTwo() 
+    );
+  }
+  
+  private Velocity singleBoostVelocityReversed() {
+    return VelocityTransformation.unprimedVelocity(
+      velocityTwo(), 
+      velocityOne() 
+    );
+  }
+  
+  private Velocity velocityOne() {
+    return Velocity.of(Axis.rightHandRuleFor(pole).get(0), β1); 
+  }
+  
+  private Velocity velocityTwo() {
+    return Velocity.of(Axis.rightHandRuleFor(pole).get(1), β2); 
   }
   
   /**
    The direction of the single boost, with respect to the direction of the first boost.
-   Has the same sign as β2.  
-   Range -pi..+pi 
+   Range -pi..pi. 
   */
-  private double βdirection() {
-    double y = β2; //-1..+1
-    //if Γ1 wasn't here, then you would have a Galilean result for the direction
-    double x = Γ1 * β1; //-..+ (bigger than 1); the x-boost has a bigger effect; asymmetric
-    return Math.atan2(y, x); //-pi..+pi
-  }
-  
-  /** Smoot's formulas gives the same result for θw. */
-  private double thetaPrimePrime() {
-    double y = Γ2 * β2;
-    double x =  β1; 
-    return Math.atan2(y, x); //-pi..+pi
-  }
-  private double smootθw() {
-    double theta = βdirection();
-    return theta - thetaPrimePrime();
+  private double direction() {
+    return velocityOne().turnsTo(singleBoostVelocity());
   }
   
   private double degs(double value) {

@@ -7,13 +7,6 @@ import sr.core.vector.Velocity;
  Relativistic transformation of velocities.
  
 <P>Reference: <a href='https://en.wikipedia.org/wiki/Velocity-addition_formula'>Wikipedia</a>.
-
-<P>Apart from the style of the above reference, one can picture the items involved in the following way.
-(This follows the style of Fock's book <em>The Theory of Space, Time and Gravitation</em>.)
-In a frame K, there are two objects.
-Each has a velocity with respect to K.
-One can select one of the objects as representing a second frame K'.
-Then you find the velocity of the other object relative to K'.
 */ 
 public final class VelocityTransformation {
 

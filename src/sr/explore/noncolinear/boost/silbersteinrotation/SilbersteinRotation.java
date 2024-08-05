@@ -129,14 +129,14 @@ public final class SilbersteinRotation extends TextOutput {
     lines.add("FIRST DO A ROTATION (because of the Silberstein rotation)."); 
     lines.add("Examine the equivalent-boost with respect to K (the boost+rotation pair that's equivalent to the corner-boost pair):");
     lines.add("  equivβ: " + round(calc.equivalent().β)); 
-    lines.add("  equivDirection: " + degrees(calc.equivalent().βdirection) + " with respect to the X-axis."); 
+    lines.add("  equivDirection: " + degrees(calc.equivalent().direction) + " with respect to the X-axis."); 
     lines.add("  equivθw: " + degrees(calc.equivalent().θw) + " rotation around the Z-axis (which thus affects the XY plane)."); 
-    lines.add("  (equivθw - equivDirection): " + degrees(calc.equivalent().θw -calc.equivalent().βdirection) + " with respect to the equivDirection."+Util.NL); 
+    lines.add("  (equivθw - equivDirection): " + degrees(calc.equivalent().θw -calc.equivalent().direction) + " with respect to the equivDirection."+Util.NL); 
     lines.add("SECOND DO A FLATTENING (because of the equivalent-boost)."); 
-    lines.add("Use a formula for flattening(equivθw - equivDirection, equivβ): " + degrees(Physics.stickAngleAfterBoost(calc.equivalent().θw - calc.equivalent().βdirection, calc.equivalent().β)) + " with respect to the equivDirection."); 
+    lines.add("Use a formula for flattening(equivθw - equivDirection, equivβ): " + degrees(Physics.stickAngleAfterBoost(calc.equivalent().θw - calc.equivalent().direction, calc.equivalent().β)) + " with respect to the equivDirection."); 
     lines.add(" ");
     lines.add("The same result comes from examining the raw history of the stick.");
-    lines.add("Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: " + degrees(angle_K - calc.equivalent().βdirection) + " - SAME AS ABOVE"); 
+    lines.add("Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: " + degrees(angle_K - calc.equivalent().direction) + " - SAME AS ABOVE"); 
   }
  
   private String degrees(double rads) {
