@@ -11,6 +11,53 @@ I'm hoping that this is the case with this little project as well.
 
 ## What I've learned so far in this project
 
+**Working with units in which c=1 is natural and desirable.**
+You can think, for example, of light-years and years, or light-seconds and seconds.
+As long as the 45-degree path for light rays is intact, you're fine.
+
+**The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.**
+It's too close to 1 (about 22 decimals). Only the BigDecimal class can represent such numbers.
+However, working with BigDecimal is more painful than working with Double, so this is 
+left out as a special case.
+
+**Vector formulations are simpler than component formulations.**
+Moving from components to vectors simplifies the implementation.
+I found this with the axis-angle approach to rotation (Rodrigues' formula), velocity transformation, and the Lorentz transformation.
+
+**Silberstein described the rotational aspect of non-collinear boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
+Thomas and Wigner came much later. 
+
+**The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and the Silberstein rotation.**
+You need to be careful not to confuse the two effects.
+  
+**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is useful and compact.**
+
+**Transformations almost always come in two variants.**
+(For example, see this article on <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>active and passive transformations</a>.) 
+You need to always be aware of which case applies. 
+It's very easy to forget this point, and to make mistakes in the sense of a transformation. 
+It helps if the code makes this distinction hard to ignore.
+(An example of a transformation that only has a single variant is the parity transformation: in order to reverse it, you apply the exact same operation a second time.)  
+
+**Characterizing a mass particle in SR requires two additional items.**
+In kinematics, everything comes from the position <b>r</b>(t).
+In Newtonian kinematics, there are 3 main items characterizing a mass particle:
+  - <b>r</b>(t) position
+  - <b>v</b>(t) velocity
+  - <b>a</b>(t) acceleration
+  
+In SR, there are 5 main items characterizing a mass particle:   
+  - <b>r</b>(t) position
+  - <b>v</b>(t) velocity
+  - <b>a</b>(t) acceleration
+  - a proper-time (because of time dilation)
+  - an orientation (because of the Silberstein rotation)
+  
+
+
+
+
+  
 **To see the 3D geometry in a given frame, you always need a time-slice in the given frame (not a light-slice).**
 To measure the length of a stick (in a given frame), you need a time-slice (in that frame).
 To measure the direction in which a stick is pointing (in a given frame), you need a time-slice (in that frame).
@@ -46,18 +93,9 @@ A rare exception would be a close fly-by of a bright early-type star (spectral c
 remain visible in the 'backward' direction for a long time.
 
 
-**Working with units in which c=1 is natural and desirable.**
-You can think, for example, of light-years and years, or light-seconds and seconds.
-As long as the 45-degree path for light rays is intact, you're fine.
-
 
 If you can accelerate at 1 gee for a few months to a year, your gamma gets quite high rather rapidly.
 
-
-**The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.**
-It's too close to 1 (about 22 decimals). Only the BigDecimal class can represent such numbers.
-However, working with BigDecimal is more painful than working with Double, so this is 
-left out as a special case.
 
 
 **The prototype for a 4-vector isn't an event x, it's rather
@@ -85,9 +123,6 @@ Different choices of geometry usually mean one direction of the transform is pre
 The inverse is still there, it's just in the background.
 
 
-**Vector formulations are simpler than component formulations.**
-Moving from components to vectors simplifies the implementation.
-I found this with the axis-angle approach to rotation (Rodrigues' formula), velocity transformation, and the Lorentz transformation.
 
 **Using the 4-momentum in modeling a history is more natural than using 4-velocity.**
 4-momentum applies to all objects, while 4-velocity applies only to objects having mass.
@@ -114,30 +149,6 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
-**Silberstein described the rotational aspect of non-collinear boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
-Thomas and Wigner came much later. 
-  
-**The geometry of an object (for example, the direction in which a stick is pointing) is affected by both regular flattening and the Silberstein rotation.**
-You need to be careful not to confuse the two effects.
-
-**Characterizing a mass particle in SR requires two additional items.**
-In kinematics, everything comes from the position <b>r</b>(t).
-In Newtonian kinematics, there are 3 main items characterizing a mass particle:
-  - <b>r</b>(t) position
-  - <b>v</b>(t) velocity
-  - <b>a</b>(t) acceleration
-  
-In SR, there are 5 main items characterizing a mass particle:   
-  - <b>r</b>(t) position
-  - <b>v</b>(t) velocity
-  - <b>a</b>(t) acceleration
-  - a proper-time (because of time dilation)
-  - an orientation (because of the Silberstein rotation)
-  
-**Transformations can be <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>active or passive</a>. 
-You need to always be aware of which case applies. **
-It's very easy to forget this point, and to make mistakes in the sense of a transformation. 
-It helps if the code makes this distinction hard to ignore.  
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.
@@ -148,7 +159,6 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
 
-**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is useful and compact.**
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
 He simply asserts that the geometry is that of a rotation. He seems to be incorrect.
