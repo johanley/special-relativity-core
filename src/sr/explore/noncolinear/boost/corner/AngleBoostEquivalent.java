@@ -35,13 +35,15 @@ public final class AngleBoostEquivalent {
   
   /**
    In K, the direction of the equivalent single boost, with respect to the direction of the first boost. Radians.
+   The sense of rotation is defined by a right-hand rule, from +X-axis to the +Y-axis.   
   */
   public double direction;
   
   /** 
    Silberstein (Thomas-Wigner) rotation angle (radians) with respect to the direction of the first boost.
    
-   This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K. 
+   This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K.
+   For circular motion, the sense of this rotation is opposite (retrograde) to the sense of the circular motion. 
   */
   public double θw;
 

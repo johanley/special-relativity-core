@@ -14,7 +14,7 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /**
- Find the boost-plus-rotation that equates to 2 perpendicular boosts.
+ Find the boost-plus-rotation that equates to two perpendicular boosts.
  
  <P>Here, two successive boosts are at right angles to each other, along 2 of the spatial axes.
  The more general case is to have the second boost at any angle with respect to the first.
@@ -23,8 +23,8 @@ import sr.output.text.TextOutput;
 public final class EquivalentBoostPlusRotation extends TextOutput {
   
   public static void main(String... args) {
-    EquivalentBoostPlusRotation twoBoosts = new EquivalentBoostPlusRotation(Axis.Z, 0.97, 0.95); 
-    twoBoosts.explore();
+    EquivalentBoostPlusRotation twoPerpendicularBoosts = new EquivalentBoostPlusRotation(Axis.Z, 0.97, 0.95); 
+    twoPerpendicularBoosts.explore();
   }
   
   /**
@@ -34,8 +34,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     
    @param pole the axis that is unaffected by the two boost operations
    @param β1 the speed for the first boost from K to K', along the first axis
-   @param β2 the speed of the second boost from K' to K'', along the second axis, at a right 
-   angle to the first
+   @param β2 the speed of the second boost from K' to K'', along the second axis, at a right angle to the first
   */
   public EquivalentBoostPlusRotation(Axis pole, double β1, double β2) {
     Util.mustBeSpatial(pole);
@@ -50,48 +49,13 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     spectrumOfSpeeds();
     outputToConsoleAnd("equivalent-boost-plus-rotation.txt");
   }
-
+  
   /** The equivalent boost-plus-rotation. */
   public AngleBoostEquivalent equivalent() {
     AngleBoostEquivalent result = new AngleBoostEquivalent(singleBoostSpeed(), direction(), θw());
     return result;
-  }
-  
-  /** Two boosts, the second perpendicular to the first (see class description). */
-  public Transform asCornerBoost() {
-    Transform result = TransformPipeline.join(
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), β1),
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(1), β2)
-    );
-    return result;
-  }
-  
-  /** A single boost followed by a single rotation. */
-  Transform asBoostPlusRotation() {
-    Transform result = TransformPipeline.join(
-      Rotation.of(pole, direction()), //bookkeeping rotation!: because my boost impl needs an axis to work with
-      
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), singleBoostSpeed()), 
-      Rotation.of(pole, θw()),
-      
-      Rotation.of(pole, -direction()) //reverse the earlier bookeeping rotation!
-    );
-    return result;
-  }
-  
-  /** A single rotation followed by a single boost. */
-  Transform asRotationPlusBoost() {
-    Transform result = TransformPipeline.join(
-      Rotation.of(pole, direction()), //bookkeeping rotation!: because my boost impl needs an axis to work with
-      
-      Rotation.of(pole, θw()),
-      Boost.alongThe(Axis.rightHandRuleFor(pole).get(0), singleBoostSpeed()),
-      
-      Rotation.of(pole, -direction()) //reverse the earlier bookeeping rotation!
-    );
-    return result;
-  }
-  
+  }  
+
   //PRIVATE 
   
   private Axis pole;
@@ -108,21 +72,18 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     Transform cornerBoost = asCornerBoost();
     Event event_Kpp_corner_boost = cornerBoost.changeFrame(event_K);
     
-    Transform boostPlusRotation = asBoostPlusRotation();
-    Event event_Kpp_boost_plus_rot = boostPlusRotation.changeFrame(event_K);
-    Transform rotationPlusBoost = asRotationPlusBoost();
-    Event event_Kpp_rot_plus_boost = rotationPlusBoost.changeFrame(event_K);
+    Event event_Kpp_boost_plus_rot = boostPlusRotation().changeFrame(event_K);
+    Event event_Kpp_rot_plus_boost = rotationPlusBoost().changeFrame(event_K);
     
     lines.add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     lines.add("Event:" + event_K);
     lines.add("Corner-boost transform: " + cornerBoost);
     lines.add(" Event after corner-boost: " + event_Kpp_corner_boost);
-    lines.add(Util.NL +"Boost+rotation transform: " + boostPlusRotation);
+    lines.add(Util.NL +"Boost+rotation transform: " + boostPlusRotation());
     lines.add(" Event after boost+rotation: " + event_Kpp_boost_plus_rot);
-    lines.add("Note the presence here of a 'housekeeping' rotation at the start/end. That's an artifact of the boosts here always using an axis.");
     lines.add(Util.NL + "Order matters. Rotation+boost isn't the same. The operations don't commute.");
     lines.add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
-    lines.add("Rotation+boost transform: " + rotationPlusBoost);
+    lines.add("Rotation+boost transform: " + rotationPlusBoost());
     lines.add(" Event from rotation+boost: " + event_Kpp_rot_plus_boost);
   }
   
@@ -140,10 +101,34 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     }
   }
   
-  /** 
-   Silberstein rotation angle.
-   Range -pi..pi.
-  */
+  /** Two boosts, the second perpendicular to the first (see class description). */
+  private Transform asCornerBoost() {
+    Transform result = TransformPipeline.join(
+      Boost.of(Axis.rightHandRuleFor(pole).get(0), β1),
+      Boost.of(Axis.rightHandRuleFor(pole).get(1), β2)
+    );
+    return result;
+  }
+  
+  /** A single boost followed by a single rotation. */
+  private Transform boostPlusRotation() {
+    Transform result = TransformPipeline.join(
+      Boost.of(singleBoostVelocity()),  
+      Rotation.of(pole, θw())
+    );
+    return result;
+  }
+  
+  /** A single rotation followed by a single boost. */
+  private Transform rotationPlusBoost() {
+    Transform result = TransformPipeline.join(
+      Rotation.of(pole, θw()),
+      Boost.of(singleBoostVelocity())  
+    );
+    return result;
+  }
+  
+  /** Silberstein rotation angle. Range -pi..pi.  */
   private double θw() {
     Velocity a = singleBoostVelocity();
     Velocity b = singleBoostVelocityReversed();
@@ -163,6 +148,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     );
   }
   
+  /** Reverse the order of parameters to the transformation formual. */
   private Velocity singleBoostVelocityReversed() {
     return VelocityTransformation.unprimedVelocity(
       velocityTwo(), 
@@ -178,9 +164,9 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     return Velocity.of(Axis.rightHandRuleFor(pole).get(1), β2); 
   }
   
-  /**
-   The direction of the single boost, with respect to the direction of the first boost.
-   Range -pi..pi. 
+  /** 
+   The direction of the single-boost, with respect to the direction of the first boost. Range -pi..pi.
+   All velocities must be in the XY plane.  
   */
   private double direction() {
     return velocityOne().turnsTo(singleBoostVelocity());

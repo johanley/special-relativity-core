@@ -91,8 +91,8 @@ public final class SilbersteinRotation extends TextOutput {
     double β1 = 0.8;
     double β2 = 0.6;
     Transform cornerBoost = TransformPipeline.join(
-      Boost.alongThe(Y, -β2), //minus signs, because we're going backwards here
-      Boost.alongThe(X, -β1)        
+      Boost.of(Y, -β2), //minus signs, because we're going backwards here
+      Boost.of(X, -β1)        
     );
     lines.add("Corner-boost backwards from K'' to K: "+ cornerBoost);
     lines.add("");

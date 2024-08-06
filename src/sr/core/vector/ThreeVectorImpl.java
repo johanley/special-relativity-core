@@ -177,6 +177,10 @@ public class ThreeVectorImpl implements ThreeVector {
     );
   }
   
+  @Override public ThreeVector unitVector() {
+    return this.divide(magnitude());
+  }
+  
   /** This implementation applies rounding. */
   @Override public String toString() {
     String sep = ",";

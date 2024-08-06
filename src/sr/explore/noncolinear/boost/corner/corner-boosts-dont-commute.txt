@@ -30,7 +30,7 @@ The two non-collinear boosts give different final event coordinates, according t
 Let's boost an event first along the X-axis, then along the Y-axis, and using the same boost speed.
 Event: [2.32, -15.79, 0.0, 0.0]
  Boost 1: X -0.6 gives [14.7425, -21.4775, 0.0, 0.0]
- Boost 2: Y -0.6 gives [18.42812, -21.4775, -11.05688, 0.0]
+ Boost 2: Y -0.6 gives [18.42812, -21.4775, -11.05687, 0.0]
 Now reverse the order of the boosts, for the same event.
 Event: [2.32, -15.79, 0.0, 0.0]
  Boost 1: Y -0.6 gives [2.9, -15.79, -1.74, 0.0]

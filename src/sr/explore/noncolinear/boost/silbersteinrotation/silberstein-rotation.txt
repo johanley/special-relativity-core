@@ -1,6 +1,6 @@
 Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.
 Rest length of the stick in K'': 1.0
-Corner-boost backwards from K'' to K: boost[Y,-0.6] boost[X,-0.8]
+Corner-boost backwards from K'' to K: boost [0.0,-0.6,0.0] boost [-0.8,0.0,0.0]
 
 All of the items below are in K.
 

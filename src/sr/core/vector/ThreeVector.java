@@ -82,4 +82,7 @@ public interface ThreeVector {
   /** Divide each component by the given (non-zero) scalar. Returns a new object. */
   public ThreeVector divide(double scalar);
   
+  /** Return a new vector in the same direction as this vector, but having unit magnitude. */
+  public ThreeVector unitVector();
+  
 }

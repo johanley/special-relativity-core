@@ -19,7 +19,7 @@ public final class TransformPipeline implements Transform {
     Reflection reflect = Reflection.of(Parity.EVEN, Parity.ODD, Parity.EVEN, Parity.EVEN);
     Displacement displace = Displacement.of(0.0,1.0,0.0,0.0);
     Rotation rotate = Rotation.of(Axis.Z, Util.degsToRads(10));
-    Boost boost = new Boost(Axis.X, 0.5);
+    Boost boost = Boost.of(Axis.X, 0.5);
     Transform[] ops = {rotate, displace, reflect, boost};
     TransformPipeline t = new TransformPipeline(ops);
     

@@ -84,6 +84,11 @@ The idea of an operation/transform and its inverse is almost always present in s
 Different choices of geometry usually mean one direction of the transform is preferred over another.
 The inverse is still there, it's just in the background.
 
+
+**Vector formulations are simpler than component formulations.**
+Moving from components to vectors simplifies the implementation.
+I found this with the axis-angle approach to rotation (Rodrigues' formula), velocity transformation, and the Lorentz transformation.
+
 **Using the 4-momentum in modeling a history is more natural than using 4-velocity.**
 4-momentum applies to all objects, while 4-velocity applies only to objects having mass.
 For similar reasons, the proper time can parameterize the history of a massive particle,

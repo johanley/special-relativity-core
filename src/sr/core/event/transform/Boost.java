@@ -4,95 +4,84 @@ import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.event.Event;
-
-import static sr.core.Util.mustBeSpatial;
+import sr.core.vector.Position;
+import sr.core.vector.ThreeVector;
+import sr.core.vector.Velocity;
 
 /**
- Lorentz Transformation of an {@link Event}, along one of the spatial axes.
+ <a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Lorentz Transformation</a> of an {@link Event}.
 
-<P>The geometry:
- <ul>
-  <li>transforms from K to K'. K' is moving with respect to K along the given axis with speed β.
-  <li>if the speed is positive (negative), then the relative motion is along the positive (negative) direction of the axis.
- </ul>
+ <P>The boost is a velocity. It can be in any direction. 
+ Here, it isn't restricted to being along one of the spatial coordinate axes.
+
+ <P>The geometry involves two frames of reference, here called K and K'.
+The K' frame is moving with a given velocity with respect the K frame.
+The origins of the two frames coincide; that is, 
+<pre>(ct,x,y,z) = (ct',x',y',z') = (0,0,0,0)</pre>
+ 
+ <P>A reversal of a Lorentz transformation corresponds to multiplying a velocity vector by -1 (reversing its direction).
+ When K and K' share the same orientation of the spatial axes, reversing the sign of the relative velocity corresponds to 
+ switching viewpoint from one frame to another.
 */
 public final class Boost implements Transform {
 
   /**
-   Constructor.
-   The geometry:
-   <ul>
-    <li>transforms from K to K'. K' is moving with respect to K along the given axis with speed β.
-    <li>if the speed is positive (negative), then the relative motion is along the positive (negative) direction of the axis.
-   </ul>
-   
-    @param spatialAxis the axis along which the K' frame is moving with respect to the K frame.
-    @param β the velocity parallel to the given spatial axis; can be either sign.
+   Factory method.
+   @param velocity of K' relative to K.
   */
-  public Boost(Axis spatialAxis, double β) {
-    mustBeSpatial(spatialAxis);
-    this.spatialAxis = spatialAxis;
-    this.β = β;
+  public static Boost of(Velocity velocity) {
+    return new Boost(velocity);
   }
-
-  /** Factory method. */
-  public static Boost alongThe(Axis spatialAxis, double β) {
-    return new Boost(spatialAxis, β);
+  
+  /** Convenience factory method for the case of a boost parallel to one of the spatial axes. */
+  public static Boost of(Axis axis, double β) {
+    Util.mustBeSpatial(axis);
+    return Boost.of(Velocity.of(axis, β));
   }
 
   /**
    Transform the event to the boosted inertial frame.  
    The inverse of {@link #changeEvent(Event)}. 
   */
-  @Override public Event changeFrame(Event vec) {
-    return boostIt(vec, +1);
+  @Override public Event changeFrame(Event event) {
+    return boostIt(event, +1);
   }
   
   /** 
    Transform the event to a new event in the same inertial frame.  
    The inverse of {@link #changeFrame(Event)}. 
   */
-  @Override public Event changeEvent(Event vecPrime) {
-    return boostIt(vecPrime, -1);
+  @Override public Event changeEvent(Event event) {
+    return boostIt(event, -1);
   }
   
   @Override public String toString() {
-    String sep = ",";
-    return "boost[" + spatialAxis+sep+ Util.round(β,5) + "]";
+    return "boost " + unit.times(β);
   }
-  
-  public double β() {return β;}
-  public Axis axis() {return spatialAxis;}
   
   // PRIVATE
-  
-  private Axis spatialAxis;
-  private double β;
 
-  private Event boostIt(Event v, int sign) {
-    Event result = boost(v, spatialAxis, β * sign);
-    Transform.sameIntervalFromOrigin(v, result);
-    return result;
-  }
+  /** Unsigned speed. */
+  private double β;
   
-  private Event boost(Event v, Axis spatialAxis, double β) {
-    EntangledPair pair = entangle(v.ct(), v.on(spatialAxis), β);
-    Event result = v;
-    result = result.put(Axis.CT, pair.time);
-    result = result.put(spatialAxis, pair.space);
-    return result;
-  }
- 
-  private static class EntangledPair {
-    double time;
-    double space;
-  }
+  /** Unit vector pointing in the direction of the boost-velocity. */
+  private ThreeVector unit;
   
-  private EntangledPair entangle(double ct, double space, double β) {
+  private Boost(Velocity velocity) {
+    this.β = velocity.magnitude();
+    this.unit = velocity.unitVector();
+  }
+
+  //>The formula is taken from 
+  //<a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Wikipedia</a>.
+  private Event boostIt(Event event, int sign) {
     double Γ = Physics.Γ(β);
-    EntangledPair result = new EntangledPair();
-    result.time =     Γ*ct - Γ*β*space;
-    result.space = -Γ*β*ct +   Γ*space;
-    return result;
+    Position r = event.position();
+    double ct_Kp = Γ * (event.ct() - sign * r.dot(unit) * β);
+    
+    ThreeVector a = unit.times(r.dot(unit) * (Γ - 1));
+    ThreeVector b = unit.times(Γ * event.ct() * β * sign);
+    ThreeVector position_Kp = event.position().plus(a).minus(b);
+    return Event.of(ct_Kp, position_Kp.x(), position_Kp.y(), position_Kp.z());
   }
 }

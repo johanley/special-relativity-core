@@ -85,7 +85,7 @@ public class StickFlattening extends TextOutput {
     lines.add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
-    Transform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.of(X, β);
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
@@ -150,7 +150,7 @@ public class StickFlattening extends TextOutput {
     lines.add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
     
     //K': boost along the X axis
-    Transform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.of(X, β);
     lines.add("Boost:" + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
@@ -207,7 +207,7 @@ public class StickFlattening extends TextOutput {
     
     //K': boost along the X axis
     double β = 0.8772684879784525;
-    Transform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.of(X, β);
     lines.add(Util.NL + "Boost: " + boostX);
     lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'

@@ -121,7 +121,7 @@ public final class LightSliceOfAStick extends TextOutput {
   private double apparentStickLength(double β, Event theDetectionEvent) {
     //K to K': boost along the X-axis at the given speed
     //in K', the stick is receding at speed β in the negative-X direction
-    Transform boostX = Boost.alongThe(X, β);
+    Transform boostX = Boost.of(X, β);
     Event eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boostX);
     Event eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boostX);
     //now infer the apparent length of the stick from this pair of events on the past light-cone of the detector

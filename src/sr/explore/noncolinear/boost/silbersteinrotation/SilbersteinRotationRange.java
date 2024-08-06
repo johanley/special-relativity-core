@@ -31,7 +31,7 @@ public final class SilbersteinRotationRange extends TextOutput {
   void showRangeθw() {
     for (SpeedValues β1 : SpeedValues.nonExtremeValues()) {
       for (SpeedValues β2 : SpeedValues.nonExtremeValues()) {
-        EquivalentBoostPlusRotation range = new EquivalentBoostPlusRotation(Axis.X, β1.β(), β2.β());
+        EquivalentBoostPlusRotation range = new EquivalentBoostPlusRotation(Axis.Z, β1.β(), β2.β());
         Double θw = range.equivalent().θw;
         lines.add(table.row(β1.β(), β2.β(), round(Util.radsToDegs(θw))));
       }

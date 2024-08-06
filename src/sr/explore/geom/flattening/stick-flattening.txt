@@ -7,7 +7,7 @@ K b: [0.0, 2.0, 0.0, 0.0]
 K b-a: [0.0, 1.0, 0.0, 0.0]
 K stick length:1.0
 
-Boost: boost[X,0.6]
+Boost: boost [0.6,0.0,0.0]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
 K' a: [-0.525, 1.115, 0.0, 0.0]
 K' b: [-0.525, 1.915, 0.0, 0.0]
@@ -23,7 +23,7 @@ K b: [0.0, 2.0, 0.0, 0.0]
 K b-a: [0.0, 1.0, 0.0, 0.0]
 K stick length:1.0
 
-Boost: boost[X,0.9999]
+Boost: boost [0.9999,0.0,0.0]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
 K' a: [-57.97713, 57.98548, 0.0, 0.0]
 K' b: [-57.97713, 57.99962, 0.0, 0.0]
@@ -42,7 +42,7 @@ K b-a:[0.0, 1.0, 1.0, 0.0]
 K stick length:1.4142135623730951
 K stick angle with respect to the X-axis: 45.0°
 
-Boost:boost[X,0.6]
+Boost:boost [0.6,0.0,0.0]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
 K' a: [0.225, -0.135, 0.0, 0.0]
 K' b: [0.225, 0.665, 1.0, 0.0]
@@ -60,12 +60,12 @@ K b-a:[0.0, 1.0, 1.0, 0.0]
 K stick length:1.4142135623730951
 K stick angle with respect to the X-axis: 45.0°
 
-Boost:boost[X,0.9999]
+Boost:boost [0.9999,0.0,0.0]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
 K' a: [12.72824, -12.72697, 0.0, 0.0]
 K' b: [12.72824, -12.71283, 1.0, 0.0]
 K' b-a: [0.0, 0.01414, 1.0, 0.0]
-K' stick length: 1.0000999900087841
+K' stick length: 1.0000999899850769
 K' stick angle with respect to the X-axis: 89.1898°
 K' stick angle directly from a formula: 89.1898°
 
@@ -78,11 +78,11 @@ K b-a:[0.0, 0.91192, 0.41036, 0.0]
 K stick length:1.0
 K stick angle wrt X-axis: 24.227745317954167°
 
-Boost: boost[X,0.87727]
+Boost: boost [0.87727,0.0,0.0]
 Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:
 K' a: [0.3125, -0.27415, 0.0, 0.0]
 K' b: [0.3125, 0.16358, 0.41036, 0.0]
 K' b-a: [0.0, 0.43772, 0.41036, 0.0]
-K' b-a stick length: 0.6000000000015474
-K' stick angle with respect to the X-axis: 43.152389733866855°
-Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!
+K' b-a stick length: 0.5999999999880471
+K' stick angle with respect to the X-axis: 43.152389735075474°
+Change in stick angle with respect to the X-axis: 18.924644417121307° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!
