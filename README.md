@@ -85,16 +85,13 @@ It's defined only between pairs of 4-vectors that are either both time-like or b
 Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
-**A history intersects in dramatically different ways with a time-slice versus a light-slice.**
-The intersection of a time-slice surface (with <em>ct=constant</em>) with an object's history defines the spatial geometry of an object, relative to a frame.
-The intersection of the past light cone of a detector with an object's history defines the optical appearance of the object at the detector.
+**Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
+A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
 
-For a receding stick travelling parallel to its longest dimension, the light-slice is always shorter than the time-slice when it's receding from the detector.
-At ultra-relativistic recession speeds, the light-slice length approaches 0.5 times the time-slice length.
+**Time dilation and length contraction are two sides of the same coin.**
+The traveler measures flattening along the line of motion (and no time dilation on the spacecraft). 
+The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
 
-For an approaching stick, the light-slice length is always longer than the time-slice length.
-Indeed, the light-slice shows an expansion over the rest-length.
- 
 **The spatial geometry of an object is defined by a time-slice in the given frame (not a light-slice).**
 Spatial geometry consists of two things: distances and angles.
 To measure the length of a stick (in a given frame), you need a time-slice, a surface with <em>ct=constant</em>, (in that frame).
@@ -108,6 +105,18 @@ A better word is *flattening*.
 Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
 Only that special case has geometrical changes characterized solely as a change of length.
 In every other case, the stick will change both length and direction.
+
+
+**A history intersects in dramatically different ways with a time-slice versus a light-slice.**
+The intersection of a time-slice surface (with <em>ct=constant</em>) with an object's history defines the spatial geometry of an object, relative to a frame.
+The intersection of the past light cone of a detector with an object's history defines the optical appearance of the object at the detector.
+
+For a receding stick travelling parallel to its longest dimension, the light-slice is always shorter than the time-slice when it's receding from the detector.
+At ultra-relativistic recession speeds, the light-slice length approaches 0.5 times the time-slice length.
+
+For an approaching stick, the light-slice length is always longer than the time-slice length.
+Indeed, the light-slice shows an expansion over the rest-length.
+ 
 
 
 **Two boosts commute only when they are in the same line.**
@@ -129,33 +138,6 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
-
-
-
-
-**Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
-A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
-*However*, **the light-slice view is significantly different from the time-slice view.** 
-In the forward direction (for the light-slice view), the flattening is replaced by an actual expansion, while in the reverse direction 
-the flattening increases (and doubles in the ultra-relativistic limit). 
-Similarly, the Doppler factor significantly changes how frequencies (clocks) are measured by a single detector.
-
-
-**Time dilation and length contraction are two sides of the same coin.**
-The traveler measures flattening-of-the-world along the line of motion (and no time dilation on the spacecraft). 
-The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
-
-
-
-Trying to model 4-vectors as generic classes seemed to be inferior to the simpler style of a more basic FourVector class. 
-The only oddity is the need to distinguish between events (sensitive to displacement operations) and all of the differential 4-vectors (insensitive to displacement operations).
-
-
-Having the core coord transforms lets you build a history out of simple building-blocks.
-The building-blocks retain their simple geometry, while the coord transforms do the job of allowing 
-all kinds of choices for changing the frame of reference.
-
-
 
 
 
