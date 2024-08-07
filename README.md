@@ -85,6 +85,9 @@ It's defined only between pairs of 4-vectors that are either both time-like or b
 Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
+**Unexpected: so far, this project models 3-vectors, but not 4-vectors.**
+There is a class for events, but there's no class for 4-vectors. 
+
 **Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.
 

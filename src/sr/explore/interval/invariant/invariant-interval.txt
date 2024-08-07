@@ -1,0 +1,58 @@
+The interval (or squared-interval) between any two events is invariant.
+Any combination of these fundamental transformations will leave the interval unaffected:
+ - boost
+ - rotation
+ - displacement
+ - reflection
+
+Two events in K:
+  [10.0, 1.0, 2.0, 1.0]
+  [15.0, 3.0, 2.0, 5.0]
+Displacement in K (b - a):
+  [5.0, 2.0, 0.0, 4.0] squared-interval:5.0
+
+Transform to K' using a mix of several operations: 
+  boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] displacement[1.0,-2.0,-3.0,4.0] reflect[ODD,ODD,ODD,ODD]
+
+Two events in K':
+  [-10.16313, 0.61867, -5.41614, 8.23323]
+  [-13.6361, 2.02673, -5.65198, 5.99195]
+Displacement in K' (b' - a'):
+  [-3.47297, 1.40806, -0.23583, -2.24127] squared-interval:5.0
+
+Difference in squared-interval between K and K': 0.0
+
+----------------------------------------------------------------------------------------------------
+
+The above fails when you consider the interval between an event and the origin (0,0,0,0).
+You need to use the DIFFERENCE between two events.
+The problem is with the DISPLACEMENT operation.
+The prototype 4-vector is not an event, but a difference between two events.
+
+This FAILS when a displacement operation is included:
+
+Single event in K:
+  [10.0, 1.0, 2.0, 1.0]
+Squared-interval with respect to the origin: 94.0
+
+Transform to K' using a mix of several operations: 
+  boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] displacement[1.0,-2.0,-3.0,4.0] reflect[ODD,ODD,ODD,ODD]
+Single event in K':
+  [-10.19382, -4.29722, -6.87998, -0.33728]
+Squared-interval with respect to the origin: 38.0
+
+Difference in squared-interval between K and K': -56.0
+
+But it SUCCEEDS when the displacement operation is excluded:
+
+Single event in K:
+  [10.0, 1.0, 2.0, 1.0]
+Squared-interval with respect to the origin: 94.0
+
+Transform to K' using a mix of several operations: 
+  boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD]
+Single event in K':
+  [-13.22382, -6.73478, -3.52318, -4.80617]
+Squared-interval with respect to the origin: 94.0
+
+Difference in squared-interval between K and K': 0.0
