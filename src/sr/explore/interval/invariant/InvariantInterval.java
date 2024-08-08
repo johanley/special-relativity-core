@@ -13,7 +13,8 @@ import sr.core.vector.Velocity;
 import sr.output.text.TextOutput;
 
 /**
- Transformations don't change the fundamental quadratic form, <em>s<sup>2</sup></em>.
+ Transformations don't change the fundamental quadratic form, 
+ the squared-interval <em>s<sup>2</sup></em> between two events.
  
  <P>The prototype 4-vector is the displacement in space-time. 
  It's not an event, but rather a <em>difference</em> between events. 

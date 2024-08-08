@@ -55,15 +55,19 @@ public final class SpatialRotation implements SpatialTransform {
   /** The reversal is simply reversing the sign of the angle θ (positive versus negative sense of rotation). */
   private ThreeVector transform(ThreeVector v, int sign) {
     //https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula
-    double θ = sign * θ(); 
-    double cosθ = Math.cos(θ);
-    double sinθ = Math.sin(θ);
-    ThreeVector e = unitVector();
-    
-    ThreeVector a = v.times(cosθ); 
-    ThreeVector b = e.cross(v).times(sinθ); 
-    ThreeVector c = e.times((1 - cosθ) * e.dot(v));
-    return a.plus(b).plus(c);
+    ThreeVector result = v.copy();
+    double θ = sign * θ();
+    if (θ > 0) {
+      double cosθ = Math.cos(θ);
+      double sinθ = Math.sin(θ);
+      ThreeVector e = unitVector();
+      
+      ThreeVector a = v.times(cosθ); 
+      ThreeVector b = e.cross(v).times(sinθ); 
+      ThreeVector c = e.times((1 - cosθ) * e.dot(v));
+      result = a.plus(b).plus(c);
+    }
+    return result;
   }
   
   private double θ() {
@@ -71,6 +75,7 @@ public final class SpatialRotation implements SpatialTransform {
   }
   
   private ThreeVector unitVector() {
+    //be careful of division by 0
     return axisAngle.times(1.0/θ());
   }
 }

@@ -1,6 +1,7 @@
 package sr.core.history;
 
 import sr.core.event.Event;
+import sr.core.vector.AxisAngle;
 import sr.core.vector.Velocity;
 
 /**
@@ -60,9 +61,10 @@ public abstract class MoveableHistory implements History {
   
   /** 
    Return an approximation to the velocity of the object at the given coordinate-time.
-   This method can fail for ultra-relativistic speeds, because the 
+   <P>This method can fail for ultra-relativistic speeds, because the 
    approximate calculation returns a speed of 1.0.
-   If that's the case, you'll need to find other means to calculate the velocity,  
+   It will also fail at events where the velocity's derivative is not defined (for example, hard turning points).
+   <P>If that's the case, you'll need to find other means to calculate the velocity,  
    perhaps by overriding this method.
   */
   public Velocity velocity(double ct) {
@@ -72,6 +74,15 @@ public abstract class MoveableHistory implements History {
     double Δt = Δ.ct();
     return Velocity.of(Δ.x()/Δt, Δ.y()/Δt, Δ.z()/Δt);
   }
+  
+  /**
+   How the object has rotated because of Silberstein (Thomas-Wigner) rotation of the co-moving frame.
+   <P>This quantity is similar to proper-time, in that the zero is arbitrary.
+   <P>Returns a zero-vector if the motion is in a straight line.
+   <P>There's no restriction on the magnitude of the returned axis-angle; for example, it's not restricted to the range 0..2pi range.
+   This helps in knowing how many full rotations have taken place. 
+  */
+  public abstract AxisAngle rotation(double Δct);
   
   //PRIVATE
   

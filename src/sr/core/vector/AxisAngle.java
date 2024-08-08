@@ -25,6 +25,11 @@ public final class AxisAngle extends ThreeVectorImpl {
     return new AxisAngle(axis, value);
   }
 
+  /*** Factory method, all components zero. */
+  public static AxisAngle zero() {
+    return AxisAngle.of(0,0,0);
+  }
+
   private AxisAngle(double x, double y, double z) {
     super(x, y, z);
   }

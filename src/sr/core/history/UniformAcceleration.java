@@ -7,6 +7,7 @@ import static sr.core.Util.sqroot;
 
 import sr.core.Axis;
 import sr.core.event.Event;
+import sr.core.vector.AxisAngle;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
 
@@ -79,6 +80,10 @@ public final class UniformAcceleration extends MoveableHistory {
     double gp = gp(Δct);
     double β = (gee * Δct) * Math.pow(1 + sq(gp), -0.5);
     return Velocity.of(axis, β);
+  }
+  
+  @Override public AxisAngle rotation(double Δct) {
+    return AxisAngle.zero();
   }
   
   @Override public String toString() {

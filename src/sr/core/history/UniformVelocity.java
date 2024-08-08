@@ -2,6 +2,7 @@ package sr.core.history;
 
 import sr.core.Physics;
 import sr.core.event.Event;
+import sr.core.vector.AxisAngle;
 import sr.core.vector.Position;
 import sr.core.vector.Velocity;
 
@@ -71,6 +72,10 @@ public final class UniformVelocity extends MoveableHistory {
   
   @Override protected double Δτ(double Δct) {
     return Δct / Physics.Γ(velocity.magnitude());
+  }
+  
+  @Override public AxisAngle rotation(double Δct) {
+    return AxisAngle.zero();
   }
   
   @Override public String toString() {
