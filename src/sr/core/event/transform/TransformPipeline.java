@@ -29,6 +29,9 @@ public final class TransformPipeline implements Transform {
     if (! in.equalsWithTinyDiff(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
     }
+    else {
+      System.out.println("OK.");
+    }
   }
   
   /**
@@ -45,7 +48,7 @@ public final class TransformPipeline implements Transform {
     return new TransformPipeline(operations);
   }
   
-  /** Apply the operations (in order) to the given FourVector. */
+  /** Apply the operations (in order) to the given event. */
   @Override public Event changeFrame(Event vec) {
     Event result = vec;
     for (Transform op : operations) {
@@ -55,7 +58,7 @@ public final class TransformPipeline implements Transform {
   }
   
   /** 
-   Apply the operations to the given FourVector, but in <em>reverse</em> order <em>and</em> 
+   Apply the operations to the given event, but in <em>reverse</em> order <em>and</em> 
    with the <em>inverse</em> transform. 
   */
   @Override public Event changeEvent(Event vecPrime) {

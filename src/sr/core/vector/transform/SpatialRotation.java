@@ -57,7 +57,7 @@ public final class SpatialRotation implements SpatialTransform {
     //https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula
     ThreeVector result = v.copy();
     double θ = sign * θ();
-    if (θ > 0) {
+    if (Math.abs(θ) > 0) {
       double cosθ = Math.cos(θ);
       double sinθ = Math.sin(θ);
       ThreeVector e = unitVector();

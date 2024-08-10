@@ -47,11 +47,11 @@ public final class VelocityTransformation {
   private static Velocity transform(Velocity v, Velocity u, TransformInto direction) {
     LorentzTransformation lorentzTransform = LorentzTransformation.of(v);
     //change the incoming 3-vector to a velocity 4-vector (4 rows, 1 column)
-    Matrix u_4 = asFourVelocity(u);
+    Matrix input_4 = asFourVelocity(u);
     //now the transform is easy:
-    Matrix u_p_4 = lorentzTransform.transformVector(u_4, direction);
+    Matrix output_4 = lorentzTransform.transformVector(input_4, direction);
     //translate the result back into a 3-vector
-    return asThreeVelocity(u_p_4);
+    return asThreeVelocity(output_4);
   }
 
   /** Translate into a 4-vector (a 4x1 matrix). */
@@ -97,7 +97,7 @@ public final class VelocityTransformation {
   }
   
   /** Informal tests. */
-  public static void main(String[] args) {
+  private static void main(String[] args) {
     Velocity boost = Velocity.of(Axis.X, 0.1);
     Velocity object = Velocity.of(Axis.Y, 0.1);
     Velocity test1 = VelocityTransformation.primedVelocity(boost, object);

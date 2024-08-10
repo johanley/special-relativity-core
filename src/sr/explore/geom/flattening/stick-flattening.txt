@@ -65,7 +65,7 @@ Time-slice pair of events in K' (same ct' coords), to see the geometry of the mo
 K' a: [12.72824, -12.72697, 0.0, 0.0]
 K' b: [12.72824, -12.71283, 1.0, 0.0]
 K' b-a: [0.0, 0.01414, 1.0, 0.0]
-K' stick length: 1.0000999899850769
+K' stick length: 1.0000999900087841
 K' stick angle with respect to the X-axis: 89.1898°
 K' stick angle directly from a formula: 89.1898°
 
@@ -83,6 +83,6 @@ Time-slice pair of events in K' (same ct' coords), to see the geometry of the mo
 K' a: [0.3125, -0.27415, 0.0, 0.0]
 K' b: [0.3125, 0.16358, 0.41036, 0.0]
 K' b-a: [0.0, 0.43772, 0.41036, 0.0]
-K' b-a stick length: 0.5999999999880471
-K' stick angle with respect to the X-axis: 43.152389735075474°
-Change in stick angle with respect to the X-axis: 18.924644417121307° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!
+K' b-a stick length: 0.6000000000015474
+K' stick angle with respect to the X-axis: 43.152389733866855°
+Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!

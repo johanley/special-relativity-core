@@ -4,7 +4,7 @@
  <P>The {@link Transform} operations can also be viewed not as a change of inertial frame, 
  but as mapping of one event to another, all with respect to the one and the same inertial frame.
  
- <P>In Minkowski spacetime, there are 4 fundamental operations:
+ <P>In Minkowski space-time, there are 4 fundamental operations:
  <ul>
   <li>{@link Displacement}: <em>displacement</em> (or translation) of the origin (see below!).
   <li>{@link Reflection}:<em>reflection</em> (or parity) in which one or more of the 4 space-time axes are reversed. 

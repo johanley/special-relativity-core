@@ -1,12 +1,15 @@
 package sr.core.event.transform;
 
 import sr.core.Axis;
+import sr.core.LorentzTransformation;
+import sr.core.Matrix;
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.event.Event;
 import sr.core.vector.Position;
 import sr.core.vector.ThreeVector;
 import sr.core.vector.Velocity;
+import sr.core.TransformInto;
 
 /**
  <a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Lorentz Transformation</a> of an {@link Event}.
@@ -44,7 +47,7 @@ public final class Boost implements Transform {
    The inverse of {@link #changeEvent(Event)}. 
   */
   @Override public Event changeFrame(Event event) {
-    return boostIt(event, +1);
+    return booster(event, +1);
   }
   
   /** 
@@ -52,7 +55,7 @@ public final class Boost implements Transform {
    The inverse of {@link #changeFrame(Event)}. 
   */
   @Override public Event changeEvent(Event event) {
-    return boostIt(event, -1);
+    return booster(event, -1);
   }
   
   @Override public String toString() {
@@ -61,19 +64,50 @@ public final class Boost implements Transform {
   
   // PRIVATE
 
-  /** Unsigned speed. */
-  private double β;
+  private Velocity velocity;
   
+  /** Magnitude of the velocity, unsigned. */
+  private double β;
   /** Unit vector pointing in the direction of the boost-velocity. */
   private ThreeVector unit;
   
   private Boost(Velocity velocity) {
     this.β = velocity.magnitude();
     this.unit = velocity.unitVector();
+    this.velocity = velocity;
   }
 
-  //>The formula is taken from 
-  //<a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Wikipedia</a>.
+  private Event booster(Event event, int sign) {
+    LorentzTransformation lorentzTransform = LorentzTransformation.of(velocity);
+    TransformInto direction = TransformInto.from(sign);
+    Matrix input = asFourVector(event);
+    Matrix output = lorentzTransform.transformVector(input, direction);
+    return asEvent(output);
+  }
+
+  private Matrix asFourVector(Event event) {
+    double[][] result = new double[4][1];
+    result[0][0] = event.ct();
+    result[1][0] = event.x();
+    result[2][0] = event.y();
+    result[3][0] = event.z();
+    return Matrix.of(result);
+  }
+  
+  private Event asEvent(Matrix output) {
+    return Event.of (
+      output.get(0,0), 
+      output.get(1,0), 
+      output.get(2,0), 
+      output.get(3,0) 
+    );
+  }
+
+  /**
+   An alternate implementation using three-vectors.
+   Useful for testing.
+   https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations
+  */
   private Event boostIt(Event event, int sign) {
     double Γ = Physics.Γ(β);
     Position r = event.position();
@@ -83,5 +117,21 @@ public final class Boost implements Transform {
     ThreeVector b = unit.times(Γ * event.ct() * β * sign);
     ThreeVector position_Kp = event.position().plus(a).minus(b);
     return Event.of(ct_Kp, position_Kp.x(), position_Kp.y(), position_Kp.z());
+  }
+  
+  /** Informal test harness. */
+  private static void main(String[] args) {
+    Event ev = Event.of(10.0, 1.0, 2.0, 3.0);
+    Boost boost = Boost.of(Velocity.of(Axis.X, 0.2));
+    Event ev1 = boost.changeFrame(ev);
+    Event ev2 = boost.booster(ev, +1);
+    System.out.println(ev1);
+    System.out.println(ev2);
+    
+    Event ev3 = boost.changeEvent(ev);
+    Event ev4 = boost.booster(ev, -1);
+    System.out.println(ev3);
+    System.out.println(ev4);
+    
   }
 }

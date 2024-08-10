@@ -5,12 +5,12 @@ Corner-boost transform: boost [0.97,0.0,0.0] boost [0.0,0.95,0.0]
  Event after corner-boost: [115.91503, -35.78702, -109.80703, 1.0]
 
 Boost+rotation transform: boost [0.97,0.23095,0.0] rotation[0.0,0.0,-1.02842]
- Event after boost+rotation: [115.91503, -112.52031, -26.02833, 1.0]
+ Event after boost+rotation: [115.91503, -35.78702, -109.80703, 1.0]
 
 Order matters. Rotation+boost isn't the same. The operations don't commute.
 But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).
 Rotation+boost transform: rotation[0.0,0.0,-1.02842] boost [0.97,0.23095,0.0]
- Event from rotation+boost: [115.91503, -112.52031, -26.02833, 1.0]
+ Event from rotation+boost: [131.90826, -128.27952, -29.0887, 1.0]
 
 β                    β                    Equivalent           Equivalent    θw      (v = vx + vy)         (v = vy + vx)     
 X-axis               Y-axis               β                    direction                                                     
