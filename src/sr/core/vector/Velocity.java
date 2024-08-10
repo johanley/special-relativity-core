@@ -26,6 +26,11 @@ public final class Velocity extends ThreeVectorImpl {
   public static Velocity of(Axis axis, double βi) {
     return new Velocity(axis, βi);
   }
+
+  /** Factory method for the case in which the data is already in a ThreeVector (as the result of a calculation). */
+  public static Velocity of(ThreeVector v) {
+    return new Velocity(v.x(), v.y(), v.z());
+  }
   
   public static Velocity zero() {
     return Velocity.of(0.0, 0.0, 0.0);

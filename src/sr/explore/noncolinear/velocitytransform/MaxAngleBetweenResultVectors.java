@@ -46,7 +46,7 @@ public final class MaxAngleBetweenResultVectors extends TextOutput {
   }
   
   private void findTheLargestAngleBetweenWhenAdding(Velocity a) {
-    Velocity b = Velocity.of(a.x(), a.y(), a.z()); //to start with
+    Velocity b = Velocity.of(a); //to start with
     int rotationAngle = 0;
     Velocity vWithMaxAngle = null;
     double maxAngleBetween = 0;

@@ -117,14 +117,14 @@ public class CircularMotion extends MoveableHistory {
   private Velocity tangentialVelocity(double Δct) {
     Velocity base = Velocity.of(Axis.rightHandRuleFor(rotationalAxis).get(1), β);
     ThreeVector result = spatialRotation(base, Δct);
-    return Velocity.of(result.x(), result.y(), result.z());
+    return Velocity.of(result);
   }
   
   private Acceleration acceleration(double Δct) {
     double mag = Util.sq(β) / radius;
     Acceleration base = Acceleration.of(Axis.rightHandRuleFor(rotationalAxis).get(0), -mag);
     ThreeVector result = spatialRotation(base, Δct);
-    return Acceleration.of(result.x(), result.y(), result.z());
+    return Acceleration.of(result);
   }
   
   private ThreeVector spatialRotation(ThreeVector base, double Δct) {

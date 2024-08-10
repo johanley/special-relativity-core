@@ -60,7 +60,7 @@ public final class ThereAndBack implements History {
   
   private History stitchedHistory(DeltaBase deltaBase, Velocity velocity) {
     MoveableHistory leg1 = UniformVelocity.of(deltaBase, velocity);
-    MoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(-velocity.x(), -velocity.y(), -velocity.z()));
+    MoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(velocity.times(-1)));
     StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(leg1);
     builder.addTheNext(leg2, deltaBase.ΔbaseEvent().ct());
     return builder.build();

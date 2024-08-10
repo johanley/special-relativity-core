@@ -17,7 +17,12 @@ public final class Acceleration extends ThreeVectorImpl {
   public static Acceleration of(Axis axis, double ai) {
     return new Acceleration(axis, ai);
   }
-  
+
+  /** Factory method for the case in which the data is in some ThreeVector (due to a calculation). */
+  public static Acceleration of(ThreeVector v) {
+    return new Acceleration(v.x(), v.y(), v.z());
+  }
+
   public static Acceleration zero() {
     return Acceleration.of(0.0, 0.0, 0.0);
   }

@@ -148,7 +148,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     );
   }
   
-  /** Reverse the order of parameters to the transformation formual. */
+  /** Reverse the order of parameters to the transformation formula. */
   private Velocity singleBoostVelocityReversed() {
     return VelocityTransformation.unprimedVelocity(
       velocityTwo(), 
