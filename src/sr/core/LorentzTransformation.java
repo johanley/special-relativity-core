@@ -20,8 +20,6 @@ import static sr.core.TransformInto.*;
   <li>velocity transformation
   <li>electromagnetic field transformation
  </ul> 
- 
- <P>The caller usually needs to transform 3-vectors into corresponding 4-vectors (or 4-tensors) before using this class.
 */
 public final class LorentzTransformation {
 

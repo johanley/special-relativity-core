@@ -125,8 +125,8 @@ Indeed, the light-slice shows an expansion over the rest-length.
 **Two boosts commute only when they are in the same line.**
 A corner-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
-The (Thomas-Wigner) rotation angle is large when the speeds are high.
-It's never larger than 90 degrees (same as the stick-flattening angle).
+The (Thomas-Wigner) rotation angle is small for low speeds, but for 
+ultra-relativistic speeds it increases rapidly without bound.
 
 What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
