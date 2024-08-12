@@ -14,6 +14,15 @@ public final class Matrix {
   public static Matrix of(double[][] data) {
     return new Matrix(data);  
   }
+
+  /** Return an nxn identity matrix. */
+  public static Matrix identity(int n) {
+    Matrix result = new Matrix(n, n);
+    for (int i = 0; i < n; i++) {
+      result.data[i][i] = 1;
+    }
+    return result;
+  }  
   
   /** 
    Matrix multiplication, return this * that.

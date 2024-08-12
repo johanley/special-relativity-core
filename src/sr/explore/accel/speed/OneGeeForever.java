@@ -32,6 +32,7 @@ import sr.output.text.TextOutput;
             | 
             |     
  </pre>
+ An electron in a uniform electric field follows this type of history.
  */
 public final class OneGeeForever extends TextOutput {
   

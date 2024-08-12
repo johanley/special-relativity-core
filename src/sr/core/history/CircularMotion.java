@@ -15,6 +15,9 @@ import sr.core.vector.transform.SpatialRotation;
 /**
  History for a mass particle moving uniformly in a circle.
  
+ <P>An electron moving in a perpendicular to a uniform magnetic field follows this type of history.
+ (A helical motion is the general case of an electron moving in a uniform magnetic field.)
+
  <P>The axis of the circular motion is one of the spatial coordinate axes.
  A change in sign of the speed changes the direction of circular motion.
  

@@ -62,6 +62,10 @@ public final class LorentzTransformation {
    @param sign +1 for returning primed quantities, -1 for returning unprimed quantities. Flips the sign of the boost velocity.
   */
   private Matrix Λ(int sign){
+    //avoid division by zero errors
+    if (boostVelocity.magnitude() == 0.0) {
+      return Matrix.identity(4);
+    }
     
     //https://en.wikipedia.org/wiki/Lorentz_transformation#Proper_transformations
     

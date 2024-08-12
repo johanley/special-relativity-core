@@ -15,6 +15,9 @@ import sr.core.vector.Velocity;
  History for a particle with mass moving with uniform 
  <a href='https://en.wikipedia.org/wiki/Proper_acceleration'>proper acceleration</a>, 
  in a fixed direction.
+ 
+ <P>An electron moving in a uniform electric field follows this type of history.
+
 
  <P>A person riding in a rocket with uniform proper acceleration feels a constant g-force.
  <P>The initial velocity at the origin-event is 0. 
