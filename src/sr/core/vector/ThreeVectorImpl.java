@@ -3,7 +3,7 @@ package sr.core.vector;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
-import static sr.core.Util.sqroot;
+import static sr.core.Util.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,8 +34,9 @@ public class ThreeVectorImpl implements ThreeVector {
     return new ThreeVectorImpl(x, y, z);
   }
   
-  /** Factory method. The vector has 1 non-zero component, along the given coordinate axis. */
+  /** Factory method. The vector has 1 non-zero component, along the given spatial coordinate axis. */
   public static ThreeVectorImpl of(Axis axis, double value) {
+    mustBeSpatial(axis);
     return new ThreeVectorImpl(axis, value);
   }
   
@@ -52,6 +53,7 @@ public class ThreeVectorImpl implements ThreeVector {
   }
 
   @Override public double on(Axis axis) {
+    mustBeSpatial(axis);
     return components.get(axis);
   }
   
@@ -96,6 +98,7 @@ public class ThreeVectorImpl implements ThreeVector {
   }
   
   @Override public ThreeVector put(Axis axis, double value) {
+    mustBeSpatial(axis);
     Map<Axis, Double> updated = new LinkedHashMap<>();
     updated.putAll(components);
     updated.put(axis, value);
@@ -201,6 +204,14 @@ public class ThreeVectorImpl implements ThreeVector {
   protected ThreeVectorImpl(Axis axis, double value) {
     this(0.0, 0.0, 0.0);
     this.components.put(axis, value);
+  }
+  
+  protected ThreeVectorImpl(double magnitude, Direction direction) {
+    this(
+      magnitude * direction.x(), 
+      magnitude * direction.y(), 
+      magnitude * direction.z()
+    );
   }
 
   private Map</*spatial*/Axis, Double> components = new LinkedHashMap<>();

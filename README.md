@@ -120,7 +120,12 @@ At ultra-relativistic recession speeds, the light-slice length approaches 0.5 ti
 For an approaching stick, the light-slice length is always longer than the time-slice length.
 Indeed, the light-slice shows an expansion over the rest-length.
  
+**Matrix forms are useful.**
+With rearrangement of the covariant/contravariant indices, some standard expressions based on index gymnastics can be 
+brought into a form which maps exactly to matrix multiplication. Example: the transformation of the electromagnetic field tensor.
 
+**Aberration and the Doppler effect are two aspects of one phenomenon.**
+Both come directly from the Lorentz Transformation of the wave vector k<sup>i</sup>.
 
 **Two boosts commute only when they are in the same line.**
 A corner-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.

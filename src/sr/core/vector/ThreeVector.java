@@ -67,7 +67,7 @@ public interface ThreeVector {
   /** Return a copy of this object, as a new object. */
   public ThreeVector copy();
 
-  /** Replace one component of this three-vector with the given value. Returns a new object. */
+  /** Replace one component of this three-vector with the given value on one spatial axis. Returns a new object. */
   public ThreeVector put(Axis axis, double value);
   
   /** This vector plus 'that' 3-vector (for each component). Returns a new object.*/

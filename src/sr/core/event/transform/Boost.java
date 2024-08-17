@@ -118,20 +118,4 @@ public final class Boost implements Transform {
     ThreeVector position_Kp = event.position().plus(a).minus(b);
     return Event.of(ct_Kp, position_Kp.x(), position_Kp.y(), position_Kp.z());
   }
-  
-  /** Informal test harness. */
-  private static void main(String[] args) {
-    Event ev = Event.of(10.0, 1.0, 2.0, 3.0);
-    Boost boost = Boost.of(Velocity.of(Axis.X, 0.2));
-    Event ev1 = boost.changeFrame(ev);
-    Event ev2 = boost.booster(ev, +1);
-    System.out.println(ev1);
-    System.out.println(ev2);
-    
-    Event ev3 = boost.changeEvent(ev);
-    Event ev4 = boost.booster(ev, -1);
-    System.out.println(ev3);
-    System.out.println(ev4);
-    
-  }
 }

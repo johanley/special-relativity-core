@@ -1,15 +1,19 @@
 package sr.core;
 
+import static sr.core.TransformInto.PRIMED;
+import static sr.core.TransformInto.UNPRIMED;
 import static sr.core.Util.sq;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import sr.core.event.Builder;
+import sr.core.event.FourVector;
 import sr.core.vector.ThreeVector;
 import sr.core.vector.Velocity;
-import static sr.core.TransformInto.*;
 
 /**
  Lorentz Transformation of 4-vectors and tensors, all represented as a matrix.
- 
- <P>The caller often needs to format/parse data into a (1x4) or (4x1) matrix.
  
  <P>The matrix implementation of the Lorentz Transformation is the most general way of transforming items.
  The same basic mechanism can replace many formulas that are specific to certain physical quantities.
@@ -21,42 +25,45 @@ import static sr.core.TransformInto.*;
   <li>electromagnetic field transformation
  </ul> 
 */
-public final class LorentzTransformation {
+public final class LorentzTransformation3 {
 
   /** 
    Factory method for a Lorentz Transformation in any direction, of the given velocity.
    No rotation of the spatial axes occurs. 
   */
-  public static LorentzTransformation of(Velocity boostVelocity) {
-    return new LorentzTransformation(boostVelocity);
+  public static LorentzTransformation3 of(Velocity boostVelocity) {
+    return new LorentzTransformation3(boostVelocity);
   }
   
   /** Return a 4-vector in the primed system. */
-  public Matrix primedVector(Matrix unprimed) {
+  public <T extends FourVector  & Builder<T>> T primedVector(T unprimed) {
     return transformVector(unprimed, PRIMED);
   }
   
   /** Return a 4-vector in the unprimed system. */
-  public Matrix unPrimedVector(Matrix primed) {
+  public <T extends FourVector & Builder<T>> T unPrimedVector(T primed) {
     return transformVector(primed, UNPRIMED);
   }
-
+  
   /**
    Apply the transform using the given sign.
    @param input the four-vector
    @param sign +1 for returning primed quantities, -1 for returning unprimed quantities.
   */
-  public Matrix transformVector(Matrix input, TransformInto direction) {
-    return Λ(direction.sign()).times(input);
+  public <T extends FourVector & Builder<T>> T transformVector(T input, TransformInto direction) {
+    //the core calculation uses matrices, so we convert back and forth like so
+    Matrix input_matrix = Matrix.asMatrix(input);
+    Matrix output_matrix = Λ(direction.sign()).times(input_matrix);
+    return input.build(fromComponents(output_matrix));
   }
 
   @Override public String toString() {
     return boostVelocity.toString();
   }
-  
+
   private Velocity boostVelocity;
   
-  private LorentzTransformation(Velocity boostVelocity) {
+  private LorentzTransformation3(Velocity boostVelocity) {
     this.boostVelocity = boostVelocity;
   }
   
@@ -105,6 +112,14 @@ public final class LorentzTransformation {
     components[2][3] =  (Γ-1) * (v.y() * v.z() / vsq);
     
     return Matrix.of(components);
+  }
+  
+  private Map<Axis, Double> fromComponents(Matrix matrix){
+    Map<Axis, Double> result = new LinkedHashMap<>();
+    for(Axis axis : Axis.values()) {
+      result.put(axis, matrix.get(axis.idx(),0));
+    }
+    return result;
   }
   
   //rank 2

@@ -9,7 +9,7 @@ public enum Axis {
   
   CT(0), X(1), Y(2), Z(3);
 
-  /** ct-x-y-z map to 0-1-2-3. */
+  /** ct-x-y-z maps to 0-1-2-3. */
   public int idx() { return idx; }
   
   /** Most operations involve the spatial axes. * */

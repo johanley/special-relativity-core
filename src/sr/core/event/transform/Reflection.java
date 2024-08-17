@@ -69,10 +69,10 @@ public final class Reflection implements Transform {
   }
 
   private Event doIt(Event event/*, int sign is not needed or desired here */) {
-    Event result = event.copy();
+    Map<Axis, Double> parts = new LinkedHashMap<>();
     for(Axis axis : Axis.values()) {
-      result = result.put(axis, components.get(axis).sign() * event.on(axis));
+      parts.put(axis, components.get(axis).sign() * event.on(axis));
     }
-    return result;
+    return event.build(parts);
   }
 }

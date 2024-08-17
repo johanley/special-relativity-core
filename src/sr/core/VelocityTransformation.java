@@ -1,9 +1,11 @@
 package sr.core;
 
+import static sr.core.TransformInto.PRIMED;
+import static sr.core.TransformInto.UNPRIMED;
+
+import sr.core.event.FourVelocity;
 import sr.core.vector.ThreeVector;
-import sr.core.vector.ThreeVectorImpl;
 import sr.core.vector.Velocity;
-import static sr.core.TransformInto.*;
 
 /** 
  Relativistic transformation of velocities.
@@ -45,38 +47,12 @@ public final class VelocityTransformation {
    @param sign +1 for returning primed-u, -1 for returning unprimed-u.
   */
   private static Velocity transform(Velocity v, Velocity u, TransformInto direction) {
-    LorentzTransformation lorentzTransform = LorentzTransformation.of(v);
-    //change the incoming 3-vector to a velocity 4-vector (4 rows, 1 column)
-    Matrix input_4 = asFourVelocity(u);
-    //now the transform is easy:
-    Matrix output_4 = lorentzTransform.transformVector(input_4, direction);
-    //translate the result back into a 3-vector
-    return asThreeVelocity(output_4);
+    LorentzTransformation3 lt = LorentzTransformation3.of(v);
+    FourVelocity input = FourVelocity.of(u);
+    FourVelocity output = lt.transformVector(input, direction);
+    return output.velocity();
   }
 
-  /** Translate into a 4-vector (a 4x1 matrix). */
-  private static Matrix asFourVelocity(Velocity u) {
-    double[][] result = new double[4][1];
-    double Γ = Physics.Γ(u.magnitude());
-    result[0][0] = Γ;
-    result[1][0] = Γ * u.x();
-    result[2][0] = Γ * u.y();
-    result[3][0] = Γ * u.z();
-    return Matrix.of(result);
-  }
-  
-  /** Translate into a 3-vector. */
-  private static Velocity asThreeVelocity(Matrix u_p_4) {
-    double Γ_p = u_p_4.get(0,0);
-    ThreeVector result = ThreeVectorImpl.of(
-      u_p_4.get(1,0), 
-      u_p_4.get(2,0), 
-      u_p_4.get(3,0)
-    );
-    result = result.divide(Γ_p);
-    return Velocity.of(result);
-  }
-  
   /**
    Do the transform with 3-vectors. (For testing only.)
    @param v boost velocity
@@ -95,20 +71,4 @@ public final class VelocityTransformation {
    
     return Velocity.of(e);
   }
-  
-  /** Informal tests. */
-  private static void main(String[] args) {
-    Velocity boost = Velocity.of(Axis.X, 0.1);
-    Velocity object = Velocity.of(Axis.Y, 0.1);
-    Velocity test1 = VelocityTransformation.primedVelocity(boost, object);
-    Velocity test2 = transform(boost, object, -1);
-    System.out.println(test1);
-    System.out.println(test2);
-    test1 = VelocityTransformation.unprimedVelocity(boost, object);
-    test2 = transform(boost, object, +1);
-    System.out.println("-------");
-    System.out.println(test1);
-    System.out.println(test2);
-  }
-  
 }

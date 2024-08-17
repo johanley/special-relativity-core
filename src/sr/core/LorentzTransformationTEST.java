@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import sr.core.event.Event;
 import sr.core.vector.Velocity;
 
 class LorentzTransformationTEST {
@@ -104,6 +105,31 @@ class LorentzTransformationTEST {
     assertEquals(output1_unprimed.get(3,0), output2_primed.get(3,0));
   }
   
+  @Test void nullVectorsMapToNullVectors() {
+    Matrix input = vector(1,1,0,0);
+    nulls(input);
+    
+    input = vector(1,0,1,0);
+    nulls(input);
+    
+    input = vector(1,0,0,1);
+    nulls(input);
+    
+    input = vector(10,10,0,0);
+    nulls(input);
+    
+    input = vector(-7,-7,0,0);
+    nulls(input);
+  }
+
+  private void nulls(Matrix input) {
+    Event input_event = asEvent(input);
+    assertEquals(input_event.square(), 0);
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(0.2, 0, 0));
+    Event output_event = asEvent(lt.primedVector(input));
+    assertEquals(output_event.square(), 0);
+  }
+  
   private Matrix vector(double a, double b, double c, double d) {
     double[][] result = new double[4][1];
     result[0][0] = a;
@@ -111,6 +137,15 @@ class LorentzTransformationTEST {
     result[2][0] = c;
     result[3][0] = d;
     return Matrix.of(result);
+  }
+  
+  private Event asEvent(Matrix output) {
+    return Event.of(
+        output.get(0, 0), 
+        output.get(1, 0), 
+        output.get(2, 0), 
+        output.get(3, 0) 
+    );
   }
   
   private double onlyTinyDiff = Epsilon.ε();

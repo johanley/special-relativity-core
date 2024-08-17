@@ -1,5 +1,7 @@
 package sr.core;
 
+import sr.core.event.FourVector;
+
 /**
  Basic matrix operations. 
  Based on https://introcs.cs.princeton.edu/java/95linear/Matrix.java.html
@@ -77,6 +79,15 @@ public final class Matrix {
   /** Return an element of the matrix. */
   public double get(int row, int col) {
     return data[row][col];
+  }
+  
+  /** Convert a 4-vector into a {@link Matrix}. */
+  public static Matrix asMatrix(FourVector v) {
+    double[][] result = new double[4][1];
+    for(Axis axis : Axis.values()) {
+      result[axis.idx()][0] = v.components().get(axis);
+    }
+    return Matrix.of(result);
   }
   
   /** Number of rows. */ 

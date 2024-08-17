@@ -1,5 +1,8 @@
 package sr.core.history;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.ThomasPrecession;
@@ -105,12 +108,14 @@ public class CircularMotion extends MoveableHistory {
 
   /** Return the displacement from the delta-base (which uses the center of the circle). */
   private Event displacement(double Δct) {
-    Event displacement = Event.origin();
-    displacement = displacement.put(Axis.CT, Δct);
-    
-    //for a rotational axis of Z, this gives the start position on the X-axis
     Axis start = Axis.rightHandRuleFor(rotationalAxis).get(0);
-    displacement = displacement.put(start, radius);
+    Map<Axis, Double> components = new LinkedHashMap<>();
+    for(Axis axis : Axis.values()) {
+      components.put(axis, 0.0); //to start with
+    }
+    components.put(Axis.CT, Δct);
+    components.put(start, radius);
+    Event displacement = Event.of(components);
     
     Rotation rotate = Rotation.of(rotationalAxis, phase(Δct));
     displacement = rotate.changeEvent(displacement);

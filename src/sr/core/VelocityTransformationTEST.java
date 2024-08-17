@@ -57,7 +57,7 @@ class VelocityTransformationTEST {
   }
 
   /** Not really a test; ensures future changes which alter this typical output are flagged. */
-  @Test void anchorValue() {
+  @Test void anchorResults() {
     Velocity boost_v = Velocity.of(0.1, 0.25, 0.75);
     Velocity input = Velocity.of(0.2, 0.9, 0.25);
     Velocity output1 = VelocityTransformation.primedVelocity(boost_v, input);
