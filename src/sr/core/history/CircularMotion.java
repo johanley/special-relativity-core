@@ -7,13 +7,13 @@ import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.ThomasPrecession;
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.event.transform.Rotation;
-import sr.core.vector.Acceleration;
-import sr.core.vector.AxisAngle;
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
-import sr.core.vector.transform.SpatialRotation;
+import sr.core.vector3.Acceleration;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
+import sr.core.vector3.transform.SpatialRotation;
+import sr.core.vector4.Event;
+import sr.core.vector4.transform.Rotation;
 
 /**
  History for a mass particle moving uniformly in a circle.

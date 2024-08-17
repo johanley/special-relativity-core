@@ -3,9 +3,9 @@ package sr.core;
 import static sr.core.TransformInto.PRIMED;
 import static sr.core.TransformInto.UNPRIMED;
 
-import sr.core.event.FourVelocity;
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.FourVelocity;
 
 /** 
  Relativistic transformation of velocities.

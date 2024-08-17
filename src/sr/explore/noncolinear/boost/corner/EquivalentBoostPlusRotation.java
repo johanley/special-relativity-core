@@ -4,12 +4,12 @@ import sr.core.Axis;
 import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.event.Event;
-import sr.core.event.transform.Boost;
-import sr.core.event.transform.Rotation;
-import sr.core.event.transform.Transform;
-import sr.core.event.transform.TransformPipeline;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
+import sr.core.vector4.transform.Boost;
+import sr.core.vector4.transform.Rotation;
+import sr.core.vector4.transform.Transform;
+import sr.core.vector4.transform.TransformPipeline;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

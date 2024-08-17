@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import sr.core.event.Event;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
 
 class LorentzTransformationTEST {
 

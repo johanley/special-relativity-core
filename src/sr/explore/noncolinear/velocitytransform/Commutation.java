@@ -5,7 +5,7 @@ import static sr.core.Axis.Y;
 
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
 import sr.output.text.TextOutput;
 
 /** 

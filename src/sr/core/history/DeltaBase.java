@@ -1,7 +1,7 @@
 package sr.core.history;
 
-import sr.core.event.Event;
-import sr.core.vector.Position;
+import sr.core.vector3.Position;
+import sr.core.vector4.Event;
 
 /** 
  The base event (and corresponding proper-time) for a history defined in terms of <em>displacements</em> from a particular event.

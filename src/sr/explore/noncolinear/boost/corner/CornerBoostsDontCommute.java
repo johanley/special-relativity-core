@@ -6,9 +6,9 @@ import static sr.core.Axis.Y;
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.event.transform.Boost;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
+import sr.core.vector4.transform.Boost;
 import sr.output.text.TextOutput;
 
 /**

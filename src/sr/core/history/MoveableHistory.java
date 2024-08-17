@@ -1,8 +1,8 @@
 package sr.core.history;
 
-import sr.core.event.Event;
-import sr.core.vector.AxisAngle;
-import sr.core.vector.Velocity;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
 
 /**
  Allow a {@link History} to have a configurable {@link DeltaBase} in space-time.

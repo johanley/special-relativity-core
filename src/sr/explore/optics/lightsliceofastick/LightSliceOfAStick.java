@@ -7,13 +7,13 @@ import java.util.function.Function;
 import sr.core.Physics;
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.event.FindEvent;
-import sr.core.event.transform.Boost;
-import sr.core.event.transform.Transform;
 import sr.core.history.History;
 import sr.core.history.UniformVelocity;
-import sr.core.vector.Position;
+import sr.core.vector3.Position;
+import sr.core.vector4.Event;
+import sr.core.vector4.FindEvent;
+import sr.core.vector4.transform.Boost;
+import sr.core.vector4.transform.Transform;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

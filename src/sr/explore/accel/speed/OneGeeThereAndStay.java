@@ -2,13 +2,13 @@ package sr.explore.accel.speed;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.event.Event;
 import sr.core.history.DeltaBase;
 import sr.core.history.History;
 import sr.core.history.MoveableHistory;
 import sr.core.history.StitchedHistoryBuilder;
 import sr.core.history.UniformAcceleration;
-import sr.core.vector.Position;
+import sr.core.vector3.Position;
+import sr.core.vector4.Event;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

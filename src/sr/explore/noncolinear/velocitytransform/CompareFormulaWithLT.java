@@ -4,13 +4,13 @@ import static sr.core.Axis.X;
 
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.event.Event;
-import sr.core.event.transform.Boost;
-import sr.core.event.transform.Transform;
 import sr.core.history.MoveableHistory;
 import sr.core.history.UniformVelocity;
-import sr.core.vector.Position;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
+import sr.core.vector4.transform.Boost;
+import sr.core.vector4.transform.Transform;
 import sr.output.text.TextOutput;
 
 /** 

@@ -6,10 +6,10 @@ import static sr.core.Util.sq;
 import static sr.core.Util.sqroot;
 
 import sr.core.Axis;
-import sr.core.event.Event;
-import sr.core.vector.AxisAngle;
-import sr.core.vector.Position;
-import sr.core.vector.Velocity;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
 
 /**
  History for a particle with mass moving with uniform 

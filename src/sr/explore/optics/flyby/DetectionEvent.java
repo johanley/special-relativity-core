@@ -3,7 +3,7 @@ package sr.explore.optics.flyby;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Physics;
-import sr.core.event.Event;
+import sr.core.vector4.Event;
 
 /** 
  The detection of a photon at the detector.

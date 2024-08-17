@@ -1,8 +1,8 @@
 package sr.core.history;
 
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
 
 /**
  History for a particle with mass moving uniformly from infinity to some event, then in the opposite direction back out to infinity.

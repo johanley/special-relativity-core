@@ -7,10 +7,10 @@ import static sr.core.Util.radsToDegs;
 import sr.core.Axis;
 import sr.core.LorentzTransformation3;
 import sr.core.Util;
-import sr.core.event.FourVector;
-import sr.core.event.WaveVector;
-import sr.core.vector.Direction;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Direction;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.FourVector;
+import sr.core.vector4.WaveVector;
 import sr.output.text.TextOutput;
 
 public final class WaveVectorK extends TextOutput {

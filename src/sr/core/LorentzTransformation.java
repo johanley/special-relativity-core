@@ -2,8 +2,9 @@ package sr.core;
 
 import static sr.core.Util.sq;
 
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
+
 import static sr.core.TransformInto.*;
 
 /**

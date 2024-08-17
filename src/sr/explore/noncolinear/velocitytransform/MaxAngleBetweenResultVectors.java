@@ -5,9 +5,9 @@ import static sr.core.Axis.X;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
-import sr.core.vector.transform.SpatialRotation;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
+import sr.core.vector3.transform.SpatialRotation;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

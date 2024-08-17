@@ -5,11 +5,11 @@ import static sr.core.Axis.Y;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.event.Event;
 import sr.core.history.History;
 import sr.core.history.UniformVelocity;
-import sr.core.vector.Position;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
 
 /**
  <b>Relativistic fly-by of a star by a detector.</b>

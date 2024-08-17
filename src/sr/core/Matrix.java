@@ -1,6 +1,6 @@
 package sr.core;
 
-import sr.core.event.FourVector;
+import sr.core.vector4.FourVector;
 
 /**
  Basic matrix operations. 

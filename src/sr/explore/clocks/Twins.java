@@ -8,8 +8,8 @@ import sr.core.history.History;
 import sr.core.history.DeltaBase;
 import sr.core.history.ThereAndBack;
 import sr.core.history.UniformVelocity;
-import sr.core.vector.Position;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
 import sr.output.text.TextOutput;
 
 /**

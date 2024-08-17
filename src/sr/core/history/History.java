@@ -1,6 +1,6 @@
 package sr.core.history;
 
-import sr.core.event.Event;
+import sr.core.vector4.Event;
 
 /** 
 The parameterized history (world-line) of an object (with mass) represented as a particle.

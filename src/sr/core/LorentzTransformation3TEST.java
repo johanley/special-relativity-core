@@ -12,9 +12,9 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import sr.core.event.Builder;
-import sr.core.event.FourVector;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Builder;
+import sr.core.vector4.FourVector;
 
 class LorentzTransformation3TEST {
 

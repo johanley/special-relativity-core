@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import sr.core.vector.Velocity;
+import sr.core.vector3.Velocity;
 
 class VelocityTransformationTEST {
 

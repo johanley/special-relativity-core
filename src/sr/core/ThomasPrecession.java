@@ -1,10 +1,11 @@
 package sr.core;
 
-import sr.core.vector.Acceleration;
-import sr.core.vector.AxisAngle;
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
 import static sr.core.Util.sq;
+
+import sr.core.vector3.Acceleration;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
 
 /**
  Thomas precession for a given acceleration.

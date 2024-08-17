@@ -1,15 +1,15 @@
 package sr.explore.interval.invariant;
 
 import sr.core.Util;
-import sr.core.event.Event;
-import sr.core.event.transform.Boost;
-import sr.core.event.transform.Displacement;
-import sr.core.event.transform.Reflection;
-import sr.core.event.transform.Rotation;
-import sr.core.event.transform.Transform;
-import sr.core.event.transform.TransformPipeline;
-import sr.core.vector.AxisAngle;
-import sr.core.vector.Velocity;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Event;
+import sr.core.vector4.transform.Boost;
+import sr.core.vector4.transform.Displacement;
+import sr.core.vector4.transform.Reflection;
+import sr.core.vector4.transform.Rotation;
+import sr.core.vector4.transform.Transform;
+import sr.core.vector4.transform.TransformPipeline;
 import sr.output.text.TextOutput;
 
 /**

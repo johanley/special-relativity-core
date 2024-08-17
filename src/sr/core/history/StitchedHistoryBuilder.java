@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import sr.core.event.Event;
+import sr.core.vector4.Event;
 
 /** 
  Piece together histories in order to make another {@link History}.

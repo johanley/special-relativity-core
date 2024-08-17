@@ -5,8 +5,8 @@ import static sr.core.Axis.X;
 import sr.core.Util;
 import sr.core.history.History;
 import sr.core.history.UniformVelocity;
-import sr.core.vector.Position;
-import sr.core.vector.Velocity;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
 import sr.output.text.TextOutput;
 
 /**

@@ -7,10 +7,10 @@ import static sr.core.Util.sq;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import sr.core.event.Builder;
-import sr.core.event.FourVector;
-import sr.core.vector.ThreeVector;
-import sr.core.vector.Velocity;
+import sr.core.vector3.ThreeVector;
+import sr.core.vector3.Velocity;
+import sr.core.vector4.Builder;
+import sr.core.vector4.FourVector;
 
 /**
  Lorentz Transformation of 4-vectors and tensors, all represented as a matrix.
