@@ -4,6 +4,7 @@ import static sr.core.Axis.CT;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
+import static sr.core.Util.round;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -45,14 +46,19 @@ public final class Displacement /*implements Transform - applies to events only.
   public Event changeVector(Event event) {
     return transform(event, +1);
   }
-  
+
+  /** This implementation applies rounding. */
   @Override public String toString() {
-    String result  = "displacement["; 
-    for(Axis a : Axis.values()) {
-      result = result + components.get(a) + ",";
+    String sep = ",";
+    String result = "displacement[";
+    for(Axis axis : Axis.values()) {
+      result = result + roundIt(components.get(axis)) + sep;
     }
-    return result.substring(0, result.length()-1) + "]";
+    //chop off the final separator
+    result = result.substring(0, result.length() - 1);
+    return result + "]";
   }
+
 
   // PRIVATE
   
@@ -72,5 +78,8 @@ public final class Displacement /*implements Transform - applies to events only.
     }
     return event.build(parts);
   }
-
+  
+  private double roundIt(Double val) {
+    return round(val, 5);
+  }
 }
