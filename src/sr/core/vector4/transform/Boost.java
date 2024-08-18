@@ -44,7 +44,7 @@ public final class Boost implements Transform {
 
   /**
    Transform the event to the boosted inertial frame.  
-   The inverse of {@link #changeEvent(Event)}. 
+   The inverse of {@link #changeVector(Event)}. 
   */
   @Override public Event changeFrame(Event event) {
     return booster(event, +1);
@@ -54,7 +54,7 @@ public final class Boost implements Transform {
    Transform the event to a new event in the same inertial frame.  
    The inverse of {@link #changeFrame(Event)}. 
   */
-  @Override public Event changeEvent(Event event) {
+  @Override public Event changeVector(Event event) {
     return booster(event, -1);
   }
   

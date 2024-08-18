@@ -150,7 +150,7 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
     //accel 6 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising);
     Reflection flipX = Reflection.of(X);
-    delta_base = DeltaBase.of(all_way_out.plus(flipX.changeEvent(all_way_out)), τ_years_accel + τ_years_cruising); 
+    delta_base = DeltaBase.of(all_way_out.plus(flipX.changeVector(all_way_out)), τ_years_accel + τ_years_cruising); 
     leg = UniformAcceleration.of(delta_base, X, ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
     

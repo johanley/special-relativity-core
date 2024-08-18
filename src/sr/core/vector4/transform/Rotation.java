@@ -25,7 +25,7 @@ public final class Rotation implements Transform {
     return transform(event, -1);
   }
   
-  @Override public Event changeEvent(Event event) {
+  @Override public Event changeVector(Event event) {
     return transform(event, +1);
   }
   

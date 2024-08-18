@@ -42,7 +42,7 @@ public final class Displacement implements Transform {
   }
   
   /** The endpoint of the event is displaced by the given amounts. */
-  @Override public Event changeEvent(Event event) {
+  @Override public Event changeVector(Event event) {
     return transform(event, +1);
   }
   

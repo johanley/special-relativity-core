@@ -101,7 +101,7 @@ public final class OneGeeThereAndBack extends TextOutput {
     //and these two events by symmetry:
     Event halfWay = quarterWay.plus(quarterWay); 
     Reflection reflect = Reflection.of(X);
-    Event allTheWay = halfWay.plus(reflect.changeEvent(halfWay)); 
+    Event allTheWay = halfWay.plus(reflect.changeVector(halfWay)); 
     
     //the delta-bases aren't the same as the branch points:
     

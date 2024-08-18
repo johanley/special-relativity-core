@@ -82,7 +82,7 @@ public final class InvariantInterval extends TextOutput {
     lines.add("  " + a);
     lines.add("Squared-interval with respect to the origin: " + round(a.square()));
     
-    Event a_Kp = transform.changeEvent(a);
+    Event a_Kp = transform.changeVector(a);
     lines.add(Util.NL+"Transform to K' using a mix of several operations: ");
     lines.add("  " + transform);
     

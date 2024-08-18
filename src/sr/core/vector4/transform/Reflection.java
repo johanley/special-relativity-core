@@ -45,7 +45,7 @@ public final class Reflection implements Transform {
     return doIt(event);
   }
   
-  @Override public Event changeEvent(Event event) {
+  @Override public Event changeVector(Event event) {
     return doIt(event);
   }
   

@@ -25,7 +25,7 @@ public final class TransformPipeline implements Transform {
     
     Event in = Event.of(1.0, 1.0, 0.0, 0.0);
     Event out = t.changeFrame(in);
-    Event backIn = t.changeEvent(out);
+    Event backIn = t.changeVector(out);
     if (! in.equalsWithTinyDiff(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
     }
@@ -61,12 +61,12 @@ public final class TransformPipeline implements Transform {
    Apply the operations to the given event, but in <em>reverse</em> order <em>and</em> 
    with the <em>inverse</em> transform. 
   */
-  @Override public Event changeEvent(Event vecPrime) {
+  @Override public Event changeVector(Event vecPrime) {
     Event result = vecPrime;
     List<Transform> ops = Arrays.asList(operations);
     ListIterator<Transform> li = ops.listIterator(ops.size()); //start at the end
     while (li.hasPrevious()) { //go backwards
-      result = li.previous().changeEvent(result);
+      result = li.previous().changeVector(result);
     }
     return result;
   }

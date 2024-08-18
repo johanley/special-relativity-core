@@ -118,7 +118,7 @@ public class CircularMotion extends MoveableHistory {
     Event displacement = Event.of(components);
     
     Rotation rotate = Rotation.of(rotationalAxis, phase(Δct));
-    displacement = rotate.changeEvent(displacement);
+    displacement = rotate.changeVector(displacement);
     return displacement;
   }
   
