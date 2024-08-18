@@ -19,7 +19,7 @@ import sr.core.vector4.Event;
  <P>Also note that 4-vectors in general are differential and not affected by a displacement operation.
  (This reflects the distinction between affine operations and linear operations.)
 */
-public final class Displacement /*implements Transform - applies to events only. */{
+public final class Displacement /*no implements Transform, since this operation applies to events only. */ {
   
   /** 
    Factory method. 
@@ -58,7 +58,6 @@ public final class Displacement /*implements Transform - applies to events only.
     result = result.substring(0, result.length() - 1);
     return result + "]";
   }
-
 
   // PRIVATE
   
