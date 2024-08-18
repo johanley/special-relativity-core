@@ -47,7 +47,7 @@ public final class VelocityTransformation {
    @param sign +1 for returning primed-u, -1 for returning unprimed-u.
   */
   private static Velocity transform(Velocity v, Velocity u, TransformInto direction) {
-    LorentzTransformation3 lt = LorentzTransformation3.of(v);
+    LorentzTransformation lt = LorentzTransformation.of(v);
     FourVelocity input = FourVelocity.of(u);
     FourVelocity output = lt.transformVector(input, direction);
     return output.velocity();

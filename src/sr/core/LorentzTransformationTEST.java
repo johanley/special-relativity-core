@@ -1,152 +1,149 @@
 package sr.core;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static sr.core.Axis.CT;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
+
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import sr.core.vector3.Velocity;
-import sr.core.vector4.Event;
+import sr.core.vector4.Builder;
+import sr.core.vector4.FourVector;
+import sr.core.vector4.WaveVector;
 
 class LorentzTransformationTEST {
 
   @Test void testZeroMapsToZero() {
-    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, 0.256));
-    Matrix output = lt.primedVector(vector(0,0,0,0));
-    assertEquals(output.get(0, 0), 0.0);
-    assertEquals(output.get(1, 0), 0.0);
-    assertEquals(output.get(2, 0), 0.0);
-    assertEquals(output.get(3, 0), 0.0);
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(X, 0.256));
+    TestVector input = vector(0,0,0,0);
+    TestVector output = lt.primedVector(input);
+    assertSame(input, output);
   }
   
   @Test void speedZeroDoesNothing() {
-    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, 0.0));
-    Matrix output = lt.primedVector(vector(10,1,2,3));
-    assertEquals(output.get(0, 0), 10.0);
-    assertEquals(output.get(1, 0), 1.0);
-    assertEquals(output.get(2, 0), 2.0);
-    assertEquals(output.get(3, 0), 3.0);
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(X, 0.0));
+    TestVector input = vector(10,1,2,3);
+    TestVector output = lt.primedVector(input);
+    assertSame(input, output);
   }
   
   @Test void speedUnityFails() {
     Exception exception = assertThrows(RuntimeException.class, () -> 
-      LorentzTransformation.of(Velocity.of(Axis.X, 1.0))
+      LorentzTransformation.of(Velocity.of(X, 1.0))
     );
   }
   
   @Test void unitVectors() {
     //this speed has a simple gamma=1.25 and -gamma*beta = -0.75
-    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, 0.6));
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(X, 0.6));
     
-    Matrix output = lt.primedVector(vector(1,0,0,0));
-    assertEquals(output.get(0,0), 1.25);
-    assertEquals(output.get(1,0), -0.75);
-    
-    output = lt.primedVector(vector(0,1,0,0));
-    assertEquals(output.get(0,0), -0.75);
-    assertEquals(output.get(1,0), 1.25);
+    TestVector output = lt.primedVector(vector(1,0,0,0));
+    assertEquals(output.on(CT), 1.25);
+    assertEquals(output.on(X), -0.75);
     
     output = lt.primedVector(vector(0,1,0,0));
-    assertEquals(output.get(0,0), -0.75);
-    assertEquals(output.get(1,0), 1.25);
+    assertEquals(output.on(CT), -0.75);
+    assertEquals(output.on(X), 1.25);
     
-    output = lt.primedVector(vector(0,0,1,0));
-    assertEquals(output.get(0,0), 0);
-    assertEquals(output.get(1,0), 0);
-    assertEquals(output.get(2,0), 1);
-    assertEquals(output.get(3,0), 0);
+    output = lt.primedVector(vector(0,1,0,0));
+    assertEquals(output.on(CT), -0.75);
+    assertEquals(output.on(X), 1.25);
     
-    output = lt.primedVector(vector(0,0,0,1));
-    assertEquals(output.get(0,0), 0);
-    assertEquals(output.get(1,0), 0);
-    assertEquals(output.get(2,0), 0);
-    assertEquals(output.get(3,0), 1);
+    TestVector input = vector(0,0,1,0);
+    output = lt.primedVector(input);
+    assertSame(input, output);
+
+    input = vector(0,0,0,1);
+    output = lt.primedVector(input);
+    assertSame(input, output);
   }
   
   @Test void unaffectedDimensions() {
-    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, 0.6));
-    Matrix output = lt.primedVector(vector(10,22,15,16));
-    assertEquals(output.get(2,0), 15);
-    assertEquals(output.get(3,0), 16);
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(X, 0.6));
+    TestVector output = lt.primedVector(vector(10,22,15,16));
+    assertEquals(output.on(Y), 15);
+    assertEquals(output.on(Z), 16);
   }
 
   @Test void inAndOut() {
     LorentzTransformation lt = LorentzTransformation.of(Velocity.of(0.1, 0.2, 0.3));
-    Matrix input = vector(10,22,15,16);
-    Matrix output1 = lt.primedVector(input);
-    Matrix output2 = lt.unPrimedVector(output1);
-    assertEquals(input.get(0,0), output2.get(0,0), onlyTinyDiff);
-    assertEquals(input.get(1,0), output2.get(1,0), onlyTinyDiff);
-    assertEquals(input.get(2,0), output2.get(2,0), onlyTinyDiff);
-    assertEquals(input.get(3,0), output2.get(3,0), onlyTinyDiff);
+    TestVector input = vector(10,22,15,16);
+    TestVector output1 = lt.primedVector(input);
+    TestVector output2 = lt.unPrimedVector(output1);
+    assertSame(input, output2);
   }
   
   @Test void negativeVelocityMeansSwapPrimedAndUnprimed() {
     Velocity v1 = Velocity.of(0.1, 0.2, 0.3);
     Velocity v2 = Velocity.of(v1.times(-1));
-    Matrix input = vector(10,22,15,16);
+    TestVector input = vector(10,22,15,16);
     
     LorentzTransformation lt1 = LorentzTransformation.of(v1);
-    Matrix output1_primed = lt1.primedVector(input);
-    Matrix output1_unprimed = lt1.unPrimedVector(input);
+    TestVector output1_primed = lt1.primedVector(input);
+    TestVector output1_unprimed = lt1.unPrimedVector(input);
     
     LorentzTransformation lt2 = LorentzTransformation.of(v2);
-    Matrix output2_primed = lt2.primedVector(input);
-    Matrix output2_unprimed = lt2.unPrimedVector(input);
+    TestVector output2_primed = lt2.primedVector(input);
+    TestVector output2_unprimed = lt2.unPrimedVector(input);
     
-    //this works without the tiny-diff:
-    assertEquals(output1_primed.get(0,0), output2_unprimed.get(0,0));
-    assertEquals(output1_primed.get(1,0), output2_unprimed.get(1,0));
-    assertEquals(output1_primed.get(2,0), output2_unprimed.get(2,0));
-    assertEquals(output1_primed.get(3,0), output2_unprimed.get(3,0));
-
-    assertEquals(output1_unprimed.get(0,0), output2_primed.get(0,0));
-    assertEquals(output1_unprimed.get(1,0), output2_primed.get(1,0));
-    assertEquals(output1_unprimed.get(2,0), output2_primed.get(2,0));
-    assertEquals(output1_unprimed.get(3,0), output2_primed.get(3,0));
+    assertSame(output1_primed, output2_unprimed);
+    assertSame(output1_unprimed, output2_primed);
   }
   
   @Test void nullVectorsMapToNullVectors() {
-    Matrix input = vector(1,1,0,0);
-    nulls(input);
+    nulls(vector(1,1,0,0));
+    nulls(vector(1,0,1,0));
+    nulls(vector(1,0,0,1));
+    nulls(vector(10,10,0,0));
+    nulls(vector(-7,-7,0,0));
+  }
+  
+  @Test void oneLTcanTransformMultipleTypes() {
+    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(0.1, 0.2, 0.3));
     
-    input = vector(1,0,1,0);
-    nulls(input);
+    TestVector input = vector(1,2,3,4);
+    TestVector output = lt.primedVector(input);
     
-    input = vector(1,0,0,1);
-    nulls(input);
-    
-    input = vector(10,10,0,0);
-    nulls(input);
-    
-    input = vector(-7,-7,0,0);
-    nulls(input);
+    WaveVector k_in = WaveVector.of(10, Axis.X);
+    WaveVector k_out = lt.primedVector(k_in);
   }
 
-  private void nulls(Matrix input) {
-    Event input_event = asEvent(input);
-    assertEquals(input_event.square(), 0);
+  private void nulls(TestVector input) {
+    assertEquals(input.square(), 0);
     LorentzTransformation lt = LorentzTransformation.of(Velocity.of(0.2, 0, 0));
-    Event output_event = asEvent(lt.primedVector(input));
-    assertEquals(output_event.square(), 0);
+    TestVector output = lt.primedVector(input);
+    assertEquals(output.square(), 0);
   }
   
-  private Matrix vector(double a, double b, double c, double d) {
-    double[][] result = new double[4][1];
-    result[0][0] = a;
-    result[1][0] = b;
-    result[2][0] = c;
-    result[3][0] = d;
-    return Matrix.of(result);
+  private TestVector vector(double a, double b, double c, double d) {
+    return TestVector.of(a, b, c, d);
   }
   
-  private Event asEvent(Matrix output) {
-    return Event.of(
-        output.get(0, 0), 
-        output.get(1, 0), 
-        output.get(2, 0), 
-        output.get(3, 0) 
-    );
+  private static class TestVector extends FourVector implements Builder<TestVector> {
+    public static TestVector of(double a, double b, double c, double d) {
+      TestVector result = new TestVector();
+      result.components.put(CT, a);
+      result.components.put(X, b);
+      result.components.put(Y, c);
+      result.components.put(Z, d);
+      return result;
+    }
+    @Override public TestVector build(Map<Axis, Double> parts) {
+      TestVector result = new TestVector();
+      for(Axis axis : Axis.values()) {
+        result.components.put(axis, parts.get(axis));
+      }
+      return result;
+    }
   }
   
-  private double onlyTinyDiff = Epsilon.ε();
+  private void assertSame(TestVector a, TestVector b) {
+    assertTrue(a.equalsWithTinyDiff(b));
+  }
 }

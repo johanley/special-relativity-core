@@ -1,15 +1,9 @@
 package sr.core.vector4.transform;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import sr.core.Axis;
 import sr.core.LorentzTransformation;
-import sr.core.Matrix;
-import sr.core.Physics;
 import sr.core.TransformInto;
 import sr.core.Util;
-import sr.core.vector3.Position;
 import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Builder;
@@ -85,26 +79,7 @@ public final class Boost implements Transform {
   private <T extends FourVector & Builder<T>> T booster(T fourVector, int sign) {
     LorentzTransformation lorentzTransform = LorentzTransformation.of(velocity);
     TransformInto direction = TransformInto.from(sign);
-    Matrix input = asFourVector(fourVector);
-    Matrix output = lorentzTransform.transformVector(input, direction);
-    return asEvent(output, fourVector);
-  }
-
-  private <T extends FourVector & Builder<T>> Matrix asFourVector(T fourVector) {
-    double[][] result = new double[4][1];
-    result[0][0] = fourVector.ct();
-    result[1][0] = fourVector.x();
-    result[2][0] = fourVector.y();
-    result[3][0] = fourVector.z();
-    return Matrix.of(result);
-  }
-  
-  private <T extends FourVector & Builder<T>> T asEvent(Matrix output, T fourVector) {
-    Map<Axis, Double> components = new LinkedHashMap<>();
-    for(Axis axis : Axis.values()) {
-      components.put(axis, output.get(axis.idx(), 0));
-    }
-    return fourVector.build(components);
+    return lorentzTransform.transformVector(fourVector, direction);
   }
 
   /**
@@ -112,6 +87,7 @@ public final class Boost implements Transform {
    Useful for testing.
    https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations
   */
+  /*
   private Event boostIt(Event event, int sign) {
     double Γ = Physics.Γ(β);
     Position r = event.position();
@@ -122,4 +98,5 @@ public final class Boost implements Transform {
     ThreeVector position_Kp = event.position().plus(a).minus(b);
     return Event.of(ct_Kp, position_Kp.x(), position_Kp.y(), position_Kp.z());
   }
+  */
 }

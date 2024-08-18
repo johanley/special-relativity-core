@@ -5,7 +5,7 @@ import static sr.core.Util.NL;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Axis;
-import sr.core.LorentzTransformation3;
+import sr.core.LorentzTransformation;
 import sr.core.Util;
 import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
@@ -38,7 +38,7 @@ public final class WaveVectorK extends TextOutput {
   }
 
   private void sameLine(Axis axis, Velocity v) {
-    LorentzTransformation3 lt = LorentzTransformation3.of(v);
+    LorentzTransformation lt = LorentzTransformation.of(v);
     WaveVector k_in = WaveVector.of(1.0, axis);
     WaveVector k_out = lt.primedVector(k_in);
     show(lt, k_in, k_out);
@@ -47,7 +47,7 @@ public final class WaveVectorK extends TextOutput {
   private void notTheSameLineChangesFrequencyAndDirection() {
     lines.add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
     Velocity v = Velocity.of(Axis.X, 0.6);
-    LorentzTransformation3 lt = LorentzTransformation3.of(v);
+    LorentzTransformation lt = LorentzTransformation.of(v);
     WaveVector k_in = WaveVector.of(1.0, Direction.of(1, 2, 3));
     WaveVector k_out = lt.primedVector(k_in);
     show(lt, k_in, k_out);
@@ -57,7 +57,7 @@ public final class WaveVectorK extends TextOutput {
     lines.add(NL+"Abberation.");
     lines.add("Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
     Velocity v = Velocity.of(Axis.X, -0.60);
-    LorentzTransformation3 lt = LorentzTransformation3.of(v);
+    LorentzTransformation lt = LorentzTransformation.of(v);
     //directed into the 4th quadrant at 45 degrees
     WaveVector k_in = WaveVector.of(1.0, Direction.of(+1, -1, 0));
     WaveVector k_out = lt.primedVector(k_in);
@@ -65,7 +65,7 @@ public final class WaveVectorK extends TextOutput {
     showChangeInDirection(k_in, k_out);
   }
   
-  private void show(LorentzTransformation3 lt, FourVector input, FourVector output) {
+  private void show(LorentzTransformation lt, FourVector input, FourVector output) {
     lines.add("  Boost "  + lt);
     lines.add("  Input k in frame K "  + input + " mag " + round(input.square()));
     lines.add("  Output k in frame K'" + output + " mag " + round(output.square()));
