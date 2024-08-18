@@ -76,7 +76,7 @@ public final class BoostToRotateVelocity extends TextOutput {
     return round(value, 6);
   }
 
-  // angle rotated, boost needed
+  // boost, rotation needed, new rotated vector
   private Table table = new Table("%-25s", "%-12s", "%-25s");
   private Table header = new Table("%-25s", "%-12s", "%-25s");
   
