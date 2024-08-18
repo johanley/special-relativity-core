@@ -10,7 +10,7 @@ import sr.core.Axis;
  <P>This interface helps preserve immutability of objects. Instead of changing the state of a single object, you produce 
  a new object with the desired state (using a given T object).
  
- <P>This interface is a bit strange: it uses an object method to create a new object of the same class, instead of a constructor or a 
+ <P>This interface is a bit strange since it uses an object method to create a new object of the same class, instead of a constructor or a 
  factory method.
 */
 public interface Builder<T> {

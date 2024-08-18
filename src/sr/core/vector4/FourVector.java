@@ -20,11 +20,11 @@ import sr.core.vector3.ThreeVectorImpl;
  
  <P>Note on the design: this class doesn't do two important jobs:
   <ul> 
-   <li>create new FourVector objects
+   <li>create new FourVector objects (since different vector have different construction needs)
    <li>mutate the state of existing FourVector objects
   </ul> 
 */
-public class FourVector /* not possible: implements Builder<FourVector> */ {
+public class FourVector {
   
   /*
    * Implementation note: the difficulty here is with trying to preserve object immutability.

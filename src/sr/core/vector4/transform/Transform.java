@@ -47,14 +47,4 @@ public interface Transform {
   */
   Event changeEvent(Event event);
 
-  /**
-   Asserts that the magnitude-squared has not changed (very much).
-   
-   Convenience method for implementations to validate their result. 
-   This will not apply to all coord transforms.  
-   Uses an assertion, which are turned off at runtime by default. 
-  */
-  static void sameIntervalFromOrigin(Event a, Event b) {
-    assert isTiny(a.square() - b.square()) : "Magnitude-squared has changed too much.";
-  }
 }
