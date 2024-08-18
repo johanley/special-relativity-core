@@ -1,18 +1,23 @@
 package sr.core.vector4.transform;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import sr.core.Axis;
 import sr.core.LorentzTransformation;
 import sr.core.Matrix;
 import sr.core.Physics;
+import sr.core.TransformInto;
 import sr.core.Util;
 import sr.core.vector3.Position;
 import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
+import sr.core.vector4.Builder;
 import sr.core.vector4.Event;
-import sr.core.TransformInto;
+import sr.core.vector4.FourVector;
 
 /**
- <a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Lorentz Transformation</a> of an {@link Event}.
+ <a href='https://en.wikipedia.org/wiki/Lorentz_transformation#Vector_transformations'>Lorentz Transformation</a> of a {@link FourVector}.
 
  <P>The boost is a velocity. It can be in any direction. 
  Here, it isn't restricted to being along one of the spatial coordinate axes.
@@ -43,19 +48,19 @@ public final class Boost implements Transform {
   }
 
   /**
-   Transform the event to the boosted inertial frame.  
-   The inverse of {@link #changeVector(Event)}. 
+   Transform the four-vector to the boosted inertial frame.  
+   The inverse of {@link #changeVector(FourVector)}. 
   */
-  @Override public Event changeFrame(Event event) {
-    return booster(event, +1);
+  @Override public <T extends FourVector & Builder<T>> T changeFrame(T fourVector) {
+    return booster(fourVector, +1);
   }
   
   /** 
-   Transform the event to a new event in the same inertial frame.  
+   Transform the four-vector to a new event in the same inertial frame.  
    The inverse of {@link #changeFrame(Event)}. 
   */
-  @Override public Event changeVector(Event event) {
-    return booster(event, -1);
+  @Override public <T extends FourVector & Builder<T>> T changeVector(T fourVector) {
+    return booster(fourVector, -1);
   }
   
   @Override public String toString() {
@@ -77,30 +82,29 @@ public final class Boost implements Transform {
     this.velocity = velocity;
   }
 
-  private Event booster(Event event, int sign) {
+  private <T extends FourVector & Builder<T>> T booster(T fourVector, int sign) {
     LorentzTransformation lorentzTransform = LorentzTransformation.of(velocity);
     TransformInto direction = TransformInto.from(sign);
-    Matrix input = asFourVector(event);
+    Matrix input = asFourVector(fourVector);
     Matrix output = lorentzTransform.transformVector(input, direction);
-    return asEvent(output);
+    return asEvent(output, fourVector);
   }
 
-  private Matrix asFourVector(Event event) {
+  private <T extends FourVector & Builder<T>> Matrix asFourVector(T fourVector) {
     double[][] result = new double[4][1];
-    result[0][0] = event.ct();
-    result[1][0] = event.x();
-    result[2][0] = event.y();
-    result[3][0] = event.z();
+    result[0][0] = fourVector.ct();
+    result[1][0] = fourVector.x();
+    result[2][0] = fourVector.y();
+    result[3][0] = fourVector.z();
     return Matrix.of(result);
   }
   
-  private Event asEvent(Matrix output) {
-    return Event.of (
-      output.get(0,0), 
-      output.get(1,0), 
-      output.get(2,0), 
-      output.get(3,0) 
-    );
+  private <T extends FourVector & Builder<T>> T asEvent(Matrix output, T fourVector) {
+    Map<Axis, Double> components = new LinkedHashMap<>();
+    for(Axis axis : Axis.values()) {
+      components.put(axis, output.get(axis.idx(), 0));
+    }
+    return fourVector.build(components);
   }
 
   /**

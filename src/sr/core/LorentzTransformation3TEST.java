@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Builder;
 import sr.core.vector4.FourVector;
+import sr.core.vector4.WaveVector;
 
 class LorentzTransformation3TEST {
 
@@ -101,6 +102,16 @@ class LorentzTransformation3TEST {
     nulls(vector(1,0,0,1));
     nulls(vector(10,10,0,0));
     nulls(vector(-7,-7,0,0));
+  }
+  
+  @Test void oneLTcanTransformMultipleTypes() {
+    LorentzTransformation3 lt = LorentzTransformation3.of(Velocity.of(0.1, 0.2, 0.3));
+    
+    TestVector input = vector(1,2,3,4);
+    TestVector output = lt.primedVector(input);
+    
+    WaveVector k_in = WaveVector.of(10, Axis.X);
+    WaveVector k_out = lt.primedVector(k_in);
   }
 
   private void nulls(TestVector input) {

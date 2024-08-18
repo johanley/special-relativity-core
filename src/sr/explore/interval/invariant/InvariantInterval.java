@@ -5,7 +5,6 @@ import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Boost;
-import sr.core.vector4.transform.Displacement;
 import sr.core.vector4.transform.Reflection;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
@@ -105,7 +104,7 @@ public final class InvariantInterval extends TextOutput {
     return TransformPipeline.join(
       Boost.of(Velocity.of(0.5, 0.1, 0.3)),
       Rotation.of(AxisAngle.of(0.1, 0.4, 0.5)),
-      Displacement.of(1.0, -2.0, -3.0, 4.0),
+      //Displacement.of(1.0, -2.0, -3.0, 4.0), DO SOMETHING ABOUT THIS
       Reflection.allAxes()
     );
   }

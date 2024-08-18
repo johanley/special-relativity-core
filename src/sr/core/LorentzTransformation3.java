@@ -23,7 +23,7 @@ import sr.core.vector4.FourVector;
   <li>core event and 4-vector transformation
   <li>velocity transformation
   <li>electromagnetic field transformation
- </ul> 
+ </ul>
 */
 public final class LorentzTransformation3 {
 

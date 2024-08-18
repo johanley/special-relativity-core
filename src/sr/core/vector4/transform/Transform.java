@@ -1,11 +1,10 @@
 package sr.core.vector4.transform;
 
-import static sr.core.Util.isTiny;
-
-import sr.core.vector4.Event;
+import sr.core.vector4.Builder;
+import sr.core.vector4.FourVector;
 
 /**
- Map one event to another event, and its inverse operation.
+ Map one four-vector to another four-vector, and its inverse operation.
 
  <P> 
  For every transformation, there must be a corresponding inverse transformation, which will recover the original event.
@@ -14,37 +13,41 @@ import sr.core.vector4.Event;
  
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
-  <li>given the components of a {@link Event} in one inertial frame K, find its components in a second frame K'
-   ({@link #changeFrame(Event)}, with inverse {@link #changeVector(Event)}) 
-  <li>given the components of a {@link Event} in one inertial frame K, find the components of a second event in the same frame K.
-     ({@link #changeVector(Event)}, with inverse {@link #changeFrame(Event)}) 
+  <li>given the components of a {@link FourVector} in one inertial frame K, find its components in a second frame K'
+   ({@link #changeFrame(FourVector)}, with inverse {@link #changeVector(FourVector)}) 
+  <li>given the components of a {@link FourVector} in one inertial frame K, find the components of a second four-vector in the same frame K
+     ({@link #changeVector(FourVector)}, with inverse {@link #changeFrame(FourVector)}).
  </ul>
  
  <P>
- Successive application of the two methods {@link #changeFrame(Event)} and {@link #changeVector(Event)} 
- (in any order) must return the original event (aside from some rounding that usually occurs because of 
+ Successive application of the two methods {@link #changeFrame(FourVector)} and {@link #changeVector(FourVector)} 
+ (in any order) must return the original four-vector (aside from some rounding that usually occurs because of 
  floating-point operations).
+ 
+ <p>Design note: attaching the type information to the methods, and not the interface, means 
+ I can retain the style of using factory methods. It also means that a given implementation 
+ can handle different types of four-vectors, without being married to one specific type.
 */
 public interface Transform {
   
   /** 
-   For a given event represented relative to K, represent the same event relative to K'. 
+   For a given four-vector represented relative to K, represent the same four-vector relative to K'. 
     
-   The inverse operation is {@link #changeVector(Event)}.
+   The inverse operation is {@link #changeVector(FourVector)}.
    
-   @param event the components of an event in the K frame.
-   @return the components of the same event in the K' frame. 
+   @param fourVector the components of a four-vector in the K frame.
+   @return the components of the same four-vector in the K' frame. 
   */
-  Event changeFrame(Event event);
+  <T extends FourVector & Builder<T>> T changeFrame(T fourVector);
   
   /** 
-   For a given event represented relative to K, return a second event represented relative to K. 
+   For a given four-vector represented relative to K, return a second four-vector represented relative to K. 
     
-   The inverse operation is {@link #changeFrame(Event)}.
+   The inverse operation is {@link #changeFrame(T)}.
    
-   @param event the components in a given frame K.
-   @return the components of a second event in a given frame K. 
+   @param fourVector the components in a given frame K.
+   @return the components of a second four-vector in a given frame K. 
   */
-  Event changeVector(Event event);
+  <T extends FourVector & Builder<T>> T changeVector(T fourVector);
 
 }

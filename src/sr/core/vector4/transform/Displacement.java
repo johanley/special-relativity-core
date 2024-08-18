@@ -18,7 +18,7 @@ import sr.core.vector4.Event;
  <P>Also note that 4-vectors in general are differential and not affected by a displacement operation.
  (This reflects the distinction between affine operations and linear operations.)
 */
-public final class Displacement implements Transform {
+public final class Displacement /*implements Transform - applies to events only. */{
   
   /** 
    Factory method. 
@@ -37,12 +37,12 @@ public final class Displacement implements Transform {
   }
   
   /** The origin of the frame of reference is displaced by the given amounts. */
-  @Override public Event changeFrame(Event event) {
+  public Event changeFrame(Event event) {
     return transform(event, -1);
   }
   
   /** The endpoint of the event is displaced by the given amounts. */
-  @Override public Event changeVector(Event event) {
+  public Event changeVector(Event event) {
     return transform(event, +1);
   }
   
@@ -66,12 +66,11 @@ public final class Displacement implements Transform {
   }
   
   private Event transform(Event event, int sign) {
-    return Event.of(
-      event.ct() + components.get(CT) * sign,  
-      event.x() + components.get(X) * sign, 
-      event.y() + components.get(Y) * sign, 
-      event.z() + components.get(Z) * sign
-    );
+    Map<Axis, Double> parts = new LinkedHashMap<>();
+    for(Axis axis : Axis.values()) {
+      parts.put(axis, event.on(axis) + components.get(axis) * sign);
+    }
+    return event.build(parts);
   }
 
 }

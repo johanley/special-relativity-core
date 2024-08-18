@@ -68,8 +68,6 @@ public final class Event extends FourVector implements Builder<Event> {
   
   // PRIVATE
 
-  private Map<Axis, Double> components;
-
   /** All construction passes through here. */
   private Event(Map<Axis, Double> parts) {
     this.components = new LinkedHashMap<>(parts);

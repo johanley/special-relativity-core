@@ -99,10 +99,10 @@ public class FourVector {
     String sep = ",";
     String result = "[";
     for(Axis axis : Axis.values()) {
-      result = result + roundIt(on(axis)) + sep;
+      result = result + roundIt(on(axis)) + sep + " ";
     }
-    //chop off the final separator character
-    result = result.substring(0, result.length() - 1);
+    //chop off the final separator+space characters 
+    result = result.substring(0, result.length() - 2);
     return result + "]";
   }
   

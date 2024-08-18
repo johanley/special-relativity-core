@@ -12,7 +12,8 @@ import java.util.Map;
 
 import sr.core.Axis;
 import sr.core.Parity;
-import sr.core.vector4.Event;
+import sr.core.vector4.Builder;
+import sr.core.vector4.FourVector;
 
 /**
  Change the sign of one or more components.
@@ -41,12 +42,12 @@ public final class Reflection implements Transform {
     return new Reflection(ODD, ODD, ODD, ODD); 
   }
   
-  @Override public Event changeFrame(Event event) {
-    return doIt(event);
+  @Override public <T extends FourVector & Builder<T>> T changeFrame(T fourVector) {
+    return doIt(fourVector);
   }
   
-  @Override public Event changeVector(Event event) {
-    return doIt(event);
+  @Override public <T extends FourVector & Builder<T>> T changeVector(T fourVector) {
+    return doIt(fourVector);
   }
   
   @Override public String toString() {
@@ -67,12 +68,12 @@ public final class Reflection implements Transform {
     components.put(Y, y);
     components.put(Z, z);
   }
-
-  private Event doIt(Event event/*, int sign is not needed or desired here */) {
+  
+  private <T extends FourVector & Builder<T>> T doIt(T fourVector/*, int sign is not needed or desired here */) {
     Map<Axis, Double> parts = new LinkedHashMap<>();
     for(Axis axis : Axis.values()) {
-      parts.put(axis, components.get(axis).sign() * event.on(axis));
+      parts.put(axis, components.get(axis).sign() * fourVector.on(axis));
     }
-    return event.build(parts);
+    return fourVector.build(parts);
   }
 }
