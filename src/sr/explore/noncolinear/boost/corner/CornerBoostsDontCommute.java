@@ -6,6 +6,7 @@ import static sr.core.Axis.Y;
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
+import sr.core.VelocityTransformation;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Boost;
@@ -18,8 +19,6 @@ import sr.output.text.TextOutput;
  
  <P>Same line: two boosts in sequence along an axis are equivalent to a third boost along the same axis.
  The two boosts commute.
- The velocity for the equivalent boost can be found from the transformation of velocity 
- {@link Physics#transformVelocityColinear(double, double)}. 
 
  <P>Not the same line (corner-boost): they two boosts don't commute.
  A corner-boost is equivalent to a boost plus a rotation, called a Silberstein (or Thomas-Wigner) rotation.
@@ -42,7 +41,7 @@ public final class CornerBoostsDontCommute extends TextOutput {
     seeIfOrderMatters(Velocity.of(X, β1), Velocity.of(X, β2));
     lines.add(Util.NL + "The two boosts give the same final event coordinates, regardless of the order of execution.");
 
-    double βequiv = Physics.transformVelocityColinear(β1, β2);
+    double βequiv = βequivalentColinear(β1, β2);
     Event event = anyOldEvent();
     Event afterEquiv = boostThe(event, X, βequiv);
     lines.add("A single equivalent boost: " + X + " " + Util.round(βequiv, 5) + " " + afterEquiv);
@@ -63,6 +62,11 @@ public final class CornerBoostsDontCommute extends TextOutput {
   
   private Event boostThe(Event event, Axis axis, double β) {
     return Boost.of(axis, β).changeVector(event);
+  }
+
+  private double βequivalentColinear(double β1, double β2) {
+    Velocity result = VelocityTransformation.unprimedVelocity(Velocity.of(X, β1), Velocity.of(X, β2));
+    return result.magnitude();
   }
   
   private void seeIfOrderMatters(Velocity v1, Velocity v2) {
@@ -86,7 +90,6 @@ public final class CornerBoostsDontCommute extends TextOutput {
   }
   
   private Event anyOldEvent() {
-    Event event = Event.of(2.32, -15.79, 0.0, 0.0);
-    return event;
+    return Event.of(2.32, -15.79, 0.0, 0.0);
   }
 }

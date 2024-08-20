@@ -162,22 +162,6 @@ public final class Physics {
   }
   
   /**
-   Transform of velocity, in the case where all motions on the same line.
-   
-   <P>An object moves along an axis in the K frame, with velocity v.
-   K' is a second frame, boosted along the same axis (with respect to the K frame). 
-    
-    @param v the velocity of the object along the axis in the K frame
-    @param boost velocity of K' with respect to K, along the axis
-    @return the velocity along the axis in the boosted frame K'
-  */
-  public static final Double transformVelocityColinear(double v, double boost) {
-    double c = 1.0; //to compare with books
-    double result = (v + boost) / (1 + v*boost/(c*c));
-    return result;
-  }
-
-  /**
    New angle for a boosted stick.
    
    A stick is boosted. 
