@@ -1,6 +1,5 @@
 package sr.core;
 
-import static java.lang.Math.cos;
 import static sr.core.Util.sq;
 import static sr.core.Util.sqroot;
 
@@ -108,17 +107,6 @@ public final class Physics {
     BigDecimal denom = a.sqrt(LARGE_NUM_DECIMALS);
     BigDecimal result = numer.divide(denom, LARGE_NUM_DECIMALS);
     return result;
-  }
-  
-  /** 
-   The Doppler factor. Dimensionless.
-   
-   @param θ is the angle between the detected line-of-sight and the line-of-motion, in radians [0..pi].
-  */
-  public static final Double D(Double β, Double θ) {
-    double Γ = Γ(β);
-    double denom = Γ*(1 - β*cos(θ)); 
-    return 1.0/denom;
   }
   
   /**
