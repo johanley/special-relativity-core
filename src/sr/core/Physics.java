@@ -37,6 +37,27 @@ public final class Physics {
    Value: {@value} 
   */
   public static final double C = 299792458.0D;
+
+  /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit. {@value}. */
+  public static final double ONE_GEE = 1.03; //light-years, year as the unit!
+
+  /** 
+   Converts to units of light-yr per year^2.
+   @param mks_units the acceleration in meters per sec^2. 
+  */
+  public static final Double acceleration(double mks_units) {
+    return mks_units * (SECONDS_PER_YEAR * SECONDS_PER_YEAR) / METERS_PER_LIGHT_YEAR;
+  }
+ 
+  /** 
+   Converts to units of light-yr per year^2.
+   @param gees multiple of Earth's standard gravitational acceleration. 
+  */
+  public static final Double gAcceleration(double gees) {
+    return acceleration(gees * ONE_GEE_MKS);
+  }
+ 
+  
   
   /**
     Note that this method uses very specific units!
@@ -138,22 +159,6 @@ public final class Physics {
    double denom = 1 - β * Math.cos(θ);
    double thetaPrime = Math.acos(num / denom); //0..pi
    return thetaPrime;
-  }
-  
-  /** 
-   Converts to units of light-yr per year^2.
-   @param mks_units the acceleration in meters per sec^2. 
-  */
-  public static final Double acceleration(double mks_units) {
-    return mks_units * (SECONDS_PER_YEAR * SECONDS_PER_YEAR) / METERS_PER_LIGHT_YEAR;
-  }
-  
-  /** 
-   Converts to units of light-yr per year^2.
-   @param gees multiple of Earth's standard gravitational acceleration. 
-  */
-  public static final Double gAcceleration(double gees) {
-    return acceleration(gees * ONE_GEE_MKS);
   }
   
   /**

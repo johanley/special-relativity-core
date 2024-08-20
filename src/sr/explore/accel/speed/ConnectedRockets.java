@@ -78,25 +78,24 @@ public final class ConnectedRockets  extends TextOutput {
   }
   
   
-  private double GEE = 1.03; //1g, when using units of light-years and years
-  private double CONNECTOR_LENGTH = 1.0;
+  private static final double CONNECTOR_LENGTH = 1.0;
   
   // ct, rocket separation, connector-length
   private Table tableHeader = new Table("%-18s", "%-20s", "%-15s");
   private Table table = new Table("%12.2f", "%18.2f", "%20.8f");
   
   private MoveableHistory rocketA() {
-    return UniformAcceleration.of(Position.origin(), X, GEE);
+    return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
   
   /** Same as rocket-a, but displaced to the right along the X-axis. */
   private MoveableHistory rocketB() {
-    return UniformAcceleration.of(DeltaBase.of(Position.of(X, CONNECTOR_LENGTH)), X, GEE);
+    return UniformAcceleration.of(DeltaBase.of(Position.of(X, CONNECTOR_LENGTH)), X, Physics.ONE_GEE);
   }
   
   /** 'Stick' is really a place-holder for any extended object. */
   private MoveableHistory stickEndA() {
-    return UniformAcceleration.of(Position.origin(), X, GEE);
+    return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
 
   /** Use the stick-end-a as the starting point; then just add the contracted length of the connector to the X-coordinate. */

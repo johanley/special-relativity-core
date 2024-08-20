@@ -1,6 +1,7 @@
 package sr.explore.accel.speed;
 
 import sr.core.Axis;
+import static sr.core.Physics.*;
 import sr.core.Util;
 import sr.core.history.DeltaBase;
 import sr.core.history.History;
@@ -67,9 +68,6 @@ public final class OneGeeThereAndBack extends TextOutput {
     table();
     outputToConsoleAnd("one-gee-there-and-back.txt");
   }
-
-  /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit {@value}. */
-  public static final double ONE_GEE = 1.03; //light-years, year as the unit!
 
   private void table() {
     lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));

@@ -1,7 +1,8 @@
 package sr.explore.accel.speed;
 
 import sr.core.Axis;
-import sr.core.Physics;
+
+import static sr.core.Physics.*;
 import sr.core.Util;
 import sr.core.history.MoveableHistory;
 import sr.core.history.UniformAcceleration;
@@ -51,9 +52,6 @@ public final class OneGeeForever extends TextOutput {
     outputToConsoleAnd("one-gee-forever.txt");
   }
 
-  /** The numeric value of 1g, expressed using light-years as the distance unit and year as the time-unit. {@value}. */
-  public static final double ONE_GEE = 1.03; //light-years, year as the unit!
-
   private void table() {
     lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Speed", "Γ"));
     lines.add(tableHeader.row("(years)", "(light-years)", "(years)", "(β)", ""));
@@ -68,7 +66,7 @@ public final class OneGeeForever extends TextOutput {
     Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
     double terminalSpeed = history.velocity(coordinateTime).magnitude();
-    lines.add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Physics.Γ(terminalSpeed)));
+    lines.add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Γ(terminalSpeed)));
   }
   
   // Proper-time cτ, Distance light-years, Coordinate-time ct
