@@ -3,6 +3,7 @@ package sr.explore.optics.flyby;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Physics;
+import sr.core.Star;
 import sr.core.vector4.Event;
 
 /** 
@@ -29,9 +30,9 @@ final class DetectionEvent {
     this.θ = Physics.aberrationForDetectorDirection(angle, β);
     
     this.D = Physics.D(β, θ);
-    this.T = Physics.T(D, star.surfaceTemp());
-    double magDistanceEffect = Physics.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/);
-    double ΔmagDopplerEffect = Physics.Δmag(D, star.surfaceTemp());
+    this.T = Star.T(D, star.surfaceTemp());
+    double magDistanceEffect = Star.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/);
+    double ΔmagDopplerEffect = Star.Δmag(D, star.surfaceTemp());
     this.V = magDistanceEffect + ΔmagDopplerEffect;
   }
   
