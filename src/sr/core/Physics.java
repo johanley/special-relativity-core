@@ -122,46 +122,6 @@ public final class Physics {
   }
   
   /**
-  Aberration formula for the detector-direction.
-  Returns the angle (radians [0,pi]) between the detector-direction and the boost-direction.
-  The detector-direction gets deflected towards the boost-direction.
-  <P>References: 
-   <ul>
-    <li>The Classical Theory of Fields, Landau and Lifshitz
-    <li><a href='http://specialrelativity.net/part2.html#Aberration'>specialrelativity.net</a>  
-   </ul>
-  
-   @param θ the 'geometrical' angle radians [0,pi] between the detector-direction and the boost-direction 
-   @param β the boost   
-  */
-  public static final Double aberrationForDetectorDirection(Double θ, Double β) {
-   double num = Math.cos(θ) + β;
-   double denom = 1 + β * Math.cos(θ);
-   double thetaPrime = Math.acos(num / denom); //0..pi
-   return thetaPrime;
-  }
- 
-  /**
-  Aberration formula for the photon-direction.
-  Returns the angle (radians [0,pi]) between the photon-direction and the boost-direction.
-  The photon-direction gets deflected away from the boost-direction.
-  <P>References: 
-   <ul>
-    <li>The Classical Theory of Fields, Landau and Lifshitz
-    <li><a href='http://specialrelativity.net/part2.html#Aberration'>specialrelativity.net</a>  
-   </ul>
-  
-   @param θ the 'geometrical' angle radians [0,pi] between the photon-direction and the boost-direction 
-   @param β the boost   
-  */
-  public static final Double aberrationForPhotonDirection(Double θ, Double β) {
-   double num = Math.cos(θ) - β;
-   double denom = 1 - β * Math.cos(θ);
-   double thetaPrime = Math.acos(num / denom); //0..pi
-   return thetaPrime;
-  }
-  
-  /**
    New angle for a boosted stick.
    
    A stick is boosted. 
