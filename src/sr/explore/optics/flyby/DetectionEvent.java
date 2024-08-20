@@ -2,15 +2,23 @@ package sr.explore.optics.flyby;
 
 import static sr.core.Util.radsToDegs;
 
-import sr.core.Physics;
+import sr.core.Axis;
+import sr.core.LorentzTransformation;
 import sr.core.Star;
+import sr.core.vector3.Direction;
+import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
+import sr.core.vector4.WaveVector;
 
 /** 
  The detection of a photon at the detector.
  Most of the physics for a flyby is implemented in the class constructor.
  
- <P>Physical quantities are in the rest frame of the detector.
+ <P>This data is attached to two frames:
+  <ul>
+   <li>K, in which the detector is at rest with respect to the star.
+   <li>K', in which the detector is moving with respect to the star.
+  </ul>
 */
 final class DetectionEvent {
   
@@ -23,46 +31,60 @@ final class DetectionEvent {
     double lightTravelTime = distanceToEmissionEvent / 1.0;
     this.detectionTime = emissionEvent.ct() + lightTravelTime;
     
-    double cosTheta = emissionEvent.x() / distanceToEmissionEvent;
-    //the photon-direction with respect to the axis-of-motion; the 'geometrical' direction
-    double angle = Math.PI - Math.acos(cosTheta) /*0..pi*/; 
-    //the observed apparent direction, with aberration applied
-    this.θ = Physics.aberrationForDetectorDirection(angle, β);
+    //calculate and set D and θ: 
+    boostTheWaveVectorComingFromThe(emissionEvent, -β);
     
-    this.D = Physics.D(β, θ);
     this.T = Star.T(D, star.surfaceTemp());
     double magDistanceEffect = Star.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/);
     double ΔmagDopplerEffect = Star.Δmag(D, star.surfaceTemp());
     this.V = magDistanceEffect + ΔmagDopplerEffect;
   }
   
-  /** 
-   The detector-direction (pointing to the star), with respect to the axis-of-motion. 
-   Radians, [0,pi]. 
-  */
+  /**  The K' detector-direction (pointing to the star), with respect to the axis-of-motion.  Radians, [0,pi].  */
   double θ;
   
-  /** The Doppler factor. Dimensionless. */
+  /** The K' Doppler factor. Dimensionless. */
   double D;
   
-  /** The effective temperature of the star's black-body spectrum in Kelvins. Doppler-shifted. */
+  /** The K' effective temperature of the star's black-body spectrum in Kelvins. */
   double T;
   
-  /** The apparent visual magnitude of the star seen by the detector. */
+  /** The K' apparent visual magnitude of the star seen by the detector. */
   double V;
   
-  /** The coordinate-time when the photon is detected. Time-of-emission + travel-time for the photon. */
+  /** The K coordinate-time when the photon is detected. Time-of-emission + travel-time for the photon. */
   double detectionTime; 
   
-  /** The coordinate-time when the photon was emitted. */
+  /** The K coordinate-time when the photon was emitted. */
   double emissionTime;
   
-  /** How far away the star was from the detector when it emitted the photon. */
+  /** The K distance from the star to the detector when the photon is emitted.  */
   double distanceToEmissionEvent;
   
   @Override public String toString() {
     //%[argument_index$][flags][width][.precision]conversion
     // '%1$8.3f' means 8 chars, 3 decimals (floating point data)
     return String.format("%1$8.3fy %2$8.2f° %3$8.2f  %4$8.2fV  %5$8.3fly", detectionTime, radsToDegs(θ), D, V, distanceToEmissionEvent);
+  }
+  
+  /** 
+   Boost a {@link WaveVector} using a {@link LorentzTransformation} along the X axis by β.
+   Sets both this.θ and this.D as a side effect.  
+  */
+  private void boostTheWaveVectorComingFromThe(Event emissionEvent, double β) {
+    //in K, the detector is at rest with respect to the star, and at the origin of the coordinate system
+    Direction detector_direction_K = Direction.of(emissionEvent.spatialComponents());
+
+    //photon-direction is opposite to the detector-direction
+    //do the calc with a photon, then convert back to the detector's perspective
+    WaveVector photon_K = WaveVector.of(1.0, detector_direction_K.times(-1));
+    LorentzTransformation boost_the_detector_towards_neg_x = LorentzTransformation.of(Velocity.of(Axis.X, β));
+    WaveVector photon_Kp = boost_the_detector_towards_neg_x.primedVector(photon_K);
+    
+    this.D = photon_Kp.ct() / photon_K.ct();
+    
+    Direction detector_direction_Kp = Direction.of(photon_Kp.spatialComponents().times(-1));
+    double angle =  Math.atan2(detector_direction_Kp.y(), detector_direction_Kp.x()); //0 to +pi wrt +X axis
+    this.θ =  Math.PI - angle; //0..pi wrt -X axis
   }
 }
