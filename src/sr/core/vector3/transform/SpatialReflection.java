@@ -3,7 +3,8 @@ package sr.core.vector3.transform;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
-import static sr.core.Parity.*;
+import static sr.core.Parity.EVEN;
+import static sr.core.Parity.ODD;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -11,6 +12,8 @@ import java.util.Map;
 import sr.core.Axis;
 import sr.core.Parity;
 import sr.core.Util;
+import sr.core.vector3.AxisAngle;
+import sr.core.vector3.PseudoVector;
 import sr.core.vector3.ThreeVector;
 
 /**
@@ -71,8 +74,14 @@ public final class SpatialReflection implements SpatialTransform {
   
   private ThreeVector transform(ThreeVector v/*, int sign is not needed or desired here! */) {
     ThreeVector result = v.copy();
-    for(Axis axis : Axis.spatialAxes()) {
-      result = result.put(axis, components.get(axis).sign() * v.on(axis));
+    if (v instanceof PseudoVector) {
+      //do nothing! pseudo-vectors aren't affected by a parity transformation
+      //(using instanceof may not be the best way of implementing this)
+    }
+    else {
+      for(Axis axis : Axis.spatialAxes()) {
+        result = result.put(axis, components.get(axis).sign() * v.on(axis));
+      }
     }
     return result;
   }

@@ -13,7 +13,7 @@ import sr.core.Axis;
  
  <P>For Silberstein rotation, the axis-angle is proportional to the cross product of acceleration and velocity.
 */
-public final class AxisAngle extends ThreeVectorImpl {
+public final class AxisAngle extends ThreeVectorImpl implements PseudoVector {
 
   /** Factory method, taking the 3 components along the XYZ axes, in that order.  */
   public static AxisAngle of(double x, double y, double z) {
