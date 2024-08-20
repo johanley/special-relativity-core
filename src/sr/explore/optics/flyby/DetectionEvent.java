@@ -4,7 +4,6 @@ import static sr.core.Util.radsToDegs;
 
 import sr.core.Axis;
 import sr.core.LorentzTransformation;
-import sr.core.Star;
 import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
@@ -34,9 +33,14 @@ final class DetectionEvent {
     //calculate and set D and θ: 
     boostTheWaveVectorComingFromThe(emissionEvent, -β);
     
-    this.T = Star.T(D, star.surfaceTemp());
-    double magDistanceEffect = Star.apparentVisualMagnitude(star.absoluteMag(), distanceToEmissionEvent /*light-years!*/);
-    double ΔmagDopplerEffect = Star.Δmag(D, star.surfaceTemp());
+    /*
+    this.T = Star.T(D, star.surfaceTemperature());
+    double magDistanceEffect = Star.apparentVisualMagnitude(star.absoluteMagnitude(), distanceToEmissionEvent);
+    double ΔmagDopplerEffect = Star.Δmag(D, star.surfaceTemperature());
+    */
+    this.T = star.surfaceTemperature(D);
+    double magDistanceEffect = star.apparentVisualMagnitude(distanceToEmissionEvent /*light-years needed!*/);
+    double ΔmagDopplerEffect = star.Δmagnitude(D);
     this.V = magDistanceEffect + ΔmagDopplerEffect;
   }
   
