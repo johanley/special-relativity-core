@@ -19,6 +19,10 @@ It's too close to 1 (about 22 decimals). Only the BigDecimal class can represent
 However, working with BigDecimal is more painful than working with Double, so this is 
 left out as a special case.
 
+**The proliferation of many formulas derived in textbooks is undesirable in this project.**
+This project implements as many calculations as possible with the core Lorentz Transformation.
+This helps ensure correctness, and directly manifests how the Lorentz Transformation generates diverse phenomena.
+ 
 **Vector formulations are simpler than component formulations.**
 Moving from components to vectors simplifies the implementation.
 I found this with 
