@@ -55,8 +55,6 @@ public final class Physics {
   public static final Double gAcceleration(double gees) {
     return acceleration(gees * ONE_GEE_MKS);
   }
- 
-  
   
   /**
     Note that this method uses very specific units!
