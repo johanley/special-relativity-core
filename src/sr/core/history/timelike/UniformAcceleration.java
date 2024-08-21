@@ -39,7 +39,7 @@ import sr.core.vector4.Event;
  <P>The velocity is always parallel to one of the spatial axes of the coordinate system.
  <P>Formula reference: <a href='https://en.wikipedia.org/wiki/Acceleration_(special_relativity)'>Wikipedia</a> and Rindler's book <em>Introduction to Special Relativity</em>.
 */
-public final class UniformAcceleration extends MoveableHistory {
+public final class UniformAcceleration extends TimelikeMoveableHistory {
 
   /**
    Factory method.
@@ -47,7 +47,7 @@ public final class UniformAcceleration extends MoveableHistory {
    @param axis spatial axis parallel to the linear acceleration.
    @param gee the constant, non-zero proper-acceleration 'felt' by the astronaut.
   */
-  public static UniformAcceleration of(DeltaBase deltaBase, Axis axis, double gee) {
+  public static UniformAcceleration of(TimelikeDeltaBase deltaBase, Axis axis, double gee) {
     return new UniformAcceleration(deltaBase, axis, gee);
   }
 
@@ -58,7 +58,7 @@ public final class UniformAcceleration extends MoveableHistory {
    @param initialPosition for the object at ct=0, with proper time zero at that time as well.
   */
   public static UniformAcceleration of(Position initialPosition, Axis axis, double gee) {
-    return new UniformAcceleration(DeltaBase.of(initialPosition), axis, gee);
+    return new UniformAcceleration(TimelikeDeltaBase.of(initialPosition), axis, gee);
   }
 
   @Override protected Event Δevent(double Δct) {
@@ -97,7 +97,7 @@ public final class UniformAcceleration extends MoveableHistory {
   private double gee;
   private static final double c = 1.0; //to allow for easier comparison with references
   
-  private UniformAcceleration(DeltaBase deltaBase, Axis axis, double gee) {
+  private UniformAcceleration(TimelikeDeltaBase deltaBase, Axis axis, double gee) {
     super(deltaBase);
     mustBeSpatial(axis);
     mustHave(Math.abs(gee) > 0, "Must have a non-zero acceleration.");

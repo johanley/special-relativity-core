@@ -1,6 +1,6 @@
 package sr.core.history.timelike;
 
-import sr.core.history.BaseHistory;
+import sr.core.history.History;
 
 /** 
 The parameterized history (world-line) of an object (with mass) represented as a particle.
@@ -25,7 +25,7 @@ So, the histories it represents are curves in space-time, not extended tubes.
 <P>The history-tube of an extended object might be represented with N of these particle-histories.
 For example, a stick might be represented by two particle histories, one for each end of the stick. 
 */
-public interface History extends BaseHistory {
+public interface TimelikeHistory extends History {
 
   /**
    Convert a proper-time into a coordinate-time.

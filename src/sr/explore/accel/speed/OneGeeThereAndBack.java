@@ -3,10 +3,10 @@ package sr.explore.accel.speed;
 import sr.core.Axis;
 import static sr.core.Physics.*;
 import sr.core.Util;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.History;
-import sr.core.history.timelike.MoveableHistory;
-import sr.core.history.timelike.StitchedHistoryBuilder;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
@@ -79,7 +79,7 @@ public final class OneGeeThereAndBack extends TextOutput {
   }
  
   private void explore(double τ_years) {
-    History history = roundTripAtOneGee(τ_years);
+    TimelikeHistory history = roundTripAtOneGee(τ_years);
     double end_ct = history.ct(τ_years);
     Event end_event = history.event(end_ct);
     lines.add(table.row(τ_years, end_event.x(), end_event.ct()));
@@ -91,9 +91,9 @@ public final class OneGeeThereAndBack extends TextOutput {
   private static final int NUM_YEARS = 24;
   private static final Axis X = Axis.X;
 
-  private History roundTripAtOneGee(double τ_years) {
-    MoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
-    StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(leg);
+  private TimelikeHistory roundTripAtOneGee(double τ_years) {
+    TimelikeMoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
+    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg);
 
     Event quarterWay = leg.eventFromProperTime(τ_years * 0.25);
     //and these two events by symmetry:
@@ -103,11 +103,11 @@ public final class OneGeeThereAndBack extends TextOutput {
     
     //the delta-bases aren't the same as the branch points:
     
-    DeltaBase deltaBase = DeltaBase.of(halfWay, τ_years * 0.5);
+    TimelikeDeltaBase deltaBase = TimelikeDeltaBase.of(halfWay, τ_years * 0.5);
     leg = UniformAcceleration.of(deltaBase, X, -ONE_GEE);
     builder.addTheNext(leg, quarterWay.ct());
 
-    deltaBase = DeltaBase.of(allTheWay, τ_years);
+    deltaBase = TimelikeDeltaBase.of(allTheWay, τ_years);
     leg = UniformAcceleration.of(deltaBase, X, ONE_GEE);
     builder.addTheNext(leg, 3 * quarterWay.ct());
     

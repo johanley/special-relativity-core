@@ -3,10 +3,10 @@ package sr.explore.accel.speed;
 import sr.core.Axis;
 import static sr.core.Physics.*;
 import sr.core.Util;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.History;
-import sr.core.history.timelike.MoveableHistory;
-import sr.core.history.timelike.StitchedHistoryBuilder;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
@@ -63,7 +63,7 @@ public final class OneGeeThereAndStay extends TextOutput {
   }
  
   private void explore(double τ_years) {
-    History history = accelerateThenBrake(τ_years);
+    TimelikeHistory history = accelerateThenBrake(τ_years);
     double end_ct = history.ct(τ_years);
     Event end_event = history.event(end_ct);
     lines.add(table.row(τ_years, end_event.x(), end_event.ct()));
@@ -74,15 +74,15 @@ public final class OneGeeThereAndStay extends TextOutput {
   private Table tableHeader = new Table("%-15s", "%-22s", "%-20s");
   private static final int NUM_YEARS = 20;
 
-  private History accelerateThenBrake(double τ_years) {
+  private TimelikeHistory accelerateThenBrake(double τ_years) {
     double τ_halfWay = τ_years * 0.5;
     
-    MoveableHistory acceleration = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
+    TimelikeMoveableHistory acceleration = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
     Event halfWay = acceleration.eventFromProperTime(τ_halfWay);
     //note how the delta-base is computed, by symmetry:
-    MoveableHistory braking = UniformAcceleration.of(DeltaBase.of(halfWay.plus(halfWay), τ_years), Axis.X, -ONE_GEE);
+    TimelikeMoveableHistory braking = UniformAcceleration.of(TimelikeDeltaBase.of(halfWay.plus(halfWay), τ_years), Axis.X, -ONE_GEE);
     
-    StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(acceleration);
+    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(acceleration);
     builder.addTheNext(braking, halfWay.ct());
     return builder.build();
   }

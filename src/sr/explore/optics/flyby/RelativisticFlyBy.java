@@ -5,7 +5,7 @@ import static sr.core.Axis.Y;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.history.timelike.History;
+import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
@@ -205,7 +205,7 @@ public final class RelativisticFlyBy {
   private Double y;
   private Double x0;
   private Double timeStep;
-  private History history; 
+  private TimelikeHistory history; 
   private static final int NUM_EMISSION_EVENTS = 10000;
   
   /**  ct=0 corresponds to the time when the star is at minimum distance. */

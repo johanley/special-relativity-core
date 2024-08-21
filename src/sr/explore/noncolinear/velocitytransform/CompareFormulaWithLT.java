@@ -4,7 +4,7 @@ import static sr.core.Axis.X;
 
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
@@ -50,7 +50,7 @@ public final class CompareFormulaWithLT extends TextOutput {
   private void lorentzTransformation(double boost_speed, Velocity v) {
     lines.add(Util.NL + "Using the Lorentz transformation directly we get:");
     //v corresponds to a history in K (through the origin)
-    MoveableHistory history_k = UniformVelocity.of(Position.origin(), v);
+    TimelikeMoveableHistory history_k = UniformVelocity.of(Position.origin(), v);
      
     //by differentiation, the v in K is
     double ct_K = 1.0;

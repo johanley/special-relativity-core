@@ -3,18 +3,18 @@ package sr.core.history.timelike;
 /** 
  Points in time where histories are stitched together.
  The stitching is based on time, both coordinate-time and proper-time.
- For a given time, a specific {@link History} is selected.
+ For a given time, a specific {@link TimelikeHistory} is selected.
 */
-final class BranchPoint {
+final class TimelikeBranchPoint {
   
-  static BranchPoint of(double ct, double τ) {
-    return new BranchPoint(ct, τ);
+  static TimelikeBranchPoint of(double ct, double τ) {
+    return new TimelikeBranchPoint(ct, τ);
   }
   
   double ct() { return ct; }
   double τ() { return τ; }
   
-  private BranchPoint(double ct, double τ) {
+  private TimelikeBranchPoint(double ct, double τ) {
     this.ct = ct;
     this.τ = τ;
   }

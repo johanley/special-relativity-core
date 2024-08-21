@@ -4,7 +4,7 @@ import sr.core.Axis;
 
 import static sr.core.Physics.*;
 import sr.core.Util;
-import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
@@ -62,7 +62,7 @@ public final class OneGeeForever extends TextOutput {
   }
  
   private void explore(int yearsProperTime) {
-    MoveableHistory history = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
+    TimelikeMoveableHistory history = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
     Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
     double terminalSpeed = history.velocity(coordinateTime).magnitude();

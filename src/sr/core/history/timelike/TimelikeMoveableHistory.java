@@ -5,14 +5,14 @@ import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 
 /**
- Allow a {@link History} to have a configurable {@link DeltaBase} in space-time.
- Methods are implemented as differences with respect to the {@link DeltaBase}. 
- This is used by {@link StitchedHistoryBuilder} in stitching together multiple histories into a single history.
+ Allow a {@link TimelikeHistory} to have a configurable {@link TimelikeDeltaBase} in space-time.
+ Methods are implemented as differences with respect to the {@link TimelikeDeltaBase}. 
+ This is used by {@link StitchedTimelikeHistory} in stitching together multiple histories into a single history.
 */
-public abstract class MoveableHistory implements History {
+public abstract class TimelikeMoveableHistory implements TimelikeHistory {
 
   /** @param deltaBase about which the history is constructed using differences. */
-  protected MoveableHistory(DeltaBase deltaBase) {
+  protected TimelikeMoveableHistory(TimelikeDeltaBase deltaBase) {
     this.deltaBase = deltaBase;
   }
 
@@ -27,7 +27,7 @@ public abstract class MoveableHistory implements History {
   */
   protected abstract Event Δevent(double Δct);
   
-  /** Return the {@link Event} given a proper-time as the parameter into the {@link History}. */
+  /** Return the {@link Event} given a proper-time as the parameter into the {@link TimelikeHistory}. */
   public final Event eventFromProperTime(double τ) {
     return event(ct(τ));
   }
@@ -40,7 +40,7 @@ public abstract class MoveableHistory implements History {
   /**
    Return the change in coordinate-time relative to the delta-base, given the change in 
    proper-time relative to the delta-base.
-   @param Δτ is the difference between τ and {@link DeltaBase#ΔbaseEvent_τ()}.
+   @param Δτ is the difference between τ and {@link TimelikeDeltaBase#ΔbaseEvent_τ()}.
   */
   protected abstract double Δct(double Δτ);
 
@@ -57,7 +57,7 @@ public abstract class MoveableHistory implements History {
   protected abstract double Δτ(double Δct);
   
   
-  public DeltaBase deltaBase() { return deltaBase; }
+  public TimelikeDeltaBase deltaBase() { return deltaBase; }
   
   /** 
    Return an approximation to the velocity of the object at the given coordinate-time.
@@ -86,6 +86,6 @@ public abstract class MoveableHistory implements History {
   
   //PRIVATE
   
-  private DeltaBase deltaBase;
+  private TimelikeDeltaBase deltaBase;
   
 }

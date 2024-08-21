@@ -27,7 +27,7 @@ import sr.core.vector4.transform.Rotation;
  <P>This class isn't very general. 
  It could be improved by allowing any direction for the spin axis, and by allowing helical motion.
 */
-public class CircularMotion extends MoveableHistory {
+public class CircularMotion extends TimelikeMoveableHistory {
 
   /**
    Constructor.
@@ -42,7 +42,7 @@ public class CircularMotion extends MoveableHistory {
    @param β must be a non-zero value in the range (-1,1). Negative values reverse the sense of the rotation.
    @param theta0 initial phase in radians. Must be in range [0,2pi).
   */
-  public static CircularMotion of(DeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
+  public static CircularMotion of(TimelikeDeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
     return new CircularMotion(deltaBase, radius, β, rotationalAxis, theta0);
   }
 
@@ -92,7 +92,7 @@ public class CircularMotion extends MoveableHistory {
   /** The initial phase of the circular motion [0,2pi). If zero, then the object is on the 'first' axis of the pole, given the right-hand rule. */
   private double theta0;
   
-  private CircularMotion(DeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
+  private CircularMotion(TimelikeDeltaBase deltaBase, double radius, double β, Axis rotationalAxis, double theta0) {
     super(deltaBase);
     Util.mustBeSpatial(rotationalAxis);
     Util.mustHave(radius > 0, "Radius must be positive.");

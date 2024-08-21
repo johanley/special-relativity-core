@@ -4,8 +4,8 @@ package sr.explore.noncolinear.velocitytransform;
 import sr.core.Axis;
 import sr.core.VelocityTransformation;
 import sr.core.history.timelike.CircularMotion;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeMoveableHistory;
 
 import static sr.core.Util.*;
 
@@ -92,7 +92,7 @@ public final class ThomasPrecessionAsLimit extends TextOutput {
   /** Use a {@link CircularHistory}. */
   private void rotationFromThomasPrecessionFormula(double radius, double β) {
     lines.add(NL+"Compare with the Thomas precession formula for circular motion."+NL);
-    MoveableHistory circle = CircularMotion.of(DeltaBase.origin(), radius, β, Axis.Z, 0.0);
+    TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;
     AxisAngle rotation = circle.rotation(timeForOneCircuit);

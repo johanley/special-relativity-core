@@ -3,10 +3,10 @@ package sr.explore.accel.speed;
 import sr.core.Axis;
 import static sr.core.Physics.*;
 import sr.core.Util;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.History;
-import sr.core.history.timelike.MoveableHistory;
-import sr.core.history.timelike.StitchedHistoryBuilder;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
@@ -98,7 +98,7 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
   }
  
   private void explore(double τ_years_accel, double τ_years_cruising) {
-    History history = roundTripAtOneGee(τ_years_accel, τ_years_cruising);
+    TimelikeHistory history = roundTripAtOneGee(τ_years_accel, τ_years_cruising);
     double τ_years = τ_years_accel + τ_years_cruising;
     double end_ct = history.ct(τ_years);
     Event end_event = history.event(end_ct);
@@ -112,7 +112,7 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
   private static final int NUM_YEARS_CRUISING = 2;
   private static final Axis X = Axis.X;
 
-  private History roundTripAtOneGee(double τ_years_accel, double τ_years_cruising) {
+  private TimelikeHistory roundTripAtOneGee(double τ_years_accel, double τ_years_cruising) {
     
     /*
      * Example : 24 years_accel + 2 years_cruising = (6 + 1 + 6) + (6 + 1 +6)
@@ -121,12 +121,12 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
      */
     
     //accelerate 6 years
-    MoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
-    StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(leg);
+    TimelikeMoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
+    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg);
 
     //cruise 1 year
     Event branch_point = leg.eventFromProperTime(τ_years_accel * 0.25);
-    DeltaBase delta_base = DeltaBase.of(branch_point, leg.τ(branch_point.ct()));
+    TimelikeDeltaBase delta_base = TimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
     leg = UniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
     builder.addTheNext(leg, branch_point.ct());
     
@@ -135,20 +135,20 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
     
     //brake 12 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.25 + τ_years_cruising * 0.5);
-    delta_base = DeltaBase.of(all_way_out, (τ_years_accel +  τ_years_cruising) * 0.5); 
+    delta_base = TimelikeDeltaBase.of(all_way_out, (τ_years_accel +  τ_years_cruising) * 0.5); 
     leg = UniformAcceleration.of(delta_base, X, -ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
 
     //cruise 1 year
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising * 0.5);
-    delta_base = DeltaBase.of(branch_point, leg.τ(branch_point.ct()));
+    delta_base = TimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
     leg = UniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
     builder.addTheNext(leg, branch_point.ct());
 
     //accel 6 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising);
     Reflection flipX = Reflection.of(X);
-    delta_base = DeltaBase.of(all_way_out.plus(flipX.changeVector(all_way_out)), τ_years_accel + τ_years_cruising); 
+    delta_base = TimelikeDeltaBase.of(all_way_out.plus(flipX.changeVector(all_way_out)), τ_years_accel + τ_years_cruising); 
     leg = UniformAcceleration.of(delta_base, X, ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
     

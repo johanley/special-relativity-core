@@ -3,8 +3,8 @@ package sr.explore.noncolinear.thomas.rotation;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.history.timelike.CircularMotion;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
@@ -48,7 +48,7 @@ public final class ThomasRotation extends TextOutput {
     lines.add(Util.NL + header.row("ct", "Phase", "Rotation", "Position", "Velocity"));
     lines.add(header.row("", "", "θw", "", ""));
     lines.add(dashes(80));
-    MoveableHistory circle = CircularMotion.of(DeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
+    TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
     long ct_one_rev = Math.round(2*Math.PI * radius / β) + 5;
     for(int ct = 0; ct <= ct_one_rev; ++ct) {
       Event e = circle.event(ct);
@@ -65,7 +65,7 @@ public final class ThomasRotation extends TextOutput {
     lines.add(dashes(31));
     for(int i = 1; i <= 99; ++i) {
       double β = i / 100.0;
-      MoveableHistory circle = CircularMotion.of(DeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
+      TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
       double ct_one_rev = 2*Math.PI * radius / β;
       AxisAngle rotation = circle.rotation(ct_one_rev);
       lines.add(table2.row(β, radius, -deg(rotation.magnitude())));

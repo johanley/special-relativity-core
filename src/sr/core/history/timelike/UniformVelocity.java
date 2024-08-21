@@ -23,7 +23,7 @@ import sr.core.vector4.Event;
  </pre>
  <p>If the speed is 0, then this history corresponds to a stationary object.
 */
-public final class UniformVelocity extends MoveableHistory {
+public final class UniformVelocity extends TimelikeMoveableHistory {
 
   /**
    Factory method.
@@ -31,7 +31,7 @@ public final class UniformVelocity extends MoveableHistory {
    @param deltaBase of the history, relative to which this history acts.
    @param velocity of the object, possibly 0 (for a stationary object).
   */
-  public static UniformVelocity of(DeltaBase deltaBase, Velocity velocity) {
+  public static UniformVelocity of(TimelikeDeltaBase deltaBase, Velocity velocity) {
     return new UniformVelocity(deltaBase, velocity);
   }
 
@@ -49,7 +49,7 @@ public final class UniformVelocity extends MoveableHistory {
    Factory method for a stationary object.
    @param deltaBase of the history, relative to which this history acts.
   */
-  public static UniformVelocity stationary(DeltaBase deltaBase) {
+  public static UniformVelocity stationary(TimelikeDeltaBase deltaBase) {
     return new UniformVelocity(deltaBase, Velocity.zero());
   }
   
@@ -58,7 +58,7 @@ public final class UniformVelocity extends MoveableHistory {
    @param initialPosition for the object at ct=0, with proper time zero at that time as well.
   */
   public static UniformVelocity stationary(Position initialPosition) {
-    return new UniformVelocity(DeltaBase.of(initialPosition), Velocity.zero());
+    return new UniformVelocity(TimelikeDeltaBase.of(initialPosition), Velocity.zero());
   }
   
   @Override protected Event Δevent(double Δct) {
@@ -85,10 +85,10 @@ public final class UniformVelocity extends MoveableHistory {
   private Velocity velocity;
 
   private UniformVelocity(Position initialPosition, Velocity velocity) {
-    this(DeltaBase.of(initialPosition), velocity);
+    this(TimelikeDeltaBase.of(initialPosition), velocity);
   }
   
-  private UniformVelocity(DeltaBase deltaBase, Velocity velocity) {
+  private UniformVelocity(TimelikeDeltaBase deltaBase, Velocity velocity) {
     super(deltaBase);
     this.velocity = velocity;
   }

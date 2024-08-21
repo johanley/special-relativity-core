@@ -3,9 +3,9 @@ package sr.explore.accel.speed;
 import static sr.core.Axis.*;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.History;
-import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
+import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
@@ -84,24 +84,24 @@ public final class ConnectedRockets  extends TextOutput {
   private Table tableHeader = new Table("%-18s", "%-20s", "%-15s");
   private Table table = new Table("%12.2f", "%18.2f", "%20.8f");
   
-  private MoveableHistory rocketA() {
+  private TimelikeMoveableHistory rocketA() {
     return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
   
   /** Same as rocket-a, but displaced to the right along the X-axis. */
-  private MoveableHistory rocketB() {
-    return UniformAcceleration.of(DeltaBase.of(Position.of(X, CONNECTOR_LENGTH)), X, Physics.ONE_GEE);
+  private TimelikeMoveableHistory rocketB() {
+    return UniformAcceleration.of(TimelikeDeltaBase.of(Position.of(X, CONNECTOR_LENGTH)), X, Physics.ONE_GEE);
   }
   
   /** 'Stick' is really a place-holder for any extended object. */
-  private MoveableHistory stickEndA() {
+  private TimelikeMoveableHistory stickEndA() {
     return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
 
   /** Use the stick-end-a as the starting point; then just add the contracted length of the connector to the X-coordinate. */
-  private History stickEndB() {
-    MoveableHistory historyA = stickEndA();
-    return new History() {
+  private TimelikeHistory stickEndB() {
+    TimelikeMoveableHistory historyA = stickEndA();
+    return new TimelikeHistory() {
       public Event event(double ct) {
         Event event = historyA.event(ct);
         double β = historyA.velocity(ct).magnitude();

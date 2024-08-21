@@ -23,7 +23,7 @@ import sr.core.vector4.Event;
             |   * 
  </pre>
 */
-public final class ThereAndBack implements History {
+public final class ThereAndBack implements TimelikeHistory {
   
   /**
    Factory method.
@@ -31,7 +31,7 @@ public final class ThereAndBack implements History {
    @param deltaBase of the history, relative to which this history acts.
    @param velocity before the turnaround event; the speed cannot be zero
   */
-  public static ThereAndBack of(DeltaBase deltaBase, Velocity velocity) {
+  public static ThereAndBack of(TimelikeDeltaBase deltaBase, Velocity velocity) {
     return new ThereAndBack(deltaBase, velocity);
   }
 
@@ -51,17 +51,17 @@ public final class ThereAndBack implements History {
     return "ThereAndBack stitched history: " + stitchedHistory;
   }
 
-  private History stitchedHistory;
+  private TimelikeHistory stitchedHistory;
   
-  private ThereAndBack(DeltaBase deltaBase, Velocity velocity) {
+  private ThereAndBack(TimelikeDeltaBase deltaBase, Velocity velocity) {
     Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
     this.stitchedHistory = stitchedHistory(deltaBase, velocity);
   }
   
-  private History stitchedHistory(DeltaBase deltaBase, Velocity velocity) {
-    MoveableHistory leg1 = UniformVelocity.of(deltaBase, velocity);
-    MoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(velocity.times(-1)));
-    StitchedHistoryBuilder builder = StitchedHistoryBuilder.startingWith(leg1);
+  private TimelikeHistory stitchedHistory(TimelikeDeltaBase deltaBase, Velocity velocity) {
+    TimelikeMoveableHistory leg1 = UniformVelocity.of(deltaBase, velocity);
+    TimelikeMoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(velocity.times(-1)));
+    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg1);
     builder.addTheNext(leg2, deltaBase.ΔbaseEvent().ct());
     return builder.build();
   }

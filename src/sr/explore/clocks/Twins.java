@@ -4,8 +4,8 @@ import static sr.core.Axis.X;
 
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.history.timelike.DeltaBase;
-import sr.core.history.timelike.History;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.ThereAndBack;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
@@ -58,10 +58,10 @@ public final class Twins extends TextOutput {
     Velocity velocity = Velocity.of(X, β);
     
     //travel in from -X infinity to the origin, then back out to -X infinity:
-    History thereAndBack = ThereAndBack.of(DeltaBase.origin(), velocity);
+    TimelikeHistory thereAndBack = ThereAndBack.of(TimelikeDeltaBase.origin(), velocity);
     
     //don't move from the given position 
-    History stayPut = UniformVelocity.stationary((Position.of(X, LEFT_OF_ORIGIN)));
+    TimelikeHistory stayPut = UniformVelocity.stationary((Position.of(X, LEFT_OF_ORIGIN)));
     
     // ct = -/+ HALF_TIME identify the two events where the histories meet
     double τStay = properTimeInterval(stayPut, -HALF_TIME, HALF_TIME); 
@@ -73,7 +73,7 @@ public final class Twins extends TextOutput {
     lines.add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);
   }
   
-  private double properTimeInterval(History history, double ctStart, double ctEnd) {
+  private double properTimeInterval(TimelikeHistory history, double ctStart, double ctEnd) {
     return history.τ(ctEnd) - history.τ(ctStart); 
   }
   

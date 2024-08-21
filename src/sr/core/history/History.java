@@ -7,7 +7,7 @@ The parameterized history (world-line) of an object (with or without mass) repre
 
 <P>In this interface, the coordinate-time is taken as the parameter to a history.
 */
-public interface BaseHistory {
+public interface History {
 
   /** Return the event for the given coordinate-time. */
   public Event event(double ct);

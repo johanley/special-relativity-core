@@ -7,7 +7,7 @@ import java.util.function.Function;
 import sr.core.Physics;
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.history.timelike.History;
+import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
@@ -96,8 +96,8 @@ public final class LightSliceOfAStick extends TextOutput {
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final History HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
-  private static final History HIST_STICK_END_B = UniformVelocity.stationary(Position.of(X, NEARBY)); 
+  private static final TimelikeHistory HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
+  private static final TimelikeHistory HIST_STICK_END_B = UniformVelocity.stationary(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -129,7 +129,7 @@ public final class LightSliceOfAStick extends TextOutput {
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private Event eventOnPastLightConeOf(Event detection, History history, Transform transform) {
+  private Event eventOnPastLightConeOf(Event detection, TimelikeHistory history, Transform transform) {
     Function<Event, Double> onTheLightCone = event -> (
       detection.minus(transform.changeFrame(event)).square()
     );
