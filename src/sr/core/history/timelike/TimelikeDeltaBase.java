@@ -1,5 +1,6 @@
 package sr.core.history.timelike;
 
+import sr.core.history.DeltaBase;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
 
@@ -13,7 +14,7 @@ import sr.core.vector4.Event;
    <li>for constant proper-acceleration, it could be the turnaround point. 
  </ul>
 */
-public final class TimelikeDeltaBase {
+public final class TimelikeDeltaBase extends DeltaBase {
 
   /** 
    Factory method.
@@ -39,18 +40,16 @@ public final class TimelikeDeltaBase {
     return new TimelikeDeltaBase(Event.of(0.0, Position.of(0.0, 0.0, 0.0)), 0.0);  
   }
   
-  public Event ΔbaseEvent() {return ΔbaseEvent;} 
   public double ΔbaseEvent_τ() {return ΔbaseEvent_τ;}
   
   @Override public String toString() {
-    return "DeltaBase event:" + ΔbaseEvent + " τ:" + ΔbaseEvent_τ;
+    return "DeltaBase event:" + ΔbaseEvent() + " τ:" + ΔbaseEvent_τ;
   }
   
   private TimelikeDeltaBase(Event ΔbaseEvent, double ΔbaseEvent_τ) {
-    this.ΔbaseEvent = ΔbaseEvent;
+    super(ΔbaseEvent);
     this.ΔbaseEvent_τ = ΔbaseEvent_τ;
   }
   
-  private Event ΔbaseEvent;
   private double ΔbaseEvent_τ;
 }
