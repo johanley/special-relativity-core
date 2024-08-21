@@ -1,4 +1,2 @@
-/** 
- Histories (worldlines) of particles.
-*/
+/**  Histories (worldlines) of particles. */
 package sr.core.history;

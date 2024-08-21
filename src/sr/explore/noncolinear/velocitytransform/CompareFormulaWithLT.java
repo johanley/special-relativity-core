@@ -4,8 +4,8 @@ import static sr.core.Axis.X;
 
 import sr.core.Util;
 import sr.core.VelocityTransformation;
-import sr.core.history.MoveableHistory;
-import sr.core.history.UniformVelocity;
+import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;

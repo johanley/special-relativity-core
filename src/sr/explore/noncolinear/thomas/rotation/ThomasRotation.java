@@ -2,9 +2,9 @@ package sr.explore.noncolinear.thomas.rotation;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.history.CircularMotion;
-import sr.core.history.DeltaBase;
-import sr.core.history.MoveableHistory;
+import sr.core.history.timelike.CircularMotion;
+import sr.core.history.timelike.DeltaBase;
+import sr.core.history.timelike.MoveableHistory;
 import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;

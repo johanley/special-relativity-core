@@ -1,4 +1,4 @@
-package sr.core.history;
+package sr.core.history.timelike;
 
 import static sr.core.Util.mustBeSpatial;
 import static sr.core.Util.mustHave;

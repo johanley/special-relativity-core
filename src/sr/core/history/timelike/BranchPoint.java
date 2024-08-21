@@ -1,4 +1,4 @@
-package sr.core.history;
+package sr.core.history.timelike;
 
 /** 
  Points in time where histories are stitched together.

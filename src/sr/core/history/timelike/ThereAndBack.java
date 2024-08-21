@@ -1,4 +1,4 @@
-package sr.core.history;
+package sr.core.history.timelike;
 
 import sr.core.Util;
 import sr.core.vector3.Velocity;

@@ -3,7 +3,7 @@ package sr.core.vector4;
 import java.util.function.Function;
 
 import sr.core.Util;
-import sr.core.history.History;
+import sr.core.history.timelike.History;
 
 /** 
  Find the λ value (usually a ct-coordinate) along a {@link History} for which the corresponding event satisfies a given criterion.

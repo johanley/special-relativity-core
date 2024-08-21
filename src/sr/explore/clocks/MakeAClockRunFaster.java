@@ -3,8 +3,8 @@ package sr.explore.clocks;
 import static sr.core.Axis.X;
 
 import sr.core.Util;
-import sr.core.history.History;
-import sr.core.history.UniformVelocity;
+import sr.core.history.timelike.History;
+import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
 import sr.output.text.TextOutput;

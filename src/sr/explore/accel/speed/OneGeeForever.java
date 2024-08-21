@@ -4,8 +4,8 @@ import sr.core.Axis;
 
 import static sr.core.Physics.*;
 import sr.core.Util;
-import sr.core.history.MoveableHistory;
-import sr.core.history.UniformAcceleration;
+import sr.core.history.timelike.MoveableHistory;
+import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
 import sr.output.text.Table;

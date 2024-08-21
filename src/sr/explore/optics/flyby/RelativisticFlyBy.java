@@ -5,8 +5,8 @@ import static sr.core.Axis.Y;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.history.History;
-import sr.core.history.UniformVelocity;
+import sr.core.history.timelike.History;
+import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;

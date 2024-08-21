@@ -3,11 +3,12 @@ package sr.explore.noncolinear.velocitytransform;
 
 import sr.core.Axis;
 import sr.core.VelocityTransformation;
+import sr.core.history.timelike.CircularMotion;
+import sr.core.history.timelike.DeltaBase;
+import sr.core.history.timelike.MoveableHistory;
 
 import static sr.core.Util.*;
-import sr.core.history.CircularMotion;
-import sr.core.history.DeltaBase;
-import sr.core.history.MoveableHistory;
+
 import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Velocity;
 import sr.core.vector3.transform.SpatialRotation;

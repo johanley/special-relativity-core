@@ -1,4 +1,4 @@
-package sr.core.history;
+package sr.core.history.timelike;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
