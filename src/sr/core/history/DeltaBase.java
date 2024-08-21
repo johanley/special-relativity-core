@@ -36,7 +36,7 @@ public class DeltaBase {
   public Event ΔbaseEvent() {return ΔbaseEvent;} 
   
   @Override public String toString() {
-    return "DeltaBase event:" + ΔbaseEvent;
+    return ΔbaseEvent.toString();
   }
   
   protected DeltaBase(Event ΔbaseEvent) {

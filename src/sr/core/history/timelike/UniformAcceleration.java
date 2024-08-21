@@ -90,7 +90,7 @@ public final class UniformAcceleration extends TimelikeMoveableHistory {
   }
   
   @Override public String toString() {
-    return "UniformAcceleration: " + deltaBase() + " axis:" + axis  + " gee:" + gee;
+    return "UniformAcceleration: " + timelikedDeltaBase() + " axis:" + axis  + " gee:" + gee;
   }
 
   private Axis axis;

@@ -1,41 +1,30 @@
 package sr.core.history.timelike;
 
+import sr.core.history.DeltaBase;
+import sr.core.history.MoveableHistory;
 import sr.core.vector3.AxisAngle;
-import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 
 /**
  Allow a {@link TimelikeHistory} to have a configurable {@link TimelikeDeltaBase} in space-time.
  Methods are implemented as differences with respect to the {@link TimelikeDeltaBase}. 
- This is used by {@link StitchedTimelikeHistory} in stitching together multiple histories into a single history.
 */
-public abstract class TimelikeMoveableHistory implements TimelikeHistory {
+public abstract class TimelikeMoveableHistory extends MoveableHistory implements TimelikeHistory {
 
-  /** @param deltaBase about which the history is constructed using differences. */
-  protected TimelikeMoveableHistory(TimelikeDeltaBase deltaBase) {
-    this.deltaBase = deltaBase;
+  /** @param timelikeDeltaBase about which the history is constructed using differences. */
+  protected TimelikeMoveableHistory(TimelikeDeltaBase timelikeDeltaBase) {
+    super(DeltaBase.of(timelikeDeltaBase.ΔbaseEvent()));
+    this.timeLikeDeltaBase = timelikeDeltaBase;
   }
 
-  @Override public final Event event(double ct) {
-    double Δct = ct - deltaBase.ΔbaseEvent().ct();
-    Event displacement = Δevent(Δct);
-    return deltaBase.ΔbaseEvent().plus(displacement);
-  }
-  /**
-   Return the displacement relative to the delta-base. 
-   @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
-  */
-  protected abstract Event Δevent(double Δct);
-  
   /** Return the {@link Event} given a proper-time as the parameter into the {@link TimelikeHistory}. */
   public final Event eventFromProperTime(double τ) {
     return event(ct(τ));
   }
   
-  
   @Override public double ct(double τ) {
-    double Δτ = τ - deltaBase.ΔbaseEvent_τ();
-    return deltaBase.ΔbaseEvent().ct() + Δct(Δτ);
+    double Δτ = τ - timeLikeDeltaBase.ΔbaseEvent_τ();
+    return timeLikeDeltaBase.ΔbaseEvent().ct() + Δct(Δτ);
   }
   /**
    Return the change in coordinate-time relative to the delta-base, given the change in 
@@ -44,10 +33,9 @@ public abstract class TimelikeMoveableHistory implements TimelikeHistory {
   */
   protected abstract double Δct(double Δτ);
 
-  
   @Override public double τ(double ct) {
-    double Δct = ct - deltaBase.ΔbaseEvent().ct();
-    return deltaBase.ΔbaseEvent_τ() + Δτ(Δct);
+    double Δct = ct - timeLikeDeltaBase.ΔbaseEvent().ct();
+    return timeLikeDeltaBase.ΔbaseEvent_τ() + Δτ(Δct);
   }
   /**
    Return the change in a proper-time relative to the delta-base, given the change in 
@@ -57,23 +45,7 @@ public abstract class TimelikeMoveableHistory implements TimelikeHistory {
   protected abstract double Δτ(double Δct);
   
   
-  public TimelikeDeltaBase deltaBase() { return deltaBase; }
-  
-  /** 
-   Return an approximation to the velocity of the object at the given coordinate-time.
-   <P>This method can fail for ultra-relativistic speeds, because the 
-   approximate calculation returns a speed of 1.0.
-   It will also fail at events where the velocity's derivative is not defined (for example, hard turning points).
-   <P>If that's the case, you'll need to find other means to calculate the velocity,  
-   perhaps by overriding this method.
-  */
-  public Velocity velocity(double ct) {
-    Event a = event(ct);
-    Event b = event(ct + 0.0001);
-    Event Δ = b.minus(a);
-    double Δt = Δ.ct();
-    return Velocity.of(Δ.x()/Δt, Δ.y()/Δt, Δ.z()/Δt);
-  }
+  public TimelikeDeltaBase deltaBase() { return timeLikeDeltaBase; }
   
   /**
    How the object has rotated because of Silberstein (Thomas-Wigner) rotation of the co-moving frame.
@@ -86,6 +58,6 @@ public abstract class TimelikeMoveableHistory implements TimelikeHistory {
   
   //PRIVATE
   
-  private TimelikeDeltaBase deltaBase;
+  private TimelikeDeltaBase timeLikeDeltaBase;
   
 }
