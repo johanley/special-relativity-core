@@ -1,0 +1,35 @@
+A monochromatic plane wave reflects from a flat mirror in the YZ plane.
+In frame K, the mirror is at rest.
+In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity.
+
+Compare the wave-vectors for the incident and reflected waves, between K and K'.
+
+In K the pair of waves have directions that agree with the law of reflection:
+K: incident  [1.0, 0.70711, 0.70711, 0.0]  θi = 45.0°
+K: reflected [1.0, -0.70711, 0.70711, 0.0] θr = 45.0°
+
+Now view the same wave-vectors in a boosted frame K'.
+
+For boosts in the -X-axis direction:
+
+Boost               K':ω-in  K':ω-ref   K':θ-in   K':θ-ref    
+---------------------------------------------------------
+[-0.1,0.0,0.0]      1.07610  0.93397    41.1°     49.2°
+[-0.2,0.0,0.0]      1.16496  0.87628    37.4°     53.8°
+[-0.3,0.0,0.0]      1.27066  0.82591    33.8°     58.9°
+[-0.4,0.0,0.0]      1.39970  0.78248    30.3°     64.6°
+[-0.5,0.0,0.0]      1.56295  0.74645    26.9°     71.3°
+[-0.6,0.0,0.0]      1.78033  0.71967    23.4°     79.3°
+
+For boosts in the +X-axis direction:
+
+Boost               K':ω-in  K':ω-ref   K':θ-in   K':θ-ref    
+---------------------------------------------------------
+[0.1,0.0,0.0]       0.93397  1.07610    49.2°     41.1°
+[0.2,0.0,0.0]       0.87628  1.16496    53.8°     37.4°
+[0.3,0.0,0.0]       0.82591  1.27066    58.9°     33.8°
+[0.4,0.0,0.0]       0.78248  1.39970    64.6°     30.3°
+[0.5,0.0,0.0]       0.74645  1.56295    71.3°     26.9°
+[0.6,0.0,0.0]       0.71967  1.78033    79.3°     23.4°
+
+In the K' frame, the wave-vectors have different directions and frequencies.
