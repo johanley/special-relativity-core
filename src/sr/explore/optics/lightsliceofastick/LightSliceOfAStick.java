@@ -51,16 +51,16 @@ public final class LightSliceOfAStick extends TextOutput {
    In the ultra-relativistic limit, the light-slice length approaches exactly half the time-slice contracted length. 
   */
   void recession() {
-    lines.add("Intersection of the light-cone of a detector with the history of a stick (of unit length)." + Util.NL);
-    lines.add("1. The stick is RECEDING from the detector, and pointing in its direction of motion.");
-    lines.add("The light-slice length is always less than the time-slice length.");
-    lines.add("A β approaches 1.0, the light-slice length asymptotically approaches 50% of the time-slice length." + Util.NL);
-    lines.add(table.row("stick recession speed", "light-slice", "time-slice"));
-    lines.add(table.row("β", "length", "length"));
-    lines.add(Util.separator(DASHES));
+    add("Intersection of the light-cone of a detector with the history of a stick (of unit length)." + Util.NL);
+    add("1. The stick is RECEDING from the detector, and pointing in its direction of motion.");
+    add("The light-slice length is always less than the time-slice length.");
+    add("A β approaches 1.0, the light-slice length asymptotically approaches 50% of the time-slice length." + Util.NL);
+    add(table.row("stick recession speed", "light-slice", "time-slice"));
+    add(table.row("β", "length", "length"));
+    add(Util.separator(DASHES));
     for (SpeedValues speed : SpeedValues.nonExtremeValues()) {
       double length = apparentStickLength(speed.β(), DETECTION_EVENT);
-      lines.add(table.row(speed.β(), round(length), round(1.0/Physics.Γ(speed.β()))));
+      add(table.row(speed.β(), round(length), round(1.0/Physics.Γ(speed.β()))));
     }
   }
 
@@ -69,18 +69,18 @@ public final class LightSliceOfAStick extends TextOutput {
    This case is different because of 'scissor' effects. 
   */
   void approach() {
-    lines.add(Util.NL + "2. The stick is APPROACHING the detector, and pointing in its direction of motion.");
-    lines.add("The light-slice length is always greater than the rest-length.");
-    lines.add("This demonstrates the 'scissors effect' between a past light cone and the history of an approaching object." + Util.NL);
-    lines.add(table.row("stick approach speed", "light-slice", "rest"));
-    lines.add(table.row("β", "length", "length"));
-    lines.add(Util.separator(DASHES));
+    add(Util.NL + "2. The stick is APPROACHING the detector, and pointing in its direction of motion.");
+    add("The light-slice length is always greater than the rest-length.");
+    add("This demonstrates the 'scissors effect' between a past light cone and the history of an approaching object." + Util.NL);
+    add(table.row("stick approach speed", "light-slice", "rest"));
+    add(table.row("β", "length", "length"));
+    add(Util.separator(DASHES));
     for (SpeedValues speed : SpeedValues.nonExtremeValues()) {
       //because of the histories I've defined here, the past light cone of the detector doesn't intersect the stick's 
       //history in the most extreme cases
       if (speed.β() < 0.9999) {
         double length = apparentStickLength(-speed.β(), DETECTION_EVENT);
-        lines.add(table.row(speed.β(), round(length), NEARBY));
+        add(table.row(speed.β(), round(length), NEARBY));
       }
     }
   }

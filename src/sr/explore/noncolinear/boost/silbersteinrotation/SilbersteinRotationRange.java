@@ -19,11 +19,11 @@ public final class SilbersteinRotationRange extends TextOutput {
   }
   
   void explore() {
-    lines.add("Silberstein (Thomas-Wigner) rotation for various combined speeds.");
-    lines.add("Here, the pair of velocities are at always at right angles to each other.");
-    lines.add("");
-    lines.add(tableHeader.row("β1", "β2", "θw"));
-    lines.add(dashes(55));
+    add("Silberstein (Thomas-Wigner) rotation for various combined speeds.");
+    add("Here, the pair of velocities are at always at right angles to each other.");
+    add("");
+    add(tableHeader.row("β1", "β2", "θw"));
+    add(dashes(55));
     showRangeθw();
     outputToConsoleAnd("silberstein-rotation-range.txt");
   }
@@ -33,7 +33,7 @@ public final class SilbersteinRotationRange extends TextOutput {
       for (SpeedValues β2 : SpeedValues.nonExtremeValues()) {
         EquivalentBoostPlusRotation range = new EquivalentBoostPlusRotation(Axis.Z, β1.β(), β2.β());
         Double θw = range.equivalent().θw;
-        lines.add(table.row(β1.β(), β2.β(), round(Util.radsToDegs(θw))));
+        add(table.row(β1.β(), β2.β(), round(Util.radsToDegs(θw))));
       }
     }
   }

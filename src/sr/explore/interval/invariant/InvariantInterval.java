@@ -29,73 +29,72 @@ public final class InvariantInterval extends TextOutput {
   }
   
   void explore() {
-    lines.add("The interval (or squared-interval) between any two events is invariant.");
-    lines.add("Any combination of these fundamental transformations will leave the interval unaffected:");
-    lines.add(" - boost");
-    lines.add(" - rotation");
-    lines.add(" - reflection");
-    lines.add(" - displacement");
+    add("The interval (or squared-interval) between any two events is invariant.");
+    add("Any combination of these fundamental transformations will leave the interval unaffected:");
+    add(" - boost");
+    add(" - rotation");
+    add(" - reflection");
+    add(" - displacement");
 
     Event a = Event.of(10.0, 1.0, 2.0, 1.0);
     Event b = Event.of(15.0, 3.0, 2.0, 5.0);
     showEffectOfTransformationsOnDifferenceBetween(a, b);
-    lines.add(Util.NL+dashes(100));
+    add(Util.NL+dashes(100));
     
-    lines.add(Util.NL+"The above fails when you consider the interval between an event and the origin (0,0,0,0).");
-    lines.add("You need to use the DIFFERENCE between two events.");
-    lines.add("The problem is with the DISPLACEMENT operation.");
-    lines.add("The prototype 4-vector is not an event, but a difference between two events.");
+    add(Util.NL+"The above fails when you consider the interval between an event and the origin (0,0,0,0).");
+    add("You need to use the DIFFERENCE between two events.");
+    add("The problem is with the DISPLACEMENT operation.");
+    add("The prototype 4-vector is not an event, but a difference between two events.");
     
-    lines.add(Util.NL+"This FAILS when a displacement operation is included:");
+    add(Util.NL+"This FAILS when a displacement operation is included:");
     showEffectOfTransformationsOnBareEvent(a, event -> transformWithDisplacement(event),  "  " + multipleTransforms() + " " + displacement());
     
-    lines.add(Util.NL+"But it SUCCEEDS when the displacement operation is excluded:");
+    add(Util.NL+"But it SUCCEEDS when the displacement operation is excluded:");
     showEffectOfTransformationsOnBareEvent(a,  event -> transformWithoutDisplacement(event), "  " + multipleTransforms());
     
     outputToConsoleAnd("invariant-interval.txt");
   }
   
   private void showEffectOfTransformationsOnDifferenceBetween(Event a, Event b) {
-    lines.add(Util.NL + "Two events in K:");
-    lines.add("  " + a + " a");
-    lines.add("  " + b + " b");
+    add(Util.NL + "Two events in K:");
+    add("  " + a + " a");
+    add("  " + b + " b");
     Event displacement_K = b.minus(a);
-    lines.add("Displacement in K (b - a):");
-    lines.add("  " + displacement_K + " squared-interval:" + round(displacement_K.square()));
+    add("Displacement in K (b - a):");
+    add("  " + displacement_K + " squared-interval:" + round(displacement_K.square()));
     
     Event displacement_Kp = transformWithDisplacement(b).minus(transformWithDisplacement(a));
-    lines.add(Util.NL+"Transform to K' using a mix of several operations: ");
-    lines.add("  " + multipleTransforms() + " " + displacement() );
+    add(Util.NL+"Transform to K' using a mix of several operations: ");
+    add("  " + multipleTransforms() + " " + displacement() );
     
-    lines.add(Util.NL + "The same two events in K' become:");
-    lines.add("  " + transformWithDisplacement(a) + " a'");
-    lines.add("  " + transformWithDisplacement(b) + " b'");
-    lines.add("Displacement in K' (b' - a'):");
-    lines.add("  " + displacement_Kp + " squared-interval:" + round(displacement_Kp.square()));
+    add(Util.NL + "The same two events in K' become:");
+    add("  " + transformWithDisplacement(a) + " a'");
+    add("  " + transformWithDisplacement(b) + " b'");
+    add("Displacement in K' (b' - a'):");
+    add("  " + displacement_Kp + " squared-interval:" + round(displacement_Kp.square()));
     
     double interval_K = displacement_K.square();
     double interval_Kp = displacement_Kp.square();
-    lines.add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
+    add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
   }
   
   private void showEffectOfTransformationsOnBareEvent(Event a, UnaryOperator<Event> transformer, String description) {
-    lines.add(Util.NL + "Single event in K:");
-    lines.add("  " + a);
-    lines.add("Squared-interval with respect to the origin: " + round(a.square()));
+    add(Util.NL + "Single event in K:");
+    add("  " + a);
+    add("Squared-interval with respect to the origin: " + round(a.square()));
     
     Event a_Kp = transformer.apply(a);
-    lines.add(Util.NL+"Transform to K' using a mix of several operations: ");
-    lines.add("  " + description);
+    add(Util.NL+"Transform to K' using a mix of several operations: ");
+    add("  " + description);
     
-    lines.add("Single event in K':");
-    lines.add("  " + a_Kp);
-    lines.add("Squared-interval with respect to the origin: " + round(a_Kp.square()));
+    add("Single event in K':");
+    add("  " + a_Kp);
+    add("Squared-interval with respect to the origin: " + round(a_Kp.square()));
     
     double interval_K = a.square();
     double interval_Kp = a_Kp.square();
-    lines.add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
+    add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
   }
-  
   
   private Event transformWithDisplacement(Event event) {
     Event event_Kp = multipleTransforms().changeFrame(event);

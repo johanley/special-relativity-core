@@ -47,41 +47,41 @@ public final class MovingMirror extends TextOutput {
   }
   
   void explore() {
-    lines.add("A monochromatic plane wave reflects from a flat mirror in the YZ plane.");
-    lines.add("In frame K, the mirror is at rest.");
-    lines.add("In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity." + NL);
-    lines.add("Compare the wave-vectors for the incident and reflected waves, between K and K'.");
+    add("A monochromatic plane wave reflects from a flat mirror in the YZ plane.");
+    add("In frame K, the mirror is at rest.");
+    add("In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity." + NL);
+    add("Compare the wave-vectors for the incident and reflected waves, between K and K'.");
     
     double ω = 1.0;
     WaveVector incident_K = WaveVector.of(ω, Direction.of(1,1,0));
     WaveVector reflected_K = WaveVector.of(ω, Direction.of(-1,1,0));
     
-    lines.add(NL+ "In K the pair of waves have directions that agree with the law of reflection:");
-    lines.add("K: incident  " + incident_K + "  θi = " + angleFromXAxis(incident_K.spatialComponents()) + "°");
-    lines.add("K: reflected " + reflected_K + " θr = " + complement(angleFromXAxis(reflected_K.spatialComponents())) + "°");
+    add(NL+ "In K the pair of waves have directions that agree with the law of reflection:");
+    add("K: incident  " + incident_K + "  θi = " + angleFromXAxis(incident_K.spatialComponents()) + "°");
+    add("K: reflected " + reflected_K + " θr = " + complement(angleFromXAxis(reflected_K.spatialComponents())) + "°");
 
-    lines.add(NL+"Now view the same wave-vectors in a boosted frame K'." + NL);
+    add(NL+"Now view the same wave-vectors in a boosted frame K'." + NL);
 
-    lines.add("For boosts in the -X-axis direction:" + NL);
+    add("For boosts in the -X-axis direction:" + NL);
     tableFor(incident_K, reflected_K, -1);
     
-    lines.add(NL+ "For boosts in the +X-axis direction:" + NL);
+    add(NL+ "For boosts in the +X-axis direction:" + NL);
     tableFor(incident_K, reflected_K, +1);
     
-    lines.add(NL+"In the K' frame, the wave-vectors have different directions and frequencies.");
+    add(NL+"In the K' frame, the wave-vectors have different directions and frequencies.");
     
     outputToConsoleAnd("moving-mirror.txt");
   }
 
   private void tableFor(WaveVector incident_K, WaveVector reflected_K, int sign) {
-    lines.add(tableHeader.row("Boost", "K':ω-in", "K':ω-ref", "K':θ-in", "K':θ-ref"));
-    lines.add(dashes(57));
+    add(tableHeader.row("Boost", "K':ω-in", "K':ω-ref", "K':θ-in", "K':θ-ref"));
+    add(dashes(57));
     for(int idx = 1 ; idx <= 6; ++idx) {
       Velocity boost_velocity = Velocity.of(Axis.X, sign*idx/10.0);
       Boost boost = Boost.of(boost_velocity);
       WaveVector incident_Kp = boost.changeFrame(incident_K);
       WaveVector reflected_Kp = boost.changeFrame(reflected_K);
-      lines.add(table.row(
+      add(table.row(
         boost_velocity, 
         incident_Kp.ct(),
         reflected_Kp.ct(),

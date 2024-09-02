@@ -41,9 +41,9 @@ public final class Twins extends TextOutput {
   }
   
   void explore() {
-    lines.add("One twin stays at home, the other twin takes a trip and returns home.");
-    lines.add("The voyage outbound is at a given uniform velocity.");
-    lines.add("The voyage inbound is at the opposite (uniform) velocity." + Util.NL);
+    add("One twin stays at home, the other twin takes a trip and returns home.");
+    add("The voyage outbound is at a given uniform velocity.");
+    add("The voyage inbound is at the opposite (uniform) velocity." + Util.NL);
     exploreIt(0.5);
     exploreIt(0.98);
     outputToConsoleAnd("twins.txt");
@@ -67,10 +67,10 @@ public final class Twins extends TextOutput {
     double τStay = properTimeInterval(stayPut, -HALF_TIME, HALF_TIME); 
     double τThereAndBack = properTimeInterval(thereAndBack, -HALF_TIME, HALF_TIME);
     
-    lines.add("β: " + round(β) + Util.NL + "Γ from formula: " + round(Physics.Γ(velocity.magnitude())));
-    lines.add("Stay-at-home elapsed proper-time: " + τStay);
-    lines.add("There-and-back elapsed proper-time: " + round(τThereAndBack));
-    lines.add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);
+    add("β: " + round(β) + Util.NL + "Γ from formula: " + round(Physics.Γ(velocity.magnitude())));
+    add("Stay-at-home elapsed proper-time: " + τStay);
+    add("There-and-back elapsed proper-time: " + round(τThereAndBack));
+    add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);
   }
   
   private double properTimeInterval(TimelikeHistory history, double ctStart, double ctEnd) {

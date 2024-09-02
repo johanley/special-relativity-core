@@ -17,12 +17,12 @@ public final class SpeedsAndGammas extends TextOutput {
   }
   
   void explore() {
-    lines.add("The Lorentz factor Γ as a function of speed β=v/c.");
-    lines.add("I find it useful to remember approximate values for β=0.99 and β=0.999." + Util.NL);
-    lines.add(table.row("β", "Γ"));
-    lines.add(dashes(50));
+    add("The Lorentz factor Γ as a function of speed β=v/c.");
+    add("I find it useful to remember approximate values for β=0.99 and β=0.999." + Util.NL);
+    add(table.row("β", "Γ"));
+    add(dashes(50));
     for(SpeedValues speed : SpeedValues.values()) {
-      lines.add(table.row(speed.βBigDecimal(), speed.Γ()));
+      add(table.row(speed.βBigDecimal(), speed.Γ()));
     }
     outputToConsoleAnd("speeds-and-gammas.txt");
   }

@@ -75,26 +75,26 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     Event event_Kpp_boost_plus_rot = boostPlusRotation().changeFrame(event_K);
     Event event_Kpp_rot_plus_boost = rotationPlusBoost().changeFrame(event_K);
     
-    lines.add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
-    lines.add("Event:" + event_K);
-    lines.add("Corner-boost transform: " + cornerBoost);
-    lines.add(" Event after corner-boost: " + event_Kpp_corner_boost);
-    lines.add(Util.NL +"Boost+rotation transform: " + boostPlusRotation());
-    lines.add(" Event after boost+rotation: " + event_Kpp_boost_plus_rot);
-    lines.add(Util.NL + "Order matters. Rotation+boost isn't the same. The operations don't commute.");
-    lines.add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
-    lines.add("Rotation+boost transform: " + rotationPlusBoost());
-    lines.add(" Event from rotation+boost: " + event_Kpp_rot_plus_boost);
+    add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
+    add("Event:" + event_K);
+    add("Corner-boost transform: " + cornerBoost);
+    add(" Event after corner-boost: " + event_Kpp_corner_boost);
+    add(Util.NL +"Boost+rotation transform: " + boostPlusRotation());
+    add(" Event after boost+rotation: " + event_Kpp_boost_plus_rot);
+    add(Util.NL + "Order matters. Rotation+boost isn't the same. The operations don't commute.");
+    add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
+    add("Rotation+boost transform: " + rotationPlusBoost());
+    add(" Event from rotation+boost: " + event_Kpp_rot_plus_boost);
   }
   
   private void spectrumOfSpeeds() {
-    lines.add(Util.NL + tableHeader.row("β", "β", "Equivalent", "Equivalent", "θw", "(v = vx + vy)", "(v = vy + vx)"));
-    lines.add(tableHeader.row("X-axis", "Y-axis", "β", "direction", "", "", ""));
-    lines.add(dashes(125));
+    add(Util.NL + tableHeader.row("β", "β", "Equivalent", "Equivalent", "θw", "(v = vx + vy)", "(v = vy + vx)"));
+    add(tableHeader.row("X-axis", "Y-axis", "β", "direction", "", "", ""));
+    add(dashes(125));
     for(SpeedValues βx : SpeedValues.nonExtremeValues()) {
       for (SpeedValues βy : SpeedValues.nonExtremeValues()) {
         EquivalentBoostPlusRotation cb = new EquivalentBoostPlusRotation(Axis.Z, βx.β(), βy.β());
-        lines.add(
+        add(
           table.row(cb.β1, cb.β2, cb.singleBoostSpeed(), degs(cb.direction()), degs(cb.θw()), cb.singleBoostVelocity(), cb.singleBoostVelocityReversed())
         );
       }

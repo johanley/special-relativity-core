@@ -48,9 +48,6 @@ public class TextOutput {
     }
   }
   
-  /** Lines of text output. */
-  protected List<String> lines = new ArrayList<>();
-  
   /** 
    Display the text output both to the console and to a text file. 
    The output file is in the same directory as the calling class.
@@ -60,6 +57,9 @@ public class TextOutput {
     //the 'this' reference is not this class, but the class of the subclass
     output(fileName, this);
   }
+  
+  /** Lines of text output. */
+  private List<String> lines = new ArrayList<>();
   
   private void output(String fileName, Object caller) {
     outputToConsole();

@@ -27,17 +27,17 @@ public final class TravelTime extends TextOutput {
    according to their own clock. 
   */
   void oneWayTripUniformVelocity(double lightyears) {
-    lines.add("One-way trip through space at a uniform velocity.");
-    lines.add("Rocket-time is the traveler's wrist-watch time (proper time).");
-    lines.add(Util.NL + "From the point of view of the traveler, high-speed travel acts like a worm-hole.");
-    lines.add(Util.NL + "Distance traveled: " + lightyears + " light-years." + Util.NL);
-    lines.add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
-    lines.add(Util.separator(65));
+    add("One-way trip through space at a uniform velocity.");
+    add("Rocket-time is the traveler's wrist-watch time (proper time).");
+    add(Util.NL + "From the point of view of the traveler, high-speed travel acts like a worm-hole.");
+    add(Util.NL + "Distance traveled: " + lightyears + " light-years." + Util.NL);
+    add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
+    add(Util.separator(65));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();
-        lines.add(table.row(speed.β(), round(travelTime), round(coordTime)));
+        add(table.row(speed.β(), round(travelTime), round(coordTime)));
       }
     }
     outputToConsoleAnd("travel-time-one-way-trip.txt");
@@ -50,17 +50,17 @@ public final class TravelTime extends TextOutput {
    A two-way trip acts like a time machine into the future: the traveler gets into the deep future faster than usual.
   */
   void twoWayTripUniformSpeed(double lightyears) {
-    lines.add("Round trip, same speed both outbound and inbound.");
-    lines.add("Rocket-time is the traveler's wrist-watch time (proper time).");
-    lines.add(Util.NL + "From the point of view of the traveler, high-speed return trips act as a time-machine into the future.");
-    lines.add(Util.NL + "Distance traveled: " + lightyears + " light-years, out and back." + Util.NL);
-    lines.add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
-    lines.add(Util.separator(65));
+    add("Round trip, same speed both outbound and inbound.");
+    add("Rocket-time is the traveler's wrist-watch time (proper time).");
+    add(Util.NL + "From the point of view of the traveler, high-speed return trips act as a time-machine into the future.");
+    add(Util.NL + "Distance traveled: " + lightyears + " light-years, out and back." + Util.NL);
+    add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
+    add(Util.separator(65));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
       if (speed.β() > 0) {
         double coordTime = lightyears / speed.β();
         double travelTime = coordTime / speed.Γ();
-        lines.add(table.row(speed.β(), round(2.0*travelTime), round(2.0*coordTime)));
+        add(table.row(speed.β(), round(2.0*travelTime), round(2.0*coordTime)));
       }
     }
     outputToConsoleAnd("travel-time-round-trip.txt");

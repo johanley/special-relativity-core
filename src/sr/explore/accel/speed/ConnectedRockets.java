@@ -63,16 +63,16 @@ public final class ConnectedRockets  extends TextOutput {
   }
   
   void explore() {
-    lines.add("In a frame K, two rockets accelerate in tandem, completely in sync.");
-    lines.add("By definition, in K the two rockets remain separated by a fixed distance.");
-    lines.add("In K, the length of a connector between the rockets decreases with increasing speed." + Util.NL);
-    lines.add(tableHeader.row("Coordinate-time", "Rocket separation", "Connector length"));
-    lines.add(dashes(54));
+    add("In a frame K, two rockets accelerate in tandem, completely in sync.");
+    add("By definition, in K the two rockets remain separated by a fixed distance.");
+    add("In K, the length of a connector between the rockets decreases with increasing speed." + Util.NL);
+    add(tableHeader.row("Coordinate-time", "Rocket separation", "Connector length"));
+    add(dashes(54));
     for(int τ = 0; τ <= 12; ++τ) {
       double rocketSeparation = rocketB().eventFromProperTime(τ).x() - rocketA().eventFromProperTime(τ).x();
       double ct = stickEndB().ct(τ);
       double connectorLength = stickEndB().event(ct).x() - stickEndA().event(ct).x();
-      lines.add(table.row(ct, rocketSeparation, connectorLength));
+      add(table.row(ct, rocketSeparation, connectorLength));
     }
     outputToConsoleAnd("connected-rockets.txt");
   }

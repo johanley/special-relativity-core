@@ -65,15 +65,15 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   
   /** Output the final results.  */
   @Override public void render() {
-    lines.add(Util.NL + "Relativistic fly-by of a star.");
-    lines.add("Spectral Type: " + name);
-    lines.add("Speed β:" + speed); 
-    lines.add("Minimum distance y: " + y + " light-years");
-    lines.add("Starting distance x0: " + x0 + " light-years");
-    lines.add("");
-    lines.add(tableHeader.row("Description", "Emission", "Detection", "θ", "Doppler", "Visual", "Distance to emission event"));
-    lines.add(tableHeader.row("", "Time (yr)", "Time (yr)", "°", "", "Mag", "Light-years"));
-    lines.add(dashes(89));
+    add(Util.NL + "Relativistic fly-by of a star.");
+    add("Spectral Type: " + name);
+    add("Speed β:" + speed); 
+    add("Minimum distance y: " + y + " light-years");
+    add("Starting distance x0: " + x0 + " light-years");
+    add("");
+    add(tableHeader.row("Description", "Emission", "Detection", "θ", "Doppler", "Visual", "Distance to emission event"));
+    add(tableHeader.row("", "Time (yr)", "Time (yr)", "°", "", "Mag", "Light-years"));
+    add(dashes(89));
     addTableRow("First event", first);
     addTableRow("Max brightness", maxBrightness);
     addTableRow("Last visible", lastVisible);
@@ -115,7 +115,7 @@ final class OutputHighlights extends TextOutput implements OutputSummary {
   }
   
   private void addTableRow(String description, DetectionEvent ev) {
-    lines.add(table.row(description, ev.emissionTime, ev.detectionTime, radsToDegs(ev.θ), ev.D, ev.V, ev.distanceToEmissionEvent));
+    add(table.row(description, ev.emissionTime, ev.detectionTime, radsToDegs(ev.θ), ev.D, ev.V, ev.distanceToEmissionEvent));
   }
 };
 

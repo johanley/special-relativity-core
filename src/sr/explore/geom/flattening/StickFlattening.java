@@ -2,7 +2,6 @@ package sr.explore.geom.flattening;
 
 import static sr.core.Axis.X;
 
-import java.util.List;
 import java.util.function.Function;
 
 import sr.core.Physics;
@@ -37,15 +36,15 @@ public class StickFlattening extends TextOutput {
   }
   
   public void explore() {
-    stickAlongAxis(lines, 0.6);
-    stickAlongAxis(lines, 0.9999);
-    lines.add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");
+    stickAlongAxis(0.6);
+    stickAlongAxis(0.9999);
+    add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");
     
-    stickAngledToXAxis(lines, 0.6);
-    stickAngledToXAxis(lines, 0.9999);
-    lines.add(Util.NL + "Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
+    stickAngledToXAxis(0.6);
+    stickAngledToXAxis(0.9999);
+    add(Util.NL + "Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
     
-    stickAngledToXAxisWithEquivalentBoostParams(lines);
+    stickAngledToXAxisWithEquivalentBoostParams();
     
     outputToConsoleAnd("stick-flattening.txt");
   }
@@ -68,21 +67,21 @@ public class StickFlattening extends TextOutput {
    
    @param β the boost speed along the X-direction 
   */
-  void stickAlongAxis(List<String> lines, Double β) {
-    lines.add(Util.NL + "1. Boost speed " + β + ". Stick along the X-axis in the unboosted grid.");
-    lines.add(SEP);
-    lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
+  void stickAlongAxis(Double β) {
+    add(Util.NL + "1. Boost speed " + β + ". Stick along the X-axis in the unboosted grid.");
+    add(SEP);
+    add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
     TimelikeHistory histA = UniformVelocity.stationary(Position.of(X, 1.0));
     TimelikeHistory histB = UniformVelocity.stationary(Position.of(X, 2.0));
     //time-slice in K; any time will do, since it's stationary in K
     double ct = 0.0; 
-    lines.add("K a: " + histA.event(ct));
-    lines.add("K b: " + histB.event(ct));
+    add("K a: " + histA.event(ct));
+    add("K b: " + histB.event(ct));
     Event bMinusA = histB.event(ct).minus(histA.event(ct));
-    lines.add("K b-a: " + bMinusA);
-    lines.add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
+    add("K b-a: " + bMinusA);
+    add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
     Transform boostX = Boost.of(X, β);
@@ -96,13 +95,13 @@ public class StickFlattening extends TextOutput {
     double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
-    lines.add("Boost: "+ boostX);
-    lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
-    lines.add("K' a: " + aBoosted);
-    lines.add("K' b: " + bBoosted);
-    lines.add("K' b-a: " + bBoosted.minus(aBoosted));
-    lines.add("K' stick length: " + Util.round(bBoosted.minus(aBoosted).spatialMagnitude(), 4));
-    lines.add("1/Γ from formula: " + 1.0/Physics.Γ(β));
+    add("Boost: "+ boostX);
+    add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
+    add("K' a: " + aBoosted);
+    add("K' b: " + bBoosted);
+    add("K' b-a: " + bBoosted.minus(aBoosted));
+    add("K' stick length: " + Util.round(bBoosted.minus(aBoosted).spatialMagnitude(), 4));
+    add("1/Γ from formula: " + 1.0/Physics.Γ(β));
   }
   
   /**
@@ -134,25 +133,25 @@ public class StickFlattening extends TextOutput {
    
    @param β the boost speed along the X-direction 
   */
-  void stickAngledToXAxis(List<String> lines, Double β) {
-    lines.add(Util.NL + "2. Boost speed " + β + ". Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). ");
-    lines.add(SEP);
-    lines.add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
+  void stickAngledToXAxis(Double β) {
+    add(Util.NL + "2. Boost speed " + β + ". Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). ");
+    add(SEP);
+    add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
     TimelikeHistory histA = UniformVelocity.stationary(Position.origin()); 
     TimelikeHistory histB = UniformVelocity.stationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
     Event diff = histB.event(0.0).minus(histA.event(0.0));
-    lines.add("K a:" + histA.event(0.0));
-    lines.add("K b:" + histB.event(0.0));
-    lines.add("K b-a:" + diff);
-    lines.add("K stick length:" + diff.spatialMagnitude());
+    add("K a:" + histA.event(0.0));
+    add("K b:" + histB.event(0.0));
+    add("K b-a:" + diff);
+    add("K stick length:" + diff.spatialMagnitude());
     double angle1 = Math.atan2(diff.y(), diff.x());
-    lines.add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
+    add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
     
     //K': boost along the X axis
     Transform boostX = Boost.of(X, β);
-    lines.add("Boost:" + boostX);
-    lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
+    add("Boost:" + boostX);
+    add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
     //find events that have the same ct' value in K'
     Event aBoosted = boostX.changeFrame(histA.event(0.18)); //start with some event on A's history
@@ -162,14 +161,14 @@ public class StickFlattening extends TextOutput {
     double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
-    lines.add("K' a: " + aBoosted);
-    lines.add("K' b: " + bBoosted);
+    add("K' a: " + aBoosted);
+    add("K' b: " + bBoosted);
     diff = bBoosted.minus(aBoosted);
-    lines.add("K' b-a: " + diff);
-    lines.add("K' stick length: " + diff.spatialMagnitude());
+    add("K' b-a: " + diff);
+    add("K' stick length: " + diff.spatialMagnitude());
     double angle2 = Math.atan2(diff.y(), diff.x());
-    lines.add("K' stick angle with respect to the X-axis: " + Util.round(Util.radsToDegs(angle2), 4) + "°");
-    lines.add("K' stick angle directly from a formula: " + Util.round(Util.radsToDegs(Physics.stickAngleAfterBoost(angle1, β)),4) + "°");
+    add("K' stick angle with respect to the X-axis: " + Util.round(Util.radsToDegs(angle2), 4) + "°");
+    add("K' stick angle directly from a formula: " + Util.round(Util.radsToDegs(Physics.stickAngleAfterBoost(angle1, β)),4) + "°");
   }
   
   /** 
@@ -190,26 +189,26 @@ public class StickFlattening extends TextOutput {
     <li>18.925° is the Silberstein (Thomas-Wigner) rotation angle taken from the original corner-boost example. 
    </ul>
   */
-  void stickAngledToXAxisWithEquivalentBoostParams(List<String> lines) {
-    lines.add(Util.NL + "3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.");
-    lines.add("Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.");
-    lines.add(SEP);
+  void stickAngledToXAxisWithEquivalentBoostParams() {
+    add(Util.NL + "3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.");
+    add("Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.");
+    add(SEP);
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
     TimelikeHistory histA = UniformVelocity.stationary(Position.origin()); 
     TimelikeHistory histB = UniformVelocity.stationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
     Event diff = histB.event(0.0).minus(histA.event(0.0));
-    lines.add("K b-a:" + diff);
-    lines.add("K stick length:" + diff.spatialMagnitude());
+    add("K b-a:" + diff);
+    add("K stick length:" + diff.spatialMagnitude());
     double angleOrig = Math.atan2(diff.y(), diff.x());
-    lines.add("K stick angle wrt X-axis: " + Util.radsToDegs(angleOrig) + "°");
+    add("K stick angle wrt X-axis: " + Util.radsToDegs(angleOrig) + "°");
     
     //K': boost along the X axis
     double β = 0.8772684879784525;
     Transform boostX = Boost.of(X, β);
-    lines.add(Util.NL + "Boost: " + boostX);
-    lines.add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
+    add(Util.NL + "Boost: " + boostX);
+    add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'
     Event aBoosted = boostX.changeFrame(histA.event(0.15));
     
@@ -218,15 +217,15 @@ public class StickFlattening extends TextOutput {
     double ctB = findEvent.search(0.0);
     Event bBoosted = boostX.changeFrame(histB.event(ctB));
     
-    lines.add("K' a: " + aBoosted);
-    lines.add("K' b: " + bBoosted);
+    add("K' a: " + aBoosted);
+    add("K' b: " + bBoosted);
     diff = bBoosted.minus(aBoosted);
-    lines.add("K' b-a: " + diff);
-    lines.add("K' b-a stick length: " + diff.spatialMagnitude());
+    add("K' b-a: " + diff);
+    add("K' b-a stick length: " + diff.spatialMagnitude());
     double angleNew = Math.atan2(diff.y(), diff.x());
-    lines.add("K' stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew) + "°");
+    add("K' stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew) + "°");
     /* Calculated θw directly:-18.924644416051237 degrees */
-    lines.add("Change in stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew - angleOrig) + "° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!");
+    add("Change in stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew - angleOrig) + "° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!");
   }
   
   private static final String SEP = Util.separator(100);

@@ -47,7 +47,7 @@ public final class BoostToRotateVelocity extends TextOutput {
 
   /** @param angle in degrees   */
   private void rotateBy(Velocity boost_v, double angle) {
-    lines.add("Find a boost that will rotate a velocity vector by " + angle + "°."+NL);
+    add("Find a boost that will rotate a velocity vector by " + angle + "°."+NL);
     Velocity boost_v_rotated = rotated(boost_v, degsToRads(angle));
     
     // we throw a ball in K', whose v' in K equates to boost_v_rotated
@@ -58,7 +58,7 @@ public final class BoostToRotateVelocity extends TextOutput {
     show("boost_v_rotated_K ", boost_v_rotated);
     show("The desired boost needed in K' is v_Kp ", v_Kp);
     
-    lines.add(NL+"As a check, re-do the calculation using the formula that takes v_Kp as a parameter.");
+    add(NL+"As a check, re-do the calculation using the formula that takes v_Kp as a parameter.");
     Velocity v_K = VelocityTransformation.unprimedVelocity(boost_v, v_Kp);
     show("v_K (same as boost_v_rotated) ", v_K);
   }
@@ -69,7 +69,7 @@ public final class BoostToRotateVelocity extends TextOutput {
   }
   
   private void show(String msg, ThreeVector vector) {
-    lines.add(msg +  vector + " size " + roundIt(vector.magnitude()));
+    add(msg +  vector + " size " + roundIt(vector.magnitude()));
   }
   
   private double roundIt(double value) {
@@ -81,17 +81,17 @@ public final class BoostToRotateVelocity extends TextOutput {
   private Table header = new Table("%-25s", "%-12s", "%-25s");
   
   private void tableForManyDegrees() {
-    lines.add(NL+ dashes(100) + NL);
+    add(NL+ dashes(100) + NL);
     Velocity v = Velocity.of(0.6, 0.0, 0.0);
-    lines.add("Table of various angles for rotating the following velocity with a boost."+NL);
-    lines.add("V=" + v + NL);
-    lines.add(header.row("Boost that", "Rotation ", "Rotated V"));
-    lines.add(header.row("rotates V (rounded)", "amount", "(rounded)"));
-    lines.add(dashes(70));
+    add("Table of various angles for rotating the following velocity with a boost."+NL);
+    add("V=" + v + NL);
+    add(header.row("Boost that", "Rotation ", "Rotated V"));
+    add(header.row("rotates V (rounded)", "amount", "(rounded)"));
+    add(dashes(70));
     for(int degrees = 1; degrees <= 179; ++degrees) {
       Velocity boost_v_rotated = rotated(v, degsToRads(degrees));
       Velocity v_Kp = VelocityTransformation.primedVelocity(v, boost_v_rotated);
-      lines.add(table.row(v_Kp, degrees + "°", boost_v_rotated + " (" + angleFromVector(boost_v_rotated) + "°)"));
+      add(table.row(v_Kp, degrees + "°", boost_v_rotated + " (" + angleFromVector(boost_v_rotated) + "°)"));
     }
   }
   

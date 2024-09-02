@@ -28,12 +28,12 @@ public final class WaveVectorK extends TextOutput {
   }
   
   private void sameLineChangesFrequencyOnly() {
-    lines.add("A boost parallel to the wave-vector k changes the frequency only.");
+    add("A boost parallel to the wave-vector k changes the frequency only.");
     Axis axis = Axis.X;
     Velocity v = Velocity.of(axis, 0.6);
     sameLine(axis, v);
     
-    lines.add(NL + "A boost anti-parallel to the wave-vector k changes the frequency only.");
+    add(NL + "A boost anti-parallel to the wave-vector k changes the frequency only.");
     sameLine(axis, Velocity.of(v.times(-1)));
   }
 
@@ -45,7 +45,7 @@ public final class WaveVectorK extends TextOutput {
   }
 
   private void notTheSameLineChangesFrequencyAndDirection() {
-    lines.add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
+    add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
     Velocity v = Velocity.of(Axis.X, 0.6);
     LorentzTransformation lt = LorentzTransformation.of(v);
     WaveVector k_in = WaveVector.of(1.0, Direction.of(1, 2, 3));
@@ -54,8 +54,8 @@ public final class WaveVectorK extends TextOutput {
   }
   
   private void abberation() {
-    lines.add(NL+"Abberation.");
-    lines.add("Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
+    add(NL+"Abberation.");
+    add("Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
     Velocity v = Velocity.of(Axis.X, -0.60);
     LorentzTransformation lt = LorentzTransformation.of(v);
     //directed into the 4th quadrant at 45 degrees
@@ -66,19 +66,19 @@ public final class WaveVectorK extends TextOutput {
   }
   
   private void show(LorentzTransformation lt, FourVector input, FourVector output) {
-    lines.add("  Boost "  + lt);
-    lines.add("  Input k in frame K "  + input + " mag " + round(input.square()));
-    lines.add("  Output k in frame K'" + output + " mag " + round(output.square()));
+    add("  Boost "  + lt);
+    add("  Input k in frame K "  + input + " mag " + round(input.square()));
+    add("  Output k in frame K'" + output + " mag " + round(output.square()));
   }
   
   private void showChangeInDirection(WaveVector k_in, FourVector k_out) {
     double degsIn = degreesWrtXaxis(k_in);
     double degsOut = degreesWrtXaxis(k_out);
     
-    lines.add("  Input k angle in frame K with respect to the X-axis: " + degsIn);
-    lines.add("  Output k angle in frame K' with respect to the X-axis: " + degsOut);
-    lines.add("  Change in direction of k: " + round(degsOut - degsIn) + "°");
-    lines.add("  Change in frequency by factor: " + round(k_out.on(CT)/k_in.on(CT)));
+    add("  Input k angle in frame K with respect to the X-axis: " + degsIn);
+    add("  Output k angle in frame K' with respect to the X-axis: " + degsOut);
+    add("  Change in direction of k: " + round(degsOut - degsIn) + "°");
+    add("  Change in frequency by factor: " + round(k_out.on(CT)/k_in.on(CT)));
   }
   
   private double degreesWrtXaxis(FourVector k) {

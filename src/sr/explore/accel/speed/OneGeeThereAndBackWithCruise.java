@@ -75,23 +75,23 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
   }
   
   void explore() {
-    lines.add("A return trip in a relativistic rocket accelerating at 1g.");
-    lines.add("Five parts:");
-    lines.add("  - +1g acceleration");
-    lines.add("  - cruise at top speed (outbound) for 1 year (proper-time)");
-    lines.add("  - -1g braking");
-    lines.add("  - cruise at top speed (inbound) for 1 year (proper-time)");
-    lines.add("  - +1g acceleration");
-    lines.add("At the end of the trip, the rocket has returned to its starting point.");
-    lines.add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + "." + Util.NL);
+    add("A return trip in a relativistic rocket accelerating at 1g.");
+    add("Five parts:");
+    add("  - +1g acceleration");
+    add("  - cruise at top speed (outbound) for 1 year (proper-time)");
+    add("  - -1g braking");
+    add("  - cruise at top speed (inbound) for 1 year (proper-time)");
+    add("  - +1g acceleration");
+    add("At the end of the trip, the rocket has returned to its starting point.");
+    add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + "." + Util.NL);
     table();
     outputToConsoleAnd("one-gee-there-and-back-with-cruise.txt");
   }
 
   private void table() {
-    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));
-    lines.add(tableHeader.row("(years)", "(light-years)", "(years)"));
-    lines.add(dashes(52));
+    add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time"));
+    add(tableHeader.row("(years)", "(light-years)", "(years)"));
+    add(dashes(52));
     for(int yearsAccel = 2; yearsAccel <= NUM_YEARS_ACCEL; ++yearsAccel) {
       explore(yearsAccel, NUM_YEARS_CRUISING);
     }
@@ -102,7 +102,7 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput {
     double τ_years = τ_years_accel + τ_years_cruising;
     double end_ct = history.ct(τ_years);
     Event end_event = history.event(end_ct);
-    lines.add(table.row(τ_years, end_event.x(), end_event.ct()));
+    add(table.row(τ_years, end_event.x(), end_event.ct()));
   }
   
   // Proper-time cτ, Distance light-years, Coordinate-time ct

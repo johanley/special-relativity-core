@@ -22,18 +22,18 @@ public final class MaxAngleBetweenResultVectors extends TextOutput {
   }
 
   void explore() {
-    lines.add("Velocity transformation formula for v, the unprimed velocity." + Util.NL);
-    lines.add("Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).");  
-    lines.add("Rotate v_b using Z as the pole (using an integral number of degrees)." + Util.NL);
+    add("Velocity transformation formula for v, the unprimed velocity." + Util.NL);
+    add("Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).");  
+    add("Rotate v_b using Z as the pole (using an integral number of degrees)." + Util.NL);
 
-    lines.add("For low speeds, the 90.0° angle gives the max separation between (v_a + v_b) and (v_b + v_a).");
-    lines.add("As speeds become extreme, the angle approaches 180° as a limit." + Util.NL);
+    add("For low speeds, the 90.0° angle gives the max separation between (v_a + v_b) and (v_b + v_a).");
+    add("As speeds become extreme, the angle approaches 180° as a limit." + Util.NL);
 
-    lines.add("(This doesn't explore the case of velocities having different speeds.)" + Util.NL);
+    add("(This doesn't explore the case of velocities having different speeds.)" + Util.NL);
 
-    lines.add(header.row("v_a", "v_b", "Rotation", "Angle Between"));
-    lines.add(header.row("", "", "v_b wrt v_a", "(v_a + v_b) and (v_b + v_a)"));
-    lines.add(dashes(120));
+    add(header.row("v_a", "v_b", "Rotation", "Angle Between"));
+    add(header.row("", "", "v_b wrt v_a", "(v_a + v_b) and (v_b + v_a)"));
+    add(dashes(120));
     
     for (int speed = 1; speed < 100; ++speed) {
       findTheLargestAngleBetweenWhenAdding(Velocity.of(X, speed / 100.0));
@@ -63,7 +63,7 @@ public final class MaxAngleBetweenResultVectors extends TextOutput {
         vWithMaxAngle = b_rotated_v;
       }
     }
-    lines.add(table.row(a, vWithMaxAngle, rotationAngle * 1.0, Util.radsToDegs(maxAngleBetween)));
+    add(table.row(a, vWithMaxAngle, rotationAngle * 1.0, Util.radsToDegs(maxAngleBetween)));
   }
 
   // v_a, v_b, angle between v_a and v_b, angle between (v_a + v_b) and (v_a + v_b)

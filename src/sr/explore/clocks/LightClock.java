@@ -62,24 +62,24 @@ public final class LightClock extends TextOutput {
   }
 
   void explore() {
-    lines.add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
+    add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
     History lightPulse = MirrorReflection.of(DeltaBase.origin(), Direction.of(-1, 0, 0));
     double ct = 10;
     Event a_K = lightPulse.event(-ct);
     Event b_K = lightPulse.event(+ct);
-    lines.add("First, one full cycle of the light clock in K:");
-    lines.add("K:   a " + a_K);
-    lines.add("K:   b " + b_K);
-    lines.add("K:(b-a)" + b_K.minus(a_K) + " one full tick of the clock."+NL);
+    add("First, one full cycle of the light clock in K:");
+    add("K:   a " + a_K);
+    add("K:   b " + b_K);
+    add("K:(b-a)" + b_K.minus(a_K) + " one full tick of the clock."+NL);
     
     double β = 0.90;
-    lines.add("Now look at how those same two events 'a' and 'b' transform in boosted frames K'.");
-    lines.add("Boost speed: " + β);
-    lines.add("Boost direction: various (see table below)." + NL);
-    lines.add(tableHeader.row("Boost", "Boost", "", "Ratio", "Boost"));
-    lines.add(tableHeader.row("Velocity", "Angle", "K':(b'-a')", "(Δct')/(Δct)", "Gamma"));
-    lines.add(dashes(98));
+    add("Now look at how those same two events 'a' and 'b' transform in boosted frames K'.");
+    add("Boost speed: " + β);
+    add("Boost direction: various (see table below)." + NL);
+    add(tableHeader.row("Boost", "Boost", "", "Ratio", "Boost"));
+    add(tableHeader.row("Velocity", "Angle", "K':(b'-a')", "(Δct')/(Δct)", "Gamma"));
+    add(dashes(98));
     double increment = Math.PI / 4.0;
     Velocity velocity = Velocity.of(Axis.X, β);
     for(int idx = 0 ; idx < 8; ++idx) {
@@ -88,7 +88,7 @@ public final class LightClock extends TextOutput {
       Event a_Kp = boost.changeFrame(a_K);
       Event b_Kp = boost.changeFrame(b_K);
       double ratio = b_Kp.minus(a_Kp).ct() / b_K.minus(a_K).ct();
-      lines.add(table.row(
+      add(table.row(
         boost_velocity, 
         boostAngle(boost_velocity), 
         b_Kp.minus(a_Kp), 
@@ -96,7 +96,7 @@ public final class LightClock extends TextOutput {
         Physics.Γ(boost_velocity.magnitude())
       ));
     }
-    lines.add(NL+"Regardless of the direction of the boost, the time dilation effect is always the same size.");
+    add(NL+"Regardless of the direction of the boost, the time dilation effect is always the same size.");
     outputToConsole();
   }
 

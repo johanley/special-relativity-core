@@ -41,7 +41,7 @@ public final class ThomasPrecessionAsLimit extends TextOutput {
   }
   
   void explore() {
-    lines.add("The Thomas precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
+    add("The Thomas precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
     double circuitLength = 10.0;
     double β = 0.50;
     tableFor(β, circuitLength);
@@ -53,14 +53,14 @@ public final class ThomasPrecessionAsLimit extends TextOutput {
   private Table table = new Table("%-10s", "%-10s");
   
   private void tableFor(double β, double circuitLength) {
-    lines.add("Circuit Length: " + circuitLength);
-    lines.add("Speed: " + β + NL);
-    lines.add(table.row("N sides", "Silberstein rotation"));
-    lines.add(table.row("", "after 1 circuit"));
-    lines.add(dashes(30));
+    add("Circuit Length: " + circuitLength);
+    add("Speed: " + β + NL);
+    add(table.row("N sides", "Silberstein rotation"));
+    add(table.row("", "after 1 circuit"));
+    add(dashes(30));
     Velocity v = Velocity.of(Axis.X, β);
     for(int numSides = 3; numSides <= 360; ++numSides) {
-      lines.add(table.row(numSides, rotationAfterOneCircuit(numSides, v)));
+      add(table.row(numSides, rotationAfterOneCircuit(numSides, v)));
     }
   }
   
@@ -91,16 +91,16 @@ public final class ThomasPrecessionAsLimit extends TextOutput {
   
   /** Use a {@link CircularHistory}. */
   private void rotationFromThomasPrecessionFormula(double radius, double β) {
-    lines.add(NL+"Compare with the Thomas precession formula for circular motion."+NL);
+    add(NL+"Compare with the Thomas precession formula for circular motion."+NL);
     TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;
     AxisAngle rotation = circle.rotation(timeForOneCircuit);
-    lines.add("Circle circumference: " + roundIt(circumference));
-    lines.add("Circle radius: " + roundIt(radius));
-    lines.add("β: " + β);
-    lines.add("Time for 1 circuit: " + roundIt(timeForOneCircuit));
-    lines.add("Silberstein rotation for 1 circuit: " + degrees(-rotation.magnitude()));
+    add("Circle circumference: " + roundIt(circumference));
+    add("Circle radius: " + roundIt(radius));
+    add("β: " + β);
+    add("Time for 1 circuit: " + roundIt(timeForOneCircuit));
+    add("Silberstein rotation for 1 circuit: " + degrees(-rotation.magnitude()));
   }
   
   private String degrees(double rads) {

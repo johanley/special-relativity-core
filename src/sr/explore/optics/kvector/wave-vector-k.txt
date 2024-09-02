@@ -1,23 +1,23 @@
 A boost parallel to the wave-vector k changes the frequency only.
   Boost [0.6,0.0,0.0]
-  Input k in frame K [1.0 [1.0,0.0,0.0]] mag 0.0
-  Output k in frame K'[0.5 [0.5,0.0,0.0]] mag 0.0
+  Input k in frame K [1.0, 1.0, 0.0, 0.0] mag 0.0
+  Output k in frame K'[0.5, 0.5, 0.0, 0.0] mag 0.0
 
 A boost anti-parallel to the wave-vector k changes the frequency only.
   Boost [-0.6,0.0,0.0]
-  Input k in frame K [1.0 [1.0,0.0,0.0]] mag 0.0
-  Output k in frame K'[2.0 [2.0,0.0,0.0]] mag 0.0
+  Input k in frame K [1.0, 1.0, 0.0, 0.0] mag 0.0
+  Output k in frame K'[2.0, 2.0, 0.0, 0.0] mag 0.0
 
 A random boost not parallel to the wave-vector k changes both the frequency and the direction.
   Boost [0.6,0.0,0.0]
-  Input k in frame K [1.0 [0.26726,0.53452,0.80178]] mag 0.0
-  Output k in frame K'[1.0495540685656817 [-0.41592,0.53452,0.80178]] mag 0.0
+  Input k in frame K [1.0, 0.26726, 0.53452, 0.80178] mag 0.0
+  Output k in frame K'[1.04955, -0.41592, 0.53452, 0.80178] mag 0.0
 
 Abberation.
 Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.
   Boost [-0.6,0.0,0.0]
-  Input k in frame K [1.0 [0.70711,-0.70711,0.0]] mag 0.0
-  Output k in frame K'[1.7803300858899105 [1.63388,-0.70711,0.0]] mag 0.0
+  Input k in frame K [1.0, 0.70711, -0.70711, 0.0] mag 0.0
+  Output k in frame K'[1.78033, 1.63388, -0.70711, 0.0] mag 0.0
   Input k angle in frame K with respect to the X-axis: -45.0
   Output k angle in frame K' with respect to the X-axis: -23.401839
   Change in direction of k: 21.598161°

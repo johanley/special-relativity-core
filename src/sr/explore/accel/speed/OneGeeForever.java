@@ -43,19 +43,19 @@ public final class OneGeeForever extends TextOutput {
   }
   
   void explore() {
-    lines.add("Travel in a relativistic rocket accelerating at 1g.");
-    lines.add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + ".");
-    lines.add("The Milky Way galaxy is about 100,000 light years across.");
-    lines.add("You would cross the Milky Way in about 12 years of proper-time."+ Util.NL);
+    add("Travel in a relativistic rocket accelerating at 1g.");
+    add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + ".");
+    add("The Milky Way galaxy is about 100,000 light years across.");
+    add("You would cross the Milky Way in about 12 years of proper-time."+ Util.NL);
     table();
     
     outputToConsoleAnd("one-gee-forever.txt");
   }
 
   private void table() {
-    lines.add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Speed", "Γ"));
-    lines.add(tableHeader.row("(years)", "(light-years)", "(years)", "(β)", ""));
-    lines.add(dashes(100));
+    add(tableHeader.row("Proper-time", "Coordinate-distance", "Coordinate-time", "Speed", "Γ"));
+    add(tableHeader.row("(years)", "(light-years)", "(years)", "(β)", ""));
+    add(dashes(100));
     for(int yearsProperTime = 1; yearsProperTime <= NUM_YEARS; ++yearsProperTime) {
       explore(yearsProperTime);
     }
@@ -66,7 +66,7 @@ public final class OneGeeForever extends TextOutput {
     Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
     double terminalSpeed = history.velocity(coordinateTime).magnitude();
-    lines.add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Γ(terminalSpeed)));
+    add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Γ(terminalSpeed)));
   }
   
   // Proper-time cτ, Distance light-years, Coordinate-time ct
