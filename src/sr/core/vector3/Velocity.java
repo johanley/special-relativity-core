@@ -53,6 +53,13 @@ public final class Velocity extends ThreeVectorImpl {
     return Physics.Γ(magnitude());
   }
   
+  /*
+  NOT ADDING THIS METHOD. Sometimes β carries a sign! Depends on the context. 
+  public double β() {
+    return magnitude();
+  }
+  */
+  
   //PRIVATE 
   
   private Velocity(double xComp, double yComp, double zComp) {

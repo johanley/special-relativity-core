@@ -66,7 +66,8 @@ public final class OneGeeForever extends TextOutput {
     Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
     double terminalSpeed = history.velocity(coordinateTime).magnitude();
-    add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, Γ(terminalSpeed)));
+    double terminalGamma = history.velocity(coordinateTime).Γ();
+    add(table.row(yearsProperTime, endsAt.x(), coordinateTime, terminalSpeed, terminalGamma));
   }
   
   // Proper-time cτ, Distance light-years, Coordinate-time ct

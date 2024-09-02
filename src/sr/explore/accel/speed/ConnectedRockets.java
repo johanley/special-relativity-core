@@ -104,8 +104,7 @@ public final class ConnectedRockets  extends TextOutput {
     return new TimelikeHistory() {
       public Event event(double ct) {
         Event event = historyA.event(ct);
-        double β = historyA.velocity(ct).magnitude();
-        double Γ = Physics.Γ(β);
+        double Γ = historyA.velocity(ct).Γ();
         return event.put(X, event.x() + CONNECTOR_LENGTH / Γ);
       }
       public double ct(double τ) {
