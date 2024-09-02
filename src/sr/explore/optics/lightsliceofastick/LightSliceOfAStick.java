@@ -60,7 +60,7 @@ public final class LightSliceOfAStick extends TextOutput {
     add(Util.separator(DASHES));
     for (SpeedValues speed : SpeedValues.nonExtremeValues()) {
       double length = apparentStickLength(speed.β(), DETECTION_EVENT);
-      add(table.row(speed.β(), round(length), round(1.0/Physics.Γ(speed.β()))));
+      add(table.row(speed.β(), round(length), round(1.0/speed.Γ())));
     }
   }
 
