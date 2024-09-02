@@ -53,7 +53,7 @@ public final class LorentzTransformation {
   public <T extends FourVector & Builder<T>> T transformVector(T input, TransformInto direction) {
     //the core calculation uses matrices, so we convert back and forth like so
     Matrix input_matrix = Matrix.asMatrix(input);
-    Matrix output_matrix = Λ(direction.sign()).times(input_matrix);
+    Matrix output_matrix = L(direction.sign()).times(input_matrix);
     return input.build(fromComponents(output_matrix));
   }
 
@@ -72,7 +72,7 @@ public final class LorentzTransformation {
    It can be applied both to 4-vectors and to tensors such as the electromagnetic field. 
    @param sign +1 for returning primed quantities, -1 for returning unprimed quantities. Flips the sign of the boost velocity.
   */
-  private Matrix Λ(int sign){
+  private Matrix L(int sign){
     //avoid division by zero errors
     if (boostVelocity.magnitude() == 0.0) {
       return Matrix.identity(4);

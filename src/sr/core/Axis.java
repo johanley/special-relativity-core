@@ -7,7 +7,10 @@ import java.util.List;
 /** The axes in space-time. */
 public enum Axis {
   
-  CT(0), X(1), Y(2), Z(3);
+  CT(0), 
+  X(1), 
+  Y(2), 
+  Z(3);
 
   /** ct-x-y-z maps to 0-1-2-3. */
   public int idx() { return idx; }
