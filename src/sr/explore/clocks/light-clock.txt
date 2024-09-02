@@ -1,0 +1,24 @@
+Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'.
+
+First, one full cycle of the light clock in K:
+K:   a [-10.0, 10.0, 0.0, 0.0]
+K:   b [10.0, 10.0, 0.0, 0.0]
+K:(b-a)[20.0, 0.0, 0.0, 0.0] one full tick of the clock.
+
+Now look at how those same two events a and b transform in boosted frames K'.
+Boost speed: 0.9
+Boost direction: various (see table below).
+
+Boost                       Boost                                             Ratio          Boost          
+Velocity                    Angle   K':(b'-a')                                (Δct')/(Δct)   Gamma          
+--------------------------------------------------------------------------------------------------
+[0.9,0.0,0.0]                0.0°  [45.88315, -41.29483, 0.0, 0.0]            2.29416      2.29416
+[0.6364,0.6364,0.0]         45.0°  [45.88315, -29.19986, -29.19986, 0.0]      2.29416      2.29416
+[0.0,0.9,0.0]               90.0°  [45.88315, 0.0, -41.29483, 0.0]            2.29416      2.29416
+[-0.6364,0.6364,0.0]       135.0°  [45.88315, 29.19986, -29.19986, 0.0]       2.29416      2.29416
+[-0.9,0.0,0.0]             180.0°  [45.88315, 41.29483, 0.0, 0.0]             2.29416      2.29416
+[-0.6364,-0.6364,0.0]     -135.0°  [45.88315, 29.19986, 29.19986, 0.0]        2.29416      2.29416
+[0.0,-0.9,0.0]             -90.0°  [45.88315, 0.0, 41.29483, 0.0]             2.29416      2.29416
+[0.6364,-0.6364,0.0]       -45.0°  [45.88315, -29.19986, 29.19986, 0.0]       2.29416      2.29416
+
+Regardless of the direction of the boost, the time dilation effect is always the same size.

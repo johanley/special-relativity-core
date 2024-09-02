@@ -74,7 +74,7 @@ public final class LightClock extends TextOutput {
     add("K:(b-a)" + b_K.minus(a_K) + " one full tick of the clock."+NL);
     
     double β = 0.90;
-    add("Now look at how those same two events 'a' and 'b' transform in boosted frames K'.");
+    add("Now look at how those same two events a and b transform in boosted frames K'.");
     add("Boost speed: " + β);
     add("Boost direction: various (see table below)." + NL);
     add(tableHeader.row("Boost", "Boost", "", "Ratio", "Boost"));
@@ -97,7 +97,7 @@ public final class LightClock extends TextOutput {
       ));
     }
     add(NL+"Regardless of the direction of the boost, the time dilation effect is always the same size.");
-    outputToConsole();
+    outputToConsoleAnd("light-clock.txt");
   }
 
   //Boost, Angle, K':(b-a),  Ratio of times delct'/delct, Gamma  
