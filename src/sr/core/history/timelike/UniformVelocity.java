@@ -79,7 +79,7 @@ public final class UniformVelocity extends TimelikeMoveableHistory {
   }
   
   @Override public String toString() {
-    return "UniformVelocity " + timelikedDeltaBase() + " velocity:" + velocity;
+    return "UniformVelocity " + timelikeDeltaBase() + " velocity:" + velocity;
   }
   
   private Velocity velocity;

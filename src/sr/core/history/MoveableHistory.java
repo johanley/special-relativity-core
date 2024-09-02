@@ -25,7 +25,7 @@ public abstract class MoveableHistory implements History {
   */
   protected abstract Event Δevent(double Δct);
   
-  public final DeltaBase timelikedDeltaBase() { return deltaBase; }
+  public final DeltaBase deltaBase() { return deltaBase; }
   
   /** 
    Return an approximation to the velocity of the object at the given coordinate-time.

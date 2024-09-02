@@ -45,7 +45,7 @@ public abstract class TimelikeMoveableHistory extends MoveableHistory implements
   protected abstract double Δτ(double Δct);
   
   
-  public TimelikeDeltaBase deltaBase() { return timeLikeDeltaBase; }
+  public TimelikeDeltaBase timelikeDeltaBase() { return timeLikeDeltaBase; }
   
   /**
    How the object has rotated because of Silberstein (Thomas-Wigner) rotation of the co-moving frame.
