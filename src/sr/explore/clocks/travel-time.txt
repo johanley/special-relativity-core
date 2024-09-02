@@ -1,0 +1,54 @@
+One-way trip through space at a uniform velocity.
+Proper-time is the traveler's wrist-watch time.
+
+From the point of view of the traveler, extreme high-speed travel acts like a worm-hole.
+
+Distance traveled: 50.0 light-years.
+
+β                   Proper-time         Coordinate-time     
+                    τ (years)           ct (years)          
+-------------------------------------------------------
+0.1                 497.493719          500.0               
+0.2                 244.948974          250.0               
+0.3                 158.989867          166.666667          
+0.4                 114.564392          125.0               
+0.5                 86.60254            100.0               
+0.6                 66.666667           83.333333           
+0.7                 51.010203           71.428571           
+0.8                 37.5                62.5                
+0.9                 24.216105           55.555556           
+0.95                16.434205           52.631579           
+0.96                14.583333           52.083333           
+0.97                12.531181           51.546392           
+0.98                10.152933           51.020408           
+0.99                7.124614            50.505051           
+0.999               2.237747            50.05005            
+0.9999              0.70716             50.005001           
+0.9999999895816072  0.007217            50.000001           
+
+Round trip, same speed both outbound and inbound.
+
+From the point of view of the traveler, extreme high-speed return trips act as a time-machine into the future.
+
+Distance traveled: 50.0 light-years, out and back.
+
+β                   Proper-time         Coordinate-time     
+                    τ (years)           ct (years)          
+-------------------------------------------------------
+0.1                 994.987437          1000.0              
+0.2                 489.897949          500.0               
+0.3                 317.979734          333.333333          
+0.4                 229.128785          250.0               
+0.5                 173.205081          200.0               
+0.6                 133.333333          166.666667          
+0.7                 102.020406          142.857143          
+0.8                 75.0                125.0               
+0.9                 48.43221            111.111111          
+0.95                32.868411           105.263158          
+0.96                29.166667           104.166667          
+0.97                25.062362           103.092784          
+0.98                20.305866           102.040816          
+0.99                14.249228           101.010101          
+0.999               4.475493            100.1001            
+0.9999              1.41432             100.010001          
+0.9999999895816072  0.014435            100.000001          

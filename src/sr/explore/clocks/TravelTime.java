@@ -1,13 +1,19 @@
 package sr.explore.clocks;
 
+import sr.core.Axis;
 import sr.core.SpeedValues;
+import static sr.core.Util.NL;
 import sr.core.Util;
+import sr.core.history.timelike.ThereAndBack;
+import sr.core.history.timelike.TimelikeDeltaBase;
+import sr.core.history.timelike.TimelikeHistory;
+import sr.core.history.timelike.UniformVelocity;
+import sr.core.vector3.Position;
+import sr.core.vector3.Velocity;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
-/** 
- Travel-time (proper time) for various trips, according to the traveler. 
-*/
+/** Travel-time (proper time) for various trips, according to the traveler. */
 public final class TravelTime extends TextOutput {
   
   public static void main(String... args) {
@@ -19,6 +25,7 @@ public final class TravelTime extends TextOutput {
     double lightyears = 50.0;
     oneWayTripUniformVelocity(lightyears);
     twoWayTripUniformSpeed(lightyears);
+    outputToConsoleAnd("travel-time.txt");
   }
   
   /** 
@@ -28,19 +35,18 @@ public final class TravelTime extends TextOutput {
   */
   void oneWayTripUniformVelocity(double lightyears) {
     add("One-way trip through space at a uniform velocity.");
-    add("Rocket-time is the traveler's wrist-watch time (proper time).");
-    add(Util.NL + "From the point of view of the traveler, high-speed travel acts like a worm-hole.");
-    add(Util.NL + "Distance traveled: " + lightyears + " light-years." + Util.NL);
-    add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
-    add(Util.separator(65));
+    add("Proper-time is the traveler's wrist-watch time.");
+    add(NL + "From the point of view of the traveler, extreme high-speed travel acts like a worm-hole.");
+    add(NL + "Distance traveled: " + lightyears + " light-years." + NL);
+    add(table.row("β", "Proper-time", "Coordinate-time"));
+    add(table.row("", "τ (years)", "ct (years)"));
+    add(dashes(55));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
-      if (speed.β() > 0) {
-        double coordTime = lightyears / speed.β();
-        double travelTime = coordTime / speed.Γ();
-        add(table.row(speed.β(), round(travelTime), round(coordTime)));
-      }
+      TimelikeHistory history = UniformVelocity.of(Position.origin(), Velocity.of(Axis.X, speed.β()));
+      double ct = lightyears / speed.β();
+      double τ = history.τ(ct);
+      add(table.row(speed.β(), round(τ), round(ct)));
     }
-    outputToConsoleAnd("travel-time-one-way-trip.txt");
   }
 
   /** 
@@ -50,20 +56,18 @@ public final class TravelTime extends TextOutput {
    A two-way trip acts like a time machine into the future: the traveler gets into the deep future faster than usual.
   */
   void twoWayTripUniformSpeed(double lightyears) {
-    add("Round trip, same speed both outbound and inbound.");
-    add("Rocket-time is the traveler's wrist-watch time (proper time).");
-    add(Util.NL + "From the point of view of the traveler, high-speed return trips act as a time-machine into the future.");
-    add(Util.NL + "Distance traveled: " + lightyears + " light-years, out and back." + Util.NL);
-    add(table.row("β", "Rocket-time (y)", "Home-time (y)"));
-    add(Util.separator(65));
+    add(NL + "Round trip, same speed both outbound and inbound.");
+    add(NL + "From the point of view of the traveler, extreme high-speed return trips act as a time-machine into the future.");
+    add(NL + "Distance traveled: " + lightyears + " light-years, out and back." + NL);
+    add(table.row("β", "Proper-time", "Coordinate-time"));
+    add(table.row("", "τ (years)", "ct (years)"));
+    add(dashes(55));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
-      if (speed.β() > 0) {
-        double coordTime = lightyears / speed.β();
-        double travelTime = coordTime / speed.Γ();
-        add(table.row(speed.β(), round(2.0*travelTime), round(2.0*coordTime)));
-      }
+      TimelikeHistory history = ThereAndBack.of(TimelikeDeltaBase.of(Position.origin()), Velocity.of(Axis.X, speed.β()));
+      double ct = lightyears / speed.β();
+      double τ = history.τ(ct);
+      add(table.row(speed.β(), round(2.0*τ), round(2.0*ct)));
     }
-    outputToConsoleAnd("travel-time-round-trip.txt");
   }
   
   private Table table = new Table("%-20s", "%-20s", "%-20s");
