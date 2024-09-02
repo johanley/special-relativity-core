@@ -89,8 +89,13 @@ It's defined only between pairs of 4-vectors that are either both time-like or b
 Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
-**Unexpected: so far, this project models 3-vectors, but not 4-vectors.**
-There is a class for events, but there's no class for 4-vectors. 
+**Light is simpler than matter.**
+The physics of photons is simpler than the physics of particles having mass.
+The causal structure of space-time relates to light-cones, not 'matter-cones'.
+The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the  
+effects attached to matter (the distortions of geometry and time).
+It can be strongly argued that the photon-effects should be taken first, as the primary guide into the structure of space-time. 
+ 
 
 **Strange but true**: a boost changes the *measured* rates of all clocks in the universe except for those moving the same way as you. 
 A boost changes the *measured* geometry of all objects in the universe (the flattening effect) except for those moving the same way as you.

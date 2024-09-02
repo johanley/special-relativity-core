@@ -17,6 +17,16 @@ public class TextOutput {
   public void add(String text) {
     lines.add(text);
   }
+  
+  /** Call the object's toString method and then add it as a line to text output. */
+  public void add(Object thing) {
+    lines.add(thing.toString());
+  }
+  
+  /** Add a line to text output, preceded by '# '. */
+  public void addComment(String text) {
+    lines.add("# " + text);
+  }
 
   /** 
    Display the text output both to the console and to a text file. 
@@ -31,7 +41,13 @@ public class TextOutput {
   public String dashes(int num) {
     return Util.separator(num);
   }
-
+  
+  public void outputToConsole() {
+    for(String line : lines) {
+      System.out.println(line);
+    }
+  }
+  
   /** Lines of text output. */
   protected List<String> lines = new ArrayList<>();
   
@@ -43,12 +59,6 @@ public class TextOutput {
   protected void outputToConsoleAnd(String fileName) {
     //the 'this' reference is not this class, but the class of the subclass
     output(fileName, this);
-  }
-  
-  protected void outputToConsole() {
-    for(String line : lines) {
-      System.out.println(line);
-    }
   }
   
   private void output(String fileName, Object caller) {
