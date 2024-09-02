@@ -51,7 +51,7 @@ public final class ThomasPrecession {
   
   private static AxisAngle transform(Acceleration a, Velocity v, int sign) {
     //https://en.wikipedia.org/wiki/Thomas_precession#Statement
-    double Γ = Physics.Γ(v.magnitude());
+    double Γ = v.Γ();
     double b = sq(Γ) / (Γ+1);
     ThreeVector t = a.cross(v).times(b).times(sign);
     return AxisAngle.of(t.x(), t.y(), t.z());

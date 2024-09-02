@@ -1,6 +1,7 @@
 package sr.core.vector3;
 
 import sr.core.Axis;
+import sr.core.Physics;
 import sr.core.Util;
 
 /** 
@@ -45,6 +46,11 @@ public final class Velocity extends ThreeVectorImpl {
     Velocity result = Velocity.of(βx, βy, βz);
     Util.mustHave(result.magnitude() > 0, "Velocity should have a non-zero magnitude.");
     return result;
+  }
+
+  /** The Lorentz factor (warp factor) related to this Velocity. */
+  public double Γ() {
+    return Physics.Γ(magnitude());
   }
   
   //PRIVATE 

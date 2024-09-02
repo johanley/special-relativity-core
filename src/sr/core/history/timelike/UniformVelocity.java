@@ -1,6 +1,5 @@
 package sr.core.history.timelike;
 
-import sr.core.Physics;
 import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
@@ -67,11 +66,11 @@ public final class UniformVelocity extends TimelikeMoveableHistory {
   }
   
   @Override protected double Δct(double Δτ) {
-    return Δτ * Physics.Γ(velocity.magnitude());
+    return Δτ * velocity.Γ();
   }
   
   @Override protected double Δτ(double Δct) {
-    return Δct / Physics.Γ(velocity.magnitude());
+    return Δct / velocity.Γ();
   }
   
   @Override public AxisAngle rotation(double Δct) {

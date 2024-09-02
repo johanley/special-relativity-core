@@ -1,9 +1,7 @@
 package sr.explore.optics.doppler.cone;
 
 import sr.core.Axis;
-import sr.core.LorentzTransformation;
 import sr.core.Util;
-import sr.core.vector3.Velocity;
 import sr.core.vector4.FourVector;
 import sr.core.vector4.WaveVector;
 import sr.core.vector4.transform.Boost;

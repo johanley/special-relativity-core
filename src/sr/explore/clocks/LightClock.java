@@ -5,7 +5,6 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.Physics;
 import sr.core.history.DeltaBase;
 import sr.core.history.History;
 import sr.core.history.lightlike.MirrorReflection;
@@ -93,7 +92,7 @@ public final class LightClock extends TextOutput {
         boostAngle(boost_velocity), 
         b_Kp.minus(a_Kp), 
         ratio, 
-        Physics.Γ(boost_velocity.magnitude())
+        boost_velocity.Γ()
       ));
     }
     add(NL+"Regardless of the direction of the boost, the time dilation effect is always the same size.");

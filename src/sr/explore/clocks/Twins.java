@@ -2,11 +2,10 @@ package sr.explore.clocks;
 
 import static sr.core.Axis.X;
 
-import sr.core.Physics;
 import sr.core.Util;
+import sr.core.history.timelike.ThereAndBack;
 import sr.core.history.timelike.TimelikeDeltaBase;
 import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.ThereAndBack;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
@@ -67,7 +66,7 @@ public final class Twins extends TextOutput {
     double τStay = properTimeInterval(stayPut, -HALF_TIME, HALF_TIME); 
     double τThereAndBack = properTimeInterval(thereAndBack, -HALF_TIME, HALF_TIME);
     
-    add("β: " + round(β) + Util.NL + "Γ from formula: " + round(Physics.Γ(velocity.magnitude())));
+    add("β: " + round(β) + Util.NL + "Γ from formula: " + round(velocity.Γ()));
     add("Stay-at-home elapsed proper-time: " + τStay);
     add("There-and-back elapsed proper-time: " + round(τThereAndBack));
     add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);

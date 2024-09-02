@@ -62,7 +62,7 @@ public final class VelocityTransformation {
   private static Velocity transform(Velocity v, Velocity u, int sign) {
     //Reference: https://en.wikipedia.org/wiki/Velocity-addition_formula
     double a = 1.0 / (1 + sign*u.dot(v));
-    double Γ_v = Physics.Γ(v.magnitude());
+    double Γ_v = v.Γ();
     double b = Γ_v / (1 + Γ_v);
     
     ThreeVector c = v.cross(v.cross(u)).times(b);
