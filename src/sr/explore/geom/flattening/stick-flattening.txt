@@ -31,7 +31,7 @@ K' b-a: [0.0, 0.01414, 0.0, 0.0]
 K' stick length: 0.0141
 1/Γ from formula: 0.014141782065918275
 
-Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.
+Conclusion 1: in the boosted grid, the stick's length is reduced, and asymptotically approaches 0.
 
 2. Boost speed 0.6. Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). 
 ----------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ K' stick length: 1.0000999900087841
 K' stick angle with respect to the X-axis: 89.1898°
 K' stick angle directly from a formula: 89.1898°
 
-Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.
+Conclusion 2: in the boosted grid, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.
 
 3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.
 Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.

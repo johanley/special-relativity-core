@@ -16,7 +16,7 @@ class SpatialReflectionTEST {
     ThreeVector input = ThreeVectorImpl.of(1, 2, 3);
     ThreeVector expected = ThreeVectorImpl.of(-1, -2, -3);
     
-    ThreeVector output = reflect.changeFrame(input);
+    ThreeVector output = reflect.changeGrid(input);
     assertNoDiff(output, expected);
     
     output = reflect.changeVector(input);
@@ -28,7 +28,7 @@ class SpatialReflectionTEST {
     AxisAngle input = AxisAngle.of(1, 2, 3);
     ThreeVector expected = ThreeVectorImpl.of(1, 2, 3);
     
-    ThreeVector output = reflect.changeFrame(input);
+    ThreeVector output = reflect.changeGrid(input);
     assertNoDiff(output, expected);
   }
 

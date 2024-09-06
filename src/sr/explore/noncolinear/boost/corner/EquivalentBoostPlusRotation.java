@@ -81,10 +81,10 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
     Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
     
     Transform cornerBoost = asCornerBoost();
-    Event event_Kpp_corner_boost = cornerBoost.changeFrame(event_K);
+    Event event_Kpp_corner_boost = cornerBoost.changeGrid(event_K);
     
-    Event event_Kpp_boost_plus_rot = boostPlusRotation().changeFrame(event_K);
-    Event event_Kpp_rot_plus_boost = rotationPlusBoost().changeFrame(event_K);
+    Event event_Kpp_boost_plus_rot = boostPlusRotation().changeGrid(event_K);
+    Event event_Kpp_rot_plus_boost = rotationPlusBoost().changeGrid(event_K);
     
     add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     add("Event:" + event_K);

@@ -16,14 +16,14 @@ import sr.core.vector4.FourVector;
  <P>The boost is a velocity. It can be in any direction. 
  Here, it isn't restricted to being along one of the spatial coordinate axes.
 
- <P>The geometry involves two frames of reference, here called K and K'.
-The K' frame is moving with a given velocity with respect the K frame.
-The origins of the two frames coincide; that is, 
+ <P>The geometry involves two grids, here called K and K'.
+The grid K' is moving with a given velocity with respect the grid K.
+The origins of the two grids coincide; that is, 
 <pre>(ct,x,y,z) = (ct',x',y',z') = (0,0,0,0)</pre>
  
  <P>A reversal of a Lorentz transformation corresponds to multiplying a velocity vector by -1 (reversing its direction).
  When K and K' share the same orientation of the spatial axes, reversing the sign of the relative velocity corresponds to 
- switching viewpoint from one frame to another.
+ switching viewpoint from one grid to another.
 */
 public final class Boost implements Transform {
 
@@ -42,16 +42,16 @@ public final class Boost implements Transform {
   }
 
   /**
-   Transform the four-vector to the boosted inertial frame.  
+   Transform the four-vector to the boosted inertial grid.  
    The inverse of {@link #changeVector(FourVector)}. 
   */
-  @Override public <T extends FourVector & Builder<T>> T changeFrame(T fourVector) {
+  @Override public <T extends FourVector & Builder<T>> T changeGrid(T fourVector) {
     return booster(fourVector, +1);
   }
   
   /** 
-   Transform the four-vector to a new event in the same inertial frame.  
-   The inverse of {@link #changeFrame(Event)}. 
+   Transform the four-vector to a new event in the same inertial grid.  
+   The inverse of {@link #changeGrid(Event)}. 
   */
   @Override public <T extends FourVector & Builder<T>> T changeVector(T fourVector) {
     return booster(fourVector, -1);

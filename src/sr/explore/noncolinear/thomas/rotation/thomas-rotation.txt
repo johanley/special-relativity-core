@@ -1,4 +1,4 @@
-Circular motion, and rotation of the K' frame co-moving with the object (Thomas precession).
+Circular motion, and rotation of the K' grid co-moving with the object (Thomas precession).
 
 Details of a single revolution.
 

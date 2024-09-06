@@ -15,7 +15,7 @@ class SpatialRotationTEST {
     SpatialRotation rot = SpatialRotation.of(Axis.X, 0);
     ThreeVector input = ThreeVectorImpl.of(1, 2, 3);
     
-    ThreeVector output = rot.changeFrame(input);
+    ThreeVector output = rot.changeGrid(input);
     assertNoDiff(input, output);
     
     output = rot.changeVector(input);

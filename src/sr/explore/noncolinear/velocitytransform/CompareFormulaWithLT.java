@@ -28,8 +28,8 @@ public final class CompareFormulaWithLT extends TextOutput implements Exploratio
     add("Compare results from the velocity transformation formula with results directly from the Lorentz transformation."+Util.NL);
     add("With no loss of generality, in K we have:");
     add(" - a object velocity v in K in any old direction");
-    add(" - a frame K' boosted with respect to K along the +X-axis.");
-    add("So the task is to find v_K', the velocity with respect to the boosted frame K'." + Util.NL);
+    add(" - a grid K' boosted with respect to K along the +X-axis.");
+    add("So the task is to find v_K', the velocity with respect to the boosted grid K'." + Util.NL);
     show(0.8, Velocity.of(0.1,  0.2, 0.3));
     //show(0.8, Velocity.of(0.1, 0.0, 0.0)); //straight-line case
     outputToConsoleAnd("compare-formula-with-LT.txt");
@@ -65,8 +65,8 @@ public final class CompareFormulaWithLT extends TextOutput implements Exploratio
     Event a_K = history_k.event(ct_K);
     Event b_K = history_k.event(ct_K + 0.001);
      
-    Event a_Kp = boost.changeFrame(a_K); 
-    Event b_Kp = boost.changeFrame(b_K);
+    Event a_Kp = boost.changeGrid(a_K); 
+    Event b_Kp = boost.changeGrid(b_K);
     Event displacement_Kp = b_Kp.minus(a_Kp);
      
     double dt_Kp = displacement_Kp.ct();

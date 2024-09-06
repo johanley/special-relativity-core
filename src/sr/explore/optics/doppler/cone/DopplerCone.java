@@ -26,7 +26,7 @@ public final class DopplerCone implements Exploration {
   }
   
   @Override public void explore() {
-    //base wave-vector in frame K
+    //base wave-vector in grid K
     WaveVector k_K = WaveVector.of(1.0, Axis.X);
     int num = 360;
     double β = 0.5;

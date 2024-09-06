@@ -48,7 +48,7 @@ public abstract class TimelikeMoveableHistory extends MoveableHistory implements
   public TimelikeDeltaBase timelikeDeltaBase() { return timeLikeDeltaBase; }
   
   /**
-   How the object has rotated because of Silberstein (Thomas-Wigner) rotation of the co-moving frame.
+   How the object has rotated because of Silberstein (Thomas-Wigner) rotation of the co-moving grid.
    <P>This quantity is similar to proper-time, in that the zero is arbitrary.
    <P>Returns a zero-vector if the motion is in a straight line.
    <P>There's no restriction on the magnitude of the returned axis-angle; for example, it's not restricted to the range 0..2pi range.

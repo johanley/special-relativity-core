@@ -24,7 +24,7 @@ import sr.output.text.TextOutput;
  
  <P>Second, place a stick at an angle with respect to the X-axis (not 0 or 90 degrees). 
  Do a boost along the X-axis.
- In the boosted frame, the angle of the stick with respect to the X-axis will change.
+ In the boosted grid, the angle of the stick with respect to the X-axis will change.
  The stick will "flatten" along the direction of the boost.
  This changes the direction in which the stick is pointing. 
  At ultra-relativistic speeds, the rotated stick will approach the direction of 90 degrees away from the X-axis.
@@ -39,11 +39,11 @@ public class StickFlattening extends TextOutput implements Exploration {
   @Override public void explore() {
     stickAlongAxis(0.6);
     stickAlongAxis(0.9999);
-    add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");
+    add(Util.NL + "Conclusion 1: in the boosted grid, the stick's length is reduced, and asymptotically approaches 0.");
     
     stickAngledToXAxis(0.6);
     stickAngledToXAxis(0.9999);
-    add(Util.NL + "Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
+    add(Util.NL + "Conclusion 2: in the boosted grid, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
     
     stickAngledToXAxisWithEquivalentBoostParams();
     
@@ -89,12 +89,12 @@ public class StickFlattening extends TextOutput implements Exploration {
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
-    Event aBoosted = boostX.changeFrame(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.changeGrid(histA.event(0.18)); //start with some event on A's history
     //root: the difference in K' of the ct' coord vanishes
-    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeFrame(histB.event(ctB));
+    Event bBoosted = boostX.changeGrid(histB.event(ctB));
     
     add("Boost: "+ boostX);
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
@@ -155,12 +155,12 @@ public class StickFlattening extends TextOutput implements Exploration {
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
     //find events that have the same ct' value in K'
-    Event aBoosted = boostX.changeFrame(histA.event(0.18)); //start with some event on A's history
+    Event aBoosted = boostX.changeGrid(histA.event(0.18)); //start with some event on A's history
     
-    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeFrame(histB.event(ctB));
+    Event bBoosted = boostX.changeGrid(histB.event(ctB));
     
     add("K' a: " + aBoosted);
     add("K' b: " + bBoosted);
@@ -211,12 +211,12 @@ public class StickFlattening extends TextOutput implements Exploration {
     add(Util.NL + "Boost: " + boostX);
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'
-    Event aBoosted = boostX.changeFrame(histA.event(0.15));
+    Event aBoosted = boostX.changeGrid(histA.event(0.15));
     
-    Function<Event, Double> criterion = event -> (boostX.changeFrame(event).ct() - aBoosted.ct());
+    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
     FindEvent findEvent = new FindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeFrame(histB.event(ctB));
+    Event bBoosted = boostX.changeGrid(histB.event(ctB));
     
     add("K' a: " + aBoosted);
     add("K' b: " + bBoosted);

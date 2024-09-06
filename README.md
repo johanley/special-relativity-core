@@ -104,10 +104,10 @@ A boost changes the *measured* geometry of all objects in the universe (the flat
 The traveler measures flattening along the line of motion (and no time dilation on the spacecraft). 
 The stay-at-home measures time dilation on the spacecraft (but no flattening-of-the-world along the line of its motion).
 
-**The spatial geometry of an object is defined by a time-slice in the given frame (not a light-slice).**
+**The spatial geometry of an object is defined by a time-slice in the given grid (not a light-slice).**
 Spatial geometry consists of two things: distances and angles.
-To measure the length of a stick (in a given frame), you need a time-slice, a surface with <em>ct=constant</em>, (in that frame).
-To measure the direction in which a stick is pointing (in a given frame), you also need a time-slice (in that frame).
+To measure the length of a stick (in a given grid), you need a time-slice, a surface with <em>ct=constant</em>, (in that grid).
+To measure the direction in which a stick is pointing (in a given grid), you also need a time-slice (in that grid).
 
 **Change of angles is just as significant as change of dimensions.** 
 
@@ -120,7 +120,7 @@ In every other case, the stick will change both length and direction.
 
 
 **A history intersects in dramatically different ways with a time-slice versus a light-slice.**
-The intersection of a time-slice surface (with <em>ct=constant</em>) with an object's history defines the spatial geometry of an object, relative to a frame.
+The intersection of a time-slice surface (with <em>ct=constant</em>) with an object's history defines the spatial geometry of an object, relative to a grid.
 The intersection of the past light cone of a detector with an object's history defines the optical appearance of the object at the detector.
 
 For a receding stick travelling parallel to its longest dimension, the light-slice is always shorter than the time-slice when it's receding from the detector.
@@ -145,7 +145,7 @@ ultra-relativistic speeds it increases rapidly without bound.
 What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
 After the boost, both the stick's length and orientation are different.
-The formula relating the direction of the stick in the two frames is:
+The formula relating the direction of the stick in the two grids is:
 ```
 cot θ = (1/Γ) cot θ' 
 ```

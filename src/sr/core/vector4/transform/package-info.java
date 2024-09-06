@@ -1,8 +1,8 @@
 /** 
- Transform the space-time coords of any event from one inertial frame K to another frame K'.
+ Transform the space-time coords of any event from one inertial grid K to another inertial grid K'.
  
- <P>The {@link Transform} operations can also be viewed not as a change of inertial frame, 
- but as mapping of one event to another, all with respect to the one and the same inertial frame.
+ <P>The {@link Transform} operations can also be viewed not as a change of inertial grid, 
+ but as mapping of one event to another, all with respect to the one and the same inertial grid.
  
  <P>In Minkowski space-time, there are 4 fundamental operations:
  <ul>

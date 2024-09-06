@@ -93,7 +93,7 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
   private static final double DISTANT = 100.0;
   
   /**
-   In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
+   In grid K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
   private static final TimelikeHistory HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
@@ -131,11 +131,11 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
   private Event eventOnPastLightConeOf(Event detection, TimelikeHistory history, Transform transform) {
     Function<Event, Double> onTheLightCone = event -> (
-      detection.minus(transform.changeFrame(event)).square()
+      detection.minus(transform.changeGrid(event)).square()
     );
     FindEvent root = new FindEvent(history, onTheLightCone);
     double τA = root.search(0.0);
-    Event result = transform.changeFrame(history.event(τA));
+    Event result = transform.changeGrid(history.event(τA));
     return result;
   }
   

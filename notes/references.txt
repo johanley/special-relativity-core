@@ -276,7 +276,7 @@ that illustrate concepts of simultaneity and use of the Lorentz transformation. 
 also provides useful exercises and interesting results."
 
 1990
-Aberration and Doppler shift: The cosmic background radiation and its rest frame
+Aberration and Doppler shift: The cosmic background radiation and its rest frame.
 T. Greberand H. Blatter
 Am. J. Phys. 58 (10), 942–945 (1990)
 "An individual observer located at one position in space collecting information from the 

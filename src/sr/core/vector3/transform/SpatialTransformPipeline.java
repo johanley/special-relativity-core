@@ -16,13 +16,13 @@ public final class SpatialTransformPipeline implements SpatialTransform {
   }
   
   /** 
-   Apply the {@link SpatialTransform#changeFrame(ThreeVector)} operation to the given 3-vector.
+   Apply the {@link SpatialTransform#changeGrid(ThreeVector)} operation to the given 3-vector.
    Use the same order as the items passed in the factory method. 
   */
-  @Override public ThreeVector changeFrame(ThreeVector vec) {
+  @Override public ThreeVector changeGrid(ThreeVector vec) {
     ThreeVector result = vec;
     for (SpatialTransform op : operations) {
-      result = op.changeFrame(result);
+      result = op.changeGrid(result);
     }
     return result;
   }

@@ -24,12 +24,12 @@ public final class SpatialRotation implements SpatialTransform {
     return new SpatialRotation(axis, angle);
   }
 
-  /** The frame of reference is rotated about the axis-angle. */
-  @Override public ThreeVector changeFrame(ThreeVector v) {
+  /** The grid is rotated about the axis-angle. */
+  @Override public ThreeVector changeGrid(ThreeVector v) {
     return transform(v, -1);
   }
   
-  /** In a given frame of reference, the given vector is rotated about the axis-angle. */
+  /** In a given grid, the given vector is rotated about the axis-angle. */
   @Override public ThreeVector changeVector(ThreeVector vPrime) {
     return transform(vPrime, +1);
   }

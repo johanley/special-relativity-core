@@ -25,7 +25,7 @@ public final class Rotation implements Transform {
     return new Rotation(axis, angle);
   }
   
-  @Override public <T extends FourVector & Builder<T>> T changeFrame(T fourVector) {
+  @Override public <T extends FourVector & Builder<T>> T changeGrid(T fourVector) {
     return transform(fourVector, -1);
   }
   
@@ -55,7 +55,7 @@ public final class Rotation implements Transform {
       new_position = spatialRotation.changeVector(fourVector.spatialComponents());
     }
     else {
-      new_position = spatialRotation.changeFrame(fourVector.spatialComponents());
+      new_position = spatialRotation.changeGrid(fourVector.spatialComponents());
     }
     
     Map<Axis, Double> parts = new LinkedHashMap<>();

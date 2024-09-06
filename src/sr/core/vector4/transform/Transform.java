@@ -13,14 +13,14 @@ import sr.core.vector4.FourVector;
  
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
-  <li>given the components of a {@link FourVector} in one inertial frame K, find its components in a second frame K'
-   ({@link #changeFrame(FourVector)}, with inverse {@link #changeVector(FourVector)}) 
-  <li>given the components of a {@link FourVector} in one inertial frame K, find the components of a second four-vector in the same frame K
-     ({@link #changeVector(FourVector)}, with inverse {@link #changeFrame(FourVector)}).
+  <li>given the components of a {@link FourVector} in one inertial grid K, find its components in a second grid K'
+   ({@link #changeGrid(FourVector)}, with inverse {@link #changeVector(FourVector)}) 
+  <li>given the components of a {@link FourVector} in one inertial grid K, find the components of a second four-vector in the same grid K
+     ({@link #changeVector(FourVector)}, with inverse {@link #changeGrid(FourVector)}).
  </ul>
  
  <P>
- Successive application of the two methods {@link #changeFrame(FourVector)} and {@link #changeVector(FourVector)} 
+ Successive application of the two methods {@link #changeGrid(FourVector)} and {@link #changeVector(FourVector)} 
  (in any order) must return the original four-vector (aside from some rounding that usually occurs because of 
  floating-point operations).
  
@@ -35,18 +35,18 @@ public interface Transform {
     
    The inverse operation is {@link #changeVector(FourVector)}.
    
-   @param fourVector the components of a four-vector in the K frame.
-   @return the components of the same four-vector in the K' frame. 
+   @param fourVector the components of a four-vector in the K grid.
+   @return the components of the same four-vector in the K' grid. 
   */
-  <T extends FourVector & Builder<T>> T changeFrame(T fourVector);
+  <T extends FourVector & Builder<T>> T changeGrid(T fourVector);
   
   /** 
    For a given four-vector represented relative to K, return a second four-vector represented relative to K. 
     
-   The inverse operation is {@link #changeFrame(T)}.
+   The inverse operation is {@link #changeGrid(T)}.
    
-   @param fourVector the components in a given frame K.
-   @return the components of a second four-vector in a given frame K. 
+   @param fourVector the components in a given grid K.
+   @return the components of a second four-vector in a given grid K. 
   */
   <T extends FourVector & Builder<T>> T changeVector(T fourVector);
 

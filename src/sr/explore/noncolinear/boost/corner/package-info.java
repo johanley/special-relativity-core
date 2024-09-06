@@ -8,20 +8,20 @@
  
  <P>An angle-boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
  
- <P>An angle-boost always needs three frames - K, K', and K''.
+ <P>An angle-boost always needs three grids - K, K', and K''.
  Example:
  <ul>
   <li>in K, first boost along X to K'.
   <li>in K', second boost along Y to K''.
  </ul>
  
- <P>In the intermediate K' frame, the axes of K and K'' are all parallel to the axes of K'.
+ <P>In the intermediate K' grid, the axes of K and K'' are all parallel to the axes of K'.
  
  <P>But K and K'' <b>don't</b> see their respective X and Y axes as being parallel. 
  For that pair, only the Z axes are parallel, in the above case. 
  That is Silberstein (Thomas-Wigner) rotation.
 
- <P>Here, we define a <em>corner-boost</>: if, in the intermediate frame K', the directions of the two velocities are perpendicular.
+ <P>Here, we define a <em>corner-boost</>: if, in the intermediate grid K', the directions of the two velocities are perpendicular.
  This is a simpler case, which illustrates well the basic effects.
   
  <P>An approximate way of describing the Silberstein rotation is that <em>a revolution imparts a rotation</em>. 

@@ -26,7 +26,7 @@ public final class DopplerConeElbowBoost implements Exploration {
   }
   
   @Override public void explore() {
-    //base wave-vector in frame K
+    //base wave-vector in grid K
     WaveVector k_K = WaveVector.of(1.0, Axis.X);
     int num = 360;
     
@@ -35,7 +35,7 @@ public final class DopplerConeElbowBoost implements Exploration {
     Transform elbowBoost = asCornerBoost(Axis.Z, 0.25, 0.60);
     for(int i = 0; i <= num; i=i+10) {
       WaveVector wv_rotated_K = rotated(k_K, i);
-      WaveVector wv_rotated_Kp = elbowBoost.changeFrame(wv_rotated_K);
+      WaveVector wv_rotated_Kp = elbowBoost.changeGrid(wv_rotated_K);
       output_K.add(wv_rotated_K);
       output_Kp.add(wv_rotated_Kp);
     }

@@ -23,14 +23,14 @@ import sr.output.text.TextOutput;
 /**  
  Explore Silberstein (Thomas-Wigner) rotation  using only the Lorentz Transformation and simple histories.
  
- <P>Use three frames K, K', then K'', and a corner-boost:
+ <P>Use three grids K, K', then K'', and a corner-boost:
  <ul>
   <li>in K, first boost along X to K'.
   <li>in K', second boost along Y to K''.
  </ul>
  
   <P>Uses a stick to represent the direction of the X''-axis in K''.
-  The task is to measure the direction of the stick in frame K.
+  The task is to measure the direction of the stick in grid K.
 
  <P>Algorithm:
  <ul>
@@ -74,7 +74,7 @@ public final class SilbersteinRotation extends TextOutput implements Exploration
   private void stickHistory() {
     
     /*
-     In variable names, use these aliases for the frames:
+     In variable names, use these aliases for the grids:
      K'' : Kpp (as in the number of primes)
      K'  : Kp
      K   : K
@@ -105,12 +105,12 @@ public final class SilbersteinRotation extends TextOutput implements Exploration
     //find 2 events, one taken from each history, that have the same coord-time
     //these depend on the speeds chosen.
     double ctA_Kpp = 0.9; //any old ct'' value 
-    Event eventA_K = cornerBoost.changeFrame(historyA_Kpp.event(ctA_Kpp)); 
+    Event eventA_K = cornerBoost.changeGrid(historyA_Kpp.event(ctA_Kpp)); 
     
-    Function<Event, Double> criterion = event -> (cornerBoost.changeFrame(event).ct() - eventA_K.ct());
+    Function<Event, Double> criterion = event -> (cornerBoost.changeGrid(event).ct() - eventA_K.ct());
     FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
     double ctB_Kpp = findEvent.search(0.0); 
-    Event eventB_K = cornerBoost.changeFrame(historyB_Kpp.event(ctB_Kpp)); 
+    Event eventB_K = cornerBoost.changeGrid(historyB_Kpp.event(ctB_Kpp)); 
     
     add("Time-slice across the stick's history in K.");
     add("Examine two events, one for each end of the stick.");

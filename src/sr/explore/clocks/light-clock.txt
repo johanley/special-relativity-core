@@ -1,11 +1,11 @@
-Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'.
+Compare one tick of a light clock, as seen first in its rest grid K, and then in various boosted grids K'.
 
 First, one full cycle of the light clock in K:
 K:   a [-10.0, 10.0, 0.0, 0.0]
 K:   b [10.0, 10.0, 0.0, 0.0]
 K:(b-a)[20.0, 0.0, 0.0, 0.0] one full tick of the clock.
 
-Now look at how those same two events a and b transform in boosted frames K'.
+Now look at how those same two events a and b transform in boosted grids K'.
 Boost speed: 0.9
 Boost direction: various (see table below).
 

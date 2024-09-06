@@ -36,8 +36,8 @@ public final class SpatialDisplacement implements SpatialTransform {
     return result;
   }
   
-  /** The origin of the frame of reference is displaced by the given amounts. */
-  @Override public ThreeVector changeFrame(ThreeVector v) {
+  /** The origin of the grid is displaced by the given amounts. */
+  @Override public ThreeVector changeGrid(ThreeVector v) {
     return transform(v, -1);
   }
   

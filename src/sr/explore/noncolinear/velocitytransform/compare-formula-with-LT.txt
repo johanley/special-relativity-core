@@ -2,8 +2,8 @@ Compare results from the velocity transformation formula with results directly f
 
 With no loss of generality, in K we have:
  - a object velocity v in K in any old direction
- - a frame K' boosted with respect to K along the +X-axis.
-So the task is to find v_K', the velocity with respect to the boosted frame K'.
+ - a grid K' boosted with respect to K along the +X-axis.
+So the task is to find v_K', the velocity with respect to the boosted grid K'.
 
 Using the velocity transformation formula we get:
 Boost: [0.8,0.0,0.0] Velocity v_K:[0.1,0.2,0.3]

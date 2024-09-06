@@ -75,8 +75,8 @@ It should have been called invariance theory.
 6.
 Dewan-Beran-Bell paradox with the string between accelerating objects.
 John S. Bell, 1976
-Interesting! The string breaks: in the comoving frame, the measured distance must be gamma times the 
-distance measured in the lab frame (just regular Lorentz contraction).
+Interesting! The string breaks: in the comoving grid, the measured distance must be gamma times the 
+distance measured in the lab grid (just regular Lorentz contraction).
 It took me about 20 minutes to understand this, but it should have taken 10 seconds.
 Apparently Bell polled the staff at CERN, and most of them got this wrong!
 https://aapt.scitation.org/doi/10.1119/1.17728 

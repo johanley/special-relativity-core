@@ -65,7 +65,7 @@ public final class ConnectedRockets extends TextOutput implements Exploration {
   }
   
   @Override public void explore() {
-    add("In a frame K, two rockets accelerate in tandem, completely in sync.");
+    add("In a grid K, two rockets accelerate in tandem, completely in sync.");
     add("By definition, in K the two rockets remain separated by a fixed distance.");
     add("In K, the length of a connector between the rockets decreases with increasing speed." + Util.NL);
     add(tableHeader.row("Coordinate-time", "Rocket separation", "Connector length"));

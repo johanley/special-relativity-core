@@ -98,13 +98,13 @@ public final class InvariantInterval extends TextOutput implements Exploration {
   }
   
   private Event transformWithDisplacement(Event event) {
-    Event event_Kp = multipleTransforms().changeFrame(event);
-    event_Kp = displacement().changeFrame(event_Kp);
+    Event event_Kp = multipleTransforms().changeGrid(event);
+    event_Kp = displacement().changeGrid(event_Kp);
     return event_Kp;
   }
   
   private Event transformWithoutDisplacement(Event event) {
-    Event event_Kp = multipleTransforms().changeFrame(event);
+    Event event_Kp = multipleTransforms().changeGrid(event);
     return event_Kp;
   }
   

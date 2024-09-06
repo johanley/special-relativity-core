@@ -26,7 +26,7 @@ public final class TransformPipeline implements Transform {
     TransformPipeline t = new TransformPipeline(ops);
     
     Event in = Event.of(1.0, 1.0, 0.0, 0.0);
-    Event out = t.changeFrame(in);
+    Event out = t.changeGrid(in);
     Event backIn = t.changeVector(out);
     if (! in.equalsWithTinyDiff(backIn)) {
       throw new RuntimeException("Unequal after reversal.");
@@ -51,10 +51,10 @@ public final class TransformPipeline implements Transform {
   }
   
   /** Apply the operations (in order) to the given event. */
-  @Override public <T extends FourVector & Builder<T>> T changeFrame(T vec) {
+  @Override public <T extends FourVector & Builder<T>> T changeGrid(T vec) {
     T result = vec;
     for (Transform op : operations) {
-      result = op.changeFrame(result);
+      result = op.changeGrid(result);
     }
     return result;
   }

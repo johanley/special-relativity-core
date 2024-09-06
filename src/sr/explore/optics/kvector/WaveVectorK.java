@@ -58,7 +58,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
   
   private void abberation() {
     add(NL+"Abberation.");
-    add("Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
+    add("Input k in grid K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
     Velocity v = Velocity.of(Axis.X, -0.60);
     LorentzTransformation lt = LorentzTransformation.of(v);
     //directed into the 4th quadrant at 45 degrees
@@ -70,16 +70,16 @@ public final class WaveVectorK extends TextOutput implements Exploration {
   
   private void show(LorentzTransformation lt, FourVector input, FourVector output) {
     add("  Boost "  + lt);
-    add("  Input k in frame K "  + input + " mag " + round(input.square()));
-    add("  Output k in frame K'" + output + " mag " + round(output.square()));
+    add("  Input k in grid K "  + input + " mag " + round(input.square()));
+    add("  Output k in grid K'" + output + " mag " + round(output.square()));
   }
   
   private void showChangeInDirection(WaveVector k_in, FourVector k_out) {
     double degsIn = degreesWrtXaxis(k_in);
     double degsOut = degreesWrtXaxis(k_out);
     
-    add("  Input k angle in frame K with respect to the X-axis: " + degsIn);
-    add("  Output k angle in frame K' with respect to the X-axis: " + degsOut);
+    add("  Input k angle in grid K with respect to the X-axis: " + degsIn);
+    add("  Output k angle in grid K' with respect to the X-axis: " + degsOut);
     add("  Change in direction of k: " + round(degsOut - degsIn) + "°");
     add("  Change in frequency by factor: " + round(k_out.on(CT)/k_in.on(CT)));
   }

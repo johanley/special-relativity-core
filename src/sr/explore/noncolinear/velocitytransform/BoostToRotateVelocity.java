@@ -22,8 +22,8 @@ import sr.output.text.TextOutput;
   
   <P>Set up:
   <ul>
-    <li>frame K
-    <li>second frame K' moving with velocity <em>+boost_v</em> with respect to K 
+    <li>grid K
+    <li>second grid K' moving with velocity <em>+boost_v</em> with respect to K 
   </ul>
   
   <P>Calculate the boost with respect to K' need to generate a velocity in K which equates to <em>boost_v</em> rotated by a given angle.

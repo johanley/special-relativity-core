@@ -1,6 +1,6 @@
 A monochromatic plane wave reflects from a flat mirror in the YZ plane.
-In frame K, the mirror is at rest.
-In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity.
+In grid K, the mirror is at rest.
+In a boosted grid K', with the boost along the +/-X-axis, the mirror is moving with some velocity.
 
 Compare the wave-vectors for the incident and reflected waves, between K and K'.
 
@@ -8,7 +8,7 @@ In K the pair of waves have directions that agree with the law of reflection:
 K: incident  [1.0, 0.70711, 0.70711, 0.0]  θi = 45.0°
 K: reflected [1.0, -0.70711, 0.70711, 0.0] θr = 45.0°
 
-Now view the same wave-vectors in a boosted frame K'.
+Now view the same wave-vectors in a boosted grid K'.
 
 For boosts in the -X-axis direction:
 
@@ -32,4 +32,4 @@ Boost               K':ω-in  K':ω-ref   K':θ-in   K':θ-ref
 [0.5,0.0,0.0]       0.74645  1.56295    71.3°     26.9°
 [0.6,0.0,0.0]       0.71967  1.78033    79.3°     23.4°
 
-In the K' frame, the wave-vectors have different directions and frequencies.
+In the K' grid, the wave-vectors have different directions and frequencies.

@@ -48,7 +48,7 @@ public final class SpatialReflection implements SpatialTransform {
     return new SpatialReflection(ODD, ODD, ODD); 
   }
   
-  @Override public ThreeVector changeFrame(ThreeVector v) {
+  @Override public ThreeVector changeGrid(ThreeVector v) {
     return transform(v);
   }
   

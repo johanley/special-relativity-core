@@ -42,7 +42,7 @@ public final class Reflection implements Transform {
     return new Reflection(ODD, ODD, ODD, ODD); 
   }
   
-  @Override public <T extends FourVector & Builder<T>> T changeFrame(T fourVector) {
+  @Override public <T extends FourVector & Builder<T>> T changeGrid(T fourVector) {
     return doIt(fourVector);
   }
   
