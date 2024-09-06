@@ -11,6 +11,8 @@ The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
 I'm hoping that this is the case with this little project as well.
 
+*"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
+
 ## What I've learned so far in this project
 
 **Working with units in which c=1 is natural and desirable.**
