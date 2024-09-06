@@ -9,20 +9,21 @@ import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /**
  Circular motion, and rotation of the K' frame co-moving with the object.   
 */
-public final class ThomasRotation extends TextOutput {
+public final class ThomasRotation extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     ThomasRotation rotation = new ThomasRotation();
     rotation.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     double radius = 10.0;
     double β = 0.2;
     circleDetails(radius, β);

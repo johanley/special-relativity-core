@@ -6,19 +6,20 @@ import static sr.core.Axis.Y;
 import sr.core.Util;
 import sr.core.VelocityTransformation;
 import sr.core.vector3.Velocity;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /** 
  The cases in which the velocity transformation formula commutes and doesn't commute.
 */
-public final class Commutation extends TextOutput {
+public final class Commutation extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     Commutation velocity = new Commutation();
     velocity.explore();
   }
 
-  void explore() {
+  @Override public void explore() {
     add("Velocity transformation formula, and whether or not it commutes.");
     add("There are two variants of the formula, both of which must be checked: the formula for v', and the formula for v.");
     

@@ -10,6 +10,7 @@ import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
+import sr.explore.Exploration;
 
 /**
  <b>Relativistic fly-by of a star by a detector.</b>
@@ -85,11 +86,15 @@ import sr.core.vector4.Event;
   John M. McKinley and Paul Doherty, 
   American Journal of Physics, 47, 309 (1979).
 */
-public final class RelativisticFlyBy {
+public final class RelativisticFlyBy implements Exploration {
   
   /**  Calculate a fly-by, and process the results. */
   public static void main(String... args) {
-    
+    RelativisticFlyBy flyBy = new RelativisticFlyBy();
+    flyBy.explore();
+  }
+  
+  @Override public void explore() {
     /*
     //compute a single scenario
     double speed = 0.9;
@@ -158,6 +163,11 @@ public final class RelativisticFlyBy {
     this.y = y;
     this.timeStep = spatialStep / β;
     this.history = UniformVelocity.of(Position.of(Y, y), Velocity.of(X, β)); 
+  }
+
+  /** No-arg constructor with no data. */
+  public RelativisticFlyBy() {
+    //do nothing
   }
   
   /**

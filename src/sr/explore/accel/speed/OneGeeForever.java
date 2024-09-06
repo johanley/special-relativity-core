@@ -1,13 +1,14 @@
 package sr.explore.accel.speed;
 
-import sr.core.Axis;
+import static sr.core.Physics.ONE_GEE;
 
-import static sr.core.Physics.*;
+import sr.core.Axis;
 import sr.core.Util;
 import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -35,14 +36,14 @@ import sr.output.text.TextOutput;
  </pre>
  An electron in a uniform electric field follows this type of history.
  */
-public final class OneGeeForever extends TextOutput {
+public final class OneGeeForever extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     OneGeeForever oneGee = new OneGeeForever();
     oneGee.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("Travel in a relativistic rocket accelerating at 1g.");
     add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + ".");
     add("The Milky Way galaxy is about 100,000 light years across.");

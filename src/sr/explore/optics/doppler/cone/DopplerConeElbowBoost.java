@@ -8,6 +8,7 @@ import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
@@ -17,14 +18,14 @@ import sr.output.text.TextOutput;
  In space-time, this set generates a cone shape.
  Under a Lorentz boost, the cone becomes distorted, somewhat like water sloshing in a bucket that's been pushed.
 */
-public final class DopplerConeElbowBoost {
+public final class DopplerConeElbowBoost implements Exploration {
   
   public static void main(String[] args) {
     DopplerConeElbowBoost dopplerCone = new DopplerConeElbowBoost();
     dopplerCone.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     //base wave-vector in frame K
     WaveVector k_K = WaveVector.of(1.0, Axis.X);
     int num = 360;

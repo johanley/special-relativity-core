@@ -13,6 +13,7 @@ import sr.core.vector4.Event;
 import sr.core.vector4.FindEvent;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -32,14 +33,14 @@ import sr.output.text.TextOutput;
  need to be such that the light-slice emanating from an event on the detector's history does indeed intersect 
  with the history of the stick. 
 */
-public final class LightSliceOfAStick extends TextOutput {
+public final class LightSliceOfAStick extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     LightSliceOfAStick stickOnLightCone = new LightSliceOfAStick();
     stickOnLightCone.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     recession();
     approach();
     outputToConsoleAnd(OUTPUT_FILE_NAME);

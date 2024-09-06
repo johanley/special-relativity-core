@@ -1,15 +1,17 @@
 package sr.explore.accel.speed;
 
+import static sr.core.Physics.ONE_GEE;
+
 import sr.core.Axis;
-import static sr.core.Physics.*;
 import sr.core.Util;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.TimelikeDeltaBase;
 import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -38,14 +40,14 @@ Accelerate at 1g for the first half of a trip, then turn around and brake at 1g 
            |
 </pre>
 */
-public final class OneGeeThereAndStay extends TextOutput {
+public final class OneGeeThereAndStay extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     OneGeeThereAndStay oneGee = new OneGeeThereAndStay();
     oneGee.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("Travel in a relativistic rocket accelerating at 1g.");
     add("Accelerate for the first half of the trip, then reverse and brake for the second half.");
     add("If light-years and years are used as units, then 1g has the numeric value of " + ONE_GEE + "." + Util.NL);

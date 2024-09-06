@@ -13,6 +13,7 @@ import sr.core.vector3.Velocity;
 import sr.core.vector3.transform.SpatialRotation;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Boost;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -53,14 +54,14 @@ One full tick of the light clock means the pulse of light has gone from one mirr
 <P>This class will examine one complete cycle of the light clock, both in frame K and in a boosted frame K', where the boost is in 
 a variety of directions.
 */
-public final class LightClock extends TextOutput {
+public final class LightClock extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     LightClock lightClock = new LightClock();
     lightClock.explore();
   }
 
-  void explore() {
+  @Override public void explore() {
     add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
     History lightPulse = MirrorReflection.of(DeltaBase.origin(), Direction.of(-1, 0, 0));

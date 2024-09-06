@@ -1,6 +1,7 @@
 package sr.explore.accel.speed;
 
-import static sr.core.Axis.*;
+import static sr.core.Axis.X;
+
 import sr.core.Physics;
 import sr.core.Util;
 import sr.core.history.timelike.TimelikeDeltaBase;
@@ -9,6 +10,7 @@ import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -55,14 +57,14 @@ the histories have a different form, because of flattening (Lorentz-Fitzgerald c
 two rockets. The second is smaller. This means that the connector must break.
 */
 
-public final class ConnectedRockets  extends TextOutput {
+public final class ConnectedRockets extends TextOutput implements Exploration {
 
   public static void main(String[] args) {
     ConnectedRockets rockets = new ConnectedRockets();
     rockets.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("In a frame K, two rockets accelerate in tandem, completely in sync.");
     add("By definition, in K the two rockets remain separated by a fixed distance.");
     add("In K, the length of a connector between the rockets decreases with increasing speed." + Util.NL);

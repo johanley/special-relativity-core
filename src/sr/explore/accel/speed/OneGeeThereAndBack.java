@@ -1,16 +1,18 @@
 package sr.explore.accel.speed;
 
+import static sr.core.Physics.ONE_GEE;
+
 import sr.core.Axis;
-import static sr.core.Physics.*;
 import sr.core.Util;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.TimelikeDeltaBase;
 import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Reflection;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -50,14 +52,14 @@ An out-and-back return trip, all at an acceleration of -/+ 1g.
            |
 </pre>
 */
-public final class OneGeeThereAndBack extends TextOutput {
+public final class OneGeeThereAndBack extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     OneGeeThereAndBack oneGee = new OneGeeThereAndBack();
     oneGee.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("A return trip in a relativistic rocket accelerating at 1g.");
     add("Three parts (in terms of fractions of total proper-time):");
     add("  - 0.00 - 0.25: +1g acceleration");

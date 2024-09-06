@@ -7,6 +7,7 @@ import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
@@ -21,14 +22,14 @@ import sr.output.text.TextOutput;
  <P>For the exact same reason, a similar remark can be made for flattening (Lorentz-Fitgerald contraction): a boost can both 
  flatten or unflatten the geometry of an object relative to a frame.
 */
-public final class MakeAClockRunFaster extends TextOutput {
+public final class MakeAClockRunFaster extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     MakeAClockRunFaster faster = new MakeAClockRunFaster();
     faster.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     double speed1 = 0.9;
     double speed2 = 0.5;
     add("A clock's rate relative to a frame can also DECREASE because of a boost.");

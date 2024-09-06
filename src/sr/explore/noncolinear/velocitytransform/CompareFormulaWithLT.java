@@ -11,19 +11,20 @@ import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /** 
  Compare the velocity addition formula with results coming directly from the Lorentz Transformation.
 */
-public final class CompareFormulaWithLT extends TextOutput {
+public final class CompareFormulaWithLT extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     CompareFormulaWithLT velocity = new CompareFormulaWithLT();
     velocity.explore();
   }
 
-  void explore() {
+  @Override public void explore() {
     add("Compare results from the velocity transformation formula with results directly from the Lorentz transformation."+Util.NL);
     add("With no loss of generality, in K we have:");
     add(" - a object velocity v in K in any old direction");

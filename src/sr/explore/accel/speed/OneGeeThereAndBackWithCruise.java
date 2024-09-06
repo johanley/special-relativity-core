@@ -1,17 +1,19 @@
 package sr.explore.accel.speed;
 
+import static sr.core.Physics.ONE_GEE;
+
 import sr.core.Axis;
-import static sr.core.Physics.*;
 import sr.core.Util;
+import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.TimelikeDeltaBase;
 import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.StitchedTimelikeHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Reflection;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -67,14 +69,14 @@ cruises for 2 years, in between changing the direction of acceleration:
            |
 </pre>
 */
-public final class OneGeeThereAndBackWithCruise extends TextOutput {
+public final class OneGeeThereAndBackWithCruise extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     OneGeeThereAndBackWithCruise oneGee = new OneGeeThereAndBackWithCruise();
     oneGee.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("A return trip in a relativistic rocket accelerating at 1g.");
     add("Five parts:");
     add("  - +1g acceleration");

@@ -8,20 +8,21 @@ import sr.core.VelocityTransformation;
 import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
 import sr.core.vector3.transform.SpatialRotation;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** 
   Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).
 */
-public final class MaxAngleBetweenResultVectors extends TextOutput {
+public final class MaxAngleBetweenResultVectors extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     MaxAngleBetweenResultVectors velocity = new MaxAngleBetweenResultVectors();
     velocity.explore();
   }
 
-  void explore() {
+  @Override public void explore() {
     add("Velocity transformation formula for v, the unprimed velocity." + Util.NL);
     add("Find the angle between v_a and v_b (same speeds) which maximizes the resulting angle between (v_a + v_b) and (v_b + v_a).");  
     add("Rotate v_b using Z as the pole (using an integral number of degrees)." + Util.NL);

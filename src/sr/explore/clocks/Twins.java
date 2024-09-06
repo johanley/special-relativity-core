@@ -9,6 +9,7 @@ import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
@@ -32,14 +33,14 @@ import sr.output.text.TextOutput;
  </pre>
   
 */
-public final class Twins extends TextOutput {
+public final class Twins extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     Twins twins = new Twins();
     twins.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("One twin stays at home, the other twin takes a trip and returns home.");
     add("The voyage outbound is at a given uniform velocity.");
     add("The voyage inbound is at the opposite (uniform) velocity." + Util.NL);

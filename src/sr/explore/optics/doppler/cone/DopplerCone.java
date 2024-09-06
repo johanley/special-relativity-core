@@ -7,6 +7,7 @@ import sr.core.vector3.Velocity;
 import sr.core.vector4.FourVector;
 import sr.core.vector4.WaveVector;
 import sr.core.vector4.transform.Rotation;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
@@ -16,7 +17,7 @@ import sr.output.text.TextOutput;
  In space-time, this set generates a cone shape.
  Under a Lorentz boost, the cone becomes distorted, somewhat like water sloshing in a bucket that's been pushed.
 */
-public final class DopplerCone {
+public final class DopplerCone implements Exploration {
   
   public static void main(String[] args) {
     DopplerCone dopplerCone = new DopplerCone();
@@ -24,7 +25,7 @@ public final class DopplerCone {
     dopplerCone.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     //base wave-vector in frame K
     WaveVector k_K = WaveVector.of(1.0, Axis.X);
     int num = 360;

@@ -10,6 +10,7 @@ import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -20,10 +21,10 @@ import sr.output.text.TextOutput;
  The more general case is to have the second boost at any angle with respect to the first.
  The X-Y plane can always be chosen to be the plane of the 2 boosts, with X as the direction of the first boost.
 */
-public final class EquivalentBoostPlusRotation extends TextOutput {
+public final class EquivalentBoostPlusRotation extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    EquivalentBoostPlusRotation twoPerpendicularBoosts = new EquivalentBoostPlusRotation(Axis.Z, 0.97, 0.95); 
+    EquivalentBoostPlusRotation twoPerpendicularBoosts = new EquivalentBoostPlusRotation(); 
     twoPerpendicularBoosts.explore();
   }
   
@@ -44,7 +45,12 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
     this.pole = pole;
   }
   
-  public void explore() {
+  /** No-arg constructor with default data. */
+  public EquivalentBoostPlusRotation() {
+    this(Axis.Z, 0.97, 0.95);
+  }
+  
+  @Override public void explore() {
     example();
     spectrumOfSpeeds();
     outputToConsoleAnd("equivalent-boost-plus-rotation.txt");
@@ -58,8 +64,13 @@ public final class EquivalentBoostPlusRotation extends TextOutput {
 
   //PRIVATE 
   
+  /**  The axis that is unaffected by the two boost operations.  */
   private Axis pole;
+  
+  /** The speed for the first boost from K to K', along the first axis. */
   private double β1;
+  
+  /** The speed of the second boost from K' to K'', along the second axis, at a right angle to the first. */
   private double β2;
 
   //βx   βy   β-equiv direction-degs  θw-degs, (v = vx + vy), (v = vy + vx)

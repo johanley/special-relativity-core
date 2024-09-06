@@ -12,6 +12,7 @@ import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
 import sr.core.vector3.transform.SpatialRotation;
 import sr.core.vector3.transform.SpatialTransform;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -32,14 +33,14 @@ import sr.output.text.TextOutput;
   <P>For the sense of the rotation, use the right-handed rule, with the original <em>boost_v</em> in the +X direction, and the 
   {@link AxisAngle} of the rotation directed in the +Z-direction.  
 */
-public final class BoostToRotateVelocity extends TextOutput {
+public final class BoostToRotateVelocity extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     BoostToRotateVelocity rotated_v = new BoostToRotateVelocity();
     rotated_v.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     rotateBy(Velocity.of(0.6, 0.0, 0.0), 20.0);
     tableForManyDegrees();
     outputToConsoleAnd("boost-to-rotate-velocity.txt");

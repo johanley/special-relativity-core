@@ -3,6 +3,7 @@ package sr.explore.noncolinear.boost.silbersteinrotation;
 import sr.core.Axis;
 import sr.core.SpeedValues;
 import sr.core.Util;
+import sr.explore.Exploration;
 import sr.explore.noncolinear.boost.corner.EquivalentBoostPlusRotation;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -11,14 +12,14 @@ import sr.output.text.TextOutput;
  Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
  The angle is large at the highest speeds.
 */
-public final class SilbersteinRotationRange extends TextOutput {
+public final class SilbersteinRotationRange extends TextOutput implements Exploration {
 
   public static void main(String... args) {
     SilbersteinRotationRange range = new SilbersteinRotationRange();
     range.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("Silberstein (Thomas-Wigner) rotation for various combined speeds.");
     add("Here, the pair of velocities are at always at right angles to each other.");
     add("");

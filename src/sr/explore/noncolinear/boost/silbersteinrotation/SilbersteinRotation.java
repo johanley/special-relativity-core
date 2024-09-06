@@ -1,8 +1,10 @@
 package sr.explore.noncolinear.boost.silbersteinrotation;
 
-import java.util.function.Function;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
+import static sr.core.Axis.Z;
 
-import static sr.core.Axis.*;
+import java.util.function.Function;
 
 import sr.core.Physics;
 import sr.core.Util;
@@ -14,6 +16,7 @@ import sr.core.vector4.FindEvent;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
+import sr.explore.Exploration;
 import sr.explore.noncolinear.boost.corner.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
@@ -47,14 +50,14 @@ import sr.output.text.TextOutput;
   <li>the Silberstein rotation, seen with non-collinear boosts
  </ul>
 */
-public final class SilbersteinRotation extends TextOutput {
+public final class SilbersteinRotation extends TextOutput implements Exploration {
   
   public static void main(String... args) {
     SilbersteinRotation rotation = new SilbersteinRotation();
     rotation.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     stickHistory();
     outputToConsoleAnd("silberstein-rotation.txt");
   }

@@ -9,12 +9,13 @@ import sr.core.VelocityTransformation;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 import sr.core.vector4.transform.Boost;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
  Behaviour of multiple boosts, applied one after the other.
  
- <P>The behaviour differs according to whether or not the boosts are in the same line (collinear).
+ <P>The behaviour differs according to whether or not the boosts are in the same line (co-linear).
  
  <P>Same line: two boosts in sequence along an axis are equivalent to a third boost along the same axis.
  The two boosts commute.
@@ -22,15 +23,15 @@ import sr.output.text.TextOutput;
  <P>Not the same line (corner-boost): they two boosts don't commute.
  A corner-boost is equivalent to a boost plus a rotation, called a Silberstein (or Thomas-Wigner) rotation.
 */
-public final class CornerBoostsDontCommute extends TextOutput {
+public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   
   public static void main(String... args) {
     CornerBoostsDontCommute test = new CornerBoostsDontCommute();
-    test.twoConsecutiveBoosts();
+    test.explore();
   }
   
   /** Test consecutive boosts, both in the same line, and not in the same line. */
-  void twoConsecutiveBoosts() {
+  @Override public void explore() {
     double β1 = -0.6;
     double β2 = 0.8;
 

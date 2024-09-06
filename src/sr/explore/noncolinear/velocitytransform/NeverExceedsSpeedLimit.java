@@ -5,19 +5,20 @@ import static sr.core.Axis.X;
 import sr.core.Util;
 import sr.core.VelocityTransformation;
 import sr.core.vector3.Velocity;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /** 
  The velocity transformation formula never yields a speed equal to or greater than the speed limit.
 */
-public final class NeverExceedsSpeedLimit extends TextOutput {
+public final class NeverExceedsSpeedLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     NeverExceedsSpeedLimit velocity = new NeverExceedsSpeedLimit();
     velocity.explore();
   }
 
-  void explore() {
+  @Override public void explore() {
     add("Velocity transformation formula.");
     neverExceedsTheSpeedLimit(Velocity.of(X, 0.99), Velocity.of(X, 0.99));
     outputToConsoleAnd("never-exceeds-speed-limit.txt");

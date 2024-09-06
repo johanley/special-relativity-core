@@ -13,6 +13,7 @@ import sr.core.vector4.transform.Reflection;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
@@ -21,14 +22,14 @@ import sr.output.text.TextOutput;
  <P>The prototype four-vector is the <em>displacement</em> in space-time. 
  It's not an event, but rather a <em>difference</em> between events. 
 */
-public final class InvariantInterval extends TextOutput {
+public final class InvariantInterval extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     InvariantInterval intervals = new InvariantInterval();
     intervals.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("The interval (or squared-interval) between any two events is invariant.");
     add("Any combination of these fundamental transformations will leave the interval unaffected:");
     add(" - boost");

@@ -1,6 +1,8 @@
 package sr.explore.optics.kvector;
 
-import static sr.core.Axis.*;
+import static sr.core.Axis.CT;
+import static sr.core.Axis.X;
+import static sr.core.Axis.Y;
 import static sr.core.Util.NL;
 import static sr.core.Util.radsToDegs;
 
@@ -11,16 +13,17 @@ import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.FourVector;
 import sr.core.vector4.WaveVector;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
-public final class WaveVectorK extends TextOutput {
+public final class WaveVectorK extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     WaveVectorK aberration = new WaveVectorK();
     aberration.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     sameLineChangesFrequencyOnly();
     notTheSameLineChangesFrequencyAndDirection();
     abberation();

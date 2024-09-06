@@ -13,6 +13,7 @@ import sr.core.vector4.Event;
 import sr.core.vector4.FindEvent;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
+import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /** 
@@ -28,14 +29,14 @@ import sr.output.text.TextOutput;
  This changes the direction in which the stick is pointing. 
  At ultra-relativistic speeds, the rotated stick will approach the direction of 90 degrees away from the X-axis.
 */
-public class StickFlattening extends TextOutput {
+public class StickFlattening extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     StickFlattening stickFlattening = new StickFlattening();
     stickFlattening.explore();
   }
   
-  public void explore() {
+  @Override public void explore() {
     stickAlongAxis(0.6);
     stickAlongAxis(0.9999);
     add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");

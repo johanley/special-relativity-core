@@ -1,8 +1,9 @@
 package sr.explore.clocks;
 
+import static sr.core.Util.NL;
+
 import sr.core.Axis;
 import sr.core.SpeedValues;
-import static sr.core.Util.NL;
 import sr.core.Util;
 import sr.core.history.timelike.ThereAndBack;
 import sr.core.history.timelike.TimelikeDeltaBase;
@@ -10,18 +11,19 @@ import sr.core.history.timelike.TimelikeHistory;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector3.Velocity;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** Travel-time (proper time) for various trips, according to the traveler. */
-public final class TravelTime extends TextOutput {
+public final class TravelTime extends TextOutput implements Exploration {
   
   public static void main(String... args) {
     TravelTime tt = new TravelTime();
     tt.explore();
   }
   
-  public void explore() {
+  @Override public void explore() {
     double lightyears = 50.0;
     oneWayTripUniformVelocity(lightyears);
     twoWayTripUniformSpeed(lightyears);

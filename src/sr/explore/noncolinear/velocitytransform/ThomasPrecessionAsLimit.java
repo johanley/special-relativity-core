@@ -1,18 +1,20 @@
 package sr.explore.noncolinear.velocitytransform;
 
 
+import static sr.core.Util.NL;
+import static sr.core.Util.radsToDegs;
+import static sr.core.Util.round;
+
 import sr.core.Axis;
 import sr.core.VelocityTransformation;
 import sr.core.history.timelike.CircularMotion;
 import sr.core.history.timelike.TimelikeDeltaBase;
 import sr.core.history.timelike.TimelikeMoveableHistory;
-
-import static sr.core.Util.*;
-
 import sr.core.vector3.AxisAngle;
 import sr.core.vector3.Velocity;
 import sr.core.vector3.transform.SpatialRotation;
 import sr.core.vector3.transform.SpatialTransform;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -33,14 +35,14 @@ import sr.output.text.TextOutput;
  <P>This class will compare the Silberstein rotation resulting from one completion of such a circuit with the 
  comparable result derived from the Thomas precession formula (using a {@link CircularHistory}).
 */
-public final class ThomasPrecessionAsLimit extends TextOutput {
+public final class ThomasPrecessionAsLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     ThomasPrecessionAsLimit thomas = new ThomasPrecessionAsLimit();
     thomas.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("The Thomas precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
     double circuitLength = 10.0;
     double β = 0.50;

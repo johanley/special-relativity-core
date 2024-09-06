@@ -10,6 +10,7 @@ import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.WaveVector;
 import sr.core.vector4.transform.Boost;
+import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
@@ -39,14 +40,14 @@ The two {@link WaveVector} objects correspond to the incoming and outgoing monoc
 
 <P>This class doesn't model the polarization of the wave.
 */
-public final class MovingMirror extends TextOutput {
+public final class MovingMirror extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
     MovingMirror movingMirror = new MovingMirror();
     movingMirror.explore();
   }
   
-  void explore() {
+  @Override public void explore() {
     add("A monochromatic plane wave reflects from a flat mirror in the YZ plane.");
     add("In frame K, the mirror is at rest.");
     add("In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity." + NL);
