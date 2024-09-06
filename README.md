@@ -3,7 +3,9 @@ Explore the consequences of the Lorentz Transformations.
 
 Kinematics only, no dynamics.
 
-In this project c=1, and the metric signature is (ct,x,y,z) = (+,-,-,-).
+In this project: 
+ - c=1, and the metric signature is (ct,x,y,z) = (+,-,-,-).
+ - the word *grid* is used instead of *frame of reference*.
 
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
