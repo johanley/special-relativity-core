@@ -1,7 +1,7 @@
 # special-relativity-core
 Explore the consequences of the Lorentz Transformations.
 
-Kinematics only, no dynamics.
+Mostly kinematics.
 
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
