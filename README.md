@@ -3,14 +3,15 @@ Explore the consequences of the Lorentz Transformations.
 
 Kinematics only, no dynamics.
 
-In this project: 
- - c=1, and the metric signature is (ct,x,y,z) = (+,-,-,-).
-
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
 I'm hoping that this is the case with this little project as well.
 
 *"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
+
+In this project: 
+ - c=1
+ - the metric signature is (ct,x,y,z) = (+,-,-,-)
 
 ## Jargon
 
@@ -58,19 +59,27 @@ A corresponding boost from K' to K transforms the ellipse (a time-slice in K') i
 That's just the flattening effect applied to an ellipse.
 --> 
 
- 
+**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a vector about an arbitrary axis.**
+
+
 **Vector formulations are simpler than component formulations.**
 Moving from components to vectors simplifies the implementation.
 I found this with 
  - the axis-angle approach to rotation (Rodrigues' formula)
  - the velocity transformation
  - the Lorentz transformation.
+
 However, I haven't retained this simplicity.
 What's more important to me here is to ensure correctness.
 The main way of doing that is to have the core of almost all phenomena implemented by the Lorentz Transformations.
-(I have succeeded in doing so for all phenomena except for Thomas Precession. In that case, an implementation using the 
-Lorentz Transformation requires numerical integration along the object's history.)
+(I have succeeded in doing so for all phenomena except for Thomas Precession for circular motion. 
+In that case, an implementation using the Lorentz Transformation requires numerical integration along the object's history.)
 
+
+**I now understand Silberstein rotation.**
+Most texts either ignore this effect, or don't emphasize it.
+This seems unfortunate. 
+It seems that the full consequences of the Lorentz Transformations can only be seen when elbow boosts are used. 
 
 
 **Silberstein described the rotational aspect of non-collinear boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
@@ -94,7 +103,6 @@ In SR, there are 5 main items characterizing a mass particle:
   - an orientation (because of the Silberstein rotation)
   
   
-**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a vector about an arbitrary axis.**
 
 **Transformations almost always come in two variants, characterized by the sign of some quantity.**
 (For example, see this article on <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>active and passive transformations</a>.) 
@@ -135,8 +143,7 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 **Light is simpler than matter.**
 The physics of photons is simpler than the physics of particles having mass.
 The causal structure of space-time relates to light-cones, not 'matter-cones'.
-The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the  
-effects attached to matter (the distortions of geometry and time).
+The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the effects attached to matter (the distortions of geometry and time).
 It can be strongly argued that the photon-effects should be taken first, as the primary guide into the structure of space-time. 
  
 
@@ -152,9 +159,7 @@ Spatial geometry consists of two things: distances and angles.
 To measure the length of a stick (in a given grid), you need a time-slice, a surface with <em>ct=constant</em>, (in that grid).
 To measure the direction in which a stick is pointing (in a given grid), you also need a time-slice (in that grid).
 
-**Change of angles is just as significant as change of dimensions.** 
-
-**The term *length contraction* is a misleading one.**
+**Change-of-angles is just as significant as change-of-dimensions. The term *length contraction* is a misleading one.**
 The effect changes more than length: it changes geometry, angles, length, shape.
 A better word is *flattening*.
 Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
@@ -180,19 +185,19 @@ brought into a form which maps exactly to matrix multiplication. Example: the tr
 Both come directly from the Lorentz Transformation of the wave vector k<sup>i</sup>.
 
 **Two boosts commute only when they are in the same line.**
-A corner-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
+An elbow-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
-The (Thomas-Wigner) rotation angle is small for low speeds, but for 
+The Silberstein (Thomas-Wigner) rotation angle is small for low speeds, but for 
 ultra-relativistic speeds it increases rapidly without bound.
 
-What's the relation between the Thomas-Wigner rotation and the regular geometry distortion of a boost?
+What's the relation between the Silberstein rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
 After the boost, both the stick's length and orientation are different.
 The formula relating the direction of the stick in the two grids is:
 ```
 cot θ = (1/Γ) cot θ' 
 ```
-The *change* in this angle θ is precisely the same as the Thomas-Wigner rotation angle:
+The *change* in this angle θ is precisely the same as the Silberstein rotation angle:
 ```
 tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
