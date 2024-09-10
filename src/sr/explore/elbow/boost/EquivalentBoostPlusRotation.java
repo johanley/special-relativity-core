@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.boost.corner;
+package sr.explore.elbow.boost;
 
 import sr.core.Axis;
 import sr.core.SpeedValues;
@@ -15,10 +15,12 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /**
- Find the boost-plus-rotation that equates to two perpendicular boosts.
+ Find the boost-plus-rotation that equates to two perpendicular boosts (a corner-boost).
  
- <P>Here, two successive boosts are at right angles to each other, along 2 of the spatial axes.
- The more general case is to have the second boost at any angle with respect to the first.
+ <P>Here, in the intermediate grid K', two successive boosts are at right angles to each other, along 2 of the spatial axes.
+ (Please see the package documentation for more exact details.)
+ 
+ <P>The more general case is to have the second boost at any angle with respect to the first.
  The X-Y plane can always be chosen to be the plane of the 2 boosts, with X as the direction of the first boost.
 */
 public final class EquivalentBoostPlusRotation extends TextOutput implements Exploration {
@@ -57,8 +59,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   }
   
   /** The equivalent boost-plus-rotation. */
-  public AngleBoostEquivalent equivalent() {
-    AngleBoostEquivalent result = new AngleBoostEquivalent(singleBoostSpeed(), direction(), θw());
+  public ElbowBoostEquivalent equivalent() {
+    ElbowBoostEquivalent result = new ElbowBoostEquivalent(singleBoostSpeed(), direction(), θw());
     return result;
   }  
 

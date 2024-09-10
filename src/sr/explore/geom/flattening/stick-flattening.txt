@@ -72,7 +72,7 @@ K' stick angle directly from a formula: 89.1898°
 Conclusion 2: in the boosted grid, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.
 
 3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.
-Two params (stick-angle and boost-speed) are taken from the corner-boost calculation.
+Two params (stick-angle and boost-speed) are taken from the elbow-boost calculation.
 ----------------------------------------------------------------------------------------------------
 K b-a:[0.0, 0.91192, 0.41036, 0.0]
 K stick length:1.0
@@ -85,4 +85,4 @@ K' b: [0.3125, 0.16358, 0.41036, 0.0]
 K' b-a: [0.0, 0.43772, 0.41036, 0.0]
 K' b-a stick length: 0.6000000000015474
 K' stick angle with respect to the X-axis: 43.152389733866855°
-Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the corner-boost case!
+Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the elbow-boost case!

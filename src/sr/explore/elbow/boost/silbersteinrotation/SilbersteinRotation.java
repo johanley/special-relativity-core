@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.boost.silbersteinrotation;
+package sr.explore.elbow.boost.silbersteinrotation;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
@@ -17,7 +17,7 @@ import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
 import sr.explore.Exploration;
-import sr.explore.noncolinear.boost.corner.EquivalentBoostPlusRotation;
+import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  
@@ -35,7 +35,7 @@ import sr.output.text.TextOutput;
  <P>Algorithm:
  <ul>
   <li>in K'', form the histories of the two ends of the stick.
-  The stick is stationary in K'', so this is just two vertical worldlines.
+  The stick is stationary in K'', so this is just two vertical histories.
   <li>transform <em>backwards</em> from K'' to K' to K
   <li>get the histories of the ends of the stick, with respect to K
   <li>take a time-slice across the two histories (ct = constant in K); using a time-slice 
@@ -44,10 +44,10 @@ import sr.output.text.TextOutput;
  </ul>
  
  <P>The above algorithm does indeed show the geometry of the stick in K.
- But you need to be careful, because when non-collinear boosts are used, the geometry/orientation of the stick is affected by 2 items: 
+ But you need to be careful, because when elbow boosts are used, the geometry/orientation of the stick is affected by 2 items: 
  <ul>
   <li>the flattening effect seen with boosts in general
-  <li>the Silberstein rotation, seen with non-collinear boosts
+  <li>the Silberstein rotation, seen with elbow boosts
  </ul>
 */
 public final class SilbersteinRotation extends TextOutput implements Exploration {

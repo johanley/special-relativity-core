@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.boost.corner;
+package sr.explore.elbow.boost;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
@@ -20,8 +20,8 @@ import sr.output.text.TextOutput;
  <P>Same line: two boosts in sequence along an axis are equivalent to a third boost along the same axis.
  The two boosts commute.
 
- <P>Not the same line (corner-boost): they two boosts don't commute.
- A corner-boost is equivalent to a boost plus a rotation, called a Silberstein (or Thomas-Wigner) rotation.
+ <P>Not the same line (elbow-boost): they two boosts don't commute.
+ An elbow-boost is equivalent to a boost plus a rotation, called a Silberstein (or Thomas-Wigner) rotation.
 */
 public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   

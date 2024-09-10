@@ -21,6 +21,8 @@ This project uses the following non-standard words (which you may find annoying)
 
 **Elbow boost** is used instead of *non-collinear pair of boosts.*
 
+**Corner boost** is an elbow-boost with an angle of 90 degrees between boosts (as seen in the intermediate grid).
+
 **Silberstein rotation** is used instead of *Thomas-Wigner rotation*.
 
 **Flattening** is used instead of *Lorentz-Fitgerald contraction*.

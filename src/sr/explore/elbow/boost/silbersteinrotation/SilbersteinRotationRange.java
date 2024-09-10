@@ -1,16 +1,16 @@
-package sr.explore.noncolinear.boost.silbersteinrotation;
+package sr.explore.elbow.boost.silbersteinrotation;
 
 import sr.core.Axis;
 import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.explore.Exploration;
-import sr.explore.noncolinear.boost.corner.EquivalentBoostPlusRotation;
+import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** 
  Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
- The angle is large at the highest speeds.
+ The angle is large at the highest speeds, and increases without bound.
 */
 public final class SilbersteinRotationRange extends TextOutput implements Exploration {
 

@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.boost.corner;
+package sr.explore.elbow.boost;
 
 /**
  Two successive boosts, the second at some angle to the first, are 
@@ -22,9 +22,9 @@ package sr.explore.noncolinear.boost.corner;
  boosts (along X and Y), followed by a rotation. 
  This fact helps to derive the arbitrary-angle case.
 */
-public final class AngleBoostEquivalent {
+public final class ElbowBoostEquivalent {
   
-  public AngleBoostEquivalent(double β, double direction, double θw){
+  public ElbowBoostEquivalent(double β, double direction, double θw){
     this.β = β;
     this.direction = direction;
     this.θw = θw;

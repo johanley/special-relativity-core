@@ -1,14 +1,14 @@
 /**
  A change in velocity which has a change of direction.
  
- <P> Here, we define an <em>angle-boost</em> as a <b>pair</b> of boosts that aren't in the same line (not collinear).
+ <P> Here, we define an <em>elbow-boost</em> as a <b>pair</b> of boosts that aren't in the same line (not collinear).
  
- <P>A pair of boosts commute only if they are in the same line.
- Angle-boosts don't commute: switching the order of the boosts changes the outcome.
+ <P>A pair of boosts commute only if they're in the same line.
+ Elbow-boosts don't commute: switching the order of the boosts changes the outcome.
  
- <P>An angle-boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
+ <P>An elbow-boost equates to a boost plus a rotation (Silberstein rotation, also known as Thomas-Wigner rotation).
  
- <P>An angle-boost always needs three grids - K, K', and K''.
+ <P>An elbow-boost always needs three grids - K, K', and K''.
  Example:
  <ul>
   <li>in K, first boost along X to K'.
@@ -52,7 +52,6 @@ References for Thomas precession:
  cross product of the 3-acceleration and the 3-velocity (in that order!).
  So, the magnitude of the precession vector is 0 when that cross-product is 
  the 0-vector (no acceleration, no velocity, or both are in the same line).
- The change in angle after one orbit is 2*pi(1-gamma), and its 'retrograde', opposite to the sense of the circular motion.
- It approaches a one full rotation in the relativistic limit.
+ The change in angle after one orbit is 2*pi(1-gamma), and it's retrograde, that is, opposite to the sense of the circular motion.
 */
-package sr.explore.noncolinear.boost.corner;
+package sr.explore.elbow.boost;
