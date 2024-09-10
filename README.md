@@ -37,15 +37,32 @@ This project uses the following non-standard words (which you may find annoying)
 
 **Working with units in which c=1 is natural and desirable.**
 You can think, for example, of light-years and years, or light-seconds and seconds.
+Numerically, its pleasant to work with numbers that are usually near 1.
+It emphasizes the physics, and you aren't distracted by large or small numbers simply because of a choice of units.
 
 **The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.**
 It's too close to 1 (about 22 decimals). Only the *BigDecimal* class can represent such numbers.
 However, working with *BigDecimal* is more painful than working with *Double*, so this is 
 left out as a special case.
 
-**The proliferation of many formulas derived in textbooks is undesirable in this project.**
-This project implements as many calculations as possible with the core Lorentz Transformation.
-This helps ensure correctness, and directly manifests how the Lorentz Transformation generates diverse phenomena.
+**Formulas: many-formulas versus one-formula is a very interesting question.**
+This project implements as many calculations as possible with the core Lorentz Transformation, instead of using a new formula for each phenomenon. 
+(The sole exception is the Thomas precession.) 
+
+Advantages: 
+ - it *directly* manifests how the Lorentz Transformation generates diverse phenomena.
+ - it gives you more confidence in the *correctness* of your code, since each new use case acts as a test of the core formula.
+ - it pushes one towards seeing the beautiful unity in the physics in as direct a manner as possible.
+
+Having a new formula for each phenomenon is of course useful; but such formulas can be viewed as *short-cuts for human computation*. 
+A computer program doesn't need such short-cuts. 
+It actually benefits by avoiding them, since each new formula is a new source of potential error. 
+
+
+**Formulas: textbooks and computer programs have opposing biases.**
+Textbooks are biased towards the derivation of formulas for each phenomenon.
+Computer programs are biased in the opposite direction, towards using a few formulas as possible.
+
  
 **Various phenomena connected with the theory are all *aspects of one single thing*: the structure of space-time.**
 (We can take the Lorentz Transformations as the definition of that structure.)
@@ -94,20 +111,20 @@ Thomas and Wigner came much later.
 In general, when examining the geometry of an object, you need to disentangle these two effects.
 
 **Characterizing a mass-particle in SR requires two additional items.**
-In kinematics, everything comes from the position <b>r</b>(t).
-In Newtonian kinematics, there are 3 main items characterizing the motion of a mass-particle:
+When describing motion, everything comes from the position <b>r</b>(t).
+In the Newtonian case, there are 3 main items describing the motion of a mass-particle:
   - <b>r</b>(t) position
   - <b>v</b>(t) velocity
   - <b>a</b>(t) acceleration
   
-In SR, there are 5 main items characterizing a mass-particle:   
+In SR, there are 5 main items characterizing the motion of a mass-particle:   
   - <b>r</b>(t) position
   - <b>v</b>(t) velocity
   - <b>a</b>(t) acceleration
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
 
-Both proper-time and orientation share the property that the are defined only as differences with respect to some chosen base value.  
+Both proper-time and orientation are defined only as differences with respect to some chosen base value.  
   
 
 **Transformations almost always come in two variants, characterized by the sign of some quantity.**
@@ -148,7 +165,7 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 
 **Light is simpler than matter.**
 The physics of photons is simpler than the physics of particles having mass.
-The causal structure of space-time relates to light-cones, not 'matter-cones'.
+The speed of photons is always the same.
 The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the effects attached to matter (the distortions of geometry and time).
 It can be strongly argued that the photon-effects should be taken first, as the primary guide into the structure of space-time. 
  
