@@ -61,7 +61,7 @@ It actually benefits by avoiding them, since each new formula is a new source of
 
 **Formulas: textbooks and computer programs have opposing biases.**
 Textbooks are biased towards the derivation of formulas for each phenomenon.
-Computer programs are biased in the opposite direction, towards using a few formulas as possible.
+Computer programs are biased in the opposite direction, towards using as few formulas as possible.
 
 **Computation is a teaching tool.**
 It can be argued that computation provides an effective way of increasing one's understanding of physics, that could be used 
@@ -97,7 +97,7 @@ I found this with:
 *However, I haven't retained this simplicity.*
 What's more important to me here is to ensure correctness.
 The main way of doing that is to have the core of almost all phenomena implemented by the Lorentz Transformations.
-I have succeeded in doing so for all phenomena except for Thomas Precession for circular motion. 
+I have succeeded in doing so for all phenomena except for Thomas precession for circular motion. 
 In that case, an implementation using the Lorentz Transformation requires numerical integration along the object's history.
 (I have included an example which shows how using N boosts to approximate a circular orbit with regular-sided polygons 
 closely approximates the formula for the Thomas precession.)
