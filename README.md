@@ -63,6 +63,10 @@ It actually benefits by avoiding them, since each new formula is a new source of
 Textbooks are biased towards the derivation of formulas for each phenomenon.
 Computer programs are biased in the opposite direction, towards using a few formulas as possible.
 
+**Computation is a teaching tool.**
+It can be argued that computation provides a different way of increasing one's understanding of physics, that could be used 
+for one's first encounters with a theory.
+
  
 **Various phenomena connected with the theory are all *aspects of one single thing*: the structure of space-time.**
 (We can take the Lorentz Transformations as the definition of that structure.)
@@ -83,9 +87,9 @@ That's just the flattening effect applied to an ellipse.
 **The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a vector about an arbitrary axis.**
 
 
-**Vector formulas are simpler than component formulas.**
-Moving from components to vectors simplifies the formulas.
-I found this with 
+**Vector formulas usually have simpler implementations than component formulas.**
+Moving from components to vectors can simplify a formula.
+I found this with: 
  - the axis-angle approach to rotation (Rodrigues' formula)
  - the velocity transformation
  - the Lorentz transformation.
@@ -104,7 +108,7 @@ Most texts either ignore this effect, or don't emphasize it.
 It seems that the full consequences of the Lorentz Transformations can only be seen when elbow boosts are used. 
 
 
-**Silberstein described the rotational aspect of non-collinear boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
+**Silberstein described the rotational aspect of elbow boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
 Thomas and Wigner came much later. 
 
 **The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and the Silberstein rotation.**
@@ -124,7 +128,7 @@ In SR, there are 5 main items characterizing the motion of a mass-particle:
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
 
-Both proper-time and orientation are defined only as differences with respect to some chosen base value.  
+Both proper-time and orientation are defined only as *differences* with respect to some chosen base value.  
   
 
 **Transformations almost always come in two variants, characterized by the sign of some quantity.**
