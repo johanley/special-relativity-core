@@ -35,10 +35,10 @@ This project uses the following non-standard words (which you may find annoying)
  
 ## References
 
-Textbooks:
  - *<a href='https://archive.org/details/spacetimephysics00edwi_0'>Spacetime Physics</a>*, by Taylor and Wheeler, is a good introduction.
  - *<a href='https://archive.org/details/isbn_9788181477873_2/mode/2up'>The Classical Theory of Fields</a>*, by Landau and Lifshitz, has deep insight.
- - *<a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>The Theory of Relativity</a>* by Ludwik Silberstein discusses the rotation related to non-linear acceleration. 
+ - *<a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>The Theory of Relativity</a>* by Ludwik Silberstein discusses the rotation related to non-linear acceleration.
+ - <a href='http://specialrelativity.net/'>specialrelativity.net</a> is a website created by the author of this project, which explains the theory in elementary terms. It has numerous graphics and animations. 
 
 ## What I've learned so far in this project
 
@@ -111,9 +111,9 @@ closely approximates the formula for the Thomas precession.)
 
 
 **I now understand Silberstein rotation.**
-Most texts either ignore this effect, or don't emphasize it.
-This seem unfortunate. 
-The full consequences of the Lorentz Transformations on the basic structure of space-time can only be seen when elbow-boosts are used. 
+Most texts either ignore this effect altogether, or don't emphasize it.
+This is unfortunate. 
+This effect is one of the basic consequences of the Lorentz Transformations.
 
 
 **Silberstein described the rotational aspect of elbow boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
