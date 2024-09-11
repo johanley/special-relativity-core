@@ -10,7 +10,6 @@ import sr.output.text.TextOutput;
 
 /** 
  Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
- The angle is large at the highest speeds, and increases without bound.
 */
 public final class SilbersteinRotationRange extends TextOutput implements Exploration {
 

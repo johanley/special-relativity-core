@@ -75,8 +75,8 @@ It can be argued that computation provides an effective way of increasing one's 
 for one's first encounters with a theory.
 
  
-**Various phenomena connected with the theory are all *aspects of one single thing*: the structure of space-time.**
-(We can take the Lorentz Transformations as the definition of that structure.)
+**All phenomena connected with the theory are *aspects of one single thing*: the structure of space-time.**
+We can take the Lorentz Transformations as the definition of that structure.
 <!--
 IS THIS CORRECT?
 A beautiful example of this is the connection between aberration and the Doppler effect on the one hand (which are optical effects), and the flattening effect on the other hand (which is a geometrical effect).
