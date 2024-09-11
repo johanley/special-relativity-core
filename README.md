@@ -19,9 +19,9 @@ This project uses the following non-standard words (which you may find annoying)
 
 **Grid** is used instead of *inertial frame of reference*.
 
-**Elbow boost** is used instead of *non-collinear pair of boosts.*
+**Elbow-boost** is used instead of *a non-collinear pair of boosts.*
 
-**Corner boost** is an elbow-boost with an angle of 90 degrees between boosts (as seen in the intermediate grid).
+**Corner-boost** is an elbow-boost with an angle of 90 degrees between boosts (as seen in the intermediate grid).
 
 **Silberstein rotation** is used instead of *Thomas-Wigner rotation*.
 
@@ -37,7 +37,7 @@ This project uses the following non-standard words (which you may find annoying)
 
 Textbooks:
  - *<a href='https://archive.org/details/spacetimephysics00edwi_0'>Spacetime Physics</a>*, by Taylor and Wheeler, is a good introduction.
- - *<a href='https://archive.org/details/isbn_9788181477873_2/mode/2up'>The Classical Theory of Fields</a>*, by Landau and Lifschitz, has deep insight.
+ - *<a href='https://archive.org/details/isbn_9788181477873_2/mode/2up'>The Classical Theory of Fields</a>*, by Landau and Lifshitz, has deep insight.
  - *<a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>The Theory of Relativity</a>* by Ludwik Silberstein discusses the rotation related to non-linear acceleration. 
 
 ## What I've learned so far in this project
@@ -112,7 +112,8 @@ closely approximates the formula for the Thomas precession.)
 
 **I now understand Silberstein rotation.**
 Most texts either ignore this effect, or don't emphasize it.
-It seems that the full consequences of the Lorentz Transformations can only be seen when elbow boosts are used. 
+This seem unfortunate. 
+The full consequences of the Lorentz Transformations on the basic structure of space-time can only be seen when elbow-boosts are used. 
 
 
 **Silberstein described the rotational aspect of elbow boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
@@ -236,8 +237,7 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
 
-
-
+<!--
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
 He simply asserts that the geometry is that of a rotation. He seems to be incorrect.
@@ -259,4 +259,4 @@ See also Scott and Viner (1965), Eric Sheldon (1989).
   
 The <a href='https://en.wikipedia.org/wiki/Terrell_rotation'>wikipedia article</a> makes no mention of these points.
 
-
+-->
