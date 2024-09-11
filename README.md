@@ -122,7 +122,7 @@ Thomas and Wigner came much later.
 **The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and the Silberstein rotation.**
 In general, when examining the geometry of an object, you need to disentangle these two effects.
 
-**Characterizing a mass-particle in SR requires two additional items.**
+**Characterizing the motion of a mass-particle in SR requires two additional items.**
 When describing motion, everything comes from the position <b>r</b>(t).
 In the Newtonian case, there are 3 main items describing the motion of a mass-particle:
   - <b>r</b>(t) position
@@ -136,7 +136,7 @@ In SR, there are 5 main items characterizing the motion of a mass-particle:
   - a proper-time (because of time dilation)
   - an orientation (because of the Silberstein rotation)
 
-Both proper-time and orientation are defined only as *differences* with respect to some chosen base value.  
+Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.  
   
 
 **Transformations almost always come in two variants, characterized by the sign of some quantity.**
