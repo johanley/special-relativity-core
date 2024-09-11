@@ -36,7 +36,7 @@ public enum SpeedValues {
   PROTON_LHC("0.9999999895816072"),
   
   /** 
-   Energy of 10^20 eV, seen in some cosmic rays. 
+   Speed of a proton having an energy of 10^20 eV, as seen in the most extreme cosmic rays. 
    WARNING: this speed is very close to 1, and {@link Double} cannot be used to represent it.  
    Use {@link BigDecimal} instead!
   */
