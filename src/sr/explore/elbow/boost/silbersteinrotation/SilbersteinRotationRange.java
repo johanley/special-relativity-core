@@ -10,6 +10,7 @@ import sr.output.text.TextOutput;
 
 /** 
  Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
+ For a single elbow, the extreme max angle is pi.
 */
 public final class SilbersteinRotationRange extends TextOutput implements Exploration {
 
