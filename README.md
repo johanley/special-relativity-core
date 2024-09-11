@@ -176,11 +176,11 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 (Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
 
 **Light is simpler than matter.**
-The physics of photons is simpler than the physics of particles having mass.
-The speed of photons is always the same. 
-Photons don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation.
-The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the effects attached to matter (the distortions of geometry and time).
-It can be strongly argued that the photon-effects should be taken first, as the primary guide into the structure of space-time. 
+The physics of plane monochromatic waves is simpler than the physics of mass-particles.
+Their speed is always the same. 
+They don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation (because of Silberstein rotation).
+The effects of aberration and the Doppler effect are simpler to understand than the effects attached to matter (the distortions of geometry and time).
+It can be argued that aberration and the Doppler effect should be investigated first when one explores the consequences of the Lorentz Transformation.
  
 
 **Time dilation and length contraction are two sides of the same coin.**
