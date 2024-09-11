@@ -177,7 +177,8 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 
 **Light is simpler than matter.**
 The physics of photons is simpler than the physics of particles having mass.
-The speed of photons is always the same.
+The speed of photons is always the same. 
+Photons don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation.
 The effects attached to photons (aberration and the Doppler effect) are simpler to understand than the effects attached to matter (the distortions of geometry and time).
 It can be strongly argued that the photon-effects should be taken first, as the primary guide into the structure of space-time. 
  
