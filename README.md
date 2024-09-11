@@ -110,7 +110,7 @@ In that case, an implementation using the Lorentz Transformation requires numeri
 closely approximates the formula for the Thomas precession.)
 
 
-**I now understand Silberstein rotation.**
+**Silberstein rotation is important.**
 Most texts either ignore this effect altogether, or don't emphasize it.
 This is unfortunate. 
 This effect is one of the basic consequences of the Lorentz Transformations.
