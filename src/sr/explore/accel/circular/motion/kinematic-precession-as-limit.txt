@@ -1,9 +1,9 @@
-The Thomas precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon.
+The kinematic precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon.
 
 Circuit Length: 10.0
 Speed: 0.5
 
-N sides   Silberstein rotation
+N sides   Kinematic rotation
           after 1 circuit
 ------------------------------
 3         -20.60969°
@@ -365,10 +365,10 @@ N sides   Silberstein rotation
 359       -55.68866°
 360       -55.68868°
 
-Compare with the Thomas precession formula for circular motion.
+Compare with the kinematic precession formula for circular motion.
 
 Circle circumference: 10.0
 Circle radius: 1.59155
 β: 0.5
 Time for 1 circuit: 20.0
-Silberstein rotation for 1 circuit: -55.69219°
+Kinematic rotation for 1 circuit: -55.69219°

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sr.explore.accel.circular.motion.OneRevolution;
+import sr.explore.accel.circular.motion.KinematicPrecessionAsLimit;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
 import sr.explore.accel.speed.ConnectedRockets;
@@ -25,7 +26,6 @@ import sr.explore.noncolinear.velocitytransform.CompareFormulaWithLT;
 import sr.explore.noncolinear.velocitytransform.MaxAngleBetweenResultVectors;
 import sr.explore.noncolinear.velocitytransform.NeverExceedsSpeedLimit;
 import sr.explore.noncolinear.velocitytransform.SignReversal;
-import sr.explore.noncolinear.velocitytransform.ThomasPrecessionAsLimit;
 import sr.explore.optics.doppler.cone.DopplerCone;
 import sr.explore.optics.doppler.cone.DopplerConeElbowBoost;
 import sr.explore.optics.flyby.RelativisticFlyBy;
@@ -65,7 +65,7 @@ public final class RunExplorations {
     result.add(new MaxAngleBetweenResultVectors());
     result.add(new NeverExceedsSpeedLimit());
     result.add(new SignReversal());
-    result.add(new ThomasPrecessionAsLimit());
+    result.add(new KinematicPrecessionAsLimit());
     result.add(new DopplerCone());
     result.add(new DopplerConeElbowBoost());
     result.add(new WaveVectorK());

@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.velocitytransform;
+package sr.explore.accel.circular.motion;
 
 
 import static sr.core.Util.NL;
@@ -19,7 +19,7 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /***
- The Thomas precession for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
+ Kinetic precession for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
  
  <P>An object goes in a circuit at constant speed. 
  The circuit returns back to its starting point.
@@ -32,23 +32,23 @@ import sr.output.text.TextOutput;
  
  <P>As N gets large, the circuit approaches a circular shape.
  
- <P>This class will compare the Silberstein rotation resulting from one completion of such a circuit with the 
- comparable result derived from the Thomas precession formula (using a {@link CircularHistory}).
+ <P>This class will compare the kinematic rotation resulting from one completion of such a circuit with the 
+ comparable result derived from the kinematic precession formula (using a {@link CircularHistory}).
 */
-public final class ThomasPrecessionAsLimit extends TextOutput implements Exploration {
+public final class KinematicPrecessionAsLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    ThomasPrecessionAsLimit thomas = new ThomasPrecessionAsLimit();
+    KinematicPrecessionAsLimit thomas = new KinematicPrecessionAsLimit();
     thomas.explore();
   }
   
   @Override public void explore() {
-    add("The Thomas precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
+    add("The kinematic precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
     double circuitLength = 10.0;
     double β = 0.50;
     tableFor(β, circuitLength);
     rotationFromThomasPrecessionFormula(circuitLength / (2*Math.PI), β);
-    outputToConsoleAnd("thomas-precession-as-limit.txt");
+    outputToConsoleAnd("kinematic-precession-as-limit.txt");
   }
   
   // N bends in the circuit, Total Silberstein rotation in one circuit
@@ -57,7 +57,7 @@ public final class ThomasPrecessionAsLimit extends TextOutput implements Explora
   private void tableFor(double β, double circuitLength) {
     add("Circuit Length: " + circuitLength);
     add("Speed: " + β + NL);
-    add(table.row("N sides", "Silberstein rotation"));
+    add(table.row("N sides", "Kinematic rotation"));
     add(table.row("", "after 1 circuit"));
     add(dashes(30));
     Velocity v = Velocity.of(Axis.X, β);
@@ -93,7 +93,7 @@ public final class ThomasPrecessionAsLimit extends TextOutput implements Explora
   
   /** Use a {@link CircularHistory}. */
   private void rotationFromThomasPrecessionFormula(double radius, double β) {
-    add(NL+"Compare with the Thomas precession formula for circular motion."+NL);
+    add(NL+"Compare with the kinematic precession formula for circular motion."+NL);
     TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;
@@ -102,7 +102,7 @@ public final class ThomasPrecessionAsLimit extends TextOutput implements Explora
     add("Circle radius: " + roundIt(radius));
     add("β: " + β);
     add("Time for 1 circuit: " + roundIt(timeForOneCircuit));
-    add("Silberstein rotation for 1 circuit: " + degrees(-rotation.magnitude()));
+    add("Kinematic rotation for 1 circuit: " + degrees(-rotation.magnitude()));
   }
   
   private String degrees(double rads) {
