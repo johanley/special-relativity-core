@@ -10,7 +10,11 @@ import sr.output.text.TextOutput;
 
 /** 
  Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
- For a single elbow, the extreme max angle is pi.
+ 
+ <P>In this class, a corner-boost is used and the extreme max angle is pi/2.
+ 
+ <P>In general, the extreme max angle is pi. 
+ This is approached when the velocities are in nearly opposite directions, and both speeds are ultra-relativistic.
 */
 public final class SilbersteinRotationRange extends TextOutput implements Exploration {
 
