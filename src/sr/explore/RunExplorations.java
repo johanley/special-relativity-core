@@ -15,7 +15,7 @@ import sr.explore.clocks.Twins;
 import sr.explore.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.elbow.boost.kinematic.rotation.KinematicRotation;
-import sr.explore.elbow.boost.kinematic.rotation.SilbersteinRotationRange;
+import sr.explore.elbow.boost.kinematic.rotation.KinematicRotationRange;
 import sr.explore.geom.flattening.StickFlattening;
 import sr.explore.interval.invariant.InvariantInterval;
 import sr.explore.noncolinear.thomas.rotation.ThomasRotation;
@@ -57,7 +57,7 @@ public final class RunExplorations {
     result.add(new StickFlattening());
     result.add(new InvariantInterval());
     result.add(new KinematicRotation());
-    result.add(new SilbersteinRotationRange());
+    result.add(new KinematicRotationRange());
     result.add(new ThomasRotation());
     result.add(new BoostToRotateVelocity());
     result.add(new Commutation());

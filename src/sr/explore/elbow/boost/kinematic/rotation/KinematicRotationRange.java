@@ -9,28 +9,28 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** 
- Explore the range of values of the Silberstein (Thomas-Wigner) rotation angle. 
+ Explore the range of values of the kinematic rotation angle. 
  
  <P>In this class, a corner-boost is used and the extreme max angle is pi/2.
  
  <P>In general, the extreme max angle is pi. 
  This is approached when the velocities are in nearly opposite directions, and both speeds are ultra-relativistic.
 */
-public final class SilbersteinRotationRange extends TextOutput implements Exploration {
+public final class KinematicRotationRange extends TextOutput implements Exploration {
 
   public static void main(String... args) {
-    SilbersteinRotationRange range = new SilbersteinRotationRange();
+    KinematicRotationRange range = new KinematicRotationRange();
     range.explore();
   }
   
   @Override public void explore() {
-    add("Silberstein (Thomas-Wigner) rotation for various combined speeds.");
+    add("Kinematic (Wigner) rotation for various combined speeds.");
     add("Here, the pair of velocities are at always at right angles to each other.");
     add("");
     add(tableHeader.row("β1", "β2", "θw"));
     add(dashes(55));
     showRangeθw();
-    outputToConsoleAnd("silberstein-rotation-range.txt");
+    outputToConsoleAnd("kinematic-rotation-range.txt");
   }
   
   void showRangeθw() {

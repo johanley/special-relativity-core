@@ -1,4 +1,4 @@
-Silberstein (Thomas-Wigner) rotation for various combined speeds.
+Kinematic (Wigner) rotation for various combined speeds.
 Here, the pair of velocities are at always at right angles to each other.
 
 β1                   β2                       θw°
