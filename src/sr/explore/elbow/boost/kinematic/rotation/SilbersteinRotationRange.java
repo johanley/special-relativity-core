@@ -1,4 +1,4 @@
-package sr.explore.elbow.boost.silbersteinrotation;
+package sr.explore.elbow.boost.kinematic.rotation;
 
 import sr.core.Axis;
 import sr.core.SpeedValues;

@@ -1,4 +1,4 @@
-package sr.explore.elbow.boost.silbersteinrotation;
+package sr.explore.elbow.boost.kinematic.rotation;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
@@ -21,7 +21,7 @@ import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  
- Explore Silberstein (Thomas-Wigner) rotation  using only the Lorentz Transformation and simple histories.
+ Explore kinematic rotation using only the Lorentz Transformation and simple histories.
  
  <P>Use three grids K, K', then K'', and a corner-boost:
  <ul>
@@ -47,19 +47,19 @@ import sr.output.text.TextOutput;
  But you need to be careful, because when elbow boosts are used, the geometry/orientation of the stick is affected by 2 items: 
  <ul>
   <li>the flattening effect seen with boosts in general
-  <li>the Silberstein rotation, seen with elbow boosts
+  <li>kinematic rotation, seen with elbow-boosts
  </ul>
 */
-public final class SilbersteinRotation extends TextOutput implements Exploration {
+public final class KinematicRotation extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    SilbersteinRotation rotation = new SilbersteinRotation();
+    KinematicRotation rotation = new KinematicRotation();
     rotation.explore();
   }
   
   @Override public void explore() {
     stickHistory();
-    outputToConsoleAnd("silberstein-rotation.txt");
+    outputToConsoleAnd("kinematic-rotation.txt");
   }
 
   /**
@@ -69,7 +69,7 @@ public final class SilbersteinRotation extends TextOutput implements Exploration
    In K, get a time-slice through the two histories, and infer the direction of the stick as seen in K.
    
    <P>Compare the direction of the stick with computed values that come from 
-   both flattening and Silberstein (Thomas-Wigner) rotation.
+   both flattening and kinematic rotation.
   */
   private void stickHistory() {
     
@@ -128,8 +128,8 @@ public final class SilbersteinRotation extends TextOutput implements Exploration
     
     EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Z, β1, β2);
     add(" ");
-    add("Disentangle two effects: Silberstein rotation versus flattening."+Util.NL);
-    add("FIRST DO A ROTATION (because of the Silberstein rotation)."); 
+    add("Disentangle two effects: kinematic rotation versus flattening."+Util.NL);
+    add("FIRST DO A ROTATION (because of kinematic rotation)."); 
     add("Examine the equivalent-boost with respect to K (the boost+rotation pair that's equivalent to the corner-boost pair):");
     add("  equivβ: " + round(calc.equivalent().β)); 
     add("  equivDirection: " + degrees(calc.equivalent().direction) + " with respect to the X-axis."); 
