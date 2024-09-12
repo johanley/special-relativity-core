@@ -40,7 +40,7 @@ public final class ElbowBoostEquivalent {
   public double direction;
   
   /** 
-   Kinetic (Wigner) rotation angle (radians) with respect to the direction of the first boost.
+   Kinematic (Wigner) rotation angle (radians) with respect to the direction of the first boost.
    
    This rotation is, in K, the angle of the <em>X''-axis of K''</em> with respect to the X-axis of K.
    For circular motion, the sense of this rotation is opposite (retrograde) to the sense of the circular motion. 

@@ -19,7 +19,7 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /***
- Kinetic precession for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
+ Kinematic precession for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
  
  <P>An object goes in a circuit at constant speed. 
  The circuit returns back to its starting point.

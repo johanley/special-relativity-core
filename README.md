@@ -21,7 +21,7 @@ In this project:
 
 **Elbow-boost** is used instead of *a non-collinear pair of boosts.*
 
-**Corner-boost** is an elbow-boost with an angle of 90 degrees between boosts (as seen in the intermediate grid).
+**Corner-boost** is an elbow-boost with an angle of 90° between boosts (as seen in the intermediate grid).
 
 **Kinematic rotation** is used instead of *Thomas-Wigner rotation*.
 
@@ -120,8 +120,8 @@ This is unfortunate.
 This effect is one of the basic consequences of the Lorentz Transformations.
 
 
-**Silberstein described the rotational aspect of elbow boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
-Thomas and Wigner came much later. 
+**Silberstein described the rotational aspect of elbow-boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
+Borel mentioned it (without much analysis) in 1913. Thomas and Wigner came much later. 
 
 **The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and kinematic rotation.**
 In general, when examining the geometry of an object, you need to disentangle these two effects.
