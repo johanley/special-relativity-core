@@ -25,6 +25,8 @@ This project uses the following non-standard words (which you may find annoying)
 
 **Kinematic rotation** is used instead of *Thomas-Wigner rotation*.
 
+**Kinematic precession** is used instead of *Thomas precession*.
+
 **Flattening** is used instead of *Lorentz-Fitgerald contraction*.
 
 **Time-slice** is used instead of *the intersection of an object's history with a space-like hypersurface of constant ct*.
