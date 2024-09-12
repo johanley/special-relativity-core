@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.velocitytransform;
+package sr.explore.velocitytransform;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;

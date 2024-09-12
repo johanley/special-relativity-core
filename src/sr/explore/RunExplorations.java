@@ -20,12 +20,6 @@ import sr.explore.clocks.TravelTime;
 import sr.explore.clocks.Twins;
 import sr.explore.geom.flattening.StickFlattening;
 import sr.explore.interval.invariant.InvariantInterval;
-import sr.explore.noncolinear.velocitytransform.BoostToRotateVelocity;
-import sr.explore.noncolinear.velocitytransform.Commutation;
-import sr.explore.noncolinear.velocitytransform.CompareFormulaWithLT;
-import sr.explore.noncolinear.velocitytransform.MaxAngleBetweenResultVectors;
-import sr.explore.noncolinear.velocitytransform.NeverExceedsSpeedLimit;
-import sr.explore.noncolinear.velocitytransform.SignReversal;
 import sr.explore.optics.doppler.cone.DopplerCone;
 import sr.explore.optics.doppler.cone.DopplerConeElbowBoost;
 import sr.explore.optics.flyby.RelativisticFlyBy;
@@ -33,6 +27,12 @@ import sr.explore.optics.kvector.WaveVectorK;
 import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
 import sr.explore.speeds.SpeedsAndGammas;
+import sr.explore.velocitytransform.BoostToRotateVelocity;
+import sr.explore.velocitytransform.Commutation;
+import sr.explore.velocitytransform.CompareFormulaWithLT;
+import sr.explore.velocitytransform.MaxAngleBetweenResultVectors;
+import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
+import sr.explore.velocitytransform.SignReversal;
 
 /** Run a number of explorations in sequence. */
 public final class RunExplorations {

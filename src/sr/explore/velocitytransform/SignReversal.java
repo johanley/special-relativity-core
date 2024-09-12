@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.velocitytransform;
+package sr.explore.velocitytransform;
 
 import static sr.core.Axis.X;
 
@@ -8,7 +8,7 @@ import sr.core.vector3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
-/** Colinear case, and when the sign of the velocity changes. */
+/** Boost and velocity in the same directions. */
 public final class SignReversal extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
@@ -17,7 +17,7 @@ public final class SignReversal extends TextOutput implements Exploration {
   }
 
   @Override public void explore() {
-    add("Velocity reverses sign only in the colinear case, and only with one variant of the formula." + Util.NL);
+    add("Velocity reverses sign only in the collinear case, and only with one variant of the formula." + Util.NL);
     show(Velocity.of(X, 0.5), Velocity.of(X, 0.7));
     outputToConsoleAnd("sign-reversal.txt");
   }
