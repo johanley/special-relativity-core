@@ -1,4 +1,4 @@
-package sr.explore.noncolinear.thomas.rotation;
+package sr.explore.circular.motion.one.revolution;
 
 import sr.core.Axis;
 import sr.core.Util;
@@ -14,12 +14,13 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /**
- Circular motion, and rotation of the K' grid co-moving with the object.   
+ Circular motion, and rotation of the K' grid co-moving with the object.
+ Explore a single revolution.   
 */
-public final class ThomasRotation extends TextOutput implements Exploration {
+public final class OneRevolution extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    ThomasRotation rotation = new ThomasRotation();
+    OneRevolution rotation = new OneRevolution();
     rotation.explore();
   }
   
@@ -28,7 +29,7 @@ public final class ThomasRotation extends TextOutput implements Exploration {
     double β = 0.2;
     circleDetails(radius, β);
     rotationAfterOneFullCircle(radius);
-    outputToConsoleAnd("thomas-rotation.txt");
+    outputToConsoleAnd("one-revolution.txt");
   }
 
   //details
@@ -41,10 +42,10 @@ public final class ThomasRotation extends TextOutput implements Exploration {
   private Table table2 = new Table("%6.2f", "%8.3f", "%12.3f°");
   
   private void circleDetails(double radius, double β) {
-    add("Circular motion, and rotation of the K' grid co-moving with the object (Thomas precession).");
+    add("Circular motion, and rotation of the K' grid co-moving with the object (kinematic precession).");
     add(Util.NL+"Details of a single revolution.");
     add(Util.NL+"Radius: " + radius + " Speed:" + β);
-    add(Util.NL+"The negative sign of Silberstein rotation (θw) indicates its direction is opposite to that of the circular motion.");
+    add(Util.NL+"The negative sign of kinematic rotation (θw) indicates its direction is opposite to that of the circular motion.");
     
     add(Util.NL + header.row("ct", "Phase", "Rotation", "Position", "Velocity"));
     add(header.row("", "", "θw", "", ""));
@@ -61,7 +62,7 @@ public final class ThomasRotation extends TextOutput implements Exploration {
   
   private void rotationAfterOneFullCircle(double radius) {
     add(Util.NL + dashes(100));
-    add(Util.NL + "Silberstein rotation after a single revolution becomes extreme in the ultra-relativistic case." + Util.NL);
+    add(Util.NL + "Kinematic rotation after a single revolution becomes extreme in the ultra-relativistic case." + Util.NL);
     add(header2.row("  β", "Radius", "Rotation θw"));
     add(dashes(31));
     for(int i = 1; i <= 99; ++i) {

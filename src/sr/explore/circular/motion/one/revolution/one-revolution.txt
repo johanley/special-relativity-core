@@ -1,10 +1,10 @@
-Circular motion, and rotation of the K' grid co-moving with the object (Thomas precession).
+Circular motion, and rotation of the K' grid co-moving with the object (kinematic precession).
 
 Details of a single revolution.
 
 Radius: 10.0 Speed:0.2
 
-The negative sign of Silberstein rotation (θw) indicates its direction is opposite to that of the circular motion.
+The negative sign of kinematic rotation (θw) indicates its direction is opposite to that of the circular motion.
 
 ct     Phase     Rotation    Position                Velocity                  
                  θw                                                            
@@ -332,7 +332,7 @@ ct     Phase     Rotation    Position                Velocity
 
 ----------------------------------------------------------------------------------------------------
 
-Silberstein rotation after a single revolution becomes extreme in the ultra-relativistic case.
+Kinematic rotation after a single revolution becomes extreme in the ultra-relativistic case.
 
   β     Radius      Rotation θw         
 -------------------------------
