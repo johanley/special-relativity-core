@@ -17,7 +17,7 @@ import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
 import sr.explore.Exploration;
-import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
+import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  

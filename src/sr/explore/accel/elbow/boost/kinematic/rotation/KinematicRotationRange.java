@@ -4,7 +4,7 @@ import sr.core.Axis;
 import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.explore.Exploration;
-import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
+import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 

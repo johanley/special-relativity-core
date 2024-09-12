@@ -5,6 +5,8 @@ import java.util.List;
 
 import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.circular.motion.KinematicPrecessionAsLimit;
+import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
+import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
 import sr.explore.accel.speed.ConnectedRockets;
@@ -16,8 +18,6 @@ import sr.explore.clocks.LightClock;
 import sr.explore.clocks.MakeAClockRunFaster;
 import sr.explore.clocks.TravelTime;
 import sr.explore.clocks.Twins;
-import sr.explore.elbow.boost.CornerBoostsDontCommute;
-import sr.explore.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.geom.flattening.StickFlattening;
 import sr.explore.interval.invariant.InvariantInterval;
 import sr.explore.noncolinear.velocitytransform.BoostToRotateVelocity;

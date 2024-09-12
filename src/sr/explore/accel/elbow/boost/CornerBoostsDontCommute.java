@@ -1,4 +1,4 @@
-package sr.explore.elbow.boost;
+package sr.explore.accel.elbow.boost;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
