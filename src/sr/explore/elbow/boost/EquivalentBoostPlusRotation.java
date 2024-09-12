@@ -141,7 +141,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
     return result;
   }
   
-  /** Silberstein rotation angle. Range -pi..pi.  */
+  /** Kinematic rotation angle. Range -pi..pi.  */
   private double θw() {
     Velocity a = singleBoostVelocity();
     Velocity b = singleBoostVelocityReversed();

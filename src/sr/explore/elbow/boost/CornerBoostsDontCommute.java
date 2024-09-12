@@ -20,8 +20,8 @@ import sr.output.text.TextOutput;
  <P>Same line: two boosts in sequence along an axis are equivalent to a third boost along the same axis.
  The two boosts commute.
 
- <P>Not the same line (elbow-boost): they two boosts don't commute.
- An elbow-boost is equivalent to a boost plus a rotation, called a Silberstein (or Thomas-Wigner) rotation.
+ <P>Not the same line (an elbow-boost): they two boosts don't commute.
+ An elbow-boost is equivalent to a boost plus a rotation, here called kinematic rotation.
 */
 public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   
