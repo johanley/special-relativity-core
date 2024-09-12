@@ -15,7 +15,7 @@ In this project:
 
 ## Jargon
 
-This project uses the following non-standard words (which you may find annoying):
+**This project uses the following non-standard words (which you may find annoying)**:
 
 **Grid** is used instead of *inertial frame of reference*.
 
