@@ -173,7 +173,7 @@ public class StickFlattening extends TextOutput implements Exploration {
   }
   
   /** 
-   Compare numbers with the exploration of the Silberstein (Thomas-Wigner) rotation.
+   Compare numbers with the exploration of the kinematic (Thomas-Wigner) rotation.
    
    In K:
    <ul>
@@ -187,7 +187,7 @@ public class StickFlattening extends TextOutput implements Exploration {
    <ul>
     <li>the stick is squished in the X-direction only
     <li>its angle with respect to the X axis increases to 43.152°, an increase of 18.925°.
-    <li>18.925° is the Silberstein (Thomas-Wigner) rotation angle taken from the original elbow-boost example. 
+    <li>18.925° is the kinematic (Thomas-Wigner) rotation angle taken from the original elbow-boost example. 
    </ul>
   */
   void stickAngledToXAxisWithEquivalentBoostParams() {
@@ -226,7 +226,7 @@ public class StickFlattening extends TextOutput implements Exploration {
     double angleNew = Math.atan2(diff.y(), diff.x());
     add("K' stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew) + "°");
     /* Calculated θw directly:-18.924644416051237 degrees */
-    add("Change in stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew - angleOrig) + "° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the elbow-boost case!");
+    add("Change in stick angle with respect to the X-axis: " + Util.radsToDegs(angleNew - angleOrig) + "° SAME AS θw, the kinematic (Thomas-Wigner) rotation angle in the elbow-boost case!");
   }
   
   private static final String SEP = Util.separator(100);

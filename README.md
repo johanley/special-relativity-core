@@ -23,7 +23,7 @@ This project uses the following non-standard words (which you may find annoying)
 
 **Corner-boost** is an elbow-boost with an angle of 90 degrees between boosts (as seen in the intermediate grid).
 
-**Silberstein rotation** is used instead of *Thomas-Wigner rotation*.
+**Kinematic rotation** is used instead of *Thomas-Wigner rotation*.
 
 **Flattening** is used instead of *Lorentz-Fitgerald contraction*.
 
@@ -112,7 +112,7 @@ In that case, an implementation using the Lorentz Transformation requires numeri
 closely approximates the formula for the Thomas precession.)
 
 
-**Silberstein rotation is important.**
+**Kinematic rotation is important.**
 Most texts either ignore this effect altogether, or don't emphasize it.
 This is unfortunate. 
 This effect is one of the basic consequences of the Lorentz Transformations.
@@ -121,7 +121,7 @@ This effect is one of the basic consequences of the Lorentz Transformations.
 **Silberstein described the rotational aspect of elbow boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
 Thomas and Wigner came much later. 
 
-**The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and the Silberstein rotation.**
+**The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and kinematic rotation.**
 In general, when examining the geometry of an object, you need to disentangle these two effects.
 
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
@@ -136,7 +136,7 @@ In SR, there are 5 main items characterizing the motion of a mass-particle:
   - <b>v</b>(t) velocity
   - <b>a</b>(t) acceleration
   - a proper-time (because of time dilation)
-  - an orientation (because of the Silberstein rotation)
+  - an orientation (because of kinematic rotation)
 
 Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.  
   
@@ -180,7 +180,7 @@ Angles between 4-vectors are defined as ratios of lengths, but in this case thes
 **Light is simpler than matter.**
 The physics of plane monochromatic waves is simpler than the physics of mass-particles.
 Their speed is always the same. 
-They don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation (because of Silberstein rotation).
+They don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation (related to kinematic rotation).
 The effects of aberration and the Doppler effect are simpler to understand than the effects attached to matter (the distortions of geometry and time).
 It can be argued that aberration and the Doppler effect should be investigated first when one explores the consequences of the Lorentz Transformation.
  
@@ -223,17 +223,17 @@ Both come directly from the Lorentz Transformation of the wave vector k<sup>i</s
 **Two boosts commute only when they are in the same line.**
 An elbow-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
-The Silberstein (Thomas-Wigner) rotation angle is small for low speeds, but for 
+The kinematic (Thomas-Wigner) rotation angle is small for low speeds, but for 
 ultra-relativistic speeds it increases rapidly without bound.
 
-What's the relation between the Silberstein rotation and the regular geometry distortion of a boost?
+What's the relation between kinematic rotation and the regular geometry distortion of a boost?
 A stick is angled at θ with respect to the direction of a boost.
 After the boost, both the stick's length and orientation are different.
 The formula relating the direction of the stick in the two grids is:
 ```
 cot θ = (1/Γ) cot θ' 
 ```
-The *change* in this angle θ is precisely the same as the Silberstein rotation angle:
+The *change* in this angle θ is precisely the same as the kinematic rotation angle:
 ```
 tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```

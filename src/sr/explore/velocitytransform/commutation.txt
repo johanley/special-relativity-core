@@ -39,4 +39,4 @@ Angle between the two results:163.56457°
 
 Right-hand rule: rotate the first resultant-v toward the second, by the above angle.
 The pole of the rotation is parallel to the cross-product (first x second).
-The angle is the same size as the Silberstein (Thomas-Wigner) rotation.
+The angle is the same size as the kinematic (Thomas-Wigner) rotation.

@@ -85,4 +85,4 @@ K' b: [0.3125, 0.16358, 0.41036, 0.0]
 K' b-a: [0.0, 0.43772, 0.41036, 0.0]
 K' b-a stick length: 0.6000000000015474
 K' stick angle with respect to the X-axis: 43.152389733866855°
-Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the Silberstein (Thomas-Wigner) rotation angle in the elbow-boost case!
+Change in stick angle with respect to the X-axis: 18.924644415912688° SAME AS θw, the kinematic (Thomas-Wigner) rotation angle in the elbow-boost case!

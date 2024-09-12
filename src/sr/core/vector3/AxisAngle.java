@@ -11,7 +11,7 @@ import sr.core.Axis;
   <li><a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a>
  </ul>
  
- <P>For Silberstein rotation, the axis-angle is proportional to the cross product of acceleration and velocity.
+ <P>For kinematic rotation, the axis-angle is proportional to the cross product of acceleration and velocity.
 */
 public final class AxisAngle extends ThreeVectorImpl implements PseudoVector {
 

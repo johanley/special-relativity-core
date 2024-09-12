@@ -51,7 +51,7 @@ public final class KinematicPrecessionAsLimit extends TextOutput implements Expl
     outputToConsoleAnd("kinematic-precession-as-limit.txt");
   }
   
-  // N bends in the circuit, Total Silberstein rotation in one circuit
+  // N bends in the circuit, Total kinematic rotation in one circuit
   private Table table = new Table("%-10s", "%-10s");
   
   private void tableFor(double β, double circuitLength) {
@@ -68,7 +68,7 @@ public final class KinematicPrecessionAsLimit extends TextOutput implements Expl
   
   /**
    First calculate the the velocity transform for rotating the given v by 2pi/N radians.
-   Then calculate the Silberstein rotation using the angle needed to turn (b+a) into (a+b). 
+   Then calculate the kinematic rotation using the angle needed to turn (b+a) into (a+b). 
   */
   private String rotationAfterOneCircuit(int numSides, Velocity v_K) {
     double angle = 2*Math.PI/numSides;

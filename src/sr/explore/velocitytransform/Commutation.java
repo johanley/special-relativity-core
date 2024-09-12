@@ -28,7 +28,7 @@ public final class Commutation extends TextOutput implements Exploration {
     
     add(Util.NL + "Right-hand rule: rotate the first resultant-v toward the second, by the above angle.");
     add("The pole of the rotation is parallel to the cross-product (first x second).");
-    add("The angle is the same size as the Silberstein (Thomas-Wigner) rotation.");
+    add("The angle is the same size as the kinematic (Thomas-Wigner) rotation.");
     
     outputToConsoleAnd("commutation.txt");
   }
