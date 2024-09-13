@@ -53,25 +53,24 @@ It emphasizes the physics, and you aren't distracted by large or small numbers s
 
 **The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.**
 It's too close to 1 (about 22 decimals). Only the *BigDecimal* class can represent such numbers.
-However, working with *BigDecimal* is more painful than working with *Double*, so this is 
-left out as a special case.
+However, working with *BigDecimal* is more painful than working with *Double*, so this is left out as a special case.
 
 **Formulas: many-formulas versus one-formula is a very interesting question.**
 This project implements as many calculations as possible with the core Lorentz Transformation, instead of using a new formula for each phenomenon. 
-(The sole exception is the Thomas precession.) 
+(The sole exception is kinematic (Thomas) precession.) 
 
 Advantages: 
  - it *directly* manifests how the Lorentz Transformation generates diverse phenomena.
  - it gives you more confidence in the *correctness* of your code, since each new use case acts as a test of the core formula.
  - it pushes one towards seeing the beautiful unity in the physics in as direct a manner as possible.
 
-Having a new formula for each phenomenon is of course useful; but such formulas can be viewed as *short-cuts for human computation*. 
+Having a new formula for each phenomenon is both useful and desirable; but such formulas can be viewed as *short-cuts for human computation*. 
 A computer program doesn't need such short-cuts. 
 It actually benefits by avoiding them, since each new formula is a new source of potential error. 
 
 
 **Formulas: textbooks and computer programs have opposing biases.**
-Textbooks are biased towards the derivation of formulas for each phenomenon.
+Textbooks are biased towards the derivation of formulas for each and every phenomenon.
 Computer programs are biased in the opposite direction, towards using as few formulas as possible.
 
 **Computation is a teaching tool.**
@@ -95,7 +94,7 @@ A corresponding boost from K' to K transforms the ellipse (a time-slice in K') i
 That's just the flattening effect applied to an ellipse.
 --> 
 
-**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a vector about an arbitrary axis.**
+**The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a 3-vector about an arbitrary axis.**
 
 
 **Vector formulas usually have simpler implementations than component formulas.**
@@ -108,10 +107,10 @@ I found this with:
 *However, I haven't retained this simplicity.*
 What's more important to me here is to ensure correctness.
 The main way of doing that is to have the core of almost all phenomena implemented by the Lorentz Transformations.
-I have succeeded in doing so for all phenomena except for Thomas precession for circular motion. 
+I have succeeded in doing so for all phenomena except for kinematic (Thomas) precession for circular motion. 
 In that case, an implementation using the Lorentz Transformation requires numerical integration along the object's history.
 (I have included an example which shows how using N boosts to approximate a circular orbit with regular-sided polygons 
-closely approximates the formula for the Thomas precession.)
+closely approximates the formula for kinematic (Thomas) precession.)
 
 
 **Kinematic rotation is important.**
@@ -132,7 +131,7 @@ No work is required to spin-up the object.
 The boost equations change geometry. 
 Geometry means distances and angles. 
 The orientation of an object is defined by angles.
-So boosts can change the orientation of an object (as seen in a rest frame), and the multiple boosts seen in circular motion will (for example) continuously alter that orientation.
+So boosts can change the orientation of an object (as seen in a rest frame), and the multiple, continuous boosts seen in circular motion (for example) will continuously alter the orientation of an object.
 No work is done on the object in the process.
 
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
@@ -142,11 +141,8 @@ In the Newtonian case, there are 3 main items describing the motion of a mass-pa
   - <b>v</b>(t) velocity
   - <b>a</b>(t) acceleration
   
-In SR, there are 5 main items characterizing the motion of a mass-particle:   
-  - <b>r</b>(t) position
-  - <b>v</b>(t) velocity
-  - <b>a</b>(t) acceleration
-  - a proper-time (because of time dilation)
+In SR, there are 2 additional items characterizing the motion of a mass-particle:   
+  - a proper-time (because time is relative)
   - an orientation (because of kinematic rotation)
 
 Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.  
@@ -164,7 +160,7 @@ Sometimes a transformation is written in a book in only one of its two possible 
 This is misleading.
 
 **Hollywood simulations of stars streaking rapidly by a relativistic spacecraft are definitely not realistic.** 
-In the ultra-relativistic case, Most of the sky would appear black to the human eye.
+In the ultra-relativistic case, most of the sky would appear black to the human eye.
 Stars would almost always appear only in the forward direction. 
 A (very) rare exception would be a close fly-by of a bright early-type star (spectral class O, B), which would 
 remain visible in the 'backward' direction for a long time.
