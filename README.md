@@ -126,6 +126,15 @@ Borel mentioned it (without much analysis) in 1913. Thomas and Wigner came much 
 **The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and kinematic rotation.**
 In general, when examining the geometry of an object, you need to disentangle these two effects.
 
+**Kinematic rotation can 'spin-up' an object, but conservation laws aren't violated in doing so.**
+The effect is kinematic. 
+No work is required to spin-up the object.
+The boost equations change geometry. 
+Geometry means distances and angles. 
+The orientation of an object is defined by angles.
+So boosts can change the orientation of an object (as seen in a rest frame), and the multiple boosts seen in circular motion (for example) will continuously alter that orientation.
+No work is done on the object in this process.
+
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
 When describing motion, everything comes from the position <b>r</b>(t).
 In the Newtonian case, there are 3 main items describing the motion of a mass-particle:
