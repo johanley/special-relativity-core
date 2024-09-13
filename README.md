@@ -159,14 +159,14 @@ It's very easy to forget this point, and to make mistakes in the sense of a tran
 It helps if the code makes this distinction hard to ignore.
 (An example of a transformation that only has a single variant is the parity transformation: in order to reverse it, you apply the exact same operation a second time.)  
 
-**Equations are poor at expressing the two-fold nature of transformations.**
+**Some textbooks do a poor job of expressing the two-fold nature of transformations.**
 Sometimes a transformation is written in a book in only one of its two possible forms, without stating its inverse.
 This is misleading.
 
 **Hollywood simulations of stars streaking rapidly by a relativistic spacecraft are definitely not realistic.** 
-Most of the sky would appear black to the human eye.
+In the ultra-relativistic case, Most of the sky would appear black to the human eye.
 Stars would almost always appear only in the forward direction. 
-A rare exception would be a close fly-by of a bright early-type star (spectral class O, B), which would 
+A (very) rare exception would be a close fly-by of a bright early-type star (spectral class O, B), which would 
 remain visible in the 'backward' direction for a long time.
 
 **If you could accelerate at 1 gee for a year, you could cross the Milky Way in about a year of proper-time.**
@@ -179,21 +179,23 @@ I had forgotten this.
 It's interesting how coding this led me to the same conclusion: applying a displacement-of-the-origin 
 to a 4-velocity made no sense, and this became obvious in the computed result.
 The displacement operation needs special handling, because it doesn't apply to differential 4-vectors (only to events).
+This corresponds to the distinction made by mathematicians between *affine* and *linear*.
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.
 
 The angle between vectors has a fundamentally different meaning in Minkowski space.
 It's defined only between pairs of 4-vectors that are either both time-like or both space-like. 
-Angles between 4-vectors are defined as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
-(Minkowski distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the apex of the hyperbola.)
+Angles in Euclidean geometry are defined as the ratio of an arc along the circumference of a circle, divided by the radius of the circle.
+Angles between 4-vectors can also be seen as ratios of lengths, but in this case these lengths come from the Minkowski metric, not the Euclidean one.
+(That is, Minkowski-distance along a hyperbolic arc, divided by the 'radius' of the hyperbola, the distance from the origin to the hyperbola's apex.)
 
 **Light is simpler than matter.**
 The physics of plane monochromatic waves is simpler than the physics of mass-particles.
 Their speed is always the same. 
 They don't have properties that apply only to mass-particles: acceleration, proper-time, and orientation (related to kinematic rotation).
 The effects of aberration and the Doppler effect are simpler to understand than the effects attached to matter (the distortions of geometry and time).
-It can be argued that aberration and the Doppler effect should be investigated first when one explores the consequences of the Lorentz Transformation.
+It can be argued that aberration and the Doppler effect should be investigated first when one begins to explore the consequences of the Lorentz Transformation.
  
 
 **Time dilation and length contraction are two sides of the same coin.**
@@ -207,26 +209,27 @@ To measure the length of a stick (in a given grid), you need a time-slice, a sur
 To measure the direction in which a stick is pointing (in a given grid), you also need a time-slice (in that grid).
 
 **Change-of-angles is just as significant as change-of-dimensions. The term *length contraction* is a misleading one.**
-The effect changes more than length: it changes geometry, angles, length, shape.
+The effect changes more than length: it changes *geometry*, and geometry consists of angles and lengths.
 A better word is *flattening*.
 Length contraction emphasizes a special case: when a stick is parallel to the line of the boost.
 Only that special case has geometrical changes characterized solely as a change of length.
-In every other case, the stick will change both length and direction.
+In every other case, the stick will change both its length and its direction.
 
 
 **A history intersects in dramatically different ways with a time-slice versus a light-slice.**
 The intersection of a time-slice surface (with <em>ct=constant</em>) with an object's history defines the spatial geometry of an object, relative to a grid.
-The intersection of the past light cone of a detector with an object's history defines the optical appearance of the object at the detector.
+The intersection of the past light cone of a detector with an object's history (a light-slice) defines the optical appearance of the object at the detector.
 
-For a receding stick travelling parallel to its longest dimension, the light-slice is always shorter than the time-slice when it's receding from the detector.
+For a receding stick travelling parallel to its longest dimension, the light-slice length is always shorter than the time-slice length when it's receding from the detector.
 At ultra-relativistic recession speeds, the light-slice length approaches 0.5 times the time-slice length.
 
 For an approaching stick, the light-slice length is always longer than the time-slice length.
-Indeed, the light-slice shows an expansion over the rest-length.
+Indeed, the light-slice length shows an expansion over the rest-length.
  
-**Matrix forms are useful.**
+**Matrices are useful for expressing the Lorentz Transformation.**
 With rearrangement of the covariant/contravariant indices, some standard expressions based on index gymnastics can be 
-brought into a form which maps exactly to matrix multiplication. Example: the transformation of the electromagnetic field tensor.
+brought into a form which maps exactly to matrix multiplication. 
+Example: the transformation of the electromagnetic field tensor.
 
 **Aberration and the Doppler effect are two aspects of one phenomenon.**
 Both come directly from the Lorentz Transformation of the wave vector k<sup>i</sup>.
