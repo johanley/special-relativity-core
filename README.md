@@ -132,8 +132,8 @@ No work is required to spin-up the object.
 The boost equations change geometry. 
 Geometry means distances and angles. 
 The orientation of an object is defined by angles.
-So boosts can change the orientation of an object (as seen in a rest frame), and the multiple boosts seen in circular motion (for example) will continuously alter that orientation.
-No work is done on the object in this process.
+So boosts can change the orientation of an object (as seen in a rest frame), and the multiple boosts seen in circular motion will (for example) continuously alter that orientation.
+No work is done on the object in the process.
 
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
 When describing motion, everything comes from the position <b>r</b>(t).
