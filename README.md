@@ -96,6 +96,7 @@ That's just the flattening effect applied to an ellipse.
 
 **The <a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a> is a useful and compact way of rotating a 3-vector about an arbitrary axis.**
 
+**The Java programming language is capable of modeling the concepts of special relativity very cleanly.**
 
 **Vector formulas usually have simpler implementations than component formulas.**
 Moving from components to vectors can simplify a formula.
@@ -137,12 +138,13 @@ No work is done on the object in the process.
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
 In the Newtonian world, the history of a mass-particle in a given grid is described by its position vector <b>r</b>(t) and its derivatives, velocity <b>v</b>(t) and acceleration <b>a</b>(t).
   
-In SR, there are 2 additional items characterizing the history of a mass-particle in a given grid:   
+In SR, there are 2 additional items one can attach to the history of a mass-particle with respect to a given grid:   
   - a proper-time (because *time* is relative)
-  - an orientation (because *geometry* is relative - kinematic rotation)
+  - an orientation (because *geometry* is relative)
 
-Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.  
-  
+Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.
+
+
 
 **Transformations almost always come in two variants, characterized by the sign of some quantity.**
 (For example, see this article on <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>active and passive transformations</a>.) 
