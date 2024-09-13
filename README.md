@@ -135,13 +135,9 @@ So boosts can change the orientation of an object (as seen in a rest frame), and
 No work is done on the object in the process.
 
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
-When describing motion, everything comes from the position <b>r</b>(t).
-In the Newtonian case, there are 3 main items describing the motion of a mass-particle:
-  - <b>r</b>(t) position
-  - <b>v</b>(t) velocity
-  - <b>a</b>(t) acceleration
+In the Newtonian world, the history of a mass-particle in a given grid is described by its position vector <b>r</b>(t) and its derivatives, velocity <b>v</b>(t) and acceleration <b>a</b>(t).
   
-In SR, there are 2 additional items characterizing the motion of a mass-particle:   
+In SR, there are 2 additional items characterizing the history of a mass-particle in a given grid:   
   - a proper-time (because time is relative)
   - an orientation (because of kinematic rotation)
 
