@@ -138,8 +138,8 @@ No work is done on the object in the process.
 In the Newtonian world, the history of a mass-particle in a given grid is described by its position vector <b>r</b>(t) and its derivatives, velocity <b>v</b>(t) and acceleration <b>a</b>(t).
   
 In SR, there are 2 additional items characterizing the history of a mass-particle in a given grid:   
-  - a proper-time (because time is relative)
-  - an orientation (because of kinematic rotation)
+  - a proper-time (because *time* is relative)
+  - an orientation (because *geometry* is relative - kinematic rotation)
 
 Both proper-time and orientation are defined only as *differences* with respect to some chosen initial condition.  
   
