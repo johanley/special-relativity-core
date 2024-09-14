@@ -25,7 +25,7 @@ In this project:
 
 **Kinematic rotation** is used instead of *Thomas-Wigner rotation*.
 
-**Kinematic spin** is used instead of *Thomas precession*.
+**Kinematic spin** is used instead of *Thomas precession*. This has units of radians per second, not angular momentum.
 
 **Flattening** is used instead of *Lorentz-Fitgerald contraction*.
 
