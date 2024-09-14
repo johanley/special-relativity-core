@@ -42,7 +42,7 @@ public final class OneRevolution extends TextOutput implements Exploration {
   private Table table2 = new Table("%6.2f", "%8.3f", "%12.3f°");
   
   private void circleDetails(double radius, double β) {
-    add("Circular motion, and rotation of the K' grid co-moving with the object (kinematic precession).");
+    add("Circular motion, and rotation of the K' grid co-moving with the object (kinematic spin).");
     add(Util.NL+"Details of a single revolution.");
     add(Util.NL+"Radius: " + radius + " Speed:" + β);
     add(Util.NL+"The negative sign of kinematic rotation (θw) indicates its direction is opposite to that of the circular motion.");

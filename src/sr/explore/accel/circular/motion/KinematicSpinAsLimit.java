@@ -19,7 +19,7 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /***
- Kinematic precession for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
+ Kinematic spin for circular motion as the <em>limit</em> of moving around a circuit shaped as an N-sided regular polygon.
  
  <P>An object goes in a circuit at constant speed. 
  The circuit returns back to its starting point.
@@ -33,22 +33,22 @@ import sr.output.text.TextOutput;
  <P>As N gets large, the circuit approaches a circular shape.
  
  <P>This class will compare the kinematic rotation resulting from one completion of such a circuit with the 
- comparable result derived from the kinematic precession formula (using a {@link CircularHistory}).
+ comparable result derived from the kinematic spin formula (using a {@link CircularHistory}).
 */
-public final class KinematicPrecessionAsLimit extends TextOutput implements Exploration {
+public final class KinematicSpinAsLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    KinematicPrecessionAsLimit thomas = new KinematicPrecessionAsLimit();
+    KinematicSpinAsLimit thomas = new KinematicSpinAsLimit();
     thomas.explore();
   }
   
   @Override public void explore() {
-    add("The kinematic precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
+    add("The kinematic spin for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon." + NL);
     double circuitLength = 10.0;
     double β = 0.50;
     tableFor(β, circuitLength);
     rotationFromThomasPrecessionFormula(circuitLength / (2*Math.PI), β);
-    outputToConsoleAnd("kinematic-precession-as-limit.txt");
+    outputToConsoleAnd("kinematic-spin-as-limit.txt");
   }
   
   // N bends in the circuit, Total kinematic rotation in one circuit
@@ -93,7 +93,7 @@ public final class KinematicPrecessionAsLimit extends TextOutput implements Expl
   
   /** Use a {@link CircularHistory}. */
   private void rotationFromThomasPrecessionFormula(double radius, double β) {
-    add(NL+"Compare with the kinematic precession formula for circular motion."+NL);
+    add(NL+"Compare with the kinematic spin formula for circular motion."+NL);
     TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;

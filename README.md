@@ -25,7 +25,7 @@ In this project:
 
 **Kinematic rotation** is used instead of *Thomas-Wigner rotation*.
 
-**Kinematic precession** is used instead of *Thomas precession*.
+**Kinematic spin** is used instead of *Thomas precession*.
 
 **Flattening** is used instead of *Lorentz-Fitgerald contraction*.
 
@@ -57,7 +57,7 @@ However, working with *BigDecimal* is more painful than working with *Double*, s
 
 **Formulas: many-formulas versus one-formula is a very interesting question.**
 This project implements as many calculations as possible with the core Lorentz Transformation, instead of using a new formula for each phenomenon. 
-(The sole exception is kinematic (Thomas) precession.) 
+The sole exception is kinematic spin (Thomas precession). 
 
 Advantages: 
  - it *directly* manifests how the Lorentz Transformation generates diverse phenomena.
@@ -108,10 +108,10 @@ I found this with:
 *However, I haven't retained this simplicity.*
 What's more important to me here is to ensure correctness.
 The main way of doing that is to have the core of almost all phenomena implemented by the Lorentz Transformations.
-I have succeeded in doing so for all phenomena except for kinematic (Thomas) precession for circular motion. 
+I have succeeded in doing so for all phenomena except for kinematic spin (Thomas precession) for circular motion. 
 In that case, an implementation using the Lorentz Transformation requires numerical integration along the object's history.
-(I have included an example which shows how using N boosts to approximate a circular orbit with regular-sided polygons 
-closely approximates the formula for kinematic (Thomas) precession.)
+I have included an example which shows how using N boosts to approximate a circular orbit with regular-sided polygons 
+closely approximates the formula for kinematic spin (Thomas precession).
 
 
 **Kinematic rotation is important.**
@@ -135,7 +135,7 @@ The orientation of an object is defined by angles.
 So boosts can change the orientation of an object (as seen in a rest frame), and the multiple, continuous boosts seen in circular motion (for example) will continuously alter the orientation of an object.
 No work is done on the object in the process.
 
-**Kinematic rotation is a spin which has no associated angular momentum / rotational energy.**
+**Kinematic spin is a spin which has no associated angular momentum / rotational energy.**
 This is rather strange and unexpected.
 
 

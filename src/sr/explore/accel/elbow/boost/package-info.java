@@ -40,7 +40,7 @@ transformations in different directions are equivalent to a Lorentz transformati
 a three dimensional rotation. This rotation of the local frame of rest is the kinematic
 effect that causes the Thomas precession."</em>
 
-References for kinematic precession:
+References for kinematic spin:
 <ul>
  <li><a href='https://jila.colorado.edu/arey/sites/default/files/files/seven(1).pdf'>Smoot</a>
  <li><a href='https://demonstrations.wolfram.com/ThomasPrecessionInAcceleratedPlanarMotion/'>Rodd-Routley</a>
@@ -48,7 +48,7 @@ References for kinematic precession:
 </ul> 
 
 <P>
- The kinematic precession vector is proportional to the 
+ The kinematic spin vector is proportional to the 
  cross product of the 3-acceleration and the 3-velocity (in that order!).
  So, the magnitude of the precession vector is 0 when that cross-product is 
  the 0-vector (no acceleration, no velocity, or both are in the same line).

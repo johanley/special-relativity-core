@@ -1,4 +1,4 @@
-The kinematic precession for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon.
+The kinematic spin for circular motion as the limit of moving around a circuit shaped as an N-sided regular polygon.
 
 Circuit Length: 10.0
 Speed: 0.5
@@ -365,7 +365,7 @@ N sides   Kinematic rotation
 359       -55.68866°
 360       -55.68868°
 
-Compare with the kinematic precession formula for circular motion.
+Compare with the kinematic spin formula for circular motion.
 
 Circle circumference: 10.0
 Circle radius: 1.59155

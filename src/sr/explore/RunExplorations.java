@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sr.explore.accel.circular.motion.OneRevolution;
-import sr.explore.accel.circular.motion.KinematicPrecessionAsLimit;
+import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
@@ -65,7 +65,7 @@ public final class RunExplorations {
     result.add(new MaxAngleBetweenResultVectors());
     result.add(new NeverExceedsSpeedLimit());
     result.add(new SignReversal());
-    result.add(new KinematicPrecessionAsLimit());
+    result.add(new KinematicSpinAsLimit());
     result.add(new DopplerCone());
     result.add(new DopplerConeElbowBoost());
     result.add(new WaveVectorK());
