@@ -17,7 +17,7 @@ In this project:
 
 This project uses the following non-standard words.
 
-I usually use parens to aid the reader, as in, for example *kinematic (Wigner) rotation*.
+I usually use parens to aid the reader - for example, *kinematic (Wigner) rotation*.
 
 **Grid** is used (in the code, not in the documentation) instead of *inertial frame of reference*.
 
