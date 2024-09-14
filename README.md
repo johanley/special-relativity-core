@@ -135,6 +135,10 @@ The orientation of an object is defined by angles.
 So boosts can change the orientation of an object (as seen in a rest frame), and the multiple, continuous boosts seen in circular motion (for example) will continuously alter the orientation of an object.
 No work is done on the object in the process.
 
+**Kinematic rotation is a spin which has no associated angular momentum / rotational energy.**
+This is rather strange and unexpected.
+
+
 **Characterizing the motion of a mass-particle in SR requires two additional items.**
 In the Newtonian world, the history of a mass-particle in a given grid is described by its position vector <b>r</b>(t) and its derivatives, velocity <b>v</b>(t) and acceleration <b>a</b>(t).
   
