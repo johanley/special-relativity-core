@@ -13,9 +13,9 @@ import sr.core.vector4.FourVector;
  
  <P><b>There are 2 opposite use cases here</b>:
  <ul>
-  <li>given the components of a {@link FourVector} in one inertial grid K, find its components in a second grid K'
+  <li>given the components of a {@link FourVector} in one inertial frame K, find its components in a second frame K'
    ({@link #changeGrid(FourVector)}, with inverse {@link #changeVector(FourVector)}) 
-  <li>given the components of a {@link FourVector} in one inertial grid K, find the components of a second four-vector in the same grid K
+  <li>given the components of a {@link FourVector} in one inertial frame K, find the components of a second four-vector in the same frame K
      ({@link #changeVector(FourVector)}, with inverse {@link #changeGrid(FourVector)}).
  </ul>
  
@@ -35,8 +35,8 @@ public interface Transform {
     
    The inverse operation is {@link #changeVector(FourVector)}.
    
-   @param fourVector the components of a four-vector in the K grid.
-   @return the components of the same four-vector in the K' grid. 
+   @param fourVector the components of a four-vector in the K frame.
+   @return the components of the same four-vector in the K' frame. 
   */
   <T extends FourVector & Builder<T>> T changeGrid(T fourVector);
   
@@ -45,8 +45,8 @@ public interface Transform {
     
    The inverse operation is {@link #changeGrid(T)}.
    
-   @param fourVector the components in a given grid K.
-   @return the components of a second four-vector in a given grid K. 
+   @param fourVector the components in a given frame K.
+   @return the components of a second four-vector in a given frame K. 
   */
   <T extends FourVector & Builder<T>> T changeVector(T fourVector);
 

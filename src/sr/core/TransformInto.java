@@ -6,10 +6,10 @@ package sr.core;
 */
 public enum TransformInto {
   
-  /** A transform which returns quantities attached to grid K'. */
+  /** A transform which returns quantities attached to frame K'. */
   PRIMED(+1),
   
-  /** A transform which returns quantities attached to grid K. */
+  /** A transform which returns quantities attached to frame K. */
   UNPRIMED(-1);
   
   public static TransformInto from(int sign) {

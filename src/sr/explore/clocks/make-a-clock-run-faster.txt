@@ -1,11 +1,11 @@
-A clock's rate relative to a grid can also DECREASE because of a boost.
+A clock's rate relative to a frame can also DECREASE because of a boost.
 This happens simply because a boost can decrease the relative speed of the clock.
 
 Clock approaching with β: 0.9
-Clock rate relative to the grid: 0.43589
+Clock rate relative to the frame: 0.43589
 
 If a boost of 0.4 is AWAY FROM the approaching clock,
 then the relative speed decreases, and the rate of the clock increases.
 
 Clock approaching with β: 0.5
-Clock rate relative to the grid: 0.866025
+Clock rate relative to the frame: 0.866025

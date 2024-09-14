@@ -13,7 +13,7 @@ import sr.core.vector4.WaveVector;
  The detection of a photon at the detector.
  Most of the physics for a flyby is implemented in the class constructor.
  
- <P>This data is attached to two grids:
+ <P>This data is attached to two frames:
   <ul>
    <li>K, in which the detector is at rest with respect to the star.
    <li>K', in which the detector is moving with respect to the star.

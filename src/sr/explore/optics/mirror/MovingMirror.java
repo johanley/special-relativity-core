@@ -17,7 +17,7 @@ import sr.output.text.TextOutput;
 /**
  <P>Reflection from a moving mirror.
 
- <P>In the rest grid K of a mirror, a plane monochromatic light wave hits a mirror and bounces off.
+ <P>In the rest frame K of a mirror, a plane monochromatic light wave hits a mirror and bounces off.
  The angle of incidence equals the angle of reflection.
 
  <P>Let's take the spatial geometry as:
@@ -34,7 +34,7 @@ import sr.output.text.TextOutput;
   incident |  
 </pre>
 
-<P>In a boosted grid K' viewing the same phenomena, however, the geometry is different.
+<P>In a boosted frame K' viewing the same phenomena, however, the geometry is different.
 You can explore this using a pair of {@link WaveVector} objects and a {LorentzTransformation}.
 The two {@link WaveVector} objects correspond to the incoming and outgoing monochromatic plane waves.
 
@@ -49,8 +49,8 @@ public final class MovingMirror extends TextOutput implements Exploration {
   
   @Override public void explore() {
     add("A monochromatic plane wave reflects from a flat mirror in the YZ plane.");
-    add("In grid K, the mirror is at rest.");
-    add("In a boosted grid K', with the boost along the +/-X-axis, the mirror is moving with some velocity." + NL);
+    add("In frame K, the mirror is at rest.");
+    add("In a boosted frame K', with the boost along the +/-X-axis, the mirror is moving with some velocity." + NL);
     add("Compare the wave-vectors for the incident and reflected waves, between K and K'.");
     
     double ω = 1.0;
@@ -61,7 +61,7 @@ public final class MovingMirror extends TextOutput implements Exploration {
     add("K: incident  " + incident_K + "  θi = " + angleFromXAxis(incident_K.spatialComponents()) + "°");
     add("K: reflected " + reflected_K + " θr = " + complement(angleFromXAxis(reflected_K.spatialComponents())) + "°");
 
-    add(NL+"Now view the same wave-vectors in a boosted grid K'." + NL);
+    add(NL+"Now view the same wave-vectors in a boosted frame K'." + NL);
 
     add("For boosts in the -X-axis direction:" + NL);
     tableFor(incident_K, reflected_K, -1);
@@ -69,7 +69,7 @@ public final class MovingMirror extends TextOutput implements Exploration {
     add(NL+ "For boosts in the +X-axis direction:" + NL);
     tableFor(incident_K, reflected_K, +1);
     
-    add(NL+"In the K' grid, the wave-vectors have different directions and frequencies.");
+    add(NL+"In the K' frame, the wave-vectors have different directions and frequencies.");
     
     outputToConsoleAnd("moving-mirror.txt");
   }

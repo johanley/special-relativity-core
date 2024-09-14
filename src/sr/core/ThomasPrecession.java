@@ -11,15 +11,15 @@ import sr.core.vector3.Velocity;
  Thomas precession for a given acceleration.
  
  <P>A precession is a rate of rotation about an axis.
- Here, the rotation is between the spatial axes of two grids:
+ Here, the rotation is between the spatial axes of two frames:
  <ul>
-  <li>grid K, in which an object moves
-  <li>grid K', which is instantaneously co-moving with the object
+  <li>frame K, in which an object moves
+  <li>frame K', which is instantaneously co-moving with the object
  </ul> 
  The rotation transforms the spatial axes of K into the spatial axes of K'.
  
  <P>This can be applied generally, not just to circular motion.
- In the general case the overall rotation of the co-moving grid can be integrated along the history.
+ In the general case the overall rotation of the co-moving frame can be integrated along the history.
  
  <P>In the case of circular motion in the XY plane and with the angular velocity in the +Z-direction (right-hand rule),
  the axis-angle of the Thomas precession is always in the -Z-direction, and has a constant magnitude.
@@ -33,7 +33,7 @@ public final class ThomasPrecession {
    
    @param a in K, the instantaneous acceleration of an object at time ct
    @param v in K, the instantaneous velocity of an object at time ct
-   @return rate of rotation of the co-moving grid K' with respect to K (right-hand rule); the rate uses ct.
+   @return rate of rotation of the co-moving frame K' with respect to K (right-hand rule); the rate uses ct.
   */
   public static AxisAngle ofKprime(Acceleration a, Velocity v) {
     return transform(a, v, +1);
@@ -42,7 +42,7 @@ public final class ThomasPrecession {
   /**
    The inverse of {@link #primed(Acceleration, Velocity)}.
     
-   @return rate of rotation of K with respect to the co-moving grid K' (right-hand rule); the rate uses ct' (not the proper-time of the object).
+   @return rate of rotation of K with respect to the co-moving frame K' (right-hand rule); the rate uses ct' (not the proper-time of the object).
   */
   public static AxisAngle ofK(Acceleration a, Velocity v) {
     //is this correct? is it really a rate with respect to ct'?

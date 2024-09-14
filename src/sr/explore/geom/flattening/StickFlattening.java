@@ -24,7 +24,7 @@ import sr.output.text.TextOutput;
  
  <P>Second, place a stick at an angle with respect to the X-axis (not 0 or 90 degrees). 
  Do a boost along the X-axis.
- In the boosted grid, the angle of the stick with respect to the X-axis will change.
+ In the boosted frame, the angle of the stick with respect to the X-axis will change.
  The stick will "flatten" along the direction of the boost.
  This changes the direction in which the stick is pointing. 
  At ultra-relativistic speeds, the rotated stick will approach the direction of 90 degrees away from the X-axis.
@@ -39,11 +39,11 @@ public class StickFlattening extends TextOutput implements Exploration {
   @Override public void explore() {
     stickAlongAxis(0.6);
     stickAlongAxis(0.9999);
-    add(Util.NL + "Conclusion 1: in the boosted grid, the stick's length is reduced, and asymptotically approaches 0.");
+    add(Util.NL + "Conclusion 1: in the boosted frame, the stick's length is reduced, and asymptotically approaches 0.");
     
     stickAngledToXAxis(0.6);
     stickAngledToXAxis(0.9999);
-    add(Util.NL + "Conclusion 2: in the boosted grid, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
+    add(Util.NL + "Conclusion 2: in the boosted frame, the stick's angle with respect to the X-axis is increased, and asymptotically approaches 90°.");
     
     stickAngledToXAxisWithEquivalentBoostParams();
     
@@ -69,7 +69,7 @@ public class StickFlattening extends TextOutput implements Exploration {
    @param β the boost speed along the X-direction 
   */
   void stickAlongAxis(Double β) {
-    add(Util.NL + "1. Boost speed " + β + ". Stick along the X-axis in the unboosted grid.");
+    add(Util.NL + "1. Boost speed " + β + ". Stick along the X-axis in the unboosted frame.");
     add(SEP);
     add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
@@ -135,7 +135,7 @@ public class StickFlattening extends TextOutput implements Exploration {
    @param β the boost speed along the X-direction 
   */
   void stickAngledToXAxis(Double β) {
-    add(Util.NL + "2. Boost speed " + β + ". Stick angled 45° to the X-axis in the unboosted grid, from the origin to (X,Y,Z)=(1,1,0). ");
+    add(Util.NL + "2. Boost speed " + β + ". Stick angled 45° to the X-axis in the unboosted frame, from the origin to (X,Y,Z)=(1,1,0). ");
     add(SEP);
     add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
@@ -187,12 +187,12 @@ public class StickFlattening extends TextOutput implements Exploration {
    <ul>
     <li>the stick is squished in the X-direction only
     <li>its angle with respect to the X axis increases to 43.152°, an increase of 18.925°.
-    <li>18.925° is the kinematic (Thomas-Wigner) rotation angle taken from the original elbow-boost example. 
+    <li>18.925° is the kinematic (Thomas-Wigner) rotation angle taken from the original elbow-boost example (with two non-collinear boosts). 
    </ul>
   */
   void stickAngledToXAxisWithEquivalentBoostParams() {
     add(Util.NL + "3. Stick of unit length is angled to the X-axis, with one end at the origin and the other in the XY-plane.");
-    add("Two params (stick-angle and boost-speed) are taken from the elbow-boost calculation.");
+    add("Two params (stick-angle and boost-speed) are taken from the elbow-boost calculation (with two non-collinear boosts).");
     add(SEP);
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);

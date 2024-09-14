@@ -8,8 +8,8 @@ import sr.core.vector4.Event;
  
  <P>A transformation can be applied in <a href='https://en.wikipedia.org/wiki/Active_and_passive_transformation'>two complementary senses</a>: 
  <ul>
-  <li>one grid, two different vectors (active transformation)
-  <li>one vector, two different grid (passive transformation)
+  <li>one frame, two different vectors (active transformation)
+  <li>one vector, two different frames (passive transformation)
  </ul>
  You must be aware of which sense is needed in a given context, or errors will result.
 

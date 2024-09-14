@@ -9,7 +9,7 @@ The parameterized history (world-line) of an object (with mass) represented as a
 
 <P>In general, the parameter to a history could be:
 <ul> 
- <li>the coordinate-time ct in a given grid 
+ <li>the coordinate-time ct in a given frame 
  <li>a proper-time τ of an object having mass travelling along the history
  <li>any other parameter having suitable uniqueness/continuity attributes
 </ul>

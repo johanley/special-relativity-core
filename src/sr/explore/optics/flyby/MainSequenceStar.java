@@ -14,10 +14,10 @@ enum MainSequenceStar {
   K(4450.0, 7.5,  0.10),
   M(3050.0, 13.9, 0.7937497); //this relative frequency has spurious precision, to make sure all add up to 1.0
   
-  /** Surface temperature of the star, in Kelvins (rest grid). */
+  /** Surface temperature of the star, in Kelvins (rest frame). */
   double surfaceTemperature() { return surfaceTemperature; }
   
-  /** The visual magnitude of a star at a distance of 10 parsecs (rest grid).  */
+  /** The visual magnitude of a star at a distance of 10 parsecs (rest frame).  */
   double absoluteMagnitude() { return absoluteMagnitude; }
   
   /** The relative probability of finding a star of this spectral type in a typical population of stars near the Sun. */

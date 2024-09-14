@@ -23,14 +23,14 @@ import sr.output.text.TextOutput;
 /**  
  Explore kinematic rotation (Wigner rotation) using only the Lorentz Transformation and simple histories.
  
- <P>Use three grids K, K', then K'', and a corner-boost:
+ <P>Use three frames K, K', then K'', and a corner-boost:
  <ul>
   <li>in K, first boost along X to K'.
   <li>in K', second boost along Y to K''.
  </ul>
  
   <P>Uses a stick to represent the direction of the X''-axis in K''.
-  The task is to measure the direction of the stick in grid K.
+  The task is to measure the direction of the stick in frame K.
 
  <P>Algorithm:
  <ul>
@@ -44,10 +44,10 @@ import sr.output.text.TextOutput;
  </ul>
  
  <P>The above algorithm does indeed show the geometry of the stick in K.
- But you need to be careful, because when elbow boosts are used, the geometry/orientation of the stick is affected by 2 items: 
+ But you need to be careful, because when elbow-boosts (two non-collinear boosts) are used, the geometry/orientation of the stick is affected by 2 items: 
  <ul>
   <li>the flattening effect (length contraction) seen with boosts in general
-  <li>kinematic rotation (Wigner rotation), seen with elbow-boosts
+  <li>kinematic rotation (Wigner rotation), seen with elbow-boosts (two non-collinear boosts)
  </ul>
 */
 public final class KinematicRotation extends TextOutput implements Exploration {
@@ -74,7 +74,7 @@ public final class KinematicRotation extends TextOutput implements Exploration {
   private void stickHistory() {
     
     /*
-     In variable names, use these aliases for the grids:
+     In variable names, use these aliases for the frames:
      K'' : Kpp (as in the number of primes)
      K'  : Kp
      K   : K

@@ -17,7 +17,7 @@ import sr.output.text.TextOutput;
 /**
  Find the boost-plus-rotation that equates to two perpendicular boosts (a corner-boost).
  
- <P>Here, in the intermediate grid K', two successive boosts are at right angles to each other, along 2 of the spatial axes.
+ <P>Here, in the intermediate frame K', two successive boosts are at right angles to each other, along 2 of the spatial axes.
  (Please see the package documentation for more exact details.)
  
  <P>The more general case is to have the second boost at any angle with respect to the first.

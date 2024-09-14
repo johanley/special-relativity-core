@@ -11,7 +11,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- A boost doesn't always <em>decrease</em> the rate of a clock with respect to a grid.
+ A boost doesn't always <em>decrease</em> the rate of a clock with respect to a frame.
  (It's easy to forget this.) 
  
  <P>This is simply because a boost can either <em>increase or decrease</em> the relative speed of the clock.
@@ -20,7 +20,7 @@ import sr.output.text.TextOutput;
  depending on the relative geometry between the initial motion and the direction of the boost.
  
  <P>For the exact same reason, a similar remark can be made for flattening (Lorentz-Fitgerald contraction): a boost can both 
- flatten or unflatten the geometry of an object relative to a grid.
+ flatten or unflatten the geometry of an object relative to a frame.
 */
 public final class MakeAClockRunFaster extends TextOutput implements Exploration {
   
@@ -32,7 +32,7 @@ public final class MakeAClockRunFaster extends TextOutput implements Exploration
   @Override public void explore() {
     double speed1 = 0.9;
     double speed2 = 0.5;
-    add("A clock's rate relative to a grid can also DECREASE because of a boost.");
+    add("A clock's rate relative to a frame can also DECREASE because of a boost.");
     add("This happens simply because a boost can decrease the relative speed of the clock." + Util.NL);
     showClockRate(0.9);
     add(Util.NL + "If a boost of " + (speed1 - speed2) + " is AWAY FROM the approaching clock,");
@@ -44,7 +44,7 @@ public final class MakeAClockRunFaster extends TextOutput implements Exploration
   private void showClockRate(double β){
     TimelikeHistory clock = UniformVelocity.of(Position.of(X, -100.0), Velocity.of(X, β));
     double clockRate = clock.τ(1.0);
-    add("Clock approaching with β: " + round(β) + Util.NL + "Clock rate relative to the grid: " + round(clockRate));
+    add("Clock approaching with β: " + round(β) + Util.NL + "Clock rate relative to the frame: " + round(clockRate));
   }
   
   private double round(double value) {

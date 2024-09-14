@@ -1,4 +1,4 @@
-Velocity reverses sign only in the colinear case, and only with one variant of the formula.
+Velocity reverses sign only in the collinear case, and only with one variant of the formula.
 
 Boost from K to K': [0.5,0.0,0.0] Velocity:[0.7,0.0,0.0] are in the same line.
 

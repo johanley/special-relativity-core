@@ -37,7 +37,7 @@ public final class Displacement /*no implements Transform, since this operation 
     return result;
   }
   
-  /** The origin of the grid is displaced by the given amounts. */
+  /** The origin of the frame is displaced by the given amounts. */
   public Event changeGrid(Event event) {
     return transform(event, -1);
   }

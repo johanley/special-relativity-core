@@ -20,7 +20,7 @@ import sr.explore.Exploration;
  There are many errors in such representations. 
  
  <P>This class investigates the case of a relativistic fly-by of a single star.
- In the inertial grid used here, the star moves relativistically with respect to a detector at rest at the origin.
+ In the inertial frame used here, the star moves relativistically with respect to a detector at rest at the origin.
  Here's the assumed spatial geometry, with <em>D</em> as the detector at the origin of the spatial coordinates:
  <pre>
                ^ Y-axis
@@ -35,7 +35,7 @@ import sr.explore.Exploration;
  <P>
  <ul>
   <li>The star is modeled as a point light source having a black-body spectrum.
-  <li>The star is a main sequence star. In its rest grid it has a given absolute temperature, which maps to a spectral class.
+  <li>The star is a main sequence star. In its rest frame it has a given absolute temperature, which maps to a spectral class.
   <li>The star moves uniformly (in the positive X-direction) at a given speed β.
   <li>It passes by a single detector, placed at the origin of the coordinate system.
   <li>At closest approach, the star is at a given minimum-distance (along the positive Y-axis) away from the detector. 
@@ -43,7 +43,7 @@ import sr.explore.Exploration;
   <li>The star is at a given initial distance from the Y-axis.
  </ul>
  
-  <P>All times are coordinate-times <em>ct</em> in the rest grid of the detector.
+  <P>All times are coordinate-times <em>ct</em> in the rest frame of the detector.
   <ul>
    <li>The time <em>ct=0</em> corresponds to the intersection of the star's path with the YZ-plane.
    <li>Negative <em>ct</em> corresponds to approach, and positive <em>ct</em> corresponds to recession.
@@ -139,7 +139,7 @@ public final class RelativisticFlyBy implements Exploration {
   
   /**
    Constructor.
-   See the class comment for a description of the geometry/inertial grid used here. 
+   See the class comment for a description of the geometry/inertial frame used here. 
    
    <P>Unique units: years for time, and light-years for distance. 
    (Implementation note: light-years are needed only for the calculation of the star's visual magnitude <em>V</em>.)

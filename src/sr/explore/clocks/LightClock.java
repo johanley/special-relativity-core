@@ -21,7 +21,7 @@ import sr.output.text.TextOutput;
 A light clock consists of two mirrors, facing each other, between which a pulse of light bounces back and forth.
 
 
-<P>Here, in grid K, a light clock has one mirror at the origin, and the other along the +X-axis. 
+<P>Here, in frame K, a light clock has one mirror at the origin, and the other along the +X-axis. 
 A pulse of light bounces back and forth between the two mirrors.
 One full tick of the light clock means the pulse of light has gone from one mirror, to the other, and then back to the start. 
 <pre>
@@ -37,7 +37,7 @@ One full tick of the light clock means the pulse of light has gone from one mirr
 </pre>
 
 
-<P>The space-time history of the one complete cycle of the light pulse in the light clock has this general appearance in the grid K: 
+<P>The space-time history of the one complete cycle of the light pulse in the light clock has this general appearance in the frame K: 
 <pre>
            CT
            ^       *
@@ -51,7 +51,7 @@ One full tick of the light clock means the pulse of light has gone from one mirr
            |       * 
 </pre>
 
-<P>This class will examine one complete cycle of the light clock, both in grid K and in a boosted grid K', where the boost is in 
+<P>This class will examine one complete cycle of the light clock, both in frame K and in a boosted frame K', where the boost is in 
 a variety of directions.
 */
 public final class LightClock extends TextOutput implements Exploration {
@@ -62,7 +62,7 @@ public final class LightClock extends TextOutput implements Exploration {
   }
 
   @Override public void explore() {
-    add("Compare one tick of a light clock, as seen first in its rest grid K, and then in various boosted grids K'." + NL);
+    add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
     History lightPulse = MirrorReflection.of(DeltaBase.origin(), Direction.of(-1, 0, 0));
     double ct = 10;
@@ -74,7 +74,7 @@ public final class LightClock extends TextOutput implements Exploration {
     add("K:(b-a)" + b_K.minus(a_K) + " one full tick of the clock."+NL);
     
     double β = 0.90;
-    add("Now look at how those same two events a and b transform in boosted grids K'.");
+    add("Now look at how those same two events a and b transform in boosted frames K'.");
     add("Boost speed: " + β);
     add("Boost direction: various (see table below)." + NL);
     add(tableHeader.row("Boost", "Boost", "", "Ratio", "Boost"));

@@ -1,4 +1,4 @@
-In a grid K, two rockets accelerate in tandem, completely in sync.
+In a frame K, two rockets accelerate in tandem, completely in sync.
 By definition, in K the two rockets remain separated by a fixed distance.
 In K, the length of a connector between the rockets decreases with increasing speed.
 

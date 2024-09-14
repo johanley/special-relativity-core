@@ -93,7 +93,7 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
   private static final double DISTANT = 100.0;
   
   /**
-   In grid K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
+   In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
   private static final TimelikeHistory HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 

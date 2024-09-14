@@ -15,13 +15,13 @@ import sr.output.text.TextOutput;
 /**
  Behaviour of multiple boosts, applied one after the other.
  
- <P>The behaviour differs according to whether or not the boosts are in the same line (co-linear).
+ <P>The behaviour differs according to whether or not the boosts are in the same line (collinear).
  
  <P>Same line: two boosts in sequence along an axis are equivalent to a third boost along the same axis.
  The two boosts commute.
 
  <P>Not the same line (an elbow-boost): they two boosts don't commute.
- An elbow-boost is equivalent to a boost plus a rotation, here called kinematic rotation (Wigner rotation).
+ An elbow-boost is equivalent to a boost plus a rotation, here called a kinematic rotation (Wigner rotation).
 */
 public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   
