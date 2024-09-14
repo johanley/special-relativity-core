@@ -21,7 +21,7 @@ import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  
- Explore kinematic rotation using only the Lorentz Transformation and simple histories.
+ Explore kinematic rotation (Wigner rotation) using only the Lorentz Transformation and simple histories.
  
  <P>Use three grids K, K', then K'', and a corner-boost:
  <ul>
@@ -46,8 +46,8 @@ import sr.output.text.TextOutput;
  <P>The above algorithm does indeed show the geometry of the stick in K.
  But you need to be careful, because when elbow boosts are used, the geometry/orientation of the stick is affected by 2 items: 
  <ul>
-  <li>the flattening effect seen with boosts in general
-  <li>kinematic rotation, seen with elbow-boosts
+  <li>the flattening effect (length contraction) seen with boosts in general
+  <li>kinematic rotation (Wigner rotation), seen with elbow-boosts
  </ul>
 */
 public final class KinematicRotation extends TextOutput implements Exploration {
@@ -69,7 +69,7 @@ public final class KinematicRotation extends TextOutput implements Exploration {
    In K, get a time-slice through the two histories, and infer the direction of the stick as seen in K.
    
    <P>Compare the direction of the stick with computed values that come from 
-   both flattening and kinematic rotation.
+   both flattening (length contraction) and kinematic rotation (Wigner rotation).
   */
   private void stickHistory() {
     
@@ -128,8 +128,8 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     
     EquivalentBoostPlusRotation calc = new EquivalentBoostPlusRotation(Z, β1, β2);
     add(" ");
-    add("Disentangle two effects: kinematic rotation versus flattening."+Util.NL);
-    add("FIRST DO A ROTATION (because of kinematic rotation)."); 
+    add("Disentangle two effects: kinematic rotation (Wigner rotation) versus flattening (length contraction)."+Util.NL);
+    add("FIRST DO A ROTATION (because of kinematic/Wigner rotation)."); 
     add("Examine the equivalent-boost with respect to K (the boost+rotation pair that's equivalent to the corner-boost pair):");
     add("  equivβ: " + round(calc.equivalent().β)); 
     add("  equivDirection: " + degrees(calc.equivalent().direction) + " with respect to the X-axis."); 

@@ -17,7 +17,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /** 
- Measure the flattening effect on a stick, using a time-slice.
+ Measure the flattening effect (Lorentz-Fitgerald contraction) on a stick, using a time-slice.
  As always, a time-slice is needed to see the geometrical properties of an object (length, orientation).
  
  <P>First, the stick is pointed in the direction of the boost (along the X-axis).
@@ -106,7 +106,7 @@ public class StickFlattening extends TextOutput implements Exploration {
   }
   
   /**
-   Measure the flattening of a stick that's at an angle to the X-axis (the line of a boost).
+   Measure the flattening  (Lorentz-Fitgerald contraction) of a stick which is at an angle to the X-axis (the line of a boost).
    
    In K:
    <ul>

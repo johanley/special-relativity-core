@@ -21,7 +21,7 @@ import sr.output.text.TextOutput;
  The two boosts commute.
 
  <P>Not the same line (an elbow-boost): they two boosts don't commute.
- An elbow-boost is equivalent to a boost plus a rotation, here called kinematic rotation.
+ An elbow-boost is equivalent to a boost plus a rotation, here called kinematic rotation (Wigner rotation).
 */
 public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   

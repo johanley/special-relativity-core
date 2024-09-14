@@ -12,9 +12,9 @@ Difference (B - A): [0.0, 0.6, -0.48, 0.0] has ct=0 (time-slice).
 Angle of the stick with respect to the X-axis: -38.66°
 Length of the stick: 0.768. It shows some contraction.
  
-Disentangle two effects: kinematic rotation versus flattening.
+Disentangle two effects: kinematic rotation (Wigner rotation) versus flattening (length contraction).
 
-FIRST DO A ROTATION (because of kinematic rotation).
+FIRST DO A ROTATION (because of kinematic/Wigner rotation).
 Examine the equivalent-boost with respect to K (the boost+rotation pair that's equivalent to the corner-boost pair):
   equivβ: 0.877
   equivDirection: 24.228° with respect to the X-axis.

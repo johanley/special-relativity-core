@@ -1,5 +1,5 @@
 /**
- The flattening effect (Lorentz-Fitzgerald contraction).
+ The flattening effect (Lorentz-Fitzgerald length contraction).
  
  The term <em>length contraction</em> is misleading.
  The flattening changes geometry: length <em>and</em> angles.

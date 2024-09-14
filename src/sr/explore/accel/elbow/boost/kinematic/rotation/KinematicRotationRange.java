@@ -9,7 +9,7 @@ import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** 
- Explore the range of values of the kinematic rotation angle. 
+ Explore the range of values of the kinematic rotation angle (Wigner rotation angle). 
  
  <P>In this class, a corner-boost is used and the extreme max angle is pi/2.
  
