@@ -13,7 +13,7 @@ import sr.core.vector3.Direction;
 import sr.core.vector3.ThreeVector;
 
 /**
- Wave vector <em>k<sup>i</sup></em>, with angular frequency and direction unit-vector. 
+ Wave vector <em>k<sup>i</sup></em> for a plane monochromatic wave, with angular frequency and direction unit-vector. 
  The space components are the direction unit-vector multiplied by the frequency
  (neglecting factors of <em>c</em>, because in this project we use <em>c=1</em>).
 */

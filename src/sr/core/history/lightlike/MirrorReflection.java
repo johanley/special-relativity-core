@@ -8,7 +8,7 @@ import sr.core.vector3.Direction;
 import sr.core.vector4.Event;
 
 /**
- History for a particle with no mass moving uniformly from infinity to some event, then in the opposite direction back out to infinity.
+ History for a particle with no mass moving uniformly in a vacuum from infinity to some event, then in the opposite direction back out to infinity.
  
  <P>Mental model: a light pulse bouncing off a mirror.
  

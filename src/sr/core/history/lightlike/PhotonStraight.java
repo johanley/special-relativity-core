@@ -7,7 +7,7 @@ import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 
 /**
-History for a particle with no mass moving uniformly at speed <em>c=1</em> in a given direction.
+History for a particle with no mass moving uniformly in a vacuum at speed <em>c=1</em> in a given direction.
 The general character of this history:
 
  <pre>

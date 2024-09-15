@@ -1,4 +1,2 @@
-/**
- Events in Minkowski space-time. 
- */
+/** Four-vectors in Minkowski space-time. */
 package sr.core.vector4;
