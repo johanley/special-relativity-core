@@ -270,9 +270,10 @@ not only *changes* in the phase are objective facts, but *the phase itself* is a
 
 These remarks apply to *any periodic phenomenon*, not just to plane waves of light having a single frequency.
 
-**The wave vector** k<sup>i</sup> = (&omega;/c)*(1, **n**) **applies to any plane wave with a single frequency.**
-It's not defined only for light waves in a vacuum, but for any kind of plane wave with a single frequency, for example a sound wave with a single frequency.
-It can be applied to waves with a different speed by replacing *c* with the speed of the given wave (it phase velocity).
+**The idea of the wave vector** k<sup>i</sup> = (&omega;/c)*(1, **n**) **can be applied to any plane wave, of any speed, having a single frequency.**
+It's not defined only for light waves in a vacuum.
+It can be applied, for example, to a sound wave with a single frequency.
+The only change needed is to replace *c* with the speed of the given wave (it phase velocity).
 
   
 
