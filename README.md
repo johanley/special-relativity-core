@@ -268,7 +268,7 @@ Every frame must agree on the size of the change in phase.
 If, in addition, the phase is constrained to be in the range [0..2pi), then
 not only *changes* in the phase are objective facts, but *the phase itself* is an objective fact.
 
-These remarks apply to any periodic phenomenon, not just to plane waves of light having a single frequency.
+These remarks apply to *any periodic phenomenon*, not just to plane waves of light having a single frequency.
 
   
 
