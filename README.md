@@ -257,7 +257,7 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
 
-**The change in phase of a periodic phenomenon is a Lorentz-scalar because it describes a fact in the world.**
+**The change in phase related to any periodic phenomenon is a Lorentz-scalar because it describes a fact in the world.**
 Picture an electric clock having hands.
 You plug it in, it runs for while, then you unplug it.
 Take the phase as describing the angular position of the minute hand. 
@@ -267,6 +267,9 @@ Every frame must agree on the size of the change in phase.
 
 If, in addition, the phase is constrained to be in the range [0..2pi), then
 not only *changes* in the phase are objective facts, but *the phase itself* is an objective fact.
+
+These remarks apply to any periodic phenomenon, not just to plane waves of light having a single frequency.
+
   
 
 <!--
