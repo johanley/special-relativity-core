@@ -257,9 +257,9 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
 
-**The change in phase related to any periodic phenomenon is a Lorentz-scalar because it describes a fact in the world.**
+**The change in phase related to any wave phenomenon is a Lorentz-scalar because it describes a fact in the world.**
 Picture an electric clock having hands.
-You plug it in, it runs for while, then you unplug it.
+You plug it in, it runs for while, and then you unplug it.
 Take the phase as describing the angular position of the minute hand. 
 The *total change in the phase*, between the plug-it-in event and the unplug-it event, is an objective fact.
 It doesn't depend on the coordinate frame in any way.
@@ -267,17 +267,9 @@ Every frame must agree on the size of the change in phase.
 
 If, in addition, the phase is constrained to be in the range [0..2pi), then
 not only *changes* in the phase are objective facts, but *the phase itself* is an objective fact.
+(An example of *not* using this constraint is <a href='https://archive.org/details/isbn_9788181477873_2/page/142/mode/2up?q=maupertuis&view=theater'>Fermat's principle</a> in geometrical optics.) 
 
-These remarks apply to *any periodic phenomenon*, not just to plane waves of light having a single frequency.
-
-<!--
-**The idea of the wave vector** k<sup>i</sup> = (&omega;/c)*(1, **n**) **can be applied to any plane wave, of any speed, having a single frequency.**
-It's not defined only for light waves in a vacuum.
-It can be applied, for example, to a sound wave with a single frequency.
-The only change needed is to replace *c* with the speed of the given wave (phase velocity).
---> 
-
-  
+These remarks apply to *any wave phenomenon*, not just to plane waves of light of a single frequency traveling in a vacuum.
 
 <!--
 
