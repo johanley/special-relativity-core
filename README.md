@@ -271,6 +271,10 @@ not only *changes* in the phase are objective facts, but *the phase itself* is a
 
 These remarks apply to *any wave phenomenon*, not just to plane waves of light of a single frequency traveling in a vacuum.
 
+**After a boost, a  plane wave (of any speed and nature) remains a plane wave.**
+*"The concept of a plane wave is invariant under the Lorentz transformation: a plane wave remains a plane wave in all coordinate systems."* - 
+<a href='https://archive.org/details/matveev-the-principles-of-electrodynamics/page/344/mode/2up?q=%22concept+of+a+plane+wave%22'>Principles of Electrodynamics</a>, Matveyev. 
+
 <!--
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
