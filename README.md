@@ -257,13 +257,13 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
 
-**The change in phase related to any wave phenomenon is a Lorentz-scalar because it describes a fact in the world.**
+**The change in phase related to any wave phenomenon is a Lorentz-invariant scalar because it describes a fact in the world.**
 Picture an electric clock having hands.
 You plug it in, it runs for while, and then you unplug it.
 Take the phase as describing the angular position of the minute hand. 
 The *total change in the phase*, between the plug-it-in event and the unplug-it event, is an objective fact.
 It doesn't depend on the coordinate frame in any way.
-Every frame must agree on the size of the change in phase.
+Every frame must agree on the size of the *change* in the phase.
 
 If, in addition, the phase is constrained to be in the range [0..2pi), then
 not only *changes* in the phase are objective facts, but *the phase itself* is an objective fact.
