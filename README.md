@@ -9,7 +9,7 @@ I'm hoping that this is the case with this little project as well.
 
 *"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
 
-*"When you see it then you'll understand."* - the song *Speed of Sound, by *Cold Play*
+*"When you see it then you'll understand."* - the song *Speed of Sound*, by *Cold Play*
 
 In this project: 
  - c=1
