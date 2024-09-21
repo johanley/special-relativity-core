@@ -282,8 +282,10 @@ These remarks apply to *any wave phenomenon*, not just to plane waves of light o
 This is no surprise, but it's worth remembering. 
 
 
-**There's a generalized form for the phase-gradient (wave vector) which works with speeds less than <em>c</em>**.
+**There's a generalized form for the phase-gradient (wave vector) <em>k</em> which also allows for waves whose speed is less than <em>c</em>**.
 With this expression (see <a href='https://arxiv.org/pdf/0801.3149v2'>formula (18)</a>), you can model, for example light waves in media, or sound waves.
+For phase-velocity of <em>c</em>, the phase gradient 4-vector is null. 
+For phase-velocity less than <em>c</em>, the phase gradient 4-vector is space-like, because its time component is smaller. 
 
 
 <!--
