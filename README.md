@@ -284,8 +284,12 @@ This is no surprise, but it's worth remembering.
 
 **There's a generalized form for the phase-gradient (wave vector) <em>k</em> which also allows for waves whose speed is less than <em>c</em>**.
 With this expression (see <a href='https://arxiv.org/pdf/0801.3149v2'>formula (18)</a>), you can model, for example light waves in media, or sound waves.
-For phase-velocity of <em>c</em>, the phase gradient 4-vector is null. 
-For phase-velocity less than <em>c</em>, the phase gradient 4-vector is space-like, because its time component is smaller. 
+
+For phase-velocity of <em>c</em>, the phase-gradient 4-vector is null.
+ 
+For phase-velocity less than <em>c</em>, the phase-gradient 4-vector is space-like, because its time component is smaller.
+In addition, after a boost from the frame in which the medium is at rest, the phase-gradient <b>k</b> is not generally parallel with the phase-velocity <b>u</b>.
+
 
 
 <!--
