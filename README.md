@@ -281,6 +281,11 @@ These remarks apply to *any wave phenomenon*, not just to plane waves of light o
 <a href='https://archive.org/details/matveev-the-principles-of-electrodynamics/page/344/mode/2up?q=%22concept+of+a+plane+wave%22'>Principles of Electrodynamics</a>, Matveyev.
 This is no surprise, but it's worth remembering. 
 
+
+**There's a generalized form for the phase-gradient (wave vector) which works with speeds less than <em>c</em>**.
+With this expression (see <a href='https://arxiv.org/pdf/0801.3149v2'>formula (18)</a>), you can model, for example light waves in media, or sound waves.
+
+
 <!--
 
 **Terrell's paper *Invisibility of the Lorentz Contraction* (1959) seems to be of low quality.**
