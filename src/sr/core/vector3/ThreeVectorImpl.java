@@ -219,6 +219,4 @@ public class ThreeVectorImpl implements ThreeVector {
   private double roundIt(double value) {
     return Util.round(value, 5);
   }
-  
-  
 }

@@ -275,7 +275,8 @@ These remarks apply to *any wave phenomenon*, not just to plane waves of light o
 
 **After a boost, a  plane wave (of any speed and nature) remains a plane wave.**
 *"The concept of a plane wave is invariant under the Lorentz transformation: a plane wave remains a plane wave in all coordinate systems."* - 
-<a href='https://archive.org/details/matveev-the-principles-of-electrodynamics/page/344/mode/2up?q=%22concept+of+a+plane+wave%22'>Principles of Electrodynamics</a>, Matveyev. 
+<a href='https://archive.org/details/matveev-the-principles-of-electrodynamics/page/344/mode/2up?q=%22concept+of+a+plane+wave%22'>Principles of Electrodynamics</a>, Matveyev.
+This is no surprise, but it's worth remembering. 
 
 <!--
 

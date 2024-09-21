@@ -48,7 +48,6 @@ public final class LorentzTransformation {
   /**
    Apply the transform using the given sign.
    @param input the four-vector
-   @param sign +1 for returning primed quantities, -1 for returning unprimed quantities.
   */
   public <T extends FourVector & Builder<T>> T transformVector(T input, TransformInto direction) {
     //the core calculation uses matrices, so we convert back and forth like so

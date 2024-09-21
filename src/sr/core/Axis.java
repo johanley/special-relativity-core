@@ -12,10 +12,10 @@ public enum Axis {
   Y(2), 
   Z(3);
 
-  /** ct-x-y-z maps to 0-1-2-3. */
+  /** Here ct-x-y-z maps to 0-1-2-3. */
   public int idx() { return idx; }
   
-  /** Most operations involve the spatial axes. * */
+  /** Most operations involve the spatial axes.  */
   public boolean isSpatial() {
     return this != CT;
   }

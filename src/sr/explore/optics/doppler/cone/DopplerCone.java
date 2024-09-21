@@ -11,7 +11,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link WaveVector}s are affected by a {@LorentzTransformation}.
+ How a uniform set of {@link WaveVector}s are affected by a {@link LorentzTransformation}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.

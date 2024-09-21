@@ -33,7 +33,7 @@ import sr.output.text.TextOutput;
  <P>As N gets large, the circuit approaches a circular shape.
  
  <P>This class will compare the kinematic rotation (Wigner rotation) resulting from one completion of such a circuit with the 
- comparable result derived from the kinematic spin (Thomas precession) formula (using a {@link CircularHistory}).
+ comparable result derived from the kinematic spin (Thomas precession) formula (using a {@link CircularMotion}).
 */
 public final class KinematicSpinAsLimit extends TextOutput implements Exploration {
   

@@ -1,6 +1,7 @@
 package sr.explore.optics.doppler.cone;
 
 import sr.core.Axis;
+import sr.core.LorentzTransformation;
 import sr.core.Util;
 import sr.core.vector4.FourVector;
 import sr.core.vector4.WaveVector;
@@ -12,7 +13,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link WaveVector}s are affected by a {@LorentzTransformation}.
+ How a uniform set of {@link WaveVector}s are affected by a {@link LorentzTransformation}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.

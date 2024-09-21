@@ -3,8 +3,8 @@ package sr.explore;
 import java.util.ArrayList;
 import java.util.List;
 
-import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
+import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
@@ -26,6 +26,7 @@ import sr.explore.optics.flyby.RelativisticFlyBy;
 import sr.explore.optics.kvector.WaveVectorK;
 import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
+import sr.explore.optics.telescope.BoostedTelescope;
 import sr.explore.speeds.SpeedsAndGammas;
 import sr.explore.velocitytransform.BoostToRotateVelocity;
 import sr.explore.velocitytransform.Commutation;
@@ -33,6 +34,7 @@ import sr.explore.velocitytransform.CompareFormulaWithLT;
 import sr.explore.velocitytransform.MaxAngleBetweenResultVectors;
 import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
 import sr.explore.velocitytransform.SignReversal;
+import sr.explore.waves.WavesInMedia;
 
 /** Run a number of explorations in sequence. */
 public final class RunExplorations {
@@ -75,6 +77,8 @@ public final class RunExplorations {
     result.add(new CornerBoostsDontCommute());
     result.add(new EquivalentBoostPlusRotation());
     result.add(new RelativisticFlyBy());
+    result.add(new BoostedTelescope());
+    result.add(new WavesInMedia());
     return result;
   }
 
