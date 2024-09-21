@@ -8,7 +8,7 @@ import sr.core.Axis;
 import sr.core.vector3.Direction;
 import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 import sr.core.vector4.transform.Boost;
 import sr.explore.Exploration;
 import sr.output.text.Table;
@@ -35,8 +35,8 @@ import sr.output.text.TextOutput;
 </pre>
 
 <P>In a boosted frame K' viewing the same phenomena, however, the geometry is different.
-You can explore this using a pair of {@link WaveVector} objects and a {LorentzTransformation}.
-The two {@link WaveVector} objects correspond to the incoming and outgoing monochromatic plane waves.
+You can explore this using a pair of {@link FourPhaseGradient} objects and a {LorentzTransformation}.
+The two {@link FourPhaseGradient} objects correspond to the incoming and outgoing monochromatic plane waves.
 
 <P>This class doesn't model the polarization of the wave.
 */
@@ -54,8 +54,8 @@ public final class MovingMirror extends TextOutput implements Exploration {
     add("Compare the wave-vectors for the incident and reflected waves, between K and K'.");
     
     double ω = 1.0;
-    WaveVector incident_K = WaveVector.of(ω, Direction.of(1,1,0));
-    WaveVector reflected_K = WaveVector.of(ω, Direction.of(-1,1,0));
+    FourPhaseGradient incident_K = FourPhaseGradient.of(ω, Direction.of(1,1,0));
+    FourPhaseGradient reflected_K = FourPhaseGradient.of(ω, Direction.of(-1,1,0));
     
     add(NL+ "In K the pair of waves have directions that agree with the law of reflection:");
     add("K: incident  " + incident_K + "  θi = " + angleFromXAxis(incident_K.spatialComponents()) + "°");
@@ -74,14 +74,14 @@ public final class MovingMirror extends TextOutput implements Exploration {
     outputToConsoleAnd("moving-mirror.txt");
   }
 
-  private void tableFor(WaveVector incident_K, WaveVector reflected_K, int sign) {
+  private void tableFor(FourPhaseGradient incident_K, FourPhaseGradient reflected_K, int sign) {
     add(tableHeader.row("Boost", "K':ω-in", "K':ω-ref", "K':θ-in", "K':θ-ref"));
     add(dashes(57));
     for(int idx = 1 ; idx <= 6; ++idx) {
       Velocity boost_velocity = Velocity.of(Axis.X, sign*idx/10.0);
       Boost boost = Boost.of(boost_velocity);
-      WaveVector incident_Kp = boost.changeGrid(incident_K);
-      WaveVector reflected_Kp = boost.changeGrid(reflected_K);
+      FourPhaseGradient incident_Kp = boost.changeGrid(incident_K);
+      FourPhaseGradient reflected_Kp = boost.changeGrid(reflected_K);
       add(table.row(
         boost_velocity, 
         incident_Kp.ct(),

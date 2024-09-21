@@ -16,7 +16,7 @@ import sr.core.vector3.ThreeVector;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
 import sr.core.vector4.FindEvent;
-import sr.core.vector4.FourPhaseGradient2;
+import sr.core.vector4.FourPhaseGradientSlow;
 import sr.core.vector4.transform.Boost;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
@@ -155,16 +155,16 @@ public final class WavesInMedia extends TextOutput implements Exploration {
   /**Ref: https://arxiv.org/pdf/0801.3149v2   */
   private void compareWithFormula() {
     add(Util.NL + "Compare to the formula for 4-phase-gradient.");
-    PhaseGradient phaseGradient = PhaseGradient.of(Axis.Y, phaseGradientK());
+    PhaseGradient phaseGradient = PhaseGradient.of(phaseGradientK(), Axis.Y);
     
-    FourPhaseGradient2 k_K = FourPhaseGradient2.of(phaseVelocityK(), phaseGradient);
+    FourPhaseGradientSlow k_K = FourPhaseGradientSlow.of(phaseVelocityK(), phaseGradient);
     showPhaseGradient("", k_K);
     Boost boost = Boost.of(boostVelocity());
-    FourPhaseGradient2 k_Kp = boost.changeGrid(k_K);
+    FourPhaseGradientSlow k_Kp = boost.changeGrid(k_K);
     showPhaseGradient("'", k_Kp);
   }
 
-  private void showPhaseGradient(String frame, FourPhaseGradient2 k) {
+  private void showPhaseGradient(String frame, FourPhaseGradientSlow k) {
     add("K" + frame + ": 4-phase-gradient k" + frame + ": " + k + ", spatial mag: " + round(k.spatialMagnitude())  + ", angle from +X-axis: " + angleFromXAxis(k.spatialComponents()) );
   }
 

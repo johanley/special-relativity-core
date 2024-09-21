@@ -36,15 +36,15 @@ import sr.core.vector3.Velocity;
   <P>Reference: <a href='https://arxiv.org/pdf/0801.3149v2'>article</a> of Aleksandar Gjurchinovski (2008) for the formula for the 
   phase-gradient in the more general case.
 */
-public final class FourPhaseGradient2 extends FourVector implements Builder<FourPhaseGradient2> {
+public final class FourPhaseGradientSlow extends FourVector implements Builder<FourPhaseGradientSlow> {
   
   /**
    Factory method.
    @param u phase velocity
    @param k spatial phase-gradient
   */
-  public static FourPhaseGradient2 of(Velocity u, PhaseGradient k) {
-    return new FourPhaseGradient2(u, k);
+  public static FourPhaseGradientSlow of(Velocity u, PhaseGradient k) {
+    return new FourPhaseGradientSlow(u, k);
   }
   
   /** Unit vector in the direction of the spatial phase-gradient. */
@@ -62,14 +62,14 @@ public final class FourPhaseGradient2 extends FourVector implements Builder<Four
     return k;
   }
   
-  @Override public FourPhaseGradient2 build(Map<Axis, Double> components) {
+  @Override public FourPhaseGradientSlow build(Map<Axis, Double> components) {
     //I can't fully 'reverse engineer' the data!!
     //k is ok, but u is not
     //the ct-component is k.u
     //k.u and k gives only the projection u.cos(θ), not the full vector!
     //I can't assume a speed or a direction
     //4 pieces of data can't let me make 6 pieces of data
-    return new FourPhaseGradient2(
+    return new FourPhaseGradientSlow(
       components.get(CT),
       components.get(X),
       components.get(Y),
@@ -81,7 +81,7 @@ public final class FourPhaseGradient2 extends FourVector implements Builder<Four
   private PhaseGradient k;
 
   /** All construction must pass through here. */
-  private FourPhaseGradient2(Velocity u, PhaseGradient k) {
+  private FourPhaseGradientSlow(Velocity u, PhaseGradient k) {
     this.u = u;
     this.k = k;
     //see: https://arxiv.org/pdf/0801.3149v2
@@ -92,7 +92,7 @@ public final class FourPhaseGradient2 extends FourVector implements Builder<Four
   }
  
   /** DEFECT. THIS DOESN'T SET THE PHASE VELOCITY. */
-  private FourPhaseGradient2(double ct, double x, double y, double z) {
+  private FourPhaseGradientSlow(double ct, double x, double y, double z) {
     this.k = PhaseGradient.of(x, y, z);
     this.components.put(CT, ct);
     this.components.put(X, k.x());

@@ -12,7 +12,7 @@ import sr.core.Util;
 import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.FourVector;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -42,8 +42,8 @@ public final class WaveVectorK extends TextOutput implements Exploration {
 
   private void sameLine(Axis axis, Velocity v) {
     LorentzTransformation lt = LorentzTransformation.of(v);
-    WaveVector k_in = WaveVector.of(1.0, axis);
-    WaveVector k_out = lt.primedVector(k_in);
+    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, axis);
+    FourPhaseGradient k_out = lt.primedVector(k_in);
     show(lt, k_in, k_out);
   }
 
@@ -51,8 +51,8 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
     Velocity v = Velocity.of(Axis.X, 0.6);
     LorentzTransformation lt = LorentzTransformation.of(v);
-    WaveVector k_in = WaveVector.of(1.0, Direction.of(1, 2, 3));
-    WaveVector k_out = lt.primedVector(k_in);
+    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, Direction.of(1, 2, 3));
+    FourPhaseGradient k_out = lt.primedVector(k_in);
     show(lt, k_in, k_out);
   }
   
@@ -62,8 +62,8 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     Velocity v = Velocity.of(Axis.X, -0.60);
     LorentzTransformation lt = LorentzTransformation.of(v);
     //directed into the 4th quadrant at 45 degrees
-    WaveVector k_in = WaveVector.of(1.0, Direction.of(+1, -1, 0));
-    WaveVector k_out = lt.primedVector(k_in);
+    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, Direction.of(+1, -1, 0));
+    FourPhaseGradient k_out = lt.primedVector(k_in);
     show(lt, k_in, k_out);
     showChangeInDirection(k_in, k_out);
   }
@@ -74,7 +74,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     add("  Output k in frame K'" + output + " mag " + round(output.square()));
   }
   
-  private void showChangeInDirection(WaveVector k_in, FourVector k_out) {
+  private void showChangeInDirection(FourPhaseGradient k_in, FourVector k_out) {
     double degsIn = degreesWrtXaxis(k_in);
     double degsOut = degreesWrtXaxis(k_out);
     

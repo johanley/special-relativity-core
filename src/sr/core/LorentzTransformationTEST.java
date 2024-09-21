@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Builder;
 import sr.core.vector4.FourVector;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 
 class LorentzTransformationTEST {
 
@@ -110,8 +110,8 @@ class LorentzTransformationTEST {
     TestVector input = vector(1,2,3,4);
     TestVector output = lt.primedVector(input);
     
-    WaveVector k_in = WaveVector.of(10, Axis.X);
-    WaveVector k_out = lt.primedVector(k_in);
+    FourPhaseGradient k_in = FourPhaseGradient.of(10, Axis.X);
+    FourPhaseGradient k_out = lt.primedVector(k_in);
   }
 
   private void nulls(TestVector input) {

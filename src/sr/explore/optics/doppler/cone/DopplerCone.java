@@ -5,13 +5,13 @@ import sr.core.LorentzTransformation;
 import sr.core.Util;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.FourVector;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 import sr.core.vector4.transform.Rotation;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link WaveVector}s are affected by a {@link LorentzTransformation}.
+ How a uniform set of {@link FourPhaseGradient}s are affected by a {@link LorentzTransformation}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.
@@ -27,7 +27,7 @@ public final class DopplerCone implements Exploration {
   
   @Override public void explore() {
     //base wave-vector in frame K
-    WaveVector k_K = WaveVector.of(1.0, Axis.X);
+    FourPhaseGradient k_K = FourPhaseGradient.of(1.0, Axis.X);
     int num = 360;
     double β = 0.5;
     
@@ -35,8 +35,8 @@ public final class DopplerCone implements Exploration {
     output_Kp.addComment("Wave-vectors in Kp.");
     LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, β));
     for(int i = 0; i <= num; i=i+10) {
-      WaveVector k_rotated_K = rotated(k_K, i);
-      WaveVector k_rotated_Kp = lt.primedVector(k_rotated_K);
+      FourPhaseGradient k_rotated_K = rotated(k_K, i);
+      FourPhaseGradient k_rotated_Kp = lt.primedVector(k_rotated_K);
       output_K.add(k_rotated_K);
       output_Kp.add(k_rotated_Kp);
     }
@@ -45,26 +45,26 @@ public final class DopplerCone implements Exploration {
   }
   
   void generateOutputsForAnimation() {
-    WaveVector k_K = WaveVector.of(1.0, Axis.X);
+    FourPhaseGradient k_K = FourPhaseGradient.of(1.0, Axis.X);
     int num = 360;
     for (int speed = 1; speed <= 50; ++speed) {
       double β = 0.01 * speed;
       TextOutput output = new TextOutput();
       LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, β));
       for(int i = 0; i <= num; i=i+10) {
-        WaveVector k_rotated_K = rotated(k_K, i);
-        WaveVector k_rotated_Kp = lt.primedVector(k_rotated_K);
+        FourPhaseGradient k_rotated_K = rotated(k_K, i);
+        FourPhaseGradient k_rotated_Kp = lt.primedVector(k_rotated_K);
         output.add(k_rotated_Kp);
       }
       output.outputTo("output_"+speed+".txt", this);
     }
   }
   
-  private WaveVector rotated(WaveVector k, int numDegrees) {
+  private FourPhaseGradient rotated(FourPhaseGradient k, int numDegrees) {
     double rads = Util.degsToRads(numDegrees);
     Rotation rotation = Rotation.of(Axis.Z, rads);
     FourVector result = rotation.changeVector(k);
-    return WaveVector.of(result.ct(), result.spatialComponents());
+    return FourPhaseGradient.of(result.ct(), result.spatialComponents());
   }
   
   private TextOutput output_K = new TextOutput();

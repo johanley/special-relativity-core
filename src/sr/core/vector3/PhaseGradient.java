@@ -9,7 +9,7 @@ import sr.core.Util;
 */
 public final class PhaseGradient extends ThreeVectorImpl {
 
-  /** Factory method, taking the 3 components of the phase-gradient along the XYZ axes, in that order. */
+  /** Factory method, taking the 3 components of the phase-gradient (wave vector) <em>k</em> along the XYZ axes, in that order. */
   public static PhaseGradient of(double x, double y, double z) {
     return new PhaseGradient(x, y, z);
   }
@@ -27,7 +27,7 @@ public final class PhaseGradient extends ThreeVectorImpl {
    The vector has 1 non-zero component, along the given spatial coordinate axis.
     @param k is non-zero; if negative, then the direction is reversed. 
   */
-  public static PhaseGradient of(Axis axis, double k) {
+  public static PhaseGradient of(double k, Axis axis) {
     return new PhaseGradient(axis, k);
   }
   

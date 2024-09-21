@@ -34,6 +34,9 @@ I hope you don't find this too bothersome.
 
 **Flattening** is used instead of *Lorentz-Fitgerald contraction* and *length contraction*.
 
+**Phase-gradient** <em>k</em> is used here instead of *wave vector* <em>k</em>. 
+This matches up with <em>phase-velocity</em>. 
+
 **Boost** here refers to a boost along any direction in space, not just along a coordinate axis.
 
 **Time-slice** is used instead of *the intersection of an object's history with a space-like hypersurface of constant ct*.

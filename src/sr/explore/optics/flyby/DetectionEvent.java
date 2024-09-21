@@ -7,7 +7,7 @@ import sr.core.LorentzTransformation;
 import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
 import sr.core.vector4.Event;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 
 /** 
  The detection of a photon at the detector.
@@ -72,7 +72,7 @@ final class DetectionEvent {
   }
   
   /** 
-   Boost a {@link WaveVector} using a {@link LorentzTransformation} along the X axis by β.
+   Boost a {@link FourPhaseGradient} using a {@link LorentzTransformation} along the X axis by β.
    Sets both this.θ and this.D as a side effect.  
   */
   private void boostTheWaveVectorComingFromThe(Event emissionEvent, double β) {
@@ -81,9 +81,9 @@ final class DetectionEvent {
 
     //photon-direction is opposite to the detector-direction
     //do the calc with a photon, then convert back to the detector's perspective
-    WaveVector photon_K = WaveVector.of(1.0, detector_direction_K.times(-1));
+    FourPhaseGradient photon_K = FourPhaseGradient.of(1.0, detector_direction_K.times(-1));
     LorentzTransformation boost_the_detector_towards_neg_x = LorentzTransformation.of(Velocity.of(Axis.X, β));
-    WaveVector photon_Kp = boost_the_detector_towards_neg_x.primedVector(photon_K);
+    FourPhaseGradient photon_Kp = boost_the_detector_towards_neg_x.primedVector(photon_K);
     
     this.D = photon_Kp.ct() / photon_K.ct();
     

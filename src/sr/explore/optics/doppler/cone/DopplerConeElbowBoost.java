@@ -4,7 +4,7 @@ import sr.core.Axis;
 import sr.core.LorentzTransformation;
 import sr.core.Util;
 import sr.core.vector4.FourVector;
-import sr.core.vector4.WaveVector;
+import sr.core.vector4.FourPhaseGradient;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
@@ -13,7 +13,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link WaveVector}s are affected by a {@link LorentzTransformation}.
+ How a uniform set of {@link FourPhaseGradient}s are affected by a {@link LorentzTransformation}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.
@@ -28,15 +28,15 @@ public final class DopplerConeElbowBoost implements Exploration {
   
   @Override public void explore() {
     //base wave-vector in frame K
-    WaveVector k_K = WaveVector.of(1.0, Axis.X);
+    FourPhaseGradient k_K = FourPhaseGradient.of(1.0, Axis.X);
     int num = 360;
     
     output_K.addComment("Wave-vectors in K.");
     output_Kp.addComment("Wave-vectors in Kp.");
     Transform elbowBoost = asCornerBoost(Axis.Z, 0.25, 0.60);
     for(int i = 0; i <= num; i=i+10) {
-      WaveVector wv_rotated_K = rotated(k_K, i);
-      WaveVector wv_rotated_Kp = elbowBoost.changeGrid(wv_rotated_K);
+      FourPhaseGradient wv_rotated_K = rotated(k_K, i);
+      FourPhaseGradient wv_rotated_Kp = elbowBoost.changeGrid(wv_rotated_K);
       output_K.add(wv_rotated_K);
       output_Kp.add(wv_rotated_Kp);
     }
@@ -44,11 +44,11 @@ public final class DopplerConeElbowBoost implements Exploration {
     output_Kp.outputTo("output_Kp.txt", this);
   }
   
-  private WaveVector rotated(WaveVector k, int numDegrees) {
+  private FourPhaseGradient rotated(FourPhaseGradient k, int numDegrees) {
     double rads = Util.degsToRads(numDegrees);
     Rotation rotation = Rotation.of(Axis.Z, rads);
     FourVector result = rotation.changeVector(k);
-    return WaveVector.of(result.ct(), result.spatialComponents());
+    return FourPhaseGradient.of(result.ct(), result.spatialComponents());
   }
   
   private TextOutput output_K = new TextOutput();
