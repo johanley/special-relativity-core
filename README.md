@@ -279,9 +279,9 @@ These remarks apply to *any wave phenomenon*, not just to plane waves of light o
 
 
 **It's a common misconception that the dot product <em>k<sup>i</sup>x<sub>i</sub></em> of the phase-gradient (wave vector) <em>k<sup>i</sup></em> with the coordinates <em>x<sub>i</sub></em> is a Lorentz scalar.**
-This is related to the fact that <em>&delta;x<sub>i</sub></em> is the true 4-vector, not <em>x<sub>i</sub></em>.
-The dot product <em>k.x</em> changes during displacement of the origin of coordinates.
-The dot product <em>k.&delta;x</em> does not change during displacement of the origin of coordinates.
+This is related to the fact that <em>&Delta;x<sub>i</sub></em> is the true 4-vector, not <em>x<sub>i</sub></em>.
+The dot product <em>k<sup>i</sup>.x<sub>i</sub></em> changes during displacement of the origin of coordinates.
+The dot product <em>k<sup>i</sup>.&Delta;x<sub>i</sub></em> does not change during displacement of the origin of coordinates.
 
 
 **After a boost, a  plane wave (of any speed and nature) remains a plane wave.**
