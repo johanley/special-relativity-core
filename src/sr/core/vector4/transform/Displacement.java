@@ -10,21 +10,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import sr.core.Axis;
+import sr.core.vector4.Builder;
 import sr.core.vector4.Event;
+import sr.core.vector4.FourVector;
 
 /**
  Add/subtract a fixed amount to 1 or more components.
+
+ <P><b>This operation is a no-operation for all four vectors except {@link Event}s.</b>
  
- <P>Note that this transform is the only one that uses numbers that have dimensions.
- <P>Also note that 4-vectors in general are differential and not affected by a displacement operation.
- (This reflects the distinction between affine operations and linear operations.)
+ <P>4-vectors in general are differential and not affected by a displacement operation.
+ This reflects the distinction between affine operations and linear operations.
+
+ <P>Note as well that all transforms use dimensionless numbers except for this one.
 */
-public final class Displacement /*no implements Transform, since this operation applies to events only. */ {
+public final class Displacement implements Transform {
   
   /** 
    Factory method. 
    Pass the displacement used to alter each coordinate.
-   Simply pass 0 if the coord is left unaffected.
+   Simply pass 0 if the coordinate is left unaffected.
   */
   public static Displacement of(double ct, double x, double y, double z) {
     return new Displacement(ct, x, y, z);
@@ -38,13 +43,13 @@ public final class Displacement /*no implements Transform, since this operation 
   }
   
   /** The origin of the frame is displaced by the given amounts. */
-  public Event changeGrid(Event event) {
-    return transform(event, -1);
+  @Override public <T extends FourVector & Builder<T>> T changeGrid(T fourVector) {
+    return transform(fourVector, -1);
   }
   
   /** The endpoint of the event is displaced by the given amounts. */
-  public Event changeVector(Event event) {
-    return transform(event, +1);
+  @Override public <T extends FourVector & Builder<T>> T changeVector(T fourVector) {
+    return transform(fourVector, +1);
   }
 
   /** This implementation applies rounding. */
@@ -70,12 +75,17 @@ public final class Displacement /*no implements Transform, since this operation 
     components.put(Z, z);
   }
   
-  private Event transform(Event event, int sign) {
-    Map<Axis, Double> parts = new LinkedHashMap<>();
-    for(Axis axis : Axis.values()) {
-      parts.put(axis, event.on(axis) + components.get(axis) * sign);
+  private <T extends FourVector & Builder<T>> T transform(T fourVector, int sign) {
+    T result = fourVector;
+    //only applies to Events!
+    if (fourVector instanceof Event) {
+      Map<Axis, Double> parts = new LinkedHashMap<>();
+      for(Axis axis : Axis.values()) {
+        parts.put(axis, fourVector.on(axis) + components.get(axis) * sign);
+      }
+      result = fourVector.build(parts);
     }
-    return event.build(parts);
+    return result;
   }
   
   private double roundIt(Double val) {

@@ -40,20 +40,20 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     Event a = Event.of(10.0, 1.0, 2.0, 1.0);
     Event b = Event.of(15.0, 3.0, 2.0, 5.0);
     showEffectOfTransformationsOnDifferenceBetween(a, b);
-    add(Util.NL+dashes(100));
+    add(Util.NL+dashes(119));
     
-    add(Util.NL+"The above fails when you consider the interval between an event and the origin (0,0,0,0).");
-    add("You need to use the DIFFERENCE between two events.");
+    add(Util.NL+"The above fails when you consider the interval between an event and the origin (0,0,0,0) of the coordinates being used.");
+    add(Util.NL+"You need to use the DIFFERENCE between two events.");
     add("The problem is with the DISPLACEMENT operation.");
     add("The prototype 4-vector is not an event, but a difference between two events.");
     
     add(Util.NL+"This FAILS when a displacement operation is included:");
-    showEffectOfTransformationsOnBareEvent(a, event -> transformWithDisplacement(event),  "  " + multipleTransforms() + " " + displacement());
+    showEffectOfTransformationsOnBareEvent(a, event -> transformWithDisplacement(event),  "  " + transformsWithDisplacement());
     
     add(Util.NL+"But it SUCCEEDS when the displacement operation is excluded:");
-    showEffectOfTransformationsOnBareEvent(a,  event -> transformWithoutDisplacement(event), "  " + multipleTransforms());
+    showEffectOfTransformationsOnBareEvent(a,  event -> transformWithoutDisplacement(event), "  " + transformsWithoutDisplacement());
     
-    outputToConsoleAnd("invariant-interval.txt");
+    outputToConsoleAnd("invariant-interval2.txt");
   }
   
   private void showEffectOfTransformationsOnDifferenceBetween(Event a, Event b) {
@@ -61,12 +61,12 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add("  " + a + " a");
     add("  " + b + " b");
     Event displacement_K = b.minus(a);
-    add("Displacement in K (b - a):");
+    add("Difference in K (b - a):");
     add("  " + displacement_K + " squared-interval:" + round(displacement_K.square()));
     
     Event displacement_Kp = transformWithDisplacement(b).minus(transformWithDisplacement(a));
     add(Util.NL+"Transform to K' using a mix of several operations: ");
-    add("  " + multipleTransforms() + " " + displacement() );
+    add("  " + transformsWithDisplacement() );
     
     add(Util.NL + "The same two events in K' become:");
     add("  " + transformWithDisplacement(a) + " a'");
@@ -82,7 +82,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
   private void showEffectOfTransformationsOnBareEvent(Event a, UnaryOperator<Event> transformer, String description) {
     add(Util.NL + "Single event in K:");
     add("  " + a);
-    add("Squared-interval with respect to the origin: " + round(a.square()));
+    add("Squared-interval with respect to the origin of K: " + round(a.square()));
     
     Event a_Kp = transformer.apply(a);
     add(Util.NL+"Transform to K' using a mix of several operations: ");
@@ -90,7 +90,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     
     add("Single event in K':");
     add("  " + a_Kp);
-    add("Squared-interval with respect to the origin: " + round(a_Kp.square()));
+    add("Squared-interval with respect to the origin of K': " + round(a_Kp.square()));
     
     double interval_K = a.square();
     double interval_Kp = a_Kp.square();
@@ -98,27 +98,28 @@ public final class InvariantInterval extends TextOutput implements Exploration {
   }
   
   private Event transformWithDisplacement(Event event) {
-    Event event_Kp = multipleTransforms().changeGrid(event);
-    event_Kp = displacement().changeGrid(event_Kp);
+    Event event_Kp = transformsWithDisplacement().changeGrid(event);
     return event_Kp;
   }
   
   private Event transformWithoutDisplacement(Event event) {
-    Event event_Kp = multipleTransforms().changeGrid(event);
+    Event event_Kp = transformsWithoutDisplacement().changeGrid(event);
     return event_Kp;
   }
-  
-  private Transform multipleTransforms() {
+
+  private Transform transformsWithDisplacement() {
+    return TransformPipeline.join(
+      transformsWithoutDisplacement(),
+      Displacement.of(1.0, -2.0, -3.0, 4.0)
+    );
+  }
+
+  private Transform transformsWithoutDisplacement() {
     return TransformPipeline.join(
       Boost.of(Velocity.of(0.5, 0.1, 0.3)),
       Rotation.of(AxisAngle.of(0.1, 0.4, 0.5)),
-      //Displacement.of(1.0, -2.0, -3.0, 4.0),
       Reflection.allAxes()
     );
-  }
-  
-  private Displacement displacement() {
-    return Displacement.of(1.0, -2.0, -3.0, 4.0);
   }
   
   private double round(double value) {

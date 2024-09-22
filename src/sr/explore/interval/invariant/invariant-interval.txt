@@ -8,7 +8,7 @@ Any combination of these fundamental transformations will leave the interval una
 Two events in K:
   [10.0, 1.0, 2.0, 1.0] a
   [15.0, 3.0, 2.0, 5.0] b
-Displacement in K (b - a):
+Difference in K (b - a):
   [5.0, 2.0, 0.0, 4.0] squared-interval:5.0
 
 Transform to K' using a mix of several operations: 
@@ -22,9 +22,10 @@ Displacement in K' (b' - a'):
 
 Difference in squared-interval between K and K': 0.0
 
-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
-The above fails when you consider the interval between an event and the origin (0,0,0,0).
+The above fails when you consider the interval between an event and the origin (0,0,0,0) of the coordinates being used.
+
 You need to use the DIFFERENCE between two events.
 The problem is with the DISPLACEMENT operation.
 The prototype 4-vector is not an event, but a difference between two events.
@@ -33,13 +34,13 @@ This FAILS when a displacement operation is included:
 
 Single event in K:
   [10.0, 1.0, 2.0, 1.0]
-Squared-interval with respect to the origin: 94.0
+Squared-interval with respect to the origin of K: 94.0
 
 Transform to K' using a mix of several operations: 
     boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD] displacement[1.0,-2.0,-3.0,4.0]
 Single event in K':
   [-12.16313, 4.61867, 0.58386, 0.23323]
-Squared-interval with respect to the origin: 126.2142209798
+Squared-interval with respect to the origin of K': 126.2142209798
 
 Difference in squared-interval between K and K': 32.2142209798
 
@@ -47,12 +48,12 @@ But it SUCCEEDS when the displacement operation is excluded:
 
 Single event in K:
   [10.0, 1.0, 2.0, 1.0]
-Squared-interval with respect to the origin: 94.0
+Squared-interval with respect to the origin of K: 94.0
 
 Transform to K' using a mix of several operations: 
     boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD]
 Single event in K':
   [-11.16313, 2.61867, -2.41614, 4.23323]
-Squared-interval with respect to the origin: 94.0
+Squared-interval with respect to the origin of K': 94.0
 
 Difference in squared-interval between K and K': 0.0
