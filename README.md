@@ -188,6 +188,7 @@ It's interesting how coding this led me to the same conclusion: applying a displ
 to a 4-velocity made no sense, and this became obvious in the computed result.
 The displacement operation needs special handling, because it doesn't apply to differential 4-vectors (only to events).
 This corresponds to the distinction made by mathematicians between *affine* and *linear*.
+(In the code, the displacement operation is a no-operation for all four-vectors except for events.)
 
 **Four-vectors and three-vectors are not completely analogous**.
 The cross product applies only to three-vectors.
@@ -276,6 +277,13 @@ not only *changes* in the phase are objective facts, but *the phase itself* is a
 
 These remarks apply to *any wave phenomenon*, not just to plane waves of light of a single frequency traveling in a vacuum.
 
+
+**It's a common misconception that the dot product <em>k<sup>i</sup>x<sub>i</sub></em> of the phase-gradient (wave vector) <em>k<sup>i</sup></em> with the coordinates <em>x<sub>i</sub></em> is a Lorentz scalar.**
+This is related to the fact that <em>&delta;x<sub>i</sub></em> is the true 4-vector, not <em>x<sub>i</sub></em>.
+The dot product <em>k.x</em> changes during displacement of the origin of coordinates.
+The dot product <em>k.&delta;x</em> does not change during displacement of the origin of coordinates.
+
+
 **After a boost, a  plane wave (of any speed and nature) remains a plane wave.**
 *"The concept of a plane wave is invariant under the Lorentz transformation: a plane wave remains a plane wave in all coordinate systems."* - 
 <a href='https://archive.org/details/matveev-the-principles-of-electrodynamics/page/344/mode/2up?q=%22concept+of+a+plane+wave%22'>Principles of Electrodynamics</a>, Matveyev.
@@ -288,7 +296,7 @@ With this expression (see <a href='https://arxiv.org/pdf/0801.3149v2'>formula (1
 For phase-velocity of <em>c</em>, the phase-gradient 4-vector is null.
  
 For phase-velocity less than <em>c</em>, the phase-gradient 4-vector is space-like, because its time component is smaller.
-In addition, after a boost from the frame in which the medium is at rest, the phase-gradient <b>k</b> is not generally parallel with the phase-velocity <b>u</b>.
+In addition, after a boost from the frame in which the medium is at rest, the (3D) phase-gradient <b>k</b> is not generally parallel with the phase-velocity <b>u</b>.
 
 
 
