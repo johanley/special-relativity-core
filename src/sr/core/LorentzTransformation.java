@@ -13,7 +13,9 @@ import sr.core.vector4.Builder;
 import sr.core.vector4.FourVector;
 
 /**
- Lorentz Transformation of 4-vectors and tensors, all represented as a matrix.
+ A boost in any direction, with no spatial rotation.
+ 
+ <P>Lorentz Transformation of 4-vectors and tensors, all represented as a matrix.
  
  <P>The matrix implementation of the Lorentz Transformation is the most general way of transforming items.
  The same basic mechanism can replace many formulas that are specific to certain physical quantities.

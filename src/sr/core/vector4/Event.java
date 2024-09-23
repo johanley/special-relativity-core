@@ -12,7 +12,21 @@ import java.util.Map;
 import sr.core.Axis;
 import sr.core.vector3.Position;
 
-/** An event in Minkowski space-time. */
+/** 
+ An event in Minkowski space-time.
+ 
+ <P><b>Objects of this class only behave as 4-vectors when they result from a difference between two events.</b>
+ 
+ <P>The real 4-vectors are <em>differences</em> <em>&Delta;x<sup>i</sup></em> between events in space-time.
+ The space-time events <em>x<sup>i</sup></em> themselves aren't true 4-vectors.
+ Remember that the fundamental quadratic form is defined in terms of <em>differences</em> between event coordinates.
+ 
+ <P>Take as an example the dot product with the phase-gradient (wave vector) <em>k<sup>i</sup></em>:
+  <ul>
+    <li><em>k<sup>i</sup>&Delta;x<sub>i</sub></em> is Poincaré invariant.
+    <li><em>k<sup>i</sup>x<sub>i</sub></em> is <em>not</em> Poincaré invariant: it changes value when the origin of coordinates is displaced.
+  </ul>
+*/
 public final class Event extends FourVector implements Builder<Event> {
 
   /** Factory method. */

@@ -1,0 +1,27 @@
+The medium is stationary in K.
+K: phase-gradient k: 10.0 radians per unit distance.
+K: distance between neighboring wavefronts having a phase-difference of 1 rad: 0.1
+K: phase-velocity u: [0.0,0.4,0.0], mag: 0.4, angle from +X-axis: 90.0°
+--------------------------------------------------------------------------------
+
+Compute the phase-velocity u' in K':
+
+Use the velocity addition formula.
+Boost from K to K' is towards the -X-axis: [-0.3,0.0,0.0]
+K': phase-velocity u': [0.3,0.38158,0.0], mag: 0.4854, angle from +X-axis: 51.8251°
+
+--------------------------------------------------------------------------------
+
+Compute the phase-gradient k' in K':
+
+Compute using the histories of objects.
+K: position of wavefront-1: 0.1
+K': stick: [0.95394,-0.12,0.0]
+K': the stick is directed at this angle from the +X-axis: 7.1698°
+K': the stick-direction and phase-velocity u' are not perpendicular. Dot product: 0.25
+K': distance between neighboring wavefronts having a phase difference of 1 rad: 0.0992
+K': phase-gradient k: 10.0788 radians per unit distance.
+
+Compare to the formula for 4-phase-gradient.
+K: 4-phase-gradient k: [4.0, 0.0, 10.0, 0.0], spatial mag: 10.0, angle from +X-axis: 90.0°
+K': 4-phase-gradient k': [4.19314, 1.25794, 10.0, 0.0], spatial mag: 10.0788, angle from +X-axis: 82.8302°

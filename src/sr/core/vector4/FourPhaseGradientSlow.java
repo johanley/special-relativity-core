@@ -91,7 +91,7 @@ public final class FourPhaseGradientSlow extends FourVector implements Builder<F
     this.components.put(Z, k.z());
   }
  
-  /** DEFECT. THIS DOESN'T SET THE PHASE VELOCITY. */
+  /** DEFECT. THIS CANNOT SET THE PHASE VELOCITY. 4 values can't set 6 values. */
   private FourPhaseGradientSlow(double ct, double x, double y, double z) {
     this.k = PhaseGradient.of(x, y, z);
     this.components.put(CT, ct);

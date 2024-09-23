@@ -95,7 +95,7 @@ public final class WavesInMedia extends TextOutput implements Exploration {
     Velocity u_Kp = phaseVelocity();
     phaseGradientKp(u_Kp);
     compareWithFormula();
-    outputToConsole();
+    outputToConsoleAnd("waves-in-media.txt");
   }
   
   private Velocity phaseVelocity() {

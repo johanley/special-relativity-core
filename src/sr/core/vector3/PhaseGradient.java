@@ -5,7 +5,7 @@ import sr.core.Util;
 
 /** 
  The spatial gradient of the phase of a wave (<em>k</em>, its wave vector).
- The magnitude of the gradient must be non-zero. 
+ The magnitude of the gradient is always positive. 
 */
 public final class PhaseGradient extends ThreeVectorImpl {
 
@@ -16,7 +16,7 @@ public final class PhaseGradient extends ThreeVectorImpl {
   
   /**
    Factory method. 
-   @param k is non-zero; if negative, then the direction is reversed. 
+   @param k is positive. 
   */
   public static PhaseGradient of(double k, Direction direction) {
     return new PhaseGradient(k, direction);
@@ -25,10 +25,10 @@ public final class PhaseGradient extends ThreeVectorImpl {
   /** 
    Factory method. 
    The vector has 1 non-zero component, along the given spatial coordinate axis.
-    @param k is non-zero; if negative, then the direction is reversed. 
+   @param k is positive. 
   */
   public static PhaseGradient of(double k, Axis axis) {
-    return new PhaseGradient(axis, k);
+    return new PhaseGradient(k, axis);
   }
   
   private PhaseGradient(double x, double y, double z) {
@@ -40,13 +40,12 @@ public final class PhaseGradient extends ThreeVectorImpl {
     check(k);
   }
 
-  private PhaseGradient(Axis axis, double k) {
+  private PhaseGradient(double k, Axis axis) {
     super(axis, k);
     check(k);
   }
   
   private void check(double k) {
-    Util.mustHave(k != 0, "k cannot be zero: " + k);
+    Util.mustHave(k > 0, "k must be positive: " + k);
   }
-
 }

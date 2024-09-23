@@ -10,6 +10,7 @@ import java.util.Map;
 
 import sr.core.Axis;
 import sr.core.Physics;
+import sr.core.Util;
 import sr.core.vector3.Direction;
 import sr.core.vector3.Velocity;
 
@@ -20,13 +21,13 @@ public final class FourVelocity extends FourVector implements Builder<FourVeloci
     return new FourVelocity(v.magnitude(), Direction.of(v));
   }
 
-  /** @param β can be negative, but it will change the direction to its opposite. */
+  /** @param β is never negative. */
   public static FourVelocity of(double β, Direction direction) {
     return new FourVelocity(β, direction);
   }
   
   /** 
-   @param β can be negative, but it will change the direction to its opposite.
+   @param β is never negative.
    @param axis must be spatial. 
   */
   public static FourVelocity of(double β, Axis axis) {
@@ -34,6 +35,7 @@ public final class FourVelocity extends FourVector implements Builder<FourVeloci
     return new FourVelocity(β, Direction.of(axis));
   }
 
+  /** Never negative. */
   public double β() { return β; }
   public Direction direction() { return direction; }
   
@@ -52,16 +54,18 @@ public final class FourVelocity extends FourVector implements Builder<FourVeloci
     return FourVelocity.of(v);
   }
   
+  /** Never negative. */
   private double β;
   private Direction direction;
 
   /** All construction must pass through these pearly gates. */
   private FourVelocity(double β, Direction direction) {
-    this.β = β;
-    double Γ = Physics.Γ(β);
+    Util.mustHave(β>=0, "β cannot be negative: " + β);
+    this.β = β; 
+    double Γ = Physics.Γ(β); //always positive
     this.direction = direction;
     this.components.put(CT, Γ);
-    this.components.put(X, Γ * direction.times(β).x());
+    this.components.put(X, Γ * direction.times(β).x());  
     this.components.put(Y, Γ * direction.times(β).y());
     this.components.put(Z, Γ * direction.times(β).z());
   }

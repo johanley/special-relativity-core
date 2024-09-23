@@ -70,7 +70,7 @@ public class FourVector {
   }
   
   /** 
-   The scalar product of <em>this</em> object with <em>that</em> object (an invariant quantity).
+   The scalar product of <em>this</em> object with <em>that</em> object (a Poincaré invariant quantity).
    Returns positive and negative values. 
    Signature (+---) for (ct,x,y,z).
   */

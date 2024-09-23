@@ -9,19 +9,20 @@ import static sr.core.Util.mustBeSpatial;
 import java.util.Map;
 
 import sr.core.Axis;
+import sr.core.Util;
 import sr.core.vector3.Direction;
 import sr.core.vector3.PhaseGradient;
 import sr.core.vector3.ThreeVector;
 
 /**
  Phase-gradient (wave vector) <em>k<sup>i</sup></em> for a plane monochromatic wave with phase-velocity as the speed limit <em>c</em>.
- <P>This corresponds to light travelling in a vacuum.
+ <P>This corresponds to a light wave travelling in a vacuum.
   
  <p>The general relation is <em>ω = c*k</em>. 
  <b>In this project <em>c=1</em>, so ω and <em>k</em> are numerically the same.
  This class considers them as interchangeable.</b>
    
- <P>The space components are the direction unit-vector multiplied by <em>k<em>(or ω).
+ <P>The space components are the direction-vector multiplied by <em>k<em>(or ω).
 */
 public final class FourPhaseGradient extends FourVector implements Builder<FourPhaseGradient> {
   
@@ -77,6 +78,7 @@ public final class FourPhaseGradient extends FourVector implements Builder<FourP
 
   /** All construction must pass through here. */
   private FourPhaseGradient(double kω, Direction direction) {
+    Util.mustHave(kω > 0, "kω must be positive: " + kω);
     this.direction = direction;
    //ω=ck, but here c=1
     this.components.put(CT, kω);

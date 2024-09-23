@@ -1,2 +1,2 @@
-/** Plane waves having a speed less than the speed limit. */
+/** Plane wave properties. */
 package sr.explore.waves;
