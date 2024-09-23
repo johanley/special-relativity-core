@@ -1,0 +1,29 @@
+Examine the dot product k.x, the phase of a plane wave of a single frequency.
+ - k is the phase-gradient four-vector.
+ - x is an event.
+
+
+Use the phase-gradient k for light waves in a vacuum.
+
+K: event:[10.0, 2.0, 3.0, 4.0]
+K: k:[1.0, 0.57735, 0.57735, 0.57735]
+K: dot-product k.x: 4.80385
+
+Transform: boost [0.55,0.0,0.0]
+K': dot-product k'.x': 4.80385
+
+Transform: rotation[1.0,2.0,3.0]
+K': dot-product k'.x': 4.80385
+
+Transform: displacement[0.0,85.0,0.0,0.0]
+K': dot-product k'.x': 53.87862
+
+For displacement operations, you need to examine DIFFERENCES in k.x for two different events:
+K: event:[10.0, 2.0, 3.0, 4.0] a
+K: event:[11.0, 5.0, 22.0, 7.0] b
+K: k:[1.0, 0.57735, 0.57735, 0.57735]
+K: difference in the dot-product (k.b - k.a) = k.(b-a): -13.43376
+Transform: displacement[0.0,85.0,0.0,0.0]
+K': difference in the dot-product (k'.b' - k'.a') = k'.(b'-a'): -13.43376
+
+Remember that the true 4-vector is Δx, not x.
