@@ -18,11 +18,11 @@ public final class TransformPipeline implements Transform {
 
   /** Simple test harness. */
   public static void main(String[] args) {
-    Reflection reflect = Reflection.of(Parity.EVEN, Parity.ODD, Parity.EVEN, Parity.EVEN);
+    Reversal reversal = Reversal.of(Parity.EVEN, Parity.ODD, Parity.EVEN, Parity.EVEN);
     //Displacement displace = Displacement.of(0.0,1.0,0.0,0.0); //NOT a transform; only applies to events
     Rotation rotate = Rotation.of(Axis.Z, Util.degsToRads(10));
     Boost boost = Boost.of(Axis.X, 0.5);
-    Transform[] ops = {rotate, reflect, boost};
+    Transform[] ops = {rotate, reversal, boost};
     TransformPipeline t = new TransformPipeline(ops);
     
     Event in = Event.of(1.0, 1.0, 0.0, 0.0);

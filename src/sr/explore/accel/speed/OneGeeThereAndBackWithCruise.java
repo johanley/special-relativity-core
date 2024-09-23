@@ -12,7 +12,7 @@ import sr.core.history.timelike.UniformAcceleration;
 import sr.core.history.timelike.UniformVelocity;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
-import sr.core.vector4.transform.Reflection;
+import sr.core.vector4.transform.Reversal;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -149,7 +149,7 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput implements Ex
 
     //accel 6 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising);
-    Reflection flipX = Reflection.of(X);
+    Reversal flipX = Reversal.of(X);
     delta_base = TimelikeDeltaBase.of(all_way_out.plus(flipX.changeVector(all_way_out)), τ_years_accel + τ_years_cruising); 
     leg = UniformAcceleration.of(delta_base, X, ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());

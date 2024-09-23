@@ -12,7 +12,7 @@ Difference in K (b - a):
   [5.0, 2.0, 0.0, 4.0] squared-interval:5.0
 
 Transform to K' using a mix of several operations: 
-  boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD] displacement[1.0,-2.0,-3.0,4.0]
+  boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reversal[ODD,ODD,ODD,ODD] displacement[1.0,-2.0,-3.0,4.0]
 
 The same two events in K' become:
   [-12.16313, 4.61867, 0.58386, 0.23323] a'
@@ -37,7 +37,7 @@ Single event in K:
 Squared-interval with respect to the origin of K: 94.0
 
 Transform to K' using a mix of several operations: 
-    boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD] displacement[1.0,-2.0,-3.0,4.0]
+    boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reversal[ODD,ODD,ODD,ODD] displacement[1.0,-2.0,-3.0,4.0]
 Single event in K':
   [-12.16313, 4.61867, 0.58386, 0.23323]
 Squared-interval with respect to the origin of K': 126.2142209798
@@ -51,7 +51,7 @@ Single event in K:
 Squared-interval with respect to the origin of K: 94.0
 
 Transform to K' using a mix of several operations: 
-    boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reflect[ODD,ODD,ODD,ODD]
+    boost [0.5,0.1,0.3] rotation[0.1,0.4,0.5] reversal[ODD,ODD,ODD,ODD]
 Single event in K':
   [-11.16313, 2.61867, -2.41614, 4.23323]
 Squared-interval with respect to the origin of K': 94.0

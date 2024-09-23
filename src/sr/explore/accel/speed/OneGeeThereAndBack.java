@@ -11,7 +11,7 @@ import sr.core.history.timelike.TimelikeMoveableHistory;
 import sr.core.history.timelike.UniformAcceleration;
 import sr.core.vector3.Position;
 import sr.core.vector4.Event;
-import sr.core.vector4.transform.Reflection;
+import sr.core.vector4.transform.Reversal;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -100,8 +100,8 @@ public final class OneGeeThereAndBack extends TextOutput implements Exploration 
     Event quarterWay = leg.eventFromProperTime(τ_years * 0.25);
     //and these two events by symmetry:
     Event halfWay = quarterWay.plus(quarterWay); 
-    Reflection reflect = Reflection.of(X);
-    Event allTheWay = halfWay.plus(reflect.changeVector(halfWay)); 
+    Reversal reversal = Reversal.of(X);
+    Event allTheWay = halfWay.plus(reversal.changeVector(halfWay)); 
     
     //the delta-bases aren't the same as the branch points:
     

@@ -9,26 +9,26 @@ import sr.core.vector3.AxisAngle;
 import sr.core.vector3.ThreeVector;
 import sr.core.vector3.ThreeVectorImpl;
 
-class SpatialReflectionTEST {
+class SpatialReversalTEST {
 
   @Test void basicOperation() {
-    SpatialReflection reflect = SpatialReflection.of(ODD, ODD, ODD);
+    SpatialReversal reverse = SpatialReversal.of(ODD, ODD, ODD);
     ThreeVector input = ThreeVectorImpl.of(1, 2, 3);
     ThreeVector expected = ThreeVectorImpl.of(-1, -2, -3);
     
-    ThreeVector output = reflect.changeGrid(input);
+    ThreeVector output = reverse.changeGrid(input);
     assertNoDiff(output, expected);
     
-    output = reflect.changeVector(input);
+    output = reverse.changeVector(input);
     assertNoDiff(output, expected);
   }
   
   @Test void pseudoVector(){
-    SpatialReflection reflect = SpatialReflection.of(ODD, ODD, ODD);
+    SpatialReversal reverse = SpatialReversal.of(ODD, ODD, ODD);
     AxisAngle input = AxisAngle.of(1, 2, 3);
     ThreeVector expected = ThreeVectorImpl.of(1, 2, 3);
     
-    ThreeVector output = reflect.changeGrid(input);
+    ThreeVector output = reverse.changeGrid(input);
     assertNoDiff(output, expected);
   }
 

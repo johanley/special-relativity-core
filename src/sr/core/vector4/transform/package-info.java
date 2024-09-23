@@ -7,7 +7,7 @@
  <P>In Minkowski space-time, there are 4 fundamental operations:
  <ul>
   <li>{@link Displacement}: <em>displacement</em> (or translation) of the origin (see below!).
-  <li>{@link Reflection}:<em>reflection</em> (or parity) in which one or more of the 4 space-time axes are reversed. 
+  <li>{@link Reversal}:<em>reversal</em> (or parity) in which one or more of the 4 space-time axes are reversed. 
   Reflections about an <em>even</em> number of spatial axes reduce to a rotation, so you usually  
   exclude such operations, as being already enumerated as a spatial rotation operation. 
   <li>{@link Rotate}: spatial <em>rotation</em> (3 spatial axes only in this case)

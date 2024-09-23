@@ -9,7 +9,7 @@ import sr.core.vector4.Event;
 import sr.core.vector4.FourVector;
 import sr.core.vector4.transform.Boost;
 import sr.core.vector4.transform.Displacement;
-import sr.core.vector4.transform.Reflection;
+import sr.core.vector4.transform.Reversal;
 import sr.core.vector4.transform.Rotation;
 import sr.core.vector4.transform.Transform;
 import sr.core.vector4.transform.TransformPipeline;
@@ -53,7 +53,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add(Util.NL+"But it SUCCEEDS when the displacement operation is excluded:");
     showEffectOfTransformationsOnBareEvent(a,  event -> transformWithoutDisplacement(event), "  " + transformsWithoutDisplacement());
     
-    outputToConsoleAnd("invariant-interval2.txt");
+    outputToConsoleAnd("invariant-interval.txt");
   }
   
   private void showEffectOfTransformationsOnDifferenceBetween(Event a, Event b) {
@@ -118,7 +118,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     return TransformPipeline.join(
       Boost.of(Velocity.of(0.5, 0.1, 0.3)),
       Rotation.of(AxisAngle.of(0.1, 0.4, 0.5)),
-      Reflection.allAxes()
+      Reversal.allAxes()
     );
   }
   

@@ -21,31 +21,31 @@ import sr.core.vector3.ThreeVector;
  This transform has the curious property of not having a distinction 
  between an operation and its inverse.
   
- <p>WARNING: pseudo-vectors don't react to reflection operations.
+ <p>WARNING: pseudo-vectors don't react to these operations.
  The {@link AxisAngle} is an example of a pseudo-vector. 
  Most pseudo-vectors are related to the cross-product of two polar vectors. 
 */
-public final class SpatialReflection implements SpatialTransform {
+public final class SpatialReversal implements SpatialTransform {
 
   /** 
    Change the sign of more than one component.
    Changing the sign of exactly two components is equivalent to a rotation.  
    If a component is unaffected, then just pass {@link Parity#EVEN} for it. 
   */
-  public static SpatialReflection of(Parity x, Parity y, Parity z) {
-    return new SpatialReflection(x, y, z); 
+  public static SpatialReversal of(Parity x, Parity y, Parity z) {
+    return new SpatialReversal(x, y, z); 
   }
   
   /** Change the sign of a single component, along the given axis. */
-  public static SpatialReflection of(Axis axis) {
+  public static SpatialReversal of(Axis axis) {
     Util.mustBeSpatial(axis);
-    SpatialReflection result = new SpatialReflection(EVEN, EVEN, EVEN);
+    SpatialReversal result = new SpatialReversal(EVEN, EVEN, EVEN);
     result.components.put(axis, ODD);
     return result;
   }
   
-  public static SpatialReflection allAxes() {
-    return new SpatialReflection(ODD, ODD, ODD); 
+  public static SpatialReversal allAxes() {
+    return new SpatialReversal(ODD, ODD, ODD); 
   }
   
   @Override public ThreeVector changeGrid(ThreeVector v) {
@@ -57,7 +57,7 @@ public final class SpatialReflection implements SpatialTransform {
   }
   
   @Override public String toString() {
-    String result  = "spatial-reflect["; 
+    String result  = "spatial-reversal["; 
     for(Axis a : Axis.spatialAxes()) {
       result = result + components.get(a) + ",";
     }
@@ -66,7 +66,7 @@ public final class SpatialReflection implements SpatialTransform {
   
   private Map<Axis, Parity> components = new LinkedHashMap<>();
   
-  private SpatialReflection(Parity x, Parity y, Parity z) {
+  private SpatialReversal(Parity x, Parity y, Parity z) {
     components.put(X, x);
     components.put(Y, y);
     components.put(Z, z);

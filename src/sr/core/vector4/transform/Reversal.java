@@ -20,26 +20,26 @@ import sr.core.vector4.FourVector;
  This transform has the curious property of not having a distinction 
  between an operation and its inverse. 
 */
-public final class Reflection implements Transform {
+public final class Reversal implements Transform {
   
   /**
    Change the sign of more than one component.
    Changing the sign of exactly two components is equivalent to a rotation.  
    If a component is unaffected, then just pass {@link Parity#EVEN} for it. 
   */
-  public static Reflection of(Parity ct, Parity x, Parity y, Parity z) {
-    return new Reflection(ct, x, y, z);
+  public static Reversal of(Parity ct, Parity x, Parity y, Parity z) {
+    return new Reversal(ct, x, y, z);
   }
 
   /** Change the sign of a single component, along the given axis. */
-  public static Reflection of(Axis axis) {
-    Reflection result = new Reflection(EVEN, EVEN, EVEN, EVEN);
+  public static Reversal of(Axis axis) {
+    Reversal result = new Reversal(EVEN, EVEN, EVEN, EVEN);
     result.components.put(axis, ODD);
     return result;
   }
   
-  public static Reflection allAxes() {
-    return new Reflection(ODD, ODD, ODD, ODD); 
+  public static Reversal allAxes() {
+    return new Reversal(ODD, ODD, ODD, ODD); 
   }
   
   @Override public <T extends FourVector & Builder<T>> T changeGrid(T fourVector) {
@@ -51,7 +51,7 @@ public final class Reflection implements Transform {
   }
   
   @Override public String toString() {
-    String result  = "reflect["; 
+    String result  = "reversal["; 
     for(Axis a : Axis.values()) {
       result = result + components.get(a) + ",";
     }
@@ -62,7 +62,7 @@ public final class Reflection implements Transform {
   
   private Map<Axis, Parity> components = new LinkedHashMap<>();
   
-  private Reflection(Parity ct, Parity x, Parity y, Parity z) {
+  private Reversal(Parity ct, Parity x, Parity y, Parity z) {
     components.put(CT, ct);
     components.put(X, x);
     components.put(Y, y);
