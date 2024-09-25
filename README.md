@@ -308,7 +308,9 @@ For phase-velocity of <em>c</em>, the phase-gradient 4-vector is null.
 For phase-velocity less than <em>c</em>, the phase-gradient 4-vector is space-like, because its time component is smaller.
 In addition, after a boost from the frame in which the medium is at rest, the (3D) phase-gradient <b>k</b> is not generally parallel with the phase-velocity <b>u</b>.
 
-
+**There are insidious and annoying differences in jargon between the cultures of math and physics.**
+The two cultures often speak two different languages.
+You may or may not be aware of the changes in meaning when you move between these cultures.
 
 <!--
 

@@ -3,7 +3,7 @@ package sr.core.vector3;
 import sr.core.Axis;
 
 /** 
- An axis-angle pseudo-vector, used to define a rotation.
+ An axis-angle vector, used to define a rotation.
  
  <P>References:
  <ul> 
@@ -13,7 +13,7 @@ import sr.core.Axis;
  
  <P>For kinematic rotation (Wigner rotation), the axis-angle is proportional to the cross product of acceleration and velocity.
 */
-public final class AxisAngle extends ThreeVectorImpl implements PseudoVector {
+public final class AxisAngle extends ThreeVectorImpl /*implements PseudoVector*/ {
 
   /** Factory method, taking the 3 components along the XYZ axes, in that order.  */
   public static AxisAngle of(double x, double y, double z) {
