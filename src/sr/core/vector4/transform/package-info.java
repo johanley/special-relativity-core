@@ -10,7 +10,7 @@
   <li>{@link Reversal}:<em>reversal</em> (or parity) in which one or more of the 4 space-time axes are reversed. 
   Reflections about an <em>even</em> number of spatial axes reduce to a rotation, so you usually  
   exclude such operations, as being already enumerated as a spatial rotation operation. 
-  <li>{@link Rotate}: spatial <em>rotation</em> (3 spatial axes only in this case)
+  <li>{@link NRotate}: spatial <em>rotation</em> (3 spatial axes only in this case)
   <li>{@link Boost}: the Lorentz Transformation, modeled here as "mixing" the time axis with one of the spatial axes.
  </ul>
 
