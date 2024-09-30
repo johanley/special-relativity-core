@@ -61,6 +61,7 @@ public final class NBoost implements NComponentOp {
     }
     
     //https://en.wikipedia.org/wiki/Lorentz_transformation#Proper_transformations
+    //BUT I CHANGE THE SENSE (REVERSE THE SIGN) of their formula, to change from passive to active
     
     //the inverse simply reverses the direction of the boost
     NThreeVector v = velocity.times(sign);
@@ -72,26 +73,26 @@ public final class NBoost implements NComponentOp {
     double[][] components = new double[4][4];
     components[0][0] = Γ;
     
-    components[0][1] = -Γ * v.x();
-    components[0][2] = -Γ * v.y();
-    components[0][3] = -Γ * v.z();
+    components[0][1] = Γ * v.x(); 
+    components[0][2] = Γ * v.y();
+    components[0][3] = Γ * v.z();
     
-    components[1][0] = -Γ * v.x();
-    components[2][0] = -Γ * v.y();
-    components[3][0] = -Γ * v.z();
+    components[1][0] = Γ * v.x();
+    components[2][0] = Γ * v.y();
+    components[3][0] = Γ * v.z();
     
     components[1][1] = 1 + (Γ-1) * (sq(v.x()) / vsq);
     components[2][2] = 1 + (Γ-1) * (sq(v.y()) / vsq);
     components[3][3] = 1 + (Γ-1) * (sq(v.z()) / vsq);
     
-    components[2][1] =  (Γ-1) * (v.y() * v.x() / vsq);
-    components[3][1] =  (Γ-1) * (v.z() * v.x() / vsq);
+    components[2][1] = (Γ-1) * (v.y() * v.x() / vsq);
+    components[3][1] = (Γ-1) * (v.z() * v.x() / vsq);
     
-    components[1][2] =  (Γ-1) * (v.x() * v.y() / vsq);
-    components[3][2] =  (Γ-1) * (v.z() * v.y() / vsq);
+    components[1][2] = (Γ-1) * (v.x() * v.y() / vsq);
+    components[3][2] = (Γ-1) * (v.z() * v.y() / vsq);
 
-    components[1][3] =  (Γ-1) * (v.x() * v.z() / vsq);
-    components[2][3] =  (Γ-1) * (v.y() * v.z() / vsq);
+    components[1][3] = (Γ-1) * (v.x() * v.z() / vsq);
+    components[2][3] = (Γ-1) * (v.y() * v.z() / vsq);
     
     return NMatrix.of(components);
   }

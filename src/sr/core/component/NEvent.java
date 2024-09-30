@@ -5,6 +5,7 @@ import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
 import static sr.core.Util.mustHave;
+import static sr.core.Util.round;
 
 import sr.core.Axis;
 import sr.core.component.ops.NBoost;
@@ -68,8 +69,8 @@ public final class NEvent implements NAffineOp<NEvent>, NLinearOps<NEvent>, NLin
   }
   
   @Override public NEvent rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
-    return NEvent.of(comps);
+    NComponents comps3 = NRotate.of(axisAngle, sense).applyTo(components);
+    return NEvent.of(this.components.ct(), comps3.x(), comps3.y(), comps3.z());
   }
   
   @Override public NEvent boost(NVelocity v, NSense sense) {
@@ -82,6 +83,18 @@ public final class NEvent implements NAffineOp<NEvent>, NLinearOps<NEvent>, NLin
     return NEvent.of(comps);
   }
   
+  /** This implementation applies rounding. */
+  @Override public String toString() {
+    String sep = ",";
+    String result = "[";
+    for(Axis axis : Axis.values()) {
+      result = result + roundIt(on(axis)) + sep + " ";
+    }
+    //chop off the final separator+space characters 
+    result = result.substring(0, result.length() - 2);
+    return result + "]";
+  }
+  
   // PRIVATE
 
   private NComponents components;
@@ -92,5 +105,9 @@ public final class NEvent implements NAffineOp<NEvent>, NLinearOps<NEvent>, NLin
 
   private NEvent(Double ct, Double x, Double y, Double z) {
     components = NComponents.of(ct, x, y, z);
+  }
+  
+  private double roundIt(Double val) {
+    return round(val, 5);
   }
 }

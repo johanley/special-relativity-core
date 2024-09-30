@@ -1,13 +1,12 @@
 package sr.core.component;
 
-import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
-import static sr.core.Axis.Z;
 import static sr.core.Util.mustHave;
 
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.component.ops.NMoveZeroPointBy;
+import sr.core.component.ops.NReverseSpatialComponents;
+import sr.core.component.ops.NRotate;
 import sr.core.component.ops.NSense;
 import sr.core.ops.NAffineOp;
 import sr.core.ops.NLinearOps;
@@ -42,26 +41,35 @@ public final class NPosition implements NAffineOp<NPosition>, NLinearOps<NPositi
   public double z() { return components.z(); }
   
   @Override public NPosition moveZeroPointBy(NFourDelta displacement, NSense sense) {
-    NMoveZeroPointBy op = NMoveZeroPointBy.of(displacement, sense);
-    NComponents comps = op.applyTo(components);
+    NComponents comps = NMoveZeroPointBy.of(displacement, sense).applyTo(components);
     return NPosition.of(comps);
   }
   
+  /** No effect. */
   @Override public NPosition reverseClocks() {
-    // TODO Auto-generated method stub
-    return null;
+    return NPosition.of(components);
   }
   
   @Override public NPosition reverseSpatialAxes() {
-    // TODO Auto-generated method stub
-    return null;
+    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    return NPosition.of(comps);
   }
   
   @Override public NPosition rotate(NAxisAngle axisAngle, NSense sense) {
-    // TODO Auto-generated method stub
-    return null;
+    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+    return NPosition.of(comps);
   }
   
+  /** This implementation applies rounding. */
+  @Override public String toString() {
+    String sep = ",";
+    return "[" + 
+      roundIt(x()) + sep + 
+      roundIt(y()) + sep + 
+      roundIt(z()) + 
+    "]" ;
+  }
+
   private NComponents components;
   
   private NPosition(double x, double y, double z) {
@@ -76,5 +84,9 @@ public final class NPosition implements NAffineOp<NPosition>, NLinearOps<NPositi
   private NPosition(Axis axis, double value) {
     Util.mustBeSpatial(axis);
     this.components = NComponents.of(0,0,0).overwrite(axis, value);
+  }
+  
+  private double roundIt(double value) {
+    return Util.round(value, 5);
   }
 }

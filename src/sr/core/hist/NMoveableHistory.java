@@ -26,7 +26,7 @@ public abstract class NMoveableHistory implements NHistory {
     );
   }
   /**
-   Return the displacement relative to the delta-base. 
+   Return the displacement to be added to the delta-base. 
    @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
   */
   protected abstract NFourDelta delta(double Δct);
