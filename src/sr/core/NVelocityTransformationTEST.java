@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import sr.core.component.ops.NSense;
 import sr.core.vec3.NVelocity;
 
 class NVelocityTransformationTEST {
@@ -113,6 +114,6 @@ class NVelocityTransformationTEST {
   private double onlyTinyDiff = Epsilon.ε();
   
   private NVelocity ZERO = NVelocity.zero();
-  private NVelocity UNITY = NVelocity.unity(Axis.X);
+  private NVelocity UNITY = NVelocity.unity(Axis.X, NSense.Plus);
 
 }

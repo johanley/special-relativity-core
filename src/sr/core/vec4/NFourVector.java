@@ -8,6 +8,7 @@ import static sr.core.Util.round;
 
 import sr.core.Axis;
 import sr.core.component.NComponents;
+import sr.core.vec3.NThreeVector;
 
 public class NFourVector {
 
@@ -38,6 +39,17 @@ public class NFourVector {
   */ 
   public final double square() {
     return this.dot(this);
+  }
+
+  /** Magnitude of the spatial components of this 4-vector. Always non-negative. */
+  public final double spatialMagnitude() {
+    NThreeVector v = NThreeVector.of(x(), y(), z());
+    return v.magnitude();
+  }
+
+  /** The spatial components as a basic 3-vector. */
+  public final NThreeVector spatialComponents() {
+    return NThreeVector.of(x(), y(), z());
   }
 
   /** This implementation applies rounding. */

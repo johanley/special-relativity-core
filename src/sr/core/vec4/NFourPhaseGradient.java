@@ -29,18 +29,15 @@ public final class NFourPhaseGradient extends NFourVector implements NLinearOps<
   
   /** No effect on the phase-gradient. */
   @Override public NFourPhaseGradient reverseClocks() {
-    NPhaseGradient k_new = k.reverseClocks();
-    return NFourPhaseGradient.of(k_new);
+    return NFourPhaseGradient.of(k.reverseClocks());
   }
   
   @Override public NFourPhaseGradient reverseSpatialAxes() {
-    NPhaseGradient k_new = k.reverseSpatialAxes();
-    return NFourPhaseGradient.of(k_new);
+    return NFourPhaseGradient.of(k.reverseSpatialAxes());
   }
   
   @Override public NFourPhaseGradient rotate(NAxisAngle axisAngle, NSense sense) {
-    NPhaseGradient k_new = k.rotate(axisAngle, sense);
-    return NFourPhaseGradient.of(k_new);
+    return NFourPhaseGradient.of(k.rotate(axisAngle, sense));
   }
   
   @Override public NFourPhaseGradient boost(NVelocity v, NSense sense) {

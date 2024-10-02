@@ -41,7 +41,7 @@ public final class NPhaseGradient extends NThreeVector implements NLinearOps<NPh
     return new NPhaseGradient(components);
   }
   
-  /** Reverse all components. */
+  /** Reverse all spatial components. */
   @Override public NPhaseGradient reverseSpatialAxes() {
     NComponents comps = new NReverseSpatialComponents().applyTo(components);
     return new NPhaseGradient(comps);

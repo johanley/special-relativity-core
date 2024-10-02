@@ -28,12 +28,18 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
     return new NVelocity(βx, βy, βz);
   }
   
-  /** Factory method for the case in which the velocity is parallel to a spatial coordinate axis. */
-  public static NVelocity of(double magnitude, Axis axis) {
-    return new NVelocity(magnitude, axis);
+  /** 
+   Factory method for the case in which the velocity is parallel or anti-parallel to a spatial coordinate axis.
+   @param speed can be either sign. 
+  */
+  public static NVelocity of(double speed, Axis axis) {
+    return new NVelocity(speed, axis);
   }
   
-  /** Factory method. */
+  /** 
+   Factory method.
+   @param magnitude must be non-negative. 
+  */
   public static NVelocity of(double magnitude, NDirection direction) {
     return new NVelocity(magnitude, direction);
   }
@@ -53,8 +59,8 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
   }
   
   /** Only massless objects can have a speed of 1.0. */
-  public static NVelocity unity(Axis axis) {
-    return new NVelocity(axis);
+  public static NVelocity unity(Axis axis, NSense sense) {
+    return new NVelocity(axis, sense);
   }
   
   /** Some cases only make sense when the speed is non-zero. */
@@ -98,13 +104,12 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
     check();
   }
   
-  private NVelocity(double magnitude, Axis axis) {
-    super(magnitude, axis);
-    checkNonNegative(magnitude);
+  private NVelocity(double speed, Axis axis) {
+    super(speed, axis);
     check();
   }
-  private NVelocity(Axis axis) {
-    super(1.0, axis);
+  private NVelocity(Axis axis, NSense sense) {
+    super(sense.sign(), axis);
     //no checks! 
   }
   

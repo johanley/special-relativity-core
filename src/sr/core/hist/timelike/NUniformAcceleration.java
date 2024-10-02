@@ -19,7 +19,6 @@ import sr.core.vec4.NFourDelta;
  
  <P>An electron moving in a uniform electric field follows this type of history.
 
-
  <P>A person riding in a rocket with uniform proper acceleration feels a constant g-force.
  <P>The initial velocity at the origin-event is 0. 
   <b>This history forms a hyperbola in space-time.</b>. 

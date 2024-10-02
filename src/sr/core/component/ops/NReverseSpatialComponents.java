@@ -11,7 +11,7 @@ public final class NReverseSpatialComponents implements NComponentOp {
     NComponents result = source;
     for(Axis spatialAxis : Axis.spatialAxes()) {
       double currentValue = source.on(spatialAxis);
-      result = source.overwrite(spatialAxis, -1 * currentValue);
+      result = result.overwrite(spatialAxis, -1 * currentValue);
     }
     return result;
   }

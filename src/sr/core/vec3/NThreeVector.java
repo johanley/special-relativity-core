@@ -1,8 +1,5 @@
 package sr.core.vec3;
 
-import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
-import static sr.core.Axis.Z;
 import static sr.core.Util.mustBeSpatial;
 import static sr.core.Util.mustHave;
 import static sr.core.Util.sqroot;
@@ -208,9 +205,9 @@ public class NThreeVector {
     this.components = NComponents.of(xComp, yComp, zComp);
   }
   
-  protected NThreeVector(double magnitude, Axis axis) {
+  protected NThreeVector(double value, Axis axis) {
     this(0.0, 0.0, 0.0);
-    this.components = components.overwrite(axis, magnitude);
+    this.components = components.overwrite(axis, value);
   }
   
   protected NThreeVector(double magnitude, NDirection direction) {
