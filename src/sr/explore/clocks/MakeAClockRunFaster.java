@@ -3,10 +3,10 @@ package sr.explore.clocks;
 import static sr.core.Axis.X;
 
 import sr.core.Util;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Position;
-import sr.core.vector3.Velocity;
+import sr.core.component.NPosition;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -42,7 +42,7 @@ public final class MakeAClockRunFaster extends TextOutput implements Exploration
   }
   
   private void showClockRate(double β){
-    TimelikeHistory clock = UniformVelocity.of(Position.of(X, -100.0), Velocity.of(X, β));
+    NTimelikeHistory clock = NUniformVelocity.of(NPosition.of(X, -100.0), NVelocity.of(β, X));
     double clockRate = clock.τ(1.0);
     add("Clock approaching with β: " + round(β) + Util.NL + "Clock rate relative to the frame: " + round(clockRate));
   }

@@ -5,25 +5,26 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.history.DeltaBase;
-import sr.core.history.History;
-import sr.core.history.lightlike.MirrorReflection;
-import sr.core.vector3.Direction;
-import sr.core.vector3.Velocity;
-import sr.core.vector3.transform.SpatialRotation;
-import sr.core.vector4.Event;
-import sr.core.vector4.transform.Boost;
+import sr.core.component.NEvent;
+import sr.core.component.ops.NSense;
+import sr.core.hist.NDeltaBase;
+import sr.core.hist.NHistory;
+import sr.core.hist.lightlike.NMirrorReflection;
+import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.NDirection;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /**
-A light clock consists of two mirrors, facing each other, between which a pulse of light bounces back and forth.
+ A light clock consists of two mirrors, facing each other, between which a pulse of light bounces back and forth.
 
 
-<P>Here, in frame K, a light clock has one mirror at the origin, and the other along the +X-axis. 
-A pulse of light bounces back and forth between the two mirrors.
-One full tick of the light clock means the pulse of light has gone from one mirror, to the other, and then back to the start. 
+ <P>Here, in frame K, a light clock has one mirror at the origin, and the other along the +X-axis. 
+ A pulse of light bounces back and forth between the two mirrors.
+ One full tick of the light clock means the pulse of light has gone from one mirror, to the other, and then back to the start. 
 <pre>
            Y
            ^       
@@ -37,7 +38,7 @@ One full tick of the light clock means the pulse of light has gone from one mirr
 </pre>
 
 
-<P>The space-time history of the one complete cycle of the light pulse in the light clock has this general appearance in the frame K: 
+ <P>The space-time history of the one complete cycle of the light pulse in the light clock has this general appearance in the frame K: 
 <pre>
            CT
            ^       *
@@ -51,8 +52,8 @@ One full tick of the light clock means the pulse of light has gone from one mirr
            |       * 
 </pre>
 
-<P>This class will examine one complete cycle of the light clock, both in frame K and in a boosted frame K', where the boost is in 
-a variety of directions.
+ <P>This class will examine one complete cycle of the light clock, both in frame K and in a boosted frame K', where the boost is in 
+ a variety of directions.
 */
 public final class LightClock extends TextOutput implements Exploration {
   
@@ -64,14 +65,15 @@ public final class LightClock extends TextOutput implements Exploration {
   @Override public void explore() {
     add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
-    History lightPulse = MirrorReflection.of(DeltaBase.origin(), Direction.of(-1, 0, 0));
+    NHistory lightPulse = NMirrorReflection.of(NDeltaBase.origin(), NDirection.of(-1, 0, 0));
     double ct = 10;
-    Event a_K = lightPulse.event(-ct);
-    Event b_K = lightPulse.event(+ct);
+    NEvent a_K = lightPulse.event(-ct);
+    NEvent b_K = lightPulse.event(+ct);
     add("First, one full cycle of the light clock in K:");
     add("K:   a " + a_K);
     add("K:   b " + b_K);
-    add("K:(b-a)" + b_K.minus(a_K) + " one full tick of the clock."+NL);
+    NFourDelta delta_K = NFourDelta.of(a_K, b_K);
+    add("K:(b-a)" + delta_K + " one full tick of the clock."+NL);
     
     double β = 0.90;
     add("Now look at how those same two events a and b transform in boosted frames K'.");
@@ -81,17 +83,17 @@ public final class LightClock extends TextOutput implements Exploration {
     add(tableHeader.row("Velocity", "Angle", "K':(b'-a')", "(Δct')/(Δct)", "Gamma"));
     add(dashes(98));
     double increment = Math.PI / 4.0;
-    Velocity velocity = Velocity.of(Axis.X, β);
+    NVelocity velocity = NVelocity.of(β, Axis.X);
     for(int idx = 0 ; idx < 8; ++idx) {
-      Velocity boost_velocity = rotated(velocity, idx*increment);
-      Boost boost = Boost.of(boost_velocity);
-      Event a_Kp = boost.changeGrid(a_K);
-      Event b_Kp = boost.changeGrid(b_K);
-      double ratio = b_Kp.minus(a_Kp).ct() / b_K.minus(a_K).ct();
+      NVelocity boost_velocity = rotated(velocity, idx*increment);
+      NEvent a_Kp = a_K.boost(boost_velocity, NSense.ChangeGrid);
+      NEvent b_Kp = b_K.boost(boost_velocity, NSense.ChangeGrid);
+      NFourDelta delta_Kp = NFourDelta.of(a_Kp, b_Kp);
+      double ratio = delta_Kp.ct() / delta_K.ct();
       add(table.row(
         boost_velocity, 
         boostAngle(boost_velocity), 
-        b_Kp.minus(a_Kp), 
+        delta_Kp, 
         ratio, 
         boost_velocity.Γ()
       ));
@@ -105,12 +107,11 @@ public final class LightClock extends TextOutput implements Exploration {
   private Table tableHeader = new Table("%-28s", "%-8s", "%-42s", "%-15s", "%-15s");
 
   /** Rotate the v in the XY plane. */
-  private Velocity rotated(Velocity v, double angle) {
-    SpatialRotation rot = SpatialRotation.of(Axis.Z, angle);
-    return Velocity.of(rot.changeVector(v));
+  private NVelocity rotated(NVelocity v, double angle) {
+    return v.rotate(NAxisAngle.of(angle, Axis.Z), NSense.ChangeComponents);
   }
   
-  private double boostAngle(Velocity v) {
+  private double boostAngle(NVelocity v) {
     return round(radsToDegs(Math.atan2(v.y(), v.x())), 1); //-pi to +pi 
   }
 }

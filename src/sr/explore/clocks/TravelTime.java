@@ -5,12 +5,12 @@ import static sr.core.Util.NL;
 import sr.core.Axis;
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.history.timelike.ThereAndBack;
-import sr.core.history.timelike.TimelikeDeltaBase;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Position;
-import sr.core.vector3.Velocity;
+import sr.core.component.NPosition;
+import sr.core.hist.timelike.NThereAndBack;
+import sr.core.hist.timelike.NTimelikeDeltaBase;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -44,7 +44,7 @@ public final class TravelTime extends TextOutput implements Exploration {
     add(table.row("", "τ (years)", "ct (years)"));
     add(dashes(55));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
-      TimelikeHistory history = UniformVelocity.of(Position.origin(), Velocity.of(Axis.X, speed.β()));
+      NTimelikeHistory history = NUniformVelocity.of(NPosition.origin(), NVelocity.of(speed.β(), Axis.X));
       double ct = lightyears / speed.β();
       double τ = history.τ(ct);
       add(table.row(speed.β(), round(τ), round(ct)));
@@ -65,7 +65,7 @@ public final class TravelTime extends TextOutput implements Exploration {
     add(table.row("", "τ (years)", "ct (years)"));
     add(dashes(55));
     for(SpeedValues speed : SpeedValues.nonExtremeValues()) {
-      TimelikeHistory history = ThereAndBack.of(TimelikeDeltaBase.of(Position.origin()), Velocity.of(Axis.X, speed.β()));
+      NTimelikeHistory history = NThereAndBack.of(NTimelikeDeltaBase.of(NPosition.origin()), NVelocity.of(speed.β(), Axis.X));
       double ct = lightyears / speed.β();
       double τ = history.τ(ct);
       add(table.row(speed.β(), round(2.0*τ), round(2.0*ct)));
