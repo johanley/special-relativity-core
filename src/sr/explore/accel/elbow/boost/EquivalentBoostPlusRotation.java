@@ -1,15 +1,13 @@
 package sr.explore.accel.elbow.boost;
 
 import sr.core.Axis;
+import sr.core.NVelocityTransformation;
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.VelocityTransformation;
-import sr.core.vector3.Velocity;
-import sr.core.vector4.Event;
-import sr.core.vector4.transform.Boost;
-import sr.core.vector4.transform.Rotation;
-import sr.core.vector4.transform.Transform;
-import sr.core.vector4.transform.TransformPipeline;
+import sr.core.component.NEvent;
+import static sr.core.component.ops.NSense.ChangeGrid;
+import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -80,23 +78,21 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   private Table table = new Table("%-21s", "%-21s", "%10.16f", "%10.3f°", "%10.3f°   ", "%-22s", "%-22s");
 
   private void example() {
-    Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
+    NEvent event_K = NEvent.of(10.0, 1.0, 1.0, 1.0); 
     
-    Transform cornerBoost = asCornerBoost();
-    Event event_Kpp_corner_boost = cornerBoost.changeGrid(event_K);
-    
-    Event event_Kpp_boost_plus_rot = boostPlusRotation().changeGrid(event_K);
-    Event event_Kpp_rot_plus_boost = rotationPlusBoost().changeGrid(event_K);
+    NEvent event_Kpp_corner_boost = doCornerBoostOn(event_K);
+    NEvent event_Kpp_boost_plus_rot = doBoostPlusRotationOn(event_K);
+    NEvent event_Kpp_rot_plus_boost = doRotationPlusBoostOn(event_K);
     
     add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     add("Event:" + event_K);
-    add("Corner-boost transform: " + cornerBoost);
+    add("Corner-boost transform: boost " + velocityOne() + " boost " + velocityTwo());
     add(" Event after corner-boost: " + event_Kpp_corner_boost);
-    add(Util.NL +"Boost+rotation transform: " + boostPlusRotation());
+    add(Util.NL +"Boost+rotation transform: boost " + singleBoostVelocity() + " rotation" + rotation());
     add(" Event after boost+rotation: " + event_Kpp_boost_plus_rot);
     add(Util.NL + "Order matters. Rotation+boost isn't the same. The operations don't commute.");
     add("But there is apparently a DIFFERENT rotation+boost that is indeed the same (not implemented here).");
-    add("Rotation+boost transform: " + rotationPlusBoost());
+    add("Rotation+boost transform: rotation" + rotation() + " boost " + singleBoostVelocity());
     add(" Event from rotation+boost: " + event_Kpp_rot_plus_boost);
   }
   
@@ -115,36 +111,27 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   }
   
   /** Two boosts, the second perpendicular to the first (see class description). */
-  private Transform asCornerBoost() {
-    Transform result = TransformPipeline.join(
-      Boost.of(Axis.rightHandRuleFor(pole).get(0), β1),
-      Boost.of(Axis.rightHandRuleFor(pole).get(1), β2)
-    );
-    return result;
+  private NEvent doCornerBoostOn(NEvent event) {
+    NEvent result = event.boost(velocityOne(), ChangeGrid);
+    return result.boost(velocityTwo(), ChangeGrid);
   }
   
   /** A single boost followed by a single rotation. */
-  private Transform boostPlusRotation() {
-    Transform result = TransformPipeline.join(
-      Boost.of(singleBoostVelocity()),  
-      Rotation.of(pole, θw())
-    );
-    return result;
+  private NEvent doBoostPlusRotationOn(NEvent event) {
+    NEvent result = event.boost(singleBoostVelocity(), ChangeGrid);
+    return result.rotate(rotation(), ChangeGrid);
   }
   
   /** A single rotation followed by a single boost. */
-  private Transform rotationPlusBoost() {
-    Transform result = TransformPipeline.join(
-      Rotation.of(pole, θw()),
-      Boost.of(singleBoostVelocity())  
-    );
-    return result;
+  private NEvent doRotationPlusBoostOn(NEvent event) {
+    NEvent result = event.rotate(rotation(), ChangeGrid);
+    return result.boost(singleBoostVelocity(), ChangeGrid);
   }
   
   /** Kinematic (Wigner) rotation angle. Range -pi..pi.  */
   private double θw() {
-    Velocity a = singleBoostVelocity();
-    Velocity b = singleBoostVelocityReversed();
+    NVelocity a = singleBoostVelocity();
+    NVelocity b = singleBoostVelocityReversed();
     //should this be a.turnsTo(b) ? No, I believe this is correct. 
     //For circular motion, this angle is 'retrograde' with respect to the sense of the given circular motion.
     return b.turnsTo(a);
@@ -154,27 +141,31 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
     return singleBoostVelocity().magnitude();
   }
 
-  private Velocity singleBoostVelocity() {
-    return VelocityTransformation.unprimedVelocity(
+  private NVelocity singleBoostVelocity() {
+    return NVelocityTransformation.unprimedVelocity(
       velocityOne(), 
       velocityTwo() 
     );
   }
   
   /** Reverse the order of parameters to the transformation formula. */
-  private Velocity singleBoostVelocityReversed() {
-    return VelocityTransformation.unprimedVelocity(
+  private NVelocity singleBoostVelocityReversed() {
+    return NVelocityTransformation.unprimedVelocity(
       velocityTwo(), 
       velocityOne() 
     );
   }
   
-  private Velocity velocityOne() {
-    return Velocity.of(Axis.rightHandRuleFor(pole).get(0), β1); 
+  private NVelocity velocityOne() {
+    return NVelocity.of(β1,Axis.rightHandRuleFor(pole).get(0)); 
   }
   
-  private Velocity velocityTwo() {
-    return Velocity.of(Axis.rightHandRuleFor(pole).get(1), β2); 
+  private NVelocity velocityTwo() {
+    return NVelocity.of(β2, Axis.rightHandRuleFor(pole).get(1)); 
+  }
+  
+  private NAxisAngle rotation() {
+    return NAxisAngle.of(θw(), pole);
   }
   
   /** 

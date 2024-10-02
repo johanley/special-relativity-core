@@ -9,8 +9,8 @@ import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
-import sr.explore.accel.elbow.boost.NCornerBoostsDontCommute;
-import sr.explore.accel.elbow.boost.NEquivalentBoostPlusRotation;
+import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
+import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
 import sr.explore.accel.elbow.boost.kinematic.rotation.NKinematicRotation;
@@ -82,10 +82,10 @@ public final class RunExplorations {
 
   private static List<Exploration> newExplorations(){
     List<Exploration> result = new ArrayList<>();
-    result.add(new OneRevolution());
+    //result.add(new OneRevolution());
     //result.add(new KinematicSpinAsLimit());
-    result.add(new NCornerBoostsDontCommute());
-    result.add(new NEquivalentBoostPlusRotation());
+    //result.add(new CornerBoostsDontCommute());
+    //result.add(new EquivalentBoostPlusRotation());
     result.add(new NKinematicRotation());
     result.add(new NKinematicRotationRange());
     result.add(new NConnectedRockets());
