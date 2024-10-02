@@ -8,7 +8,7 @@ package sr.core.component.ops;
  <P>This enum exists in order to make the calling code more clear.
  It merely provides aliases for the numbers +1 and -1.
 
- Aliases for +1:
+ <P>Aliases for +1:
  <ul>
   <li>Active
   <li>ChangeComponents
@@ -17,7 +17,7 @@ package sr.core.component.ops;
   <li>Forward
  </ul>
  
- Aliases for -1:
+ <P>Aliases for -1:
  <ul>
   <li>Passive
   <li>ChangeGrid

@@ -4,47 +4,120 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
+import sr.explore.accel.circular.motion.NKinematicSpinAsLimit;
+import sr.explore.accel.circular.motion.NOneRevolution;
 import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
+import sr.explore.accel.elbow.boost.NCornerBoostsDontCommute;
+import sr.explore.accel.elbow.boost.NEquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
+import sr.explore.accel.elbow.boost.kinematic.rotation.NKinematicRotation;
+import sr.explore.accel.elbow.boost.kinematic.rotation.NKinematicRotationRange;
 import sr.explore.accel.speed.ConnectedRockets;
+import sr.explore.accel.speed.NConnectedRockets;
+import sr.explore.accel.speed.NOneGeeForever;
+import sr.explore.accel.speed.NOneGeeThereAndBack;
+import sr.explore.accel.speed.NOneGeeThereAndBackWithCruise;
+import sr.explore.accel.speed.NOneGeeThereAndStay;
 import sr.explore.accel.speed.OneGeeForever;
 import sr.explore.accel.speed.OneGeeThereAndBack;
 import sr.explore.accel.speed.OneGeeThereAndBackWithCruise;
 import sr.explore.accel.speed.OneGeeThereAndStay;
 import sr.explore.clocks.LightClock;
 import sr.explore.clocks.MakeAClockRunFaster;
+import sr.explore.clocks.NLightClock;
+import sr.explore.clocks.NMakeAClockRunFaster;
+import sr.explore.clocks.NTravelTime;
+import sr.explore.clocks.NTwins;
 import sr.explore.clocks.TravelTime;
 import sr.explore.clocks.Twins;
+import sr.explore.geom.flattening.NStickFlattening;
 import sr.explore.geom.flattening.StickFlattening;
 import sr.explore.interval.invariant.InvariantInterval;
+import sr.explore.interval.invariant.NInvariantInterval;
 import sr.explore.optics.doppler.cone.DopplerCone;
 import sr.explore.optics.doppler.cone.DopplerConeElbowBoost;
+import sr.explore.optics.doppler.cone.NDopplerCone;
+import sr.explore.optics.doppler.cone.NDopplerConeElbowBoost;
+import sr.explore.optics.flyby.NRelativisticFlyBy;
 import sr.explore.optics.flyby.RelativisticFlyBy;
+import sr.explore.optics.kvector.NWaveVectorK;
 import sr.explore.optics.kvector.WaveVectorK;
 import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
+import sr.explore.optics.lightsliceofastick.NLightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
+import sr.explore.optics.mirror.NMovingMirror;
 import sr.explore.optics.telescope.BoostedTelescope;
+import sr.explore.optics.telescope.NBoostedTelescope;
+import sr.explore.speeds.NSpeedsAndGammas;
 import sr.explore.speeds.SpeedsAndGammas;
 import sr.explore.velocitytransform.BoostToRotateVelocity;
 import sr.explore.velocitytransform.Commutation;
 import sr.explore.velocitytransform.CompareFormulaWithLT;
 import sr.explore.velocitytransform.MaxAngleBetweenResultVectors;
+import sr.explore.velocitytransform.NBoostToRotateVelocity;
+import sr.explore.velocitytransform.NCommutation;
+import sr.explore.velocitytransform.NCompareFormulaWithLT;
+import sr.explore.velocitytransform.NMaxAngleBetweenResultVectors;
+import sr.explore.velocitytransform.NNeverExceedsSpeedLimit;
+import sr.explore.velocitytransform.NSignReversal;
 import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
 import sr.explore.velocitytransform.SignReversal;
+import sr.explore.waves.NInvariantPhaseDifference;
+import sr.explore.waves.NWavesInMedia;
 import sr.explore.waves.WavesInMedia;
 
 /** Run a number of explorations in sequence. */
 public final class RunExplorations {
   
   public static void main(String[] args) {
-    for(Exploration exploration : explorations()) {
+    //List<Exploration> list = explorations();
+    List<Exploration> list = newExplorations();
+    for(Exploration exploration : list) {
       exploration.explore();
     }
   }
-  
+
+  private static List<Exploration> newExplorations(){
+    List<Exploration> result = new ArrayList<>();
+    result.add(new NOneRevolution());
+    result.add(new NKinematicSpinAsLimit());
+    result.add(new NCornerBoostsDontCommute());
+    result.add(new NEquivalentBoostPlusRotation());
+    result.add(new NKinematicRotation());
+    result.add(new NKinematicRotationRange());
+    result.add(new NConnectedRockets());
+    result.add(new NOneGeeForever());
+    result.add(new NOneGeeThereAndBack());
+    result.add(new NOneGeeThereAndBackWithCruise());
+    result.add(new NOneGeeThereAndStay());
+    result.add(new NLightClock());
+    result.add(new NMakeAClockRunFaster());
+    result.add(new NTravelTime());
+    result.add(new NTwins());
+    result.add(new NStickFlattening());
+    result.add(new NInvariantInterval());
+    result.add(new NDopplerCone());
+    result.add(new NDopplerConeElbowBoost());
+    result.add(new NWaveVectorK());
+    result.add(new NLightSliceOfAStick());
+    result.add(new NMovingMirror());
+    result.add(new NBoostedTelescope());
+    result.add(new NSpeedsAndGammas());
+    result.add(new NNeverExceedsSpeedLimit());
+    result.add(new NBoostToRotateVelocity());
+    result.add(new NCompareFormulaWithLT());
+    result.add(new NCommutation());
+    result.add(new NMaxAngleBetweenResultVectors());
+    result.add(new NSignReversal());
+    result.add(new NInvariantPhaseDifference());
+    result.add(new NWavesInMedia());
+    result.add(new NRelativisticFlyBy());
+    return result;
+  }
+
   private static List<Exploration> explorations(){
     List<Exploration> result = new ArrayList<>();
     result.add(new ConnectedRockets());
@@ -79,6 +152,7 @@ public final class RunExplorations {
     result.add(new RelativisticFlyBy());
     result.add(new BoostedTelescope());
     result.add(new WavesInMedia());
+    result.add(new NInvariantPhaseDifference());
     return result;
   }
 

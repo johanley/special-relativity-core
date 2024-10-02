@@ -18,7 +18,7 @@ public class NDeltaBase {
     return new NDeltaBase(baseEvent);  
   }
 
-  /** Factory method for the delta-base at the given position, and with <code>ct=0</code>. */
+  /** Factory method for the delta-base having given position, and <code>ct=0</code>. */
   public static NDeltaBase of(NPosition position) {
     return new NDeltaBase(NEvent.of(0.0, position));  
   }

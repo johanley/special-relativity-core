@@ -1,9 +1,6 @@
 package sr.core.vec4;
 
 import static sr.core.Axis.CT;
-import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
-import static sr.core.Axis.Z;
 
 import sr.core.Axis;
 import sr.core.Physics;

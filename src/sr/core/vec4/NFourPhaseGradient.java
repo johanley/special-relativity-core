@@ -11,7 +11,7 @@ import sr.core.vec3.NVelocity;
 
 /**
  Phase-gradient (wave vector) <em>k<sup>i</sup></em> for a plane monochromatic wave with phase-velocity as the speed limit <em>c</em>.
- <P>This corresponds to a light wave travelling in a vacuum.
+ <P>This corresponds to a light wave traveling in a vacuum.
  
  <p>The general relation is <em>ω = c*k</em>. 
  <b>In this project <em>c=1</em>, so ω and <em>k</em> are numerically the same.
@@ -19,15 +19,16 @@ import sr.core.vec3.NVelocity;
   
  <P>The space components are the direction unit-vector multiplied by <em>k<em>(or ω).
 */
-public final class NFourPhaseGradient extends NFourVector implements NLinearOps<NFourPhaseGradient>, NLinearBoostOp<NFourPhaseGradient>{
+public final class NFourPhaseGradient extends NFourVector implements NLinearOps<NFourPhaseGradient>, NLinearBoostOp<NFourPhaseGradient> {
   
   public static NFourPhaseGradient of(NPhaseGradient k) {
     return new NFourPhaseGradient(k);
   }
-  
+
+  /** The phase-gradient 3-vector. */
   public NPhaseGradient k() { return k; }
   
-  /** No effect on the phase-gradient. */
+  /** No effect. */
   @Override public NFourPhaseGradient reverseClocks() {
     return NFourPhaseGradient.of(k.reverseClocks());
   }

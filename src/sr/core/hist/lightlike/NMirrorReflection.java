@@ -31,7 +31,7 @@ public final class NMirrorReflection implements NHistory {
   /**
    Factory method.
    @param deltaBase of the history, relative to which this history acts.
-   @param direction before the turnaround event.
+   @param direction before the turn-around event.
   */
   public static NMirrorReflection of(NDeltaBase deltaBase, NDirection direction) {
     return new NMirrorReflection(deltaBase, direction);

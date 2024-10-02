@@ -11,12 +11,12 @@ import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NVelocity;
 
 /**
-Four phase-gradient <em>k<sup>i</sup></em> for a plane monochromatic wave of any speed.
-Here, 'gradient' includes a time component (a time-derivative).
+ Four phase-gradient <em>k<sup>i</sup></em> for a plane monochromatic wave of any speed.
+ Here, <em>gradient</em> includes a time component (a time-derivative).
 
-<P>Core data:
+ <P>Core data:
  <ul>
-  <li>velocity of the wave <b>u</b> (its phase velocity)
+  <li>velocity of the wave <b>u</b> (the phase velocity)
   <li>the spatial phase gradient <b>k</b> as a vector (the change in phase per unit distance). 
   The spatial phase-gradient is always perpendicular to the wavefront.
  </ul>
@@ -32,7 +32,7 @@ Here, 'gradient' includes a time component (a time-derivative).
  Thus, this class can be used as a simple model of light in a medium, or of sound in a medium.
  
  <P>Reference: <a href='https://arxiv.org/pdf/0801.3149v2'>article</a> of Aleksandar Gjurchinovski (2008) for the formula for the 
- phase-gradient in the more general case.
+  phase-gradient in the more general case.
 */
 public final class NFourPhaseGradientSlow extends NFourVector implements NLinearOps<NFourPhaseGradientSlow>, NLinearBoostOp<NFourPhaseGradientSlow> {
 

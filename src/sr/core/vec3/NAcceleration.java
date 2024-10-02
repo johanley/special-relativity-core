@@ -9,6 +9,9 @@ import sr.core.component.ops.NSense;
 import sr.core.ops.NLinearOps;
 import sr.core.vector3.ThreeVector;
 
+/** 
+ The acceleration of an object having mass.
+*/
 public final class NAcceleration extends NThreeVector implements NLinearOps<NAcceleration> { 
   
   /** Factory method, taking the 3 components of the acceleration along the XYZ axes, in that order.  */

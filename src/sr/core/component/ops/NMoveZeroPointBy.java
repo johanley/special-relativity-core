@@ -6,13 +6,11 @@ import sr.core.vec4.NFourDelta;
 
 /** 
  Displacement of the origin of coordinates, in both time and space.
+ This operation has no effect on vectors; it only affects positions and events.
 */
 public final class NMoveZeroPointBy implements NComponentOp {
   
-  /**
-   Factory method.
-   @param sense +1 applies the displacement to the components, -1 to the frame. 
-  */
+  /**  Factory method. */
   public static NMoveZeroPointBy of(NFourDelta displacement, NSense sense) {
     return new NMoveZeroPointBy(displacement, sense);
   }

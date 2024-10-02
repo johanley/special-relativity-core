@@ -18,8 +18,9 @@ import sr.core.ops.NLinearOps;
  Thus, this class cannot be used to represent such speeds.
  (An alternative implementation would might use {@link java.math.BigDecimal} instead of Double to represent speeds.)
 
- <P>Both the components of the velocity and the overall speed must be in the range (-1, +1).
+ <P>Most objects created by this class have both the components of the velocity and the overall speed in the range (-1, +1).
  This is an open interval, excluding the boundaries.
+ The exceptions are the <em>unity</em> methods, where the speed is always 1.
 */
 public final class NVelocity extends NThreeVector implements NLinearOps<NVelocity>{
   

@@ -15,7 +15,7 @@ import sr.core.vec3.NVelocity;
 /**
  A boost (Lorentz Transformation) in any direction, with no spatial rotation.
   
- <P>This implementation uses a matrix to represent the Lorentz Transformation.
+ <P>Implementation note: this implementation uses a matrix to represent the Lorentz Transformation.
  This seems to be the most general way of transforming items.
  It ties together: 
  <ul>

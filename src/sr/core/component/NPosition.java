@@ -13,6 +13,10 @@ import sr.core.ops.NLinearOps;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec4.NFourDelta;
 
+/** 
+ The position of an object in space.
+ <P>Note that a position is not a 3-vector.
+*/
 public final class NPosition implements NAffineOp<NPosition>, NLinearOps<NPosition> {
 
   /** Factory method. */

@@ -15,6 +15,10 @@ public abstract class NMoveableHistory implements NHistory {
     this.deltaBase = deltaBase;
   }
 
+  /** 
+   Return the event for the given coordinate-time.
+   Adds the value returned by {@link #delta(double)} to the {@link #deltaBase()}. 
+  */
   @Override public final NEvent event(double ct) {
     double Δct = ct - deltaBase.baseEvent().ct();
     NFourDelta delta = delta(Δct);
@@ -27,7 +31,7 @@ public abstract class NMoveableHistory implements NHistory {
   }
   /**
    Return the displacement to be added to the delta-base. 
-   @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
+   @param Δct is the difference between <em>ct</em> and the coordinate time attached to {@link NDeltaBase#ΔbaseEvent()}.
   */
   protected abstract NFourDelta delta(double Δct);
   
@@ -35,14 +39,13 @@ public abstract class NMoveableHistory implements NHistory {
   
   /** 
    Return an approximation to the velocity of the object at the given coordinate-time.
-   <P>Implementations can override this method, if they have a non-approximate way of calculating the velocity.
+   <P>Implementations can override this method, if they have a more direct way of calculating the velocity.
    
-   <P>This method can fail for ultra-relativistic speeds, because the 
-   approximate calculation returns a speed of 1.0.
+   <P>This method can fail for ultra-relativistic speeds, because the approximate calculation returns a speed of 1.0.
    It will also fail at events where the velocity's derivative is not defined (for example, hard turning points).
    
-   <P>If that's the case, you'll need to find other means to calculate the velocity,  
-   perhaps by overriding this method.
+   <P>If that's the case, you'll need to find other means to calculate the velocity, usually by overriding this method
+   with a more appropriate algorithm.
   */
   public NVelocity velocity(double ct) {
     NEvent a = event(ct);

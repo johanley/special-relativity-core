@@ -8,15 +8,15 @@ import sr.core.component.ops.NSense;
 import sr.core.ops.NLinearOps;
 
 /** 
-An axis-angle vector, used to define a rotation.
+ An axis-angle vector, used to define a rotation.
 
-<P>References:
-<ul> 
- <li><a href='https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation'>main</a>
- <li><a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a>
-</ul>
+ <P>References:
+ <ul> 
+  <li><a href='https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation'>main</a>
+  <li><a href='https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula'>Rodrigues' rotation formula</a>
+ </ul>
 
-<P>For kinematic rotation (Wigner rotation), the axis-angle is proportional to the cross product of acceleration and velocity.
+ <P>For kinematic rotation (Wigner rotation), the axis-angle is proportional to the cross product of acceleration and velocity.
 */
 public final class NAxisAngle extends NThreeVector implements NLinearOps<NAxisAngle> {
   

@@ -17,7 +17,7 @@ public abstract class NTimelikeMoveableHistory extends NMoveableHistory implemen
     this.timeLikeDeltaBase = timelikeDeltaBase;
   }
 
-  /** Return the {@link Event} given a proper-time as the parameter into the {@link NTimelikeHistory}. */
+  /** Return the {@link NEvent} given a proper-time as the parameter into the {@link NTimelikeHistory}. */
   public final NEvent eventFromProperTime(double τ) {
     return event(ct(τ));
   }

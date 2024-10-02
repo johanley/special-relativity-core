@@ -11,7 +11,7 @@ import sr.core.hist.NDeltaBase;
  <ul> 
    <li>for circular motion, it could be related to the center of the circle. 
    In this case, it's not even part of the history of the object.
-   <li>for constant proper-acceleration, it could be the turnaround point. 
+   <li>for constant proper-acceleration, it could be the turn-around point. 
  </ul>
 */
 public final class NTimelikeDeltaBase extends NDeltaBase {

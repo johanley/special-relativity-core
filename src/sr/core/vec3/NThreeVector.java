@@ -11,9 +11,9 @@ import sr.core.Util;
 import sr.core.component.NComponents;
 
 /** 
-A standard 3-vector, with three spatial components, with no constraints on the component values.
+ A standard 3-vector, with three spatial components, with no constraints on the component values.
 
-<P>Most, but not all, methods are final.
+ <P>Most, but not all, methods are final.
 
  <P>Note the following differences with 4-vectors:
  <ul>

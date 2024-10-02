@@ -11,10 +11,7 @@ import sr.core.component.NComponents;
 */
 public final class NRotate implements NComponentOp {
   
-  /**
-   Factory method.
-   @param sense +1 applies the rotation to the components, -1 to the frame. 
-  */
+  /** Factory method. */
   public static NRotate of(NAxisAngle axisAngle, NSense sense) {
     return new NRotate(axisAngle, sense);
   }

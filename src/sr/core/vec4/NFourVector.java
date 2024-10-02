@@ -10,6 +10,15 @@ import sr.core.Axis;
 import sr.core.component.NComponents;
 import sr.core.vec3.NThreeVector;
 
+/** 
+The basic data and operations for a 4-vector.
+
+<P>Note on the design: this class doesn't do two important jobs:
+ <ul> 
+  <li>create new FourVector objects (since different vector have different construction needs)
+  <li>mutate the state of existing FourVector objects
+ </ul> 
+*/
 public class NFourVector {
 
   public double on(Axis axis) { return components.on(axis); }

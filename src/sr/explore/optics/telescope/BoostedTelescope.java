@@ -119,7 +119,7 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     add("K' time-slice: angle of telescope : " + angleFromXAxis(event_from_time_slice_Kp.minus(eyepiece_Kp)) + " (the flattening effect)");
     add("K' light-slice: angle of incoming detected light ray : " + angleFromXAxis(lens_Kp.minus(eyepiece_Kp)) + " (the aberration effect)");
     
-    outputToConsole();
+    outputToConsoleAnd("boosted-telescope.txt");
     
   }
   

@@ -23,6 +23,7 @@ import sr.core.vec4.NFourDelta;
 
 /** 
  An event in Minkowski space-time.
+ <P>Note that an event is not a 4-vector.
 */
 public final class NEvent implements NAffineOp<NEvent>, NLinearOps<NEvent>, NLinearBoostOp<NEvent> {
   

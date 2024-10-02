@@ -40,8 +40,8 @@ public final class DopplerConeElbowBoost implements Exploration {
       output_K.add(wv_rotated_K);
       output_Kp.add(wv_rotated_Kp);
     }
-    output_K.outputTo("output_K.txt", this);
-    output_Kp.outputTo("output_Kp.txt", this);
+    output_K.outputTo("output_elbow_K.txt", this);
+    output_Kp.outputTo("output_elbow_Kp.txt", this);
   }
   
   private FourPhaseGradient rotated(FourPhaseGradient k, int numDegrees) {

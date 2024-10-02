@@ -16,7 +16,7 @@ import sr.core.vec4.NFourDelta;
 /**
  History for a mass particle moving uniformly in a circle.
  
- <P>An electron moving in a perpendicular to a uniform magnetic field follows this type of history.
+ <P>An electron moving perpendicular to a uniform magnetic field follows this type of history.
  (A helical motion is the general case of an electron moving in a uniform magnetic field.)
 
  <P>The axis of the circular motion is one of the spatial coordinate axes.

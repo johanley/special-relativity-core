@@ -16,11 +16,11 @@ import sr.core.Axis;
 /** 
  Three or four components corresponding the <em>ct</em>, <em>x</em>, <em>y</em>, and <em>z</em> axes.
  
- <P>For 3-vectors, any <em>ct</em>-component, if present, will be silently ignored. 
+ <P>For 3-vectors, any <em>ct</em>-component will be silently ignored, if it's present. 
 */
 public final class NComponents {
 
-  /** Space and time components (3+1). */
+  /** Space and time components (1+3). */
   public static NComponents of(double ct, double x, double y, double z) {
     NComponents result = new NComponents();
     result.comps.put(CT, ct);
@@ -44,15 +44,18 @@ public final class NComponents {
     return comps.get(axis);
   }
   
-  /** This is not present for items having no time-component. */
+  /** The time component (not present for items having no time-component). */
   public double ct() {
     if (hasSpaceOnly()) {
       throw new IllegalStateException("No time component is present.");
     }
     return on(CT);  
   }
+  /** The x-component. */
   public double x() { return on(X);  }
+  /** The y-component. */
   public double y() { return on(Y);  }
+  /** The z-component. */
   public double z() { return on(Z);  }
   
   /** 
