@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
-import sr.explore.accel.circular.motion.NKinematicSpinAsLimit;
-import sr.explore.accel.circular.motion.NOneRevolution;
+import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
+import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
@@ -82,8 +82,8 @@ public final class RunExplorations {
 
   private static List<Exploration> newExplorations(){
     List<Exploration> result = new ArrayList<>();
-    result.add(new NOneRevolution());
-    result.add(new NKinematicSpinAsLimit());
+    result.add(new OneRevolution());
+    //result.add(new KinematicSpinAsLimit());
     result.add(new NCornerBoostsDontCommute());
     result.add(new NEquivalentBoostPlusRotation());
     result.add(new NKinematicRotation());
