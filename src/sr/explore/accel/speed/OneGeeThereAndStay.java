@@ -4,13 +4,13 @@ import static sr.core.Physics.ONE_GEE;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.history.timelike.StitchedTimelikeHistory;
-import sr.core.history.timelike.TimelikeDeltaBase;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.UniformAcceleration;
-import sr.core.vector3.Position;
-import sr.core.vector4.Event;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.hist.timelike.NStitchedTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeDeltaBase;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeMoveableHistory;
+import sr.core.hist.timelike.NUniformAcceleration;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -65,9 +65,9 @@ public final class OneGeeThereAndStay extends TextOutput implements Exploration 
   }
  
   private void explore(double τ_years) {
-    TimelikeHistory history = accelerateThenBrake(τ_years);
+    NTimelikeHistory history = accelerateThenBrake(τ_years);
     double end_ct = history.ct(τ_years);
-    Event end_event = history.event(end_ct);
+    NEvent end_event = history.event(end_ct);
     add(table.row(τ_years, end_event.x(), end_event.ct()));
   }
   
@@ -76,15 +76,21 @@ public final class OneGeeThereAndStay extends TextOutput implements Exploration 
   private Table tableHeader = new Table("%-15s", "%-22s", "%-20s");
   private static final int NUM_YEARS = 20;
 
-  private TimelikeHistory accelerateThenBrake(double τ_years) {
+  private NTimelikeHistory accelerateThenBrake(double τ_years) {
     double τ_halfWay = τ_years * 0.5;
     
-    TimelikeMoveableHistory acceleration = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
-    Event halfWay = acceleration.eventFromProperTime(τ_halfWay);
+    NTimelikeMoveableHistory acceleration = NUniformAcceleration.of(NPosition.origin(), Axis.X, ONE_GEE);
+    NEvent halfWay = acceleration.eventFromProperTime(τ_halfWay);
     //note how the delta-base is computed, by symmetry:
-    TimelikeMoveableHistory braking = UniformAcceleration.of(TimelikeDeltaBase.of(halfWay.plus(halfWay), τ_years), Axis.X, -ONE_GEE);
+    NEvent halfWayTimes2 = NEvent.of(
+      halfWay.ct()*2,
+      halfWay.x()*2,
+      halfWay.y()*2,
+      halfWay.z()*2
+    );
+    NTimelikeMoveableHistory braking = NUniformAcceleration.of(NTimelikeDeltaBase.of(halfWayTimes2, τ_years), Axis.X, -ONE_GEE);
     
-    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(acceleration);
+    NStitchedTimelikeHistory builder = NStitchedTimelikeHistory.startingWith(acceleration);
     builder.addTheNext(braking, halfWay.ct());
     return builder.build();
   }

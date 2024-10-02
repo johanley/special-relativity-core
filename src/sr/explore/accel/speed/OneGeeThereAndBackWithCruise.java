@@ -4,15 +4,14 @@ import static sr.core.Physics.ONE_GEE;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.history.timelike.StitchedTimelikeHistory;
-import sr.core.history.timelike.TimelikeDeltaBase;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.UniformAcceleration;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Position;
-import sr.core.vector4.Event;
-import sr.core.vector4.transform.Reversal;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.hist.timelike.NStitchedTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeDeltaBase;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeMoveableHistory;
+import sr.core.hist.timelike.NUniformAcceleration;
+import sr.core.hist.timelike.NUniformVelocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -100,10 +99,10 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput implements Ex
   }
  
   private void explore(double τ_years_accel, double τ_years_cruising) {
-    TimelikeHistory history = roundTripAtOneGee(τ_years_accel, τ_years_cruising);
+    NTimelikeHistory history = roundTripAtOneGee(τ_years_accel, τ_years_cruising);
     double τ_years = τ_years_accel + τ_years_cruising;
     double end_ct = history.ct(τ_years);
-    Event end_event = history.event(end_ct);
+    NEvent end_event = history.event(end_ct);
     add(table.row(τ_years, end_event.x(), end_event.ct()));
   }
   
@@ -114,44 +113,54 @@ public final class OneGeeThereAndBackWithCruise extends TextOutput implements Ex
   private static final int NUM_YEARS_CRUISING = 2;
   private static final Axis X = Axis.X;
 
-  private TimelikeHistory roundTripAtOneGee(double τ_years_accel, double τ_years_cruising) {
+  private NTimelikeHistory roundTripAtOneGee(double τ_years_accel, double τ_years_cruising) {
     
     /*
-     * Example : 24 years_accel + 2 years_cruising = (6 + 1 + 6) + (6 + 1 +6)
+     * Example : 24 years_accel + 2 years_cruising = (6 + 1 + 6) + (6 + 1 + 6)
      *                                             = 6 + 1 + 12 + 1 + 6
      * Be careful about the meaning of branch point and delta-base 
      */
     
     //accelerate 6 years
-    TimelikeMoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
-    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg);
+    NTimelikeMoveableHistory leg = NUniformAcceleration.of(NPosition.origin(), X, ONE_GEE);
+    NStitchedTimelikeHistory builder = NStitchedTimelikeHistory.startingWith(leg);
 
     //cruise 1 year
-    Event branch_point = leg.eventFromProperTime(τ_years_accel * 0.25);
-    TimelikeDeltaBase delta_base = TimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
-    leg = UniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
+    NEvent branch_point = leg.eventFromProperTime(τ_years_accel * 0.25);
+    NTimelikeDeltaBase delta_base = NTimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
+    leg = NUniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
     builder.addTheNext(leg, branch_point.ct());
     
-    Event half_way_out = leg.eventFromProperTime(τ_years_accel * 0.25 + τ_years_cruising * 0.25);
-    Event all_way_out = half_way_out.plus(half_way_out);
+    NEvent half_way_out = leg.eventFromProperTime(τ_years_accel * 0.25 + τ_years_cruising * 0.25);
+    NEvent all_way_out = NEvent.of(
+      half_way_out.ct()*2,
+      half_way_out.x()*2,
+      half_way_out.y()*2,
+      half_way_out.z()*2
+    );
     
     //brake 12 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.25 + τ_years_cruising * 0.5);
-    delta_base = TimelikeDeltaBase.of(all_way_out, (τ_years_accel +  τ_years_cruising) * 0.5); 
-    leg = UniformAcceleration.of(delta_base, X, -ONE_GEE);
+    delta_base = NTimelikeDeltaBase.of(all_way_out, (τ_years_accel +  τ_years_cruising) * 0.5); 
+    leg = NUniformAcceleration.of(delta_base, X, -ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
 
     //cruise 1 year
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising * 0.5);
-    delta_base = TimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
-    leg = UniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
+    delta_base = NTimelikeDeltaBase.of(branch_point, leg.τ(branch_point.ct()));
+    leg = NUniformVelocity.of(delta_base, leg.velocity(branch_point.ct()));
     builder.addTheNext(leg, branch_point.ct());
 
     //accel 6 years
     branch_point = leg.eventFromProperTime(τ_years_accel * 0.75 + τ_years_cruising);
-    Reversal flipX = Reversal.of(X);
-    delta_base = TimelikeDeltaBase.of(all_way_out.plus(flipX.changeVector(all_way_out)), τ_years_accel + τ_years_cruising); 
-    leg = UniformAcceleration.of(delta_base, X, ONE_GEE);
+    NEvent back_again = NEvent.of(
+      all_way_out.ct() * 2, 
+      0, 
+      all_way_out.y(), 
+      all_way_out.z() 
+    );
+    delta_base = NTimelikeDeltaBase.of(back_again, τ_years_accel + τ_years_cruising); 
+    leg = NUniformAcceleration.of(delta_base, X, ONE_GEE);
     builder.addTheNext(leg, branch_point.ct());
     
     return builder.build();

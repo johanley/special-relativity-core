@@ -1,21 +1,21 @@
 package sr.explore.accel.elbow.boost.kinematic.rotation;
 
 import static sr.core.Axis.X;
-import static sr.core.Axis.Y;
 import static sr.core.Axis.Z;
 
 import java.util.function.Function;
 
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Position;
-import sr.core.vector4.Event;
-import sr.core.vector4.FindEvent;
-import sr.core.vector4.transform.Boost;
-import sr.core.vector4.transform.Transform;
-import sr.core.vector4.transform.TransformPipeline;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.component.ops.NSense;
+import sr.core.hist.timelike.NFindEvent;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.vec3.NDirection;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
@@ -83,21 +83,15 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     //the stick is stationary in K''
     //a and b are the ends of the stick on the x-axis, from x=1 to x=2
     //here are their histories in K''
-    TimelikeHistory historyA_Kpp = UniformVelocity.stationary(Position.of(X, 1.0));
-    TimelikeHistory historyB_Kpp = UniformVelocity.stationary(Position.of(X, 2.0));
+    NTimelikeHistory historyA_Kpp = NUniformVelocity.stationary(NPosition.of(X, 1.0));
+    NTimelikeHistory historyB_Kpp = NUniformVelocity.stationary(NPosition.of(X, 2.0));
     add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
     double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
-    double restLength_Kpp = historyB_Kpp.event(ct_Kpp).minus(historyA_Kpp.event(ct_Kpp)).spatialMagnitude();
+    NFourDelta diff = NFourDelta.of(historyA_Kpp.event(ct_Kpp), historyB_Kpp.event(ct_Kpp));
+    double restLength_Kpp = diff.spatialMagnitude();
     add("Rest length of the stick in K'': " + restLength_Kpp); 
     
-    //corner-boost "backwards" from K'' all the way back to K
-    double β1 = 0.8;
-    double β2 = 0.6;
-    Transform cornerBoost = TransformPipeline.join(
-      Boost.of(Y, -β2), //minus signs, because we're going backwards here
-      Boost.of(X, -β1)        
-    );
-    add("Corner-boost backwards from K'' to K: "+ cornerBoost);
+    add("Corner-boost backwards from K'' to K: boost "+ v2() + " boost " + v1());
     add("");
     add("All of the items below are in K." + Util.NL);
     
@@ -105,12 +99,12 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     //find 2 events, one taken from each history, that have the same coord-time
     //these depend on the speeds chosen.
     double ctA_Kpp = 0.9; //any old ct'' value 
-    Event eventA_K = cornerBoost.changeGrid(historyA_Kpp.event(ctA_Kpp)); 
+    NEvent eventA_K = applyCornerBoost(historyA_Kpp.event(ctA_Kpp)); 
     
-    Function<Event, Double> criterion = event -> (cornerBoost.changeGrid(event).ct() - eventA_K.ct());
-    FindEvent findEvent = new FindEvent(historyB_Kpp, criterion);
+    Function<NEvent, Double> criterion = event -> (applyCornerBoost(event).ct() - eventA_K.ct());
+    NFindEvent findEvent = new NFindEvent(historyB_Kpp, criterion);
     double ctB_Kpp = findEvent.search(0.0); 
-    Event eventB_K = cornerBoost.changeGrid(historyB_Kpp.event(ctB_Kpp)); 
+    NEvent eventB_K = applyCornerBoost(historyB_Kpp.event(ctB_Kpp)); 
     
     add("Time-slice across the stick's history in K.");
     add("Examine two events, one for each end of the stick.");
@@ -120,7 +114,7 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     //find the angle
     //get the displacement between the two ends of the stick, and figure out the 
     //angle the stick is making with the x axis (basic trig)
-    Event stick_K = eventB_K.minus(eventA_K);
+    NFourDelta stick_K = NFourDelta.of(eventA_K, eventB_K);
     add("Difference (B - A): "+stick_K + " has ct=0 (time-slice).") ;
     double angle_K = Math.atan2(stick_K.y(), stick_K.x());
     add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle_K)) + "°"); 
@@ -140,6 +134,24 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     add(" ");
     add("The same result comes from examining the raw history of the stick.");
     add("Angle of the stick with respect to the equivDirection (not the X-axis) from raw histories: " + degrees(angle_K - calc.equivalent().direction) + " - SAME AS ABOVE"); 
+  }
+
+  private double β1 = 0.8;
+  private double β2 = 0.6;
+
+  /** Corner-boost "backwards" from K'' all the way back to K. */
+  private NEvent applyCornerBoost(NEvent event) {
+    NEvent result = event.boost(v2(), NSense.ChangeGrid);
+    return result.boost(v1(), NSense.ChangeGrid);
+  }
+
+  private NVelocity v1() {
+    //minus signs, because we're going backwards here
+    return NVelocity.of(0.8, NDirection.of(-1, 0 , 0));
+  }
+
+  private NVelocity v2() {
+    return NVelocity.of(0.6, NDirection.of(0, -1, 0));
   }
  
   private String degrees(double rads) {

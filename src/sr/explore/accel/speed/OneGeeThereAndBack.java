@@ -4,14 +4,13 @@ import static sr.core.Physics.ONE_GEE;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.history.timelike.StitchedTimelikeHistory;
-import sr.core.history.timelike.TimelikeDeltaBase;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.UniformAcceleration;
-import sr.core.vector3.Position;
-import sr.core.vector4.Event;
-import sr.core.vector4.transform.Reversal;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.hist.timelike.NStitchedTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeDeltaBase;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NTimelikeMoveableHistory;
+import sr.core.hist.timelike.NUniformAcceleration;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -81,9 +80,9 @@ public final class OneGeeThereAndBack extends TextOutput implements Exploration 
   }
  
   private void explore(double τ_years) {
-    TimelikeHistory history = roundTripAtOneGee(τ_years);
+    NTimelikeHistory history = roundTripAtOneGee(τ_years);
     double end_ct = history.ct(τ_years);
-    Event end_event = history.event(end_ct);
+    NEvent end_event = history.event(end_ct);
     add(table.row(τ_years, end_event.x(), end_event.ct()));
   }
   
@@ -93,24 +92,33 @@ public final class OneGeeThereAndBack extends TextOutput implements Exploration 
   private static final int NUM_YEARS = 24;
   private static final Axis X = Axis.X;
 
-  private TimelikeHistory roundTripAtOneGee(double τ_years) {
-    TimelikeMoveableHistory leg = UniformAcceleration.of(Position.origin(), X, ONE_GEE);
-    StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg);
+  private NTimelikeHistory roundTripAtOneGee(double τ_years) {
+    NTimelikeMoveableHistory leg = NUniformAcceleration.of(NPosition.origin(), X, ONE_GEE);
+    NStitchedTimelikeHistory builder = NStitchedTimelikeHistory.startingWith(leg);
 
-    Event quarterWay = leg.eventFromProperTime(τ_years * 0.25);
+    NEvent quarterWay = leg.eventFromProperTime(τ_years * 0.25);
     //and these two events by symmetry:
-    Event halfWay = quarterWay.plus(quarterWay); 
-    Reversal reversal = Reversal.of(X);
-    Event allTheWay = halfWay.plus(reversal.changeVector(halfWay)); 
+    NEvent halfWay = NEvent.of(
+      quarterWay.ct()*2, 
+      quarterWay.x()*2, 
+      quarterWay.y()*2, 
+      quarterWay.z()*2
+    );
+    NEvent allTheWay = NEvent.of(
+      halfWay.ct()*2, 
+      0, 
+      halfWay.y()*2, 
+      halfWay.z()*2
+    ); 
     
     //the delta-bases aren't the same as the branch points:
     
-    TimelikeDeltaBase deltaBase = TimelikeDeltaBase.of(halfWay, τ_years * 0.5);
-    leg = UniformAcceleration.of(deltaBase, X, -ONE_GEE);
+    NTimelikeDeltaBase deltaBase = NTimelikeDeltaBase.of(halfWay, τ_years * 0.5);
+    leg = NUniformAcceleration.of(deltaBase, X, -ONE_GEE);
     builder.addTheNext(leg, quarterWay.ct());
 
-    deltaBase = TimelikeDeltaBase.of(allTheWay, τ_years);
-    leg = UniformAcceleration.of(deltaBase, X, ONE_GEE);
+    deltaBase = NTimelikeDeltaBase.of(allTheWay, τ_years);
+    leg = NUniformAcceleration.of(deltaBase, X, ONE_GEE);
     builder.addTheNext(leg, 3 * quarterWay.ct());
     
     return builder.build();
