@@ -10,8 +10,8 @@ import sr.core.component.ops.Rotate;
 import sr.core.component.ops.Sense;
 import sr.core.ops.AffineOp;
 import sr.core.ops.LinearOps;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec4.FourDelta;
 
 /** 
  The position of an object in space.
@@ -44,7 +44,7 @@ public final class Position implements AffineOp<Position>, LinearOps<Position> {
   public double y() { return components.y(); }
   public double z() { return components.z(); }
   
-  @Override public Position moveZeroPointBy(NFourDelta displacement, Sense sense) {
+  @Override public Position moveZeroPointBy(FourDelta displacement, Sense sense) {
     Components comps = MoveZeroPointBy.of(displacement, sense).applyTo(components);
     return Position.of(comps);
   }
@@ -59,7 +59,7 @@ public final class Position implements AffineOp<Position>, LinearOps<Position> {
     return Position.of(comps);
   }
   
-  @Override public Position rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public Position rotate(AxisAngle axisAngle, Sense sense) {
     Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return Position.of(comps);
   }

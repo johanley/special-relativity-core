@@ -24,27 +24,27 @@ import sr.core.component.Components;
   (arc lengths via Minkowski metric), and you it's defined only if the two four-vectors are both time-like or both space-like.
  </ul>
 */
-public class NThreeVector {
+public class ThreeVector {
 
   /** Factory method. */
-  public static NThreeVector of(double x, double y, double z) {
-    return new NThreeVector(x, y, z);
+  public static ThreeVector of(double x, double y, double z) {
+    return new ThreeVector(x, y, z);
   }
   
   /** Factory method. The vector has 1 non-zero component, along the given spatial coordinate axis. */
-  public static NThreeVector of(double magnitude, Axis axis) {
+  public static ThreeVector of(double magnitude, Axis axis) {
     mustBeSpatial(axis);
-    return new NThreeVector(magnitude, axis);
+    return new ThreeVector(magnitude, axis);
   }
   
   /** A vector having all components 0.0. */
-  public static NThreeVector zero() {
-    return NThreeVector.of(0.0, 0.0, 0.0);
+  public static ThreeVector zero() {
+    return ThreeVector.of(0.0, 0.0, 0.0);
   }
   
   /** Some cases only make sense when the magnitude is non-zero. */
-  public static NThreeVector nonZero(double x, double y, double z) {
-    NThreeVector result = NThreeVector.of(x, y, z);
+  public static ThreeVector nonZero(double x, double y, double z) {
+    ThreeVector result = ThreeVector.of(x, y, z);
     Util.mustHave(result.magnitude() > 0, "Vector should have a non-zero magnitude.");
     return result;
   }
@@ -64,10 +64,10 @@ public class NThreeVector {
   public final double z() { return components.z(); }
   
   /** Replace one component of this three-vector with the given value on one spatial axis. Returns a new object. */
-  public final NThreeVector overwrite(Axis axis, double value) {
+  public final ThreeVector overwrite(Axis axis, double value) {
     mustBeSpatial(axis);
     Components comps = components.overwrite(axis, value);
-    return NThreeVector.of(
+    return ThreeVector.of(
       comps.x(), 
       comps.y(), 
       comps.z() 
@@ -75,7 +75,7 @@ public class NThreeVector {
   }
   
   /** The scalar product of this vector with another vector. */
-  public final double dot(NThreeVector that) {
+  public final double dot(ThreeVector that) {
     double result = 0.0;
     for (Axis axis : components.axes()) {
       result = result + on(axis) * that.on(axis); 
@@ -84,12 +84,12 @@ public class NThreeVector {
   }
   
   /** The vector product of this vector with another vector. */
-  public final NThreeVector cross(NThreeVector that) {
+  public final ThreeVector cross(ThreeVector that) {
     //https://en.wikipedia.org/wiki/Cross_product
     double x = y() * that.z() - z() * that.y();
     double y = z() * that.x() - x() * that.z();
     double z = x() * that.y() - y() * that.x();
-    return NThreeVector.of(x, y, z);
+    return ThreeVector.of(x, y, z);
   }
   
   /** The scalar product of this vector with itself. */
@@ -103,7 +103,7 @@ public class NThreeVector {
   }
 
   /** The angle between this vector and that vector. Range 0..+π. */
-  public final double angle(NThreeVector that) {
+  public final double angle(ThreeVector that) {
     double numerator = dot(that);
     double denominator = magnitude() * that.magnitude();
     return Math.acos(numerator / denominator);
@@ -115,7 +115,7 @@ public class NThreeVector {
    The angle turns 'this' vector into 'that' vector, using the right-hand rule.
    The sign is the same as the sign of the Z-component of <code>this.cross(that)</code>. 
   */
-  public final double turnsTo(NThreeVector that) {
+  public final double turnsTo(ThreeVector that) {
     Util.mustHave(this.z() == 0, "This vector is not in the XY plane: " + this);
     Util.mustHave(that.z() == 0, "That vector is not in the XY plane: " + that);
     double result = angle(that);
@@ -147,8 +147,8 @@ public class NThreeVector {
   }
   
   /** This vector plus 'that' 3-vector (for each component). Returns a new object. */
-  public final NThreeVector plus(NThreeVector that) {
-    return NThreeVector.of(
+  public final ThreeVector plus(ThreeVector that) {
+    return ThreeVector.of(
       x() + that.x(), 
       y() + that.y(),
       z() + that.z()
@@ -156,8 +156,8 @@ public class NThreeVector {
   }
   
   /** This vector minus 'that' vector (for each component).  Returns a new object. */
-  public final NThreeVector minus(NThreeVector that) {
-    return NThreeVector.of(
+  public final ThreeVector minus(ThreeVector that) {
+    return ThreeVector.of(
       x() - that.x(), 
       y() - that.y(),
       z() - that.z()
@@ -165,8 +165,8 @@ public class NThreeVector {
   }
  
   /** Multiply each component by the given scalar. Returns a new object. */
-  public final NThreeVector times(double scalar) {
-    return NThreeVector.of(
+  public final ThreeVector times(double scalar) {
+    return ThreeVector.of(
       x() * scalar, 
       y() * scalar, 
       z() * scalar 
@@ -174,9 +174,9 @@ public class NThreeVector {
   }
   
   /** Divide each component by the given (non-zero) scalar. Returns a new object. */
-  public final NThreeVector divide(double scalar) {
+  public final ThreeVector divide(double scalar) {
     mustHave(scalar != 0, "Cannot divide by zero.");
-    return NThreeVector.of(
+    return ThreeVector.of(
       x() / scalar, 
       y() / scalar, 
       z() / scalar 
@@ -184,7 +184,7 @@ public class NThreeVector {
   }
   
   /** Return a new vector in the same direction as this vector, but having unit magnitude. */
-  public final NThreeVector unitVector() {
+  public final ThreeVector unitVector() {
     return this.divide(magnitude());
   }
   
@@ -201,16 +201,16 @@ public class NThreeVector {
   protected Components components;
   
   /** Constructors are protected, in order to be visible to subclasses. */
-  protected NThreeVector(double xComp, double yComp, double zComp) {
+  protected ThreeVector(double xComp, double yComp, double zComp) {
     this.components = Components.of(xComp, yComp, zComp);
   }
   
-  protected NThreeVector(double value, Axis axis) {
+  protected ThreeVector(double value, Axis axis) {
     this(0.0, 0.0, 0.0);
     this.components = components.overwrite(axis, value);
   }
   
-  protected NThreeVector(double magnitude, NDirection direction) {
+  protected ThreeVector(double magnitude, Direction direction) {
     this(
       magnitude * direction.x(), 
       magnitude * direction.y(), 
@@ -218,7 +218,7 @@ public class NThreeVector {
     );
   }
   
-  protected NThreeVector(Components components) {
+  protected ThreeVector(Components components) {
     this.components = components;
   }
 

@@ -17,9 +17,9 @@ import sr.core.component.ops.Sense;
 import sr.core.ops.AffineOp;
 import sr.core.ops.LinearBoostOp;
 import sr.core.ops.LinearOps;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 
 /** 
  An event in Minkowski space-time.
@@ -69,17 +69,17 @@ public final class Event implements AffineOp<Event>, LinearOps<Event>, LinearBoo
     return Event.of(comps);
   }
   
-  @Override public Event rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public Event rotate(AxisAngle axisAngle, Sense sense) {
     Components comps3 = Rotate.of(axisAngle, sense).applyTo(components);
     return Event.of(this.components.ct(), comps3.x(), comps3.y(), comps3.z());
   }
   
-  @Override public Event boost(NVelocity v, Sense sense) {
+  @Override public Event boost(Velocity v, Sense sense) {
     Components comps = Boost.of(v, sense).applyTo(components);
     return Event.of(comps);
   }
   
-  @Override public Event moveZeroPointBy(NFourDelta displacement, Sense sense) {
+  @Override public Event moveZeroPointBy(FourDelta displacement, Sense sense) {
     Components comps = MoveZeroPointBy.of(displacement, sense).applyTo(components);
     return Event.of(comps);
   }

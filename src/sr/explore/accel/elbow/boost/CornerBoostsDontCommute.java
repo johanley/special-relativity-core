@@ -7,8 +7,8 @@ import sr.core.VelocityTransformation;
 import sr.core.Util;
 import sr.core.component.Event;
 import sr.core.component.ops.Sense;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.Direction;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -34,10 +34,10 @@ public final class CornerBoostsDontCommute extends TextOutput implements Explora
   @Override public void explore() {
     double β1 = 0.6; //used to be minus
     double β2 = 0.8;
-    NVelocity β1_minus_x = NVelocity.of(β1, NDirection.of(-1,0,0));
-    NVelocity β2_plus_x = NVelocity.of(β2, NDirection.of(+1,0,0));
-    NVelocity β2_plus_y = NVelocity.of(β2, NDirection.of(0,+1,0));
-    NVelocity β1_minus_y = NVelocity.of(β1, NDirection.of(0,-1,0));
+    Velocity β1_minus_x = Velocity.of(β1, Direction.of(-1,0,0));
+    Velocity β2_plus_x = Velocity.of(β2, Direction.of(+1,0,0));
+    Velocity β2_plus_y = Velocity.of(β2, Direction.of(0,+1,0));
+    Velocity β1_minus_y = Velocity.of(β1, Direction.of(0,-1,0));
 
     add("1. Boosts commute if (and only if) they're in the same line (collinear).");
     add(dashes(70));
@@ -47,7 +47,7 @@ public final class CornerBoostsDontCommute extends TextOutput implements Explora
 
     double βequiv = βequivalentColinear(β1_minus_x, β2_plus_x);
     Event event = anyOldEvent();
-    Event afterEquiv = boostThe(event, NVelocity.of(βequiv, X));
+    Event afterEquiv = boostThe(event, Velocity.of(βequiv, X));
     add("A single equivalent boost: " + X + " " + Util.round(βequiv, 5) + " " + afterEquiv);
     
     add(Util.NL + "2. Boosts don't commute if they aren't in the same line (non-collinear).");
@@ -64,23 +64,23 @@ public final class CornerBoostsDontCommute extends TextOutput implements Explora
     outputToConsoleAnd("corner-boosts-dont-commute.txt");
   }
   
-  private Event boostThe(Event event, NVelocity v) {
+  private Event boostThe(Event event, Velocity v) {
     return event.boost(v, Sense.ChangeComponents);
   }
 
-  private double βequivalentColinear(NVelocity v_a, NVelocity v_b) {
-    NVelocity result = VelocityTransformation.unprimedVelocity(v_a, v_b);
+  private double βequivalentColinear(Velocity v_a, Velocity v_b) {
+    Velocity result = VelocityTransformation.unprimedVelocity(v_a, v_b);
     return result.magnitude();
   }
   
-  private void seeIfOrderMatters(NVelocity v1, NVelocity v2) {
+  private void seeIfOrderMatters(Velocity v1, Velocity v2) {
     Event event = anyOldEvent();
     inThisOrder(event, v1, v2);
     add("Now reverse the order of the boosts, for the same event.");
     inThisOrder(event, v2, v1);
   }
   
-  private void inThisOrder(Event event, NVelocity v1, NVelocity v2) {
+  private void inThisOrder(Event event, Velocity v1, Velocity v2) {
     add("Event: " + event);
     
     Axis axis1 = v1.axis().get();

@@ -12,19 +12,19 @@ import sr.core.ops.LinearOps;
  The spatial gradient of the phase of a wave (<b>k</b>, its wave vector).
  The magnitude of the gradient is always positive. 
 */
-public final class NPhaseGradient extends NThreeVector implements LinearOps<NPhaseGradient> {
+public final class PhaseGradient extends ThreeVector implements LinearOps<PhaseGradient> {
   
   /** Factory method, taking the 3 components of the phase-gradient (wave vector) <em>k</em> along the XYZ axes, in that order. */
-  public static NPhaseGradient of(double x, double y, double z) {
-    return new NPhaseGradient(x, y, z);
+  public static PhaseGradient of(double x, double y, double z) {
+    return new PhaseGradient(x, y, z);
   }
   
   /**
    Factory method. 
    @param k is positive. 
   */
-  public static NPhaseGradient of(double k, NDirection direction) {
-    return new NPhaseGradient(k, direction);
+  public static PhaseGradient of(double k, Direction direction) {
+    return new PhaseGradient(k, direction);
   }
 
   /** 
@@ -32,41 +32,41 @@ public final class NPhaseGradient extends NThreeVector implements LinearOps<NPha
    The vector has 1 non-zero component, along the given spatial coordinate axis.
    @param k is positive. 
   */
-  public static NPhaseGradient of(double k, Axis axis) {
-    return new NPhaseGradient(k, axis);
+  public static PhaseGradient of(double k, Axis axis) {
+    return new PhaseGradient(k, axis);
   }
   
   /** No effect. */
-  @Override public NPhaseGradient reverseClocks() {
-    return new NPhaseGradient(components);
+  @Override public PhaseGradient reverseClocks() {
+    return new PhaseGradient(components);
   }
   
   /** Reverse all spatial components. */
-  @Override public NPhaseGradient reverseSpatialAxes() {
+  @Override public PhaseGradient reverseSpatialAxes() {
     Components comps = new ReverseSpatialComponents().applyTo(components);
-    return new NPhaseGradient(comps);
+    return new PhaseGradient(comps);
   }
   
-  @Override public NPhaseGradient rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public PhaseGradient rotate(AxisAngle axisAngle, Sense sense) {
     Components comps = Rotate.of(axisAngle, sense).applyTo(components);
-    return new NPhaseGradient(comps);
+    return new PhaseGradient(comps);
   }
   
-  private NPhaseGradient(double x, double y, double z) {
+  private PhaseGradient(double x, double y, double z) {
     super(x, y, z);
   }
 
-  private NPhaseGradient(double k, NDirection direction) {
+  private PhaseGradient(double k, Direction direction) {
     super(k, direction);
     check(k);
   }
 
-  private NPhaseGradient(double k, Axis axis) {
+  private PhaseGradient(double k, Axis axis) {
     super(k, axis);
     check(k);
   }
   
-  private NPhaseGradient(Components comps) {
+  private PhaseGradient(Components comps) {
     super(comps);
   }
   

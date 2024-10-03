@@ -7,8 +7,8 @@ import sr.core.component.Position;
 import sr.core.hist.timelike.CircularMotion;
 import sr.core.hist.timelike.TimelikeDeltaBase;
 import sr.core.hist.timelike.TimelikeMoveableHistory;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -54,8 +54,8 @@ public final class OneRevolution extends TextOutput implements Exploration {
     long ct_one_rev = Math.round(2*Math.PI * radius / β) + 5;
     for(int ct = 0; ct <= ct_one_rev; ++ct) {
       Event e = circle.event(ct);
-      NVelocity v = circle.velocity(ct);
-      NAxisAngle rot = circle.rotation(ct);
+      Velocity v = circle.velocity(ct);
+      AxisAngle rot = circle.rotation(ct);
       add(table.row(ct, deg(phase(e.position())), -deg(rot.magnitude()), e.position(), v)); 
     }
   }
@@ -69,7 +69,7 @@ public final class OneRevolution extends TextOutput implements Exploration {
       double β = i / 100.0;
       TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
       double ct_one_rev = 2*Math.PI * radius / β;
-      NAxisAngle rotation = circle.rotation(ct_one_rev);
+      AxisAngle rotation = circle.rotation(ct_one_rev);
       add(table2.row(β, radius, -deg(rotation.magnitude())));
     }
   }

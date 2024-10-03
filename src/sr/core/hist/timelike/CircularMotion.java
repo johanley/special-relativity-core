@@ -7,11 +7,11 @@ import sr.core.Util;
 import sr.core.component.Components;
 import sr.core.component.Event;
 import sr.core.component.ops.Sense;
-import sr.core.vec3.NAcceleration;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.Acceleration;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 
 /**
  History for a mass particle moving uniformly in a circle.
@@ -44,7 +44,7 @@ public class CircularMotion extends TimelikeMoveableHistory {
     return new CircularMotion(deltaBase, radius, β, rotationalAxis, theta0);
   }
 
-  @Override protected NFourDelta delta(double Δct) {
+  @Override protected FourDelta delta(double Δct) {
     return displacement(Δct);
   }
   
@@ -56,7 +56,7 @@ public class CircularMotion extends TimelikeMoveableHistory {
     return Δct / Physics.Γ(β);
   }
   
-  @Override public NVelocity velocity(double ct) {
+  @Override public Velocity velocity(double ct) {
     return tangentialVelocity(ct);
   }
   
@@ -64,10 +64,10 @@ public class CircularMotion extends TimelikeMoveableHistory {
    There's no restriction on the magnitude of the returned axis-angle; that is, it's not restricted to the range 0..2pi range.
    This helps in knowing how many full rotations have taken place. 
   */
-  @Override public NAxisAngle rotation(double Δct) {
-    NAxisAngle precessionRate = ThomasPrecession.ofKprime(acceleration(Δct), velocity(Δct));
-    NThreeVector rotation = precessionRate.times(Δct);
-    return NAxisAngle.of(rotation.x(), rotation.y(), rotation.z());
+  @Override public AxisAngle rotation(double Δct) {
+    AxisAngle precessionRate = ThomasPrecession.ofKprime(acceleration(Δct), velocity(Δct));
+    ThreeVector rotation = precessionRate.times(Δct);
+    return AxisAngle.of(rotation.x(), rotation.y(), rotation.z());
   }
   
   @Override public String toString() {
@@ -105,28 +105,28 @@ public class CircularMotion extends TimelikeMoveableHistory {
   }
 
   /** Return a displacement from the delta-base (which uses the center of the circle). */
-  private NFourDelta displacement(double Δct) {
+  private FourDelta displacement(double Δct) {
     Axis startAxis = Axis.rightHandRuleFor(rotationalAxis).get(0);
     Components comps = Components.of(Δct, 0, 0, 0);
     comps = comps.overwrite(startAxis, radius);
     Event initialEvent = Event.of(comps);
     Event b = initialEvent.rotate(angleFor(Δct), Sense.ChangeComponents);
-    return NFourDelta.withRespectToOrigin(b);
+    return FourDelta.withRespectToOrigin(b);
   }
   
-  private NVelocity tangentialVelocity(double Δct) {
-    NVelocity base = NVelocity.of(β, Axis.rightHandRuleFor(rotationalAxis).get(1));
+  private Velocity tangentialVelocity(double Δct) {
+    Velocity base = Velocity.of(β, Axis.rightHandRuleFor(rotationalAxis).get(1));
     return base.rotate(angleFor(Δct), Sense.ChangeComponents);
   }
   
-  private NAcceleration acceleration(double Δct) {
+  private Acceleration acceleration(double Δct) {
     double mag = Util.sq(β) / radius;
-    NAcceleration base = NAcceleration.of(Axis.rightHandRuleFor(rotationalAxis).get(0), -mag);
+    Acceleration base = Acceleration.of(Axis.rightHandRuleFor(rotationalAxis).get(0), -mag);
     return base.rotate(angleFor(Δct), Sense.ChangeComponents);
   }
   
-  private NAxisAngle angleFor(double Δct) {
-    return NAxisAngle.of(phase(Δct), rotationalAxis);
+  private AxisAngle angleFor(double Δct) {
+    return AxisAngle.of(phase(Δct), rotationalAxis);
   }
   
   private double phase(double Δct) {

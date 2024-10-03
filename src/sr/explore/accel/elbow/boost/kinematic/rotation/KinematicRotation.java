@@ -13,9 +13,9 @@ import sr.core.component.ops.Sense;
 import sr.core.hist.timelike.FindEvent;
 import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.Direction;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 import sr.explore.Exploration;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
@@ -87,7 +87,7 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     TimelikeHistory historyB_Kpp = UniformVelocity.stationary(Position.of(X, 2.0));
     add("Stick is stationary in K''. Points along the +X''-axis. Has ends at X=1 and X=2.");
     double ct_Kpp = 0.0; //any ct'' time will do here: it's stationary in K''
-    NFourDelta diff = NFourDelta.of(historyA_Kpp.event(ct_Kpp), historyB_Kpp.event(ct_Kpp));
+    FourDelta diff = FourDelta.of(historyA_Kpp.event(ct_Kpp), historyB_Kpp.event(ct_Kpp));
     double restLength_Kpp = diff.spatialMagnitude();
     add("Rest length of the stick in K'': " + restLength_Kpp); 
     
@@ -114,7 +114,7 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     //find the angle
     //get the displacement between the two ends of the stick, and figure out the 
     //angle the stick is making with the x axis (basic trig)
-    NFourDelta stick_K = NFourDelta.of(eventA_K, eventB_K);
+    FourDelta stick_K = FourDelta.of(eventA_K, eventB_K);
     add("Difference (B - A): "+stick_K + " has ct=0 (time-slice).") ;
     double angle_K = Math.atan2(stick_K.y(), stick_K.x());
     add("Angle of the stick with respect to the X-axis: " + round(Util.radsToDegs(angle_K)) + "°"); 
@@ -145,13 +145,13 @@ public final class KinematicRotation extends TextOutput implements Exploration {
     return result.boost(v1(), Sense.ChangeGrid);
   }
 
-  private NVelocity v1() {
+  private Velocity v1() {
     //minus signs, because we're going backwards here
-    return NVelocity.of(0.8, NDirection.of(-1, 0 , 0));
+    return Velocity.of(0.8, Direction.of(-1, 0 , 0));
   }
 
-  private NVelocity v2() {
-    return NVelocity.of(0.6, NDirection.of(0, -1, 0));
+  private Velocity v2() {
+    return Velocity.of(0.6, Direction.of(0, -1, 0));
   }
  
   private String degrees(double rads) {

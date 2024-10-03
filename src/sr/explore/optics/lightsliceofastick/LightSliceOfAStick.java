@@ -12,8 +12,8 @@ import sr.core.component.Position;
 import sr.core.hist.timelike.FindEvent;
 import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -122,17 +122,17 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
   private double apparentStickLength(double β, Event theDetectionEvent) {
     //K to K': boost along the X-axis at the given speed
     //in K', the stick is receding at speed β in the negative-X direction
-    NVelocity boost_v = NVelocity.of(β, X);
+    Velocity boost_v = Velocity.of(β, X);
     Event eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boost_v);
     Event eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boost_v);
     //now infer the apparent length of the stick from this pair of events on the past light-cone of the detector
-    return NFourDelta.of(eventA, eventB).spatialMagnitude();
+    return FourDelta.of(eventA, eventB).spatialMagnitude();
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private Event eventOnPastLightConeOf(Event detection, TimelikeHistory history, NVelocity boost_v) {
+  private Event eventOnPastLightConeOf(Event detection, TimelikeHistory history, Velocity boost_v) {
     Function<Event, Double> onTheLightCone = event -> (
-      NFourDelta.of(detection, event.boost(boost_v, ChangeGrid)).square()
+      FourDelta.of(detection, event.boost(boost_v, ChangeGrid)).square()
     );
     FindEvent root = new FindEvent(history, onTheLightCone);
     double τA = root.search(0.0);

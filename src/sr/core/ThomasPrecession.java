@@ -2,10 +2,10 @@ package sr.core;
 
 import static sr.core.Util.sq;
 
-import sr.core.vec3.NAcceleration;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.Acceleration;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
 
 /**
  Thomas precession for a given acceleration.
@@ -35,25 +35,25 @@ public final class ThomasPrecession {
    @param v in K, the instantaneous velocity of an object at time ct
    @return rate of rotation of the co-moving frame K' with respect to K (right-hand rule); the rate uses ct.
   */
-  public static NAxisAngle ofKprime(NAcceleration a, NVelocity v) {
+  public static AxisAngle ofKprime(Acceleration a, Velocity v) {
     return transform(a, v, +1);
   }
   
   /**
-   The inverse of {@link #primed(NAcceleration, NVelocity)}.
+   The inverse of {@link #primed(Acceleration, Velocity)}.
     
    @return rate of rotation of K with respect to the co-moving frame K' (right-hand rule); the rate uses ct' (not the proper-time of the object).
   */
-  public static NAxisAngle ofK(NAcceleration a, NVelocity v) {
+  public static AxisAngle ofK(Acceleration a, Velocity v) {
     //is this correct? is it really a rate with respect to ct'?
     return transform(a, v, -1);
   }
   
-  private static NAxisAngle transform(NAcceleration a, NVelocity v, int sign) {
+  private static AxisAngle transform(Acceleration a, Velocity v, int sign) {
     //https://en.wikipedia.org/wiki/Thomas_precession#Statement
     double Γ = v.Γ();
     double b = sq(Γ) / (Γ+1);
-    NThreeVector t = a.cross(v).times(b).times(sign);
-    return NAxisAngle.of(t.x(), t.y(), t.z());
+    ThreeVector t = a.cross(v).times(b).times(sign);
+    return AxisAngle.of(t.x(), t.y(), t.z());
   }
 }

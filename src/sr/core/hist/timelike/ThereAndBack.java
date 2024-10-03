@@ -2,7 +2,7 @@ package sr.core.hist.timelike;
 
 import sr.core.Util;
 import sr.core.component.Event;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.Velocity;
 
 /**
  History for a particle with mass moving uniformly from infinity to some event, then in the opposite direction back out to infinity.
@@ -31,7 +31,7 @@ public final class ThereAndBack implements TimelikeHistory {
    @param deltaBase of the history, relative to which this history acts.
    @param velocity before the turnaround event; the speed cannot be zero
   */
-  public static ThereAndBack of(TimelikeDeltaBase deltaBase, NVelocity velocity) {
+  public static ThereAndBack of(TimelikeDeltaBase deltaBase, Velocity velocity) {
     return new ThereAndBack(deltaBase, velocity);
   }
 
@@ -53,14 +53,14 @@ public final class ThereAndBack implements TimelikeHistory {
 
   private TimelikeHistory stitchedHistory;
   
-  private ThereAndBack(TimelikeDeltaBase deltaBase, NVelocity velocity) {
+  private ThereAndBack(TimelikeDeltaBase deltaBase, Velocity velocity) {
     Util.mustHave(velocity.magnitude() > 0, "Speed cannot be zero.");
     this.stitchedHistory = stitchedHistory(deltaBase, velocity);
   }
   
-  private TimelikeHistory stitchedHistory(TimelikeDeltaBase deltaBase, NVelocity velocity) {
+  private TimelikeHistory stitchedHistory(TimelikeDeltaBase deltaBase, Velocity velocity) {
     TimelikeMoveableHistory leg1 = UniformVelocity.of(deltaBase, velocity);
-    TimelikeMoveableHistory leg2 = UniformVelocity.of(deltaBase, NVelocity.of(velocity.times(-1)));
+    TimelikeMoveableHistory leg2 = UniformVelocity.of(deltaBase, Velocity.of(velocity.times(-1)));
     StitchedTimelikeHistory builder = StitchedTimelikeHistory.startingWith(leg1);
     builder.addTheNext(leg2, deltaBase.baseEvent().ct());
     return builder.build();

@@ -5,12 +5,12 @@ import static sr.core.Util.radsToDegs;
 import sr.core.Axis;
 import sr.core.component.Event;
 import sr.core.component.ops.Sense;
-import sr.core.vec3.NDelta;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NPhaseGradient;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
-import sr.core.vec4.NFourPhaseGradient;
+import sr.core.vec3.Delta;
+import sr.core.vec3.Direction;
+import sr.core.vec3.PhaseGradient;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
+import sr.core.vec4.FourPhaseGradient;
 
 /** 
  The detection of a photon at the detector.
@@ -27,7 +27,7 @@ final class DetectionEvent {
   /** The <b>core calculation</b> is done by this constructor. */
   DetectionEvent(Event emissionEvent, Double β, MainSequenceStar star){
     this.emissionTime = emissionEvent.ct();
-    this.distanceToEmissionEvent = NFourDelta.withRespectToOrigin(emissionEvent).spatialMagnitude();
+    this.distanceToEmissionEvent = FourDelta.withRespectToOrigin(emissionEvent).spatialMagnitude();
     
     //c=1 here; no other value will do
     double lightTravelTime = distanceToEmissionEvent / 1.0;
@@ -75,22 +75,22 @@ final class DetectionEvent {
   }
   
   /** 
-   Boost a {@link NFourPhaseGradient} using a boost along the X axis by β.
+   Boost a {@link FourPhaseGradient} using a boost along the X axis by β.
    Sets both this.θ and this.D as a side effect.  
   */
   private void boostTheWaveVectorComingFromThe(Event emissionEvent, double β) {
     //in K, the detector is at rest with respect to the star, and at the origin of the coordinate system
-    NDirection detector_direction_K = NDirection.of(NDelta.withRespectToOrigin(emissionEvent.position()));
+    Direction detector_direction_K = Direction.of(Delta.withRespectToOrigin(emissionEvent.position()));
 
     //photon-direction is opposite to the detector-direction
     //do the calc with a photon, then convert back to the detector's perspective
-    NDirection photon_direction = NDirection.of(detector_direction_K.times(-1));
-    NFourPhaseGradient photon_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, photon_direction));
-    NFourPhaseGradient photon_Kp = photon_K.boost(NVelocity.of(β, Axis.X), Sense.ChangeGrid);
+    Direction photon_direction = Direction.of(detector_direction_K.times(-1));
+    FourPhaseGradient photon_K = FourPhaseGradient.of(PhaseGradient.of(1.0, photon_direction));
+    FourPhaseGradient photon_Kp = photon_K.boost(Velocity.of(β, Axis.X), Sense.ChangeGrid);
     
     this.D = photon_Kp.ct() / photon_K.ct();
     
-    NDirection detector_direction_Kp = NDirection.of(photon_Kp.spatialComponents().times(-1));
+    Direction detector_direction_Kp = Direction.of(photon_Kp.spatialComponents().times(-1));
     double angle =  Math.atan2(detector_direction_Kp.y(), detector_direction_Kp.x()); //0 to +pi wrt +X axis
     this.θ =  Math.PI - angle; //0..pi wrt -X axis
   }

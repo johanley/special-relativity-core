@@ -9,8 +9,8 @@ import static sr.core.Util.sq;
 import sr.core.Matrix;
 import sr.core.Util;
 import sr.core.component.Components;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
 
 /**
  A boost (Lorentz Transformation) in any direction, with no spatial rotation.
@@ -30,7 +30,7 @@ public final class Boost implements ComponentOp {
    Factory method for a Lorentz Transformation in any direction, of the given velocity.
    No rotation of the spatial axes occurs. 
   */
-  public static Boost of(NVelocity velocity, Sense sense) {
+  public static Boost of(Velocity velocity, Sense sense) {
     return new Boost(velocity, sense);
   }
   
@@ -41,10 +41,10 @@ public final class Boost implements ComponentOp {
     return asComponents(output_matrix);
   }
   
-  private NVelocity velocity;
+  private Velocity velocity;
   private Sense sense;
   
-  private Boost(NVelocity velocity, Sense sense) {
+  private Boost(Velocity velocity, Sense sense) {
     this.velocity = velocity;
     this.sense = sense;
   }
@@ -64,7 +64,7 @@ public final class Boost implements ComponentOp {
     //BUT I CHANGE THE SENSE (REVERSE THE SIGN) of their formula, to change from passive to active
     
     //the inverse simply reverses the direction of the boost
-    NThreeVector v = velocity.times(sign);
+    ThreeVector v = velocity.times(sign);
     
     double Γ = velocity.Γ();
     double vsq = v.square();

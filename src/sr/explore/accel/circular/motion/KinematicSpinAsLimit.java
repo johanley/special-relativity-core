@@ -10,8 +10,8 @@ import sr.core.component.ops.Sense;
 import sr.core.hist.timelike.CircularMotion;
 import sr.core.hist.timelike.TimelikeDeltaBase;
 import sr.core.hist.timelike.TimelikeMoveableHistory;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -58,7 +58,7 @@ public final class KinematicSpinAsLimit extends TextOutput implements Exploratio
     add(table.row("N sides", "Kinematic rotation (Wigner rotation)"));
     add(table.row("", "after 1 circuit"));
     add(dashes(45));
-    NVelocity v = NVelocity.of(β, Axis.X);
+    Velocity v = Velocity.of(β, Axis.X);
     for(int numSides = 3; numSides <= 360; ++numSides) {
       add(table.row(numSides, rotationAfterOneCircuit(numSides, v)));
     }
@@ -68,24 +68,24 @@ public final class KinematicSpinAsLimit extends TextOutput implements Exploratio
    First calculate the the velocity transform for rotating the given v by 2pi/N radians.
    Then calculate the kinematic rotation (Wigner rotation) using the angle needed to turn (b+a) into (a+b). 
   */
-  private String rotationAfterOneCircuit(int numSides, NVelocity v_K) {
+  private String rotationAfterOneCircuit(int numSides, Velocity v_K) {
     double angle = 2*Math.PI/numSides;
-    NVelocity v_K_rotated = rotated(v_K, angle);
-    NVelocity boost_in_Kp_needed_to_rotate_v = VelocityTransformation.primedVelocity(v_K, v_K_rotated);
+    Velocity v_K_rotated = rotated(v_K, angle);
+    Velocity boost_in_Kp_needed_to_rotate_v = VelocityTransformation.primedVelocity(v_K, v_K_rotated);
     
     //add the two velocities, v_K and boost_in_Kp_needed_to_rotate_v, in two different ways
     //for clarity, let's use temp aliases 'a' and 'b' 
-    NVelocity a = v_K;
-    NVelocity b = boost_in_Kp_needed_to_rotate_v;
-    NVelocity a_plus_b = VelocityTransformation.unprimedVelocity(a, b);
-    NVelocity b_plus_a = VelocityTransformation.unprimedVelocity(b, a);
+    Velocity a = v_K;
+    Velocity b = boost_in_Kp_needed_to_rotate_v;
+    Velocity a_plus_b = VelocityTransformation.unprimedVelocity(a, b);
+    Velocity b_plus_a = VelocityTransformation.unprimedVelocity(b, a);
     double angleBetweenAandB = b_plus_a.turnsTo(a_plus_b);
     return degrees(angleBetweenAandB * numSides);
   }
   
   /** Rotate in the XY-plane. */
-  private NVelocity rotated(NVelocity boost_v, double angle) {
-    return boost_v.rotate(NAxisAngle.of(angle,  Axis.Z), Sense.ChangeComponents);
+  private Velocity rotated(Velocity boost_v, double angle) {
+    return boost_v.rotate(AxisAngle.of(angle,  Axis.Z), Sense.ChangeComponents);
   }
   
   /** Use a {@link NCircularHistory}. */
@@ -94,7 +94,7 @@ public final class KinematicSpinAsLimit extends TextOutput implements Exploratio
     TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;
-    NAxisAngle rotation = circle.rotation(timeForOneCircuit);
+    AxisAngle rotation = circle.rotation(timeForOneCircuit);
     add("Circle circumference: " + roundIt(circumference));
     add("Circle radius: " + roundIt(radius));
     add("β: " + β);

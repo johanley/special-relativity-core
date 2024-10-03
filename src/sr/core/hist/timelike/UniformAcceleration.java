@@ -8,9 +8,9 @@ import static sr.core.Util.sqroot;
 import sr.core.Axis;
 import sr.core.component.Event;
 import sr.core.component.Position;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 
 /**
  History for a particle with mass moving with uniform 
@@ -61,12 +61,12 @@ public final class UniformAcceleration extends TimelikeMoveableHistory {
     return new UniformAcceleration(TimelikeDeltaBase.of(initialPosition), axis, gee);
   }
 
-  @Override protected NFourDelta delta(double Δct) {
+  @Override protected FourDelta delta(double Δct) {
     double a = sqroot(1.0 + sq(gp(Δct)));
     double distance = (sq(c)/gee)*(a - 1);
     Position displacement = Position.of(axis, distance);
     Event b = Event.of(Δct, displacement);
-    return NFourDelta.withRespectToOrigin(b);
+    return FourDelta.withRespectToOrigin(b);
   }
 
   @Override protected double Δct(double Δτ) {
@@ -80,14 +80,14 @@ public final class UniformAcceleration extends TimelikeMoveableHistory {
     return (c/gee) * Math.log(b);
   }
 
-  @Override public NVelocity velocity(double Δct) {
+  @Override public Velocity velocity(double Δct) {
     double gp = gp(Δct);
     double β = (gee * Δct) * Math.pow(1 + sq(gp), -0.5);
-    return NVelocity.of(β, axis);
+    return Velocity.of(β, axis);
   }
   
-  @Override public NAxisAngle rotation(double Δct) {
-    return NAxisAngle.zero();
+  @Override public AxisAngle rotation(double Δct) {
+    return AxisAngle.zero();
   }
   
   @Override public String toString() {

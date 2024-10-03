@@ -6,8 +6,8 @@ import sr.core.SpeedValues;
 import sr.core.Util;
 import sr.core.component.Event;
 import static sr.core.component.ops.Sense.ChangeGrid;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -130,8 +130,8 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   
   /** Kinematic (Wigner) rotation angle. Range -pi..pi.  */
   private double θw() {
-    NVelocity a = singleBoostVelocity();
-    NVelocity b = singleBoostVelocityReversed();
+    Velocity a = singleBoostVelocity();
+    Velocity b = singleBoostVelocityReversed();
     //should this be a.turnsTo(b) ? No, I believe this is correct. 
     //For circular motion, this angle is 'retrograde' with respect to the sense of the given circular motion.
     return b.turnsTo(a);
@@ -141,7 +141,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
     return singleBoostVelocity().magnitude();
   }
 
-  private NVelocity singleBoostVelocity() {
+  private Velocity singleBoostVelocity() {
     return VelocityTransformation.unprimedVelocity(
       velocityOne(), 
       velocityTwo() 
@@ -149,23 +149,23 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   }
   
   /** Reverse the order of parameters to the transformation formula. */
-  private NVelocity singleBoostVelocityReversed() {
+  private Velocity singleBoostVelocityReversed() {
     return VelocityTransformation.unprimedVelocity(
       velocityTwo(), 
       velocityOne() 
     );
   }
   
-  private NVelocity velocityOne() {
-    return NVelocity.of(β1,Axis.rightHandRuleFor(pole).get(0)); 
+  private Velocity velocityOne() {
+    return Velocity.of(β1,Axis.rightHandRuleFor(pole).get(0)); 
   }
   
-  private NVelocity velocityTwo() {
-    return NVelocity.of(β2, Axis.rightHandRuleFor(pole).get(1)); 
+  private Velocity velocityTwo() {
+    return Velocity.of(β2, Axis.rightHandRuleFor(pole).get(1)); 
   }
   
-  private NAxisAngle rotation() {
-    return NAxisAngle.of(θw(), pole);
+  private AxisAngle rotation() {
+    return AxisAngle.of(θw(), pole);
   }
   
   /** 

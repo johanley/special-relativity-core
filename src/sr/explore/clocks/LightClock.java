@@ -10,10 +10,10 @@ import sr.core.component.ops.Sense;
 import sr.core.hist.DeltaBase;
 import sr.core.hist.History;
 import sr.core.hist.lightlike.MirrorReflection;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Direction;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -65,14 +65,14 @@ public final class LightClock extends TextOutput implements Exploration {
   @Override public void explore() {
     add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
-    History lightPulse = MirrorReflection.of(DeltaBase.origin(), NDirection.of(-1, 0, 0));
+    History lightPulse = MirrorReflection.of(DeltaBase.origin(), Direction.of(-1, 0, 0));
     double ct = 10;
     Event a_K = lightPulse.event(-ct);
     Event b_K = lightPulse.event(+ct);
     add("First, one full cycle of the light clock in K:");
     add("K:   a " + a_K);
     add("K:   b " + b_K);
-    NFourDelta delta_K = NFourDelta.of(a_K, b_K);
+    FourDelta delta_K = FourDelta.of(a_K, b_K);
     add("K:(b-a)" + delta_K + " one full tick of the clock."+NL);
     
     double β = 0.90;
@@ -83,12 +83,12 @@ public final class LightClock extends TextOutput implements Exploration {
     add(tableHeader.row("Velocity", "Angle", "K':(b'-a')", "(Δct')/(Δct)", "Gamma"));
     add(dashes(98));
     double increment = Math.PI / 4.0;
-    NVelocity velocity = NVelocity.of(β, Axis.X);
+    Velocity velocity = Velocity.of(β, Axis.X);
     for(int idx = 0 ; idx < 8; ++idx) {
-      NVelocity boost_velocity = rotated(velocity, idx*increment);
+      Velocity boost_velocity = rotated(velocity, idx*increment);
       Event a_Kp = a_K.boost(boost_velocity, Sense.ChangeGrid);
       Event b_Kp = b_K.boost(boost_velocity, Sense.ChangeGrid);
-      NFourDelta delta_Kp = NFourDelta.of(a_Kp, b_Kp);
+      FourDelta delta_Kp = FourDelta.of(a_Kp, b_Kp);
       double ratio = delta_Kp.ct() / delta_K.ct();
       add(table.row(
         boost_velocity, 
@@ -107,11 +107,11 @@ public final class LightClock extends TextOutput implements Exploration {
   private Table tableHeader = new Table("%-28s", "%-8s", "%-42s", "%-15s", "%-15s");
 
   /** Rotate the v in the XY plane. */
-  private NVelocity rotated(NVelocity v, double angle) {
-    return v.rotate(NAxisAngle.of(angle, Axis.Z), Sense.ChangeComponents);
+  private Velocity rotated(Velocity v, double angle) {
+    return v.rotate(AxisAngle.of(angle, Axis.Z), Sense.ChangeComponents);
   }
   
-  private double boostAngle(NVelocity v) {
+  private double boostAngle(Velocity v) {
     return round(radsToDegs(Math.atan2(v.y(), v.x())), 1); //-pi to +pi 
   }
 }

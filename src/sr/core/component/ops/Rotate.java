@@ -1,7 +1,7 @@
 package sr.core.component.ops;
 
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NThreeVector;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.ThreeVector;
 import static sr.core.Axis.*;
 
 import sr.core.component.Components;
@@ -12,7 +12,7 @@ import sr.core.component.Components;
 public final class Rotate implements ComponentOp {
   
   /** Factory method. */
-  public static Rotate of(NAxisAngle axisAngle, Sense sense) {
+  public static Rotate of(AxisAngle axisAngle, Sense sense) {
     return new Rotate(axisAngle, sense);
   }
   
@@ -21,27 +21,27 @@ public final class Rotate implements ComponentOp {
     //https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula
     Components result = Components.of(source.on(X), source.on(Y), source.on(Z));
     
-    NThreeVector v = NThreeVector.of(source.on(X), source.on(Y), source.on(Z));
+    ThreeVector v = ThreeVector.of(source.on(X), source.on(Y), source.on(Z));
     double θ = sense.sign() * θ();
     if (Math.abs(θ) > 0) {
       double cosθ = Math.cos(θ);
       double sinθ = Math.sin(θ);
-      NThreeVector e = unitVector();
+      ThreeVector e = unitVector();
       
-      NThreeVector a = v.times(cosθ); 
-      NThreeVector b = e.cross(v).times(sinθ); 
-      NThreeVector c = e.times((1 - cosθ) * e.dot(v));
-      NThreeVector rotated = a.plus(b).plus(c);
+      ThreeVector a = v.times(cosθ); 
+      ThreeVector b = e.cross(v).times(sinθ); 
+      ThreeVector c = e.times((1 - cosθ) * e.dot(v));
+      ThreeVector rotated = a.plus(b).plus(c);
       result = Components.of(rotated.x(), rotated.y(), rotated.z());
     }
     
     return result;
   }
   
-  private NAxisAngle axisAngle;
+  private AxisAngle axisAngle;
   private Sense sense;
 
-  private Rotate(NAxisAngle axisAngle, Sense sense) {
+  private Rotate(AxisAngle axisAngle, Sense sense) {
     this.axisAngle = axisAngle;
     this.sense = sense;
   }
@@ -50,7 +50,7 @@ public final class Rotate implements ComponentOp {
     return axisAngle.magnitude();
   }
   
-  private NThreeVector unitVector() {
+  private ThreeVector unitVector() {
     //be careful of division by 0
     return axisAngle.times(1.0/θ());
   }

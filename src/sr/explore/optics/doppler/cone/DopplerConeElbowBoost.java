@@ -6,15 +6,15 @@ import static sr.core.component.ops.Sense.ChangeGrid;
 import sr.core.Axis;
 import sr.core.Util;
 import sr.core.component.ops.Boost;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NPhaseGradient;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourPhaseGradient;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.PhaseGradient;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourPhaseGradient;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link NFourPhaseGradient}s are affected by a {@link Boost}.
+ How a uniform set of {@link FourPhaseGradient}s are affected by a {@link Boost}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.
@@ -29,14 +29,14 @@ public final class DopplerConeElbowBoost implements Exploration {
   
   @Override public void explore() {
     //base wave-vector in frame K
-    NFourPhaseGradient k_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, Axis.X));
+    FourPhaseGradient k_K = FourPhaseGradient.of(PhaseGradient.of(1.0, Axis.X));
     int num = 360;
     
     output_K.addComment("Wave-vectors in K.");
     output_Kp.addComment("Wave-vectors in Kp.");
     for(int i = 0; i <= num; i=i+10) {
-      NFourPhaseGradient wv_rotated_K = rotated(k_K, i);
-      NFourPhaseGradient wv_rotated_Kp = cornerBoostOf(wv_rotated_K, Axis.Z, 0.25, 0.60);
+      FourPhaseGradient wv_rotated_K = rotated(k_K, i);
+      FourPhaseGradient wv_rotated_Kp = cornerBoostOf(wv_rotated_K, Axis.Z, 0.25, 0.60);
       output_K.add(wv_rotated_K);
       output_Kp.add(wv_rotated_Kp);
     }
@@ -44,17 +44,17 @@ public final class DopplerConeElbowBoost implements Exploration {
     output_Kp.outputTo("output_elbow_Kp.txt", this);
   }
   
-  private NFourPhaseGradient rotated(NFourPhaseGradient k, int numDegrees) {
+  private FourPhaseGradient rotated(FourPhaseGradient k, int numDegrees) {
     double rads = Util.degsToRads(numDegrees);
-    return k.rotate(NAxisAngle.of(rads, Axis.Z), ChangeComponents);
+    return k.rotate(AxisAngle.of(rads, Axis.Z), ChangeComponents);
   }
   
   private TextOutput output_K = new TextOutput();
   private TextOutput output_Kp = new TextOutput();
   
   /** Two boosts of the same speed, with the second perpendicular to the first. */
-  private NFourPhaseGradient cornerBoostOf(NFourPhaseGradient k, Axis pole, double β1, double β2) {
-    NFourPhaseGradient result = k.boost(NVelocity.of(β1, Axis.rightHandRuleFor(pole).get(0)), ChangeGrid);
-    return                 result.boost(NVelocity.of(β2, Axis.rightHandRuleFor(pole).get(1)), ChangeGrid);
+  private FourPhaseGradient cornerBoostOf(FourPhaseGradient k, Axis pole, double β1, double β2) {
+    FourPhaseGradient result = k.boost(Velocity.of(β1, Axis.rightHandRuleFor(pole).get(0)), ChangeGrid);
+    return                 result.boost(Velocity.of(β2, Axis.rightHandRuleFor(pole).get(1)), ChangeGrid);
   }
 }

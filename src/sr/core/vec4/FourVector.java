@@ -8,7 +8,7 @@ import static sr.core.Util.round;
 
 import sr.core.Axis;
 import sr.core.component.Components;
-import sr.core.vec3.NThreeVector;
+import sr.core.vec3.ThreeVector;
 
 /** 
 The basic data and operations for a 4-vector.
@@ -19,7 +19,7 @@ The basic data and operations for a 4-vector.
   <li>mutate the state of existing FourVector objects
  </ul> 
 */
-public class NFourVector {
+public class FourVector {
 
   public double on(Axis axis) { return components.on(axis); }
   public double ct() { return on(CT); }
@@ -32,7 +32,7 @@ public class NFourVector {
    Returns positive and negative values. 
    Signature (+---) for (ct,x,y,z).
   */
-  public final double dot(NFourVector that) {
+  public final double dot(FourVector that) {
     return 
      + this.components.ct() * that.components.ct() 
      - this.components.x() * that.components.x() 
@@ -52,13 +52,13 @@ public class NFourVector {
 
   /** Magnitude of the spatial components of this 4-vector. Always non-negative. */
   public final double spatialMagnitude() {
-    NThreeVector v = NThreeVector.of(x(), y(), z());
+    ThreeVector v = ThreeVector.of(x(), y(), z());
     return v.magnitude();
   }
 
   /** The spatial components as a basic 3-vector. */
-  public final NThreeVector spatialComponents() {
-    return NThreeVector.of(x(), y(), z());
+  public final ThreeVector spatialComponents() {
+    return ThreeVector.of(x(), y(), z());
   }
 
   /** This implementation applies rounding. */

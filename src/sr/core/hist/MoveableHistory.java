@@ -1,8 +1,8 @@
 package sr.core.hist;
 
 import sr.core.component.Event;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 
 /**
  Allow a {@link History} to have a configurable {@link DeltaBase} in space-time.
@@ -21,7 +21,7 @@ public abstract class MoveableHistory implements History {
   */
   @Override public final Event event(double ct) {
     double Δct = ct - deltaBase.baseEvent().ct();
-    NFourDelta delta = delta(Δct);
+    FourDelta delta = delta(Δct);
     return Event.of(
       deltaBase.baseEvent().ct() + delta.ct(), 
       deltaBase.baseEvent().x() + delta.x(), 
@@ -33,7 +33,7 @@ public abstract class MoveableHistory implements History {
    Return the displacement to be added to the delta-base. 
    @param Δct is the difference between <em>ct</em> and the coordinate time attached to {@link DeltaBase#ΔbaseEvent()}.
   */
-  protected abstract NFourDelta delta(double Δct);
+  protected abstract FourDelta delta(double Δct);
   
   public final DeltaBase deltaBase() { return deltaBase; }
   
@@ -47,12 +47,12 @@ public abstract class MoveableHistory implements History {
    <P>If that's the case, you'll need to find other means to calculate the velocity, usually by overriding this method
    with a more appropriate algorithm.
   */
-  public NVelocity velocity(double ct) {
+  public Velocity velocity(double ct) {
     Event a = event(ct);
     Event b = event(ct + 0.0001);
-    NFourDelta Δ = NFourDelta.of(a, b);
+    FourDelta Δ = FourDelta.of(a, b);
     double Δt = Δ.ct();
-    return NVelocity.of(Δ.x()/Δt, Δ.y()/Δt, Δ.z()/Δt);
+    return Velocity.of(Δ.x()/Δt, Δ.y()/Δt, Δ.z()/Δt);
   }
   
   //PRIVATE

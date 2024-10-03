@@ -8,7 +8,7 @@ import sr.core.hist.timelike.ThereAndBack;
 import sr.core.hist.timelike.TimelikeDeltaBase;
 import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -56,7 +56,7 @@ public final class Twins extends TextOutput implements Exploration {
     double LEFT_OF_ORIGIN = -50.0;
     double HALF_TIME = 50.0; 
     
-    NVelocity velocity = NVelocity.of(β, X);
+    Velocity velocity = Velocity.of(β, X);
     
     //travel in from -X infinity to the origin, then back out to -X infinity:
     TimelikeHistory thereAndBack = ThereAndBack.of(TimelikeDeltaBase.origin(), velocity);

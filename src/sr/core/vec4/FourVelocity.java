@@ -10,67 +10,67 @@ import sr.core.component.ops.Boost;
 import sr.core.component.ops.Sense;
 import sr.core.ops.LinearBoostOp;
 import sr.core.ops.LinearOps;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Direction;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
 
 /** 
  Velocity as a time-like four-vector, defined as differential displacement divided by proper-time.
  
  <P>Applies only to objects having mass.
- <P>Note that {@link NVelocity} allows for speed = 1, but this class does not.
+ <P>Note that {@link Velocity} allows for speed = 1, but this class does not.
 */
-public final class NFourVelocity extends NFourVector implements LinearOps<NFourVelocity>, LinearBoostOp<NFourVelocity> {
+public final class FourVelocity extends FourVector implements LinearOps<FourVelocity>, LinearBoostOp<FourVelocity> {
 
   /** Factory method. */
-  public static NFourVelocity of(NVelocity velocity) {
-    return new NFourVelocity(velocity);
+  public static FourVelocity of(Velocity velocity) {
+    return new FourVelocity(velocity);
   }
   
   /** Factory method. */
-  public static NFourVelocity of(double magnitude, NDirection direction) {
-    return new NFourVelocity(NVelocity.of(magnitude, direction));
+  public static FourVelocity of(double magnitude, Direction direction) {
+    return new FourVelocity(Velocity.of(magnitude, direction));
   }
   
   /** Factory method. */
-  public static NFourVelocity of(double magnitude, Axis axis) {
-    return new NFourVelocity(NVelocity.of(magnitude, axis));
+  public static FourVelocity of(double magnitude, Axis axis) {
+    return new FourVelocity(Velocity.of(magnitude, axis));
   }
   
-  public NVelocity velocity() { return velocity; }
+  public Velocity velocity() { return velocity; }
   
   /** Never negative. The magnitude of the velocity. */
   public double β() { return velocity.magnitude(); }
-  public NDirection direction() { return NDirection.of(velocity); }
+  public Direction direction() { return Direction.of(velocity); }
   /** The Lorentz factor, being the time component of the four-velocity (never negative). */
   public double Γ() {return on(CT);} 
 
   /** The time component is unchanged by this operation, but the spatial components switch sign. */
-  @Override public NFourVelocity reverseClocks() {
-    return NFourVelocity.of(velocity.reverseClocks());
+  @Override public FourVelocity reverseClocks() {
+    return FourVelocity.of(velocity.reverseClocks());
   }
   
-  @Override public NFourVelocity reverseSpatialAxes() {
-    return NFourVelocity.of(velocity.reverseSpatialAxes());
+  @Override public FourVelocity reverseSpatialAxes() {
+    return FourVelocity.of(velocity.reverseSpatialAxes());
   }
   
-  @Override public NFourVelocity rotate(NAxisAngle axisAngle, Sense sense) {
-    return NFourVelocity.of(velocity.rotate(axisAngle, sense));
+  @Override public FourVelocity rotate(AxisAngle axisAngle, Sense sense) {
+    return FourVelocity.of(velocity.rotate(axisAngle, sense));
   }
   
-  @Override public NFourVelocity boost(NVelocity v, Sense sense) {
+  @Override public FourVelocity boost(Velocity v, Sense sense) {
     Boost boost = Boost.of(v, sense);
     Components comps = boost.applyTo(components);
     //"reverse-engineer" the comps into a velocity, then into a four-velocity
     double Γ = comps.ct();
-    NThreeVector v_new = NThreeVector.of(comps.x(), comps.y(), comps.z()).divide(Γ);
-    return NFourVelocity.of(NVelocity.of(v_new));
+    ThreeVector v_new = ThreeVector.of(comps.x(), comps.y(), comps.z()).divide(Γ);
+    return FourVelocity.of(Velocity.of(v_new));
   }
   
-  private NVelocity velocity;
+  private Velocity velocity;
 
-  private NFourVelocity(NVelocity velocity) {
+  private FourVelocity(Velocity velocity) {
     Util.mustHave(velocity.magnitude() < 1.0, "Velocity input to 4-velocity must be less than 1.0: " + velocity);
     this.velocity = velocity;
     double Γ = Physics.Γ(velocity.magnitude()); //always positive, even under clock-reversal

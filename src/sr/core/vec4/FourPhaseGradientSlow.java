@@ -6,9 +6,9 @@ import sr.core.component.ops.Boost;
 import sr.core.component.ops.Sense;
 import sr.core.ops.LinearBoostOp;
 import sr.core.ops.LinearOps;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NPhaseGradient;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.PhaseGradient;
+import sr.core.vec3.Velocity;
 
 /**
  Four phase-gradient <em>k<sup>i</sup></em> for a plane monochromatic wave of any speed.
@@ -34,47 +34,47 @@ import sr.core.vec3.NVelocity;
  <P>Reference: <a href='https://arxiv.org/pdf/0801.3149v2'>article</a> of Aleksandar Gjurchinovski (2008) for the formula for the 
   phase-gradient in the more general case.
 */
-public final class NFourPhaseGradientSlow extends NFourVector implements LinearOps<NFourPhaseGradientSlow>, LinearBoostOp<NFourPhaseGradientSlow> {
+public final class FourPhaseGradientSlow extends FourVector implements LinearOps<FourPhaseGradientSlow>, LinearBoostOp<FourPhaseGradientSlow> {
 
   /**
    Factory method.
    @param phase_velocity less than 1
   */
-  public static NFourPhaseGradientSlow of(NPhaseGradient k, NVelocity phase_velocity) {
-    return new NFourPhaseGradientSlow(k, phase_velocity);
+  public static FourPhaseGradientSlow of(PhaseGradient k, Velocity phase_velocity) {
+    return new FourPhaseGradientSlow(k, phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow reverseClocks() {
-    NVelocity new_phase_velocity = phase_velocity.reverseClocks();
-    return NFourPhaseGradientSlow.of(k, new_phase_velocity);
+  @Override public FourPhaseGradientSlow reverseClocks() {
+    Velocity new_phase_velocity = phase_velocity.reverseClocks();
+    return FourPhaseGradientSlow.of(k, new_phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow reverseSpatialAxes() {
-    NVelocity new_phase_velocity = phase_velocity.reverseSpatialAxes();
-    NPhaseGradient new_k = k.reverseSpatialAxes();
-    return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
+  @Override public FourPhaseGradientSlow reverseSpatialAxes() {
+    Velocity new_phase_velocity = phase_velocity.reverseSpatialAxes();
+    PhaseGradient new_k = k.reverseSpatialAxes();
+    return FourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow rotate(NAxisAngle axisAngle, Sense sense) {
-    NVelocity new_phase_velocity = phase_velocity.rotate(axisAngle, sense);
-    NPhaseGradient new_k = k.rotate(axisAngle, sense);
-    return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
+  @Override public FourPhaseGradientSlow rotate(AxisAngle axisAngle, Sense sense) {
+    Velocity new_phase_velocity = phase_velocity.rotate(axisAngle, sense);
+    PhaseGradient new_k = k.rotate(axisAngle, sense);
+    return FourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow boost(NVelocity boost_v, Sense sense) {
-    NVelocity new_phase_velocity = VelocityTransformation.primedVelocity(boost_v, phase_velocity);
+  @Override public FourPhaseGradientSlow boost(Velocity boost_v, Sense sense) {
+    Velocity new_phase_velocity = VelocityTransformation.primedVelocity(boost_v, phase_velocity);
     Boost boost = Boost.of(boost_v, sense);
     Components new_comps = boost.applyTo(components);
-    NPhaseGradient new_k = NPhaseGradient.of(new_comps.x(), new_comps.y(), new_comps.z());
-    return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
+    PhaseGradient new_k = PhaseGradient.of(new_comps.x(), new_comps.y(), new_comps.z());
+    return FourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
   
-  private NPhaseGradient k;
+  private PhaseGradient k;
   
   /** The phase velocity (u). */
-  private NVelocity phase_velocity;
+  private Velocity phase_velocity;
   
-  private NFourPhaseGradientSlow(NPhaseGradient k, NVelocity phase_velocity) {
+  private FourPhaseGradientSlow(PhaseGradient k, Velocity phase_velocity) {
     this.k = k;
     this.phase_velocity = phase_velocity;
     this.components = Components.of(k.dot(phase_velocity), k.x(), k.y(), k.z());

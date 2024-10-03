@@ -11,59 +11,59 @@ import sr.core.ops.LinearOps;
 /** 
  The acceleration of an object having mass.
 */
-public final class NAcceleration extends NThreeVector implements LinearOps<NAcceleration> { 
+public final class Acceleration extends ThreeVector implements LinearOps<Acceleration> { 
   
   /** Factory method, taking the 3 components of the acceleration along the XYZ axes, in that order.  */
-  public static NAcceleration of(double ax, double ay, double az) {
-    return new NAcceleration(ax, ay, az);
+  public static Acceleration of(double ax, double ay, double az) {
+    return new Acceleration(ax, ay, az);
   }
 
   /** Factory method for the case in which the acceleration is parallel to a coordinate axis. */
-  public static NAcceleration of(Axis axis, double a) {
-    return new NAcceleration(a, axis);
+  public static Acceleration of(Axis axis, double a) {
+    return new Acceleration(a, axis);
   }
 
   /** Factory method for the case in which the data is in some ThreeVector (due to a calculation). */
-  public static NAcceleration of(NThreeVector v) {
-    return new NAcceleration(v.x(), v.y(), v.z());
+  public static Acceleration of(ThreeVector v) {
+    return new Acceleration(v.x(), v.y(), v.z());
   }
 
-  public static NAcceleration zero() {
-    return NAcceleration.of(0.0, 0.0, 0.0);
+  public static Acceleration zero() {
+    return Acceleration.of(0.0, 0.0, 0.0);
   }
 
   /** Some cases only make sense when the acceleration is non-zero. */
-  public static NAcceleration nonZero(double x, double y, double z) {
-    NAcceleration result = NAcceleration.of(x, y, z);
+  public static Acceleration nonZero(double x, double y, double z) {
+    Acceleration result = Acceleration.of(x, y, z);
     Util.mustHave(result.magnitude() > 0, "Acceleration should have a non-zero magnitude.");
     return result;
   }
 
   /** No effect. */
-  @Override public NAcceleration reverseClocks() {
-    return new NAcceleration(components);
+  @Override public Acceleration reverseClocks() {
+    return new Acceleration(components);
   }
   
   /** Reverse the sign of all spatial components.*/
-  @Override public NAcceleration reverseSpatialAxes() {
+  @Override public Acceleration reverseSpatialAxes() {
     Components comps = new ReverseSpatialComponents().applyTo(components);
-    return new NAcceleration(comps);
+    return new Acceleration(comps);
   }
   
-  @Override public NAcceleration rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public Acceleration rotate(AxisAngle axisAngle, Sense sense) {
     Components comps = Rotate.of(axisAngle, sense).applyTo(components);
-    return new NAcceleration(comps);
+    return new Acceleration(comps);
   }
   
-  private NAcceleration(double x, double y, double z) {
+  private Acceleration(double x, double y, double z) {
     super(x, y, z);
   }
   
-  private NAcceleration(double value, Axis axis) {
+  private Acceleration(double value, Axis axis) {
     super(value, axis);
   }
   
-  private NAcceleration(Components comps) {
+  private Acceleration(Components comps) {
     super(comps);
   }
 }

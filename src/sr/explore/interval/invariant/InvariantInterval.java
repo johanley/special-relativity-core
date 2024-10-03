@@ -6,14 +6,14 @@ import java.util.function.UnaryOperator;
 
 import sr.core.Util;
 import sr.core.component.Event;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- Transformations don't change the fundamental quadratic form {@link NFourVector#square()}. 
+ Transformations don't change the fundamental quadratic form {@link FourVector#square()}. 
  
  <P>The prototype four-vector is the <em>displacement</em> in space-time. 
  It's not an event, but rather a <em>difference</em> between events. 
@@ -56,11 +56,11 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add(Util.NL + "Two events in K:");
     add("  " + a + " a");
     add("  " + b + " b");
-    NFourDelta displacement_K = NFourDelta.of(a, b);
+    FourDelta displacement_K = FourDelta.of(a, b);
     add("Difference in K (b - a):");
     add("  " + displacement_K + " squared-interval:" + round(displacement_K.square()));
     
-    NFourDelta displacement_Kp = NFourDelta.of(withDisplacement(a), withDisplacement(b));
+    FourDelta displacement_Kp = FourDelta.of(withDisplacement(a), withDisplacement(b));
     add(Util.NL+"Transform to K' using a mix of several operations: ");
     add("  " + withDisplacementString() );
     
@@ -78,7 +78,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
   private void showEffectOfTransformationsOnBareEvent(Event a, UnaryOperator<Event> transformer, String description) {
     add(Util.NL + "Single event in K:");
     add("  " + a);
-    NFourDelta diff_K = NFourDelta.of(Event.origin(), a);
+    FourDelta diff_K = FourDelta.of(Event.origin(), a);
     add("Squared-interval with respect to the origin of K: " + round(diff_K.square()));
     
     Event a_Kp = transformer.apply(a);
@@ -87,7 +87,7 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     
     add("Single event in K':");
     add("  " + a_Kp);
-    NFourDelta diff_Kp = NFourDelta.of(Event.origin(), a_Kp);
+    FourDelta diff_Kp = FourDelta.of(Event.origin(), a_Kp);
     add("Squared-interval with respect to the origin of K': " + round(diff_Kp.square()));
     
     add(Util.NL+"Difference in squared-interval between K and K': " + round(diff_Kp.square() - diff_K.square()));
@@ -110,9 +110,9 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     return Util.round(value, 10);
   }
   
-  private NVelocity some_boost_v = NVelocity.of(0.5, 0.1, 0.3);
-  private NAxisAngle some_rotation = NAxisAngle.of(0.1, 0.4, 0.5);
-  private NFourDelta some_displacement = NFourDelta.of(Event.origin(), Event.of(1.0, -2.0, -3.0, 4.0));  
+  private Velocity some_boost_v = Velocity.of(0.5, 0.1, 0.3);
+  private AxisAngle some_rotation = AxisAngle.of(0.1, 0.4, 0.5);
+  private FourDelta some_displacement = FourDelta.of(Event.origin(), Event.of(1.0, -2.0, -3.0, 4.0));  
   
   private String withDisplacementString() {
     return withoutDisplacementString() + " displacement " + some_displacement;

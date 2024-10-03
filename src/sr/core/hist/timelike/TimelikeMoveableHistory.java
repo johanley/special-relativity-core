@@ -3,7 +3,7 @@ package sr.core.hist.timelike;
 import sr.core.component.Event;
 import sr.core.hist.DeltaBase;
 import sr.core.hist.MoveableHistory;
-import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.AxisAngle;
 
 /**
  Allow a {@link TimelikeHistory} to have a configurable {@link TimelikeDeltaBase} in space-time.
@@ -54,7 +54,7 @@ public abstract class TimelikeMoveableHistory extends MoveableHistory implements
    <P>There's no restriction on the magnitude of the returned axis-angle; for example, it's not restricted to the range 0..2pi range.
    This helps in knowing how many full rotations have taken place. 
   */
-  public abstract NAxisAngle rotation(double Δct);
+  public abstract AxisAngle rotation(double Δct);
   
   //PRIVATE
   

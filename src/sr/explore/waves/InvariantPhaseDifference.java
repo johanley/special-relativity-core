@@ -5,12 +5,12 @@ import sr.core.Util;
 import sr.core.component.Event;
 import sr.core.component.Position;
 import static sr.core.component.ops.Sense.*;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NPhaseGradient;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
-import sr.core.vec4.NFourPhaseGradient;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.Direction;
+import sr.core.vec3.PhaseGradient;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
+import sr.core.vec4.FourPhaseGradient;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -37,7 +37,7 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
   }
   
   private void wavesInVacuum() {
-    NFourPhaseGradient k_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, NDirection.of(1.0, 1.0, 1.0)));
+    FourPhaseGradient k_K = FourPhaseGradient.of(PhaseGradient.of(1.0, Direction.of(1.0, 1.0, 1.0)));
     Event event_a_K = Event.of(10.0, Position.of(2, 3, 4));
     add("K: event:" + event_a_K);
     add("K: k:" + k_K);
@@ -54,36 +54,36 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
     add("K: k:" + k_K);
     add("K: difference in the dot-product (k.b - k.a) = k.(b-a): " + round(pseudoDot(k_K, event_b_K) - pseudoDot(k_K, event_a_K)));
     
-    NFourDelta delta = NFourDelta.withRespectToOrigin(Event.of(0.0, 85, 0, 0));
+    FourDelta delta = FourDelta.withRespectToOrigin(Event.of(0.0, 85, 0, 0));
     add("Transform: displacement" + delta);
     Event event_a_Kp = event_a_K.moveZeroPointBy(delta, ChangeGrid);
     Event event_b_Kp = event_b_K.moveZeroPointBy(delta, ChangeGrid);
     //k is unaffected by displacement operations!
-    NFourPhaseGradient k_Kp = k_K;
+    FourPhaseGradient k_Kp = k_K;
     add("K': difference in the dot-product (k'.b' - k'.a') = k'.(b'-a'): " + round(pseudoDot(k_Kp, event_b_Kp) - pseudoDot(k_Kp, event_a_Kp)));
     add(Util.NL+"Remember that the true 4-vector is Δx, not x.");
   }
 
-  private void transformBoost(Event event, NFourPhaseGradient k) {
-    NVelocity boost_v = NVelocity.of(0.55, Axis.X);
+  private void transformBoost(Event event, FourPhaseGradient k) {
+    Velocity boost_v = Velocity.of(0.55, Axis.X);
     add(Util.NL+"Transform: boost " + boost_v);
-    NFourPhaseGradient k_Kp = k.boost(boost_v, ChangeGrid);
+    FourPhaseGradient k_Kp = k.boost(boost_v, ChangeGrid);
     Event event_Kp = event.boost(boost_v, ChangeGrid);
     double dotProd_Kp = pseudoDot(k_Kp, event_Kp);
     add("K': dot-product k'.x': " + round(dotProd_Kp));
   }
   
-  private void transformRotate(Event event, NFourPhaseGradient k) {
-    NAxisAngle rot = NAxisAngle.of(1,2,3);
+  private void transformRotate(Event event, FourPhaseGradient k) {
+    AxisAngle rot = AxisAngle.of(1,2,3);
     add(Util.NL+"Transform: rotation" + rot);
-    NFourPhaseGradient k_Kp = k.rotate(rot, ChangeGrid);
+    FourPhaseGradient k_Kp = k.rotate(rot, ChangeGrid);
     Event event_Kp = event.rotate(rot, ChangeGrid);
     double dotProd_Kp = pseudoDot(k_Kp, event_Kp);
     add("K': dot-product k'.x': " + round(dotProd_Kp));
   }
   
-  private void transformDisplace(Event event, NFourPhaseGradient k) {
-    NFourDelta delta = NFourDelta.withRespectToOrigin(Event.of(0,85,0,0));
+  private void transformDisplace(Event event, FourPhaseGradient k) {
+    FourDelta delta = FourDelta.withRespectToOrigin(Event.of(0,85,0,0));
     add(Util.NL+"Transform: displacement" + delta);
     Event event_Kp = event.moveZeroPointBy(delta, ChangeGrid);
     //the k vector is insensitive to the displacement operation!
@@ -96,7 +96,7 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
   }
   
   /** NEvent has no dot-product, since it's not a four-vector. */
-  private double pseudoDot(NFourPhaseGradient k, Event event) {
+  private double pseudoDot(FourPhaseGradient k, Event event) {
     return 
       + k.ct() * event.ct() 
       - k.x() * event.x()

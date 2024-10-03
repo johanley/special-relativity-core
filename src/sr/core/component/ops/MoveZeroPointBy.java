@@ -2,7 +2,7 @@ package sr.core.component.ops;
 
 import sr.core.Axis;
 import sr.core.component.Components;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec4.FourDelta;
 
 /** 
  Displacement of the origin of coordinates, in both time and space.
@@ -11,7 +11,7 @@ import sr.core.vec4.NFourDelta;
 public final class MoveZeroPointBy implements ComponentOp {
   
   /**  Factory method. */
-  public static MoveZeroPointBy of(NFourDelta displacement, Sense sense) {
+  public static MoveZeroPointBy of(FourDelta displacement, Sense sense) {
     return new MoveZeroPointBy(displacement, sense);
   }
 
@@ -29,10 +29,10 @@ public final class MoveZeroPointBy implements ComponentOp {
     return result;
   }
   
-  private NFourDelta displacement;
+  private FourDelta displacement;
   private Sense sense;
   
-  private MoveZeroPointBy(NFourDelta displacement, Sense sense) {
+  private MoveZeroPointBy(FourDelta displacement, Sense sense) {
     this.displacement = displacement;
     this.sense = sense;
   }

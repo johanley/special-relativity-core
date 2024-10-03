@@ -22,51 +22,51 @@ import sr.core.ops.LinearOps;
  This is an open interval, excluding the boundaries.
  The exceptions are the <em>unity</em> methods, where the speed is always 1.
 */
-public final class NVelocity extends NThreeVector implements LinearOps<NVelocity>{
+public final class Velocity extends ThreeVector implements LinearOps<Velocity>{
   
   /** Factory method, taking the 3 components of the velocity along the XYZ axes, in that order.  */
-  public static NVelocity of(double βx, double βy, double βz) {
-    return new NVelocity(βx, βy, βz);
+  public static Velocity of(double βx, double βy, double βz) {
+    return new Velocity(βx, βy, βz);
   }
   
   /** 
    Factory method for the case in which the velocity is parallel or anti-parallel to a spatial coordinate axis.
    @param speed can be either sign. 
   */
-  public static NVelocity of(double speed, Axis axis) {
-    return new NVelocity(speed, axis);
+  public static Velocity of(double speed, Axis axis) {
+    return new Velocity(speed, axis);
   }
   
   /** 
    Factory method.
    @param magnitude must be non-negative. 
   */
-  public static NVelocity of(double magnitude, NDirection direction) {
-    return new NVelocity(magnitude, direction);
+  public static Velocity of(double magnitude, Direction direction) {
+    return new Velocity(magnitude, direction);
   }
 
   /** Factory method for the case in which the data is already in a ThreeVector (as the result of a calculation). */
-  public static NVelocity of(NThreeVector v) {
-    return new NVelocity(v.x(), v.y(), v.z());
+  public static Velocity of(ThreeVector v) {
+    return new Velocity(v.x(), v.y(), v.z());
   }
   
-  public static NVelocity zero() {
-    return NVelocity.of(0.0, 0.0, 0.0);
+  public static Velocity zero() {
+    return Velocity.of(0.0, 0.0, 0.0);
   }
 
   /** Only massless objects can have a speed of 1.0. */
-  public static NVelocity unity(NDirection direction) {
-    return new NVelocity(direction);
+  public static Velocity unity(Direction direction) {
+    return new Velocity(direction);
   }
   
   /** Only massless objects can have a speed of 1.0. */
-  public static NVelocity unity(Axis axis, Sense sense) {
-    return new NVelocity(axis, sense);
+  public static Velocity unity(Axis axis, Sense sense) {
+    return new Velocity(axis, sense);
   }
   
   /** Some cases only make sense when the speed is non-zero. */
-  public static NVelocity nonZero(double βx, double βy, double βz) {
-    NVelocity result = NVelocity.of(βx, βy, βz);
+  public static Velocity nonZero(double βx, double βy, double βz) {
+    Velocity result = Velocity.of(βx, βy, βz);
     Util.mustHave(result.magnitude() > 0, "Velocity should have a non-zero magnitude.");
     return result;
   }
@@ -84,47 +84,47 @@ public final class NVelocity extends NThreeVector implements LinearOps<NVelocity
   */
   
   /** Reverse the sign of all spatial components.*/
-  @Override public NVelocity reverseClocks() {
+  @Override public Velocity reverseClocks() {
     Components comps = new ReverseSpatialComponents().applyTo(components);
-    return new NVelocity(comps);
+    return new Velocity(comps);
   }
   
   /** Reverse the sign of all spatial components.*/
-  @Override public NVelocity reverseSpatialAxes() {
+  @Override public Velocity reverseSpatialAxes() {
     Components comps = new ReverseSpatialComponents().applyTo(components);
-    return new NVelocity(comps);
+    return new Velocity(comps);
   }
   
-  @Override public NVelocity rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public Velocity rotate(AxisAngle axisAngle, Sense sense) {
     Components comps = Rotate.of(axisAngle, sense).applyTo(components);
-    return new NVelocity(comps);
+    return new Velocity(comps);
   }
   
-  private NVelocity(double xComp, double yComp, double zComp) {
+  private Velocity(double xComp, double yComp, double zComp) {
     super(xComp, yComp, zComp);
     check();
   }
   
-  private NVelocity(double speed, Axis axis) {
+  private Velocity(double speed, Axis axis) {
     super(speed, axis);
     check();
   }
-  private NVelocity(Axis axis, Sense sense) {
+  private Velocity(Axis axis, Sense sense) {
     super(sense.sign(), axis);
     //no checks! 
   }
   
-  private NVelocity(double magnitude, NDirection direction) {
+  private Velocity(double magnitude, Direction direction) {
     super(magnitude, direction);
     checkNonNegative(magnitude);
     check();
   }
-  private NVelocity(NDirection direction) {
+  private Velocity(Direction direction) {
     super(1.0, direction);
     //no checks! 
   }
   
-  private NVelocity(Components comps) {
+  private Velocity(Components comps) {
     super(comps);
     check();
   }

@@ -6,9 +6,9 @@ import sr.core.Axis;
 import sr.core.VelocityTransformation;
 import sr.core.Util;
 import sr.core.component.ops.Sense;
-import sr.core.vec3.NAxisAngle;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.AxisAngle;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -38,25 +38,25 @@ public final class MaxAngleBetweenResultVectors extends TextOutput implements Ex
     add(dashes(120));
     
     for (int speed = 1; speed < 100; ++speed) {
-      findTheLargestAngleBetweenWhenAdding(NVelocity.of(speed / 100.0, X));
+      findTheLargestAngleBetweenWhenAdding(Velocity.of(speed / 100.0, X));
     }
-    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.999, X));
-    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.9999, X));
-    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.99999, X));
+    findTheLargestAngleBetweenWhenAdding(Velocity.of(0.999, X));
+    findTheLargestAngleBetweenWhenAdding(Velocity.of(0.9999, X));
+    findTheLargestAngleBetweenWhenAdding(Velocity.of(0.99999, X));
     
     outputToConsoleAnd("maximize-angle-between-result-vectors.txt");
   }
   
-  private void findTheLargestAngleBetweenWhenAdding(NVelocity a) {
-    NVelocity b = NVelocity.of(a); //to start with
+  private void findTheLargestAngleBetweenWhenAdding(Velocity a) {
+    Velocity b = Velocity.of(a); //to start with
     int rotationAngle = 0;
-    NVelocity vWithMaxAngle = null;
+    Velocity vWithMaxAngle = null;
     double maxAngleBetween = 0;
     for(int degrees = 1; degrees < 180; ++degrees ) {
-      NThreeVector b_rotated = b.rotate(NAxisAngle.of(Util.degsToRads(degrees), Axis.Z), Sense.ChangeComponents);
-      NVelocity b_rotated_v = NVelocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
-      NVelocity sum1 = VelocityTransformation.unprimedVelocity(a, b_rotated_v);
-      NVelocity sum2 = VelocityTransformation.unprimedVelocity(b_rotated_v, a);
+      ThreeVector b_rotated = b.rotate(AxisAngle.of(Util.degsToRads(degrees), Axis.Z), Sense.ChangeComponents);
+      Velocity b_rotated_v = Velocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
+      Velocity sum1 = VelocityTransformation.unprimedVelocity(a, b_rotated_v);
+      Velocity sum2 = VelocityTransformation.unprimedVelocity(b_rotated_v, a);
       double angleBetween = sum2.angle(sum1);
       if (angleBetween > maxAngleBetween) {
         maxAngleBetween = angleBetween;

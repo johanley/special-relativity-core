@@ -13,20 +13,20 @@ import org.junit.jupiter.api.Test;
 
 import sr.core.Axis;
 import sr.core.component.Event;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
 
 class BoostTEST {
 
   @Test void testZeroMapsToZero() {
     Event input = event(0,0,0,0);
-    Event output = input.boost(NVelocity.of(0.256, X), Sense.Plus);
+    Event output = input.boost(Velocity.of(0.256, X), Sense.Plus);
     assertSame(input, output);
   }
   
   @Test void speedZeroDoesNothing() {
     Event input = event(10,1,2,3);
-    Event output = input.boost(NVelocity.of(0.0, X), Sense.Plus);
+    Event output = input.boost(Velocity.of(0.0, X), Sense.Plus);
     assertSame(input, output);
     assertSame(input, output);
   }
@@ -34,13 +34,13 @@ class BoostTEST {
   @Test void speedUnityFails() {
     Event input = event(10,1,2,3);
     Exception exception = assertThrows(RuntimeException.class, () -> 
-      input.boost(NVelocity.of(1.0, X), Sense.Primed)
+      input.boost(Velocity.of(1.0, X), Sense.Primed)
     );
   }
   
   @Test void unitVectors() {
     //the speed 0.6 has a simple gamma=1.25 and -gamma*beta = -0.75
-    NVelocity v = NVelocity.of(0.6,  X);
+    Velocity v = Velocity.of(0.6,  X);
     
     Event input = event(1,0,0,0);
     Event output = input.boost(v, Sense.Primed);
@@ -62,7 +62,7 @@ class BoostTEST {
   }
   
   @Test void unaffectedDimensions() {
-    NVelocity v = NVelocity.of(0.6,  X);
+    Velocity v = Velocity.of(0.6,  X);
     Event input = event(10,22,15,16);
     Event output = input.boost(v, Sense.Primed);
     assertEquals(output.on(Y), 15);
@@ -70,7 +70,7 @@ class BoostTEST {
   }
 
   @Test void inAndOut() {
-    NVelocity v = NVelocity.of(0.1, 0.2, 0.3);
+    Velocity v = Velocity.of(0.1, 0.2, 0.3);
     Event input = event(10,22,15,16);
     Event output1 = input.boost(v, Sense.Primed);
     Event output2 = output1.boost(v, Sense.Unprimed);
@@ -78,8 +78,8 @@ class BoostTEST {
   }
   
   @Test void negativeVelocityMeansSwapPrimedAndUnprimed() {
-    NVelocity v1 = NVelocity.of(0.1, 0.2, 0.3);
-    NVelocity v2 = NVelocity.of(v1.times(-1));
+    Velocity v1 = Velocity.of(0.1, 0.2, 0.3);
+    Velocity v2 = Velocity.of(v1.times(-1));
     
     Event input = event(10,22,15,16);
     
@@ -101,9 +101,9 @@ class BoostTEST {
     nulls(fourDiff(-7,-7,0,0));
   }
   
-  private void nulls(NFourDelta input) {
+  private void nulls(FourDelta input) {
     assertEquals(input.square(), 0);
-    NFourDelta output = input.boost(NVelocity.of(0.2, 0, 0), Sense.Primed);
+    FourDelta output = input.boost(Velocity.of(0.2, 0, 0), Sense.Primed);
     assertEquals(output.square(), 0);
   }
   
@@ -111,10 +111,10 @@ class BoostTEST {
     return Event.of(a, b, c, d);
   }
   
-  private NFourDelta fourDiff(double a, double b, double c, double d) {
+  private FourDelta fourDiff(double a, double b, double c, double d) {
     Event one = event(0,0,0,0);
     Event two = event(a,b,c,d);
-    return NFourDelta.of(one, two);
+    return FourDelta.of(one, two);
   }
   
   private void assertSame(Event a, Event b) {

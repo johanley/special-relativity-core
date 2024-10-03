@@ -18,48 +18,48 @@ import sr.core.ops.LinearOps;
 
  <P>For kinematic rotation (Wigner rotation), the axis-angle is proportional to the cross product of acceleration and velocity.
 */
-public final class NAxisAngle extends NThreeVector implements LinearOps<NAxisAngle> {
+public final class AxisAngle extends ThreeVector implements LinearOps<AxisAngle> {
   
   /** Factory method, taking the 3 components along the XYZ axes, in that order.  */
-  public static NAxisAngle of(double x, double y, double z) {
-    return new NAxisAngle(x, y, z);
+  public static AxisAngle of(double x, double y, double z) {
+    return new AxisAngle(x, y, z);
   }
 
   /** Factory method. The vector has 1 non-zero component, along the given spatial coordinate axis. */
-  public static NAxisAngle of(double value, Axis axis) {
-    return new NAxisAngle(value, axis);
+  public static AxisAngle of(double value, Axis axis) {
+    return new AxisAngle(value, axis);
   }
 
   /*** Factory method, all components zero. */
-  public static NAxisAngle zero() {
-    return NAxisAngle.of(0,0,0);
+  public static AxisAngle zero() {
+    return AxisAngle.of(0,0,0);
   }
   
   /** No effect. */
-  @Override public NAxisAngle reverseClocks() {
-    return new NAxisAngle(components);
+  @Override public AxisAngle reverseClocks() {
+    return new AxisAngle(components);
   }
   
   /** Reverse all components. */
-  @Override public NAxisAngle reverseSpatialAxes() {
+  @Override public AxisAngle reverseSpatialAxes() {
     Components comps = new ReverseSpatialComponents().applyTo(components);
-    return new NAxisAngle(comps);
+    return new AxisAngle(comps);
   }
   
-  @Override public NAxisAngle rotate(NAxisAngle axisAngle, Sense sense) {
+  @Override public AxisAngle rotate(AxisAngle axisAngle, Sense sense) {
     Components comps = Rotate.of(axisAngle, sense).applyTo(components);
-    return new NAxisAngle(comps);
+    return new AxisAngle(comps);
   }
 
-  private NAxisAngle(double x, double y, double z) {
+  private AxisAngle(double x, double y, double z) {
     super(x, y, z);
   }
   
-  private NAxisAngle(double angle, Axis axis) {
+  private AxisAngle(double angle, Axis axis) {
     super(angle, axis);
   }
   
-  private NAxisAngle(Components comps) {
+  private AxisAngle(Components comps) {
     super(comps);
   }
 

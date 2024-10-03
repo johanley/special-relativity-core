@@ -13,10 +13,10 @@ import sr.core.component.ops.Sense;
 import sr.core.hist.timelike.FindEvent;
 import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourDelta;
-import sr.core.vec4.NFourVector;
+import sr.core.vec3.Direction;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourDelta;
+import sr.core.vec4.FourVector;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -99,34 +99,34 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     add("All angles are with respect to the +X-axis." + NL);
     
     //the telescope is stationary in the unboosted frame K:
-    TimelikeHistory eyepiece_history_K = UniformVelocity.of(Position.origin(), NVelocity.zero());
+    TimelikeHistory eyepiece_history_K = UniformVelocity.of(Position.origin(), Velocity.zero());
     //the length of the scope is set to 1:
     double distance = 1.0/Math.sqrt(2.0); 
     Position where = Position.of(distance, distance, 0.0); //where the objective lens is  
-    TimelikeHistory lens_history_K = UniformVelocity.of(where, NVelocity.zero());
+    TimelikeHistory lens_history_K = UniformVelocity.of(where, Velocity.zero());
     
     //a photon moves into the telescope (at the lens) and out of the telescope (at the eyepiece)
     //because the geometry is simple in frame K, it's simple to find two corresponding events one the history of that photon:
     Event lens_K = lens_history_K.event(0);  //just pick one to start with
     Event eyepiece_K = eyepiece_history_K.event(1); //because the scope has unit length!
-    add("K : angle of telescope: " + angleFromXAxis(NFourDelta.of(eyepiece_K, lens_K)));
+    add("K : angle of telescope: " + angleFromXAxis(FourDelta.of(eyepiece_K, lens_K)));
     
     //then boost from K to K'
-    NVelocity boost_v = NVelocity.of(0.75, Axis.X);
+    Velocity boost_v = Velocity.of(0.75, Axis.X);
     add(NL + "From K to K', use a boost " + boost_v + NL);
     Event lens_Kp = lens_K.boost(boost_v, Sense.ChangeGrid);
     Event eyepiece_Kp = eyepiece_K.boost(boost_v, Sense.ChangeGrid);
     
     Event event_from_time_slice_Kp = timeSliceEventInKp(eyepiece_Kp.ct(), lens_history_K, boost_v);
-    add("K' time-slice: angle of telescope : " + angleFromXAxis(NFourDelta.of(eyepiece_Kp, event_from_time_slice_Kp)) + " (the flattening effect)");
-    add("K' light-slice: angle of incoming detected light ray : " + angleFromXAxis(NFourDelta.of(eyepiece_Kp, lens_Kp)) + " (the aberration effect)");
+    add("K' time-slice: angle of telescope : " + angleFromXAxis(FourDelta.of(eyepiece_Kp, event_from_time_slice_Kp)) + " (the flattening effect)");
+    add("K' light-slice: angle of incoming detected light ray : " + angleFromXAxis(FourDelta.of(eyepiece_Kp, lens_Kp)) + " (the aberration effect)");
     
     outputToConsoleAnd("boosted-telescope.txt");
     
   }
   
   /** Degrees. */
-  private double angleBetween(NFourDelta a, NFourDelta b) {
+  private double angleBetween(FourDelta a, FourDelta b) {
     double result = radsToDegs(
       directionOf(a).angle(directionOf(b))
     );
@@ -137,11 +137,11 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     return round(value, 3);
   }
   
-  private NDirection directionOf(NFourVector event) {
-    return NDirection.of(event.x(),event.y(),event.z());
+  private Direction directionOf(FourVector event) {
+    return Direction.of(event.x(),event.y(),event.z());
   }
   
-  private String angleFromXAxis(NFourDelta delta) {
+  private String angleFromXAxis(FourDelta delta) {
     return angleBetween(delta, wrt_the_x_axis()) + "°";
   }
   
@@ -149,7 +149,7 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
    Find the event in the history of the lens having the given coordinate time (ct_Kp).
    @return the event using K' coordinates. 
   */
-  private Event timeSliceEventInKp(double ct_Kp, TimelikeHistory history_K, NVelocity boost_v) {
+  private Event timeSliceEventInKp(double ct_Kp, TimelikeHistory history_K, Velocity boost_v) {
     Function<Event, Double> criterion = (event_K) -> event_K.boost(boost_v, Sense.ChangeGrid).ct() - ct_Kp; 
     FindEvent find = new FindEvent(history_K, criterion);
     double guess_ct_K = 1.0;
@@ -158,7 +158,7 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     return target_K.boost(boost_v, Sense.ChangeGrid);
   }
   
-  private NFourDelta wrt_the_x_axis() {
-    return NFourDelta.of(Event.origin(), Event.of(0, 1, 0, 0));
+  private FourDelta wrt_the_x_axis() {
+    return FourDelta.of(Event.origin(), Event.of(0, 1, 0, 0));
   }
 }

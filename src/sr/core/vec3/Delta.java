@@ -6,33 +6,33 @@ import sr.core.component.ops.Sense;
 import sr.core.ops.LinearOps;
 
 /** Difference between any two {@link Position}s, <em>&Delta;x<sup>i</sup></em>. */
-public final class NDelta extends NThreeVector implements LinearOps<NDelta> {
+public final class Delta extends ThreeVector implements LinearOps<Delta> {
   
   /** Factory method. The difference is in the sense of <em>b - a</em>, which "goes" from <em>a</em> to <em>b</em>. */
-  public static NDelta of(Position a, Position b) {
-    return new NDelta(a, b);
+  public static Delta of(Position a, Position b) {
+    return new Delta(a, b);
   }
   
   /** Factory method. The difference is in the sense of <em>b - origin</em>. */
-  public static NDelta withRespectToOrigin(Position b) {
-    return new NDelta(Position.origin(), b);
+  public static Delta withRespectToOrigin(Position b) {
+    return new Delta(Position.origin(), b);
   }
 
   /** No effect. */
-  @Override public NDelta reverseClocks() {
-    return new NDelta(a.reverseClocks(), b.reverseClocks());
+  @Override public Delta reverseClocks() {
+    return new Delta(a.reverseClocks(), b.reverseClocks());
   }
   
   /** Reverse the sign of all components. */
-  @Override public NDelta reverseSpatialAxes() {
-    return new NDelta(a.reverseSpatialAxes(), b.reverseSpatialAxes());
+  @Override public Delta reverseSpatialAxes() {
+    return new Delta(a.reverseSpatialAxes(), b.reverseSpatialAxes());
   }
   
-  @Override public NDelta rotate(NAxisAngle axisAngle, Sense sense) {
-    return new NDelta(a.rotate(axisAngle, sense), b.rotate(axisAngle, sense));
+  @Override public Delta rotate(AxisAngle axisAngle, Sense sense) {
+    return new Delta(a.rotate(axisAngle, sense), b.rotate(axisAngle, sense));
   }
   
-  private NDelta(Position a, Position b) {
+  private Delta(Position a, Position b) {
     super(compsFromBminusA(a, b));
     this.a = a;
     this.b = b;

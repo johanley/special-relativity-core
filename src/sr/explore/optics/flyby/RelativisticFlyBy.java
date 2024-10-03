@@ -9,7 +9,7 @@ import sr.core.component.Event;
 import sr.core.component.Position;
 import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
-import sr.core.vec3.NVelocity;
+import sr.core.vec3.Velocity;
 import sr.explore.Exploration;
 
 /**
@@ -162,7 +162,7 @@ public final class RelativisticFlyBy implements Exploration {
     this.x0 = x0;
     this.y = y;
     this.timeStep = spatialStep / β;
-    this.history = UniformVelocity.of(Position.of(Y, y), NVelocity.of(β, X)); 
+    this.history = UniformVelocity.of(Position.of(Y, y), Velocity.of(β, X)); 
   }
 
   /** No-arg constructor with no data. */

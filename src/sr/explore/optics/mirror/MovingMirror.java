@@ -6,11 +6,11 @@ import static sr.core.Util.round;
 
 import sr.core.Axis;
 import static sr.core.component.ops.Sense.*;
-import sr.core.vec3.NDirection;
-import sr.core.vec3.NPhaseGradient;
-import sr.core.vec3.NThreeVector;
-import sr.core.vec3.NVelocity;
-import sr.core.vec4.NFourPhaseGradient;
+import sr.core.vec3.Direction;
+import sr.core.vec3.PhaseGradient;
+import sr.core.vec3.ThreeVector;
+import sr.core.vec3.Velocity;
+import sr.core.vec4.FourPhaseGradient;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -36,8 +36,8 @@ import sr.output.text.TextOutput;
 </pre>
 
 <P>In a boosted frame K' viewing the same phenomena, however, the geometry is different.
-You can explore this using a pair of {@link NFourPhaseGradient} objects and a {LorentzTransformation}.
-The two {@link NFourPhaseGradient} objects correspond to the incoming and outgoing monochromatic plane waves.
+You can explore this using a pair of {@link FourPhaseGradient} objects and a {LorentzTransformation}.
+The two {@link FourPhaseGradient} objects correspond to the incoming and outgoing monochromatic plane waves.
 
 <P>This class doesn't model the polarization of the wave.
 */
@@ -55,8 +55,8 @@ public final class MovingMirror extends TextOutput implements Exploration {
     add("Compare the wave-vectors for the incident and reflected waves, between K and K'.");
     
     double ω = 1.0;
-    NFourPhaseGradient incident_K = NFourPhaseGradient.of(NPhaseGradient.of(ω, NDirection.of(1,1,0)));
-    NFourPhaseGradient reflected_K = NFourPhaseGradient.of(NPhaseGradient.of(ω, NDirection.of(-1,1,0)));
+    FourPhaseGradient incident_K = FourPhaseGradient.of(PhaseGradient.of(ω, Direction.of(1,1,0)));
+    FourPhaseGradient reflected_K = FourPhaseGradient.of(PhaseGradient.of(ω, Direction.of(-1,1,0)));
     
     add(NL+ "In K the pair of waves have directions that agree with the law of reflection:");
     add("K: incident  " + incident_K + "  θi = " + angleFromXAxis(incident_K.spatialComponents()) + "°");
@@ -75,13 +75,13 @@ public final class MovingMirror extends TextOutput implements Exploration {
     outputToConsoleAnd("moving-mirror.txt");
   }
 
-  private void tableFor(NFourPhaseGradient incident_K, NFourPhaseGradient reflected_K, int sign) {
+  private void tableFor(FourPhaseGradient incident_K, FourPhaseGradient reflected_K, int sign) {
     add(tableHeader.row("Boost", "K':ω-in", "K':ω-ref", "K':θ-in", "K':θ-ref"));
     add(dashes(57));
     for(int idx = 1 ; idx <= 6; ++idx) {
-      NVelocity boost_v = NVelocity.of(sign*idx/10.0, Axis.X);
-      NFourPhaseGradient incident_Kp = incident_K.boost(boost_v, ChangeGrid);
-      NFourPhaseGradient reflected_Kp = reflected_K.boost(boost_v, ChangeGrid);
+      Velocity boost_v = Velocity.of(sign*idx/10.0, Axis.X);
+      FourPhaseGradient incident_Kp = incident_K.boost(boost_v, ChangeGrid);
+      FourPhaseGradient reflected_Kp = reflected_K.boost(boost_v, ChangeGrid);
       add(table.row(
         boost_v, 
         incident_Kp.ct(),
@@ -96,7 +96,7 @@ public final class MovingMirror extends TextOutput implements Exploration {
   private Table table = new Table("%-17s", "  %8.5f", " %8.5f", "%8.1f° ", "%8.1f°");
   private Table tableHeader = new Table("%-20s", "%-9s", "%-11s", "%-10s", "%-12s");
   
-  private double angleFromXAxis(NThreeVector v) {
+  private double angleFromXAxis(ThreeVector v) {
     return round(radsToDegs(Math.atan2(v.y(), v.x())), 1); //-pi to +pi 
   }
   

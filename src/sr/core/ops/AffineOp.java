@@ -1,7 +1,7 @@
 package sr.core.ops;
 
 import sr.core.component.ops.Sense;
-import sr.core.vec4.NFourDelta;
+import sr.core.vec4.FourDelta;
 
 /** 
   Affine operations.
@@ -17,6 +17,6 @@ public interface AffineOp<T> {
    @param sense the direction of the transformation
    @return a new object 
   */
-  public T moveZeroPointBy(NFourDelta displacement, Sense sense);
+  public T moveZeroPointBy(FourDelta displacement, Sense sense);
 
 }
