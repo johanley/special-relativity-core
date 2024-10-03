@@ -28,7 +28,7 @@ import sr.explore.optics.kvector.WaveVectorK;
 import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
 import sr.explore.optics.telescope.BoostedTelescope;
-import sr.explore.speeds.NSpeedsAndGammas;
+import sr.explore.speeds.SpeedsAndGammas;
 import sr.explore.speeds.SpeedsAndGammas;
 import sr.explore.velocitytransform.BoostToRotateVelocity;
 import sr.explore.velocitytransform.Commutation;
@@ -42,8 +42,8 @@ import sr.explore.velocitytransform.NNeverExceedsSpeedLimit;
 import sr.explore.velocitytransform.NSignReversal;
 import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
 import sr.explore.velocitytransform.SignReversal;
-import sr.explore.waves.NInvariantPhaseDifference;
-import sr.explore.waves.NWavesInMedia;
+import sr.explore.waves.InvariantPhaseDifference;
+import sr.explore.waves.WavesInMedia;
 import sr.explore.waves.WavesInMedia;
 
 /** Run a number of explorations in sequence. */
@@ -82,15 +82,15 @@ public final class RunExplorations {
     //result.add(new LightSliceOfAStick());
     //result.add(new MovingMirror());
     //result.add(new BoostedTelescope());
-    result.add(new NSpeedsAndGammas());
+    //result.add(new SpeedsAndGammas());
     result.add(new NNeverExceedsSpeedLimit());
     result.add(new NBoostToRotateVelocity());
     result.add(new NCompareFormulaWithLT());
     result.add(new NCommutation());
     result.add(new NMaxAngleBetweenResultVectors());
     result.add(new NSignReversal());
-    result.add(new NInvariantPhaseDifference());
-    result.add(new NWavesInMedia());
+    result.add(new InvariantPhaseDifference());
+    result.add(new WavesInMedia());
     result.add(new NRelativisticFlyBy());
     return result;
   }
@@ -129,7 +129,7 @@ public final class RunExplorations {
     result.add(new RelativisticFlyBy());
     result.add(new BoostedTelescope());
     result.add(new WavesInMedia());
-    result.add(new NInvariantPhaseDifference());
+    result.add(new InvariantPhaseDifference());
     return result;
   }
 
