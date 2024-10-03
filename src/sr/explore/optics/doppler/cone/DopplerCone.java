@@ -1,17 +1,18 @@
 package sr.explore.optics.doppler.cone;
 
 import sr.core.Axis;
-import sr.core.LorentzTransformation;
 import sr.core.Util;
-import sr.core.vector3.Velocity;
-import sr.core.vector4.FourVector;
-import sr.core.vector4.FourPhaseGradient;
-import sr.core.vector4.transform.Rotation;
+import sr.core.component.ops.NBoost;
+import static sr.core.component.ops.NSense.*;
+import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.NPhaseGradient;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourPhaseGradient;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link FourPhaseGradient}s are affected by a {@link LorentzTransformation}.
+ How a uniform set of {@link NFourPhaseGradient}s are affected by a {@link NBoost}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.
@@ -27,16 +28,15 @@ public final class DopplerCone implements Exploration {
   
   @Override public void explore() {
     //base wave-vector in frame K
-    FourPhaseGradient k_K = FourPhaseGradient.of(1.0, Axis.X);
+    NFourPhaseGradient k_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, Axis.X));
     int num = 360;
     double β = 0.5;
     
     output_K.addComment("Wave-vectors in K.");
     output_Kp.addComment("Wave-vectors in Kp.");
-    LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, β));
     for(int i = 0; i <= num; i=i+10) {
-      FourPhaseGradient k_rotated_K = rotated(k_K, i);
-      FourPhaseGradient k_rotated_Kp = lt.primedVector(k_rotated_K);
+      NFourPhaseGradient k_rotated_K = rotated(k_K, i);
+      NFourPhaseGradient k_rotated_Kp = k_rotated_K.boost(NVelocity.of(β, Axis.X), ChangeGrid);
       output_K.add(k_rotated_K);
       output_Kp.add(k_rotated_Kp);
     }
@@ -45,29 +45,25 @@ public final class DopplerCone implements Exploration {
   }
   
   void generateOutputsForAnimation() {
-    FourPhaseGradient k_K = FourPhaseGradient.of(1.0, Axis.X);
+    NFourPhaseGradient k_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, Axis.X));
     int num = 360;
     for (int speed = 1; speed <= 50; ++speed) {
       double β = 0.01 * speed;
       TextOutput output = new TextOutput();
-      LorentzTransformation lt = LorentzTransformation.of(Velocity.of(Axis.X, β));
       for(int i = 0; i <= num; i=i+10) {
-        FourPhaseGradient k_rotated_K = rotated(k_K, i);
-        FourPhaseGradient k_rotated_Kp = lt.primedVector(k_rotated_K);
+        NFourPhaseGradient k_rotated_K = rotated(k_K, i);
+        NFourPhaseGradient k_rotated_Kp = k_rotated_K.boost(NVelocity.of(β, Axis.X), ChangeGrid);
         output.add(k_rotated_Kp);
       }
       output.outputTo("output_"+speed+".txt", this);
     }
   }
   
-  private FourPhaseGradient rotated(FourPhaseGradient k, int numDegrees) {
+  private NFourPhaseGradient rotated(NFourPhaseGradient k, int numDegrees) {
     double rads = Util.degsToRads(numDegrees);
-    Rotation rotation = Rotation.of(Axis.Z, rads);
-    FourVector result = rotation.changeVector(k);
-    return FourPhaseGradient.of(result.ct(), result.spatialComponents());
+    return k.rotate(NAxisAngle.of(rads, Axis.Z), ChangeComponents);
   }
   
   private TextOutput output_K = new TextOutput();
   private TextOutput output_Kp = new TextOutput();
-
 }
