@@ -1,23 +1,19 @@
 package sr.explore.interval.invariant;
 
+import static sr.core.component.ops.NSense.ChangeGrid;
+
 import java.util.function.UnaryOperator;
 
 import sr.core.Util;
-import sr.core.vector3.AxisAngle;
-import sr.core.vector3.Velocity;
-import sr.core.vector4.Event;
-import sr.core.vector4.FourVector;
-import sr.core.vector4.transform.Boost;
-import sr.core.vector4.transform.Displacement;
-import sr.core.vector4.transform.Reversal;
-import sr.core.vector4.transform.Rotation;
-import sr.core.vector4.transform.Transform;
-import sr.core.vector4.transform.TransformPipeline;
+import sr.core.component.NEvent;
+import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- Transformations don't change the fundamental quadratic form {@link FourVector#square()}. 
+ Transformations don't change the fundamental quadratic form {@link NFourVector#square()}. 
  
  <P>The prototype four-vector is the <em>displacement</em> in space-time. 
  It's not an event, but rather a <em>difference</em> between events. 
@@ -34,11 +30,11 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add("Any combination of these fundamental transformations will leave the interval unaffected:");
     add(" - boost");
     add(" - rotation");
-    add(" - reflection");
+    add(" - reversal");
     add(" - displacement");
 
-    Event a = Event.of(10.0, 1.0, 2.0, 1.0);
-    Event b = Event.of(15.0, 3.0, 2.0, 5.0);
+    NEvent a = NEvent.of(10.0, 1.0, 2.0, 1.0);
+    NEvent b = NEvent.of(15.0, 3.0, 2.0, 5.0);
     showEffectOfTransformationsOnDifferenceBetween(a, b);
     add(Util.NL+dashes(119));
     
@@ -48,29 +44,29 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add("The prototype 4-vector is not an event, but a difference between two events.");
     
     add(Util.NL+"This FAILS when a displacement operation is included:");
-    showEffectOfTransformationsOnBareEvent(a, event -> transformWithDisplacement(event),  "  " + transformsWithDisplacement());
+    showEffectOfTransformationsOnBareEvent(a, event -> withDisplacement(event),  "  " + withDisplacementString());
     
     add(Util.NL+"But it SUCCEEDS when the displacement operation is excluded:");
-    showEffectOfTransformationsOnBareEvent(a,  event -> transformWithoutDisplacement(event), "  " + transformsWithoutDisplacement());
+    showEffectOfTransformationsOnBareEvent(a,  event -> withoutDisplacement(event), "  " + withoutDisplacementString());
     
     outputToConsoleAnd("invariant-interval.txt");
   }
   
-  private void showEffectOfTransformationsOnDifferenceBetween(Event a, Event b) {
+  private void showEffectOfTransformationsOnDifferenceBetween(NEvent a, NEvent b) {
     add(Util.NL + "Two events in K:");
     add("  " + a + " a");
     add("  " + b + " b");
-    Event displacement_K = b.minus(a);
+    NFourDelta displacement_K = NFourDelta.of(a, b);
     add("Difference in K (b - a):");
     add("  " + displacement_K + " squared-interval:" + round(displacement_K.square()));
     
-    Event displacement_Kp = transformWithDisplacement(b).minus(transformWithDisplacement(a));
+    NFourDelta displacement_Kp = NFourDelta.of(withDisplacement(a), withDisplacement(b));
     add(Util.NL+"Transform to K' using a mix of several operations: ");
-    add("  " + transformsWithDisplacement() );
+    add("  " + withDisplacementString() );
     
     add(Util.NL + "The same two events in K' become:");
-    add("  " + transformWithDisplacement(a) + " a'");
-    add("  " + transformWithDisplacement(b) + " b'");
+    add("  " + withDisplacement(a) + " a'");
+    add("  " + withDisplacement(b) + " b'");
     add("Displacement in K' (b' - a'):");
     add("  " + displacement_Kp + " squared-interval:" + round(displacement_Kp.square()));
     
@@ -79,50 +75,50 @@ public final class InvariantInterval extends TextOutput implements Exploration {
     add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
   }
   
-  private void showEffectOfTransformationsOnBareEvent(Event a, UnaryOperator<Event> transformer, String description) {
+  private void showEffectOfTransformationsOnBareEvent(NEvent a, UnaryOperator<NEvent> transformer, String description) {
     add(Util.NL + "Single event in K:");
     add("  " + a);
-    add("Squared-interval with respect to the origin of K: " + round(a.square()));
+    NFourDelta diff_K = NFourDelta.of(NEvent.origin(), a);
+    add("Squared-interval with respect to the origin of K: " + round(diff_K.square()));
     
-    Event a_Kp = transformer.apply(a);
+    NEvent a_Kp = transformer.apply(a);
     add(Util.NL+"Transform to K' using a mix of several operations: ");
     add("  " + description);
     
     add("Single event in K':");
     add("  " + a_Kp);
-    add("Squared-interval with respect to the origin of K': " + round(a_Kp.square()));
+    NFourDelta diff_Kp = NFourDelta.of(NEvent.origin(), a_Kp);
+    add("Squared-interval with respect to the origin of K': " + round(diff_Kp.square()));
     
-    double interval_K = a.square();
-    double interval_Kp = a_Kp.square();
-    add(Util.NL+"Difference in squared-interval between K and K': " + round(interval_Kp - interval_K));
+    add(Util.NL+"Difference in squared-interval between K and K': " + round(diff_Kp.square() - diff_K.square()));
   }
   
-  private Event transformWithDisplacement(Event event) {
-    Event event_Kp = transformsWithDisplacement().changeGrid(event);
-    return event_Kp;
-  }
-  
-  private Event transformWithoutDisplacement(Event event) {
-    Event event_Kp = transformsWithoutDisplacement().changeGrid(event);
-    return event_Kp;
+  private NEvent withDisplacement(NEvent event) {
+    NEvent result = withoutDisplacement(event);
+    return result.moveZeroPointBy(some_displacement, ChangeGrid);
   }
 
-  private Transform transformsWithDisplacement() {
-    return TransformPipeline.join(
-      transformsWithoutDisplacement(),
-      Displacement.of(1.0, -2.0, -3.0, 4.0)
-    );
-  }
-
-  private Transform transformsWithoutDisplacement() {
-    return TransformPipeline.join(
-      Boost.of(Velocity.of(0.5, 0.1, 0.3)),
-      Rotation.of(AxisAngle.of(0.1, 0.4, 0.5)),
-      Reversal.allAxes()
-    );
+  private NEvent withoutDisplacement(NEvent event) {
+    NEvent result = event.boost(some_boost_v, ChangeGrid);
+    result = result.rotate(some_rotation, ChangeGrid);
+    result = result.reverseSpatialAxes();
+    result = result.reverseClocks();
+    return result;
   }
   
   private double round(double value) {
     return Util.round(value, 10);
+  }
+  
+  private NVelocity some_boost_v = NVelocity.of(0.5, 0.1, 0.3);
+  private NAxisAngle some_rotation = NAxisAngle.of(0.1, 0.4, 0.5);
+  private NFourDelta some_displacement = NFourDelta.of(NEvent.origin(), NEvent.of(1.0, -2.0, -3.0, 4.0));  
+  
+  private String withDisplacementString() {
+    return withoutDisplacementString() + " displacement " + some_displacement;
+  }
+  
+  private String withoutDisplacementString() {
+    return "boost " + some_boost_v + " rotation" + some_rotation + " reverse-spatial-axes reverse-clocks"; 
   }
 }

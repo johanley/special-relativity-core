@@ -6,13 +6,14 @@ import java.util.function.Function;
 
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Position;
-import sr.core.vector4.Event;
-import sr.core.vector4.FindEvent;
-import sr.core.vector4.transform.Boost;
-import sr.core.vector4.transform.Transform;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.component.ops.NSense;
+import sr.core.hist.timelike.NFindEvent;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -74,34 +75,35 @@ public class StickFlattening extends TextOutput implements Exploration {
     add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K
     //the stick is along the x-axis, from x=1 to x=2
-    TimelikeHistory histA = UniformVelocity.stationary(Position.of(X, 1.0));
-    TimelikeHistory histB = UniformVelocity.stationary(Position.of(X, 2.0));
+    NTimelikeHistory histA = NUniformVelocity.stationary(NPosition.of(X, 1.0));
+    NTimelikeHistory histB = NUniformVelocity.stationary(NPosition.of(X, 2.0));
     //time-slice in K; any time will do, since it's stationary in K
     double ct = 0.0; 
     add("K a: " + histA.event(ct));
     add("K b: " + histB.event(ct));
-    Event bMinusA = histB.event(ct).minus(histA.event(ct));
-    add("K b-a: " + bMinusA);
-    add("K stick length:" + bMinusA.spatialMagnitude() + Util.NL);
+    NFourDelta delta_K = NFourDelta.of(histA.event(ct), histB.event(ct));
+    add("K b-a: " + delta_K);
+    add("K stick length:" + delta_K.spatialMagnitude() + Util.NL);
     
     //K': boost along the X axis
-    Transform boostX = Boost.of(X, β);
+    NVelocity boost_v = NVelocity.of(β, X);
     
     //time-slice in K': find two events that have the same ct' value in K'
     //events are identified using ct along the history
-    Event aBoosted = boostX.changeGrid(histA.event(0.18)); //start with some event on A's history
+    NEvent aBoosted = histA.event(0.18).boost(boost_v, NSense.ChangeGrid); //start with some event on A's history
     //root: the difference in K' of the ct' coord vanishes
-    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
-    FindEvent findEvent = new FindEvent(histB, criterion);
+    Function<NEvent, Double> criterion = event -> (event.boost(boost_v, NSense.ChangeGrid).ct() - aBoosted.ct());
+    NFindEvent findEvent = new NFindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeGrid(histB.event(ctB));
+    NEvent bBoosted = histB.event(ctB).boost(boost_v, NSense.ChangeGrid);
+    NFourDelta delta_Kp = NFourDelta.of(aBoosted, bBoosted);
     
-    add("Boost: "+ boostX);
+    add("Boost: boost "+ boost_v);
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     add("K' a: " + aBoosted);
     add("K' b: " + bBoosted);
-    add("K' b-a: " + bBoosted.minus(aBoosted));
-    add("K' stick length: " + Util.round(bBoosted.minus(aBoosted).spatialMagnitude(), 4));
+    add("K' b-a: " + delta_Kp);
+    add("K' stick length: " + Util.round(delta_Kp.spatialMagnitude(), 4));
     add("1/Γ from formula: " + 1.0/Physics.Γ(β));
   }
   
@@ -139,9 +141,9 @@ public class StickFlattening extends TextOutput implements Exploration {
     add(SEP);
     add("Time-slice in K (same ct coords), to see the geometry of the stationary stick:");
     //the stick is stationary in K, from the origin to x=1, y=1, z=0
-    TimelikeHistory histA = UniformVelocity.stationary(Position.origin()); 
-    TimelikeHistory histB = UniformVelocity.stationary(Position.of(1.0, 1.0, 0.0)); //other end of the stick
-    Event diff = histB.event(0.0).minus(histA.event(0.0));
+    NTimelikeHistory histA = NUniformVelocity.stationary(NPosition.origin()); 
+    NTimelikeHistory histB = NUniformVelocity.stationary(NPosition.of(1.0, 1.0, 0.0)); //other end of the stick
+    NFourDelta diff = NFourDelta.of(histA.event(0.0), histB.event(0.0));
     add("K a:" + histA.event(0.0));
     add("K b:" + histB.event(0.0));
     add("K b-a:" + diff);
@@ -150,21 +152,21 @@ public class StickFlattening extends TextOutput implements Exploration {
     add("K stick angle with respect to the X-axis: " + Util.radsToDegs(angle1) + "°" + Util.NL);
     
     //K': boost along the X axis
-    Transform boostX = Boost.of(X, β);
-    add("Boost:" + boostX);
+    NVelocity boost_v = NVelocity.of(β, X);
+    add("Boost:boost " + boost_v);
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     
     //find events that have the same ct' value in K'
-    Event aBoosted = boostX.changeGrid(histA.event(0.18)); //start with some event on A's history
+    NEvent aBoosted = histA.event(0.18).boost(boost_v, NSense.ChangeGrid); //start with some event on A's history
     
-    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
-    FindEvent findEvent = new FindEvent(histB, criterion);
+    Function<NEvent, Double> criterion = event -> (event.boost(boost_v, NSense.ChangeGrid).ct() - aBoosted.ct());
+    NFindEvent findEvent = new NFindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeGrid(histB.event(ctB));
+    NEvent bBoosted = histB.event(ctB).boost(boost_v, NSense.ChangeGrid);
     
     add("K' a: " + aBoosted);
     add("K' b: " + bBoosted);
-    diff = bBoosted.minus(aBoosted);
+    diff = NFourDelta.of(aBoosted, bBoosted);
     add("K' b-a: " + diff);
     add("K' stick length: " + diff.spatialMagnitude());
     double angle2 = Math.atan2(diff.y(), diff.x());
@@ -197,9 +199,9 @@ public class StickFlattening extends TextOutput implements Exploration {
     //the angle between the motion and the X-axis in K
     double restAngle = Util.degsToRads(24.227745317954163);
     double L0 = 1.0;
-    TimelikeHistory histA = UniformVelocity.stationary(Position.origin()); 
-    TimelikeHistory histB = UniformVelocity.stationary(Position.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
-    Event diff = histB.event(0.0).minus(histA.event(0.0));
+    NTimelikeHistory histA = NUniformVelocity.stationary(NPosition.origin()); 
+    NTimelikeHistory histB = NUniformVelocity.stationary(NPosition.of(L0*Math.cos(restAngle), L0*Math.sin(restAngle), 0.0)); //other end of the stick
+    NFourDelta diff = NFourDelta.of(histA.event(0.0), histB.event(0.0));
     add("K b-a:" + diff);
     add("K stick length:" + diff.spatialMagnitude());
     double angleOrig = Math.atan2(diff.y(), diff.x());
@@ -207,20 +209,20 @@ public class StickFlattening extends TextOutput implements Exploration {
     
     //K': boost along the X axis
     double β = 0.8772684879784525;
-    Transform boostX = Boost.of(X, β);
-    add(Util.NL + "Boost: " + boostX);
+    NVelocity boost_v = NVelocity.of(β, X);
+    add(Util.NL + "Boost: boost " + boost_v);
     add("Time-slice pair of events in K' (same ct' coords), to see the geometry of the moving stick:");
     //find events that have the same ct value in K'
-    Event aBoosted = boostX.changeGrid(histA.event(0.15));
+    NEvent aBoosted = histA.event(0.15).boost(boost_v, NSense.ChangeGrid);
     
-    Function<Event, Double> criterion = event -> (boostX.changeGrid(event).ct() - aBoosted.ct());
-    FindEvent findEvent = new FindEvent(histB, criterion);
+    Function<NEvent, Double> criterion = event -> (event.boost(boost_v, NSense.ChangeGrid).ct() - aBoosted.ct());
+    NFindEvent findEvent = new NFindEvent(histB, criterion);
     double ctB = findEvent.search(0.0);
-    Event bBoosted = boostX.changeGrid(histB.event(ctB));
+    NEvent bBoosted = histB.event(ctB).boost(boost_v, NSense.ChangeGrid);
     
     add("K' a: " + aBoosted);
     add("K' b: " + bBoosted);
-    diff = bBoosted.minus(aBoosted);
+    diff = NFourDelta.of(aBoosted, bBoosted);
     add("K' b-a: " + diff);
     add("K' b-a stick length: " + diff.spatialMagnitude());
     double angleNew = Math.atan2(diff.y(), diff.x());
