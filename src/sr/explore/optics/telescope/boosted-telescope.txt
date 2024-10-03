@@ -1,0 +1,8 @@
+All angles are with respect to the +X-axis.
+
+K : angle of telescope: 45.0°
+
+From K to K', use a boost [0.75,0.0,0.0]
+
+K' time-slice: angle of telescope : 56.518° (the flattening effect)
+K' light-slice: angle of incoming detected light ray : 17.796° (the aberration effect)
