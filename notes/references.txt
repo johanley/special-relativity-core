@@ -22,13 +22,7 @@ References (most recent first)
 
 2024
 Proposal for an experiment to verify Wigner’s rotation at non-relativistic speeds with massive spin-1/2 particles
-"The Wigner rotation of quantum particles with spin is one of the fascinating consequences of interplay between two 
-fundamental aspects of Nature: special relativity and quantum mechanics. A direct high precision verification of the Wigner 
-rotation angle of spin-1/2 particles would test on the one hand the Lorentz symmetry of Nature and on the other its realization 
-in quantum mechanics. In this paper we propose such an experiment to directly verify Wigner’s rotation in the regime of 
-non-relativistic velocities at 2 · 103 m/s for massive spin1/2 particles. We discuss how the experiment could be carried out 
-in a laboratory using slow neutrons. The measurement at non-relativistic velocities becomes possible through letting neutrons 
-propagate for a sufficiently long time because Wigner rotation is a cumulative effect."
+[Kinematic (Wigner) spin with neutrons in a lab.]
 https://arxiv.org/pdf/1604.03389
 
 2020
@@ -95,6 +89,7 @@ https://aapt.scitation.org/doi/full/10.1119/1.4916949 (full article)
 
 2014
 Visual appearance of wireframe objects in special relativity
+[Seems very useful.]
 "The visual appearance of a moving object in special relativity can be constructed in a straightforward manner 
  when representing the surface of the object, or at least a wire frame model of it, as a point cloud. The apparent
  position of each individual point is then found by intersecting its worldline with the observer's backward light cone. 
@@ -143,6 +138,12 @@ We have used high performance graphics hardware and developed a program that ena
 the user to interactively explore the stellar sky in the vicinity of a Schwarzschild 
 black hole. To do so, we determine what an observer, who can either move 
 quasistatically around the black hole or follow a timelike radial geodesic, would actually see."
+
+2008
+Is the phase of plane waves a frame-independent quantity?
+[Phase-gradient for plane single-frequency waves in media.]
+[Formula 2 seems right; seems to be a typo for phi, in the abstract and introduction.]
+https://arxiv.org/pdf/0801.3149v2
 
 2008
 First-person visualizations of the special and general theory of relativity. 
@@ -267,6 +268,14 @@ reduced to the study of Thomas precession, which is too specific a case to allow
 of boost composition. However, by using simple arguments and linear algebra, the result for the
 Wigner rotation is obtained straightforwardly, leading to a formula written in a manageable form.
 The result is exemplified in the context of the aberration of light."
+
+1997
+An introduction to space–time diagrams
+David Mermin
+"A purely geometrical approach to Minkowski space–time diagrams is described that exploits only the symmetries of 
+appropriate rhombi and rectangles. No explicit use is made of rectangular or oblique coordinate axes. Although 
+designed for presenting the subject to nonscientists, the approach might also be illuminating to some scientists."
+https://doi.org/10.1119/1.18574
 
 1996
 Image Shading Taking into Account Relativistic Effects

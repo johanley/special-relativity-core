@@ -83,7 +83,7 @@ final class OutputMaxThetaDot implements OutputSummary {
   
   static String globalMax() {
     double degsPerDay = radsToDegs(globalMaxThetaDot)/365.25;
-    return "Max theta-dot: " + round(degsPerDay,4) + " deg/day, FlyBy: " + globalMaxFlyBy + ", Detection: " + globalMaxDetection;
+    return "Max theta-dot: " + round(degsPerDay,4) + " deg/day, Detection: " + globalMaxDetection;
   }
 
   //PRIVATE 
@@ -97,5 +97,4 @@ final class OutputMaxThetaDot implements OutputSummary {
   
   private static DetectionEvent globalMaxDetection;
   private static Double globalMaxThetaDot = 0.0;
-  private static RelativisticFlyBy globalMaxFlyBy;
 }
