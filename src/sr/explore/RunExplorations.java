@@ -22,77 +22,35 @@ import sr.explore.geom.flattening.StickFlattening;
 import sr.explore.interval.invariant.InvariantInterval;
 import sr.explore.optics.doppler.cone.DopplerCone;
 import sr.explore.optics.doppler.cone.DopplerConeElbowBoost;
-import sr.explore.optics.flyby.NRelativisticFlyBy;
 import sr.explore.optics.flyby.RelativisticFlyBy;
 import sr.explore.optics.kvector.WaveVectorK;
 import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
 import sr.explore.optics.telescope.BoostedTelescope;
 import sr.explore.speeds.SpeedsAndGammas;
-import sr.explore.speeds.SpeedsAndGammas;
 import sr.explore.velocitytransform.BoostToRotateVelocity;
 import sr.explore.velocitytransform.Commutation;
 import sr.explore.velocitytransform.CompareFormulaWithLT;
 import sr.explore.velocitytransform.MaxAngleBetweenResultVectors;
-import sr.explore.velocitytransform.NBoostToRotateVelocity;
-import sr.explore.velocitytransform.NCommutation;
-import sr.explore.velocitytransform.NCompareFormulaWithLT;
-import sr.explore.velocitytransform.NMaxAngleBetweenResultVectors;
-import sr.explore.velocitytransform.NNeverExceedsSpeedLimit;
-import sr.explore.velocitytransform.NSignReversal;
 import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
 import sr.explore.velocitytransform.SignReversal;
 import sr.explore.waves.InvariantPhaseDifference;
 import sr.explore.waves.WavesInMedia;
-import sr.explore.waves.WavesInMedia;
 
-/** Run a number of explorations in sequence. */
+/** 
+ Run all explorations in sequence.
+ 
+ <P>This class helps finding errors. 
+ Running all explorations after code changes have been made, and then checking 
+ for differences in the output, is an effective means of testing.  
+*/
 public final class RunExplorations {
   
   public static void main(String[] args) {
-    //List<Exploration> list = explorations();
-    List<Exploration> list = newExplorations();
+    List<Exploration> list = explorations();
     for(Exploration exploration : list) {
       exploration.explore();
     }
-  }
-
-  private static List<Exploration> newExplorations(){
-    List<Exploration> result = new ArrayList<>();
-    //result.add(new OneRevolution());
-    //result.add(new KinematicSpinAsLimit());
-    //result.add(new CornerBoostsDontCommute());
-    //result.add(new EquivalentBoostPlusRotation());
-    //result.add(new KinematicRotation());
-    //result.add(new KinematicRotationRange());
-    //result.add(new ConnectedRockets());
-    //result.add(new OneGeeForever());
-    //result.add(new OneGeeThereAndBack());
-    //result.add(new OneGeeThereAndBackWithCruise());
-    //result.add(new OneGeeThereAndStay());
-    //result.add(new LightClock());
-    //result.add(new MakeAClockRunFaster());
-    //result.add(new TravelTime());
-    //result.add(new Twins());
-    //result.add(new StickFlattening());
-    //result.add(new InvariantInterval());
-    //result.add(new DopplerCone());
-    //result.add(new DopplerConeElbowBoost());
-    //result.add(new WaveVectorK());
-    //result.add(new LightSliceOfAStick());
-    //result.add(new MovingMirror());
-    //result.add(new BoostedTelescope());
-    //result.add(new SpeedsAndGammas());
-    result.add(new NNeverExceedsSpeedLimit());
-    result.add(new NBoostToRotateVelocity());
-    result.add(new NCompareFormulaWithLT());
-    result.add(new NCommutation());
-    result.add(new NMaxAngleBetweenResultVectors());
-    result.add(new NSignReversal());
-    result.add(new InvariantPhaseDifference());
-    result.add(new WavesInMedia());
-    result.add(new NRelativisticFlyBy());
-    return result;
   }
 
   private static List<Exploration> explorations(){
@@ -132,5 +90,4 @@ public final class RunExplorations {
     result.add(new InvariantPhaseDifference());
     return result;
   }
-
 }

@@ -3,11 +3,12 @@ package sr.explore.velocitytransform;
 import static sr.core.Axis.X;
 
 import sr.core.Axis;
+import sr.core.NVelocityTransformation;
 import sr.core.Util;
-import sr.core.VelocityTransformation;
-import sr.core.vector3.ThreeVector;
-import sr.core.vector3.Velocity;
-import sr.core.vector3.transform.SpatialRotation;
+import sr.core.component.ops.NSense;
+import sr.core.vec3.NAxisAngle;
+import sr.core.vec3.NThreeVector;
+import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -37,26 +38,25 @@ public final class MaxAngleBetweenResultVectors extends TextOutput implements Ex
     add(dashes(120));
     
     for (int speed = 1; speed < 100; ++speed) {
-      findTheLargestAngleBetweenWhenAdding(Velocity.of(X, speed / 100.0));
+      findTheLargestAngleBetweenWhenAdding(NVelocity.of(speed / 100.0, X));
     }
-    findTheLargestAngleBetweenWhenAdding(Velocity.of(X, 0.999));
-    findTheLargestAngleBetweenWhenAdding(Velocity.of(X, 0.9999));
-    findTheLargestAngleBetweenWhenAdding(Velocity.of(X, 0.99999));
+    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.999, X));
+    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.9999, X));
+    findTheLargestAngleBetweenWhenAdding(NVelocity.of(0.99999, X));
     
     outputToConsoleAnd("maximize-angle-between-result-vectors.txt");
   }
   
-  private void findTheLargestAngleBetweenWhenAdding(Velocity a) {
-    Velocity b = Velocity.of(a); //to start with
+  private void findTheLargestAngleBetweenWhenAdding(NVelocity a) {
+    NVelocity b = NVelocity.of(a); //to start with
     int rotationAngle = 0;
-    Velocity vWithMaxAngle = null;
+    NVelocity vWithMaxAngle = null;
     double maxAngleBetween = 0;
     for(int degrees = 1; degrees < 180; ++degrees ) {
-      SpatialRotation rot = SpatialRotation.of(Axis.Z, Util.degsToRads(degrees));
-      ThreeVector b_rotated = rot.changeVector(b);
-      Velocity b_rotated_v = Velocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
-      Velocity sum1 = VelocityTransformation.unprimedVelocity(a, b_rotated_v);
-      Velocity sum2 = VelocityTransformation.unprimedVelocity(b_rotated_v, a);
+      NThreeVector b_rotated = b.rotate(NAxisAngle.of(Util.degsToRads(degrees), Axis.Z), NSense.ChangeComponents);
+      NVelocity b_rotated_v = NVelocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
+      NVelocity sum1 = NVelocityTransformation.unprimedVelocity(a, b_rotated_v);
+      NVelocity sum2 = NVelocityTransformation.unprimedVelocity(b_rotated_v, a);
       double angleBetween = sum2.angle(sum1);
       if (angleBetween > maxAngleBetween) {
         maxAngleBetween = angleBetween;

@@ -2,9 +2,9 @@ package sr.explore.velocitytransform;
 
 import static sr.core.Axis.X;
 
+import sr.core.NVelocityTransformation;
 import sr.core.Util;
-import sr.core.VelocityTransformation;
-import sr.core.vector3.Velocity;
+import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -20,14 +20,14 @@ public final class NeverExceedsSpeedLimit extends TextOutput implements Explorat
 
   @Override public void explore() {
     add("Velocity transformation formula.");
-    neverExceedsTheSpeedLimit(Velocity.of(X, 0.99), Velocity.of(X, 0.99));
+    neverExceedsTheSpeedLimit(NVelocity.of(0.99, X), NVelocity.of(0.99, X));
     outputToConsoleAnd("never-exceeds-speed-limit.txt");
   }
 
-  private void neverExceedsTheSpeedLimit(Velocity boost, Velocity v) {
+  private void neverExceedsTheSpeedLimit(NVelocity boost, NVelocity v) {
     add(Util.NL + "Velocity addition never exceeds the speed limit."+ Util.NL);
     add("Boost: " + boost + " Velocity v':" + v);
-    Velocity sum = VelocityTransformation.unprimedVelocity(boost, v);
+    NVelocity sum = NVelocityTransformation.unprimedVelocity(boost, v);
     add("Resultant v: " + sum);
   }
 }
