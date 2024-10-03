@@ -20,6 +20,27 @@ References (most recent first)
 [y] - I have a copy, or have evaluated the reference
 [g] - this would be very interesting to see
 
+2024
+Proposal for an experiment to verify Wigner’s rotation at non-relativistic speeds with massive spin-1/2 particles
+"The Wigner rotation of quantum particles with spin is one of the fascinating consequences of interplay between two 
+fundamental aspects of Nature: special relativity and quantum mechanics. A direct high precision verification of the Wigner 
+rotation angle of spin-1/2 particles would test on the one hand the Lorentz symmetry of Nature and on the other its realization 
+in quantum mechanics. In this paper we propose such an experiment to directly verify Wigner’s rotation in the regime of 
+non-relativistic velocities at 2 · 103 m/s for massive spin1/2 particles. We discuss how the experiment could be carried out 
+in a laboratory using slow neutrons. The measurement at non-relativistic velocities becomes possible through letting neutrons 
+propagate for a sufficiently long time because Wigner rotation is a cumulative effect."
+https://arxiv.org/pdf/1604.03389
+
+2020
+Learning and teaching Einstein's Theory of Special Relativity: state of the art
+[Very extensive bibliography.]
+https://arxiv.org/abs/2012.15149
+
+2020
+On the geometry of the kinematic space in special relativity
+[Velocity space. By mathematicians.]
+https://arxiv.org/abs/2012.00681
+
 2019
 Interstellar travels aboard radiation-powered rockets
 Andre Füzfa (University of Namur, Belgium)
@@ -28,6 +49,12 @@ https://arxiv.org/ftp/arxiv/papers/1902/1902.03869.pdf (full text)
 "It is shown how relativistic aberration and the Doppler effect for the 
 accelerated traveler differ from their description in special relativity 
 for motion at constant velocity."
+
+
+2017
+Relativity and Accelerator Engineering
+[Claims kinematic spin (Wigner rotation) seen in macroscopic objects.]
+https://arxiv.org/abs/1709.09408
 
 2016
 Relativity on rotated graph paper
@@ -66,6 +93,18 @@ Oliver James, Eugénie von Tunzelmann, and Paul Franklin (Double Negative Ltd)
 Kip S. Thorne (California Institute of Technology)
 https://aapt.scitation.org/doi/full/10.1119/1.4916949 (full article)
 
+2014
+Visual appearance of wireframe objects in special relativity
+"The visual appearance of a moving object in special relativity can be constructed in a straightforward manner 
+ when representing the surface of the object, or at least a wire frame model of it, as a point cloud. The apparent
+ position of each individual point is then found by intersecting its worldline with the observer's backward light cone. 
+ In this paper, we present a complete derivation of the apparent position of a point and some more complex geometric 
+ objects for general parameter settings (configurations). We implemented our results in python and asymptote and used 
+ these tools to generate scripts that create the figures in this paper. These scripts are directly applicable in an 
+ undergraduate course to special relativity and can also serve as the basis for student projects with the aim to study 
+ more complex sceneries."
+https://arxiv.org/abs/1410.4583
+
 
 Comment on 'Elementary analysis of the special relativistic combination of velocities, Wigner rotation and Thomas precession'
 Krzysztof Rȩbilas [Uniwersytet Rolniczy, Krakow]
@@ -81,6 +120,16 @@ Special Relativity
 Valerio Faraoni (Bishop’s University of Sherbrooke, Canada)
 2013. p171-190 (Relativistic Optics)
 https://link.springer.com/chapter/10.1007%2F978-3-319-01107-3_7
+
+2011
+Elementary analysis of the special relativistic combination of velocities, Wigner rotation, and Thomas precession
+"The purpose of this paper is to provide an elementary introduction to the qualitative and quantitative results of 
+velocity combination in special relativity, including the Wigner rotation and Thomas precession. 
+We utilize only the most familiar tools of special relativity, in arguments presented at three differing 
+levels: (1) utterly elementary, which will suit a first course in relativity; (2) intermediate, to suit a 
+second course; and (3) advanced, to suit higher level students. We then give a summary of useful results, and 
+suggest further reading in this often obscure field."
+https://arxiv.org/abs/1102.2001
 
 2010
 Distortion of the stellar sky by a Schwarzschild black hole
@@ -149,6 +198,14 @@ The Quantum Theory of Fields: Foundations
 Steven Weinberg
 Cambridge University Press, 2005 
 See his remarks on groups in SR.
+
+2005
+Relativistic velocity space, Wigner rotation and Thomas precession
+"We develop a relativistic velocity space called rapidity space from the single assumption of Lorentz invariance, 
+and use it to visualize and calculate effects resulting from the successive application of non-colinear Lorentz boosts. 
+In particular, we show how rapidity space provides a geometric approach to Wigner rotation and Thomas precession in the 
+same way that spacetime provides a geometrical approach to kinematic effects in special relativity."
+https://arxiv.org/pdf/gr-qc/0501070
 
 2004
 Relativistic Velocity Space, Wigner Rotation, and Thomas Precession
