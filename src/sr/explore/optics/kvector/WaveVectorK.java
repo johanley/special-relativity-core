@@ -7,12 +7,13 @@ import static sr.core.Util.NL;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Axis;
-import sr.core.LorentzTransformation;
 import sr.core.Util;
-import sr.core.vector3.Direction;
-import sr.core.vector3.Velocity;
-import sr.core.vector4.FourVector;
-import sr.core.vector4.FourPhaseGradient;
+import sr.core.component.ops.NSense;
+import sr.core.vec3.NDirection;
+import sr.core.vec3.NPhaseGradient;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourPhaseGradient;
+import sr.core.vec4.NFourVector;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -33,48 +34,45 @@ public final class WaveVectorK extends TextOutput implements Exploration {
   private void sameLineChangesFrequencyOnly() {
     add("A boost parallel to the wave-vector k changes the frequency only.");
     Axis axis = Axis.X;
-    Velocity v = Velocity.of(axis, 0.6);
+    NVelocity v = NVelocity.of(0.6, axis);
     sameLine(axis, v);
     
     add(NL + "A boost anti-parallel to the wave-vector k changes the frequency only.");
-    sameLine(axis, Velocity.of(v.times(-1)));
+    sameLine(axis, NVelocity.of(v.times(-1)));
   }
 
-  private void sameLine(Axis axis, Velocity v) {
-    LorentzTransformation lt = LorentzTransformation.of(v);
-    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, axis);
-    FourPhaseGradient k_out = lt.primedVector(k_in);
-    show(lt, k_in, k_out);
+  private void sameLine(Axis axis, NVelocity v) {
+    NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, axis));
+    NFourPhaseGradient k_out = k_in.boost(NVelocity.of(v), NSense.ChangeGrid);
+    show(v, k_in, k_out);
   }
 
   private void notTheSameLineChangesFrequencyAndDirection() {
     add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
-    Velocity v = Velocity.of(Axis.X, 0.6);
-    LorentzTransformation lt = LorentzTransformation.of(v);
-    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, Direction.of(1, 2, 3));
-    FourPhaseGradient k_out = lt.primedVector(k_in);
-    show(lt, k_in, k_out);
+    NVelocity v = NVelocity.of(0.6, Axis.X);
+    NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, NDirection.of(1, 2, 3)));
+    NFourPhaseGradient k_out = k_in.boost(v, NSense.ChangeGrid);
+    show(v, k_in, k_out);
   }
   
   private void abberation() {
     add(NL+"Abberation.");
     add("Input k in frame K is directed to the 4th quadrant, at 45 degrees down from the +X-axis.");
-    Velocity v = Velocity.of(Axis.X, -0.60);
-    LorentzTransformation lt = LorentzTransformation.of(v);
+    NVelocity v = NVelocity.of(-0.60, Axis.X);
     //directed into the 4th quadrant at 45 degrees
-    FourPhaseGradient k_in = FourPhaseGradient.of(1.0, Direction.of(+1, -1, 0));
-    FourPhaseGradient k_out = lt.primedVector(k_in);
-    show(lt, k_in, k_out);
+    NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, NDirection.of(+1, -1, 0)));
+    NFourPhaseGradient k_out = k_in.boost(v, NSense.ChangeGrid);
+    show(v, k_in, k_out);
     showChangeInDirection(k_in, k_out);
   }
   
-  private void show(LorentzTransformation lt, FourVector input, FourVector output) {
-    add("  Boost "  + lt);
+  private void show(NVelocity boost_v, NFourVector input, NFourVector output) {
+    add("  Boost "  + boost_v);
     add("  Input k in frame K "  + input + " mag " + round(input.square()));
     add("  Output k in frame K'" + output + " mag " + round(output.square()));
   }
   
-  private void showChangeInDirection(FourPhaseGradient k_in, FourVector k_out) {
+  private void showChangeInDirection(NFourPhaseGradient k_in, NFourVector k_out) {
     double degsIn = degreesWrtXaxis(k_in);
     double degsOut = degreesWrtXaxis(k_out);
     
@@ -84,7 +82,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     add("  Change in frequency by factor: " + round(k_out.on(CT)/k_in.on(CT)));
   }
   
-  private double degreesWrtXaxis(FourVector k) {
+  private double degreesWrtXaxis(NFourVector k) {
     double rads = Math.atan2(k.on(Y), k.on(X)); //-pi..+pi
     return round(radsToDegs(rads));
   }
