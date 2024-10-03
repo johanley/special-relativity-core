@@ -7,14 +7,16 @@ import static sr.core.Util.round;
 import java.util.function.Function;
 
 import sr.core.Axis;
-import sr.core.history.timelike.TimelikeHistory;
-import sr.core.history.timelike.UniformVelocity;
-import sr.core.vector3.Direction;
-import sr.core.vector3.Position;
-import sr.core.vector3.Velocity;
-import sr.core.vector4.Event;
-import sr.core.vector4.FindEvent;
-import sr.core.vector4.transform.Boost;
+import sr.core.component.NEvent;
+import sr.core.component.NPosition;
+import sr.core.component.ops.NSense;
+import sr.core.hist.timelike.NFindEvent;
+import sr.core.hist.timelike.NTimelikeHistory;
+import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.vec3.NDirection;
+import sr.core.vec3.NVelocity;
+import sr.core.vec4.NFourDelta;
+import sr.core.vec4.NFourVector;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -97,34 +99,34 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     add("All angles are with respect to the +X-axis." + NL);
     
     //the telescope is stationary in the unboosted frame K:
-    TimelikeHistory eyepiece_history_K = UniformVelocity.of(Position.origin(), Velocity.zero());
+    NTimelikeHistory eyepiece_history_K = NUniformVelocity.of(NPosition.origin(), NVelocity.zero());
     //the length of the scope is set to 1:
     double distance = 1.0/Math.sqrt(2.0); 
-    Position where = Position.of(distance, distance, 0.0); //where the objective lens is  
-    TimelikeHistory lens_history_K = UniformVelocity.of(where, Velocity.zero());
+    NPosition where = NPosition.of(distance, distance, 0.0); //where the objective lens is  
+    NTimelikeHistory lens_history_K = NUniformVelocity.of(where, NVelocity.zero());
     
     //a photon moves into the telescope (at the lens) and out of the telescope (at the eyepiece)
     //because the geometry is simple in frame K, it's simple to find two corresponding events one the history of that photon:
-    Event lens_K = lens_history_K.event(0);  //just pick one to start with
-    Event eyepiece_K = eyepiece_history_K.event(1); //because the scope has unit length!
-    add("K : angle of telescope: " + angleFromXAxis(lens_K.minus(eyepiece_K)));
+    NEvent lens_K = lens_history_K.event(0);  //just pick one to start with
+    NEvent eyepiece_K = eyepiece_history_K.event(1); //because the scope has unit length!
+    add("K : angle of telescope: " + angleFromXAxis(NFourDelta.of(eyepiece_K, lens_K)));
     
     //then boost from K to K'
-    Boost boost = Boost.of(Axis.X, 0.75);
-    add(NL + "From K to K', use a " + boost + NL);
-    Event lens_Kp = boost.changeGrid(lens_K);
-    Event eyepiece_Kp = boost.changeGrid(eyepiece_K);
+    NVelocity boost_v = NVelocity.of(0.75, Axis.X);
+    add(NL + "From K to K', use a boost " + boost_v + NL);
+    NEvent lens_Kp = lens_K.boost(boost_v, NSense.ChangeGrid);
+    NEvent eyepiece_Kp = eyepiece_K.boost(boost_v, NSense.ChangeGrid);
     
-    Event event_from_time_slice_Kp = timeSliceEventInKp(eyepiece_Kp.ct(), lens_history_K, boost);
-    add("K' time-slice: angle of telescope : " + angleFromXAxis(event_from_time_slice_Kp.minus(eyepiece_Kp)) + " (the flattening effect)");
-    add("K' light-slice: angle of incoming detected light ray : " + angleFromXAxis(lens_Kp.minus(eyepiece_Kp)) + " (the aberration effect)");
+    NEvent event_from_time_slice_Kp = timeSliceEventInKp(eyepiece_Kp.ct(), lens_history_K, boost_v);
+    add("K' time-slice: angle of telescope : " + angleFromXAxis(NFourDelta.of(eyepiece_Kp, event_from_time_slice_Kp)) + " (the flattening effect)");
+    add("K' light-slice: angle of incoming detected light ray : " + angleFromXAxis(NFourDelta.of(eyepiece_Kp, lens_Kp)) + " (the aberration effect)");
     
     outputToConsoleAnd("boosted-telescope.txt");
     
   }
   
   /** Degrees. */
-  private double angleBetween(Event a, Event b) {
+  private double angleBetween(NFourDelta a, NFourDelta b) {
     double result = radsToDegs(
       directionOf(a).angle(directionOf(b))
     );
@@ -135,28 +137,28 @@ public final class BoostedTelescope extends TextOutput implements Exploration {
     return round(value, 3);
   }
   
-  private Direction directionOf(Event event) {
-    return Direction.of(event.x(),event.y(),event.z());
+  private NDirection directionOf(NFourVector event) {
+    return NDirection.of(event.x(),event.y(),event.z());
   }
   
-  private String angleFromXAxis(Event event) {
-    return angleBetween(event, wrt_the_x_axis()) + "°";
+  private String angleFromXAxis(NFourDelta delta) {
+    return angleBetween(delta, wrt_the_x_axis()) + "°";
   }
   
   /** 
    Find the event in the history of the lens having the given coordinate time (ct_Kp).
    @return the event using K' coordinates. 
   */
-  private Event timeSliceEventInKp(double ct_Kp, TimelikeHistory history_K, Boost boost) {
-    Function<Event, Double> criterion = (event_K) -> boost.changeGrid(event_K).ct() - ct_Kp; 
-    FindEvent find = new FindEvent(history_K, criterion);
+  private NEvent timeSliceEventInKp(double ct_Kp, NTimelikeHistory history_K, NVelocity boost_v) {
+    Function<NEvent, Double> criterion = (event_K) -> event_K.boost(boost_v, NSense.ChangeGrid).ct() - ct_Kp; 
+    NFindEvent find = new NFindEvent(history_K, criterion);
     double guess_ct_K = 1.0;
     double ct_K = find.search(guess_ct_K); 
-    Event target_K = history_K.event(ct_K);
-    return boost.changeGrid(target_K);
+    NEvent target_K = history_K.event(ct_K);
+    return target_K.boost(boost_v, NSense.ChangeGrid);
   }
   
-  private Event wrt_the_x_axis() {
-    return Event.of(0, 1, 0, 0);
+  private NFourDelta wrt_the_x_axis() {
+    return NFourDelta.of(NEvent.origin(), NEvent.of(0, 1, 0, 0));
   }
 }
