@@ -1,5 +1,5 @@
 # special-relativity-core
-Explore the consequences of the Lorentz Transformations.
+Implement the ideas of special relativity in code, and explore the consequences of the Lorentz transformations.
 
 Mostly kinematics.
 
@@ -14,6 +14,10 @@ I'm hoping that this is the case with this little project as well.
 In this project: 
  - c=1
  - the metric signature is (ct,x,y,z) = (+,-,-,-)
+
+The code is separated into two parts:
+ - _sr.core_ implements the core ideas of special relativity
+ - _sr.explore_ explores its consequences
 
 ## Jargon
 
@@ -288,9 +292,9 @@ Every frame must agree on the size of the *change* in the phase.
 These remarks apply to *any wave phenomenon*, not just to plane waves of light of a single frequency traveling in a vacuum.
 
 
-**It's a common misconception that the dot product <em>k<sup>i</sup>x<sub>i</sub></em> of the phase-gradient (wave vector) <em>k<sup>i</sup></em> with the coordinates <em>x<sub>i</sub></em> is Poincaré-invariant.**
+**It's a misconception that the product <em>k<sup>i</sup>x<sub>i</sub></em> of the phase-gradient (wave vector) <em>k<sup>i</sup></em> with the coordinates <em>x<sub>i</sub></em> is Poincaré-invariant.**
 This is related to the fact that <em>&Delta;x<sub>i</sub></em> is the true 4-vector, not <em>x<sub>i</sub></em>.
-The dot product <em>k<sup>i</sup>x<sub>i</sub></em> changes during displacement of the origin of coordinates.
+The product <em>k<sup>i</sup>x<sub>i</sub></em> changes during displacement of the origin of coordinates.
 The dot product <em>k<sup>i</sup>&Delta;x<sub>i</sub></em> does not change during displacement of the origin of coordinates.
 
 
