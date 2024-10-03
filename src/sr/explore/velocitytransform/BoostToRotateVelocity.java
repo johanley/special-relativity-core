@@ -11,14 +11,12 @@ import sr.core.component.ops.NSense;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NThreeVector;
 import sr.core.vec3.NVelocity;
-import sr.core.vector3.AxisAngle;
-import sr.core.vector3.Velocity;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
 
 /** 
-  Find a boost that will rotate a given {@link Velocity} by a given amount.
+  Find a boost that will rotate a given {@link NVelocity} by a given amount.
   Here the boost changes the direction of a velocity, but not its speed.
   
   <P>Set up:
@@ -32,7 +30,7 @@ import sr.output.text.TextOutput;
   <P>All velocities involved define a plane, taken here as the XY plane.
   
   <P>For the sense of the rotation, use the right-handed rule, with the original <em>boost_v</em> in the +X direction, and the 
-  {@link AxisAngle} of the rotation directed in the +Z-direction.  
+  {@link NAxisAngle} of the rotation directed in the +Z-direction.  
 */
 public final class BoostToRotateVelocity extends TextOutput implements Exploration {
   

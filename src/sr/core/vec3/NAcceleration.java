@@ -7,7 +7,6 @@ import sr.core.component.ops.NReverseSpatialComponents;
 import sr.core.component.ops.NRotate;
 import sr.core.component.ops.NSense;
 import sr.core.ops.NLinearOps;
-import sr.core.vector3.ThreeVector;
 
 /** 
  The acceleration of an object having mass.
@@ -25,7 +24,7 @@ public final class NAcceleration extends NThreeVector implements NLinearOps<NAcc
   }
 
   /** Factory method for the case in which the data is in some ThreeVector (due to a calculation). */
-  public static NAcceleration of(ThreeVector v) {
+  public static NAcceleration of(NThreeVector v) {
     return new NAcceleration(v.x(), v.y(), v.z());
   }
 

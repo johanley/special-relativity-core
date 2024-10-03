@@ -10,9 +10,6 @@ import sr.core.hist.timelike.NTimelikeDeltaBase;
 import sr.core.hist.timelike.NTimelikeHistory;
 import sr.core.hist.timelike.NTimelikeMoveableHistory;
 import sr.core.hist.timelike.NUniformAcceleration;
-import sr.core.history.timelike.TimelikeMoveableHistory;
-import sr.core.history.timelike.UniformAcceleration;
-import sr.core.vector3.Position;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -88,8 +85,8 @@ public final class ConnectedRockets extends TextOutput implements Exploration {
   private Table tableHeader = new Table("%-18s", "%-20s", "%-15s");
   private Table table = new Table("%12.2f", "%18.2f", "%20.8f");
   
-  private TimelikeMoveableHistory rocketA() {
-    return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
+  private NTimelikeMoveableHistory rocketA() {
+    return NUniformAcceleration.of(NPosition.origin(), X, Physics.ONE_GEE);
   }
   
   /** Same as rocket-a, but displaced to the right along the X-axis. */

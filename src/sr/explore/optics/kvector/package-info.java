@@ -1,4 +1,4 @@
 /**
- Aberration is from applying the {@link LorentzTransformation} to a {@link FourPhaseGradient}. 
+ Aberration is from applying the Lorentz Transformation to a {@link NFourPhaseGradient}. 
 */
 package sr.explore.optics.kvector;
