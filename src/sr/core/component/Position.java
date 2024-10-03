@@ -4,7 +4,7 @@ import static sr.core.Util.mustHave;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.ops.MoveZeroPointBy;
+import sr.core.component.ops.Displace;
 import sr.core.component.ops.ReverseSpatialComponents;
 import sr.core.component.ops.Rotate;
 import sr.core.component.ops.Sense;
@@ -45,7 +45,7 @@ public final class Position implements AffineOp<Position>, LinearOps<Position> {
   public double z() { return components.z(); }
   
   @Override public Position moveZeroPointBy(FourDelta displacement, Sense sense) {
-    Components comps = MoveZeroPointBy.of(displacement, sense).applyTo(components);
+    Components comps = Displace.of(displacement, sense).applyTo(components);
     return Position.of(comps);
   }
   

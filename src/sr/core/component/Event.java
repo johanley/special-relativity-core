@@ -9,7 +9,7 @@ import static sr.core.Util.round;
 
 import sr.core.Axis;
 import sr.core.component.ops.Boost;
-import sr.core.component.ops.MoveZeroPointBy;
+import sr.core.component.ops.Displace;
 import sr.core.component.ops.ReverseSpatialComponents;
 import sr.core.component.ops.ReverseTimeComponent;
 import sr.core.component.ops.Rotate;
@@ -80,7 +80,7 @@ public final class Event implements AffineOp<Event>, LinearOps<Event>, LinearBoo
   }
   
   @Override public Event moveZeroPointBy(FourDelta displacement, Sense sense) {
-    Components comps = MoveZeroPointBy.of(displacement, sense).applyTo(components);
+    Components comps = Displace.of(displacement, sense).applyTo(components);
     return Event.of(comps);
   }
   

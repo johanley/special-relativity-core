@@ -5,14 +5,14 @@ import sr.core.component.Components;
 import sr.core.vec4.FourDelta;
 
 /** 
- Displacement of the origin of coordinates, in both time and space.
+ Move the zero-point of the origin of coordinates, in both time and space.
  This operation has no effect on vectors; it only affects positions and events.
 */
-public final class MoveZeroPointBy implements ComponentOp {
+public final class Displace implements ComponentOp {
   
   /**  Factory method. */
-  public static MoveZeroPointBy of(FourDelta displacement, Sense sense) {
-    return new MoveZeroPointBy(displacement, sense);
+  public static Displace of(FourDelta displacement, Sense sense) {
+    return new Displace(displacement, sense);
   }
 
   /**
@@ -32,7 +32,7 @@ public final class MoveZeroPointBy implements ComponentOp {
   private FourDelta displacement;
   private Sense sense;
   
-  private MoveZeroPointBy(FourDelta displacement, Sense sense) {
+  private Displace(FourDelta displacement, Sense sense) {
     this.displacement = displacement;
     this.sense = sense;
   }
