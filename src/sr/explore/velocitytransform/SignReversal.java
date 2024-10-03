@@ -2,7 +2,7 @@ package sr.explore.velocitytransform;
 
 import static sr.core.Axis.X;
 
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -25,19 +25,19 @@ public final class SignReversal extends TextOutput implements Exploration {
   private void show(NVelocity boost, NVelocity v) {
     add("Boost from K to K': " + boost + " Velocity:" + v + " are in the same line." + Util.NL);
     add("Compute primed v' given (boost + v). Treat the given Velocity as v.");
-    NVelocity sum1 = NVelocityTransformation.primedVelocity(boost, v);
+    NVelocity sum1 = VelocityTransformation.primedVelocity(boost, v);
     add("Order (boost,v) resultant-v':" + sum1 + " mag:" + mag(sum1));
     
-    NVelocity sum2 = NVelocityTransformation.primedVelocity(v, boost);
+    NVelocity sum2 = VelocityTransformation.primedVelocity(v, boost);
     add("Order (v,boost) resultant-v':" + emit(sum2));
     angleBetween(sum1, sum2);
     
     
     add(Util.NL + "Compute unprimed v given (boost + v'). Treat the given Velocity as v'.");
-    NVelocity sum3 = NVelocityTransformation.unprimedVelocity(boost, v);
+    NVelocity sum3 = VelocityTransformation.unprimedVelocity(boost, v);
     add("Order (boost,v') resultant-v:" + emit(sum3));
     
-    NVelocity sum4 = NVelocityTransformation.unprimedVelocity(v, boost);
+    NVelocity sum4 = VelocityTransformation.unprimedVelocity(v, boost);
     add("Order (v',boost) resultant-v:" + emit(sum4));
     angleBetween(sum3, sum4);
 

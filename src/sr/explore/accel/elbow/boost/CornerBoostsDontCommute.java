@@ -3,10 +3,10 @@ package sr.explore.accel.elbow.boost;
 import static sr.core.Axis.X;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.ops.NSense;
+import sr.core.component.Event;
+import sr.core.component.ops.Sense;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -46,8 +46,8 @@ public final class CornerBoostsDontCommute extends TextOutput implements Explora
     add(Util.NL + "The two boosts give the same final event coordinates, regardless of the order of execution.");
 
     double βequiv = βequivalentColinear(β1_minus_x, β2_plus_x);
-    NEvent event = anyOldEvent();
-    NEvent afterEquiv = boostThe(event, NVelocity.of(βequiv, X));
+    Event event = anyOldEvent();
+    Event afterEquiv = boostThe(event, NVelocity.of(βequiv, X));
     add("A single equivalent boost: " + X + " " + Util.round(βequiv, 5) + " " + afterEquiv);
     
     add(Util.NL + "2. Boosts don't commute if they aren't in the same line (non-collinear).");
@@ -64,36 +64,36 @@ public final class CornerBoostsDontCommute extends TextOutput implements Explora
     outputToConsoleAnd("corner-boosts-dont-commute.txt");
   }
   
-  private NEvent boostThe(NEvent event, NVelocity v) {
-    return event.boost(v, NSense.ChangeComponents);
+  private Event boostThe(Event event, NVelocity v) {
+    return event.boost(v, Sense.ChangeComponents);
   }
 
   private double βequivalentColinear(NVelocity v_a, NVelocity v_b) {
-    NVelocity result = NVelocityTransformation.unprimedVelocity(v_a, v_b);
+    NVelocity result = VelocityTransformation.unprimedVelocity(v_a, v_b);
     return result.magnitude();
   }
   
   private void seeIfOrderMatters(NVelocity v1, NVelocity v2) {
-    NEvent event = anyOldEvent();
+    Event event = anyOldEvent();
     inThisOrder(event, v1, v2);
     add("Now reverse the order of the boosts, for the same event.");
     inThisOrder(event, v2, v1);
   }
   
-  private void inThisOrder(NEvent event, NVelocity v1, NVelocity v2) {
+  private void inThisOrder(Event event, NVelocity v1, NVelocity v2) {
     add("Event: " + event);
     
     Axis axis1 = v1.axis().get();
-    NEvent firstBoost = boostThe(event, v1);
+    Event firstBoost = boostThe(event, v1);
     
     Axis axis2 = v2.axis().get();
-    NEvent secondBoost = boostThe(firstBoost, v2);
+    Event secondBoost = boostThe(firstBoost, v2);
     
     add(" Boost 1: " + axis1 + " "+ v1.on(axis1) + " gives " + firstBoost);
     add(" Boost 2: " + axis2 + " "+ v2.on(axis2) + " gives " + secondBoost);
   }
   
-  private NEvent anyOldEvent() {
-    return NEvent.of(2.32, -15.79, 0.0, 0.0);
+  private Event anyOldEvent() {
+    return Event.of(2.32, -15.79, 0.0, 0.0);
   }
 }

@@ -4,10 +4,10 @@ import static sr.core.Physics.ONE_GEE;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NTimelikeMoveableHistory;
-import sr.core.hist.timelike.NUniformAcceleration;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.hist.timelike.TimelikeMoveableHistory;
+import sr.core.hist.timelike.UniformAcceleration;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -63,8 +63,8 @@ public final class OneGeeForever extends TextOutput implements Exploration {
   }
  
   private void explore(int yearsProperTime) {
-    NTimelikeMoveableHistory history = NUniformAcceleration.of(NPosition.origin(), Axis.X, ONE_GEE);
-    NEvent endsAt = history.eventFromProperTime(yearsProperTime);
+    TimelikeMoveableHistory history = UniformAcceleration.of(Position.origin(), Axis.X, ONE_GEE);
+    Event endsAt = history.eventFromProperTime(yearsProperTime);
     double coordinateTime = endsAt.ct();
     double terminalSpeed = history.velocity(coordinateTime).magnitude();
     double terminalGamma = history.velocity(coordinateTime).Γ();

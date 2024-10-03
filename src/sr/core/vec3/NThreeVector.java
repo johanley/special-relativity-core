@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NComponents;
+import sr.core.component.Components;
 
 /** 
  A standard 3-vector, with three spatial components, with no constraints on the component values.
@@ -66,7 +66,7 @@ public class NThreeVector {
   /** Replace one component of this three-vector with the given value on one spatial axis. Returns a new object. */
   public final NThreeVector overwrite(Axis axis, double value) {
     mustBeSpatial(axis);
-    NComponents comps = components.overwrite(axis, value);
+    Components comps = components.overwrite(axis, value);
     return NThreeVector.of(
       comps.x(), 
       comps.y(), 
@@ -198,11 +198,11 @@ public class NThreeVector {
     "]" ;
   }
   
-  protected NComponents components;
+  protected Components components;
   
   /** Constructors are protected, in order to be visible to subclasses. */
   protected NThreeVector(double xComp, double yComp, double zComp) {
-    this.components = NComponents.of(xComp, yComp, zComp);
+    this.components = Components.of(xComp, yComp, zComp);
   }
   
   protected NThreeVector(double value, Axis axis) {
@@ -218,7 +218,7 @@ public class NThreeVector {
     );
   }
   
-  protected NThreeVector(NComponents components) {
+  protected NThreeVector(Components components) {
     this.components = components;
   }
 

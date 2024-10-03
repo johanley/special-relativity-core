@@ -3,9 +3,9 @@ package sr.explore.velocitytransform;
 import static sr.core.Axis.X;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
-import sr.core.component.ops.NSense;
+import sr.core.component.ops.Sense;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NThreeVector;
 import sr.core.vec3.NVelocity;
@@ -53,10 +53,10 @@ public final class MaxAngleBetweenResultVectors extends TextOutput implements Ex
     NVelocity vWithMaxAngle = null;
     double maxAngleBetween = 0;
     for(int degrees = 1; degrees < 180; ++degrees ) {
-      NThreeVector b_rotated = b.rotate(NAxisAngle.of(Util.degsToRads(degrees), Axis.Z), NSense.ChangeComponents);
+      NThreeVector b_rotated = b.rotate(NAxisAngle.of(Util.degsToRads(degrees), Axis.Z), Sense.ChangeComponents);
       NVelocity b_rotated_v = NVelocity.of(b_rotated.x(), b_rotated.y(), b_rotated.z());
-      NVelocity sum1 = NVelocityTransformation.unprimedVelocity(a, b_rotated_v);
-      NVelocity sum2 = NVelocityTransformation.unprimedVelocity(b_rotated_v, a);
+      NVelocity sum1 = VelocityTransformation.unprimedVelocity(a, b_rotated_v);
+      NVelocity sum2 = VelocityTransformation.unprimedVelocity(b_rotated_v, a);
       double angleBetween = sum2.angle(sum1);
       if (angleBetween > maxAngleBetween) {
         maxAngleBetween = angleBetween;

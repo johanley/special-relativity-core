@@ -3,7 +3,7 @@ package sr.explore.velocitytransform;
 import static sr.core.Axis.X;
 import static sr.core.Axis.Y;
 
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -56,10 +56,10 @@ public final class Commutation extends TextOutput implements Exploration {
   
   private void showWithUnprimed(NVelocity boost, NVelocity v) {
     add("Boost: " + boost + " Velocity v':" + v);
-    NVelocity sum1 = NVelocityTransformation.unprimedVelocity(boost, v);
+    NVelocity sum1 = VelocityTransformation.unprimedVelocity(boost, v);
     add("Order (boost,v) resultant-v:" + sum1 + " mag:" + mag(sum1));
     
-    NVelocity sum2 = NVelocityTransformation.unprimedVelocity(v, boost);
+    NVelocity sum2 = VelocityTransformation.unprimedVelocity(v, boost);
     add("Order (v,boost) resultant-v:" + sum2 + " mag:" + mag(sum2));
     
     add("Angle between the two results:" + round(Util.radsToDegs(sum2.angle(sum1))) +"°");
@@ -67,10 +67,10 @@ public final class Commutation extends TextOutput implements Exploration {
   
   private void showWithPrimed(NVelocity boost, NVelocity v) {
     add("Boost: " + boost + " Velocity v:" + v);
-    NVelocity sum1 = NVelocityTransformation.primedVelocity(boost, v);
+    NVelocity sum1 = VelocityTransformation.primedVelocity(boost, v);
     add("Order (boost,v) resultant-v':" + sum1 + " mag:" + mag(sum1));
     
-    NVelocity sum2 = NVelocityTransformation.primedVelocity(v, boost);
+    NVelocity sum2 = VelocityTransformation.primedVelocity(v, boost);
     add("Order (v,boost) resultant-v':" + sum2 + " mag:" + mag(sum2));
     
     add("Angle between the two results:" + round(Util.radsToDegs(sum2.angle(sum1))) +"°");

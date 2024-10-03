@@ -2,16 +2,16 @@ package sr.core.vec3;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NReverseSpatialComponents;
-import sr.core.component.ops.NRotate;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.ReverseSpatialComponents;
+import sr.core.component.ops.Rotate;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearOps;
 
 /** 
  The acceleration of an object having mass.
 */
-public final class NAcceleration extends NThreeVector implements NLinearOps<NAcceleration> { 
+public final class NAcceleration extends NThreeVector implements LinearOps<NAcceleration> { 
   
   /** Factory method, taking the 3 components of the acceleration along the XYZ axes, in that order.  */
   public static NAcceleration of(double ax, double ay, double az) {
@@ -46,12 +46,12 @@ public final class NAcceleration extends NThreeVector implements NLinearOps<NAcc
   
   /** Reverse the sign of all spatial components.*/
   @Override public NAcceleration reverseSpatialAxes() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NAcceleration(comps);
   }
   
-  @Override public NAcceleration rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+  @Override public NAcceleration rotate(NAxisAngle axisAngle, Sense sense) {
+    Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return new NAcceleration(comps);
   }
   
@@ -63,7 +63,7 @@ public final class NAcceleration extends NThreeVector implements NLinearOps<NAcc
     super(value, axis);
   }
   
-  private NAcceleration(NComponents comps) {
+  private NAcceleration(Components comps) {
     super(comps);
   }
 }

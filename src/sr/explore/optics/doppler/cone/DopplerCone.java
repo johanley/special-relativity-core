@@ -2,8 +2,8 @@ package sr.explore.optics.doppler.cone;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.ops.NBoost;
-import static sr.core.component.ops.NSense.*;
+import sr.core.component.ops.Boost;
+import static sr.core.component.ops.Sense.*;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NVelocity;
@@ -12,7 +12,7 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- How a uniform set of {@link NFourPhaseGradient}s are affected by a {@link NBoost}.
+ How a uniform set of {@link NFourPhaseGradient}s are affected by a {@link Boost}.
  
  <P>Start with a set of wave-vectors having the same frequency, but different directions.
  In space-time, this set generates a cone shape.

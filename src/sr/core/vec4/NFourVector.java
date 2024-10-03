@@ -7,7 +7,7 @@ import static sr.core.Axis.Z;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.component.NComponents;
+import sr.core.component.Components;
 import sr.core.vec3.NThreeVector;
 
 /** 
@@ -73,7 +73,7 @@ public class NFourVector {
     return result + "]";
   }
   
-  protected NComponents components;
+  protected Components components;
 
   private double roundIt(Double val) {
     return round(val, 5);

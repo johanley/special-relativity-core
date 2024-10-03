@@ -3,8 +3,8 @@ package sr.explore.optics.flyby;
 import static sr.core.Util.radsToDegs;
 
 import sr.core.Axis;
-import sr.core.component.NEvent;
-import sr.core.component.ops.NSense;
+import sr.core.component.Event;
+import sr.core.component.ops.Sense;
 import sr.core.vec3.NDelta;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NPhaseGradient;
@@ -25,7 +25,7 @@ import sr.core.vec4.NFourPhaseGradient;
 final class DetectionEvent {
   
   /** The <b>core calculation</b> is done by this constructor. */
-  DetectionEvent(NEvent emissionEvent, Double β, MainSequenceStar star){
+  DetectionEvent(Event emissionEvent, Double β, MainSequenceStar star){
     this.emissionTime = emissionEvent.ct();
     this.distanceToEmissionEvent = NFourDelta.withRespectToOrigin(emissionEvent).spatialMagnitude();
     
@@ -78,7 +78,7 @@ final class DetectionEvent {
    Boost a {@link NFourPhaseGradient} using a boost along the X axis by β.
    Sets both this.θ and this.D as a side effect.  
   */
-  private void boostTheWaveVectorComingFromThe(NEvent emissionEvent, double β) {
+  private void boostTheWaveVectorComingFromThe(Event emissionEvent, double β) {
     //in K, the detector is at rest with respect to the star, and at the origin of the coordinate system
     NDirection detector_direction_K = NDirection.of(NDelta.withRespectToOrigin(emissionEvent.position()));
 
@@ -86,7 +86,7 @@ final class DetectionEvent {
     //do the calc with a photon, then convert back to the detector's perspective
     NDirection photon_direction = NDirection.of(detector_direction_K.times(-1));
     NFourPhaseGradient photon_K = NFourPhaseGradient.of(NPhaseGradient.of(1.0, photon_direction));
-    NFourPhaseGradient photon_Kp = photon_K.boost(NVelocity.of(β, Axis.X), NSense.ChangeGrid);
+    NFourPhaseGradient photon_Kp = photon_K.boost(NVelocity.of(β, Axis.X), Sense.ChangeGrid);
     
     this.D = photon_Kp.ct() / photon_K.ct();
     

@@ -5,7 +5,7 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import static sr.core.component.ops.NSense.*;
+import static sr.core.component.ops.Sense.*;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NThreeVector;

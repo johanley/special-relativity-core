@@ -2,11 +2,11 @@ package sr.explore.accel.circular.motion;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NCircularMotion;
-import sr.core.hist.timelike.NTimelikeDeltaBase;
-import sr.core.hist.timelike.NTimelikeMoveableHistory;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.hist.timelike.CircularMotion;
+import sr.core.hist.timelike.TimelikeDeltaBase;
+import sr.core.hist.timelike.TimelikeMoveableHistory;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -50,10 +50,10 @@ public final class OneRevolution extends TextOutput implements Exploration {
     add(Util.NL + header.row("ct", "Phase", "Rotation", "Position", "Velocity"));
     add(header.row("", "", "θw", "", ""));
     add(dashes(80));
-    NTimelikeMoveableHistory circle = NCircularMotion.of(NTimelikeDeltaBase.of(NPosition.origin()), radius, β, Axis.Z, 0.0);
+    TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
     long ct_one_rev = Math.round(2*Math.PI * radius / β) + 5;
     for(int ct = 0; ct <= ct_one_rev; ++ct) {
-      NEvent e = circle.event(ct);
+      Event e = circle.event(ct);
       NVelocity v = circle.velocity(ct);
       NAxisAngle rot = circle.rotation(ct);
       add(table.row(ct, deg(phase(e.position())), -deg(rot.magnitude()), e.position(), v)); 
@@ -67,7 +67,7 @@ public final class OneRevolution extends TextOutput implements Exploration {
     add(dashes(31));
     for(int i = 1; i <= 99; ++i) {
       double β = i / 100.0;
-      NTimelikeMoveableHistory circle = NCircularMotion.of(NTimelikeDeltaBase.of(NPosition.origin()), radius, β, Axis.Z, 0.0);
+      TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
       double ct_one_rev = 2*Math.PI * radius / β;
       NAxisAngle rotation = circle.rotation(ct_one_rev);
       add(table2.row(β, radius, -deg(rotation.magnitude())));
@@ -79,7 +79,7 @@ public final class OneRevolution extends TextOutput implements Exploration {
   }
   
   /** 0..2pi. */ 
-  private double phase(NPosition position) {
+  private double phase(Position position) {
     double result = Math.atan2(position.y(), position.x());
     if (result < 0) {
       result = result + 2 * Math.PI;

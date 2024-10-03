@@ -5,11 +5,11 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
-import sr.core.component.ops.NSense;
-import sr.core.hist.timelike.NCircularMotion;
-import sr.core.hist.timelike.NTimelikeDeltaBase;
-import sr.core.hist.timelike.NTimelikeMoveableHistory;
+import sr.core.VelocityTransformation;
+import sr.core.component.ops.Sense;
+import sr.core.hist.timelike.CircularMotion;
+import sr.core.hist.timelike.TimelikeDeltaBase;
+import sr.core.hist.timelike.TimelikeMoveableHistory;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -31,7 +31,7 @@ import sr.output.text.TextOutput;
  <P>As N gets large, the circuit approaches a circular shape.
  
  <P>This class will compare the kinematic rotation (Wigner rotation) resulting from one completion of such a circuit with the 
- comparable result derived from the kinematic spin (Thomas precession) formula (using a {@link NCircularMotion}).
+ comparable result derived from the kinematic spin (Thomas precession) formula (using a {@link CircularMotion}).
 */
 public final class KinematicSpinAsLimit extends TextOutput implements Exploration {
   
@@ -71,27 +71,27 @@ public final class KinematicSpinAsLimit extends TextOutput implements Exploratio
   private String rotationAfterOneCircuit(int numSides, NVelocity v_K) {
     double angle = 2*Math.PI/numSides;
     NVelocity v_K_rotated = rotated(v_K, angle);
-    NVelocity boost_in_Kp_needed_to_rotate_v = NVelocityTransformation.primedVelocity(v_K, v_K_rotated);
+    NVelocity boost_in_Kp_needed_to_rotate_v = VelocityTransformation.primedVelocity(v_K, v_K_rotated);
     
     //add the two velocities, v_K and boost_in_Kp_needed_to_rotate_v, in two different ways
     //for clarity, let's use temp aliases 'a' and 'b' 
     NVelocity a = v_K;
     NVelocity b = boost_in_Kp_needed_to_rotate_v;
-    NVelocity a_plus_b = NVelocityTransformation.unprimedVelocity(a, b);
-    NVelocity b_plus_a = NVelocityTransformation.unprimedVelocity(b, a);
+    NVelocity a_plus_b = VelocityTransformation.unprimedVelocity(a, b);
+    NVelocity b_plus_a = VelocityTransformation.unprimedVelocity(b, a);
     double angleBetweenAandB = b_plus_a.turnsTo(a_plus_b);
     return degrees(angleBetweenAandB * numSides);
   }
   
   /** Rotate in the XY-plane. */
   private NVelocity rotated(NVelocity boost_v, double angle) {
-    return boost_v.rotate(NAxisAngle.of(angle,  Axis.Z), NSense.ChangeComponents);
+    return boost_v.rotate(NAxisAngle.of(angle,  Axis.Z), Sense.ChangeComponents);
   }
   
   /** Use a {@link NCircularHistory}. */
   private void rotationFromThomasPrecessionFormula(double radius, double β) {
     add(NL+"Compare with the kinematic rotation (Wigner rotation) formula for circular motion."+NL);
-    NTimelikeMoveableHistory circle = NCircularMotion.of(NTimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
+    TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.origin(), radius, β, Axis.Z, 0.0);
     double circumference = 2*Math.PI*radius;
     double timeForOneCircuit = circumference/β;
     NAxisAngle rotation = circle.rotation(timeForOneCircuit);

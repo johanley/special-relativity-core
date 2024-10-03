@@ -8,7 +8,7 @@ import static sr.core.Util.radsToDegs;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.ops.NSense;
+import sr.core.component.ops.Sense;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NVelocity;
@@ -43,7 +43,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
 
   private void sameLine(Axis axis, NVelocity v) {
     NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, axis));
-    NFourPhaseGradient k_out = k_in.boost(NVelocity.of(v), NSense.ChangeGrid);
+    NFourPhaseGradient k_out = k_in.boost(NVelocity.of(v), Sense.ChangeGrid);
     show(v, k_in, k_out);
   }
 
@@ -51,7 +51,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     add(NL + "A random boost not parallel to the wave-vector k changes both the frequency and the direction.");
     NVelocity v = NVelocity.of(0.6, Axis.X);
     NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, NDirection.of(1, 2, 3)));
-    NFourPhaseGradient k_out = k_in.boost(v, NSense.ChangeGrid);
+    NFourPhaseGradient k_out = k_in.boost(v, Sense.ChangeGrid);
     show(v, k_in, k_out);
   }
   
@@ -61,7 +61,7 @@ public final class WaveVectorK extends TextOutput implements Exploration {
     NVelocity v = NVelocity.of(-0.60, Axis.X);
     //directed into the 4th quadrant at 45 degrees
     NFourPhaseGradient k_in = NFourPhaseGradient.of(NPhaseGradient.of(1.0, NDirection.of(+1, -1, 0)));
-    NFourPhaseGradient k_out = k_in.boost(v, NSense.ChangeGrid);
+    NFourPhaseGradient k_out = k_in.boost(v, Sense.ChangeGrid);
     show(v, k_in, k_out);
     showChangeInDirection(k_in, k_out);
   }

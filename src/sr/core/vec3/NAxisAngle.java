@@ -1,11 +1,11 @@
 package sr.core.vec3;
 
 import sr.core.Axis;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NReverseSpatialComponents;
-import sr.core.component.ops.NRotate;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.ReverseSpatialComponents;
+import sr.core.component.ops.Rotate;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearOps;
 
 /** 
  An axis-angle vector, used to define a rotation.
@@ -18,7 +18,7 @@ import sr.core.ops.NLinearOps;
 
  <P>For kinematic rotation (Wigner rotation), the axis-angle is proportional to the cross product of acceleration and velocity.
 */
-public final class NAxisAngle extends NThreeVector implements NLinearOps<NAxisAngle> {
+public final class NAxisAngle extends NThreeVector implements LinearOps<NAxisAngle> {
   
   /** Factory method, taking the 3 components along the XYZ axes, in that order.  */
   public static NAxisAngle of(double x, double y, double z) {
@@ -42,12 +42,12 @@ public final class NAxisAngle extends NThreeVector implements NLinearOps<NAxisAn
   
   /** Reverse all components. */
   @Override public NAxisAngle reverseSpatialAxes() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NAxisAngle(comps);
   }
   
-  @Override public NAxisAngle rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+  @Override public NAxisAngle rotate(NAxisAngle axisAngle, Sense sense) {
+    Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return new NAxisAngle(comps);
   }
 
@@ -59,7 +59,7 @@ public final class NAxisAngle extends NThreeVector implements NLinearOps<NAxisAn
     super(angle, axis);
   }
   
-  private NAxisAngle(NComponents comps) {
+  private NAxisAngle(Components comps) {
     super(comps);
   }
 

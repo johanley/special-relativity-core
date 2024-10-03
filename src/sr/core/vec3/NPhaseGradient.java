@@ -2,17 +2,17 @@ package sr.core.vec3;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NReverseSpatialComponents;
-import sr.core.component.ops.NRotate;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.ReverseSpatialComponents;
+import sr.core.component.ops.Rotate;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearOps;
 
 /** 
  The spatial gradient of the phase of a wave (<b>k</b>, its wave vector).
  The magnitude of the gradient is always positive. 
 */
-public final class NPhaseGradient extends NThreeVector implements NLinearOps<NPhaseGradient> {
+public final class NPhaseGradient extends NThreeVector implements LinearOps<NPhaseGradient> {
   
   /** Factory method, taking the 3 components of the phase-gradient (wave vector) <em>k</em> along the XYZ axes, in that order. */
   public static NPhaseGradient of(double x, double y, double z) {
@@ -43,12 +43,12 @@ public final class NPhaseGradient extends NThreeVector implements NLinearOps<NPh
   
   /** Reverse all spatial components. */
   @Override public NPhaseGradient reverseSpatialAxes() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NPhaseGradient(comps);
   }
   
-  @Override public NPhaseGradient rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+  @Override public NPhaseGradient rotate(NAxisAngle axisAngle, Sense sense) {
+    Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return new NPhaseGradient(comps);
   }
   
@@ -66,7 +66,7 @@ public final class NPhaseGradient extends NThreeVector implements NLinearOps<NPh
     check(k);
   }
   
-  private NPhaseGradient(NComponents comps) {
+  private NPhaseGradient(Components comps) {
     super(comps);
   }
   

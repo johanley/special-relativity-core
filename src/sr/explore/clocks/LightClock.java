@@ -5,11 +5,11 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.component.NEvent;
-import sr.core.component.ops.NSense;
-import sr.core.hist.NDeltaBase;
-import sr.core.hist.NHistory;
-import sr.core.hist.lightlike.NMirrorReflection;
+import sr.core.component.Event;
+import sr.core.component.ops.Sense;
+import sr.core.hist.DeltaBase;
+import sr.core.hist.History;
+import sr.core.hist.lightlike.MirrorReflection;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NVelocity;
@@ -65,10 +65,10 @@ public final class LightClock extends TextOutput implements Exploration {
   @Override public void explore() {
     add("Compare one tick of a light clock, as seen first in its rest frame K, and then in various boosted frames K'." + NL);
     
-    NHistory lightPulse = NMirrorReflection.of(NDeltaBase.origin(), NDirection.of(-1, 0, 0));
+    History lightPulse = MirrorReflection.of(DeltaBase.origin(), NDirection.of(-1, 0, 0));
     double ct = 10;
-    NEvent a_K = lightPulse.event(-ct);
-    NEvent b_K = lightPulse.event(+ct);
+    Event a_K = lightPulse.event(-ct);
+    Event b_K = lightPulse.event(+ct);
     add("First, one full cycle of the light clock in K:");
     add("K:   a " + a_K);
     add("K:   b " + b_K);
@@ -86,8 +86,8 @@ public final class LightClock extends TextOutput implements Exploration {
     NVelocity velocity = NVelocity.of(β, Axis.X);
     for(int idx = 0 ; idx < 8; ++idx) {
       NVelocity boost_velocity = rotated(velocity, idx*increment);
-      NEvent a_Kp = a_K.boost(boost_velocity, NSense.ChangeGrid);
-      NEvent b_Kp = b_K.boost(boost_velocity, NSense.ChangeGrid);
+      Event a_Kp = a_K.boost(boost_velocity, Sense.ChangeGrid);
+      Event b_Kp = b_K.boost(boost_velocity, Sense.ChangeGrid);
       NFourDelta delta_Kp = NFourDelta.of(a_Kp, b_Kp);
       double ratio = delta_Kp.ct() / delta_K.ct();
       add(table.row(
@@ -108,7 +108,7 @@ public final class LightClock extends TextOutput implements Exploration {
 
   /** Rotate the v in the XY plane. */
   private NVelocity rotated(NVelocity v, double angle) {
-    return v.rotate(NAxisAngle.of(angle, Axis.Z), NSense.ChangeComponents);
+    return v.rotate(NAxisAngle.of(angle, Axis.Z), Sense.ChangeComponents);
   }
   
   private double boostAngle(NVelocity v) {

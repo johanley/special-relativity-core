@@ -5,9 +5,9 @@ import static sr.core.Util.degsToRads;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
-import sr.core.component.ops.NSense;
+import sr.core.component.ops.Sense;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NThreeVector;
 import sr.core.vec3.NVelocity;
@@ -52,19 +52,19 @@ public final class BoostToRotateVelocity extends TextOutput implements Explorati
     
     // we throw a ball in K', whose v' in K equates to boost_v_rotated
     // we can calc the v' of that throw like so:
-    NVelocity v_Kp = NVelocityTransformation.primedVelocity(boost_v, boost_v_rotated);
+    NVelocity v_Kp = VelocityTransformation.primedVelocity(boost_v, boost_v_rotated);
 
     show("boost_v_K ", boost_v);
     show("boost_v_rotated_K ", boost_v_rotated);
     show("The desired boost needed in K' is v_Kp ", v_Kp);
     
     add(NL+"As a check, re-do the calculation using the formula that takes v_Kp as a parameter.");
-    NVelocity v_K = NVelocityTransformation.unprimedVelocity(boost_v, v_Kp);
+    NVelocity v_K = VelocityTransformation.unprimedVelocity(boost_v, v_Kp);
     show("v_K (same as boost_v_rotated) ", v_K);
   }
   
   private NVelocity rotated(NVelocity boost_v, double angle) {
-    return boost_v.rotate(NAxisAngle.of(angle, Axis.Z), NSense.ChangeComponents);
+    return boost_v.rotate(NAxisAngle.of(angle, Axis.Z), Sense.ChangeComponents);
   }
   
   private void show(String msg, NThreeVector vector) {
@@ -89,7 +89,7 @@ public final class BoostToRotateVelocity extends TextOutput implements Explorati
     add(dashes(70));
     for(int degrees = 1; degrees <= 179; ++degrees) {
       NVelocity boost_v_rotated = rotated(v, degsToRads(degrees));
-      NVelocity v_Kp = NVelocityTransformation.primedVelocity(v, boost_v_rotated);
+      NVelocity v_Kp = VelocityTransformation.primedVelocity(v, boost_v_rotated);
       add(table.row(v_Kp, degrees + "°", boost_v_rotated + " (" + angleFromVector(boost_v_rotated) + "°)"));
     }
   }

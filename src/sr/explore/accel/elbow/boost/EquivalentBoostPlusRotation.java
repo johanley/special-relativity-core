@@ -1,11 +1,11 @@
 package sr.explore.accel.elbow.boost;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import static sr.core.component.ops.NSense.ChangeGrid;
+import sr.core.component.Event;
+import static sr.core.component.ops.Sense.ChangeGrid;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
@@ -78,11 +78,11 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   private Table table = new Table("%-21s", "%-21s", "%10.16f", "%10.3f°", "%10.3f°   ", "%-22s", "%-22s");
 
   private void example() {
-    NEvent event_K = NEvent.of(10.0, 1.0, 1.0, 1.0); 
+    Event event_K = Event.of(10.0, 1.0, 1.0, 1.0); 
     
-    NEvent event_Kpp_corner_boost = doCornerBoostOn(event_K);
-    NEvent event_Kpp_boost_plus_rot = doBoostPlusRotationOn(event_K);
-    NEvent event_Kpp_rot_plus_boost = doRotationPlusBoostOn(event_K);
+    Event event_Kpp_corner_boost = doCornerBoostOn(event_K);
+    Event event_Kpp_boost_plus_rot = doBoostPlusRotationOn(event_K);
+    Event event_Kpp_rot_plus_boost = doRotationPlusBoostOn(event_K);
     
     add("Find the boost-plus-rotation that equates to 2 perpendicular boosts."+Util.NL);
     add("Event:" + event_K);
@@ -111,20 +111,20 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   }
   
   /** Two boosts, the second perpendicular to the first (see class description). */
-  private NEvent doCornerBoostOn(NEvent event) {
-    NEvent result = event.boost(velocityOne(), ChangeGrid);
+  private Event doCornerBoostOn(Event event) {
+    Event result = event.boost(velocityOne(), ChangeGrid);
     return result.boost(velocityTwo(), ChangeGrid);
   }
   
   /** A single boost followed by a single rotation. */
-  private NEvent doBoostPlusRotationOn(NEvent event) {
-    NEvent result = event.boost(singleBoostVelocity(), ChangeGrid);
+  private Event doBoostPlusRotationOn(Event event) {
+    Event result = event.boost(singleBoostVelocity(), ChangeGrid);
     return result.rotate(rotation(), ChangeGrid);
   }
   
   /** A single rotation followed by a single boost. */
-  private NEvent doRotationPlusBoostOn(NEvent event) {
-    NEvent result = event.rotate(rotation(), ChangeGrid);
+  private Event doRotationPlusBoostOn(Event event) {
+    Event result = event.rotate(rotation(), ChangeGrid);
     return result.boost(singleBoostVelocity(), ChangeGrid);
   }
   
@@ -142,7 +142,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   }
 
   private NVelocity singleBoostVelocity() {
-    return NVelocityTransformation.unprimedVelocity(
+    return VelocityTransformation.unprimedVelocity(
       velocityOne(), 
       velocityTwo() 
     );
@@ -150,7 +150,7 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
   
   /** Reverse the order of parameters to the transformation formula. */
   private NVelocity singleBoostVelocityReversed() {
-    return NVelocityTransformation.unprimedVelocity(
+    return VelocityTransformation.unprimedVelocity(
       velocityTwo(), 
       velocityOne() 
     );

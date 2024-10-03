@@ -4,12 +4,12 @@ import static sr.core.Axis.X;
 
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NTimelikeDeltaBase;
-import sr.core.hist.timelike.NTimelikeHistory;
-import sr.core.hist.timelike.NTimelikeMoveableHistory;
-import sr.core.hist.timelike.NUniformAcceleration;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.hist.timelike.TimelikeDeltaBase;
+import sr.core.hist.timelike.TimelikeHistory;
+import sr.core.hist.timelike.TimelikeMoveableHistory;
+import sr.core.hist.timelike.UniformAcceleration;
 import sr.explore.Exploration;
 import sr.output.text.Table;
 import sr.output.text.TextOutput;
@@ -85,28 +85,28 @@ public final class ConnectedRockets extends TextOutput implements Exploration {
   private Table tableHeader = new Table("%-18s", "%-20s", "%-15s");
   private Table table = new Table("%12.2f", "%18.2f", "%20.8f");
   
-  private NTimelikeMoveableHistory rocketA() {
-    return NUniformAcceleration.of(NPosition.origin(), X, Physics.ONE_GEE);
+  private TimelikeMoveableHistory rocketA() {
+    return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
   
   /** Same as rocket-a, but displaced to the right along the X-axis. */
-  private NTimelikeMoveableHistory rocketB() {
-    return NUniformAcceleration.of(NTimelikeDeltaBase.of(NPosition.of(X, CONNECTOR_LENGTH)), X, Physics.ONE_GEE);
+  private TimelikeMoveableHistory rocketB() {
+    return UniformAcceleration.of(TimelikeDeltaBase.of(Position.of(X, CONNECTOR_LENGTH)), X, Physics.ONE_GEE);
   }
   
   /** 'Stick' is really a place-holder for any extended object. */
-  private NTimelikeMoveableHistory stickEndA() {
-    return NUniformAcceleration.of(NPosition.origin(), X, Physics.ONE_GEE);
+  private TimelikeMoveableHistory stickEndA() {
+    return UniformAcceleration.of(Position.origin(), X, Physics.ONE_GEE);
   }
 
   /** Use the stick-end-a as the starting point; then just add the contracted length of the connector to the X-coordinate. */
-  private NTimelikeHistory stickEndB() {
-    NTimelikeMoveableHistory historyA = stickEndA();
-    return new NTimelikeHistory() {
-      public NEvent event(double ct) {
-        NEvent event = historyA.event(ct);
+  private TimelikeHistory stickEndB() {
+    TimelikeMoveableHistory historyA = stickEndA();
+    return new TimelikeHistory() {
+      public Event event(double ct) {
+        Event event = historyA.event(ct);
         double Γ = historyA.velocity(ct).Γ();
-        return NEvent.of(event.ct(), event.x() + CONNECTOR_LENGTH / Γ, event.y(), event.z());
+        return Event.of(event.ct(), event.x() + CONNECTOR_LENGTH / Γ, event.y(), event.z());
       }
       public double ct(double τ) {
         return historyA.ct(τ);

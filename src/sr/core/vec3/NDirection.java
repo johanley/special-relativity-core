@@ -2,17 +2,17 @@ package sr.core.vec3;
 
 import sr.core.Axis;
 import sr.core.Util;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NReverseSpatialComponents;
-import sr.core.component.ops.NRotate;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.ReverseSpatialComponents;
+import sr.core.component.ops.Rotate;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearOps;
 
 /** 
  A direction in space as a unit vector.
  <P>This class was created for modeling the wave-vector <em>k<sup>i</sup></em> for light.
 */
-public final class NDirection extends NThreeVector implements NLinearOps<NDirection> {
+public final class NDirection extends NThreeVector implements LinearOps<NDirection> {
   
   /** 
    Factory method, taking the 3 components of the direction along the XYZ axes, in that order.
@@ -44,12 +44,12 @@ public final class NDirection extends NThreeVector implements NLinearOps<NDirect
   
   /** Reverse all components. */
   @Override public NDirection reverseSpatialAxes() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NDirection(comps);
   }
   
-  @Override public NDirection rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+  @Override public NDirection rotate(NAxisAngle axisAngle, Sense sense) {
+    Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return new NDirection(comps);
   }
   
@@ -63,7 +63,7 @@ public final class NDirection extends NThreeVector implements NLinearOps<NDirect
     check();
   }
   
-  private NDirection(NComponents comps) {
+  private NDirection(Components comps) {
     super(comps);
     check();
   }

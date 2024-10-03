@@ -5,10 +5,10 @@ import static sr.core.Axis.Y;
 import static sr.core.Util.log;
 import static sr.core.Util.mustHave;
 
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NTimelikeHistory;
-import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.hist.timelike.TimelikeHistory;
+import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 
@@ -162,7 +162,7 @@ public final class RelativisticFlyBy implements Exploration {
     this.x0 = x0;
     this.y = y;
     this.timeStep = spatialStep / β;
-    this.history = NUniformVelocity.of(NPosition.of(Y, y), NVelocity.of(β, X)); 
+    this.history = UniformVelocity.of(Position.of(Y, y), NVelocity.of(β, X)); 
   }
 
   /** No-arg constructor with no data. */
@@ -187,7 +187,7 @@ public final class RelativisticFlyBy implements Exploration {
      of the hump corresponds to the minimum distance.
     */
     double time = initialTime();
-    NEvent emissionEvent = emissionEventFor(time); //the first photon emitted
+    Event emissionEvent = emissionEventFor(time); //the first photon emitted
     int count = 0;
     while (count < NUM_EMISSION_EVENTS) {
       DetectionEvent detectionEvent = new DetectionEvent(emissionEvent, β, star);
@@ -215,7 +215,7 @@ public final class RelativisticFlyBy implements Exploration {
   private Double y;
   private Double x0;
   private Double timeStep;
-  private NTimelikeHistory history; 
+  private TimelikeHistory history; 
   private static final int NUM_EMISSION_EVENTS = 10000;
   
   /**  ct=0 corresponds to the time when the star is at minimum distance. */
@@ -228,7 +228,7 @@ public final class RelativisticFlyBy implements Exploration {
    IMPORTANT: the time t here is the time of EMISSION of a photon towards the detector.
    Light-travel time: the photon is ABSORBED at some LATER time, which is computed elsewhere. 
   */
-  private NEvent emissionEventFor(Double emissionTime) {
+  private Event emissionEventFor(Double emissionTime) {
    return history.event(emissionTime);
   }
 }

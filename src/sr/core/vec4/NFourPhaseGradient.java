@@ -1,10 +1,10 @@
 package sr.core.vec4;
 
-import sr.core.component.NComponents;
-import sr.core.component.ops.NBoost;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearBoostOp;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.Boost;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearBoostOp;
+import sr.core.ops.LinearOps;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NVelocity;
@@ -19,7 +19,7 @@ import sr.core.vec3.NVelocity;
   
  <P>The space components are the direction unit-vector multiplied by <em>k<em>(or ω).
 */
-public final class NFourPhaseGradient extends NFourVector implements NLinearOps<NFourPhaseGradient>, NLinearBoostOp<NFourPhaseGradient> {
+public final class NFourPhaseGradient extends NFourVector implements LinearOps<NFourPhaseGradient>, LinearBoostOp<NFourPhaseGradient> {
   
   public static NFourPhaseGradient of(NPhaseGradient k) {
     return new NFourPhaseGradient(k);
@@ -37,13 +37,13 @@ public final class NFourPhaseGradient extends NFourVector implements NLinearOps<
     return NFourPhaseGradient.of(k.reverseSpatialAxes());
   }
   
-  @Override public NFourPhaseGradient rotate(NAxisAngle axisAngle, NSense sense) {
+  @Override public NFourPhaseGradient rotate(NAxisAngle axisAngle, Sense sense) {
     return NFourPhaseGradient.of(k.rotate(axisAngle, sense));
   }
   
-  @Override public NFourPhaseGradient boost(NVelocity v, NSense sense) {
-    NBoost boost = NBoost.of(v, sense);
-    NComponents new_comps = boost.applyTo(components);
+  @Override public NFourPhaseGradient boost(NVelocity v, Sense sense) {
+    Boost boost = Boost.of(v, sense);
+    Components new_comps = boost.applyTo(components);
     //reverse-engineer the new comps to find k_new
     NPhaseGradient k_new = NPhaseGradient.of(new_comps.x(), new_comps.y(), new_comps.z());
     return NFourPhaseGradient.of(k_new);
@@ -53,6 +53,6 @@ public final class NFourPhaseGradient extends NFourVector implements NLinearOps<
   
   private NFourPhaseGradient(NPhaseGradient k) {
     this.k = k;
-    this.components = NComponents.of(k.magnitude(), k.x(), k.y(), k.z());
+    this.components = Components.of(k.magnitude(), k.x(), k.y(), k.z());
   }
 }

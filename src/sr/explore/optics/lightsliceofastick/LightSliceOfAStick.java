@@ -1,17 +1,17 @@
 package sr.explore.optics.lightsliceofastick;
 
 import static sr.core.Axis.X;
-import static sr.core.component.ops.NSense.ChangeGrid;
+import static sr.core.component.ops.Sense.ChangeGrid;
 
 import java.util.function.Function;
 
 import sr.core.SpeedValues;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NFindEvent;
-import sr.core.hist.timelike.NTimelikeHistory;
-import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.hist.timelike.FindEvent;
+import sr.core.hist.timelike.TimelikeHistory;
+import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.NVelocity;
 import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
@@ -97,8 +97,8 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
    In frame K, the stick is represented with 2 histories, one for each end of the stick, A and B (stationary in K).
    The stick-end A is at the origin, and the stick-end B along the X-axis at x=1.
   */
-  private static final NTimelikeHistory HIST_STICK_END_A = NUniformVelocity.stationary(NPosition.origin()); 
-  private static final NTimelikeHistory HIST_STICK_END_B = NUniformVelocity.stationary(NPosition.of(X, NEARBY)); 
+  private static final TimelikeHistory HIST_STICK_END_A = UniformVelocity.stationary(Position.origin()); 
+  private static final TimelikeHistory HIST_STICK_END_B = UniformVelocity.stationary(Position.of(X, NEARBY)); 
   
   /** 
    Detection-event on the history of the detector.
@@ -106,7 +106,7 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
    The detection event itself is "up at the top", to ensure its past light cone indeed intersects with the 
    stick's history in all cases used here.  
   */
-  private static final NEvent DETECTION_EVENT = NUniformVelocity.stationary(NPosition.of(X, DISTANT)).event(DISTANT);
+  private static final Event DETECTION_EVENT = UniformVelocity.stationary(Position.of(X, DISTANT)).event(DISTANT);
   
   /**
    Find the apparent length of the stick.
@@ -119,24 +119,24 @@ public final class LightSliceOfAStick extends TextOutput implements Exploration 
    @param β the speed of the boost from K to K'. Positive for the stick receding from the detector, negative for approaching it.
    @return the apparent length of the stick, as seen by the light-slice.
   */
-  private double apparentStickLength(double β, NEvent theDetectionEvent) {
+  private double apparentStickLength(double β, Event theDetectionEvent) {
     //K to K': boost along the X-axis at the given speed
     //in K', the stick is receding at speed β in the negative-X direction
     NVelocity boost_v = NVelocity.of(β, X);
-    NEvent eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boost_v);
-    NEvent eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boost_v);
+    Event eventA = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_A, boost_v);
+    Event eventB = eventOnPastLightConeOf(theDetectionEvent, HIST_STICK_END_B, boost_v);
     //now infer the apparent length of the stick from this pair of events on the past light-cone of the detector
     return NFourDelta.of(eventA, eventB).spatialMagnitude();
   }
 
   /** Find an event from the stick's history that's on the past light-cone of the detection-event. */
-  private NEvent eventOnPastLightConeOf(NEvent detection, NTimelikeHistory history, NVelocity boost_v) {
-    Function<NEvent, Double> onTheLightCone = event -> (
+  private Event eventOnPastLightConeOf(Event detection, TimelikeHistory history, NVelocity boost_v) {
+    Function<Event, Double> onTheLightCone = event -> (
       NFourDelta.of(detection, event.boost(boost_v, ChangeGrid)).square()
     );
-    NFindEvent root = new NFindEvent(history, onTheLightCone);
+    FindEvent root = new FindEvent(history, onTheLightCone);
     double τA = root.search(0.0);
-    NEvent result = history.event(τA).boost(boost_v, ChangeGrid);
+    Event result = history.event(τA).boost(boost_v, ChangeGrid);
     return result;
   }
   

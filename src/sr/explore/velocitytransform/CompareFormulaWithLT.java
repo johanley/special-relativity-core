@@ -2,13 +2,13 @@ package sr.explore.velocitytransform;
 
 import static sr.core.Axis.X;
 
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.component.ops.NSense;
-import sr.core.hist.timelike.NTimelikeMoveableHistory;
-import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.component.ops.Sense;
+import sr.core.hist.timelike.TimelikeMoveableHistory;
+import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.NVelocity;
 import sr.core.vec4.NFourDelta;
 import sr.explore.Exploration;
@@ -44,14 +44,14 @@ public final class CompareFormulaWithLT extends TextOutput implements Exploratio
     add("Using the velocity transformation formula we get:");
     NVelocity boost = NVelocity.of(boost_speed, X);
     add("Boost: " + boost + " Velocity v_K:" + v);
-    NVelocity sum = NVelocityTransformation.primedVelocity(boost, v);
+    NVelocity sum = VelocityTransformation.primedVelocity(boost, v);
     add("v_K' from formula:" + sum + " mag:" + mag(sum));
   }
   
   private void lorentzTransformation(double boost_speed, NVelocity v) {
     add(Util.NL + "Using the Lorentz transformation directly we get:");
     //v corresponds to a history in K (through the origin)
-    NTimelikeMoveableHistory history_k = NUniformVelocity.of(NPosition.origin(), v);
+    TimelikeMoveableHistory history_k = UniformVelocity.of(Position.origin(), v);
      
     //by differentiation, the v in K is
     double ct_K = 1.0;
@@ -62,15 +62,15 @@ public final class CompareFormulaWithLT extends TextOutput implements Exploratio
     //without loss of generality, we can take the boost direction as the X-axis
     NVelocity boost_v = NVelocity.of(boost_speed, X);
     
-    NEvent a_K = history_k.event(ct_K);
-    NEvent b_K = history_k.event(ct_K + 0.001);
+    Event a_K = history_k.event(ct_K);
+    Event b_K = history_k.event(ct_K + 0.001);
      
-    NEvent a_Kp = a_K.boost(boost_v, NSense.ChangeGrid); 
-    NEvent b_Kp = b_K.boost(boost_v, NSense.ChangeGrid);
+    Event a_Kp = a_K.boost(boost_v, Sense.ChangeGrid); 
+    Event b_Kp = b_K.boost(boost_v, Sense.ChangeGrid);
     NFourDelta displacement_Kp = NFourDelta.of(a_Kp, b_Kp);
      
     double dt_Kp = displacement_Kp.ct();
-    NPosition dr_Kp = NPosition.of(
+    Position dr_Kp = Position.of(
       displacement_Kp.x(), 
       displacement_Kp.y(), 
       displacement_Kp.z()

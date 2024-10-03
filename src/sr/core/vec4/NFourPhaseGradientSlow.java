@@ -1,11 +1,11 @@
 package sr.core.vec4;
 
-import sr.core.NVelocityTransformation;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NBoost;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearBoostOp;
-import sr.core.ops.NLinearOps;
+import sr.core.VelocityTransformation;
+import sr.core.component.Components;
+import sr.core.component.ops.Boost;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearBoostOp;
+import sr.core.ops.LinearOps;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NPhaseGradient;
 import sr.core.vec3.NVelocity;
@@ -34,7 +34,7 @@ import sr.core.vec3.NVelocity;
  <P>Reference: <a href='https://arxiv.org/pdf/0801.3149v2'>article</a> of Aleksandar Gjurchinovski (2008) for the formula for the 
   phase-gradient in the more general case.
 */
-public final class NFourPhaseGradientSlow extends NFourVector implements NLinearOps<NFourPhaseGradientSlow>, NLinearBoostOp<NFourPhaseGradientSlow> {
+public final class NFourPhaseGradientSlow extends NFourVector implements LinearOps<NFourPhaseGradientSlow>, LinearBoostOp<NFourPhaseGradientSlow> {
 
   /**
    Factory method.
@@ -55,16 +55,16 @@ public final class NFourPhaseGradientSlow extends NFourVector implements NLinear
     return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow rotate(NAxisAngle axisAngle, NSense sense) {
+  @Override public NFourPhaseGradientSlow rotate(NAxisAngle axisAngle, Sense sense) {
     NVelocity new_phase_velocity = phase_velocity.rotate(axisAngle, sense);
     NPhaseGradient new_k = k.rotate(axisAngle, sense);
     return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
   
-  @Override public NFourPhaseGradientSlow boost(NVelocity boost_v, NSense sense) {
-    NVelocity new_phase_velocity = NVelocityTransformation.primedVelocity(boost_v, phase_velocity);
-    NBoost boost = NBoost.of(boost_v, sense);
-    NComponents new_comps = boost.applyTo(components);
+  @Override public NFourPhaseGradientSlow boost(NVelocity boost_v, Sense sense) {
+    NVelocity new_phase_velocity = VelocityTransformation.primedVelocity(boost_v, phase_velocity);
+    Boost boost = Boost.of(boost_v, sense);
+    Components new_comps = boost.applyTo(components);
     NPhaseGradient new_k = NPhaseGradient.of(new_comps.x(), new_comps.y(), new_comps.z());
     return NFourPhaseGradientSlow.of(new_k, new_phase_velocity);
   }
@@ -77,6 +77,6 @@ public final class NFourPhaseGradientSlow extends NFourVector implements NLinear
   private NFourPhaseGradientSlow(NPhaseGradient k, NVelocity phase_velocity) {
     this.k = k;
     this.phase_velocity = phase_velocity;
-    this.components = NComponents.of(k.dot(phase_velocity), k.x(), k.y(), k.z());
+    this.components = Components.of(k.dot(phase_velocity), k.x(), k.y(), k.z());
   }
 }

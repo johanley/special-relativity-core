@@ -5,14 +5,14 @@ import static sr.core.Util.radsToDegs;
 import java.util.function.Function;
 
 import sr.core.Axis;
-import sr.core.NVelocityTransformation;
+import sr.core.VelocityTransformation;
 import sr.core.Util;
-import sr.core.component.NEvent;
-import sr.core.component.NPosition;
-import sr.core.component.ops.NSense;
-import sr.core.hist.timelike.NFindEvent;
-import sr.core.hist.timelike.NTimelikeHistory;
-import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.component.Event;
+import sr.core.component.Position;
+import sr.core.component.ops.Sense;
+import sr.core.hist.timelike.FindEvent;
+import sr.core.hist.timelike.TimelikeHistory;
+import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.NDelta;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NPhaseGradient;
@@ -110,7 +110,7 @@ public final class WavesInMedia extends TextOutput implements Exploration {
     add("Use the velocity addition formula.");
     NVelocity boost_v = boostVelocity();
     add("Boost from K to K' is towards the -X-axis: " + boost_v);
-    NVelocity u_Kp = NVelocityTransformation.primedVelocity(boost_v, phaseVelocityK());
+    NVelocity u_Kp = VelocityTransformation.primedVelocity(boost_v, phaseVelocityK());
     showVelo("K': phase-velocity u':", u_Kp);
     return u_Kp;
   }
@@ -122,27 +122,27 @@ public final class WavesInMedia extends TextOutput implements Exploration {
     add("Compute using the histories of objects.");
     //In K:
     //two ends 'a' and 'b' of a horizontal stick at X=0, X=1; the stick is comoving with wavefront-0:
-    NTimelikeHistory wavefront_0_hist_a_K = NUniformVelocity.of(NPosition.of(0.0, 0.0, 0.0), phaseVelocityK());
-    NTimelikeHistory wavefront_0_hist_b_K = NUniformVelocity.of(NPosition.of(1.0, 0.0, 0.0), phaseVelocityK());
+    TimelikeHistory wavefront_0_hist_a_K = UniformVelocity.of(Position.of(0.0, 0.0, 0.0), phaseVelocityK());
+    TimelikeHistory wavefront_0_hist_b_K = UniformVelocity.of(Position.of(1.0, 0.0, 0.0), phaseVelocityK());
     
     //a single object comoving with a wavefront-1 having a phase that's exactly 1 radian ahead of wavefront_0:
     double position_of_wavefront_1_K = 1.0/phaseGradientK();  //distance per radian 
     add("K: position of wavefront-1: " + position_of_wavefront_1_K);
-    NTimelikeHistory wavefront_1_hist_K = NUniformVelocity.of(NPosition.of(0.0, position_of_wavefront_1_K, 0.0), phaseVelocityK());
+    TimelikeHistory wavefront_1_hist_K = UniformVelocity.of(Position.of(0.0, position_of_wavefront_1_K, 0.0), phaseVelocityK());
     
     //now take a time-slice of each history in K'
     double ct_Kp = 10.0;
     
     //in K' the stick is not perpendicular to the phase-velocity
-    NEvent wavefront_0_a_Kp = timeSliceOf(wavefront_0_hist_a_K, ct_Kp);
-    NEvent wavefront_0_b_Kp = timeSliceOf(wavefront_0_hist_b_K, ct_Kp);
+    Event wavefront_0_a_Kp = timeSliceOf(wavefront_0_hist_a_K, ct_Kp);
+    Event wavefront_0_b_Kp = timeSliceOf(wavefront_0_hist_b_K, ct_Kp);
     NDelta stick_Kp = NDelta.of(wavefront_0_a_Kp.position(), wavefront_0_b_Kp.position());
     add("K': stick: " + stick_Kp);
     NDirection stick_direction_Kp = NDirection.of(stick_Kp);
     add("K': the stick is directed at this angle from the +X-axis: " + angleFromXAxis(stick_direction_Kp));
     add("K': the stick-direction and phase-velocity u' are not perpendicular. Dot product: " + round(stick_direction_Kp.dot(u_Kp)));
     
-    NEvent wavefront_1_Kp = timeSliceOf(wavefront_1_hist_K, ct_Kp);
+    Event wavefront_1_Kp = timeSliceOf(wavefront_1_hist_K, ct_Kp);
     double distance_0_to_1_Kp = distancePointToStick(      
       wavefront_1_Kp.position(), 
       wavefront_0_a_Kp.position(), 
@@ -160,7 +160,7 @@ public final class WavesInMedia extends TextOutput implements Exploration {
     
     NFourPhaseGradientSlow k_K = NFourPhaseGradientSlow.of(phaseGradient, phaseVelocityK());
     showPhaseGradient("", k_K);
-    NFourPhaseGradientSlow k_Kp = k_K.boost(boostVelocity(), NSense.ChangeGrid);
+    NFourPhaseGradientSlow k_Kp = k_K.boost(boostVelocity(), Sense.ChangeGrid);
     showPhaseGradient("'", k_Kp);
   }
 
@@ -180,12 +180,12 @@ public final class WavesInMedia extends TextOutput implements Exploration {
   }
   
   /** Return an event in K' coords. */
-  private NEvent timeSliceOf(NTimelikeHistory stick_0_hist_K, double ct_Kp) {
-    Function<NEvent, Double> zero = (ev) -> ev.boost(boostVelocity(), NSense.ChangeGrid).ct() - ct_Kp;
-    NFindEvent find = new NFindEvent(stick_0_hist_K, zero);
+  private Event timeSliceOf(TimelikeHistory stick_0_hist_K, double ct_Kp) {
+    Function<Event, Double> zero = (ev) -> ev.boost(boostVelocity(), Sense.ChangeGrid).ct() - ct_Kp;
+    FindEvent find = new FindEvent(stick_0_hist_K, zero);
     double ct_K = find.search(1.0 /*first guess*/);
-    NEvent event_K = stick_0_hist_K.event(ct_K);
-    return event_K.boost(boostVelocity(), NSense.ChangeGrid);
+    Event event_K = stick_0_hist_K.event(ct_K);
+    return event_K.boost(boostVelocity(), Sense.ChangeGrid);
   }
 
   /** The phase-velocity of the wave in frame K. */
@@ -229,7 +229,7 @@ public final class WavesInMedia extends TextOutput implements Exploration {
   }
   
   /** Use the formula for the area of a rectangle expressed as a cross-product. Then get the height of the triangle. */
-  private double distancePointToStick(NPosition point, NPosition stick_end_1, NPosition stick_end_2) {
+  private double distancePointToStick(Position point, Position stick_end_1, Position stick_end_2) {
     NDelta a = NDelta.of(stick_end_1, stick_end_2);
     NDelta b = NDelta.of(stick_end_1, point);
     return a.cross(b).magnitude() / a.magnitude();

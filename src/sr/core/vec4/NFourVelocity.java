@@ -5,11 +5,11 @@ import static sr.core.Axis.CT;
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NBoost;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearBoostOp;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.Boost;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearBoostOp;
+import sr.core.ops.LinearOps;
 import sr.core.vec3.NAxisAngle;
 import sr.core.vec3.NDirection;
 import sr.core.vec3.NThreeVector;
@@ -21,7 +21,7 @@ import sr.core.vec3.NVelocity;
  <P>Applies only to objects having mass.
  <P>Note that {@link NVelocity} allows for speed = 1, but this class does not.
 */
-public final class NFourVelocity extends NFourVector implements NLinearOps<NFourVelocity>, NLinearBoostOp<NFourVelocity> {
+public final class NFourVelocity extends NFourVector implements LinearOps<NFourVelocity>, LinearBoostOp<NFourVelocity> {
 
   /** Factory method. */
   public static NFourVelocity of(NVelocity velocity) {
@@ -55,13 +55,13 @@ public final class NFourVelocity extends NFourVector implements NLinearOps<NFour
     return NFourVelocity.of(velocity.reverseSpatialAxes());
   }
   
-  @Override public NFourVelocity rotate(NAxisAngle axisAngle, NSense sense) {
+  @Override public NFourVelocity rotate(NAxisAngle axisAngle, Sense sense) {
     return NFourVelocity.of(velocity.rotate(axisAngle, sense));
   }
   
-  @Override public NFourVelocity boost(NVelocity v, NSense sense) {
-    NBoost boost = NBoost.of(v, sense);
-    NComponents comps = boost.applyTo(components);
+  @Override public NFourVelocity boost(NVelocity v, Sense sense) {
+    Boost boost = Boost.of(v, sense);
+    Components comps = boost.applyTo(components);
     //"reverse-engineer" the comps into a velocity, then into a four-velocity
     double Γ = comps.ct();
     NThreeVector v_new = NThreeVector.of(comps.x(), comps.y(), comps.z()).divide(Γ);
@@ -74,7 +74,7 @@ public final class NFourVelocity extends NFourVector implements NLinearOps<NFour
     Util.mustHave(velocity.magnitude() < 1.0, "Velocity input to 4-velocity must be less than 1.0: " + velocity);
     this.velocity = velocity;
     double Γ = Physics.Γ(velocity.magnitude()); //always positive, even under clock-reversal
-    this.components = NComponents.of(
+    this.components = Components.of(
       Γ, 
       Γ * velocity.x(), 
       Γ * velocity.y(), 

@@ -3,11 +3,11 @@ package sr.explore.clocks;
 import static sr.core.Axis.X;
 
 import sr.core.Util;
-import sr.core.component.NPosition;
-import sr.core.hist.timelike.NThereAndBack;
-import sr.core.hist.timelike.NTimelikeDeltaBase;
-import sr.core.hist.timelike.NTimelikeHistory;
-import sr.core.hist.timelike.NUniformVelocity;
+import sr.core.component.Position;
+import sr.core.hist.timelike.ThereAndBack;
+import sr.core.hist.timelike.TimelikeDeltaBase;
+import sr.core.hist.timelike.TimelikeHistory;
+import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.NVelocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
@@ -59,10 +59,10 @@ public final class Twins extends TextOutput implements Exploration {
     NVelocity velocity = NVelocity.of(β, X);
     
     //travel in from -X infinity to the origin, then back out to -X infinity:
-    NTimelikeHistory thereAndBack = NThereAndBack.of(NTimelikeDeltaBase.origin(), velocity);
+    TimelikeHistory thereAndBack = ThereAndBack.of(TimelikeDeltaBase.origin(), velocity);
     
     //don't move from the given position 
-    NTimelikeHistory stayPut = NUniformVelocity.stationary((NPosition.of(X, LEFT_OF_ORIGIN)));
+    TimelikeHistory stayPut = UniformVelocity.stationary((Position.of(X, LEFT_OF_ORIGIN)));
     
     // ct = -/+ HALF_TIME identify the two events where the histories meet
     double τStay = properTimeInterval(stayPut, -HALF_TIME, HALF_TIME); 
@@ -74,7 +74,7 @@ public final class Twins extends TextOutput implements Exploration {
     add("Ratio of the proper-times: " + round(τStay/τThereAndBack) + Util.NL);
   }
   
-  private double properTimeInterval(NTimelikeHistory history, double ctStart, double ctEnd) {
+  private double properTimeInterval(TimelikeHistory history, double ctStart, double ctEnd) {
     return history.τ(ctEnd) - history.τ(ctStart); 
   }
   

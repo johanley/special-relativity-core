@@ -3,11 +3,11 @@ package sr.core.vec3;
 import sr.core.Axis;
 import sr.core.Physics;
 import sr.core.Util;
-import sr.core.component.NComponents;
-import sr.core.component.ops.NReverseSpatialComponents;
-import sr.core.component.ops.NRotate;
-import sr.core.component.ops.NSense;
-import sr.core.ops.NLinearOps;
+import sr.core.component.Components;
+import sr.core.component.ops.ReverseSpatialComponents;
+import sr.core.component.ops.Rotate;
+import sr.core.component.ops.Sense;
+import sr.core.ops.LinearOps;
 
 /** 
  The 3-velocity of an object. 
@@ -22,7 +22,7 @@ import sr.core.ops.NLinearOps;
  This is an open interval, excluding the boundaries.
  The exceptions are the <em>unity</em> methods, where the speed is always 1.
 */
-public final class NVelocity extends NThreeVector implements NLinearOps<NVelocity>{
+public final class NVelocity extends NThreeVector implements LinearOps<NVelocity>{
   
   /** Factory method, taking the 3 components of the velocity along the XYZ axes, in that order.  */
   public static NVelocity of(double βx, double βy, double βz) {
@@ -60,7 +60,7 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
   }
   
   /** Only massless objects can have a speed of 1.0. */
-  public static NVelocity unity(Axis axis, NSense sense) {
+  public static NVelocity unity(Axis axis, Sense sense) {
     return new NVelocity(axis, sense);
   }
   
@@ -85,18 +85,18 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
   
   /** Reverse the sign of all spatial components.*/
   @Override public NVelocity reverseClocks() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NVelocity(comps);
   }
   
   /** Reverse the sign of all spatial components.*/
   @Override public NVelocity reverseSpatialAxes() {
-    NComponents comps = new NReverseSpatialComponents().applyTo(components);
+    Components comps = new ReverseSpatialComponents().applyTo(components);
     return new NVelocity(comps);
   }
   
-  @Override public NVelocity rotate(NAxisAngle axisAngle, NSense sense) {
-    NComponents comps = NRotate.of(axisAngle, sense).applyTo(components);
+  @Override public NVelocity rotate(NAxisAngle axisAngle, Sense sense) {
+    Components comps = Rotate.of(axisAngle, sense).applyTo(components);
     return new NVelocity(comps);
   }
   
@@ -109,7 +109,7 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
     super(speed, axis);
     check();
   }
-  private NVelocity(Axis axis, NSense sense) {
+  private NVelocity(Axis axis, Sense sense) {
     super(sense.sign(), axis);
     //no checks! 
   }
@@ -124,7 +124,7 @@ public final class NVelocity extends NThreeVector implements NLinearOps<NVelocit
     //no checks! 
   }
   
-  private NVelocity(NComponents comps) {
+  private NVelocity(Components comps) {
     super(comps);
     check();
   }
