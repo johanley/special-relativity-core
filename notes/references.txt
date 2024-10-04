@@ -669,6 +669,14 @@ life as measured in both this experiment and others) and from the known distance
 is 8.8±0.8 to be compared with the effective time dilation factor calculated for mesons of these speeds in our detection 
 geometry 1/(1 − v2/c2)12 = 8.4 ± 2"
 
+
+1962
+Ezra T. Newman and Roger Penrose 
+”An Approach to Gravitational Radiation by a Method of Spin Coefficients”. 
+Journal of Mathematical Physics. 3 (3): 566–768. Bibcode:1962JMP.....3..566N. doi:10.1063/1.1724257.
+Vol 3, Issue 3, May 1962 
+The original paper by Newman and Penrose, which introduces the formalism, and uses it to derive example results.
+
 1961
 Length Contraction Paradox
 W. Rindler (Cornell)
