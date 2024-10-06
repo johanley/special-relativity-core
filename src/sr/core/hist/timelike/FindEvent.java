@@ -51,12 +51,12 @@ public final class FindEvent {
   public static final double EPSILON = 0.00001;
   
   /**  Execute the {@link #search(double, double)} using {@link #SMALL_H} as the h-value.  */
-  public double search(double cτ) {
-    return search(cτ, SMALL_H);
+  public double search(double λ) {
+    return search(λ, SMALL_H);
   }
   
   /** 
-   Return the cτ for which the history satisfies the given criterion.
+   Return the λ for which the history satisfies the given criterion.
    @param λ an initial guess for the return value.
    @param h small-enough interval used to closely approximate the derivative of the criterion function passed to the constructor. Positive. 
   */
@@ -75,7 +75,7 @@ public final class FindEvent {
     if (numIterations < 1) {
       //throw new RuntimeException("Probable search error. The number of iterations is under 1.");
     }
-    return guess.cλ;
+    return guess.λ;
   }
   
   /** The number of loops used by a search method to find its answer. */
@@ -92,23 +92,23 @@ public final class FindEvent {
   
   /** Newton-Raphson method. */
   private final class NewtonGuess {
-    double cλ;
+    double λ;
     double fλ;
     double derivfτ;
     double h;
     NewtonGuess(double λ, double h){
-      this.cλ = λ;
+      this.λ = λ;
       this.fλ = criterion.apply(history.event(λ));
       this.h = h;
       this.derivfτ = derivative();
     }
     /** Returns a new object. */
     NewtonGuess again() {
-      double nextλ =  cλ - (fλ/derivfτ);
+      double nextλ =  λ - (fλ/derivfτ);
       return new NewtonGuess(nextλ, h);
     }
     double derivative() {
-      double fλ_plus_h = criterion.apply(history.event(cλ + h));
+      double fλ_plus_h = criterion.apply(history.event(λ + h));
       return (fλ_plus_h - fλ)/h;
     }
   }
