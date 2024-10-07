@@ -19,7 +19,7 @@ import sr.output.text.TextOutput;
 public final class TravelTime extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    TravelTime tt = new TravelTime();
+    Exploration tt = new TravelTime();
     tt.explore();
   }
   

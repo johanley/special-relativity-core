@@ -37,7 +37,7 @@ import sr.output.text.TextOutput;
 public final class LightSliceOfAStick extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    LightSliceOfAStick stickOnLightCone = new LightSliceOfAStick();
+    Exploration stickOnLightCone = new LightSliceOfAStick();
     stickOnLightCone.explore();
   }
   

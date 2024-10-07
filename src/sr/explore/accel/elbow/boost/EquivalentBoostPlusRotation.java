@@ -24,7 +24,7 @@ import sr.output.text.TextOutput;
 public final class EquivalentBoostPlusRotation extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    EquivalentBoostPlusRotation twoPerpendicularBoosts = new EquivalentBoostPlusRotation(); 
+    Exploration twoPerpendicularBoosts = new EquivalentBoostPlusRotation(); 
     twoPerpendicularBoosts.explore();
   }
   

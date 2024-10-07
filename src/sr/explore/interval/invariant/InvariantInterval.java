@@ -21,7 +21,7 @@ import sr.output.text.TextOutput;
 public final class InvariantInterval extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    InvariantInterval intervals = new InvariantInterval();
+    Exploration intervals = new InvariantInterval();
     intervals.explore();
   }
   

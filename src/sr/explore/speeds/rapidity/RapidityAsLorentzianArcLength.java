@@ -18,7 +18,8 @@ import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- Rapidity equals a (Lorentzian) arc length on the unit hyperbola.
+ Rapidity equals the integrated space-time interval along a space-like arc on the unit hyperbola.
+ (One takes the absolute value of the squared-interval, to yield a non-imaginary value for the interval.)
  
  <P>Start with: 
  <ul>
@@ -27,12 +28,12 @@ import sr.output.text.TextOutput;
  </ul>
  
  <P> <em>H</em> has two branches.
-  Find the intersection point <em>P</em> between the particle's history and <em>H<sup>+</sup></em>, the branch of <em>H</em> in the future-direction.
+  Find the intersection point <em>P</em> between the particle's history and <em>H<sup>+</sup></em>, the branch of <em>H</em> in the future-direction 
+  with <em>ct &gt; 0</em>.
   
- <P>Compute the Lorentzian distance from (1,0,0,0) to the intersection point <em>P</em>.
- That value is the rapidity, arctanh β.
- Compare with the Euclidean distance.
-  
+ <P>Compute the space-time interval from (1,0,0,0) to the intersection point <em>P</em>.
+ That value is the rapidity, arctanh(β).
+ Compare with using a Euclidean metric.
 */
 public final class RapidityAsLorentzianArcLength extends TextOutput implements Exploration {
   
@@ -55,11 +56,11 @@ public final class RapidityAsLorentzianArcLength extends TextOutput implements E
     Event intersection = intersection(history);
     add("Intersection point with unit hyperbola: " + intersection);
     add(NL+"Arc length along the unit hyperbola, from " + APEX + " to the intersection point:");
-    add(" - Lorentzian: " + arcLength(intersection, LORENTZIAN) + "   (the rapidity)");
-    add(" - Euclidean: " + arcLength(intersection, EUCLIDEAN) + "    (NOT the rapidity)");
-    add(NL+"The arc is space-like, not time-like.");
-    add("Along the arc, the fundamental quadratic form is negative.");
-    add("To find the Lorentzian arc length, use the absolute value of the fundamental quadratic form.");
+    add(" - space-time interval: " + arcLength(intersection, LORENTZIAN) + "   (the rapidity)");
+    add(" - Euclidean length: " + arcLength(intersection, EUCLIDEAN) + "    (NOT the rapidity)");
+    add(NL+"The hyperbolic arc is space-like, not time-like.");
+    add("Along the hyperbolic arc, the squared-interval is negative.");
+    add("To find the integrated space-time interval along the arc, use the absolute value of the squared-interval.");
   }
 
   /** The apex of the H+ hyperboloid, on the future-directed time axis.  */

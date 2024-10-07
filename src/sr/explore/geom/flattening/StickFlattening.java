@@ -33,7 +33,7 @@ import sr.output.text.TextOutput;
 public class StickFlattening extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    StickFlattening stickFlattening = new StickFlattening();
+    Exploration stickFlattening = new StickFlattening();
     stickFlattening.explore();
   }
   

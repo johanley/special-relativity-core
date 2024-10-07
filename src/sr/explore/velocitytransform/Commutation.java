@@ -15,7 +15,7 @@ import sr.output.text.TextOutput;
 public final class Commutation extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    Commutation velocity = new Commutation();
+    Exploration velocity = new Commutation();
     velocity.explore();
   }
 

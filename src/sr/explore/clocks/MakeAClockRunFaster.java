@@ -25,7 +25,7 @@ import sr.output.text.TextOutput;
 public final class MakeAClockRunFaster extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    MakeAClockRunFaster faster = new MakeAClockRunFaster();
+    Exploration faster = new MakeAClockRunFaster();
     faster.explore();
   }
   

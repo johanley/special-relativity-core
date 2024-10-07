@@ -23,7 +23,7 @@ import sr.output.text.TextOutput;
 public final class InvariantPhaseDifference extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    InvariantPhaseDifference invariantPhase = new InvariantPhaseDifference();
+    Exploration invariantPhase = new InvariantPhaseDifference();
     invariantPhase.explore();
   }
   

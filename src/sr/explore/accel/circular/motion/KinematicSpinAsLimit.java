@@ -36,7 +36,7 @@ import sr.output.text.TextOutput;
 public final class KinematicSpinAsLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    KinematicSpinAsLimit thomas = new KinematicSpinAsLimit();
+    Exploration thomas = new KinematicSpinAsLimit();
     thomas.explore();
   }
   

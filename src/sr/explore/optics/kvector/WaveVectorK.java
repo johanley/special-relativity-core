@@ -20,7 +20,7 @@ import sr.output.text.TextOutput;
 public final class WaveVectorK extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    WaveVectorK aberration = new WaveVectorK();
+    Exploration aberration = new WaveVectorK();
     aberration.explore();
   }
   

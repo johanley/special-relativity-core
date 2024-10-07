@@ -39,7 +39,7 @@ import sr.output.text.TextOutput;
 public final class OneGeeForever extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    OneGeeForever oneGee = new OneGeeForever();
+    Exploration oneGee = new OneGeeForever();
     oneGee.explore();
   }
   

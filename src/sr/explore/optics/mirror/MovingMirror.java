@@ -44,7 +44,7 @@ The two {@link FourPhaseGradient} objects correspond to the incoming and outgoin
 public final class MovingMirror extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    MovingMirror movingMirror = new MovingMirror();
+    Exploration movingMirror = new MovingMirror();
     movingMirror.explore();
   }
   

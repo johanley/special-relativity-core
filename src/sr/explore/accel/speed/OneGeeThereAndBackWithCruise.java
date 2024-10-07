@@ -71,7 +71,7 @@ cruises for 2 years, in between changing the direction of acceleration:
 public final class OneGeeThereAndBackWithCruise extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    OneGeeThereAndBackWithCruise oneGee = new OneGeeThereAndBackWithCruise();
+    Exploration oneGee = new OneGeeThereAndBackWithCruise();
     oneGee.explore();
   }
   

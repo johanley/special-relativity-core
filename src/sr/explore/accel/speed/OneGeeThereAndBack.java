@@ -54,7 +54,7 @@ An out-and-back return trip, all at an acceleration of -/+ 1g.
 public final class OneGeeThereAndBack extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    OneGeeThereAndBack oneGee = new OneGeeThereAndBack();
+    Exploration oneGee = new OneGeeThereAndBack();
     oneGee.explore();
   }
   

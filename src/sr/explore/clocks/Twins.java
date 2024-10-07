@@ -37,7 +37,7 @@ import sr.output.text.TextOutput;
 public final class Twins extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    Twins twins = new Twins();
+    Exploration twins = new Twins();
     twins.explore();
   }
   

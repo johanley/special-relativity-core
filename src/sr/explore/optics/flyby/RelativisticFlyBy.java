@@ -90,7 +90,7 @@ public final class RelativisticFlyBy implements Exploration {
   
   /**  Calculate a fly-by, and process the results. */
   public static void main(String... args) {
-    RelativisticFlyBy flyBy = new RelativisticFlyBy();
+    Exploration flyBy = new RelativisticFlyBy();
     flyBy.explore();
   }
   

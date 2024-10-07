@@ -90,7 +90,7 @@ In the boosted frame K', the two directions are different.
 public final class BoostedTelescope extends TextOutput implements Exploration {
 
   public static void main(String[] args) {
-    BoostedTelescope telescope = new BoostedTelescope();
+    Exploration telescope = new BoostedTelescope();
     telescope.explore();
   }
 

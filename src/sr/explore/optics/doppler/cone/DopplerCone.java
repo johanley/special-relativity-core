@@ -21,7 +21,7 @@ import sr.output.text.TextOutput;
 public final class DopplerCone implements Exploration {
   
   public static void main(String[] args) {
-    DopplerCone dopplerCone = new DopplerCone();
+    Exploration dopplerCone = new DopplerCone();
     //dopplerCone.generateOutputsForAnimation();
     dopplerCone.explore();
   }

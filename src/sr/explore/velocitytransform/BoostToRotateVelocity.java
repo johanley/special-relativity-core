@@ -35,7 +35,7 @@ import sr.output.text.TextOutput;
 public final class BoostToRotateVelocity extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    BoostToRotateVelocity rotated_v = new BoostToRotateVelocity();
+    Exploration rotated_v = new BoostToRotateVelocity();
     rotated_v.explore();
   }
   

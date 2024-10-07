@@ -19,7 +19,7 @@ import sr.output.text.TextOutput;
 public final class KinematicRotationRange extends TextOutput implements Exploration {
 
   public static void main(String... args) {
-    KinematicRotationRange range = new KinematicRotationRange();
+    Exploration range = new KinematicRotationRange();
     range.explore();
   }
   

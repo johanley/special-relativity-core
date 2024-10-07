@@ -60,7 +60,7 @@ two rockets. The second is smaller. This means that the connector must break.
 public final class ConnectedRockets extends TextOutput implements Exploration {
 
   public static void main(String[] args) {
-    ConnectedRockets rockets = new ConnectedRockets();
+    Exploration rockets = new ConnectedRockets();
     rockets.explore();
   }
   

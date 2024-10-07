@@ -26,7 +26,7 @@ import sr.output.text.TextOutput;
 public final class CornerBoostsDontCommute extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    CornerBoostsDontCommute test = new CornerBoostsDontCommute();
+    Exploration test = new CornerBoostsDontCommute();
     test.explore();
   }
   

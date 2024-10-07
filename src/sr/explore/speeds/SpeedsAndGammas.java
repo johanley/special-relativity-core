@@ -13,7 +13,7 @@ import sr.output.text.TextOutput;
 public final class SpeedsAndGammas extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    SpeedsAndGammas speeds = new SpeedsAndGammas();
+    Exploration speeds = new SpeedsAndGammas();
     speeds.explore();
   }
   

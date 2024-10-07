@@ -19,7 +19,7 @@ import sr.output.text.TextOutput;
 public final class MaxAngleBetweenResultVectors extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    MaxAngleBetweenResultVectors velocity = new MaxAngleBetweenResultVectors();
+    Exploration velocity = new MaxAngleBetweenResultVectors();
     velocity.explore();
   }
 

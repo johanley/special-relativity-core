@@ -53,7 +53,7 @@ import sr.output.text.TextOutput;
 public final class KinematicRotation extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    KinematicRotation rotation = new KinematicRotation();
+    Exploration rotation = new KinematicRotation();
     rotation.explore();
   }
   

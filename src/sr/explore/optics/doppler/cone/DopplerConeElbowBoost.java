@@ -23,7 +23,7 @@ import sr.output.text.TextOutput;
 public final class DopplerConeElbowBoost implements Exploration {
   
   public static void main(String[] args) {
-    DopplerConeElbowBoost dopplerCone = new DopplerConeElbowBoost();
+    Exploration dopplerCone = new DopplerConeElbowBoost();
     dopplerCone.explore();
   }
   

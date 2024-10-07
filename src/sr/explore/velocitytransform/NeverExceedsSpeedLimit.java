@@ -14,7 +14,7 @@ import sr.output.text.TextOutput;
 public final class NeverExceedsSpeedLimit extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    NeverExceedsSpeedLimit velocity = new NeverExceedsSpeedLimit();
+    Exploration velocity = new NeverExceedsSpeedLimit();
     velocity.explore();
   }
 

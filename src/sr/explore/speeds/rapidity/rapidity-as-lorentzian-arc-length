@@ -4,9 +4,9 @@ History through the origin with uniform velocity [0.8,0.0,0.0]
 Intersection point with unit hyperbola: [1.66667, 1.33333, 0.0, 0.0]
 
 Arc length along the unit hyperbola, from [1.0, 0.0, 0.0, 0.0] to the intersection point:
- - Lorentzian: 1.098672288748136   (the rapidity)
- - Euclidean: 1.517962464295463    (NOT the rapidity)
+ - space-time interval: 1.098672288748136   (the rapidity)
+ - Euclidean length: 1.517962464295463    (NOT the rapidity)
 
-The arc is space-like, not time-like.
-Along the arc, the fundamental quadratic form is negative.
-To find the Lorentzian arc length, use the absolute value of the fundamental quadratic form.
+The hyperbolic arc is space-like, not time-like.
+Along the hyperbolic arc, the squared-interval is negative.
+To find the integrated space-time interval along the arc, use the absolute value of the squared-interval.

@@ -43,7 +43,7 @@ Accelerate at 1g for the first half of a trip, then turn around and brake at 1g 
 public final class OneGeeThereAndStay extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    OneGeeThereAndStay oneGee = new OneGeeThereAndStay();
+    Exploration oneGee = new OneGeeThereAndStay();
     oneGee.explore();
   }
   

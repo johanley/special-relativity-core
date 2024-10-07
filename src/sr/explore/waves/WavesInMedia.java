@@ -88,7 +88,7 @@ This means the phase-gradient in K' is numerically equal to 1/D', where D' is th
 public final class WavesInMedia extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    WavesInMedia wavesInMedia = new WavesInMedia();
+    Exploration wavesInMedia = new WavesInMedia();
     wavesInMedia.explore();
   }
   
