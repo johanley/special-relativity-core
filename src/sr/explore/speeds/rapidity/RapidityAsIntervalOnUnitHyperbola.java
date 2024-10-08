@@ -28,23 +28,24 @@ import sr.output.text.TextOutput;
  </ul>
  
  <P> <em>H</em> has two branches.
-  Find the intersection point <em>P</em> between the particle's history and <em>H<sup>+</sup></em>, the branch of <em>H</em> in the future-direction 
+ 
+ <P> Find the intersection point <em>P</em> between the particle's history and <em>H<sup>+</sup></em>, the branch of <em>H</em> in the future-direction 
   with <em>ct &gt; 0</em>.
   
- <P>Compute the space-time interval from (1,0,0,0) to the intersection point <em>P</em>.
+ <P>Compute the space-time interval from (1,0,0,0) to the intersection point <em>P</em>, along <em>H<sup>+</sup></em>. 
  That value is the rapidity, arctanh(β).
  Compare with using a Euclidean metric.
 */
-public final class RapidityAsLorentzianArcLength extends TextOutput implements Exploration {
+public final class RapidityAsIntervalOnUnitHyperbola extends TextOutput implements Exploration {
   
   public static void main(String[] args) {
-    Exploration rapidityAsArcLength = new RapidityAsLorentzianArcLength();
+    Exploration rapidityAsArcLength = new RapidityAsIntervalOnUnitHyperbola();
     rapidityAsArcLength.explore();
   }
   
   @Override public void explore() {
     forSpeed(0.8);
-    outputToConsoleAnd("rapidity-as-lorentzian-arc-length");
+    outputToConsoleAnd("rapidity-as-interval-on-unit-hyperbola.txt");
   }
   
   private void forSpeed(double β) {
@@ -55,7 +56,7 @@ public final class RapidityAsLorentzianArcLength extends TextOutput implements E
     add(NL+"History through the origin with uniform velocity " + velo);
     Event intersection = intersection(history);
     add("Intersection point with unit hyperbola: " + intersection);
-    add(NL+"Arc length along the unit hyperbola, from " + APEX + " to the intersection point:");
+    add(NL+"Arc along the unit hyperbola, from " + APEX + " to the intersection point " + intersection + ":");
     add(" - space-time interval: " + arcLength(intersection, LORENTZIAN) + "   (the rapidity)");
     add(" - Euclidean length: " + arcLength(intersection, EUCLIDEAN) + "    (NOT the rapidity)");
     add(NL+"The hyperbolic arc is space-like, not time-like.");
