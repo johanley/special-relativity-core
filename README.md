@@ -316,11 +316,11 @@ In addition, after a boost from the frame in which the medium is at rest, the (3
 The two cultures often speak two different languages.
 You may or may not be aware of the changes in meaning when you move between these cultures.
 
-**The word 'interval' should be preferred to 'distance'.**
+**The word *interval* should be preferred to *distance*.**
 Space-time is non-Euclidean. 
 Using <em>distance</em> to refer to arcs or lines in a space-time diagram is dangerous.
 It's a <em><a href='https://en.wikipedia.org/wiki/False_friend'>false friend</a></em> that can very easily lead your thinking astray, 
-by pushing it back to Euclidean ideas.
+by pushing you back to Euclidean ideas.
 For example, for an arc or line segment parallel to an axis, the interval formula acts much like the Euclidean formula, 
 because the signs of the terms are all the same.
 But if an arc or line segment is not parallel to an axis, the signs of the terms in the interval formula are no longer the same, 
