@@ -318,7 +318,7 @@ You may or may not be aware of the changes in meaning when you move between thes
 
 **The word *interval* should be preferred to *distance*.**
 Space-time is non-Euclidean. 
-Using <em>distance</em> to refer to arcs or line segment in a space-time diagram is dangerous.
+Using <em>distance</em> to refer to arcs or line segments in a space-time diagram is dangerous.
 It's a <em><a href='https://en.wikipedia.org/wiki/False_friend'>false friend</a></em> that can very easily lead your thinking astray, 
 by pushing you back to Euclidean ideas.
 For example, if an arc or line segment is parallel to an axis, the interval formula acts much like the Euclidean formula, 
