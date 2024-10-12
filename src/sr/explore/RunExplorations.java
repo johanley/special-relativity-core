@@ -19,6 +19,7 @@ import sr.explore.clocks.MakeAClockRunFaster;
 import sr.explore.clocks.TravelTime;
 import sr.explore.clocks.Twins;
 import sr.explore.geom.flattening.StickFlattening;
+import sr.explore.hyperboloid.FourVelocityUnitHyperboloid;
 import sr.explore.interval.invariant.InvariantInterval;
 import sr.explore.optics.doppler.cone.DopplerCone;
 import sr.explore.optics.doppler.cone.DopplerConeElbowBoost;
@@ -88,6 +89,7 @@ public final class RunExplorations {
     result.add(new BoostedTelescope());
     result.add(new WavesInMedia());
     result.add(new InvariantPhaseDifference());
+    result.add(new FourVelocityUnitHyperboloid());
     return result;
   }
 }

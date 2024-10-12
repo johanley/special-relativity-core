@@ -10,3 +10,6 @@ Arc along the unit hyperbola, from [1.0, 0.0, 0.0, 0.0] to the intersection poin
 The hyperbolic arc is space-like, not time-like.
 Along the hyperbolic arc, the squared-interval is negative.
 To find the integrated space-time interval along the arc, use the absolute value of the squared-interval.
+
+You actually don't need to integrate in order to find the arc-interval!
+Just use arcosh(u1.u2), which uses the dot-product of the two 4-velocities at the endpoints: 1.09861228866811

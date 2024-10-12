@@ -1,4 +1,4 @@
-package sr.explore.speeds.rapidity;
+package sr.explore.hyperboloid;
 
 import static sr.core.Util.NL;
 import static sr.core.Util.sq;
@@ -7,6 +7,7 @@ import static sr.core.Util.sqroot;
 import java.util.function.Function;
 
 import sr.core.Axis;
+import sr.core.Util;
 import sr.core.component.Event;
 import sr.core.component.Position;
 import sr.core.hist.timelike.FindEvent;
@@ -14,6 +15,7 @@ import sr.core.hist.timelike.TimelikeHistory;
 import sr.core.hist.timelike.UniformVelocity;
 import sr.core.vec3.Velocity;
 import sr.core.vec4.FourDelta;
+import sr.core.vec4.FourVelocity;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
@@ -62,6 +64,8 @@ public final class RapidityAsIntervalOnUnitHyperbola extends TextOutput implemen
     add(NL+"The hyperbolic arc is space-like, not time-like.");
     add("Along the hyperbolic arc, the squared-interval is negative.");
     add("To find the integrated space-time interval along the arc, use the absolute value of the squared-interval.");
+    add(NL+"You actually don't need to integrate in order to find the arc-interval!");
+    add("Just use arcosh(u1.u2), which uses the dot-product of the two 4-velocities at the endpoints: "+ alternateArcInterval(β));
   }
 
   /** The apex of the H+ hyperboloid, on the future-directed time axis.  */
@@ -87,9 +91,9 @@ public final class RapidityAsIntervalOnUnitHyperbola extends TextOutput implemen
   }
   
   /**
-   Arc length from the apex (1,0,0,0) to the intersection point, as measured by a piece of 
-   string along the unit hyperboloid (which here is a hyperbola).
-   @param sign +1 for Euclidean length, -1 for Lorentzian length
+   A measure attached to an arc along the unit hyperboloid, 
+   from the apex (1,0,0,0) to the given intersection point. 
+   @param sign +1 for Euclidean length, -1 for Lorentzian length (space-time interval)
   */
   private double arcLength(Event intersection, int sign) {
     double result = 0.0;
@@ -108,5 +112,12 @@ public final class RapidityAsIntervalOnUnitHyperbola extends TextOutput implemen
       x = x + dx;
     }
     return result;
+  }
+  
+  /** Very compact! */
+  private double alternateArcInterval(double β) {
+    FourVelocity at_rest = FourVelocity.of(Velocity.zero());
+    FourVelocity u = FourVelocity.of(β, Axis.X);
+    return Util.arc_cosh(at_rest.dot(u));
   }
 }

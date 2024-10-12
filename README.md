@@ -53,9 +53,9 @@ When a Doppler cone is boosted it retains its conical form, but is no longer a *
 **Lorentz transformation** here means a boost in any direction, excluding spatial rotations.
 (The exact definition of this term varies between authors; that's why I'm stating it here.) 
 
-**Invariance** here means invariance of the fundamental quadratic form. 
+**Invariance** here means invariance of the space-time interval. 
 That is, it's related to the transformations of the <a href='https://en.wikipedia.org/wiki/Poincar%C3%A9_group'>Poincaré group</a>.
-This includes boosts, spatial rotations, displacements (in time and space), and reversals (of time and space).
+This includes boosts, spatial rotations, displacements (in time and space), and reversals (of clocks and spatial axes).
  
 ## References
 
