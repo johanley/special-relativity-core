@@ -1,0 +1,44 @@
+Elbow-boost from K to K' to K''.
+Take the point of view of K'.
+There are three 4-velocities to consider in the frame K':
+  [1.1547, -0.57735, 0.0, 0.0] negative of the boost from K to K'.
+  [1.0, 0.0, 0.0, 0.0] at rest in K'.
+  [1.1547, 0.40825, 0.40825, 0.0] the boost from K' to K''.
+
+** This triplet of 4-velocities make a triangle on the unit hyperboloid. **
+This is because the squared-magnitude of any 4-velocity is always +1.
+Values for the sides of the triangle correspond to the (integrated) space-time interval along an arc on the hyperboloid.
+The unit hyperboloid inherits its metric from the space-time pseudo-metric.
+
+This becomes a simple problem in hyperbolic geometry.
+You solve it using hyperbolic analogues of the cosine-law and the sine-law from Euclidean geometry.
+
+Here's the result, showing the full data for the triangle (with sides 'ABC', and angles 'abc'):
+
+ABC[0.54931,1.02177,0.54931] abc[0.34442,2.35619,0.34442] angular-defect:0.09656
+
+The triangle yields two results of interest:
+  - the addition of two non-co-linear velocities
+  - the corresponding kinematic (Wigner) rotation (-1 * the angular-defect of the triangle)
+
+The velocity of K'' with respect to K is computed using the triangle's data:
+  Speed comes from tanh(B): 0.77059
+  Direction with respect to the +X-axis is the angle 'a': 0.34442
+  Hence the velocity of K'' with respect to K is: 
+    Velocity: [0.72533,0.26019,0.0]
+    Four-velocity: [1.56904, 1.13807, 0.40825, 0.0]
+
+The corresponding kinematic (Wigner) rotation is (-1) * the angular-defect of the triangle: -0.09656
+
+----------------------------------------------------------------------------------------------------
+
+Now use other techniques to calculate the same things, and compare the results.
+
+For velocity addition, the alternate calculation gives:
+  Velocity: [0.72533,0.26019,0.0]
+  Four-velocity: [1.56904, 1.13807, 0.40825, 0.0]
+
+For the corresponding kinematic (Wigner) rotation, the alternate calculation gives:
+  θw: -0.09656
+
+These agree with the above results.
