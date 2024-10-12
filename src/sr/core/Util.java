@@ -1,5 +1,7 @@
 package sr.core;
 
+import static java.lang.Math.pow;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -110,6 +112,10 @@ public final class Util {
       result.append(SEP);
     }
     return result.toString();
+  }
+  
+  public static double arc_cosh(double x) {
+    return Math.log( x + pow(x*x - 1, 0.5) );
   }
 
   // PRIVATE 
