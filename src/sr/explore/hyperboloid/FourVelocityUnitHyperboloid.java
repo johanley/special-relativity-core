@@ -115,7 +115,7 @@ public final class FourVelocityUnitHyperboloid extends TextOutput implements Exp
     
     add(NL+"For the corresponding kinematic (Wigner) rotation, the alternate calculation gives:");
     KinematicRotation kinematicRotation = KinematicRotation.of(boost_K_to_Kp, boost_Kp_to_Kpp);
-    add("  θw: " + rounded(kinematicRotation.θw()));
+    add("  θw: " + rounded(kinematicRotation.θwIfXYPlane()));
     add(NL+"These agree with the above results.");
   }
   
