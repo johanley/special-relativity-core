@@ -324,7 +324,15 @@ by pushing you back to Euclidean ideas.
 For example, if an arc or line segment is parallel to an axis, the interval formula acts much like the Euclidean formula, 
 because the signs of the terms are all the same.
 But if an arc or line segment is *not* parallel to an axis, the signs of the terms in the interval formula are no longer the same, 
-and Euclidean thinking is entirely out of place. 
+and Euclidean thinking is entirely out of place.
+
+**Riemannian geometry has a role to play in special relativity.**
+The four-velocity has a fixed magnitude. 
+When <em>c=1</em>, four-velocity is a unit vector, and it's "confined" to the future-directed branch of the unit hyperboloid.
+The unit hyperboloid is a model of <a href="https://en.wikipedia.org/wiki/Hyperboloid_model">hyperbolic geometry</a>.
+It has a constant negative curvature of -1.
+Three four-velocities on the unit hyperboloid form a triangle.
+Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.   
 
 <!--
 
