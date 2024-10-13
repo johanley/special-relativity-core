@@ -330,9 +330,12 @@ and Euclidean thinking is entirely out of place.
 The four-velocity has a fixed magnitude. 
 When <em>c=1</em>, four-velocity is a unit vector, and it's "confined" to the future-directed branch of the unit hyperboloid.
 The unit hyperboloid is a model of <a href="https://en.wikipedia.org/wiki/Hyperboloid_model">hyperbolic geometry</a>.
-It has a constant negative curvature of -1.
 Three four-velocities on the unit hyperboloid form a triangle.
-Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.   
+Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.
+
+**The kinematic (Wigner) rotation is more generally described as a rotation, not as a negative scalar.**
+Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems, 
+in which the vectors involved are taken as defining the XY plane, and the axis of rotation is understood to be the +Z-axis.
 
 <!--
 
