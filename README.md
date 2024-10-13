@@ -333,9 +333,9 @@ The unit hyperboloid is a model of <a href="https://en.wikipedia.org/wiki/Hyperb
 Three four-velocities on the unit hyperboloid form a triangle.
 Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.
 
-**The kinematic (Wigner) rotation is more generally described as a rotation, not as a negative scalar.**
-Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems, 
+**Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems**, 
 in which the vectors involved are taken as defining the XY plane, and the axis of rotation is understood to be the +Z-axis.
+Otherwise, it needs to be treated as any other rotation.
 
 <!--
 
