@@ -1,6 +1,7 @@
 package sr.explore.accel.elbow.boost;
 
 import sr.core.Axis;
+import sr.core.KinematicRotation;
 import sr.core.VelocityTransformation;
 import sr.core.SpeedValues;
 import sr.core.Util;
@@ -128,13 +129,10 @@ public final class EquivalentBoostPlusRotation extends TextOutput implements Exp
     return result.boost(singleBoostVelocity(), ChangeGrid);
   }
   
-  /** Kinematic (Wigner) rotation angle. Range -pi..pi.  */
+  /** The kinematic (Wigner) rotation angle with respect to the direction of the first boost. Range 0..-pi.  */
   private double θw() {
-    Velocity a = singleBoostVelocity();
-    Velocity b = singleBoostVelocityReversed();
-    //should this be a.turnsTo(b) ? No, I believe this is correct. 
-    //For circular motion, this angle is 'retrograde' with respect to the sense of the given circular motion.
-    return b.turnsTo(a);
+    KinematicRotation kr = KinematicRotation.of(velocityOne(), velocityTwo());
+    return -kr.θw();
   }
 
   private double singleBoostSpeed() {

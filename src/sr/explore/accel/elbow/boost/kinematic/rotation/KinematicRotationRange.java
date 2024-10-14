@@ -24,7 +24,7 @@ public final class KinematicRotationRange extends TextOutput implements Explorat
   }
   
   @Override public void explore() {
-    add("Kinematic (Wigner) rotation for various combined speeds.");
+    add("Kinematic (Wigner) rotation (θw) for various combined speeds.");
     add("Here, the pair of velocities are at always at right angles to each other.");
     add("");
     add(tableHeader.row("β1", "β2", "θw"));

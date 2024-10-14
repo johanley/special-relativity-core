@@ -30,7 +30,7 @@ public final class ElbowBoostEquivalent {
     this.θw = θw;
   }
   
-  /** In K, the speed of the equivalent single boost, range 0..1. */
+  /** In K, the speed of the equivalent single boost. */
   public double β;
   
   /**
