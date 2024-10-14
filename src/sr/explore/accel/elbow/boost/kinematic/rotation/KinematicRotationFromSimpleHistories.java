@@ -50,16 +50,16 @@ import sr.output.text.TextOutput;
   <li>kinematic rotation (Wigner rotation), seen with elbow-boosts (two non-collinear boosts)
  </ul>
 */
-public final class KinematicRotation extends TextOutput implements Exploration {
+public final class KinematicRotationFromSimpleHistories extends TextOutput implements Exploration {
   
   public static void main(String... args) {
-    Exploration rotation = new KinematicRotation();
+    Exploration rotation = new KinematicRotationFromSimpleHistories();
     rotation.explore();
   }
   
   @Override public void explore() {
     stickHistory();
-    outputToConsoleAnd("kinematic-rotation.txt");
+    outputToConsoleAnd("kinematic-rotation-from-simple-histories.txt");
   }
 
   /**

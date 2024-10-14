@@ -7,7 +7,7 @@ import sr.explore.accel.circular.motion.KinematicSpinAsLimit;
 import sr.explore.accel.circular.motion.OneRevolution;
 import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
-import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotation;
+import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationFromSimpleHistories;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
 import sr.explore.accel.speed.ConnectedRockets;
 import sr.explore.accel.speed.OneGeeForever;
@@ -67,7 +67,7 @@ public final class RunExplorations {
     result.add(new Twins());
     result.add(new StickFlattening());
     result.add(new InvariantInterval());
-    result.add(new KinematicRotation());
+    result.add(new KinematicRotationFromSimpleHistories());
     result.add(new KinematicRotationRange());
     result.add(new OneRevolution());
     result.add(new BoostToRotateVelocity());
