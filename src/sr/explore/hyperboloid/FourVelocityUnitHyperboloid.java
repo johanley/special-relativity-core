@@ -77,7 +77,7 @@ public final class FourVelocityUnitHyperboloid extends TextOutput implements Exp
     HyperbolicTriangle triangle = HyperbolicTriangle.fromFourVelocities(a, b, c);
     
     add(NL+"** This triplet of 4-velocities make a triangle on the unit hyperboloid. **");
-    add("This is because the squared-magnitude of any 4-velocity is always +1.");
+    add("This is because the squared-magnitude of any 4-velocity is always +1 (when c=1).");
     add("Values for the sides of the triangle correspond to the (integrated) space-time interval along an arc on the hyperboloid.");
     add("The unit hyperboloid inherits its metric from the space-time pseudo-metric.");
     
@@ -92,7 +92,7 @@ public final class FourVelocityUnitHyperboloid extends TextOutput implements Exp
     
     add(NL+"The triangle yields two results of interest:");
     add("  - the addition of two non-co-linear velocities");
-    add("  - the corresponding kinematic (Wigner) rotation (-1 * the angular-defect of the triangle)");
+    add("  - the corresponding kinematic (Wigner) rotation (whose size is the angular-defect of the triangle)");
     
     add(NL+"The velocity of K'' with respect to K is computed using the triangle's data:");
     add("  Speed comes from tanh(B): " + rounded(speed_Kpp));
@@ -101,7 +101,7 @@ public final class FourVelocityUnitHyperboloid extends TextOutput implements Exp
     add("    Velocity: " + v_K);
     add("    Four-velocity: " + FourVelocity.of(v_K));
     
-    add(NL+"The corresponding kinematic (Wigner) rotation is (-1) * the angular-defect of the triangle: " + rounded(-triangle.angularDefect()));
+    add(NL+"The magnitude of the corresponding kinematic (Wigner) rotation equals the angular-defect of the triangle: " + rounded(triangle.angularDefect()));
   }
 
   private void compareToOtherCalculations() {
@@ -115,7 +115,7 @@ public final class FourVelocityUnitHyperboloid extends TextOutput implements Exp
     
     add(NL+"For the corresponding kinematic (Wigner) rotation, the alternate calculation gives:");
     KinematicRotation kinematicRotation = KinematicRotation.of(boost_K_to_Kp, boost_Kp_to_Kpp);
-    add("  θw: " + rounded(kinematicRotation.θwIfXYPlane()));
+    add("  θw: " + rounded(kinematicRotation.θwAngleBetweenTwoResultants()));
     add(NL+"These agree with the above results.");
   }
   

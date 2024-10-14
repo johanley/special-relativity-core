@@ -10,6 +10,10 @@ import sr.core.vec4.FourVelocity;
 /** 
  Relativistic transformation of velocities.
  This implementation converts to four-velocities, and then uses a Lorentz Transformation.
+  
+ <P>It's interesting to note that an alternate implementation could solve 
+ a hyperbolic triangle on the unit hyperboloid, made from three four-velocities, 
+ one of which corresponds to an object at rest.
 */ 
 public final class VelocityTransformation {
 

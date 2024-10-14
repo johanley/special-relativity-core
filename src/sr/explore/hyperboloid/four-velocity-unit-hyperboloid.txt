@@ -6,7 +6,7 @@ There are three 4-velocities to consider in the frame K':
   [1.1547, 0.40825, 0.40825, 0.0] the boost from K' to K''.
 
 ** This triplet of 4-velocities make a triangle on the unit hyperboloid. **
-This is because the squared-magnitude of any 4-velocity is always +1.
+This is because the squared-magnitude of any 4-velocity is always +1 (when c=1).
 Values for the sides of the triangle correspond to the (integrated) space-time interval along an arc on the hyperboloid.
 The unit hyperboloid inherits its metric from the space-time pseudo-metric.
 
@@ -19,7 +19,7 @@ ABC[0.54931,1.02177,0.54931] abc[0.34442,2.35619,0.34442] angular-defect:0.09656
 
 The triangle yields two results of interest:
   - the addition of two non-co-linear velocities
-  - the corresponding kinematic (Wigner) rotation (-1 * the angular-defect of the triangle)
+  - the corresponding kinematic (Wigner) rotation (whose size is the angular-defect of the triangle)
 
 The velocity of K'' with respect to K is computed using the triangle's data:
   Speed comes from tanh(B): 0.77059
@@ -28,7 +28,7 @@ The velocity of K'' with respect to K is computed using the triangle's data:
     Velocity: [0.72533,0.26019,0.0]
     Four-velocity: [1.56904, 1.13807, 0.40825, 0.0]
 
-The corresponding kinematic (Wigner) rotation is (-1) * the angular-defect of the triangle: -0.09656
+The magnitude of the corresponding kinematic (Wigner) rotation equals the angular-defect of the triangle: 0.09656
 
 ----------------------------------------------------------------------------------------------------
 
@@ -39,6 +39,6 @@ For velocity addition, the alternate calculation gives:
   Four-velocity: [1.56904, 1.13807, 0.40825, 0.0]
 
 For the corresponding kinematic (Wigner) rotation, the alternate calculation gives:
-  θw: -0.09656
+  θw: 0.09656
 
 These agree with the above results.
