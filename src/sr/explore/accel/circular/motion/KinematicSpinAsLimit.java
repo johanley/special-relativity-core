@@ -5,6 +5,7 @@ import static sr.core.Util.radsToDegs;
 import static sr.core.Util.round;
 
 import sr.core.Axis;
+import sr.core.KinematicRotation;
 import sr.core.VelocityTransformation;
 import sr.core.component.ops.Sense;
 import sr.core.hist.timelike.CircularMotion;
@@ -65,22 +66,19 @@ public final class KinematicSpinAsLimit extends TextOutput implements Exploratio
   }
   
   /**
-   First calculate the the velocity transform for rotating the given v by 2pi/N radians.
-   Then calculate the kinematic rotation (Wigner rotation) using the angle needed to turn (b+a) into (a+b). 
+   First calculate the the velocity transform for rotating the given v by 2π/N radians.
+   Then calculate the corresponding kinematic rotation (Wigner rotation), and multiply by numSides. 
   */
   private String rotationAfterOneCircuit(int numSides, Velocity v_K) {
     double angle = 2*Math.PI/numSides;
     Velocity v_K_rotated = rotated(v_K, angle);
     Velocity boost_in_Kp_needed_to_rotate_v = VelocityTransformation.primedVelocity(v_K, v_K_rotated);
     
-    //add the two velocities, v_K and boost_in_Kp_needed_to_rotate_v, in two different ways
     //for clarity, let's use temp aliases 'a' and 'b' 
     Velocity a = v_K;
     Velocity b = boost_in_Kp_needed_to_rotate_v;
-    Velocity a_plus_b = VelocityTransformation.unprimedVelocity(a, b);
-    Velocity b_plus_a = VelocityTransformation.unprimedVelocity(b, a);
-    double angleBetweenAandB = b_plus_a.turnsTo(a_plus_b);
-    return degrees(angleBetweenAandB * numSides);
+    KinematicRotation kinematicRotation = KinematicRotation.of(a, b);
+    return degrees(-kinematicRotation.θw() * numSides);
   }
   
   /** Rotate in the XY-plane. */
