@@ -31,7 +31,8 @@ public enum SpeedValues {
   /**
    The maximum speed of a proton in the Large Hadron Collider. 
    (This speed changes over the years, after upgrades to the facility.)
-   Energy of 6.5*10^12 eV. 
+   Energy of 6.5*10^12 eV.
+   WARNING: this value is very close to 1, and Map implementations can coerce it to 1. 
   */
   PROTON_LHC("0.9999999895816072"),
   
@@ -56,6 +57,15 @@ public enum SpeedValues {
     List<SpeedValues> result = Arrays.asList(values());
     List<SpeedValues> listRemovable = new ArrayList<>(result);
     listRemovable.remove(SpeedValues.PROTON_EXTREME_COSMIC_RAY);
+    return listRemovable;
+  }
+
+  /** List of speeds up to 0.9999. */
+  public static List<SpeedValues> upToFourNines(){
+    List<SpeedValues> result = Arrays.asList(values());
+    List<SpeedValues> listRemovable = new ArrayList<>(result);
+    listRemovable.remove(SpeedValues.PROTON_EXTREME_COSMIC_RAY);
+    listRemovable.remove(SpeedValues.PROTON_LHC);
     return listRemovable;
   }
 
