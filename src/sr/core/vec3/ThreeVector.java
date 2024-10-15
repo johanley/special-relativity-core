@@ -202,11 +202,13 @@ public class ThreeVector {
   
   /** Constructors are protected, in order to be visible to subclasses. */
   protected ThreeVector(double xComp, double yComp, double zComp) {
+    //Java: this coerces speed values very near 1 to actually being 1:
     this.components = Components.of(xComp, yComp, zComp);
   }
   
   protected ThreeVector(double value, Axis axis) {
     this(0.0, 0.0, 0.0);
+    //Java: this coerces speed values very near 1 to actually being 1:
     this.components = components.overwrite(axis, value);
   }
   

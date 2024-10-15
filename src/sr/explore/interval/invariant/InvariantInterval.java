@@ -9,11 +9,12 @@ import sr.core.component.Event;
 import sr.core.vec3.AxisAngle;
 import sr.core.vec3.Velocity;
 import sr.core.vec4.FourDelta;
+import sr.core.vec4.FourVector;
 import sr.explore.Exploration;
 import sr.output.text.TextOutput;
 
 /**
- Transformations don't change the fundamental quadratic form {@link FourVector#square()}. 
+ Transformations don't change the fundamental quadratic form, {@link FourVector#square()}.   
  
  <P>The prototype four-vector is the <em>displacement</em> in space-time. 
  It's not an event, but rather a <em>difference</em> between events. 

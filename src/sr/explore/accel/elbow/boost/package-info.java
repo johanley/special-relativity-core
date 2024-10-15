@@ -21,7 +21,7 @@
  For that pair, only the Z axes are parallel, in the above case. 
  That is kinematic (Wigner) rotation.
 
- <P>Here, we define a <em>corner-boost</>: if, in the intermediate frame K', the directions of the two velocities are perpendicular.
+ <P>Here, we define a <em>corner-boost</em>: if, in the intermediate frame K', the directions of the two velocities are perpendicular.
  This is a simpler case, which illustrates well the basic effects.
   
  <P>An approximate way of describing kinematic (Wigner) rotation is that <em>a change of direction imparts a rotation</em>. 
@@ -41,13 +41,13 @@ a three dimensional rotation. This rotation of the local frame of rest is the ki
 effect that causes the Thomas precession."</em>
 
 References for kinematic spin (Thomas precession):
+
 <ul>
  <li><a href='https://jila.colorado.edu/arey/sites/default/files/files/seven(1).pdf'>Smoot</a>
  <li><a href='https://demonstrations.wolfram.com/ThomasPrecessionInAcceleratedPlanarMotion/'>Rodd-Routley</a>
  <li><em>Gravitation</em> by Misner, Thorne, Wheeler. Equations 6.29, 41.46
 </ul> 
 
-<P>
  The kinematic spin (Thomas precession) vector is proportional to the 
  cross product of the 3-acceleration and the 3-velocity (in that order!).
  So, the magnitude of the precession vector is 0 when that cross-product is 

@@ -74,6 +74,8 @@ It emphasizes the physics, and you aren't distracted by large or small numbers s
 **The speed β for some real objects (extreme cosmic rays) can't be represented with a Double in Java.**
 It's too close to 1 (about 22 decimals). Only the *BigDecimal* class can represent such numbers.
 However, working with *BigDecimal* is more painful than working with *Double*, so this is left out as a special case.
+Another case of this: the implementation of a Map can coerce the speed of protons in the 
+LHC to the value of 1 (I saw this in my <em>Velocity</em> class).
 
 **Formulas: many-formulas versus one-formula is a very interesting question.**
 This project implements as many calculations as possible with the core Lorentz Transformation, instead of using a new formula for each phenomenon. 

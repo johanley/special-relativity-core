@@ -34,7 +34,7 @@ public final class FindEvent {
    this.epsilon = epsilon;
   }
   
-  /** Call {@link #NFindEvent(TimelikeHistory, Function, Double)} with epsilon equal to {@link #EPSILON}. */
+  /** Call {@link #FindEvent(TimelikeHistory, Function, Double)} with epsilon equal to {@link #EPSILON}. */
   public FindEvent(TimelikeHistory history, Function<Event, Double> criterion) {
     this(history, criterion, EPSILON);
    }

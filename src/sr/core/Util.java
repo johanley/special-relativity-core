@@ -1,7 +1,5 @@
 package sr.core;
 
-import static java.lang.Math.pow;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -114,8 +112,13 @@ public final class Util {
     return result.toString();
   }
   
+  /** @param x must be greater than 1. */
   public static double arc_cosh(double x) {
-    return Math.log( x + pow(x*x - 1, 0.5) );
+    //https://en.wikipedia.org/wiki/Inverse_hyperbolic_functions
+    if (x < 1) {
+      throw new IllegalArgumentException("x must be > 1: " + x);
+    }
+    return Math.log( x + sqroot(x*x - 1) );
   }
 
   // PRIVATE 

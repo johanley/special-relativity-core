@@ -40,7 +40,7 @@ public final class ThomasPrecession {
   }
   
   /**
-   The inverse of {@link #primed(Acceleration, Velocity)}.
+   The inverse of {@link #ofKprime(Acceleration, Velocity)}.
     
    @return rate of rotation of K with respect to the co-moving frame K' (right-hand rule); the rate uses ct' (not the proper-time of the object).
   */

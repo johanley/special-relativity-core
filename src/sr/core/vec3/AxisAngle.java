@@ -20,12 +20,15 @@ import sr.core.ops.LinearOps;
 */
 public final class AxisAngle extends ThreeVector implements LinearOps<AxisAngle> {
   
-  /** Factory method, taking the 3 components along the XYZ axes, in that order.  */
+  /** Factory method, taking the 3 components (radians) along the XYZ axes, in that order.  */
   public static AxisAngle of(double x, double y, double z) {
     return new AxisAngle(x, y, z);
   }
 
-  /** Factory method. The vector has 1 non-zero component, along the given spatial coordinate axis. */
+  /** 
+   Factory method. The vector has 1 non-zero component, along the given spatial coordinate axis.
+   @param value radians. 
+  */
   public static AxisAngle of(double value, Axis axis) {
     return new AxisAngle(value, axis);
   }

@@ -31,7 +31,7 @@ public abstract class MoveableHistory implements History {
   }
   /**
    Return the displacement to be added to the delta-base. 
-   @param Δct is the difference between <em>ct</em> and the coordinate time attached to {@link DeltaBase#ΔbaseEvent()}.
+   @param Δct is the difference between <em>ct</em> and the coordinate time attached to {@link DeltaBase#baseEvent()}.
   */
   protected abstract FourDelta delta(double Δct);
   

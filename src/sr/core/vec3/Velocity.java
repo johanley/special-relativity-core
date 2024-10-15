@@ -31,6 +31,7 @@ public final class Velocity extends ThreeVector implements LinearOps<Velocity>{
   
   /** 
    Factory method for the case in which the velocity is parallel or anti-parallel to a spatial coordinate axis.
+   WARNING: this can coerce doubles that are near 1 to actually being 1.
    @param speed can be either sign. 
   */
   public static Velocity of(double speed, Axis axis) {

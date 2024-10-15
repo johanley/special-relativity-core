@@ -9,7 +9,7 @@ public interface LinearOps<T> {
   /**
    Spatial rotation about a given axis.
    
-   @param axisAngle
+   @param axisAngle the direction and magnitude
    @param sense the direction of the transformation
    @return a new object
   */

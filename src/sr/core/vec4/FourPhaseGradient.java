@@ -17,7 +17,7 @@ import sr.core.vec3.Velocity;
  <b>In this project <em>c=1</em>, so ω and <em>k</em> are numerically the same.
  This class considers them as interchangeable.</b>
   
- <P>The space components are the direction unit-vector multiplied by <em>k<em>(or ω).
+ <P>The space components are the direction unit-vector multiplied by <em>k</em>(or ω).
 */
 public final class FourPhaseGradient extends FourVector implements LinearOps<FourPhaseGradient>, LinearBoostOp<FourPhaseGradient> {
   

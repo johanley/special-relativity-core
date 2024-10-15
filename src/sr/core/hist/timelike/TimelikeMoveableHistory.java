@@ -40,7 +40,7 @@ public abstract class TimelikeMoveableHistory extends MoveableHistory implements
   /**
    Return the change in a proper-time relative to the delta-base, given the change in 
    coordinate-time relative to the delta-base.
-   @param Δct is the difference between ct and {@link DeltaBase#ΔbaseEvent()#ct(double)}.
+   @param Δct is the difference between <em>ct</em> and {@link DeltaBase#baseEvent()}<em>.ct()</em>.
   */
   protected abstract double Δτ(double Δct);
   

@@ -6,7 +6,7 @@
  If you're working with other units, you'll need to do conversions when 
  interacting with this library.
  
- <P>All angles in this library are in radians.
+ <P>All angles in this library are in radians, unless otherwise indicated.
  
  <P>Almost all physical quantities are represented as type {@link Double} in this library.
  The sole exception is extreme values of β when it's near 1.
@@ -20,8 +20,8 @@
  If the caller needs to use different spatial coords, then the caller needs to 
  change to Cartesian coords before/after interacting with this library.
  
- <P>The metric used in the <em>Classical Theory of Fields</em> by Landau and Lifshitz (1975) is used here: (+,-,-,-,).
- With that metric, all time-like intervals are real numbers, not imaginary.
+ <P>The metric used in the <em>Classical Theory of Fields</em> by Landau and Lifshitz (1975) is used here: (+,-,-,-,) for (ct,x,y,z).
+ With that metric, time-like intervals are positive, and space-like intervals are negative. 
  
  <P>This library is not optimized for execution speed.
 */
