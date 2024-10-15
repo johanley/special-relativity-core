@@ -60,10 +60,14 @@ public final class KinematicRotation {
     double result = 0.0;
     if (noZeroes()) {
       if (!sameLine()) {
-        FourVelocity a = FourVelocity.of(veloOne);
-        FourVelocity at_rest = FourVelocity.of(Velocity.zero());
-        FourVelocity c = FourVelocity.of(veloTwo);
-        HyperbolicTriangle triangle = HyperbolicTriangle.fromFourVelocities(a, at_rest, c);
+        //Important: use the idea that v1 is a boost from K to K', and v2 is a boost from K' to K''
+        //use the perspective of the intermediate frame K' to form the triangle, with one v at rest
+        Velocity veloOneRev_Kp = Velocity.of(veloOne.times(-1));
+        FourVelocity a_Kp = FourVelocity.of(veloOneRev_Kp);
+        FourVelocity at_rest_Kp = FourVelocity.of(Velocity.zero());
+        FourVelocity c_Kp = FourVelocity.of(veloTwo);
+        //the velo's need to be in the same frame here!:
+        HyperbolicTriangle triangle = HyperbolicTriangle.fromFourVelocities(a_Kp, at_rest_Kp, c_Kp);
         result = triangle.angularDefect();
       }
     }
@@ -73,7 +77,7 @@ public final class KinematicRotation {
   /** 
    The magnitude of the kinematic (Wigner) rotation angle.
    
-   <P>This implementation uses the technique describes in Silberstein's relativity 
+   <P>This implementation uses the technique described in Silberstein's relativity 
    <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>textbook</a>. 
    It calculates the angle between the two resultant vectors <em>veloOne + veloTwo</em> and <em>veloTwo + veloOne</em>.
   
