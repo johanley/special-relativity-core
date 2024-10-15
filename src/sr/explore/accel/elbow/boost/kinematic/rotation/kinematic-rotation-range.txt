@@ -1,5 +1,5 @@
 Kinematic (Wigner) rotation (θw) for various combined speeds.
-Here, the pair of velocities are always at right angles to each other.
+Here, the two velocities are always at right angles to each other.
 
 β1                   β2                       |θw|°
 -------------------------------------------------------
@@ -292,3 +292,32 @@ Here, the pair of velocities are always at right angles to each other.
 0.9999999895816072   0.999                   87.43°
 0.9999999895816072   0.9999                  89.18°
 0.9999999895816072   0.9999999895816072      89.98°
+-------------------------------------------------------
+
+For various speeds, find the largest value of θw and the associated angle between the two velocities.
+Step through directions 0.1° at a time, from 0.0° to 180.0°
+
+β                       Max θw°  Angle Between Velocities
+------------------------------------------------------------
+0.1                      0.29°   90.10°
+0.2                      1.17°   90.60°
+0.3                      2.70°   91.40°
+0.4                      4.99°   92.50°
+0.5                      8.23°   94.10°
+0.6                     12.76°   96.40°
+0.7                     19.20°   99.60°
+0.8                     28.96°  104.50°
+0.9                     46.27°  113.10°
+0.95                    63.22°  121.60°
+0.96                    68.46°  124.20°
+0.97                    75.02°  127.50°
+0.98                    83.84°  131.90°
+0.99                    97.66°  138.80°
+0.999                  132.24°  156.10°
+0.9999                 152.87°  166.40°
+
+At lower speeds, the maximum θw occurs when the velocities are nearly perpendicular.
+At higher speeds, the maximum θw occurs when the velocities are nearly anti-parallel.
+
+The limiting max value of θw is π.
+This corresponds to the maximum angular-defect of a triangle in hyperbolic geometry.
