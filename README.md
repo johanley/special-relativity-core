@@ -334,9 +334,14 @@ The unit hyperboloid is a model of <a href="https://en.wikipedia.org/wiki/Hyperb
 Three four-velocities on the unit hyperboloid form a triangle.
 Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.
 
+**The kinematic (Wigner) rotation equals the area "swept out" by the four-velocity vector on the unit hyperboloid.**
+In the case of an elbow-boost, it's the area of a triangle on the unit hyperboloid.
+In the case of circulare motion, it's the area of a circle on the unit hyperboloid, centered at the apex (1,0,0,0).
+
 **Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems**, 
 in which the velocities involved define the XY plane, and the axis of rotation is understood to be the +Z-axis.
 Otherwise, it needs to be treated as any other rotation.
+
 
 <!--
 
