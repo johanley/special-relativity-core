@@ -295,7 +295,7 @@ These remarks apply to *any wave phenomenon*, not just to plane waves of light o
 
 
 **It's a misconception that the product <em>k<sup>i</sup>x<sub>i</sub></em> of the phase-gradient (wave vector) <em>k<sup>i</sup></em> with the coordinates <em>x<sub>i</sub></em> is Poincaré-invariant.**
-This is related to the fact that <em>&Delta;x<sub>i</sub></em> is the true 4-vector, not <em>x<sub>i</sub></em>.
+This is related to the fact that <em>&Delta;x<sup>i</sup></em> is the true 4-vector, not <em>x<sup>i</sup></em>.
 The product <em>k<sup>i</sup>x<sub>i</sub></em> changes during displacement of the origin of coordinates.
 The dot product <em>k<sup>i</sup>&Delta;x<sub>i</sub></em> does not change during displacement of the origin of coordinates.
 
