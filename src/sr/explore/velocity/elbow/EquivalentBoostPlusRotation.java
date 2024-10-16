@@ -1,4 +1,4 @@
-package sr.explore.accel.elbow.boost;
+package sr.explore.velocity.elbow;
 
 import sr.core.Axis;
 import sr.core.KinematicRotation;

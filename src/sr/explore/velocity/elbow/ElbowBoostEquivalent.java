@@ -1,4 +1,4 @@
-package sr.explore.accel.elbow.boost;
+package sr.explore.velocity.elbow;
 
 /**
  Two successive boosts, the second at some angle to the first, are 

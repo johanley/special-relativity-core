@@ -1,4 +1,4 @@
-package sr.explore.accel.elbow.boost.kinematic.rotation;
+package sr.explore.velocity.elbow.kinematic.rotation;
 
 import static sr.core.Axis.X;
 import static sr.core.Axis.Z;
@@ -17,7 +17,7 @@ import sr.core.vec3.Direction;
 import sr.core.vec3.Velocity;
 import sr.core.vec4.FourDelta;
 import sr.explore.Exploration;
-import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
+import sr.explore.velocity.elbow.EquivalentBoostPlusRotation;
 import sr.output.text.TextOutput;
 
 /**  

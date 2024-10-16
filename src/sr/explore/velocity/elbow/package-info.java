@@ -54,4 +54,4 @@ References for kinematic spin (Thomas precession):
  the 0-vector (no acceleration, no velocity, or both are in the same line).
  The change in angle after one orbit is 2*pi(1-gamma), and it's retrograde, that is, opposite to the sense of the circular motion.
 */
-package sr.explore.accel.elbow.boost;
+package sr.explore.velocity.elbow;
