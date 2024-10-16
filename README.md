@@ -262,6 +262,8 @@ Example: the transformation of the electromagnetic field tensor.
 **Aberration and the Doppler effect are two aspects of one phenomenon.**
 Both come directly from the Lorentz Transformation of the wave vector k<sup>i</sup>.
 
+<!-- 
+
 **Two boosts commute only when they are in the same line.**
 An elbow-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
@@ -281,6 +283,7 @@ tan θ = -(Γ1*Γ2*β1*β2)/(Γ1 + Γ2)
 ```
 This confuses me. It seems like the breakdown of two boosts = boost + rotation no longer needs the rotation. 
   
+-->
 
 **The change in phase related to any wave phenomenon is an invariant scalar because it describes a fact in the world.**
 Picture an electric clock having hands.
