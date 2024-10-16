@@ -1,6 +1,7 @@
 package sr.core;
 
 import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 import static java.lang.Math.cosh;
 import static java.lang.Math.sinh;
 
@@ -63,24 +64,39 @@ public final class HyperbolicTriangle {
     t.A = A;
     t.B = B;
     t.C = C;
-    t.b = cosh_law_b(t.A, t.B, t.C);
-    t.a = cosh_law_b(t.B, t.A, t.C);
-    t.c = cosh_law_b(t.A, t.C, t.B);
+    t.a = cosh_law_a(t.A, t.B, t.C);
+    t.b = cosh_law_a(t.B, t.A, t.C);
+    t.c = cosh_law_a(t.C, t.A, t.B);
     return t;
   }
   
   /** 
    Return the full data for a hyperbolic triangle, starting with side-angle-side information, 
    and computing the remainder. 
- */
+  */
   public static HyperbolicTriangle fromSideAngleSide(double A, double b, double C) {
     HyperbolicTriangle t = new HyperbolicTriangle();
     t.A = A;
     t.b = b;
     t.C = C;
-    t.B = cosh_law_B(t.A, t.b, t.C);
-    t.a = cosh_law_b(t.B, t.A, t.C);
-    t.c = cosh_law_b(t.A, t.C, t.B);
+    t.B = cosh_law_A(t.b, t.A, t.C);
+    t.a = cosh_law_a(t.A, t.B, t.C);
+    t.c = cosh_law_a(t.C, t.A, t.B);
+    return t;
+  }
+  
+  /** 
+   Return the full data for a hyperbolic triangle, starting with all three angles, 
+   and computing the remainder. 
+  */
+  public static HyperbolicTriangle fromAngleAngleAngle(double a, double b, double c) {
+    HyperbolicTriangle t = new HyperbolicTriangle();
+    t.a = a;
+    t.b = b;
+    t.c = c;
+    t.A = side_from_angles(a, b, c);
+    t.B = side_from_angles(b, a, c);
+    t.C = side_from_angles(c, a, b);
     return t;
   }
 
@@ -126,19 +142,41 @@ public final class HyperbolicTriangle {
     return result;
   }
   
-  /** Return the interval for the side B. */
-  private static double cosh_law_B(double A, double b, double C) {
+  /** 
+   Return the arc-interval for the side whose angle is the first argument. 
+   The remaining two arguments (arc-intervals) can be passed in either order.  
+  */
+  private static double cosh_law_A(double a, double B, double C) {
     //https://en.wikipedia.org/wiki/Hyperbolic_law_of_cosines
-    double cosh_B = cosh(A)*cosh(C) - sinh(A)*sinh(C)*cos(b);
-    return Util.arc_cosh(cosh_B);
+    double cosh_A = cosh(B)*cosh(C) - sinh(B)*sinh(C)*cos(a);
+    return Util.arc_cosh(cosh_A);
   }
   
-  /** Return the angle b, in the range 0..π. */
-  private static double cosh_law_b(double A, double B, double C) {
-    double numer = cosh(A)*cosh(C) - cosh(B);
-    double denom = sinh(A)*sinh(C);
-    double cos_b = numer / denom;
-    return Math.acos(cos_b); //0..pi
+  /** 
+   Return the angle for the arc-interval passed as the first argument.
+   The remaining two arguments (arc-intervals) can be passed in either order.  
+   @return in the range [0,π]. 
+  */
+  private static double cosh_law_a(double A, double B, double C) {
+    double numer = cosh(B)*cosh(C) - cosh(A);
+    double denom = sinh(B)*sinh(C);
+    double cos_a = numer / denom;
+    return Math.acos(cos_a); //0..pi
+  }
+
+  /** 
+   Return the arc-interval for angle passed as the first argument.
+   The remaining two arguments (angles) can be passed in either order.  
+   
+   <P>This is rather extraordinary - hyperbolic geometry has an absolute scale!
+   There are no similar triangles in hyperbolic geometry, only congruent ones.
+   If the angles are specified, then the whole triangle is specified. 
+  */
+  private static double side_from_angles(double a, double b, double c) {
+    double numer = cos(b)*cos(c) + cos(a);
+    double denom = sin(b)*sin(c);
+    double cosh_A = numer / denom;
+    return Util.arc_cosh(cosh_A);  
   }
   
   /*

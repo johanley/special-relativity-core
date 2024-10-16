@@ -23,61 +23,98 @@ class HyperbolicTriangleTEST {
     assertEquals(t.b, DEGS_90);
     assertEquals(t.B, 11.31, SMALL_DIFF);
     
-    //small equilateral, 60 degrees
     t = HyperbolicTriangle.fromSideAngleSide(SMALL_SIDE, DEGS_60, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.B, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.C, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.a, DEGS_60, TINY_DIFF);
-    assertEquals(t.b, DEGS_60, TINY_DIFF);
-    assertEquals(t.c, DEGS_60, TINY_DIFF);
+    smallEquilateralTriangle(t, TINY_DIFF);
     
-    //small right triangle, 45 degrees
     t = HyperbolicTriangle.fromSideAngleSide(SMALL_SIDE, DEGS_90, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.B, ROOT_2 * SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.C, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.a, DEGS_45, TINY_DIFF);
-    assertEquals(t.b, DEGS_90, TINY_DIFF);
-    assertEquals(t.c, DEGS_45, TINY_DIFF);
+    smallRightTriangle(t, TINY_DIFF);
     
-    //small obtuse triangle, 120 degrees
     t = HyperbolicTriangle.fromSideAngleSide(SMALL_SIDE, DEGS_120, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.B, ROOT_3 * SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.C, SMALL_SIDE, TINY_DIFF);
-    assertEquals(t.a, DEGS_30, TINY_DIFF);
-    assertEquals(t.b, DEGS_120, TINY_DIFF);
-    assertEquals(t.c, DEGS_30, TINY_DIFF);
+    smallObtuse(t, TINY_DIFF);
   }
   
   @Test void sideSideSide() {
-    //small equilateral, 60 degrees
     HyperbolicTriangle t = HyperbolicTriangle.fromSideSideSide(SMALL_SIDE, SMALL_SIDE, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE);
-    assertEquals(t.B, SMALL_SIDE);
-    assertEquals(t.C, SMALL_SIDE);
-    assertEquals(t.a, DEGS_60, TINY_DIFF);
-    assertEquals(t.b, DEGS_60, TINY_DIFF);
-    assertEquals(t.c, DEGS_60, TINY_DIFF);
+    smallEquilateralTriangle(t, TINY_DIFF);
     
-    //small right triangle, 45 degrees
     t = HyperbolicTriangle.fromSideSideSide(SMALL_SIDE, ROOT_2* SMALL_SIDE, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE);
-    assertEquals(t.B, ROOT_2*SMALL_SIDE);
-    assertEquals(t.C, SMALL_SIDE);
-    assertEquals(t.a, DEGS_45, TINY_DIFF);
-    assertEquals(t.b, DEGS_90, TINY_DIFF);
-    assertEquals(t.c, DEGS_45, TINY_DIFF);
+    smallRightTriangle(t, TINY_DIFF);
     
-    //small obtuse triangle, 120 degrees
     t = HyperbolicTriangle.fromSideSideSide(SMALL_SIDE, ROOT_3* SMALL_SIDE, SMALL_SIDE);
-    assertEquals(t.A, SMALL_SIDE);
-    assertEquals(t.B, ROOT_3*SMALL_SIDE);
-    assertEquals(t.C, SMALL_SIDE);
-    assertEquals(t.a, DEGS_30, TINY_DIFF);
-    assertEquals(t.b, DEGS_120, TINY_DIFF);
-    assertEquals(t.c, DEGS_30, TINY_DIFF);
+    smallObtuse(t, TINY_DIFF);
+  }
+
+  /** It seems to be  hard to make a small triangle like this: the scale is absolute in hyperbolic geometry! */
+  @Test void angleAngleAngle() {
+    HyperbolicTriangle t = HyperbolicTriangle.fromAngleAngleAngle(DEGS_60, DEGS_60, DEGS_60);
+    smallEquilateralTriangle(t, SMALL_DIFF); //not TINY_DIFF!
+    
+    t = HyperbolicTriangle.fromAngleAngleAngle(DEGS_90, DEGS_45, DEGS_45);
+    //smallRightTriangle(t, SMALL_DIFF); //FAILS!
+    
+    t = HyperbolicTriangle.fromAngleAngleAngle(DEGS_120, DEGS_30, DEGS_30);
+    //smallObtuse(t, SMALL_DIFF); //FAILS
+    
+    //Just compare to triangles built using other means
+    compareAAA_to_SSS(1, 1, 1);
+    compareAAA_to_SSS(0.1, 0.1, 0.1);
+    compareAAA_to_SSS(0.2, 0.2, 0.2);
+    
+    compareAAA_to_SAS(1, 1, 1);
+    compareAAA_to_SAS(1, 2, 1);
+    compareAAA_to_SAS(1, 3, 1);
+    compareAAA_to_SAS(0.1, 1, 0.1);
+  }
+
+  /** Small equilateral, 60 degrees. */
+  private void smallEquilateralTriangle(HyperbolicTriangle t, double tolerance) {
+    assertEquals(t.A, SMALL_SIDE, tolerance);
+    assertEquals(t.B, SMALL_SIDE, tolerance);
+    assertEquals(t.C, SMALL_SIDE, tolerance);
+    assertEquals(t.a, DEGS_60, tolerance);
+    assertEquals(t.b, DEGS_60, tolerance);
+    assertEquals(t.c, DEGS_60, tolerance);
+  }
+
+  /** Small right triangle, 45 degrees. */
+  private void smallRightTriangle(HyperbolicTriangle t, double tolerance) {
+    assertEquals(t.A, SMALL_SIDE, tolerance);
+    assertEquals(t.B, ROOT_2*SMALL_SIDE, tolerance);
+    assertEquals(t.C, SMALL_SIDE, tolerance);
+    assertEquals(t.a, DEGS_45, tolerance);
+    assertEquals(t.b, DEGS_90, tolerance);
+    assertEquals(t.c, DEGS_45, tolerance);
+  }
+
+  /** Small obtuse triangle, 120 degrees. */
+  private void smallObtuse(HyperbolicTriangle t, double tolerance) {
+    assertEquals(t.A, SMALL_SIDE, tolerance);
+    assertEquals(t.B, ROOT_3*SMALL_SIDE, tolerance);
+    assertEquals(t.C, SMALL_SIDE, tolerance);
+    assertEquals(t.a, DEGS_30, tolerance);
+    assertEquals(t.b, DEGS_120, tolerance);
+    assertEquals(t.c, DEGS_30, tolerance);
+  }
+  
+  private void compareAAA_to_SSS(double A, double B, double C) {
+    HyperbolicTriangle precomputed = HyperbolicTriangle.fromSideSideSide(A, B, C);
+    HyperbolicTriangle t = HyperbolicTriangle.fromAngleAngleAngle(precomputed.a, precomputed.b, precomputed.c);
+    areEqualTriangles(t, precomputed, TINY_DIFF);
+  }
+  
+  private void compareAAA_to_SAS(double A, double b, double C) {
+    HyperbolicTriangle precomputed = HyperbolicTriangle.fromSideAngleSide(A, b, C);
+    HyperbolicTriangle t = HyperbolicTriangle.fromAngleAngleAngle(precomputed.a, precomputed.b, precomputed.c);
+    areEqualTriangles(t, precomputed, TINY_DIFF);
+  }
+  
+  private void areEqualTriangles(HyperbolicTriangle one, HyperbolicTriangle two, double tolerance) {
+    assertEquals(one.A, two.A, tolerance);
+    assertEquals(one.B, two.B, tolerance);
+    assertEquals(one.C, two.C, tolerance);
+    assertEquals(one.a, two.a, tolerance);
+    assertEquals(one.b, two.b, tolerance);
+    assertEquals(one.c, two.c, tolerance);
   }
   
   private static final double DEGS_30 = Util.degsToRads(30);
