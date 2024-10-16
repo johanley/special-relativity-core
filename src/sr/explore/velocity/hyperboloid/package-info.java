@@ -11,4 +11,4 @@
  <P>It's interesting to note that curved geometry does have a non-trivial role to place in special relativity, 
   even though space-time itself is flat.
 */
-package sr.explore.hyperboloid;
+package sr.explore.velocity.hyperboloid;

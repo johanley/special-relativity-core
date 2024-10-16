@@ -1,4 +1,4 @@
-package sr.explore.hyperboloid;
+package sr.explore.velocity.hyperboloid;
 
 import static sr.core.Axis.X;
 import static sr.core.Util.NL;

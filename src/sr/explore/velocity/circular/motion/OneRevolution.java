@@ -1,4 +1,4 @@
-package sr.explore.accel.circular.motion;
+package sr.explore.velocity.circular.motion;
 
 import sr.core.Axis;
 import sr.core.Util;
