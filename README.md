@@ -335,8 +335,9 @@ Three four-velocities on the unit hyperboloid form a triangle.
 Solving this hyperbolic triangle equates to relativistic velocity addition, and also to finding the kinematic (Wigner) rotation.
 
 **The kinematic (Wigner) rotation equals the area "swept out" by the four-velocity on the unit hyperboloid.**
-In the case of an elbow-boost, it's the area of a *triangle* on the unit hyperboloid.
-In the case of circular motion, it's the area of a *circle* on the unit hyperboloid, centered at its apex (1,0,0,0).
+The center of the sweep is the apex (1,0,0,0).
+In the case of an elbow-boost involving three frames K, K', and K'', it's the area of a *triangle* on the unit hyperboloid, formed using the intermediate frame K' as base.
+In the case of circular motion, it's the area of a *circle* on the unit hyperboloid.
 
 **Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems**, 
 in which the velocities involved define the XY plane, and the axis of rotation is understood to be the +Z-axis.
