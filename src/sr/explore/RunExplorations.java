@@ -29,12 +29,12 @@ import sr.explore.velocity.onegee.OneGeeForever;
 import sr.explore.velocity.onegee.OneGeeThereAndBack;
 import sr.explore.velocity.onegee.OneGeeThereAndBackWithCruise;
 import sr.explore.velocity.onegee.OneGeeThereAndStay;
-import sr.explore.velocitytransform.BoostToRotateVelocity;
-import sr.explore.velocitytransform.Commutation;
-import sr.explore.velocitytransform.CompareFormulaWithLT;
-import sr.explore.velocitytransform.MaxAngleBetweenResultVectors;
-import sr.explore.velocitytransform.NeverExceedsSpeedLimit;
-import sr.explore.velocitytransform.SignReversal;
+import sr.explore.velocity.transform.BoostToRotateVelocity;
+import sr.explore.velocity.transform.Commutation;
+import sr.explore.velocity.transform.CompareFormulaWithLT;
+import sr.explore.velocity.transform.MaxAngleBetweenResultVectors;
+import sr.explore.velocity.transform.NeverExceedsSpeedLimit;
+import sr.explore.velocity.transform.SignReversal;
 import sr.explore.waves.InvariantPhaseDifference;
 import sr.explore.waves.WavesInMedia;
 

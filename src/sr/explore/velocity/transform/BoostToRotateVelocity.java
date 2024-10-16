@@ -1,4 +1,4 @@
-package sr.explore.velocitytransform;
+package sr.explore.velocity.transform;
 
 import static sr.core.Util.NL;
 import static sr.core.Util.degsToRads;
