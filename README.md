@@ -288,8 +288,8 @@ You plug it in, it runs for while, and then you unplug it.
 Take the phase as describing the angular position of the minute hand. 
 The *total change in the phase*, between the plug-it-in event and the unplug-it event, is an objective fact.
 It doesn't depend on the coordinate frame in any way.
-Every frame must agree on the size of the *change* in the phase.
-
+Every frame must agree on the size of the **change** in the phase.
+**Since different zero-points can be defined for the phase, it's not true that phase itself is an invariant.**
 
 These remarks apply to *any wave phenomenon*, not just to plane waves of light of a single frequency traveling in a vacuum.
 
