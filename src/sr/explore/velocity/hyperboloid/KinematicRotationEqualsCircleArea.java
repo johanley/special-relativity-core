@@ -79,12 +79,13 @@ public final class KinematicRotationEqualsCircleArea extends TextOutput implemen
     return arc_cosh(at_rest.dot(u));
   }
   
-  /** Some might prefer this style. I prefer the other, since it's more general. */
   @SuppressWarnings("unused")
+  /** Some might prefer this style. I prefer the other, since it's more general. */
   private double arcInterval2(double β) {
     return Util.arc_tanh(β);
   }
 
+  @SuppressWarnings("unused")
   /** This simple alternate calc gives the same result. */
   private double kinematicRotationAfterOneRev(double β) {
     //https://galileoandeinstein.phys.virginia.edu/Elec_Mag/2022_Lectures/EM_68_Thomas_Precession.html
