@@ -3,6 +3,7 @@ package sr.explore.velocity.hyperboloid;
 import static sr.core.Util.NL;
 
 import sr.core.Axis;
+import sr.core.Physics;
 import sr.core.Util;
 
 import static sr.core.Util.*;
@@ -37,9 +38,9 @@ public final class KinematicRotationEqualsCircleArea extends TextOutput implemen
     outputToConsoleAnd("kinematic-rotation-equals-circle-area.txt");
   }
 
-  //v, r, rotation corresponding to one full circle
+  //v, r, rotation corresponding to one full circle, area on the unit hyperboloid
   private Table header = new Table("%-8s", "%-12s", "%-13s", "%-20s");
-  private Table table = new Table("%6.2f", "%8.3f", "%12.3f", "%12.3f");
+  private Table table = new Table("%6.2f", "%8.3f", "%12.5f", "%12.5f");
   
   private void rotationAfterOneFullCircle(double radius) {
     add("Kinematic rotation (Wigner rotation) equals the angular-defect of a triangle on the unit hyperboloid in four-velocity space.");
@@ -53,9 +54,9 @@ public final class KinematicRotationEqualsCircleArea extends TextOutput implemen
     add(header.row("", "Radius", "(rads)", "On Unit Hyperboloid"));
     add(dashes(75));
     for(int i = 1; i <= 99; ++i) {
-      double β = i / 100.0;
+      double β = i / 100.0; //avoid integer division
       TimelikeMoveableHistory circle = CircularMotion.of(TimelikeDeltaBase.of(Position.origin()), radius, β, Axis.Z, 0.0);
-      double ct_one_rev = 2*Math.PI * radius / β;
+      double ct_one_rev = 2 * Math.PI * radius / β;
       AxisAngle rotation = circle.rotation(ct_one_rev);
       add(table.row(
         β, 
@@ -67,6 +68,7 @@ public final class KinematicRotationEqualsCircleArea extends TextOutput implemen
   }
   
   private double areaCircleOnUnitHyperboloid(double β) {
+    //https://www.whitman.edu/Documents/Academics/Mathematics/2014/brewert.pdf
     double r = arcInterval(β);
     return 2 * Math.PI * (Math.cosh(r) - 1); 
   }
@@ -77,10 +79,16 @@ public final class KinematicRotationEqualsCircleArea extends TextOutput implemen
     return arc_cosh(at_rest.dot(u));
   }
   
-  /** Some might prefer this style, but I prefer the other, since it's more general. */
+  /** Some might prefer this style. I prefer the other, since it's more general. */
   @SuppressWarnings("unused")
   private double arcInterval2(double β) {
     return Util.arc_tanh(β);
+  }
+
+  /** This simple alternate calc gives the same result. */
+  private double kinematicRotationAfterOneRev(double β) {
+    //https://galileoandeinstein.phys.virginia.edu/Elec_Mag/2022_Lectures/EM_68_Thomas_Precession.html
+    return 2 * Math.PI * (1 - Physics.Γ(β));
   }
   
   private double rounded(double value) {
