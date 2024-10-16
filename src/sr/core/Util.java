@@ -120,6 +120,17 @@ public final class Util {
     }
     return Math.log( x + sqroot(x*x - 1) );
   }
+  
+  public static double arc_tanh(double x) {
+    //https://en.wikipedia.org/wiki/Inverse_hyperbolic_functions
+    if (x < -1 || x > 1) {
+      throw new IllegalArgumentException("x must be in range (-1,1): " + x);
+    }
+    double numer = 1 + x;
+    double denom = 1 - x;
+    return 0.5 * Math.log(numer / denom);
+  }
+
 
   // PRIVATE 
   

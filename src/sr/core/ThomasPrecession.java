@@ -31,9 +31,9 @@ public final class ThomasPrecession {
    Instantaneous rate of precession for a given instantaneous acceleration.
    The result is 0 if the motion has no acceleration, or if the motion is accelerated but all in the same line.
    
-   @param a in K, the instantaneous acceleration of an object at time ct
-   @param v in K, the instantaneous velocity of an object at time ct
-   @return rate of rotation of the co-moving frame K' with respect to K (right-hand rule); the rate uses ct.
+   @param a in K, the instantaneous acceleration of an object at time <em>ct</em>
+   @param v in K, the instantaneous velocity of an object at time <em>ct</em>
+   @return rate of rotation of the co-moving frame K' with respect to K (right-hand rule); the rate uses <em>ct</em>
   */
   public static AxisAngle ofKprime(Acceleration a, Velocity v) {
     return transform(a, v, +1);

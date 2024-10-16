@@ -24,6 +24,7 @@ import sr.explore.velocity.elbow.EquivalentBoostPlusRotation;
 import sr.explore.velocity.elbow.kinematic.rotation.KinematicRotationFromSimpleHistories;
 import sr.explore.velocity.elbow.kinematic.rotation.KinematicRotationRange;
 import sr.explore.velocity.hyperboloid.FourVelocityUnitHyperboloid;
+import sr.explore.velocity.hyperboloid.KinematicRotationEqualsCircleArea;
 import sr.explore.velocity.onegee.OneGeeConnectedRockets;
 import sr.explore.velocity.onegee.OneGeeForever;
 import sr.explore.velocity.onegee.OneGeeThereAndBack;
@@ -90,6 +91,7 @@ public final class RunExplorations {
     result.add(new WavesInMedia());
     result.add(new InvariantPhaseDifference());
     result.add(new FourVelocityUnitHyperboloid());
+    result.add(new KinematicRotationEqualsCircleArea());
     return result;
   }
 }
