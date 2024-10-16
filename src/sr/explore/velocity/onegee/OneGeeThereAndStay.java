@@ -1,4 +1,4 @@
-package sr.explore.accel.speed;
+package sr.explore.velocity.onegee;
 
 import static sr.core.Physics.ONE_GEE;
 

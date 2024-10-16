@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import sr.core.component.ops.Sense;
 import sr.core.vec3.Velocity;
 
+/** Unit test. */
 class VelocityTransformationTEST {
 
   @Test void testAllZeroes() {

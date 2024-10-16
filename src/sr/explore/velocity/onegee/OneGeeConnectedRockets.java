@@ -1,4 +1,4 @@
-package sr.explore.accel.speed;
+package sr.explore.velocity.onegee;
 
 import static sr.core.Axis.X;
 
@@ -57,10 +57,10 @@ the histories have a different form, because of flattening (Lorentz-Fitzgerald c
 two rockets. The second is smaller. This means that the connector must break.
 */
 
-public final class ConnectedRockets extends TextOutput implements Exploration {
+public final class OneGeeConnectedRockets extends TextOutput implements Exploration {
 
   public static void main(String[] args) {
-    Exploration rockets = new ConnectedRockets();
+    Exploration rockets = new OneGeeConnectedRockets();
     rockets.explore();
   }
   
@@ -76,7 +76,7 @@ public final class ConnectedRockets extends TextOutput implements Exploration {
       double connectorLength = stickEndB().event(ct).x() - stickEndA().event(ct).x();
       add(table.row(ct, rocketSeparation, connectorLength));
     }
-    outputToConsoleAnd("connected-rockets.txt");
+    outputToConsoleAnd("one-gee-connected-rockets.txt");
   }
   
   private static final double CONNECTOR_LENGTH = 1.0;

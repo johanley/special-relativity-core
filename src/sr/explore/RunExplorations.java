@@ -9,11 +9,6 @@ import sr.explore.accel.elbow.boost.CornerBoostsDontCommute;
 import sr.explore.accel.elbow.boost.EquivalentBoostPlusRotation;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationFromSimpleHistories;
 import sr.explore.accel.elbow.boost.kinematic.rotation.KinematicRotationRange;
-import sr.explore.accel.speed.ConnectedRockets;
-import sr.explore.accel.speed.OneGeeForever;
-import sr.explore.accel.speed.OneGeeThereAndBack;
-import sr.explore.accel.speed.OneGeeThereAndBackWithCruise;
-import sr.explore.accel.speed.OneGeeThereAndStay;
 import sr.explore.clocks.LightClock;
 import sr.explore.clocks.MakeAClockRunFaster;
 import sr.explore.clocks.TravelTime;
@@ -29,6 +24,11 @@ import sr.explore.optics.lightsliceofastick.LightSliceOfAStick;
 import sr.explore.optics.mirror.MovingMirror;
 import sr.explore.optics.telescope.BoostedTelescope;
 import sr.explore.speeds.SpeedsAndGammas;
+import sr.explore.velocity.onegee.OneGeeConnectedRockets;
+import sr.explore.velocity.onegee.OneGeeForever;
+import sr.explore.velocity.onegee.OneGeeThereAndBack;
+import sr.explore.velocity.onegee.OneGeeThereAndBackWithCruise;
+import sr.explore.velocity.onegee.OneGeeThereAndStay;
 import sr.explore.velocitytransform.BoostToRotateVelocity;
 import sr.explore.velocitytransform.Commutation;
 import sr.explore.velocitytransform.CompareFormulaWithLT;
@@ -56,7 +56,7 @@ public final class RunExplorations {
 
   private static List<Exploration> explorations(){
     List<Exploration> result = new ArrayList<>();
-    result.add(new ConnectedRockets());
+    result.add(new OneGeeConnectedRockets());
     result.add(new OneGeeForever());
     result.add(new OneGeeThereAndBack());
     result.add(new OneGeeThereAndBackWithCruise());
