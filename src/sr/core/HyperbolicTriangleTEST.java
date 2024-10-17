@@ -1,6 +1,7 @@
 package sr.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +65,20 @@ class HyperbolicTriangleTEST {
     compareAAA_to_SAS(1, 2, 1);
     compareAAA_to_SAS(1, 3, 1);
     compareAAA_to_SAS(0.1, 1, 0.1);
+  }
+  
+  @Test void equalState() {
+    HyperbolicTriangle t1 = HyperbolicTriangle.fromSideAngleSide(1.0, DEGS_90, 2.0);
+    HyperbolicTriangle t2 = HyperbolicTriangle.fromAngleAngleAngle(t1.a, t1.b, t1.c);
+    assertTrue(t1.equals(t2));
+    
+    t1 = HyperbolicTriangle.fromSideAngleSide(1.0, DEGS_30, 2.0);
+    t2 = HyperbolicTriangle.fromAngleAngleAngle(t1.a, t1.b, t1.c);
+    assertTrue(t1.equals(t2));
+    
+    t1 = HyperbolicTriangle.fromSideAngleSide(1.0, DEGS_120, 2.0);
+    t2 = HyperbolicTriangle.fromAngleAngleAngle(t1.a, t1.b, t1.c);
+    assertTrue(t1.equals(t2));
   }
 
   /** Small equilateral, 60 degrees. */

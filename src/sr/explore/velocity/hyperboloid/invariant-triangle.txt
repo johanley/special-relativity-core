@@ -1,0 +1,19 @@
+Build a triangle using 3 four-velocities on the unit hyperboloid.
+Then boost it and see if it remains the same triangle, having the same angles and sides.
+
+Start with a triangle having one corner at the apex (1,0,0,0) of the unit hyperboloid.
+This means that one of the four-velocities corresponds to an object at rest.
+
+Four-velocity u1: [1.0, 0.0, 0.0, 0.0] at rest
+Four-velocity u2: [1.02062, -0.20412, 0.0, 0.0]
+Four-velocity u3: [1.07833, 0.10783, 0.21567, 0.3235]
+
+Hyperbolic triangle before boost: 
+ABC[0.4902,0.39326,0.20273] abc[1.84135,0.86676,0.39589] angular-defect:0.03759
+
+Apply this boost velocity to the input four-velocities: [0.5,0.5,0.2]
+
+Hyperbolic triangle after boost: 
+ABC[0.4902,0.39326,0.20273] abc[1.84135,0.86676,0.39589] angular-defect:0.03759
+
+The two triangles are equal: true

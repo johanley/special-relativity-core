@@ -116,7 +116,7 @@ public final class Util {
   public static double arc_cosh(double x) {
     //https://en.wikipedia.org/wiki/Inverse_hyperbolic_functions
     if (x < 1) {
-      throw new IllegalArgumentException("x must be > 1: " + x);
+      throw new IllegalArgumentException("x must be >= 1: " + x);
     }
     return Math.log( x + sqroot(x*x - 1) );
   }

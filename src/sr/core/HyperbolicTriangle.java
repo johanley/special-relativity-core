@@ -115,6 +115,11 @@ public final class HyperbolicTriangle {
     return Math.PI - (a + b + c);
   }
   
+  /** The area of the triangle equals its angular defect. */
+  public double area() {
+    return angularDefect();
+  }
+  
   /** Angle opposite side A, range 0..π. */
   public double a;
   /** Angle opposite side B, range 0..π. */
@@ -140,6 +145,25 @@ public final class HyperbolicTriangle {
     result = result + rounded(c) + "]";
     result = result + " angular-defect:" + rounded(angularDefect());
     return result;
+  }
+
+  /** WARNING: this implementation is not synchronized with hashCode. */
+  @Override public boolean equals(Object aThat) {
+    if (this == aThat) return true;
+    if (!(aThat instanceof HyperbolicTriangle)) return false;
+    
+    HyperbolicTriangle that = (HyperbolicTriangle)aThat;
+    boolean result = eq(A, that.A);
+    result = result && eq(B, that.B);
+    result = result && eq(C, that.C);
+    result = result && eq(a, that.a);
+    result = result && eq(b, that.b);
+    result = result && eq(c, that.c);
+    return result;
+  }
+  
+  private boolean eq(double a, double b) {
+    return Math.abs(a - b) <= 0.0001;
   }
   
   /** 
