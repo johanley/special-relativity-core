@@ -1,0 +1,17 @@
+For circular motion, the kinematic rotation is simply cumulative, and adds up over time.
+Calculate kinematic rotation in the case of the (low-speed) Earth orbiting the barycenter of the solar system, over a long time scale.
+Assume a circular orbit.
+
+Average speed of the Earth with respect to the barycenter of the solar system:
+ 107208.0 km/h
+ 29.78 km/s
+ 29780.0 m/s
+ 9.933538755000969E-5 light-years/year (β)
+
+Rotation after one revolution: 3.099972597283817E-8 rads (about 6.4 milliarcseconds per year)
+Revolutions (years) needed for a cumulative rotation of 1 arc minute: 9383.6 years.
+Revolutions (years) needed for a cumulative rotation of 1 degree: 563014.4 years.
+
+For kinematic rotation to affect the Earth's orientation by 1 degree, it takes about 600,000 years.
+This calculation isn't physically meaningless.
+The effect is simply 'added to' whatever happens to affect the Earth's orientation.

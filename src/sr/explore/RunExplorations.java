@@ -21,6 +21,7 @@ import sr.explore.velocity.circular.motion.KinematicSpinAsLimit;
 import sr.explore.velocity.circular.motion.OneRevolution;
 import sr.explore.velocity.elbow.CornerBoostsDontCommute;
 import sr.explore.velocity.elbow.EquivalentBoostPlusRotation;
+import sr.explore.velocity.elbow.kinematic.rotation.EarthOverLongPeriods;
 import sr.explore.velocity.elbow.kinematic.rotation.KinematicRotationFromSimpleHistories;
 import sr.explore.velocity.elbow.kinematic.rotation.KinematicRotationRange;
 import sr.explore.velocity.hyperboloid.FourVelocityUnitHyperboloid;
@@ -94,6 +95,7 @@ public final class RunExplorations {
     result.add(new FourVelocityUnitHyperboloid());
     result.add(new KinematicRotationEqualsCircleArea());
     result.add(new InvariantTriangle());
+    result.add(new EarthOverLongPeriods());
     return result;
   }
 }
