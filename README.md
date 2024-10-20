@@ -56,13 +56,22 @@ When a Doppler cone is boosted it retains its conical form, but is no longer a *
 **Invariance** here means invariance of the space-time interval. 
 That is, it's related to the transformations of the <a href='https://en.wikipedia.org/wiki/Poincar%C3%A9_group'>Poincaré group</a>.
 This includes boosts, spatial rotations, displacements (in time and space), and reversals (of clocks and spatial axes).
+
+**Arc-interval** is used instead of *rapidity*.
+
  
-## References
+## General References
 
  - *<a href='https://archive.org/details/spacetimephysics00edwi_0'>Spacetime Physics</a>*, by Taylor and Wheeler, is a good introduction.
  - *<a href='https://archive.org/details/isbn_9788181477873_2/mode/2up'>The Classical Theory of Fields</a>*, by Landau and Lifshitz, has deep insight.
  - *<a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>The Theory of Relativity</a>* by Ludwik Silberstein discusses the rotation related to non-linear acceleration.
  - <a href='http://specialrelativity.net/'>specialrelativity.net</a> is a website created by the author of this project, which explains the theory in elementary terms. It has numerous graphics and animations. 
+
+## Limitations
+
+**The coordinate system is limited to Cartesian coordinates.**
+In the core code, no allowance is made for other coordinate systems.  
+
 
 ## What I've learned so far in this project
 
@@ -345,6 +354,18 @@ In the case of circular motion, it's the area of a *circle* on the unit hyperbol
 **Characterizing the kinematic (Wigner) rotation as a negative number works only in certain coordinate systems**, 
 in which the velocities involved define the XY plane, and the axis of rotation is understood to be the +Z-axis.
 Otherwise, it needs to be treated as any other rotation.
+
+**On the unit hyperboloid <em>H<sup>+</sup></em> related to four-velocity, a displacement corresponds to a boost.**
+As in Euclidean geometry, a displacement doesn't affect the sides and angles of a triangle.
+For a triangle on <em>H<sup>+</sup></em>, these things are invariant during a boost: 
+<ul>
+ <li>the arc-intervals of the sides (likewise for the perimeter)
+ <li>the area 
+ <li>the angular defect
+ <li>the area of the three "sectors", each sector being defined by the origin (0,0,0,0) and two vertices of the triangle
+</ul>
+
+<P>In a 1+1 space-time, the sector-area is one half of the corresponding arc-interval.
 
 
 <!--
