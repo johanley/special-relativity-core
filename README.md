@@ -69,8 +69,8 @@ This includes boosts, spatial rotations, displacements (in time and space), and 
 
 
 
-## Pleasant Aspects
-
+## The Nice Bits
+ 
 **A <a href='https://github.com/johanley/special-relativity-core/tree/master/src/sr/core/hist'>history</a> can be built out of pieces that can be "moved around" in space-time.**
 
 **A small collection of simple <a href="https://github.com/johanley/special-relativity-core/tree/master/src/sr/core/hist/timelike">time-like histories</a> are provided.**
@@ -84,7 +84,7 @@ Mathematicians correctly make the distinction between *affine* and *linear*, whi
 **Almost all physics calculations refer directly back to the core's implementation of the Lorentz Transformations.**
 The sole exception to this is the kinematic spin (Thomas precession) which accompanies circular motion.
 In this case, using the Lorentz Transformations directly would require numerical integration.
-That's avoided here. In that case a formula is used, instead of refering back to the Lorentz Transformations directly. 
+That's avoided here, and a formula for the effect is used instead.
 
 **Attached to time-like histories are both a *proper-time* and an *orientation*.**
 An orientation is needed in order to describe the kinematic (Wigner) rotation of an object with mass.
@@ -95,13 +95,13 @@ In the same way that the proper-time can be imagined as an ideal clock co-moving
  
 
 
-## Unpleasant Aspects
+## The Not-So-Nice Bits
 
 **The coordinate system is limited to Cartesian coordinates.**
 In the core code, no allowance is made for other coordinate systems.
 For example, it would be pleasant to explore <em>light-cone coordinates</em>, but the core makes no provision for that.
 
-**Four-tensors are not implemented**.  
+**Four-tensors are not implemented**. Only four-vectors.
 
 
 ## What I've learned so far in this project
