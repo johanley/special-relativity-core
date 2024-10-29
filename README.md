@@ -4,7 +4,7 @@ Implement the ideas of special relativity in code, and explore the consequences 
 Mostly kinematics.
 
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
-asserts that by implementing a physics theory in code, you gain deeper insight into the theory. 
+asserts that by implementing a physics theory in code, you gain deeper insight into the theory (<a href='https://www.youtube.com/watch?v=_2qXIDO-cWw&t=19s'>link</a>). 
 I'm hoping that this is the case with this little project as well.
 
 *"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
@@ -67,10 +67,41 @@ This includes boosts, spatial rotations, displacements (in time and space), and 
  - *<a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>The Theory of Relativity</a>* by Ludwik Silberstein discusses the rotation related to non-linear acceleration.
  - <a href='http://specialrelativity.net/'>specialrelativity.net</a> is a website created by the author of this project, which explains the theory in elementary terms. It has numerous graphics and animations. 
 
-## Limitations
+
+
+## Pleasant Aspects
+
+**A <a href='https://github.com/johanley/special-relativity-core/tree/master/src/sr/core/hist'>history</a> can be built out of pieces that can be "moved around" in space-time.**
+
+**A small collection of simple <a href="https://github.com/johanley/special-relativity-core/tree/master/src/sr/core/hist/timelike">time-like histories</a> are provided.**
+They can be treated as building blocks and stitched together.
+This lets you explore more complex time-like histories.
+
+**An <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/core/component/Event.java'>Event</a> is not a 4-vector, and a <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/core/component/Position.java'>Position</a> is not a 3-vector.**
+It's a common misconception that those things are vectors. 
+Mathematicians correctly make the distinction between *affine* and *linear*, which physicists sometimes ignore.
+
+**Almost all physics calculations refer directly back to the core's implementation of the Lorentz Transformations.**
+The sole exception to this is the kinematic spin (Thomas precession) which accompanies circular motion.
+In this case, using the Lorentz Transformations directly would require numerical integration.
+That's avoided here. In that case a formula is used, instead of refering back to the Lorentz Transformations directly. 
+
+**Attached to time-like histories are both a *proper-time* and an *orientation*.**
+An orientation is needed in order to describe the kinematic (Wigner) rotation of an object with mass.
+When an object with mass undergoes acceleration that's not in the same line as its velocity, then its orientation changes.
+In the same way that the proper-time can be imagined as an ideal clock co-moving with the object, one can also imagine a kind of *ideal gyroscope* co-moving with the object as well.
+
+**The geometry of <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/core/HyperbolicTriangle.java'>hyperbolic triangles</a> is used to explore velocity addition.**
+ 
+
+
+## Unpleasant Aspects
 
 **The coordinate system is limited to Cartesian coordinates.**
-In the core code, no allowance is made for other coordinate systems.  
+In the core code, no allowance is made for other coordinate systems.
+For example, it would be pleasant to explore <em>light-cone coordinates</em>, but the core makes no provision for that.
+
+**Four-tensors are not implemented**.  
 
 
 ## What I've learned so far in this project

@@ -108,8 +108,8 @@ public final class Boost implements ComponentOp {
   
   //rank 2
   //the tensor transform equation gets re-ordered when written as a matrix expression:
-  //chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://www.thphys.nuim.ie/Notes/MP465/Lectures_23-24.pdf
-  //chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://physicspages.com/pdf/Relativity/Electromagnetic%20field%20tensor%20-%20Lorentz%20transformations.pdf
+  //http://www.thphys.nuim.ie/Notes/MP465/Lectures_23-24.pdf
+  //https://physicspages.com/pdf/Relativity/Electromagnetic%20field%20tensor%20-%20Lorentz%20transformations.pdf
   //https://en.wikipedia.org/wiki/Classical_electromagnetism_and_special_relativity#Field_tensor_and_4-current
   //https://hepweb.ucsd.edu/ph110b/110b_notes/node69.html
   //https://www.feynmanlectures.caltech.edu/II_26.html
