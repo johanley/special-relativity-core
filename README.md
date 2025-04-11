@@ -8,8 +8,8 @@ asserts that by implementing a physics theory in code, you gain deeper insight i
 I'm hoping that this is the case with this little project as well.
 
 
-*"Computer science is not a science and its significance has little to do with computers. 
-The computer revolution is a revolution in the way we think and in the way we express what we think."* - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
+**"Computer science is not a science and its significance has little to do with computers. 
+The computer revolution is a revolution in the way we think and in the way we express what we think."** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
 
 *"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
 
