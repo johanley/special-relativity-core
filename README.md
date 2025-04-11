@@ -23,6 +23,7 @@ Computing has three basic goals or modes:
 - **communicate** (move data from A to B; parse and format)
 - **comprehend** (implement in code in order to improve one's understanding)
 
+This project uses the third mode.
 
 In this project: 
  - c=1
