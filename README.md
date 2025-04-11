@@ -16,7 +16,7 @@ The computer revolution is a revolution in the way we think and in the way we ex
 You might think of it this way. 
 Computing has three basic styles or modes:
 - calculate (raw numeric computation)
-- communicate (moving data from A to B; parsing and formatting)
+- communicate (move data from A to B; parse and format)
 - comprehend (code in order to improve one's understanding)
 
 *"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
