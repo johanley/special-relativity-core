@@ -5,7 +5,8 @@ Mostly kinematics.
 
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory (<a href='https://www.youtube.com/watch?v=_2qXIDO-cWw&t=19s'>link</a>). 
-I'm hoping that this is the case with this little project as well.
+I'm hoping that this is the case with this little project as well. 
+(Result: Yes! implementing special relativity in code was a delightfully effective way of learning the theory.)
 
 
 **"Computer science is not a science and its significance has little to do with computers. 
