@@ -13,15 +13,16 @@ I'm hoping that this is the case with this little project as well.
 **<em>"Computer science is not a science and its significance has little to do with computers. 
 The computer revolution is a revolution in the way we think and in the way we express what we think."</em>** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
 
+*"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
+
+*"If you could see it then you'd understand."* - from the song *Speed of Sound*, by *Cold Play*
+
 You might think of it this way. 
 Computing has three basic styles or modes:
 - calculate (raw numeric computation)
 - communicate (move data from A to B; parse and format)
-- comprehend (code in order to improve one's understanding)
+- comprehend (implement in code in order to improve one's understanding)
 
-*"The purpose of computing is insight, not numbers."* - attributed to R. W. Hamming
-
-*"If you could see it then you'd understand."* - from the song *Speed of Sound*, by *Cold Play*
 
 In this project: 
  - c=1
