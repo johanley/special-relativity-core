@@ -42,7 +42,7 @@ I hope you don't find this too bothersome.
 
 **Grid** is used (in the code, not in the documentation) instead of *inertial frame of reference*.
 
-**Elbow-boost** is used instead of *a non-collinear pair of boosts.* 
+**Elbow-boost** is used instead of *a non-colinear pair of boosts.* 
 
 **Corner-boost** is an elbow-boost with an angle of 90° between boosts (as seen in the intermediate frame).
 
@@ -319,7 +319,7 @@ Both come directly from the Lorentz Transformation of the phase-gradient (wave v
 <!-- 
 
 **Two boosts commute only when they are in the same line.**
-An elbow-boost (two non-collinear boosts) is equivalent to a boost plus a rotation.
+An elbow-boost (two non-colinear boosts) is equivalent to a boost plus a rotation.
 The rotation is absent if the two boosts are along the same axis.
 The kinematic (Thomas-Wigner) rotation angle is small for low speeds, but for 
 ultra-relativistic speeds it increases rapidly without bound.
