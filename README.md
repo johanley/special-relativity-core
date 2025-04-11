@@ -18,7 +18,7 @@ The computer revolution is a revolution in the way we think and in the way we ex
 *"If you could see it then you'd understand."* - from the song *Speed of Sound*, by *Cold Play*
 
 You might think of it this way. 
-Computing has three basic styles or modes:
+Computing has three basic goals or modes:
 - **calculate** (core computation with numbers and text)
 - **communicate** (move data from A to B; parse and format)
 - **comprehend** (implement in code in order to improve one's understanding)
