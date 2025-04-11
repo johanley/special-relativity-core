@@ -19,9 +19,9 @@ The computer revolution is a revolution in the way we think and in the way we ex
 
 You might think of it this way. 
 Computing has three basic styles or modes:
-- calculate (raw numeric computation)
-- communicate (move data from A to B; parse and format)
-- comprehend (implement in code in order to improve one's understanding)
+- **calculate** (raw numeric computation)
+- **communicate** (move data from A to B; parse and format)
+- **comprehend** (implement in code in order to improve one's understanding)
 
 
 In this project: 
