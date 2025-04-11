@@ -26,8 +26,8 @@ Computing has three basic goals or modes:
 This project uses the third mode.
 
 In this project: 
- - c=1
- - the metric signature is (ct,x,y,z) = (+,-,-,-)
+ - *c=1*
+ - the metric signature is *(ct,x,y,z)* = *(+,-,-,-)*
 
 The code is separated into two parts:
  - _sr.core_ implements the core ideas of special relativity
