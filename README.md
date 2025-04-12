@@ -8,7 +8,7 @@ asserts that by implementing a physics theory in code, you gain deeper insight i
 When I started this project, I was hoping that this would be the case here. 
 
 **Did it work? Yes! 
-Implementing special relativity in code was a delightfully effective way of learning more about the theory.**
+Implementing special relativity in code was a delightfully effective way of learning the deep structure of the theory.**
 
 Example one: coordinates are not vectors. 
 I had forgotten that, but *the code taught it to me again*, and made it obvious.
