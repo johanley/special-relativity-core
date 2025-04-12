@@ -17,7 +17,7 @@ Example two: surprisingly, the code found a mistake made in many textbooks.
 The mistake is to assert that *the phase of a plane monochromatic wave is invariant*.
 This is inaccurate. 
 It's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> that are invariant.
-**This was the most remarkable outcome of this project - that the code taught me something that contradicts well-written textbooks, and improves upon them.**
+**This was the most remarkable outcome of this project - that the code taught me something that corrects a mistake in well-written textbooks.**
 
 **<em>"Computer science is not a science and its significance has little to do with computers. 
 The computer revolution is a revolution in the way we think and in the way we express what we think."</em>** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
