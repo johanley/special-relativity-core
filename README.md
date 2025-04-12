@@ -13,8 +13,8 @@ Implementing special relativity in code was a delightfully effective way of expl
 Example one: coordinates are not vectors. 
 I had forgotten that, but *the code taught it to me again* (and made it obvious).
 
-Example two: surprisingly, the code found a mistake made in many textbooks.
-The mistake is to assert that *the phase of a plane monochromatic wave is invariant*.
+Example two: surprisingly, the code found a mistake(?) made in many textbooks.
+It's the assertion that *the phase of a plane monochromatic wave is invariant*.
 I find this at least misleading, if not downright incorrect.
 To me the core idea is Poincaré-invariance, the set of transformations that leave the fundamental quadratic form invariant.
 Under that set of transformations (including simple displacement), it's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
