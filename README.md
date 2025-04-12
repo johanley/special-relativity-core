@@ -11,14 +11,15 @@ When I started this project, I was hoping that this would be the case here.
 Implementing special relativity in code was a delightfully effective way of exploring the deep structure of the theory.**
 
 Example one: coordinates are not vectors. 
-I had forgotten that, but *the code taught it to me again*, and made it obvious.
+I had forgotten that, but *the code taught it to me again* (and made it obvious).
 
 Example two: surprisingly, the code found a mistake made in many textbooks.
 The mistake is to assert that *the phase of a plane monochromatic wave is invariant*.
-This is inaccurate. 
-It's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
-that are invariant (because one shouldn't discount simple displacement operations).
-**This was the most remarkable outcome of this project - that the code taught me something that corrects a mistake in well-written textbooks.**
+I find this at least misleading, if not downright incorrect.
+To me the core idea is Poincaré-invariance, the set of transformations that leave the fundamental quadratic form invariant.
+Under that set of transformations (including simple displacement), it's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
+that are Poincaré-invariant.
+**This was the most remarkable outcome of this project.**
 
 **<em>"Computer science is not a science and its significance has little to do with computers. 
 The computer revolution is a revolution in the way we think and in the way we express what we think."</em>** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
