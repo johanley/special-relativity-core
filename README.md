@@ -5,10 +5,20 @@ Mostly kinematics.
 
 The book <em><a href='https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics'>Structure and Interpretation of Classical Mechanics</a></em> by Sussman, Wisdom, and Mayer
 asserts that by implementing a physics theory in code, you gain deeper insight into the theory (<a href='https://www.youtube.com/watch?v=_2qXIDO-cWw&t=19s'>link</a>). 
-I'm hoping that this is the case with this little project as well. 
+When I started this project, I was hoping that this would be the case here. 
 
-(Result: Yes! implementing special relativity in code was a delightfully effective way of learning more about the theory.)
+Did it work? Yes! 
+Implementing special relativity in code was a delightfully effective way of learning more about the theory.
 
+Example one: coordinates are not vectors. 
+I had forgotten that, but *the code taught it to me again*, and made it obvious.
+
+Example two: surprisingly, the code found a mistake made in many textbooks.
+The mistake is to assert that *the phase of a plane monochromatic wave is invariant*.
+This is inaccurate. 
+It's not the *phase* itself, but rather *differences in the phase* that are invariant.
+(If you don't believe this, then you should <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>examine and understand the code</a>.)
+I found this to be the most remarkable outcome of this project - that the code taught me something that contradicts well-written textbooks.
 
 **<em>"Computer science is not a science and its significance has little to do with computers. 
 The computer revolution is a revolution in the way we think and in the way we express what we think."</em>** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
