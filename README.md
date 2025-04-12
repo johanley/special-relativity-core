@@ -19,7 +19,6 @@ I find this at least misleading, if not downright incorrect.
 To me the core idea is Poincaré-invariance, the set of transformations that leave the fundamental quadratic form invariant.
 Under that set of transformations (including simple displacement), it's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
 that are Poincaré-invariant.
-**This was the most remarkable outcome of this project.**
 
 **<em>"Computer science is not a science and its significance has little to do with computers. 
 The computer revolution is a revolution in the way we think and in the way we express what we think."</em>** - <a href='https://youtu.be/_2qXIDO-cWw?t=485'>Abelson and Sussman</a>
