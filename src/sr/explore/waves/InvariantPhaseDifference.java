@@ -30,7 +30,8 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
   @Override public void explore() {
     add("Examine the dot product k.x, the phase of a plane wave of a single frequency.");
     add(" - k is the phase-gradient four-vector.");
-    add(" - x is an event." + Util.NL);
+    add(" - x is an event.");
+    add(" - K, K' are inertial frames." + Util.NL);
     add(Util.NL+"Use the phase-gradient k for light waves in a vacuum."+Util.NL);
     wavesInVacuum();
     outputToConsoleAnd("invariant-phase-difference.txt");
@@ -39,7 +40,7 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
   private void wavesInVacuum() {
     FourPhaseGradient k_K = FourPhaseGradient.of(PhaseGradient.of(1.0, Direction.of(1.0, 1.0, 1.0)));
     Event event_a_K = Event.of(10.0, Position.of(2, 3, 4));
-    add("K: event:" + event_a_K);
+    add("K: event x:" + event_a_K);
     add("K: k:" + k_K);
     add("K: dot-product k.x: " + round(pseudoDot(k_K, event_a_K)));
     
@@ -49,8 +50,8 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
     
     add(Util.NL+"For displacement operations, you need to examine DIFFERENCES in k.x for two different events:");
     Event event_b_K = Event.of(11, 5, 22, 7);
-    add("K: event:" + event_a_K + " a");
-    add("K: event:" + event_b_K + " b");
+    add("K: event a:" + event_a_K);
+    add("K: event b:" + event_b_K);
     add("K: k:" + k_K);
     add("K: difference in the dot-product (k.b - k.a) = k.(b-a): " + round(pseudoDot(k_K, event_b_K) - pseudoDot(k_K, event_a_K)));
     
