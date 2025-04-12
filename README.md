@@ -16,8 +16,8 @@ I had forgotten that, but *the code taught it to me again* (and made it obvious)
 Example two: surprisingly, the code found a mistake(?) made in many textbooks.
 It's the assertion that *the phase of a plane monochromatic wave is invariant*.
 I find this at least misleading, if not downright incorrect.
-To me the core idea is Poincaré-invariance, the set of transformations that leave the fundamental quadratic form invariant.
-Under that set of transformations (including simple displacement), it's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
+To me the core idea is Poincaré-invariance and the set of transformations that leave the fundamental quadratic form invariant.
+Under that set of transformations (which includes simple displacement), it's not the *phase* itself, but rather <a href='https://github.com/johanley/special-relativity-core/blob/master/src/sr/explore/waves/invariant-phase-difference.txt'>*differences in the phase*</a> 
 that are Poincaré-invariant.
 
 **<em>"Computer science is not a science and its significance has little to do with computers. 
