@@ -96,7 +96,7 @@ public final class InvariantPhaseDifference extends TextOutput implements Explor
     return Util.round(value, 5);
   }
   
-  /** NEvent has no dot-product, since it's not a four-vector. */
+  /** An event has no dot-product, since it's not a four-vector. */
   private double pseudoDot(FourPhaseGradient k, Event event) {
     return 
       + k.ct() * event.ct() 
