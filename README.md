@@ -212,7 +212,11 @@ This effect is one of the basic consequences of the Lorentz Transformations.
 
 
 **Silberstein described the rotational aspect of elbow-boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
-Borel mentioned it (without much analysis) in 1913. Thomas and Wigner came much later. 
+Borel mentioned it (without much analysis) in 1913. Thomas and Wigner came much later.
+
+**There's more physics when you add an elbow boost.** 
+In order to see all of the physics, you can't restrict yourself to a single linear boost. 
+You need two *non-colinear* boosts.   
 
 **The geometry of an object (for example, the direction in which a stick is pointing) is in general affected by both regular flattening (Lorentz-Fitzgerald contraction) and kinematic rotation.**
 In general, when examining the geometry of an object, you need to disentangle these two effects.
