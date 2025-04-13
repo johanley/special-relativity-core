@@ -214,7 +214,7 @@ This effect is one of the basic consequences of the Lorentz Transformations.
 **Silberstein described the rotational aspect of elbow-boosts <a href='https://archive.org/details/theoryofrelativi00silbrich/page/n7/mode/2up'>in 1914</a>.**
 Borel mentioned it (without much analysis) in 1913. Thomas and Wigner came much later.
 
-**There's more physics when you add an elbow boost.** 
+**There's more physics when you add an elbow-boost.** 
 In order to see all of the physics, you can't restrict yourself to a single linear boost. 
 You need two *non-colinear* boosts.   
 
